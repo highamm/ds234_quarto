@@ -4,6 +4,7 @@ project:
 
 book:
   title: DATA / STAT 234
+  reader-mode: true
   # logo: altair-hist.png
   # repo-url: https://github.com/uwdata/visualization-curriculum
   # repo-branch: master
