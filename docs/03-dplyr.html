@@ -387,8 +387,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
  8 Conservation Biology               38     20
  9 Economics                         128    349
 10 English                           131     54
-# … with 17 more rows
-# ℹ Use `print(n = ...)` to see more rows</code></pre>
+# … with 17 more rows</code></pre>
 </div>
 </div>
 <p>There are many interesting and informative plots that we could make with either data set, but most require some data wrangling first. This chapter will provide the foundation for such wrangling skills.</p>
@@ -419,8 +418,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
  8 Conservation Biology               38     20     58
  9 Economics                         128    349    477
 10 English                           131     54    185
-# … with 17 more rows
-# ℹ Use `print(n = ...)` to see more rows</code></pre>
+# … with 17 more rows</code></pre>
 </div>
 </div>
 <p>There’s a lot to break down in that code chunk: most importantly, we’re seeing our first of many, many, many, many, many, many, many instances of using <code>|&gt;</code> to pipe! The <code>|&gt;</code> operator approximately reads take <code>slumajors_df</code> “and then” <code>mutate()</code> it.</p>
@@ -450,8 +448,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
  8 Conservation Biology               38     20       65.5
  9 Economics                         128    349       26.8
 10 English                           131     54       70.8
-# … with 17 more rows
-# ℹ Use `print(n = ...)` to see more rows</code></pre>
+# … with 17 more rows</code></pre>
 </div>
 </div>
 <p>But what happened to <code>ntotal</code>? Is it still in the printout? It’s not: when we created the variable <code>ntotal</code>, we didn’t actually <strong>save</strong> the new data set as anything. So <code>R</code> makes and prints the new variable, but it doesn’t get saved to any data set. If we want to save the new data set, then we can use the <code>&lt;-</code> operator. Here, we’re saving the new data set with the same name as the old data set: <code>slumajors_df</code>. Then, we’re doing the same thing for the <code>percfemale</code> variable. We won’t always want to give the new data set the same name as the old one: we’ll talk about this more in the chapter exercises.</p>
@@ -494,8 +491,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
  8 Conservation Biology               38     20       65.5     58 Yes      
  9 Economics                         128    349       26.8    477 No       
 10 English                           131     54       70.8    185 Yes      
-# … with 17 more rows
-# ℹ Use `print(n = ...)` to see more rows</code></pre>
+# … with 17 more rows</code></pre>
 </div>
 </div>
 <p>The <code>mutate()</code> statement reads: create a new variable called <code>morewomen</code> that is equal to <code>"Yes"</code> if <code>percfemale</code> &gt; <code>50</code> is true and is equal to <code>"No"</code> if <code>perfemale</code> is not &gt; <code>0.5</code>. The first argument is the condition, the second is what to name the new variable when the condition holds, and the third is what to name the variable if the condition does not hold.</p>
@@ -521,8 +517,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
  8 Conservation Biology               38     20       65.5     58 none          
  9 Economics                         128    349       26.8    477 male          
 10 English                           131     54       70.8    185 female        
-# … with 17 more rows
-# ℹ Use `print(n = ...)` to see more rows</code></pre>
+# … with 17 more rows</code></pre>
 </div>
 </div>
 <p>The <code>case_when()</code> function reads “When the percent female is more than or equal to 70, assign the new variable <code>large_majority</code> the value of”female”, when it’s less or equal to 30, assign the more than 30 and less than 70, assign the variable the value of “none” .” The <code>&amp;</code> is a boolean operator: we’ll talk more about that later so don’t worry too much about that for now.</p>
@@ -574,8 +569,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
  9 Mathematics                        74     83      47.1    157 No      none   
 10 Government                        127    116      52.3    243 Yes     none   
 # … with 17 more rows, and abbreviated variable names ¹​percfemale, ²​morewomen,
-#   ³​large_majority
-# ℹ Use `print(n = ...)` to see more rows</code></pre>
+#   ³​large_majority</code></pre>
 </div>
 </div>
 <p>Which major has the lowest percentage of female graduates?</p>
@@ -596,8 +590,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
  8 Performance &amp; Comm Arts      144     57       71.6    201 Yes       female   
  9 Religious Studies             10      4       71.4     14 Yes       female   
 10 English                      131     54       70.8    185 Yes       female   
-# … with 17 more rows, and abbreviated variable name ¹​large_majority
-# ℹ Use `print(n = ...)` to see more rows</code></pre>
+# … with 17 more rows, and abbreviated variable name ¹​large_majority</code></pre>
 </div>
 </div>
 <p>What is the major with the highest percentage of women graduates?</p>
@@ -621,8 +614,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
  8 Conservation Biology             58
  9 Economics                       477
 10 English                         185
-# … with 17 more rows
-# ℹ Use `print(n = ...)` to see more rows</code></pre>
+# … with 17 more rows</code></pre>
 </div>
 </div>
 <p>If I wanted to use this data set for anything else, I’d also need to name, or rename, it with <code>&lt;-</code>. We would probably want to name it something other than <code>slumajors_df</code> so as to not overwrite the original data set, in case we want to use those other variables again later!</p>
@@ -643,8 +635,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
  8 Conservation Biology               65.5 Yes       none          
  9 Economics                          26.8 No        male          
 10 English                            70.8 Yes       female        
-# … with 17 more rows
-# ℹ Use `print(n = ...)` to see more rows</code></pre>
+# … with 17 more rows</code></pre>
 </div>
 </div>
 <p><code>select()</code> comes with many useful helper functions, but these are oftentimes not needed. One of the helper functions that <strong>is</strong> actually often useful is <code>everything()</code>. We can, for example, use this after using <code>mutate()</code> to put the variable that was just created at the front of the data set to make sure there weren’t any unexpected issues:</p>
@@ -666,8 +657,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
  9      0.268 Economics                128    349    26.8    477 No      male   
 10      0.708 English                  131     54    70.8    185 Yes     female 
 # … with 17 more rows, and abbreviated variable names ¹​nfemales, ²​percfemale,
-#   ³​morewomen, ⁴​large_majority
-# ℹ Use `print(n = ...)` to see more rows</code></pre>
+#   ³​morewomen, ⁴​large_majority</code></pre>
 </div>
 </div>
 <p>Verify that <code>propfemale</code> now appears first in the data set. <code>everything()</code> tacks on all of the remaining variables after <code>propfemale</code>. So, in this case, it’s a useful way to re-order the columns so that what you might be most interested in appears first.</p>
@@ -718,8 +708,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
  8  1880 F     Alice      1414 0.0145
  9  1880 F     Bertha     1320 0.0135
 10  1880 F     Sarah      1288 0.0132
-# … with 1,924,655 more rows
-# ℹ Use `print(n = ...)` to see more rows</code></pre>
+# … with 1,924,655 more rows</code></pre>
 </div>
 </div>
 <p>If needed, we can remind ourselves what is in the <code>babynames</code> data set by typing <code>?babynames</code> in the console window.</p>
@@ -787,8 +776,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
  8  1887      247394
  9  1888      299473
 10  1889      288946
-# … with 128 more rows
-# ℹ Use `print(n = ...)` to see more rows</code></pre>
+# … with 128 more rows</code></pre>
 </div>
 </div>
 <p><code>group_by()</code> takes a grouping variable, and then, using <code>summarise()</code> computes the given summary function on each group.</p>
@@ -821,8 +809,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
  8  1887   2373
  9  1888   2651
 10  1889   2590
-# … with 128 more rows
-# ℹ Use `print(n = ...)` to see more rows</code></pre>
+# … with 128 more rows</code></pre>
 </div>
 </div>
 </section>
@@ -861,8 +848,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
  8  1887   2373
  9  1888   2651
 10  1889   2590
-# … with 128 more rows
-# ℹ Use `print(n = ...)` to see more rows</code></pre>
+# … with 128 more rows</code></pre>
 </div>
 </div>
 <p>make a line plot with <code>ngroup</code> on the x-axis and <code>year</code> on the y-axis. How would you interpret the plot?</p>
@@ -891,8 +877,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
  8  1880 M     James      5927 0.0501 118400.
  9  1880 M     Charles    5348 0.0452 118400.
 10  1880 M     George     5126 0.0433 118400.
-# … with 1,370 more rows
-# ℹ Use `print(n = ...)` to see more rows</code></pre>
+# … with 1,370 more rows</code></pre>
 </div>
 </div>
 </section>
@@ -1039,8 +1024,7 @@ date (1): release_date2
 # … with 5 more variables: number &lt;dbl&gt;, developer &lt;chr&gt;, publisher &lt;chr&gt;,
 #   average_playtime &lt;dbl&gt;, meta_cat_factor &lt;chr&gt;, and abbreviated variable
 #   names ¹​release_date, ²​release_date2, ³​median_playtime, ⁴​metascore,
-#   ⁵​price_cat, ⁶​meta_cat, ⁷​playtime_miss
-# ℹ Use `colnames()` to see all variable names</code></pre>
+#   ⁵​price_cat, ⁶​meta_cat, ⁷​playtime_miss</code></pre>
 </div>
 </div>
 <p>Let’s say we want to <code>filter()</code> the data set to include only videogames with a <code>metascore</code> that isn’t missing. We’ve been using code like</p>
@@ -1223,8 +1207,7 @@ numeric or logical: returning NA</code></pre>
  9 Economics                   128    349    26.8    477 No      male    large  
 10 English                     131     54    70.8    185 Yes     female  large  
 # … with 17 more rows, and abbreviated variable names ¹​nfemales, ²​percfemale,
-#   ³​morewomen, ⁴​large_majority, ⁵​major_size
-# ℹ Use `print(n = ...)` to see more rows</code></pre>
+#   ³​morewomen, ⁴​large_majority, ⁵​major_size</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb86"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb86-1"><a href="#cb86-1" aria-hidden="true" tabindex="-1"></a><span class="do">## OR</span></span>
 <span id="cb86-2"><a href="#cb86-2" aria-hidden="true" tabindex="-1"></a>slumajors_df <span class="sc">|&gt;</span></span>
@@ -1245,8 +1228,7 @@ numeric or logical: returning NA</code></pre>
  9 Economics                   128    349    26.8    477 No      male    large  
 10 English                     131     54    70.8    185 Yes     female  large  
 # … with 17 more rows, and abbreviated variable names ¹​nfemales, ²​percfemale,
-#   ³​morewomen, ⁴​large_majority, ⁵​major_size
-# ℹ Use `print(n = ...)` to see more rows</code></pre>
+#   ³​morewomen, ⁴​large_majority, ⁵​major_size</code></pre>
 </div>
 </div>
 <ol start="5" type="1">
@@ -1268,8 +1250,7 @@ numeric or logical: returning NA</code></pre>
  9 Economics           128    349    26.8    477 No      male    &lt;NA&gt;    No     
 10 English             131     54    70.8    185 Yes     female  Yes     Yes    
 # … with 17 more rows, and abbreviated variable names ¹​nfemales, ²​percfemale,
-#   ³​morewomen, ⁴​large_majority, ⁵​testcase, ⁶​testcase2
-# ℹ Use `print(n = ...)` to see more rows</code></pre>
+#   ³​morewomen, ⁴​large_majority, ⁵​testcase, ⁶​testcase2</code></pre>
 </div>
 </div>
 <p>For overlapping cases, case_when prioritizes the first case given.</p>
@@ -1297,8 +1278,7 @@ numeric or logical: returning NA</code></pre>
  9 male           Economics                    128    349    26.8    477 No     
 10 female         English                      131     54    70.8    185 Yes    
 # … with 17 more rows, and abbreviated variable names ¹​nfemales, ²​percfemale,
-#   ³​morewomen
-# ℹ Use `print(n = ...)` to see more rows</code></pre>
+#   ³​morewomen</code></pre>
 </div>
 </div>
 <ol start="3" type="1">
@@ -1347,8 +1327,7 @@ numeric or logical: returning NA</code></pre>
  8 Aadan             130
  9 Aadarsh           199
 10 Aaden            4658
-# … with 97,300 more rows
-# ℹ Use `print(n = ...)` to see more rows</code></pre>
+# … with 97,300 more rows</code></pre>
 </div>
 </div>
 <ol start="4" type="1">
@@ -1412,8 +1391,7 @@ numeric or logical: returning NA</code></pre>
  8  1880 M     James      5927 0.0501 118400.
  9  1880 M     Charles    5348 0.0452 118400.
 10  1880 M     George     5126 0.0433 118400.
-# … with 1,370 more rows
-# ℹ Use `print(n = ...)` to see more rows</code></pre>
+# … with 1,370 more rows</code></pre>
 </div>
 </div>
 <p>Functions like <code>slice()</code> and <code>rank()</code> operate on defined groups in the data set if using a function like <code>group_by()</code> first. Sometimes this feature is quite convenient. But, if we no longer want <code>slice()</code> or <code>rank()</code> or other functions to account for these groups, we need to add an <code>ungroup()</code> pipe, which simply drops the groups that we had formed:</p>
@@ -1473,8 +1451,7 @@ date (1): Start
 <span id="cb106-3"><a href="#cb106-3" aria-hidden="true" tabindex="-1"></a>          <span class="at">meanweekend =</span> <span class="fu">mean</span>(distance, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 0 × 2
-# … with 2 variables: month &lt;chr&gt;, meanweekend &lt;dbl&gt;
-# ℹ Use `colnames()` to see all variable names</code></pre>
+# … with 2 variables: month &lt;chr&gt;, meanweekend &lt;dbl&gt;</code></pre>
 </div>
 </div>
 <div class="cell">
@@ -1483,8 +1460,7 @@ date (1): Start
 <span id="cb108-3"><a href="#cb108-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">meanweekend =</span> <span class="fu">mean</span>(distance, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 0 × 2
-# … with 2 variables: month &lt;chr&gt;, meanweekend &lt;dbl&gt;
-# ℹ Use `colnames()` to see all variable names</code></pre>
+# … with 2 variables: month &lt;chr&gt;, meanweekend &lt;dbl&gt;</code></pre>
 </div>
 </div>
 </section>
