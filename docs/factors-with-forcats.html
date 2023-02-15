@@ -1,0 +1,760 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<title> 9 Factors with forcats | STAT 234: Data Science</title>
+<meta name="author" content="Matt Higham">
+<meta name="description" content="Goals: Use the forcats package to change the levels of factors, or to re-order levels of factors in a way that makes tables and graphs easier to read.  9.1 Change Factor Levels The Data: The...">
+<meta name="generator" content="bookdown 0.27 with bs4_book()">
+<meta property="og:title" content=" 9 Factors with forcats | STAT 234: Data Science">
+<meta property="og:type" content="book">
+<meta property="og:url" content="https://highamm.github.io/datascience234/factors-with-forcats.html">
+<meta property="og:description" content="Goals: Use the forcats package to change the levels of factors, or to re-order levels of factors in a way that makes tables and graphs easier to read.  9.1 Change Factor Levels The Data: The...">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content=" 9 Factors with forcats | STAT 234: Data Science">
+<meta name="twitter:description" content="Goals: Use the forcats package to change the levels of factors, or to re-order levels of factors in a way that makes tables and graphs easier to read.  9.1 Change Factor Levels The Data: The...">
+<!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
+<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.2.5.1/tabs.js"></script><script src="libs/bs3compat-0.2.5.1/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
+<script src="libs/bs4_book-1.0.0/bs4_book.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><style type="text/css">
+    
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  </style>
+<link rel="stylesheet" href="bs4_style.css">
+</head>
+<body data-spy="scroll" data-target="#toc">
+
+<div class="container-fluid">
+<div class="row">
+  <header class="col-sm-12 col-lg-3 sidebar sidebar-book"><a class="sr-only sr-only-focusable" href="#content">Skip to main content</a>
+
+    <div class="d-flex align-items-start justify-content-between">
+      <h1>
+        <a href="index.html" title="">STAT 234: Data Science</a>
+      </h1>
+      <button class="btn btn-outline-primary d-lg-none ml-2 mt-1" type="button" data-toggle="collapse" data-target="#main-nav" aria-expanded="true" aria-controls="main-nav"><i class="fas fa-bars"></i><span class="sr-only">Show table of contents</span></button>
+    </div>
+
+    <div id="main-nav" class="collapse-lg">
+      <form role="search">
+        <input id="search" class="form-control" type="search" placeholder="Search" aria-label="Search">
+</form>
+
+      <nav aria-label="Table of contents"><h2>Table of contents</h2>
+        <ul class="book-toc list-unstyled">
+<li><a class="" href="index.html"><span class="header-section-number">1</span> Syllabus and Course Information</a></li>
+<li class="book-part">The Core: tidyverse Basics</li>
+<li><a class="" href="intro.html"><span class="header-section-number">2</span> Getting Started with R and R Studio</a></li>
+<li><a class="" href="ggplot2.html"><span class="header-section-number">3</span> Plotting with ggplot2</a></li>
+<li><a class="" href="dplyr.html"><span class="header-section-number">4</span> Wrangling with dplyr</a></li>
+<li><a class="" href="communication-with-quarto.html"><span class="header-section-number">5</span> Communication with Quarto</a></li>
+<li><a class="" href="workflow.html"><span class="header-section-number">6</span> Workflow and Other Skills</a></li>
+<li class="book-part">Data Wrangling</li>
+<li><a class="" href="tidying-with-tidyr.html"><span class="header-section-number">7</span> Tidying with tidyr</a></li>
+<li><a class="" href="coding-in-base-r.html"><span class="header-section-number">8</span> Coding in Base R</a></li>
+<li><a class="active" href="factors-with-forcats.html"><span class="header-section-number">9</span> Factors with forcats</a></li>
+<li><a class="" href="data-ethics.html"><span class="header-section-number">10</span> Data Ethics</a></li>
+<li><a class="" href="data-import.html"><span class="header-section-number">11</span> Data Import</a></li>
+<li><a class="" href="merging-with-dplyr.html"><span class="header-section-number">12</span> Merging with dplyr</a></li>
+<li class="book-part">Special Topics</li>
+<li><a class="" href="dates-with-lubridate.html"><span class="header-section-number">13</span> Dates with lubridate</a></li>
+<li><a class="" href="text-data-with-tidytext-and-stringr.html"><span class="header-section-number">14</span> Text Data with tidytext and stringr</a></li>
+<li><a class="" href="predictive-modeling-with-knn.html"><span class="header-section-number">15</span> Predictive Modeling with knn</a></li>
+<li><a class="" href="connections-to-stat-113-stat-213-and-cs-140.html"><span class="header-section-number">16</span> Connections to STAT 113, STAT 213, and CS 140</a></li>
+<li><a class="" href="introduction-to-sql-with-dbplyr.html"><span class="header-section-number">17</span> Introduction to SQL with dbplyr</a></li>
+</ul>
+
+        <div class="book-extra">
+          
+        </div>
+      </nav>
+</div>
+  </header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><div id="factors-with-forcats" class="section level1" number="9">
+<h1>
+<span class="header-section-number"> 9</span> Factors with <code>forcats</code><a class="anchor" aria-label="anchor" href="#factors-with-forcats"><i class="fas fa-link"></i></a>
+</h1>
+<p><strong>Goals:</strong></p>
+<ul>
+<li>Use the <code>forcats</code> package to change the levels of factors, or to re-order levels of factors in a way that makes tables and graphs easier to read.</li>
+</ul>
+<div id="change-factor-levels" class="section level2" number="9.1">
+<h2>
+<span class="header-section-number">9.1</span> Change Factor Levels<a class="anchor" aria-label="anchor" href="#change-factor-levels"><i class="fas fa-link"></i></a>
+</h2>
+<p><strong>The Data</strong>: The <code>pokemon_allgen.csv</code> data set contains observations on Pokemon from the first 6 Generations (the first 6 games). There are 20 variable in this data set, but, of particular interest for this chapter are</p>
+<ul>
+<li>
+<code>Type 1</code>, the first Type characteristic of the Pokemon (a factor with 13 levels)</li>
+<li>
+<code>Type 2</code>, the second Type characteristic of the Pokemon (a factor with 13 levels, <code>NA</code> if the Pokemon only has one type)</li>
+<li>
+<code>Generation</code>, the generation the Pokemon first appeared in (a factor with 6 levels)</li>
+</ul>
+<p>Read in the data set with <code><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv()</a></code>. Then, use a <code><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate()</a></code> statement to make a <code>Generation_cat</code> variable that is a factor.</p>
+<div class="sourceCode" id="cb302"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://here.r-lib.org/">here</a></span><span class="op">)</span></span>
+<span><span class="va">pokemon_df</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv</a></span><span class="op">(</span><span class="fu"><a href="https://here.r-lib.org//reference/here.html">here</a></span><span class="op">(</span><span class="st">"data/pokemon_allgen.csv"</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>Generation_cat <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">factor</a></span><span class="op">(</span><span class="va">Generation</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<p>One easy way to get a quick summary of a <code>factor</code> variable is to use <code><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by()</a></code> and <code><a href="https://dplyr.tidyverse.org/reference/context.html">n()</a></code> within a <code><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise()</a></code> statement:</p>
+<div class="sourceCode" id="cb303"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">pokemon_df</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">`Type 1`</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise</a></span><span class="op">(</span>counttype <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/context.html">n</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="co">#&gt; # A tibble: 18 × 2</span></span>
+<span><span class="co">#&gt;    `Type 1` counttype</span></span>
+<span><span class="co">#&gt;    &lt;chr&gt;        &lt;int&gt;</span></span>
+<span><span class="co">#&gt;  1 Bug             75</span></span>
+<span><span class="co">#&gt;  2 Dark            31</span></span>
+<span><span class="co">#&gt;  3 Dragon          41</span></span>
+<span><span class="co">#&gt;  4 Electric        90</span></span>
+<span><span class="co">#&gt;  5 Fairy           18</span></span>
+<span><span class="co">#&gt;  6 Fighting        27</span></span>
+<span><span class="co">#&gt;  7 Fire            56</span></span>
+<span><span class="co">#&gt;  8 Flying           6</span></span>
+<span><span class="co">#&gt;  9 Ghost           58</span></span>
+<span><span class="co">#&gt; 10 Grass           73</span></span>
+<span><span class="co">#&gt; 11 Ground          42</span></span>
+<span><span class="co">#&gt; 12 Ice             24</span></span>
+<span><span class="co">#&gt; 13 Normal         108</span></span>
+<span><span class="co">#&gt; 14 Poison          30</span></span>
+<span><span class="co">#&gt; 15 Psychic         73</span></span>
+<span><span class="co">#&gt; 16 Rock            47</span></span>
+<span><span class="co">#&gt; 17 Steel           29</span></span>
+<span><span class="co">#&gt; 18 Water          119</span></span></code></pre></div>
+<p><br></p>
+<div id="fct_recode-to-rename-levels" class="section level3" number="9.1.1">
+<h3>
+<span class="header-section-number">9.1.1</span> <code>fct_recode()</code> to Rename Levels<a class="anchor" aria-label="anchor" href="#fct_recode-to-rename-levels"><i class="fas fa-link"></i></a>
+</h3>
+<p>Now, let’s make a bar plot that examines how many <code>Legendary</code> Pokemon first appear in each generation, using <code>dplyr</code> commands that we’ve used and a simple <code><a href="https://ggplot2.tidyverse.org/reference/geom_bar.html">geom_col()</a></code>:</p>
+<div class="sourceCode" id="cb304"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">pokemon_legend</span> <span class="op">&lt;-</span> <span class="va">pokemon_df</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">Legendary</span> <span class="op">==</span> <span class="cn">TRUE</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">Generation_cat</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise</a></span><span class="op">(</span>nlegend <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/context.html">n</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">pokemon_legend</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">Generation_cat</span>, y <span class="op">=</span> <span class="va">nlegend</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_bar.html">geom_col</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
+<div class="inline-figure"><img src="07-forcats_files/figure-html/unnamed-chunk-3-1.png" width="672"></div>
+<p>We’ve discussed how to change many aspects of <code>ggplot2</code> graphs, but we haven’t discussed how to rename the labels of levels of a categorical variable, whether those appear in the x-axis or in a separate legend. The easiest way to do this is to rename the levels in the factor itself using <code><a href="https://forcats.tidyverse.org/reference/fct_recode.html">fct_recode()</a></code>. Suppose, for example, that we want to relabel the Generation number with the actual region corresponding to each game (Kanto, Johto, Hoenn, Sinnoh, Unova, and Kalos). The function <code><a href="https://forcats.tidyverse.org/reference/fct_recode.html">fct_recode()</a></code> takes the name of a factor already present in the data set as its first argument and then a series of renaming schemes (new_name = “old_name”) as its remaining arguments.</p>
+<div class="sourceCode" id="cb305"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">pokemon_legend</span> <span class="op">&lt;-</span> <span class="va">pokemon_legend</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>Generation_cat2 <span class="op">=</span> <span class="fu"><a href="https://forcats.tidyverse.org/reference/fct_recode.html">fct_recode</a></span><span class="op">(</span><span class="va">Generation_cat</span>, Kanto <span class="op">=</span> <span class="st">"1"</span>,</span>
+<span>                                      Johto <span class="op">=</span> <span class="st">"2"</span>, Hoenn <span class="op">=</span> <span class="st">"3"</span>,</span>
+<span>                                      Sinnoh <span class="op">=</span> <span class="st">"4"</span>, Unova <span class="op">=</span> <span class="st">"5"</span>,</span>
+<span>                                      Kalos <span class="op">=</span> <span class="st">"6"</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">Generation_cat2</span>, <span class="fu"><a href="https://tidyselect.r-lib.org/reference/everything.html">everything</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">pokemon_legend</span><span class="op">)</span></span>
+<span><span class="co">#&gt; # A tibble: 6 × 3</span></span>
+<span><span class="co">#&gt;   Generation_cat2 Generation_cat nlegend</span></span>
+<span><span class="co">#&gt;   &lt;fct&gt;           &lt;fct&gt;            &lt;int&gt;</span></span>
+<span><span class="co">#&gt; 1 Kanto           1                    6</span></span>
+<span><span class="co">#&gt; 2 Johto           2                    5</span></span>
+<span><span class="co">#&gt; 3 Hoenn           3                   34</span></span>
+<span><span class="co">#&gt; 4 Sinnoh          4                   17</span></span>
+<span><span class="co">#&gt; 5 Unova           5                   27</span></span>
+<span><span class="co">#&gt; 6 Kalos           6                   13</span></span>
+<span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">pokemon_legend</span>,</span>
+<span>       <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">Generation_cat2</span>, y <span class="op">=</span> <span class="va">nlegend</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_bar.html">geom_col</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
+<div class="inline-figure"><img src="07-forcats_files/figure-html/unnamed-chunk-4-1.png" width="672"></div>
+</div>
+<div id="collapsing-many-levels-into-fewer-levels-with-fct_collapse" class="section level3" number="9.1.2">
+<h3>
+<span class="header-section-number">9.1.2</span> Collapsing Many Levels Into Fewer Levels with <code>fct_collapse()</code><a class="anchor" aria-label="anchor" href="#collapsing-many-levels-into-fewer-levels-with-fct_collapse"><i class="fas fa-link"></i></a>
+</h3>
+<p>Sometimes, you might want to collapse the levels of two or more factors into a single level. With the Pokemon data set, there isn’t an example where this really makes sense, but, in the exercises, you’ll see a good use for this function with the social survey data set. For practice, we can collapse the <code>Ice</code> and <code>Dark</code> type Pokemon into a new level called <code>Coolest</code> and we can collapse the <code>Poison</code>, <code>Fighting</code>, and <code>Fire</code> type Pokemon into a new level called <code>Least_Cool</code>.</p>
+<div class="sourceCode" id="cb306"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">pokemon_long</span> <span class="op">&lt;-</span> <span class="va">pokemon_df</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://tidyr.tidyverse.org/reference/pivot_longer.html">pivot_longer</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="va">`Type 1`</span>, <span class="va">`Type 2`</span><span class="op">)</span>,</span>
+<span>                            names_to <span class="op">=</span> <span class="st">"Number"</span>,</span>
+<span>                            values_to <span class="op">=</span> <span class="st">"Type"</span><span class="op">)</span></span>
+<span><span class="va">pokemon_long</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>new_type <span class="op">=</span> <span class="fu"><a href="https://forcats.tidyverse.org/reference/fct_collapse.html">fct_collapse</a></span><span class="op">(</span><span class="va">Type</span>, Coolest <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Ice"</span>, <span class="st">"Dark"</span><span class="op">)</span>,</span>
+<span>                                 Least_Cool <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Fire"</span>, <span class="st">"Fighting"</span>, <span class="st">"Poison"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">new_type</span>, <span class="va">Type</span>, <span class="fu"><a href="https://tidyselect.r-lib.org/reference/everything.html">everything</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="co">#&gt; # A tibble: 1,894 × 22</span></span>
+<span><span class="co">#&gt;    new_type   Type     `#` Name   Total    HP Attack Defense</span></span>
+<span><span class="co">#&gt;    &lt;fct&gt;      &lt;chr&gt;  &lt;dbl&gt; &lt;chr&gt;  &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt;   &lt;dbl&gt;</span></span>
+<span><span class="co">#&gt;  1 Grass      Grass      1 Bulba…   318    45     49      49</span></span>
+<span><span class="co">#&gt;  2 Least_Cool Poison     1 Bulba…   318    45     49      49</span></span>
+<span><span class="co">#&gt;  3 Grass      Grass      2 Ivysa…   405    60     62      63</span></span>
+<span><span class="co">#&gt;  4 Least_Cool Poison     2 Ivysa…   405    60     62      63</span></span>
+<span><span class="co">#&gt;  5 Grass      Grass      3 Venus…   525    80     82      83</span></span>
+<span><span class="co">#&gt;  6 Least_Cool Poison     3 Venus…   525    80     82      83</span></span>
+<span><span class="co">#&gt;  7 Grass      Grass      3 Venus…   525    80     82      83</span></span>
+<span><span class="co">#&gt;  8 Least_Cool Poison     3 Venus…   525    80     82      83</span></span>
+<span><span class="co">#&gt;  9 Least_Cool Fire       4 Charm…   309    39     52      43</span></span>
+<span><span class="co">#&gt; 10 &lt;NA&gt;       &lt;NA&gt;       4 Charm…   309    39     52      43</span></span>
+<span><span class="co">#&gt; # … with 1,884 more rows, and 14 more variables:</span></span>
+<span><span class="co">#&gt; #   `Sp. Atk` &lt;dbl&gt;, `Sp. Def` &lt;dbl&gt;, Speed &lt;dbl&gt;,</span></span>
+<span><span class="co">#&gt; #   Generation &lt;dbl&gt;, Legendary &lt;lgl&gt;, id &lt;chr&gt;,</span></span>
+<span><span class="co">#&gt; #   identifier &lt;chr&gt;, height &lt;dbl&gt;, weight &lt;dbl&gt;,</span></span>
+<span><span class="co">#&gt; #   base_experience &lt;dbl&gt;, order &lt;dbl&gt;, is_default &lt;dbl&gt;,</span></span>
+<span><span class="co">#&gt; #   Generation_cat &lt;fct&gt;, Number &lt;chr&gt;</span></span>
+<span><span class="co">#&gt; # ℹ Use `print(n = ...)` to see more rows, and `colnames()` to see all variable names</span></span></code></pre></div>
+<p>What happens to the levels that aren’t being re-specified?</p>
+<p><br></p>
+</div>
+<div id="exercise-7-1" class="section level3" number="9.1.3">
+<h3>
+<span class="header-section-number">9.1.3</span> Exercises<a class="anchor" aria-label="anchor" href="#exercise-7-1"><i class="fas fa-link"></i></a>
+</h3>
+<p>Exercises marked with an * indicate that the exercise has a solution at the end of the chapter at <a href="factors-with-forcats.html#solutions-7">9.4</a>.</p>
+<ol style="list-style-type: decimal">
+<li><p>What <code>dplyr</code> function(s) could you also use to create the new levels that were created with <code><a href="https://forcats.tidyverse.org/reference/fct_collapse.html">fct_collapse()</a></code>? Why might it be a little easier to use <code><a href="https://forcats.tidyverse.org/reference/fct_collapse.html">fct_collapse()</a></code>?</p></li>
+<li><p>* We did not properly explore the data set before making the graphs above, and, in fact, there is some double counting of Pokemon in this data set (this is another example where being familiar with the data set you’re working with is advantageous: people familiar with Pokemon know that there are fewer than 947 Pokemon in Generations 1 through 6).</p></li>
+</ol>
+<p>Figure out why some Pokemon are double counted. Then, create a new data set that only keeps one observation per Pokemon <code>#</code>.</p>
+<ol start="3" style="list-style-type: decimal">
+<li>Create the bar plot with your non-duplicated data set. Are your results significantly changed?</li>
+</ol>
+<p><br></p>
+</div>
+</div>
+<div id="reorder-factor-levels" class="section level2" number="9.2">
+<h2>
+<span class="header-section-number">9.2</span> Reorder Factor Levels<a class="anchor" aria-label="anchor" href="#reorder-factor-levels"><i class="fas fa-link"></i></a>
+</h2>
+<div id="change-the-order-of-levels-by-a-quantitative-variable-with-fct_reorder" class="section level3" number="9.2.1">
+<h3>
+<span class="header-section-number">9.2.1</span> Change the Order of Levels by a Quantitative Variable with <code>fct_reorder()</code><a class="anchor" aria-label="anchor" href="#change-the-order-of-levels-by-a-quantitative-variable-with-fct_reorder"><i class="fas fa-link"></i></a>
+</h3>
+<p>You might also be interested in re-ordering the x or y-axis of a particular graph so that the order of the factors correspond to, for example, the median of a quantitative variable for each level. The reason you would want to do this is easiest to see with an example. For example, suppose you want to look at the most common Pokemon types across the first 6 generations. We use the non-duplicated data set from the previous section’s exercises, we pivot the data so that type is in one column, and we remove observations with missing <code>Type</code>, which correspond to the second <code>Type</code> of Pokemon that only have a single <code>Type</code>:</p>
+<div class="sourceCode" id="cb307"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">pokemon_nodup</span> <span class="op">&lt;-</span> <span class="va">pokemon_df</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">`#`</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/slice.html">slice</a></span><span class="op">(</span><span class="fl">1</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">ungroup</a></span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="va">pokemon_long</span> <span class="op">&lt;-</span> <span class="va">pokemon_nodup</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://tidyr.tidyverse.org/reference/pivot_longer.html">pivot_longer</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="va">`Type 1`</span>, <span class="va">`Type 2`</span><span class="op">)</span>,</span>
+<span>               names_to <span class="op">=</span> <span class="st">"Number"</span>,</span>
+<span>               values_to <span class="op">=</span> <span class="st">"Type"</span><span class="op">)</span></span>
+<span><span class="va">pokemon_sum</span> <span class="op">&lt;-</span> <span class="va">pokemon_long</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">Type</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise</a></span><span class="op">(</span>count_type <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/context.html">n</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/NA.html">is.na</a></span><span class="op">(</span><span class="va">Type</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">pokemon_sum</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">Type</span>,</span>
+<span>                               y <span class="op">=</span> <span class="va">count_type</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_bar.html">geom_col</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/coord_flip.html">coord_flip</a></span><span class="op">(</span><span class="op">)</span>  <span class="co">## flips the x and y axes</span></span></code></pre></div>
+<div class="inline-figure"><img src="07-forcats_files/figure-html/unnamed-chunk-6-1.png" width="672"></div>
+<p>How does <code>R</code> order the levels of the <code>Type</code> factor, by default? How might you like them to be ordered to make the graph more readable?</p>
+<p><br></p>
+<p>The following code creates a new factor variable called <code>Type_ordered</code> that orders type by the <code>count_type</code> variable. <code><a href="https://forcats.tidyverse.org/reference/fct_reorder.html">fct_reorder()</a></code> takes a factor as its first argument and a numeric variable to re-order that factor by as its second argument. The bar plot is then reconstructed with this new variable.</p>
+<div class="sourceCode" id="cb308"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">pokemon_sum</span> <span class="op">&lt;-</span> <span class="va">pokemon_sum</span> <span class="op">|&gt;</span> </span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>Type_ordered <span class="op">=</span> <span class="fu"><a href="https://forcats.tidyverse.org/reference/fct_reorder.html">fct_reorder</a></span><span class="op">(</span>.f <span class="op">=</span> <span class="va">Type</span>, .x <span class="op">=</span> <span class="va">count_type</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">pokemon_sum</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">Type_ordered</span>,</span>
+<span>                               y <span class="op">=</span> <span class="va">count_type</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_bar.html">geom_col</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/coord_flip.html">coord_flip</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
+<div class="inline-figure"><img src="07-forcats_files/figure-html/unnamed-chunk-7-1.png" width="672"></div>
+</div>
+<div id="lollipop-plots" class="section level3" number="9.2.2">
+<h3>
+<span class="header-section-number">9.2.2</span> Lollipop Plots<a class="anchor" aria-label="anchor" href="#lollipop-plots"><i class="fas fa-link"></i></a>
+</h3>
+<p>Lollipop plots are a popular alternative to bar plots because they often look cleaner with less ink. To make a lollipop plot in <code>R</code>, we specify two different geoms: <code><a href="https://ggplot2.tidyverse.org/reference/geom_segment.html">geom_segment()</a></code> to form the stick of the lollipop and <code><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point()</a></code> to form the pop part of the lollipop. <code><a href="https://ggplot2.tidyverse.org/reference/geom_segment.html">geom_segment()</a></code> requires 4 aesthetics: <code>x</code>, <code>xend</code>, <code>y</code>, and <code>yend</code>.</p>
+<div class="sourceCode" id="cb309"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">pokemon_sum</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">Type_ordered</span>,</span>
+<span>                               y <span class="op">=</span> <span class="va">count_type</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_segment.html">geom_segment</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">Type_ordered</span>, xend <span class="op">=</span> <span class="va">Type_ordered</span>,</span>
+<span>                   y <span class="op">=</span> <span class="fl">0</span>, yend <span class="op">=</span> <span class="va">count_type</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/coord_flip.html">coord_flip</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
+<div class="inline-figure"><img src="07-forcats_files/figure-html/unnamed-chunk-8-1.png" width="672"></div>
+<p><code><a href="https://forcats.tidyverse.org/reference/fct_reorder.html">fct_reorder()</a></code> also works with boxplots or simple point plots that show, for example, the median response for each level of a factor. The following set of plots investigate how the <code>Defense</code> stat changes for different Pokemon types</p>
+<div class="sourceCode" id="cb310"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">pokemon_long</span> <span class="op">&lt;-</span> <span class="va">pokemon_long</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/NA.html">is.na</a></span><span class="op">(</span><span class="va">Type</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>Type_Deford <span class="op">=</span> <span class="fu"><a href="https://forcats.tidyverse.org/reference/fct_reorder.html">fct_reorder</a></span><span class="op">(</span>.f <span class="op">=</span> <span class="va">Type</span>, .x <span class="op">=</span> <span class="va">Defense</span>,</span>
+<span>                                   .fun <span class="op">=</span> <span class="va">median</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">pokemon_long</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">Type_Deford</span>,</span>
+<span>                               y <span class="op">=</span> <span class="va">Defense</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_boxplot.html">geom_boxplot</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span> </span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/coord_flip.html">coord_flip</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
+<div class="inline-figure"><img src="07-forcats_files/figure-html/unnamed-chunk-9-1.png" width="672"></div>
+<p>The following code makes a point plot that shows the median defense for each type instead of boxplots.</p>
+<div class="sourceCode" id="cb311"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">pokemon_med</span> <span class="op">&lt;-</span> <span class="va">pokemon_long</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">Type_Deford</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise</a></span><span class="op">(</span>med_def <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/median.html">median</a></span><span class="op">(</span><span class="va">Defense</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>Type_Deford <span class="op">=</span> <span class="fu"><a href="https://forcats.tidyverse.org/reference/fct_reorder.html">fct_reorder</a></span><span class="op">(</span>.f <span class="op">=</span> <span class="va">Type_Deford</span>, .x <span class="op">=</span> <span class="va">med_def</span>,</span>
+<span>                                   .fun <span class="op">=</span> <span class="va">median</span><span class="op">)</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">pokemon_med</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">med_def</span>, y <span class="op">=</span> <span class="va">Type_Deford</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
+<div class="inline-figure"><img src="07-forcats_files/figure-html/unnamed-chunk-10-1.png" width="672"></div>
+<p>Finally, we can make a lollipop plot of median defense.</p>
+<div class="sourceCode" id="cb312"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">pokemon_med</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">Type_Deford</span>, y <span class="op">=</span> <span class="va">med_def</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_segment.html">geom_segment</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>xend <span class="op">=</span> <span class="va">Type_Deford</span>, y <span class="op">=</span> <span class="fl">0</span>, yend <span class="op">=</span> <span class="va">med_def</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/coord_flip.html">coord_flip</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
+<div class="inline-figure"><img src="07-forcats_files/figure-html/unnamed-chunk-11-1.png" width="672"></div>
+<p>Do you have a preference between the boxplot graph, the point plot, and the lollipop plot?</p>
+<p><br></p>
+<p><strong>New Data</strong>. The <code>gun_violence_us.csv</code> data set was obtained from <a href="https://www.openintro.org/book/statdata/index.php?data=gun_violence_us" target="_blank">https://www.openintro.org/book/statdata/index.php?data=gun_violence_us</a> and contains the following variables on gun violence in 2014:</p>
+<ul>
+<li>
+<code>state</code>, the name of the U.S. state</li>
+<li>
+<code>mortality_rate</code>, number of deaths from gun violence per 100,000 people</li>
+<li>
+<code>ownership_rate</code>, the proportion of adults who own a gun</li>
+<li>
+<code>region</code>, region of the U.S. (<code>South</code>, <code>West</code>, <code>NE</code>, and <code>MW</code>)</li>
+</ul>
+<div class="sourceCode" id="cb313"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">mortality_df</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv</a></span><span class="op">(</span><span class="fu"><a href="https://here.r-lib.org//reference/here.html">here</a></span><span class="op">(</span><span class="st">"data/gun_violence_us.csv"</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>region <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">factor</a></span><span class="op">(</span><span class="va">region</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+</div>
+<div id="re-leveling-by-two-quantitative-variables-with-fct_reorder2" class="section level3" number="9.2.3">
+<h3>
+<span class="header-section-number">9.2.3</span> Re-Leveling By Two Quantitative Variables with <code>fct_reorder2()</code><a class="anchor" aria-label="anchor" href="#re-leveling-by-two-quantitative-variables-with-fct_reorder2"><i class="fas fa-link"></i></a>
+</h3>
+<p>Suppose that we want to investigate the relationship between <code>mortality_rate</code> and <code>ownership_rate</code> using this data set. Run the following code to create a scatterplot of <code>mortality_rate</code> vs. <code>ownership_rate</code> with fitted linear regression lines for each <code>region</code> of the United States:</p>
+<div class="sourceCode" id="cb314"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">mortality_df</span>,</span>
+<span>       <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">ownership_rate</span>, y <span class="op">=</span> <span class="va">mortality_rate</span>, colour <span class="op">=</span> <span class="va">region</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_smooth.html">geom_smooth</a></span><span class="op">(</span>method <span class="op">=</span> <span class="st">"lm"</span><span class="op">)</span></span></code></pre></div>
+<div class="inline-figure"><img src="07-forcats_files/figure-html/unnamed-chunk-13-1.png" width="672"></div>
+<p>Notice the order of the levels in the legend. Most people would prefer the order to actually match up with where the lines in the plot end, not for the order to be alphabetical. To achieve this, we can use <code><a href="https://forcats.tidyverse.org/reference/fct_reorder.html">fct_reorder2()</a></code> to change the order of the factor levels:</p>
+<div class="sourceCode" id="cb315"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">mortality_df</span> <span class="op">&lt;-</span> <span class="va">mortality_df</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>region_2 <span class="op">=</span> <span class="fu"><a href="https://forcats.tidyverse.org/reference/fct_reorder.html">fct_reorder2</a></span><span class="op">(</span><span class="va">region</span>,</span>
+<span>                                 .x <span class="op">=</span> <span class="va">ownership_rate</span>,</span>
+<span>                                 .y <span class="op">=</span> <span class="va">mortality_rate</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">mortality_df</span>,</span>
+<span>       <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">ownership_rate</span>, y <span class="op">=</span> <span class="va">mortality_rate</span>, colour <span class="op">=</span> <span class="va">region_2</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_smooth.html">geom_smooth</a></span><span class="op">(</span>method <span class="op">=</span> <span class="st">"lm"</span><span class="op">)</span></span></code></pre></div>
+<div class="inline-figure"><img src="07-forcats_files/figure-html/unnamed-chunk-14-1.png" width="672"></div>
+<p>Did it change the order of the levels how you would expect? <code><a href="https://forcats.tidyverse.org/reference/fct_reorder.html">fct_reorder2()</a></code> actually looks at <strong>points</strong>, not lines, when determining the ordering. If you want the levels to match up exactly, then we’ll have to reorder the levels manually with <code><a href="https://forcats.tidyverse.org/reference/fct_relevel.html">fct_relevel()</a></code>:</p>
+</div>
+<div id="reordering-levels-manually-with-fct_relevel" class="section level3" number="9.2.4">
+<h3>
+<span class="header-section-number">9.2.4</span> Reordering Levels Manually with <code>fct_relevel()</code><a class="anchor" aria-label="anchor" href="#reordering-levels-manually-with-fct_relevel"><i class="fas fa-link"></i></a>
+</h3>
+<p>Factors are ordered alphabetically by default. If we want precise control over the order of the levels of a factor, we can use <code><a href="https://forcats.tidyverse.org/reference/fct_relevel.html">fct_relevel()</a></code>, which takes a factor and a vector of the new levels as inputs:</p>
+<div class="sourceCode" id="cb316"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">mortality_df</span> <span class="op">&lt;-</span> <span class="va">mortality_df</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>region_3 <span class="op">=</span> <span class="fu"><a href="https://forcats.tidyverse.org/reference/fct_relevel.html">fct_relevel</a></span><span class="op">(</span><span class="va">region</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"South"</span>, <span class="st">"West"</span>, <span class="st">"MW"</span>, <span class="st">"NE"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">mortality_df</span>,</span>
+<span>       <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">ownership_rate</span>, y <span class="op">=</span> <span class="va">mortality_rate</span>, colour <span class="op">=</span> <span class="va">region_3</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_smooth.html">geom_smooth</a></span><span class="op">(</span>method <span class="op">=</span> <span class="st">"lm"</span><span class="op">)</span></span></code></pre></div>
+<div class="inline-figure"><img src="07-forcats_files/figure-html/unnamed-chunk-15-1.png" width="672"></div>
+<p>Reordering the levels of a factor manually might also be useful in fitting linear models. Recall that, by default, <code>R</code> makes the <strong>reference group</strong> in a linear model the first level alphabetically. If you’d like a different reference group, you can reorder the levels of the factor:</p>
+<div class="sourceCode" id="cb317"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">mod</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span><span class="op">(</span><span class="va">mortality_rate</span> <span class="op">~</span> <span class="va">ownership_rate</span> <span class="op">+</span> <span class="va">region</span>, data <span class="op">=</span> <span class="va">mortality_df</span><span class="op">)</span></span>
+<span><span class="va">mod2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span><span class="op">(</span><span class="va">mortality_rate</span> <span class="op">~</span> <span class="va">ownership_rate</span> <span class="op">+</span> <span class="va">region_2</span>, data <span class="op">=</span> <span class="va">mortality_df</span><span class="op">)</span></span>
+<span><span class="va">mod3</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span><span class="op">(</span><span class="va">mortality_rate</span> <span class="op">~</span> <span class="va">ownership_rate</span> <span class="op">+</span> <span class="va">region_3</span>, data <span class="op">=</span> <span class="va">mortality_df</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">mod</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">mod2</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">mod3</span><span class="op">)</span></span></code></pre></div>
+</div>
+<div id="exercise-7-2" class="section level3" number="9.2.5">
+<h3>
+<span class="header-section-number">9.2.5</span> Exercises<a class="anchor" aria-label="anchor" href="#exercise-7-2"><i class="fas fa-link"></i></a>
+</h3>
+<ol style="list-style-type: decimal">
+<li>Make the side-by-side boxplots again with the pokemon data but do not use <code><a href="https://dplyr.tidyverse.org/reference/group_by.html">ungroup()</a></code> by running the following code.</li>
+</ol>
+<div class="sourceCode" id="cb318"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">pokemon_nodup</span> <span class="op">&lt;-</span> <span class="va">pokemon_df</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">`#`</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/slice.html">slice</a></span><span class="op">(</span><span class="fl">1</span><span class="op">)</span> <span class="co">## |&gt;</span></span>
+<span>  <span class="co">## ungroup()</span></span>
+<span><span class="va">pokemon_long</span> <span class="op">&lt;-</span> <span class="va">pokemon_nodup</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://tidyr.tidyverse.org/reference/pivot_longer.html">pivot_longer</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="va">`Type 1`</span>, <span class="va">`Type 2`</span><span class="op">)</span>,</span>
+<span>               names_to <span class="op">=</span> <span class="st">"Number"</span>,</span>
+<span>               values_to <span class="op">=</span> <span class="st">"Type"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">pokemon_long</span> <span class="op">&lt;-</span> <span class="va">pokemon_long</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/NA.html">is.na</a></span><span class="op">(</span><span class="va">Type</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>Type_Deford <span class="op">=</span> <span class="fu"><a href="https://forcats.tidyverse.org/reference/fct_reorder.html">fct_reorder</a></span><span class="op">(</span>.f <span class="op">=</span> <span class="va">Type</span>, .x <span class="op">=</span> <span class="va">Defense</span>,</span>
+<span>                                   .fun <span class="op">=</span> <span class="va">median</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">pokemon_long</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">Type_Deford</span>,</span>
+<span>                               y <span class="op">=</span> <span class="va">Defense</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_boxplot.html">geom_boxplot</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span> </span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/coord_flip.html">coord_flip</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
+<div class="inline-figure"><img src="07-forcats_files/figure-html/unnamed-chunk-17-1.png" width="672"></div>
+<p>Why aren’t the types ordered by median defense anymore?</p>
+<ol start="2" style="list-style-type: decimal">
+<li>The <code>.fun</code> argument in <code><a href="https://forcats.tidyverse.org/reference/fct_reorder.html">fct_reorder()</a></code> controls how the <code>Type</code> factor is ordered. Change this to specify ordering by the <code>mean</code>, <code>max</code>, and <code>min</code>. What ordering makes the most sense? Why?</li>
+</ol>
+</div>
+</div>
+<div id="chapexercise-7" class="section level2" number="9.3">
+<h2>
+<span class="header-section-number">9.3</span> Chapter Exercises<a class="anchor" aria-label="anchor" href="#chapexercise-7"><i class="fas fa-link"></i></a>
+</h2>
+<p>Exercises marked with an * indicate that the exercise has a solution at the end of the chapter at <a href="factors-with-forcats.html#solutions-7">9.4</a>.</p>
+<p>We will use the general social survey data set, which is in the <code>forcats</code> library in <code>R</code>. You should some of this Wikipedia page to better understand where this data comes from <a href="https://en.wikipedia.org/wiki/General_Social_Survey" target="_blank">Wikipedia</a>.</p>
+<p>Most variables are self-explanatory, but a couple that aren’t are:</p>
+<ul>
+<li>
+<code>partyid</code>, political leaning and</li>
+<li>
+<code>denom</code>, religious denomination (if unfamiliar with this, you can think of it as a “more specific” subset of a particular religion).</li>
+</ul>
+<p>Note that some of these exercises are from the R for Data Science textbook.</p>
+<p>Load in the data set with</p>
+<div class="sourceCode" id="cb319"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span></span>
+<span><span class="va">gss_cat</span></span></code></pre></div>
+<ol style="list-style-type: decimal">
+<li>* Using a <code>forcats</code> function, change the name of the level <code>Not str republican</code> to be <code>Weak republican</code> and change the name of the level <code>Not str democrat</code> to be <code>Weak democrat</code>. These names more closely match the levels <code>Strong republican</code> and <code>Strong democrat</code>. Then, create a table of counts that shows the number of respondents in each political party <code>partyid</code>.</li>
+</ol>
+<p><strong>Note</strong>: Levels that aren’t specified in your <code>forcats</code> function do not change.</p>
+<p><strong>Note 2</strong>: In naming something <code>Weak republican</code>, you’ll need to use backticks since there is a space in the level name.</p>
+<ol start="2" style="list-style-type: decimal">
+<li><p>* Use a <code>forcats</code> function so that <code>partyid</code> just has 4 categories: Other (corresponding to No answer, Don’t know, Other party), Ind (corresponding to Ind,near rep, Independent, Ind, near dem), Rep (corresponding to Strong republican and Not str republican), and Dem (corresponding to Not str democrat and Strong democrat).</p></li>
+<li><p>* Run the code to create the following plot that shows the average number of hours of television people watch from various religions.</p></li>
+</ol>
+<div class="sourceCode" id="cb320"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">relig_summary</span> <span class="op">&lt;-</span> <span class="va">gss_cat</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">relig</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise</a></span><span class="op">(</span></span>
+<span>    age <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">age</span>, na.rm <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>,</span>
+<span>    tvhours <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">tvhours</span>, na.rm <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>,</span>
+<span>    n <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/context.html">n</a></span><span class="op">(</span><span class="op">)</span></span>
+<span>  <span class="op">)</span></span>
+<span></span>
+<span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">relig_summary</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span><span class="va">tvhours</span>, <span class="va">relig</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
+<p>Then, use a <code>forcats</code> function create a new variable in the data set that reorders the religion factor levels and make a lollipop plot so that the religion watches the most television, on average, is on the top, and the religion that watches the least television, on average, is on the bottom.</p>
+<ol start="4" style="list-style-type: decimal">
+<li>* Run the code to make the following line plot that shows age on the x-axis, the proportion on the y-axis, and is coloured by various marital statuses (married, divorced, widowed, etc.):</li>
+</ol>
+<div class="sourceCode" id="cb321"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">by_age</span> <span class="op">&lt;-</span> <span class="va">gss_cat</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/NA.html">is.na</a></span><span class="op">(</span><span class="va">age</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/count.html">count</a></span><span class="op">(</span><span class="va">age</span>, <span class="va">marital</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">age</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>prop <span class="op">=</span> <span class="va">n</span> <span class="op">/</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">n</span><span class="op">)</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">by_age</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span><span class="va">age</span>, <span class="va">prop</span>,</span>
+<span>                  colour <span class="op">=</span> <span class="va">marital</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_path.html">geom_line</a></span><span class="op">(</span>na.rm <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span>colour <span class="op">=</span> <span class="st">"marital"</span><span class="op">)</span></span></code></pre></div>
+<p>Then, use a <code>forcats</code> function to make the plot so that the legend labels line up better with the different coloured marital status lines (e.g. so that the label for widowed is the first that appears in the legend, the label for married is second, etc.).</p>
+<ol start="5" style="list-style-type: decimal">
+<li>We haven’t talked much about creating two-way tables (or contingency tables). These are generally quite difficult to make with the <code>tidyverse</code> functions, but you can use the base <code>R</code> <code><a href="https://rdrr.io/r/base/table.html">table()</a></code> and <code><a href="https://rdrr.io/r/base/proportions.html">prop.table()</a></code> functions to make these.</li>
+</ol>
+<p>Using data only from the year 2014, run the following code to make 4 two-way tables with the <code>party_small</code> variable that was constructed earlier and <code>race</code>:</p>
+<div class="sourceCode" id="cb322"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">gss_cat</span> <span class="op">&lt;-</span> <span class="va">gss_cat</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>party_small <span class="op">=</span> <span class="fu"><a href="https://forcats.tidyverse.org/reference/fct_collapse.html">fct_collapse</a></span><span class="op">(</span><span class="va">partyid</span>,</span>
+<span>                                              Other <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"No answer"</span>, <span class="st">"Don't know"</span>, <span class="st">"Other party"</span><span class="op">)</span>,</span>
+<span>                                              Ind <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Ind,near rep"</span>, <span class="st">"Independent"</span>, <span class="st">"Ind,near dem"</span><span class="op">)</span>,</span>
+<span>                                              Rep <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Strong republican"</span>, <span class="st">"Not str republican"</span><span class="op">)</span>,</span>
+<span>                                              Dem <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Not str democrat"</span>, <span class="st">"Strong democrat"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">gss_recent</span> <span class="op">&lt;-</span> <span class="va">gss_cat</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">year</span> <span class="op">==</span> <span class="fl">2014</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">tab1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/table.html">table</a></span><span class="op">(</span><span class="va">gss_recent</span><span class="op">$</span><span class="va">party_small</span>, <span class="va">gss_recent</span><span class="op">$</span><span class="va">race</span><span class="op">)</span></span>
+<span><span class="va">tab1</span></span>
+<span><span class="co">#&gt;        </span></span>
+<span><span class="co">#&gt;         Other Black White Not applicable</span></span>
+<span><span class="co">#&gt;   Other     8    12    68              0</span></span>
+<span><span class="co">#&gt;   Rep      22    17   498              0</span></span>
+<span><span class="co">#&gt;   Ind     152   108   828              0</span></span>
+<span><span class="co">#&gt;   Dem      80   249   496              0</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/proportions.html">prop.table</a></span><span class="op">(</span><span class="va">tab1</span><span class="op">)</span></span>
+<span><span class="co">#&gt;        </span></span>
+<span><span class="co">#&gt;               Other       Black       White Not applicable</span></span>
+<span><span class="co">#&gt;   Other 0.003152088 0.004728132 0.026792750    0.000000000</span></span>
+<span><span class="co">#&gt;   Rep   0.008668243 0.006698188 0.196217494    0.000000000</span></span>
+<span><span class="co">#&gt;   Ind   0.059889677 0.042553191 0.326241135    0.000000000</span></span>
+<span><span class="co">#&gt;   Dem   0.031520883 0.098108747 0.195429472    0.000000000</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/proportions.html">prop.table</a></span><span class="op">(</span><span class="va">tab1</span>, margin <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></span>
+<span><span class="co">#&gt;        </span></span>
+<span><span class="co">#&gt;              Other      Black      White Not applicable</span></span>
+<span><span class="co">#&gt;   Other 0.09090909 0.13636364 0.77272727     0.00000000</span></span>
+<span><span class="co">#&gt;   Rep   0.04096834 0.03165736 0.92737430     0.00000000</span></span>
+<span><span class="co">#&gt;   Ind   0.13970588 0.09926471 0.76102941     0.00000000</span></span>
+<span><span class="co">#&gt;   Dem   0.09696970 0.30181818 0.60121212     0.00000000</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/proportions.html">prop.table</a></span><span class="op">(</span><span class="va">tab1</span>, margin <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></span>
+<span><span class="co">#&gt;        </span></span>
+<span><span class="co">#&gt;              Other      Black      White Not applicable</span></span>
+<span><span class="co">#&gt;   Other 0.03053435 0.03108808 0.03597884               </span></span>
+<span><span class="co">#&gt;   Rep   0.08396947 0.04404145 0.26349206               </span></span>
+<span><span class="co">#&gt;   Ind   0.58015267 0.27979275 0.43809524               </span></span>
+<span><span class="co">#&gt;   Dem   0.30534351 0.64507772 0.26243386</span></span></code></pre></div>
+<p>Use the help on <code><a href="https://rdrr.io/r/base/proportions.html">?prop.table</a></code> to figure out how each of these three tables are constructed.</p>
+<p>Which table do you think is most informative? What conclusions does it help you to draw?</p>
+</div>
+<div id="solutions-7" class="section level2" number="9.4">
+<h2>
+<span class="header-section-number">9.4</span> Exercise Solutions<a class="anchor" aria-label="anchor" href="#solutions-7"><i class="fas fa-link"></i></a>
+</h2>
+<div id="change-factor-levels-s" class="section level3" number="9.4.1">
+<h3>
+<span class="header-section-number">9.4.1</span> Change Factor Levels S<a class="anchor" aria-label="anchor" href="#change-factor-levels-s"><i class="fas fa-link"></i></a>
+</h3>
+<ol start="2" style="list-style-type: decimal">
+<li>* We did not properly explore the data set before making the graphs above, and, in fact, there is some double counting of Pokemon in this data set (this is another example where being familiar with the data set you’re working with is advantageous: people familiar with Pokemon know that there are fewer than 947 Pokemon in Generations 1 through 6).</li>
+</ol>
+<p>Figure out why some Pokemon are double counted. Then, create a new data set that only keeps one observation per Pokemon <code>#</code>.</p>
+<div class="sourceCode" id="cb323"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">pokemon_nodup</span> <span class="op">&lt;-</span> <span class="va">pokemon_df</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">`#`</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/slice.html">slice</a></span><span class="op">(</span><span class="fl">1</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">ungroup</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
+</div>
+<div id="reorder-factor-levels-s" class="section level3" number="9.4.2">
+<h3>
+<span class="header-section-number">9.4.2</span> Reorder Factor Levels S<a class="anchor" aria-label="anchor" href="#reorder-factor-levels-s"><i class="fas fa-link"></i></a>
+</h3>
+</div>
+<div id="chapexercise-7-S" class="section level3" number="9.4.3">
+<h3>
+<span class="header-section-number">9.4.3</span> Chapter Exercises S<a class="anchor" aria-label="anchor" href="#chapexercise-7-S"><i class="fas fa-link"></i></a>
+</h3>
+<ol style="list-style-type: decimal">
+<li>* Using a <code>forcats</code> function, change the name of the level <code>Not str republican</code> to be <code>Weak republican</code> and change the name of the level <code>Not str democrat</code> to be <code>Weak democrat</code>. These names more closely match the levels <code>Strong republican</code> and <code>Strong democrat</code>. Then, create a table of counts that shows the number of respondents in each political party <code>partyid</code>.</li>
+</ol>
+<p><strong>Note</strong>: Levels that aren’t specified in your <code>forcats</code> function do not change.</p>
+<p><strong>Note 2</strong>: In naming something <code>Weak republican</code>, you’ll need to use backticks since there is a space in the level name.</p>
+<div class="sourceCode" id="cb324"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">gss_cat</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>partyid_new <span class="op">=</span> <span class="fu"><a href="https://forcats.tidyverse.org/reference/fct_recode.html">fct_recode</a></span><span class="op">(</span><span class="va">partyid</span>,</span>
+<span>                                  `Weak republican` <span class="op">=</span> <span class="st">"Not str republican"</span>,</span>
+<span>                                  `Weak democrat` <span class="op">=</span> <span class="st">"Not str democrat"</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">partyid_new</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise</a></span><span class="op">(</span>ncount <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/context.html">n</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<ol start="2" style="list-style-type: decimal">
+<li>* Use a <code>forcats</code> function so that <code>partyid</code> just has 4 categories: Other (corresponding to No answer, Don’t know, Other party), Ind (corresponding to Ind,near rep, Independent, Ind, near dem), Rep (corresponding to Strong republican and Not str republican), and Dem (corresponding to Not str democrat and Strong democrat).</li>
+</ol>
+<div class="sourceCode" id="cb325"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">gss_cat</span> <span class="op">&lt;-</span> <span class="va">gss_cat</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>party_small <span class="op">=</span> <span class="fu"><a href="https://forcats.tidyverse.org/reference/fct_collapse.html">fct_collapse</a></span><span class="op">(</span><span class="va">partyid</span>,</span>
+<span>                                              Other <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"No answer"</span>, <span class="st">"Don't know"</span>, <span class="st">"Other party"</span><span class="op">)</span>,</span>
+<span>                                              Ind <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Ind,near rep"</span>, <span class="st">"Independent"</span>, <span class="st">"Ind,near dem"</span><span class="op">)</span>,</span>
+<span>                                              Rep <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Strong republican"</span>, <span class="st">"Not str republican"</span><span class="op">)</span>,</span>
+<span>                                              Dem <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Not str democrat"</span>, <span class="st">"Strong democrat"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<ol start="3" style="list-style-type: decimal">
+<li>* Run the code to create the following plot that shows the average number of hours of television people watch from various religions.</li>
+</ol>
+<div class="sourceCode" id="cb326"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">relig_summary</span> <span class="op">&lt;-</span> <span class="va">gss_cat</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">relig</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise</a></span><span class="op">(</span></span>
+<span>    age <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">age</span>, na.rm <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>,</span>
+<span>    tvhours <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">tvhours</span>, na.rm <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>,</span>
+<span>    n <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/context.html">n</a></span><span class="op">(</span><span class="op">)</span></span>
+<span>  <span class="op">)</span></span>
+<span></span>
+<span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">relig_summary</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span><span class="va">tvhours</span>, <span class="va">relig</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
+<p>Then, use a <code>forcats</code> function create a new variable in the data set that reorders the religion factor levels and remake the barplot so that the religion watches the most television, on average, is on the top, and the religion that watches the least television, on average, is on the bottom.</p>
+<div class="sourceCode" id="cb327"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">relig_summary</span> <span class="op">&lt;-</span> <span class="va">relig_summary</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>relig <span class="op">=</span> <span class="fu"><a href="https://forcats.tidyverse.org/reference/fct_reorder.html">fct_reorder</a></span><span class="op">(</span><span class="va">relig</span>, <span class="va">tvhours</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">relig_summary</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">relig</span>, y <span class="op">=</span> <span class="va">tvhours</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_segment.html">geom_segment</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">relig</span>, xend <span class="op">=</span> <span class="va">relig</span>, y <span class="op">=</span> <span class="fl">0</span>, yend <span class="op">=</span> <span class="va">tvhours</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/coord_flip.html">coord_flip</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
+<div class="inline-figure"><img src="07-forcats_files/figure-html/unnamed-chunk-26-1.png" width="672"></div>
+<ol start="4" style="list-style-type: decimal">
+<li>* Run the code to make the following line plot that shows age on the x-axis, the proportion on the y-axis, and is coloured by various marital statuses (married, divorced, widowed, etc.):</li>
+</ol>
+<div class="sourceCode" id="cb328"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">by_age</span> <span class="op">&lt;-</span> <span class="va">gss_cat</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/NA.html">is.na</a></span><span class="op">(</span><span class="va">age</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/count.html">count</a></span><span class="op">(</span><span class="va">age</span>, <span class="va">marital</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">age</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>prop <span class="op">=</span> <span class="va">n</span> <span class="op">/</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">n</span><span class="op">)</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">by_age</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span><span class="va">age</span>, <span class="va">prop</span>,</span>
+<span>                  colour <span class="op">=</span> <span class="va">marital</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_path.html">geom_line</a></span><span class="op">(</span>na.rm <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span>colour <span class="op">=</span> <span class="st">"marital"</span><span class="op">)</span></span></code></pre></div>
+<p>Then, use a <code>forcats</code> function to make the plot so that the legend labels line up better with the different coloured marital status lines (e.g. so that the label for widowed is the first that appears in the legend, the label for married is second, etc.).</p>
+<div class="sourceCode" id="cb329"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">by_age2</span> <span class="op">&lt;-</span> <span class="va">by_age</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">ungroup</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>marital2 <span class="op">=</span> <span class="fu"><a href="https://forcats.tidyverse.org/reference/fct_reorder.html">fct_reorder2</a></span><span class="op">(</span><span class="va">marital</span>, .x <span class="op">=</span> <span class="va">age</span>, .y <span class="op">=</span> <span class="va">prop</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">by_age2</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span><span class="va">age</span>, <span class="va">prop</span>,</span>
+<span>                  colour <span class="op">=</span> <span class="va">marital2</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_path.html">geom_line</a></span><span class="op">(</span>na.rm <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span>colour <span class="op">=</span> <span class="st">"marital"</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_viridis.html">scale_colour_viridis_d</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
+</div>
+</div>
+<div id="rcode-7" class="section level2" number="9.5">
+<h2>
+<span class="header-section-number">9.5</span> Non-Exercise <code>R</code> Code<a class="anchor" aria-label="anchor" href="#rcode-7"><i class="fas fa-link"></i></a>
+</h2>
+<div class="sourceCode" id="cb330"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://here.r-lib.org/">here</a></span><span class="op">)</span></span>
+<span><span class="va">pokemon_df</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv</a></span><span class="op">(</span><span class="fu"><a href="https://here.r-lib.org//reference/here.html">here</a></span><span class="op">(</span><span class="st">"data/pokemon_allgen.csv"</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>Generation_cat <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">factor</a></span><span class="op">(</span><span class="va">Generation</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="va">pokemon_df</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">`Type 1`</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise</a></span><span class="op">(</span>counttype <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/context.html">n</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="va">pokemon_legend</span> <span class="op">&lt;-</span> <span class="va">pokemon_df</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">Legendary</span> <span class="op">==</span> <span class="cn">TRUE</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">Generation_cat</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise</a></span><span class="op">(</span>nlegend <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/context.html">n</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">pokemon_legend</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">Generation_cat</span>, y <span class="op">=</span> <span class="va">nlegend</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_bar.html">geom_col</a></span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="va">pokemon_legend</span> <span class="op">&lt;-</span> <span class="va">pokemon_legend</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>Generation_cat2 <span class="op">=</span> <span class="fu"><a href="https://forcats.tidyverse.org/reference/fct_recode.html">fct_recode</a></span><span class="op">(</span><span class="va">Generation_cat</span>, Kanto <span class="op">=</span> <span class="st">"1"</span>,</span>
+<span>                                      Johto <span class="op">=</span> <span class="st">"2"</span>, Hoenn <span class="op">=</span> <span class="st">"3"</span>,</span>
+<span>                                      Sinnoh <span class="op">=</span> <span class="st">"4"</span>, Unova <span class="op">=</span> <span class="st">"5"</span>,</span>
+<span>                                      Kalos <span class="op">=</span> <span class="st">"6"</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">Generation_cat2</span>, <span class="fu"><a href="https://tidyselect.r-lib.org/reference/everything.html">everything</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">pokemon_legend</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">pokemon_legend</span>,</span>
+<span>       <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">Generation_cat2</span>, y <span class="op">=</span> <span class="va">nlegend</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_bar.html">geom_col</a></span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="va">pokemon_long</span> <span class="op">&lt;-</span> <span class="va">pokemon_df</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://tidyr.tidyverse.org/reference/pivot_longer.html">pivot_longer</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="va">`Type 1`</span>, <span class="va">`Type 2`</span><span class="op">)</span>,</span>
+<span>                            names_to <span class="op">=</span> <span class="st">"Number"</span>,</span>
+<span>                            values_to <span class="op">=</span> <span class="st">"Type"</span><span class="op">)</span></span>
+<span><span class="va">pokemon_long</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>new_type <span class="op">=</span> <span class="fu"><a href="https://forcats.tidyverse.org/reference/fct_collapse.html">fct_collapse</a></span><span class="op">(</span><span class="va">Type</span>, Coolest <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Ice"</span>, <span class="st">"Dark"</span><span class="op">)</span>,</span>
+<span>                                 Least_Cool <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Fire"</span>, <span class="st">"Fighting"</span>, <span class="st">"Poison"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">new_type</span>, <span class="va">Type</span>, <span class="fu"><a href="https://tidyselect.r-lib.org/reference/everything.html">everything</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="va">pokemon_nodup</span> <span class="op">&lt;-</span> <span class="va">pokemon_df</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">`#`</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/slice.html">slice</a></span><span class="op">(</span><span class="fl">1</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">ungroup</a></span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="va">pokemon_long</span> <span class="op">&lt;-</span> <span class="va">pokemon_nodup</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://tidyr.tidyverse.org/reference/pivot_longer.html">pivot_longer</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="va">`Type 1`</span>, <span class="va">`Type 2`</span><span class="op">)</span>,</span>
+<span>               names_to <span class="op">=</span> <span class="st">"Number"</span>,</span>
+<span>               values_to <span class="op">=</span> <span class="st">"Type"</span><span class="op">)</span></span>
+<span><span class="va">pokemon_sum</span> <span class="op">&lt;-</span> <span class="va">pokemon_long</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">Type</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise</a></span><span class="op">(</span>count_type <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/context.html">n</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/NA.html">is.na</a></span><span class="op">(</span><span class="va">Type</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">pokemon_sum</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">Type</span>,</span>
+<span>                               y <span class="op">=</span> <span class="va">count_type</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_bar.html">geom_col</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/coord_flip.html">coord_flip</a></span><span class="op">(</span><span class="op">)</span>  <span class="co">## flips the x and y axes</span></span>
+<span><span class="va">pokemon_sum</span> <span class="op">&lt;-</span> <span class="va">pokemon_sum</span> <span class="op">|&gt;</span> </span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>Type_ordered <span class="op">=</span> <span class="fu"><a href="https://forcats.tidyverse.org/reference/fct_reorder.html">fct_reorder</a></span><span class="op">(</span>.f <span class="op">=</span> <span class="va">Type</span>, .x <span class="op">=</span> <span class="va">count_type</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">pokemon_sum</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">Type_ordered</span>,</span>
+<span>                               y <span class="op">=</span> <span class="va">count_type</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_bar.html">geom_col</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/coord_flip.html">coord_flip</a></span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="va">pokemon_long</span> <span class="op">&lt;-</span> <span class="va">pokemon_long</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/NA.html">is.na</a></span><span class="op">(</span><span class="va">Type</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>Type_Deford <span class="op">=</span> <span class="fu"><a href="https://forcats.tidyverse.org/reference/fct_reorder.html">fct_reorder</a></span><span class="op">(</span>.f <span class="op">=</span> <span class="va">Type</span>, .x <span class="op">=</span> <span class="va">Defense</span>,</span>
+<span>                                   .fun <span class="op">=</span> <span class="va">median</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">pokemon_long</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">Type_Deford</span>,</span>
+<span>                               y <span class="op">=</span> <span class="va">Defense</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_boxplot.html">geom_boxplot</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span> </span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/coord_flip.html">coord_flip</a></span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="va">pokemon_med</span> <span class="op">&lt;-</span> <span class="va">pokemon_long</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">Type_Deford</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise</a></span><span class="op">(</span>med_def <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/median.html">median</a></span><span class="op">(</span><span class="va">Defense</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>Type_Deford <span class="op">=</span> <span class="fu"><a href="https://forcats.tidyverse.org/reference/fct_reorder.html">fct_reorder</a></span><span class="op">(</span>.f <span class="op">=</span> <span class="va">Type_Deford</span>, .x <span class="op">=</span> <span class="va">med_def</span>,</span>
+<span>                                   .fun <span class="op">=</span> <span class="va">median</span><span class="op">)</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">pokemon_med</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">med_def</span>, y <span class="op">=</span> <span class="va">Type_Deford</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="va">mortality_df</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv</a></span><span class="op">(</span><span class="fu"><a href="https://here.r-lib.org//reference/here.html">here</a></span><span class="op">(</span><span class="st">"data/gun_violence_us.csv"</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>region <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">factor</a></span><span class="op">(</span><span class="va">region</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">mortality_df</span>,</span>
+<span>       <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">ownership_rate</span>, y <span class="op">=</span> <span class="va">mortality_rate</span>, colour <span class="op">=</span> <span class="va">region</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_smooth.html">geom_smooth</a></span><span class="op">(</span>method <span class="op">=</span> <span class="st">"lm"</span><span class="op">)</span></span>
+<span><span class="va">mortality_df</span> <span class="op">&lt;-</span> <span class="va">mortality_df</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>region_2 <span class="op">=</span> <span class="fu"><a href="https://forcats.tidyverse.org/reference/fct_reorder.html">fct_reorder2</a></span><span class="op">(</span><span class="va">region</span>,</span>
+<span>                                 .x <span class="op">=</span> <span class="va">ownership_rate</span>,</span>
+<span>                                 .y <span class="op">=</span> <span class="va">mortality_rate</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">mortality_df</span>,</span>
+<span>       <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">ownership_rate</span>, y <span class="op">=</span> <span class="va">mortality_rate</span>, colour <span class="op">=</span> <span class="va">region_2</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_smooth.html">geom_smooth</a></span><span class="op">(</span>method <span class="op">=</span> <span class="st">"lm"</span><span class="op">)</span></span>
+<span><span class="va">mortality_df</span> <span class="op">&lt;-</span> <span class="va">mortality_df</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>region_3 <span class="op">=</span> <span class="fu"><a href="https://forcats.tidyverse.org/reference/fct_relevel.html">fct_relevel</a></span><span class="op">(</span><span class="va">region</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"South"</span>, <span class="st">"West"</span>, <span class="st">"MW"</span>, <span class="st">"NE"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">mortality_df</span>,</span>
+<span>       <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">ownership_rate</span>, y <span class="op">=</span> <span class="va">mortality_rate</span>, colour <span class="op">=</span> <span class="va">region_3</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_smooth.html">geom_smooth</a></span><span class="op">(</span>method <span class="op">=</span> <span class="st">"lm"</span><span class="op">)</span></span>
+<span><span class="va">mod</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span><span class="op">(</span><span class="va">mortality_rate</span> <span class="op">~</span> <span class="va">ownership_rate</span> <span class="op">+</span> <span class="va">region</span>, data <span class="op">=</span> <span class="va">mortality_df</span><span class="op">)</span></span>
+<span><span class="va">mod2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span><span class="op">(</span><span class="va">mortality_rate</span> <span class="op">~</span> <span class="va">ownership_rate</span> <span class="op">+</span> <span class="va">region_2</span>, data <span class="op">=</span> <span class="va">mortality_df</span><span class="op">)</span></span>
+<span><span class="va">mod3</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span><span class="op">(</span><span class="va">mortality_rate</span> <span class="op">~</span> <span class="va">ownership_rate</span> <span class="op">+</span> <span class="va">region_3</span>, data <span class="op">=</span> <span class="va">mortality_df</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">mod</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">mod2</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">mod3</span><span class="op">)</span></span></code></pre></div>
+
+</div>
+</div>
+  <div class="chapter-nav">
+<div class="prev"><a href="coding-in-base-r.html"><span class="header-section-number">8</span> Coding in Base R</a></div>
+<div class="next"><a href="data-ethics.html"><span class="header-section-number">10</span> Data Ethics</a></div>
+</div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
+    <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>On this page</h2>
+      <ul class="nav navbar-nav">
+<li><a class="nav-link" href="#factors-with-forcats"><span class="header-section-number">9</span> Factors with forcats</a></li>
+<li>
+<a class="nav-link" href="#change-factor-levels"><span class="header-section-number">9.1</span> Change Factor Levels</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#fct_recode-to-rename-levels"><span class="header-section-number">9.1.1</span> fct_recode() to Rename Levels</a></li>
+<li><a class="nav-link" href="#collapsing-many-levels-into-fewer-levels-with-fct_collapse"><span class="header-section-number">9.1.2</span> Collapsing Many Levels Into Fewer Levels with fct_collapse()</a></li>
+<li><a class="nav-link" href="#exercise-7-1"><span class="header-section-number">9.1.3</span> Exercises</a></li>
+</ul>
+</li>
+<li>
+<a class="nav-link" href="#reorder-factor-levels"><span class="header-section-number">9.2</span> Reorder Factor Levels</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#change-the-order-of-levels-by-a-quantitative-variable-with-fct_reorder"><span class="header-section-number">9.2.1</span> Change the Order of Levels by a Quantitative Variable with fct_reorder()</a></li>
+<li><a class="nav-link" href="#lollipop-plots"><span class="header-section-number">9.2.2</span> Lollipop Plots</a></li>
+<li><a class="nav-link" href="#re-leveling-by-two-quantitative-variables-with-fct_reorder2"><span class="header-section-number">9.2.3</span> Re-Leveling By Two Quantitative Variables with fct_reorder2()</a></li>
+<li><a class="nav-link" href="#reordering-levels-manually-with-fct_relevel"><span class="header-section-number">9.2.4</span> Reordering Levels Manually with fct_relevel()</a></li>
+<li><a class="nav-link" href="#exercise-7-2"><span class="header-section-number">9.2.5</span> Exercises</a></li>
+</ul>
+</li>
+<li><a class="nav-link" href="#chapexercise-7"><span class="header-section-number">9.3</span> Chapter Exercises</a></li>
+<li>
+<a class="nav-link" href="#solutions-7"><span class="header-section-number">9.4</span> Exercise Solutions</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#change-factor-levels-s"><span class="header-section-number">9.4.1</span> Change Factor Levels S</a></li>
+<li><a class="nav-link" href="#reorder-factor-levels-s"><span class="header-section-number">9.4.2</span> Reorder Factor Levels S</a></li>
+<li><a class="nav-link" href="#chapexercise-7-S"><span class="header-section-number">9.4.3</span> Chapter Exercises S</a></li>
+</ul>
+</li>
+<li><a class="nav-link" href="#rcode-7"><span class="header-section-number">9.5</span> Non-Exercise R Code</a></li>
+</ul>
+
+      <div class="book-extra">
+        <ul class="list-unstyled">
+          
+        </ul>
+</div>
+    </nav>
+</div>
+
+</div>
+</div> <!-- .container -->
+
+<footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>"<strong>STAT 234: Data Science</strong>" was written by Matt Higham. It was last built on 2022-09-14.</p>
+  </div>
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>This book was built by the <a class="text-light" href="https://bookdown.org">bookdown</a> R package.</p>
+  </div>
+
+</div></div>
+</footer><!-- dynamically load mathjax for compatibility with self-contained --><script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script><script type="text/x-mathjax-config">const popovers = document.querySelectorAll('a.footnote-ref[data-toggle="popover"]');
+for (let popover of popovers) {
+  const div = document.createElement('div');
+  div.setAttribute('style', 'position: absolute; top: 0, left:0; width:0, height:0, overflow: hidden; visibility: hidden;');
+  div.innerHTML = popover.getAttribute('data-content');
+
+  var has_math = div.querySelector("span.math");
+  if (has_math) {
+    document.body.appendChild(div);
+    MathJax.Hub.Queue(["Typeset", MathJax.Hub, div]);
+    MathJax.Hub.Queue(function() {
+      popover.setAttribute('data-content', div.innerHTML);
+      document.body.removeChild(div);
+    })
+  }
+}
+</script>
+</body>
+</html>

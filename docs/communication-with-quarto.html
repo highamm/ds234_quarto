@@ -1,0 +1,947 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<title> 5 Communication with Quarto | STAT 234: Data Science</title>
+<meta name="author" content="Matt Higham">
+<meta name="description" content="Special Note: Quarto and .qmd files and R Markdown and .qmd files are extremely similar. In the previous version of this section, I used R Markdown. Quarto has an advantage in that .qmd files also...">
+<meta name="generator" content="bookdown 0.27 with bs4_book()">
+<meta property="og:title" content=" 5 Communication with Quarto | STAT 234: Data Science">
+<meta property="og:type" content="book">
+<meta property="og:url" content="https://highamm.github.io/datascience234/communication-with-quarto.html">
+<meta property="og:description" content="Special Note: Quarto and .qmd files and R Markdown and .qmd files are extremely similar. In the previous version of this section, I used R Markdown. Quarto has an advantage in that .qmd files also...">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content=" 5 Communication with Quarto | STAT 234: Data Science">
+<meta name="twitter:description" content="Special Note: Quarto and .qmd files and R Markdown and .qmd files are extremely similar. In the previous version of this section, I used R Markdown. Quarto has an advantage in that .qmd files also...">
+<!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
+<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.2.5.1/tabs.js"></script><script src="libs/bs3compat-0.2.5.1/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
+<script src="libs/bs4_book-1.0.0/bs4_book.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><style type="text/css">
+    
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  </style>
+<link rel="stylesheet" href="bs4_style.css">
+</head>
+<body data-spy="scroll" data-target="#toc">
+
+<div class="container-fluid">
+<div class="row">
+  <header class="col-sm-12 col-lg-3 sidebar sidebar-book"><a class="sr-only sr-only-focusable" href="#content">Skip to main content</a>
+
+    <div class="d-flex align-items-start justify-content-between">
+      <h1>
+        <a href="index.html" title="">STAT 234: Data Science</a>
+      </h1>
+      <button class="btn btn-outline-primary d-lg-none ml-2 mt-1" type="button" data-toggle="collapse" data-target="#main-nav" aria-expanded="true" aria-controls="main-nav"><i class="fas fa-bars"></i><span class="sr-only">Show table of contents</span></button>
+    </div>
+
+    <div id="main-nav" class="collapse-lg">
+      <form role="search">
+        <input id="search" class="form-control" type="search" placeholder="Search" aria-label="Search">
+</form>
+
+      <nav aria-label="Table of contents"><h2>Table of contents</h2>
+        <ul class="book-toc list-unstyled">
+<li><a class="" href="index.html"><span class="header-section-number">1</span> Syllabus and Course Information</a></li>
+<li class="book-part">The Core: tidyverse Basics</li>
+<li><a class="" href="intro.html"><span class="header-section-number">2</span> Getting Started with R and R Studio</a></li>
+<li><a class="" href="ggplot2.html"><span class="header-section-number">3</span> Plotting with ggplot2</a></li>
+<li><a class="" href="dplyr.html"><span class="header-section-number">4</span> Wrangling with dplyr</a></li>
+<li><a class="active" href="communication-with-quarto.html"><span class="header-section-number">5</span> Communication with Quarto</a></li>
+<li><a class="" href="workflow.html"><span class="header-section-number">6</span> Workflow and Other Skills</a></li>
+<li class="book-part">Data Wrangling</li>
+<li><a class="" href="tidying-with-tidyr.html"><span class="header-section-number">7</span> Tidying with tidyr</a></li>
+<li><a class="" href="coding-in-base-r.html"><span class="header-section-number">8</span> Coding in Base R</a></li>
+<li><a class="" href="factors-with-forcats.html"><span class="header-section-number">9</span> Factors with forcats</a></li>
+<li><a class="" href="data-ethics.html"><span class="header-section-number">10</span> Data Ethics</a></li>
+<li><a class="" href="data-import.html"><span class="header-section-number">11</span> Data Import</a></li>
+<li><a class="" href="merging-with-dplyr.html"><span class="header-section-number">12</span> Merging with dplyr</a></li>
+<li class="book-part">Special Topics</li>
+<li><a class="" href="dates-with-lubridate.html"><span class="header-section-number">13</span> Dates with lubridate</a></li>
+<li><a class="" href="text-data-with-tidytext-and-stringr.html"><span class="header-section-number">14</span> Text Data with tidytext and stringr</a></li>
+<li><a class="" href="predictive-modeling-with-knn.html"><span class="header-section-number">15</span> Predictive Modeling with knn</a></li>
+<li><a class="" href="connections-to-stat-113-stat-213-and-cs-140.html"><span class="header-section-number">16</span> Connections to STAT 113, STAT 213, and CS 140</a></li>
+<li><a class="" href="introduction-to-sql-with-dbplyr.html"><span class="header-section-number">17</span> Introduction to SQL with dbplyr</a></li>
+</ul>
+
+        <div class="book-extra">
+          
+        </div>
+      </nav>
+</div>
+  </header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><div id="communication-with-quarto" class="section level1" number="5">
+<h1>
+<span class="header-section-number"> 5</span> Communication with <code>Quarto</code><a class="anchor" aria-label="anchor" href="#communication-with-quarto"><i class="fas fa-link"></i></a>
+</h1>
+<p><strong>Special Note</strong>: <code>Quarto</code> and <code>.qmd</code> files and <code>R Markdown</code> and <code>.qmd</code> files are extremely similar. In the previous version of this section, I used <code>R Markdown</code>. Quarto has an advantage in that <code>.qmd</code> files also work with Python and Julia, so they are generally better for an all-purpose data scientist. If you spot any references to <code>R Markdown</code> or a <code>.qmd</code> file, just mentally convert <code>R Markdown</code> to <code>Quarto</code> and <code>.rmd</code> to <code>qmd</code>.</p>
+<p><strong>Goals</strong>:</p>
+<ul>
+<li><p>Explain what <em>reproducibility</em> means and explain why it’s important for analyses to be reproducible.</p></li>
+<li><p>Explain why <code>Quarto</code> provides more tools for making analyses reproducible than base <code>R</code> with Microsoft Word and than Microsoft Excel.</p></li>
+<li><p>Use the Code Options and the <code>Quarto</code> Text Options to modify an <code>Quarto</code> file so that it renders to a readable, professional .html file.</p></li>
+<li><p>Use titles, labels, colour scales, annotations, and themes to make your plots easy to read, including for people with Colour Vision Deficiency.</p></li>
+</ul>
+<p>Overall: If you’re making some quick plots just for you, some of the things on communication won’t apply. But, if you’re planning on sharing results (usually you are, eventually), then communication tools become much more important.</p>
+<div id="reproducbility" class="section level2" number="5.1">
+<h2>
+<span class="header-section-number">5.1</span> Reproducbility<a class="anchor" aria-label="anchor" href="#reproducbility"><i class="fas fa-link"></i></a>
+</h2>
+<p>We’ve been using <code>Quarto</code> for a while now, but have not yet talked about any of its features or how to do anything except insert a new code chunk. By the end of this section, we want to be able to use some of the <code>Quarto</code> options to make a nice-looking document (so that you can implement some of these options in your first mini-project).</p>
+<p><strong>Reproducibility</strong> is a concept that has recently gained popularity in the sciences for describing analyses that another researcher is able to repeat. That is, an analysis is <strong>reproducible</strong> if you provide enough information that the person sitting next to you can obtain identical results as long as they follow your procedures. An analysis is not reproducible if this isn’t the case.
+<code>Quarto</code> makes it easy for you to make your analysis reproducible for a couple of reasons:</p>
+<ul>
+<li><p>an <code>Quarto</code> file will not render unless all of your code runs, meaning that you won’t accidentally give someone code that doesn’t work.</p></li>
+<li><p><code>Quarto</code> combines the “coding” steps with the “write-up” steps into one coherent document that contains the code, all figures and tables, and any explanations.</p></li>
+</ul>
+<div id="r-scripts-vs.-quarto" class="section level3" number="5.1.1">
+<h3>
+<span class="header-section-number">5.1.1</span> <code>R</code> Scripts vs. <code>Quarto</code><a class="anchor" aria-label="anchor" href="#r-scripts-vs.-quarto"><i class="fas fa-link"></i></a>
+</h3>
+<p>We’ve been using <code>Quarto</code> for the entirety of this course. But, you may have noticed that when you go to File -&gt; New File to open a new <code>Quarto Document</code> file, there are a ton of other options. The first option is <code>R Script</code>. Go ahead and open a new <code>R Script</code> file now.</p>
+<p>The file you open should be completely blank. An <code>R Script</code> is a file that reads <strong>only</strong> <code>R</code> code. It cannot have any text in it at all, unless that text is commented out with a <code>#</code>. For example, you could copy and paste all of the code that is inside a code chunk in a .qmd file to the .R file and run it line by line.</p>
+<p>So, what are the advantages and disadvantages of using an <code>R Script</code> file compared to using an <code>Quarto</code> file? Let’s start with the advantages of <code>Quarto</code>. <code>Quarto</code> allows you to fully integrate text explanations of the code and results, the actual tables and figures themselves, and the code to make those tables and figures in one cohesive document. As we will see, if using <code>R Script</code>s to write-up an analysis in Word, there is a lot of copy-pasting involved of results. For this reason, using <code>Quarto</code> often results in more reproducible analyses.</p>
+<p>The advantage of an <code>R</code> Script would be in a situation where you really aren’t presenting results to anyone and you also don’t need any text explanations. This often occurs in two situations. (1) There are a lot of data preparation steps. In this case, you would typically complete all of these data prep steps in an <code>R script</code> and then write the resulting clean data to a .csv that you’d import in an <code>Quarto</code> file. (2) What you’re doing is complicated statistically. If this is the case, then the code is much more of a focus than the text or creating figures so you’d use an <code>R</code> Script.</p>
+<p>We will “demo” a reproducible analysis in class.</p>
+</div>
+<div id="spell-checking" class="section level3" number="5.1.2">
+<h3>
+<span class="header-section-number">5.1.2</span> Spell-Checking<a class="anchor" aria-label="anchor" href="#spell-checking"><i class="fas fa-link"></i></a>
+</h3>
+<p>If using <code>Quarto</code> for communication, you probably want to utilize its spell-check feature. Go to Edit -&gt; Check Spelling, and you’ll be presented with a spell-checker that lets you change the spelling of any words you may have misspelled.</p>
+</div>
+<div id="exercise-5-1" class="section level3" number="5.1.3">
+<h3>
+<span class="header-section-number">5.1.3</span> Exercises<a class="anchor" aria-label="anchor" href="#exercise-5-1"><i class="fas fa-link"></i></a>
+</h3>
+<p>Exercises marked with an * indicate that the exercise has a solution at the end of the chapter at <a href="communication-with-quarto.html#solutions-5">5.5</a>.</p>
+<ol style="list-style-type: decimal">
+<li><p>What’s the difference between <code>R</code> and <code>Quarto</code>?</p></li>
+<li><p>Why is an <code>Quarto</code> analysis more reproducible than the base <code>R</code> script analysis?</p></li>
+<li><p>Why is an <code>Quarto</code> analysis easier to make more reproducible than an analysis with Excel?</p></li>
+<li><p>Your friend Chaz is doing a data analysis project in Excel to compare the average GPA of student athletes with the average GPA of non-student athletes. He has two variables: whether or not a student is a student athlete and GPA. He decides that a two-sample t-test is an appropriate procedure for this data (recall from Intro Stat that this procedure is appropriate for comparing a quantitative response (GPA) across two groups). Here are the steps of his analysis.</p></li>
+</ol>
+<ol style="list-style-type: lower-alpha">
+<li><p>He writes the null and alternative hypotheses in words and in statistical notation.</p></li>
+<li><p>He uses Excel to make a set of side-by-side boxplots. He changes the labels and the limits on the y-axis using Point-and-Click Excel operations.</p></li>
+<li><p>From his boxplots, he see that there are 3 outliers in the non-athlete group. These three students have GPAs of 0 because they were suspended for repeatedly refusing to wear masks indoors. Chaz decides that these 3 students should be removed from the analysis because, if they had stayed enrolled, their GPAs would have been different than 0. He deletes these 3 rows in Excel.</p></li>
+<li><p>Chaz uses the t.test function in Excel to run the test. He writes down the degrees of freedom, the T-stat, and the p-value.</p></li>
+<li><p>Chaz copies his graph to Word and writes a conclusion in context of the problem.</p></li>
+</ol>
+<p>State 2 aspects of Chaz’s analysis that are <strong>not</strong> reproducible.</p>
+</div>
+</div>
+<div id="quarto-files" class="section level2" number="5.2">
+<h2>
+<span class="header-section-number">5.2</span> <code>Quarto</code> Files<a class="anchor" aria-label="anchor" href="#quarto-files"><i class="fas fa-link"></i></a>
+</h2>
+<p>Let’s talk a bit more about the components of the <code>Quarto</code> file used to make the reproducible analysis shown in class.</p>
+<p>First, open a new <code>Quarto</code> file by clicking File -&gt; New File -&gt; <code>Quarto Document</code> and keep the new file so that it renders to HTML for now.</p>
+<p>The first four to five lines at the top of the file make up the YAML (<strong>Yet Another Markup Language</strong>) header. We’ll come back to this at the end, as it’s the more frustrating part to learn.</p>
+<p>Delete the code below the YAML header and then paste the following code chunks to your clean .qmd file:</p>
+<div class="sourceCode" id="cb135"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">cars</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">cars</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">speed</span>, y <span class="op">=</span> <span class="va">dist</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
+<div class="sourceCode" id="cb136"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">cars</span><span class="op">)</span></span></code></pre></div>
+<p>The <code>cars</code> data set is built into <code>R</code> so there’s no need to do anything to read it in (it already exists in <code>R</code> itself).</p>
+<div id="code-chunk-options" class="section level3" number="5.2.1">
+<h3>
+<span class="header-section-number">5.2.1</span> Code Chunk Options<a class="anchor" aria-label="anchor" href="#code-chunk-options"><i class="fas fa-link"></i></a>
+</h3>
+<p>First, render your new file (and give it a name, when prompted). You should see some code, a couple of results tables, and a scatterplot.</p>
+<p>Chunk options allow you to have some control over what gets printed to the file that you render. For example, you may or may not want: the code to be printed, the figure to be printed, the tables to be printed, the <code>tidyverse</code> message to be printed, etc. There are a ton of chunk options to give us control over the code and output that is shown! We are going to just focus on a few that are more commonly used.</p>
+<p>The options below are common <code>execute</code> options in <code>Quarto</code>.</p>
+<ul>
+<li>
+<code>echo</code>. This is set to either <code>true</code> to print the code or <code>false</code> to not print the code. In a blank line after <code>```{r}</code>, insert the following, which tells <code>Quarto</code> not to print the code in that chunk: <code>#| echo: false</code>. Then, re-render your document to make sure that the code making the plot is actually hidden in the .html output.</li>
+</ul>
+<p>You can keep adding other options on new lines. Some other options include:</p>
+<ul>
+<li><p><code>warning</code>. This is set to either <code>true</code> to print warnings and messages or <code>false</code> to not print warnings and messages. For example, when we load in the <code>tidyverse</code>, a message automatically prints out. In that same code chunk, add a new line with <code>#| warning: false</code> to get rid of the message. Re-render to make sure the message is actually gone.</p></li>
+<li><p><code>output</code>. By default, this is set to <code>true</code> and shows output of tables and figures. Change this to <code>false</code> to not print any output from running code. Practice adding a <code>#| output: false</code> to the code chunk in your <code>Quarto</code> file with <code>summary(cars)</code> and re-render to make sure the output from <code>summary(cars)</code> is gone.</p></li>
+<li><p><code>eval</code>. <code>eval</code> is set to <code>true</code> if the code is to be evaluated and <code>false</code> if not.</p></li>
+</ul>
+<p>Besides <code>execute</code> options, there are also options pertaining to the size of figures and figure captions. Some common examples include</p>
+<ul>
+<li><p><code>fig-height</code> and <code>fig-width</code> control the height and width of figures. By default, these are both 7, but we can change the <code>fig-height</code> and <code>fig-width</code> to make figures take up less space in the rendered .html document (<code>fig-height: 5</code>, for example).</p></li>
+<li><p><code>fig-cap</code> adds a figure caption to your figure. Try inserting <code>#| fig-cap: "Figure 1: caption text blah blah blah"</code> to your chunk options for the chunk with the plot.</p></li>
+</ul>
+</div>
+<div id="global-options" class="section level3" number="5.2.2">
+<h3>
+<span class="header-section-number">5.2.2</span> Global Options<a class="anchor" aria-label="anchor" href="#global-options"><i class="fas fa-link"></i></a>
+</h3>
+<p>What we have discussed so far is how to change code and output options for individual chunks of code. But, it can be a pain to add a certain option to every single chunk of code that we want the option to apply to. What we can do instead is change the <strong>global option</strong> for the code and/or output options so that they apply to all code chunks, unless specifically overwritten in that chunk.</p>
+<p>We can change the <code>execute</code> options (<code>echo</code>, <code>warning</code>, <code>eval</code>, <code>output</code>, and more) globally by adding a line to the YAML header at the top of your <code>Quarto</code> file. Try adding</p>
+<pre><code>execute: 
+  echo: false</code></pre>
+<p>as two new lines in between the <code>title</code> and <code>format</code> lines of the YAML header. This tells <code>Quarto</code> to not <code>echo</code> <strong>any</strong> code in any code chunk. However, note that you can change a local code chunk to have <code>#| echo: true</code> to override the global setting for that chunk.</p>
+<p>Additional global <code>execute</code> options go on new lines:</p>
+<pre><code>execute: 
+  echo: false
+  warning: false</code></pre>
+<p>The non-<code>execute</code> options pertaining to figure size can be changed globally by specifying the option after the <code>html</code> part of the YAML header. The following changes all figure heights to be <code>2</code>, unless a chunk overrides the global setting:</p>
+<pre><code>---
+title: "Quarto Test"
+execute: 
+  echo: false
+format: 
+  html:
+    fig-height: 2
+---</code></pre>
+<p><strong>Important Note</strong>: We need to pay particular attention to the spacing of things in the YAML header. Notice, for example, that <code>echo: false</code> is indented by exactly two spaces. Try adding a space or deleting a space, and you’ll get an error!</p>
+</div>
+<div id="figures-and-tables" class="section level3" number="5.2.3">
+<h3>
+<span class="header-section-number">5.2.3</span> Figures and Tables<a class="anchor" aria-label="anchor" href="#figures-and-tables"><i class="fas fa-link"></i></a>
+</h3>
+<p>We’ve already seen that Figures will pop up automatically (unless we set <code>output: false</code>), which is quite convenient. Making tables that look nice requires one extra step.</p>
+<p>Delete the <code>output: false</code> option that you added earlier to the chunk with <code>summary(cars)</code>. When you render your .qmd file now, results tables from <code>head(cars)</code> and <code>summary(cars)</code> look kind of ugly. We will focus on using the <code><a href="https://rdrr.io/pkg/knitr/man/kable.html">kable()</a></code> function from the <code>knitr</code> package to make these tables much more aesthetically pleasing. Another option is to use the <code><a href="https://rdrr.io/pkg/pander/man/pander.html">pander()</a></code> function in the <code>pander</code> package. Both <code><a href="https://rdrr.io/pkg/pander/man/pander.html">pander()</a></code> and <code><a href="https://rdrr.io/pkg/knitr/man/kable.html">kable()</a></code> are very simple functions to generate tables but will be more than sufficient for our purposes. To generate more complicated tables, see the <code>xtable</code> package.</p>
+<p>To use these functions, simply add a <code>|&gt;</code> pipe with the name of the table function you want to use. <code>head(cars) |&gt; kable()</code> will make a nice-looking table with <code>kable</code> and <code>head(cars) |&gt; pander()</code> will use <code><a href="https://rdrr.io/pkg/pander/man/pander.html">pander()</a></code>. Before using <code><a href="https://rdrr.io/pkg/knitr/man/kable.html">kable()</a></code> from the <code>knitr</code> package, you’ll need to install the <code>knitr</code> package with <code>install.packages("knitr")</code> and load its library by adding the line <code><a href="https://yihui.org/knitr/">library(knitr)</a></code> above <code>head(cars) |&gt; kable()</code>. Before using <code><a href="https://rdrr.io/pkg/pander/man/pander.html">pander()</a></code>, you’ll need to install the <code>pander</code> package with <code>install.packages("pander")</code> and then load its library by adding the line <code><a href="https://rapporter.github.io/pander/">library(pander)</a></code> above <code>head(cars) |&gt; pander()</code>. Try these out in your <code>Quarto</code> file.</p>
+<p>Which table do you like better in this case?</p>
+<p>There are plenty of options for making tables look presentable, which we will discuss in the Exercises. Keep in mind that you probably wouldn’t use these when making tables for yourself. They’re much more useful when you’re writing a report that you want to share with others.</p>
+</div>
+<div id="non-code-options" class="section level3" number="5.2.4">
+<h3>
+<span class="header-section-number">5.2.4</span> Non-Code Options<a class="anchor" aria-label="anchor" href="#non-code-options"><i class="fas fa-link"></i></a>
+</h3>
+<p><code>Quarto</code> combines <code>R</code> (in the code chunks, which we’ve already discussed) with the <code>Markdown</code> syntax, which comprises the stuff outside the code chunks, like what you’re reading right now!</p>
+<p>There are so many <code>Markdown</code> options, but most of the time, if you want to do something specific, you can just Google it. The purpose of what follows is just to get us familiar with the very basics and things you will probably use most often.</p>
+<p><strong>Bullet Points and Sub-bullet Points</strong>: Denoted with a <code>*</code> and <code>-</code>, respectively. The sub bullets should be indented by 4 spaces. Note that bullet points are not code and should <strong>not</strong> appear in a code chunk.</p>
+<pre><code>* Bullet 1
+* Bullet 2
+    - Sub bullet 1
+    - Sub bullet 2
+    - Sub bullet 3</code></pre>
+<!-- See Ordered and Unordered Lists in <a href="https://rmarkdown.rstudio.com/authoring_basics.html" target="_blank">https://rmarkdown.rstudio.com/authoring_basics.html</a>  for an example. -->
+<p><strong>Note</strong>: Everything in <code>Markdown</code> is very particular with spacing. Things often have to be very precise. I personally just love it, but it can be frustrating sometimes. For example, indenting a sub-bullet by <strong>3</strong> spaces instead of <strong>4</strong> spaces will not make a sub-bullet.</p>
+<pre><code>* Bullet 1
+   - Sub bullet 1</code></pre>
+<p>Numbered Lists are the same as bulleted ones, except <code>*</code> is replaced with numbers <code>1.</code>, <code>2.</code>, etc.</p>
+<p><strong>Bold, Italics, Code</strong>. Surround text with <code>__bold text__</code> to make text bold, <code>_italic text_</code> to make text Italics, and backticks to make text look like Code.</p>
+<p><strong>Links</strong>: The simplest way to create a link to something on the web is to surround it with <code>&lt; &gt;</code> as in <code>&lt;https://www.youtube.com/watch?v=gJf_DDAfDXs&gt;</code></p>
+<p>If you want to name you link something other than the web address, use <code>[name of link](https://www.youtube.com/watch?v=gJf_DDAfDXs)</code>, which should show up in your rendered document as “name of link” and, when clicked on, take you to the youtube video.</p>
+<p><strong>Headers</strong>: Headers are created with <code>##</code> with fewer hashtags resulting in a bigger Header. Typing in <code>#Big Header</code> at the beginning of a line would make a big header, <code>### Medium Header</code> would make a medium header, and <code>##### Small Header</code> would make a small header. Headers are important because they get mapped to a table of contents.</p>
+<p>There’s a lot of other stuff to explore: &lt;a href=“<a href="https://rstudio.com/wp-content/uploads/2015/03/rmarkdown-reference.pdf" class="uri">https://rstudio.com/wp-content/uploads/2015/03/rmarkdown-reference.pdf</a>” target=“blank&gt; https://rstudio.com/wp-content/uploads/2015/03/rmarkdown-reference.pdf .</p>
+<p>But, if you want to do something other than the basics, Google will definitely help.</p>
+</div>
+<div id="yaml" class="section level3" number="5.2.5">
+<h3>
+<span class="header-section-number">5.2.5</span> YAML<a class="anchor" aria-label="anchor" href="#yaml"><i class="fas fa-link"></i></a>
+</h3>
+<p>We have briefly discussed what’s given at the top of every .qmd file: the YAML header. The YAML header is the most frustrating part to change because it’s the most particular with spacing.</p>
+<p>In addition to controlling global chunk options, we can also use the YAML header to specify a theme from <a href="https://quarto.org/docs/output-formats/html-themes.html" target="_blank"> Bootswatch.</a></p>
+<p>There are 25 themes in the <code>Bootswatch</code> project. The YAML header below uses the <code>darkly</code> theme. Try pasting in this YAML header and rendering the document to see the outputted theme.</p>
+<pre><code>---
+title: "Quarto Test"
+execute: 
+  echo: false
+  warning: false
+format: 
+  html:
+    fig-height: 2
+    theme: darkly
+    self-contained: true
+---</code></pre>
+<p>We can also add a table of contents, which will create a table of contents based on headers you have created with <code>##</code>.</p>
+<pre><code>---
+title: "Quarto Test"
+execute: 
+  echo: false
+  warning: false
+format: 
+  html:
+    fig-height: 2
+    theme: darkly
+    toc: true
+    self-contained: true
+---</code></pre>
+<p>There are <strong>so</strong> many other options available for theming, and, if you know any <code>css</code>, you can provide your own <code>.css</code> file to customize the theme.</p>
+</div>
+<div id="exercise-5-2" class="section level3" number="5.2.6">
+<h3>
+<span class="header-section-number">5.2.6</span> Exercises<a class="anchor" aria-label="anchor" href="#exercise-5-2"><i class="fas fa-link"></i></a>
+</h3>
+<p>Exercises marked with an * indicate that the exercise has a solution at the end of the chapter at <a href="tidying-with-tidyr.html#solutions-4">7.5</a>.</p>
+<p>For the rest of this section, we will use the built-in <code>R</code> data set <code>mtcars</code>, which has observations on makes and models of cars. The variables we will be using are:</p>
+<ul>
+<li>
+<code>cyl</code>, the number of cylinders a car has</li>
+<li>
+<code>mpg</code>, the mileage of the car, in miles per gallon</li>
+</ul>
+<p>Because the data set is loaded every time <code>R</code> is started up, there is no need to have a line that reads in the data set. We can examine the first few observations with</p>
+<div class="sourceCode" id="cb144"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">mtcars</span><span class="op">)</span></span>
+<span><span class="co">#&gt;                    mpg cyl disp  hp drat    wt  qsec vs am</span></span>
+<span><span class="co">#&gt; Mazda RX4         21.0   6  160 110 3.90 2.620 16.46  0  1</span></span>
+<span><span class="co">#&gt; Mazda RX4 Wag     21.0   6  160 110 3.90 2.875 17.02  0  1</span></span>
+<span><span class="co">#&gt; Datsun 710        22.8   4  108  93 3.85 2.320 18.61  1  1</span></span>
+<span><span class="co">#&gt; Hornet 4 Drive    21.4   6  258 110 3.08 3.215 19.44  1  0</span></span>
+<span><span class="co">#&gt; Hornet Sportabout 18.7   8  360 175 3.15 3.440 17.02  0  0</span></span>
+<span><span class="co">#&gt; Valiant           18.1   6  225 105 2.76 3.460 20.22  1  0</span></span>
+<span><span class="co">#&gt;                   gear carb</span></span>
+<span><span class="co">#&gt; Mazda RX4            4    4</span></span>
+<span><span class="co">#&gt; Mazda RX4 Wag        4    4</span></span>
+<span><span class="co">#&gt; Datsun 710           4    1</span></span>
+<span><span class="co">#&gt; Hornet 4 Drive       3    1</span></span>
+<span><span class="co">#&gt; Hornet Sportabout    3    2</span></span>
+<span><span class="co">#&gt; Valiant              3    1</span></span></code></pre></div>
+<ol style="list-style-type: decimal">
+<li><p>* Create a table showing the mean <code>mpg</code> for each <code>cyl</code> group (<code>cyl</code> stands for cylinder and can be 4-cylinder, 6-cylinder, or 8-cylinder) with both <code><a href="https://rdrr.io/pkg/knitr/man/kable.html">kable()</a></code> and <code><a href="https://rdrr.io/pkg/pander/man/pander.html">pander()</a></code>. Hint: remember to call the <code>knitr</code> library and the <code>pander</code> library.</p></li>
+<li><p>* Type <code><a href="https://rdrr.io/pkg/knitr/man/kable.html">?kable</a></code> into your console window and scroll through the Help file. Change the rounding of the mean so that it only displays one number after the decimal. Then, add a caption to the table that says “My First Table Caption!!”</p></li>
+<li><p>* Google “How to Change Column Names in kable” and replace the column names with “Cylinder Numb.” and “Mean Mileage”.</p></li>
+<li><p>Find a table that you plan to use in your first mini-project. Use the column names, caption, and digits options to make this table look nicer with the <code><a href="https://rdrr.io/pkg/knitr/man/kable.html">kable()</a></code> function.</p></li>
+<li><p>Create a new <code>R</code> chunk and copy and paste the following into your new <code>R</code> chunk. Don’t worry about what <code><a href="https://rdrr.io/r/base/factor.html">factor()</a></code> is doing: we will cover that next week!</p></li>
+</ol>
+<div class="sourceCode" id="cb145"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">mtcars</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">mtcars</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">factor</a></span><span class="op">(</span><span class="va">cyl</span><span class="op">)</span>, y <span class="op">=</span> <span class="va">mpg</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_boxplot.html">geom_boxplot</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
+<p>Modify the <code>R</code> chunk so that: (a) the figure height is 3, (b) the code from the <code>R</code> chunk shows in the .html file, (c) the table from running <code>head(cars)</code> are hidden in the .html file. Make (b) and (c) a <strong>local</strong> chunk option, but set (a) as a <strong>global</strong> option that applies to all of your <code>R</code> chunks.</p>
+<ol start="6" style="list-style-type: decimal">
+<li><p>Change your global options in your first project to (a) hide messages from loading in the <code>tidyverse</code> and (b) show all code.</p></li>
+<li><p>Use bullet points in the Introduction in your first mini-project that explains what a few of the important variables are. Then, add a header to your project that marks the Introduction.</p></li>
+<li><p>Change the YAML header in your project so that you are the Author (with something like <code>author: "Your Name"</code> and so that the file uses a theme from <code>Bootswatch</code> other than the default theme.</p></li>
+</ol>
+</div>
+</div>
+<div id="ggplot2-communication" class="section level2" number="5.3">
+<h2>
+<span class="header-section-number">5.3</span> <code>ggplot2</code> Communication<a class="anchor" aria-label="anchor" href="#ggplot2-communication"><i class="fas fa-link"></i></a>
+</h2>
+<p>When we first introduced plotting, we used histograms, boxplots, frequency plots, bar plots, scatterplots, line plots, and more to help us explore our data set. You will probably make many different plots in a single analysis, and, when exploring, it’s fine to keep these plots unlabeled and untitled with the default colour scheme and theme. They’re just for you, and you typically understand the data and what each variable means.</p>
+<p>However, when you’ve finished exploring and you’d like to communicate your results, both graphically and numerically, you’ll likely want to tweak your plots to look more aesthetically pleasing. You certainly wouldn’t be presenting every exploratory plot you made so this tweaking needs to be done on only a few plots. You might consider:</p>
+<ul>
+<li><p>changing the x-axis and y-axis labels, changing the legend title, adding a title, adding a subtitle, and adding a caption with <code>+ labs()</code></p></li>
+<li><p>changing the limits of the x-axis and y-axis with <code>+ xlim()</code> and <code>+ ylim()</code></p></li>
+<li><p>changing the colour scheme to be more visually appealing and easy to see for people with colour-vision-deficiency (CVD)</p></li>
+<li><p>labeling certain points or lines with <code>+ geom_label()</code> or <code>+ geom_text()</code></p></li>
+<li><p>changing from the default theme with <code>+ theme_&lt;name_of_theme&gt;()</code></p></li>
+</ul>
+<p>The bullet about labeling only certain points is the data set is one reason why we are doing this second <code>ggplot2</code> section now, as opposed to immediately after the first <code>ggplot2</code> section. As we will see, we’ll make use of combining what we’ve learned in <code>dplyr</code> to help us label interesting observations in our plots.</p>
+<p><strong>The Data</strong></p>
+<p>The Happy Planet Index (HPI) is a measure of how efficiently a country uses its ecological resources to give its citizens long “happy” lives. You can read more about this data here: <a href="https://static1.squarespace.com/static/5735c421e321402778ee0ce9/t/578dec7837c58157b929b3d6/1468918904805/Methods+paper_2016.pdf" target="_blank"> here</a>.</p>
+<p>But, the basic idea is that the HPI is a metric that computes how happy and healthy a country’s citizens are, but adjusts that by that country’s ecological footprint (how much “damage” the country does to planet Earth). The data set was obtained from <a href="https://github.com/aepoetry/happy_planet_index_2016" target="_blank"> https://github.com/aepoetry/happy_planet_index_2016</a>. Variables in the data set are:</p>
+<ul>
+<li>
+<code>HPIRank</code>, the rank of the country’s Happy Planet Index (lower is better)</li>
+<li>
+<code>Country</code>, the name of the country</li>
+<li>
+<code>LifeExpectancy</code>, the average life expectancy of a citizen (in years)</li>
+<li>
+<code>Wellbeing</code>, the average well being score (on a scale from 1 - 10). See the ladder question in the documentation for how this was calculated.</li>
+<li>
+<code>HappyLifeYears</code>, a combination of <code>LifeExpectancy</code> and <code>Wellbeing</code>
+</li>
+<li>
+<code>Footprint</code>, the ecological footprint per person (higher footprint means the average person in the country is less ecologically friendly)</li>
+</ul>
+<p>Read in the data set with</p>
+<div class="sourceCode" id="cb146"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span></span>
+<span><span class="va">hpi_df</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv</a></span><span class="op">(</span><span class="st">"data/hpi-tidy.csv"</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">hpi_df</span><span class="op">)</span></span>
+<span><span class="co">#&gt; # A tibble: 6 × 11</span></span>
+<span><span class="co">#&gt;   HPIRank Country    LifeE…¹ Wellb…² Happy…³ Footp…⁴ Happy…⁵</span></span>
+<span><span class="co">#&gt;     &lt;dbl&gt; &lt;chr&gt;        &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;</span></span>
+<span><span class="co">#&gt; 1     109 Afghanist…    48.7    4.76    29.0   0.540    36.8</span></span>
+<span><span class="co">#&gt; 2      18 Albania       76.9    5.27    48.8   1.81     54.1</span></span>
+<span><span class="co">#&gt; 3      26 Algeria       73.1    5.24    46.2   1.65     52.2</span></span>
+<span><span class="co">#&gt; 4     127 Angola        51.1    4.21    28.2   0.891    33.2</span></span>
+<span><span class="co">#&gt; 5      17 Argentina     75.9    6.44    55.0   2.71     54.1</span></span>
+<span><span class="co">#&gt; 6      53 Armenia       74.2    4.37    41.9   1.73     46.0</span></span>
+<span><span class="co">#&gt; # … with 4 more variables: Population &lt;dbl&gt;,</span></span>
+<span><span class="co">#&gt; #   GDPcapita &lt;dbl&gt;, GovernanceRank &lt;chr&gt;, Region &lt;chr&gt;,</span></span>
+<span><span class="co">#&gt; #   and abbreviated variable names ¹​LifeExpectancy,</span></span>
+<span><span class="co">#&gt; #   ²​Wellbeing, ³​HappyLifeYears, ⁴​Footprint,</span></span>
+<span><span class="co">#&gt; #   ⁵​HappyPlanetIndex</span></span>
+<span><span class="co">#&gt; # ℹ Use `colnames()` to see all variable names</span></span></code></pre></div>
+<p>Let’s look at the relationship between <code>HappyLifeYears</code> and <code>Footprint</code> for countries of different <code>Region</code>s of the world.</p>
+<div class="sourceCode" id="cb147"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">hpi_df</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">Footprint</span>, y <span class="op">=</span> <span class="va">HappyLifeYears</span>,</span>
+<span>                          colour <span class="op">=</span> <span class="va">Region</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
+<div class="inline-figure"><img src="05-comm_files/figure-html/unnamed-chunk-12-1.png" width="672"></div>
+<p>Which region seems to have the most variability in their Ecological Footprint?</p>
+<div id="change-labels-and-titles" class="section level3" number="5.3.1">
+<h3>
+<span class="header-section-number">5.3.1</span> Change Labels and Titles<a class="anchor" aria-label="anchor" href="#change-labels-and-titles"><i class="fas fa-link"></i></a>
+</h3>
+<p>We can add <code>+ labs()</code> to change various labels and titles throughout the plot:</p>
+<div class="sourceCode" id="cb148"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">hpi_df</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">Footprint</span>, y <span class="op">=</span> <span class="va">HappyLifeYears</span>,</span>
+<span>                          colour <span class="op">=</span> <span class="va">Region</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span>title <span class="op">=</span> <span class="st">"Countries with a Higher Ecological Footprint Tend to Have Citizens with Longer, Happier Lives"</span>, </span>
+<span>       <span class="co">## add title</span></span>
+<span>       subtitle <span class="op">=</span> <span class="st">"HappyLifeYears is a Combination of Life Expectancy and Citizen Well-Being"</span>, </span>
+<span>       <span class="co">## add subtitle (smaller text size than the title)</span></span>
+<span>       caption <span class="op">=</span> <span class="st">"Data Source: http://happyplanetindex.org/countries"</span>, </span>
+<span>       <span class="co">## add caption to the bottom of the figure</span></span>
+<span>       x <span class="op">=</span> <span class="st">"Ecological Footprint"</span>, <span class="co">## change x axis label</span></span>
+<span>       y <span class="op">=</span> <span class="st">"Happy Life Years"</span>, <span class="co">## change y axis label</span></span>
+<span>       colour <span class="op">=</span> <span class="st">"World Region"</span><span class="op">)</span> <span class="co">## change label of colour legend</span></span></code></pre></div>
+<div class="inline-figure"><img src="05-comm_files/figure-html/unnamed-chunk-13-1.png" width="672"></div>
+<p>Any <code><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes()</a></code> that you use in your plot gets its own label and can be changed by <code>name_of_aethetic = "Your Label"</code>. In the example above, we changed all three <code><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes()</a></code> labels: <code>x</code>, <code>y</code>, and <code>colour</code>.</p>
+<p>What is the only text on the plot that we aren’t able to change with <code><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs()</a></code>?</p>
+</div>
+<div id="changing-x-and-y-axis-limits" class="section level3" number="5.3.2">
+<h3>
+<span class="header-section-number">5.3.2</span> Changing x and y axis Limits<a class="anchor" aria-label="anchor" href="#changing-x-and-y-axis-limits"><i class="fas fa-link"></i></a>
+</h3>
+<p>We can also change the x-axis limits and the y-axis limits to, for example, start at 0 for the y-axis:</p>
+<div class="sourceCode" id="cb149"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">hpi_df</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">Footprint</span>, y <span class="op">=</span> <span class="va">HappyLifeYears</span>,</span>
+<span>                          colour <span class="op">=</span> <span class="va">Region</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/lims.html">ylim</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">70</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<div class="inline-figure"><img src="05-comm_files/figure-html/unnamed-chunk-14-1.png" width="672"></div>
+<p>In this case, it makes the points on the plot a bit harder to see. You can also change where and how often tick marks appear on the x and y-axes. For special things like this, I think it’s best to just resort to Google (“ggplot how to change x-axis breaks tick marks” should help).</p>
+</div>
+<div id="changing-a-colour-scale" class="section level3" number="5.3.3">
+<h3>
+<span class="header-section-number">5.3.3</span> Changing A Colour Scale<a class="anchor" aria-label="anchor" href="#changing-a-colour-scale"><i class="fas fa-link"></i></a>
+</h3>
+<p>We want to use our graphics to communicate with others as clearly as possible. We also want to be as inclusive as possible in our communications. This means that, if we choose to use colour, our graphics should be made so that a colour-vision-deficient (CVD) person can read our graphs. About 4.5% of people are colour vision deficient, so it’s actually quite likely that a CVD person will view the graphics that you make (depending on how many people you share it with) <a href="http://www.colourblindawareness.org/colour-blindness/#:~:text=What%20is%20colour%20blindness%3F,most%20of%20whom%20are%20male" target="_blank">More Information on CVD</a>.</p>
+<p>The colour scales from <code>R Colour Brewer</code> are readable for common types of CVD. A list of scales can be found <a href="https://www.datanovia.com/en/wp-content/uploads/dn-tutorials/ggplot2/figures/0101-rcolorbrewer-palette-rcolorbrewer-palettes-1.png" target="_blank">here</a>.</p>
+<p>You would typically use the top scales if the variable you are colouring by is ordered sequentially (called <code>seq</code> for sequential, like grades in a course: A, B, C, D, F), the bottom scales if the variable is diverging (called <code>div</code> for diverging, like Republican / Democrat lean so that the middle is colourless), and the middle set of scales if the variable is not unordered and is categorical (called <code>qual</code> for qualitative like the names of different treatment drugs for a medical experiment).</p>
+<p>In which of those 3 situations are we in for the World Region graph?</p>
+<p>If we want to use one of these colour scales, we just need to add <code><a href="https://ggplot2.tidyverse.org/reference/scale_brewer.html">scale_colour_brewer()</a></code> with the name of the scale we want to use.</p>
+<div class="sourceCode" id="cb150"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">hpi_df</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">Footprint</span>, y <span class="op">=</span> <span class="va">HappyLifeYears</span>,</span>
+<span>                          colour <span class="op">=</span> <span class="va">Region</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_brewer.html">scale_colour_brewer</a></span><span class="op">(</span>palette <span class="op">=</span> <span class="st">"Accent"</span><span class="op">)</span></span></code></pre></div>
+<div class="inline-figure"><img src="05-comm_files/figure-html/unnamed-chunk-15-1.png" width="672"></div>
+<p>Try changing the palette to something else besides <code>"Accent"</code>. Do you like the new palette better or worse?</p>
+<p>One more option to easily change the colour scale is to use the <code>viridis</code> package. The base <code>viridis</code> functions automatically load with <code>ggplot2</code> so there’s no need to call the package with <code><a href="https://sjmgarnier.github.io/viridis/">library(viridis)</a></code>. The <code>viridis</code> colour scales were made to be both aesthetically pleasing and CVD-friendly.</p>
+<div class="sourceCode" id="cb151"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">hpi_df</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">Footprint</span>, y <span class="op">=</span> <span class="va">HappyLifeYears</span>,</span>
+<span>                          colour <span class="op">=</span> <span class="va">Region</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_viridis.html">scale_colour_viridis_d</a></span><span class="op">(</span>option <span class="op">=</span> <span class="st">"plasma"</span><span class="op">)</span></span></code></pre></div>
+<div class="inline-figure"><img src="05-comm_files/figure-html/unnamed-chunk-16-1.png" width="672"></div>
+<p>A drawback of the <code>viridis</code> package is that the yellow can be really hard to see (at least for me).</p>
+<p>Read the examples section of the Help file for <code><a href="https://ggplot2.tidyverse.org/reference/scale_viridis.html">?scale_colour_viridis_d</a></code>. What’s the difference between <code><a href="https://ggplot2.tidyverse.org/reference/scale_viridis.html">scale_colour_viridis_d()</a></code>, <code>?scale_colour_viridis_c()</code>, and <code><a href="https://ggplot2.tidyverse.org/reference/scale_viridis.html">scale_colour_viridis_b()</a></code>?</p>
+<p>Which do you like better: the Colour Brewer scale or the Viridis scale?</p>
+</div>
+<div id="labeling-points-or-lines-of-interest" class="section level3" number="5.3.4">
+<h3>
+<span class="header-section-number">5.3.4</span> Labeling Points or Lines of Interest<a class="anchor" aria-label="anchor" href="#labeling-points-or-lines-of-interest"><i class="fas fa-link"></i></a>
+</h3>
+<p>One goal we might have with communication is highlighting particular points in a data set that show something interesting. For example, we might want to label the points on the graph corresponding to the countries with the highest HPI in each region: these countries are doing the best in terms of using resources efficiently to maximize citizen happiness. Or, we might want to highlight some “bad” example of countries that are the least efficient in each region. Or, we might want to label the country that we are from on the graph.</p>
+<p>All of this can be done with <code><a href="https://ggplot2.tidyverse.org/reference/geom_text.html">geom_label()</a></code>. Let’s start by labeling all of the points. <code><a href="https://ggplot2.tidyverse.org/reference/geom_text.html">geom_label()</a></code> needs one aesthetic called <code>label</code> which is the name of the column in the data set with the labels you want to use.</p>
+<div class="sourceCode" id="cb152"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">hpi_df</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">Footprint</span>, y <span class="op">=</span> <span class="va">HappyLifeYears</span>,</span>
+<span>                          colour <span class="op">=</span> <span class="va">Region</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_brewer.html">scale_colour_brewer</a></span><span class="op">(</span>palette <span class="op">=</span> <span class="st">"Dark2"</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_text.html">geom_label</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>label <span class="op">=</span> <span class="va">Country</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<div class="inline-figure"><img src="05-comm_files/figure-html/unnamed-chunk-17-1.png" width="672"></div>
+<p>Yikes! It’s quite uncommon to want to label <strong>all</strong> of the points. Let’s see if we can instead label each country with the best HPI in that country’s region. To do so, we first need to use our <code>dplyr</code> skills to create a new data set that has these 7 “best” countries. When we used <code><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by()</a></code>, we typically used <code><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise()</a></code> afterward. But, <code><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by()</a></code> works with <code><a href="https://dplyr.tidyverse.org/reference/filter.html">filter()</a></code> as well!</p>
+<div class="sourceCode" id="cb153"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">plot_df</span> <span class="op">&lt;-</span> <span class="va">hpi_df</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">Region</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">HPIRank</span> <span class="op">==</span> <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html">min</a></span><span class="op">(</span><span class="va">HPIRank</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<p>What is the code in the previous chunk doing?</p>
+<p>Now that we have this new data set, we can use it within <code><a href="https://ggplot2.tidyverse.org/reference/geom_text.html">geom_label()</a></code>. Recall that the <code>data =</code> argument in <code><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot()</a></code> carries on through <strong>all</strong> <code>geom</code>s <strong>unless</strong> we specify otherwise. Now is our chance to “specify otherwise” by including another <code>data =</code> argument within <code><a href="https://ggplot2.tidyverse.org/reference/geom_text.html">geom_label()</a></code>:</p>
+<div class="sourceCode" id="cb154"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">hpi_df</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">Footprint</span>, y <span class="op">=</span> <span class="va">HappyLifeYears</span>,</span>
+<span>                          colour <span class="op">=</span> <span class="va">Region</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_brewer.html">scale_colour_brewer</a></span><span class="op">(</span>palette <span class="op">=</span> <span class="st">"Dark2"</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_text.html">geom_label</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">plot_df</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>label <span class="op">=</span> <span class="va">Country</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<div class="inline-figure"><img src="05-comm_files/figure-html/unnamed-chunk-19-1.png" width="672"></div>
+<p>Why do you think the colour legend changed to showing the letter “a” for each region?</p>
+<div class="sourceCode" id="cb155"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">hpi_df</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">Footprint</span>, y <span class="op">=</span> <span class="va">HappyLifeYears</span>,</span>
+<span>                          colour <span class="op">=</span> <span class="va">Region</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>colour <span class="op">=</span> <span class="va">Region</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_brewer.html">scale_colour_brewer</a></span><span class="op">(</span>palette <span class="op">=</span> <span class="st">"Dark2"</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_text.html">geom_label</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">plot_df</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>label <span class="op">=</span> <span class="va">Country</span><span class="op">)</span>, show.legend <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></code></pre></div>
+<div class="inline-figure"><img src="05-comm_files/figure-html/unnamed-chunk-20-1.png" width="672"></div>
+<p>Why does the code chunk above change all of the “a”’s back to points?</p>
+<p>A common issue, even with few labels, is that some of the labels could overlap. The <code>ggrepel</code> package solves this problem by including a <code><a href="https://rdrr.io/pkg/ggrepel/man/geom_text_repel.html">geom_label_repel()</a></code> <code>geom</code> that automatically repels any overlapping labels:</p>
+<div class="sourceCode" id="cb156"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/slowkow/ggrepel">ggrepel</a></span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">hpi_df</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">Footprint</span>, y <span class="op">=</span> <span class="va">HappyLifeYears</span>,</span>
+<span>                          colour <span class="op">=</span> <span class="va">Region</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_brewer.html">scale_colour_brewer</a></span><span class="op">(</span>palette <span class="op">=</span> <span class="st">"Dark2"</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/pkg/ggrepel/man/geom_text_repel.html">geom_label_repel</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">plot_df</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>label <span class="op">=</span> <span class="va">Country</span><span class="op">)</span>,</span>
+<span>                   show.legend <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span> </span></code></pre></div>
+<div class="inline-figure"><img src="05-comm_files/figure-html/unnamed-chunk-21-1.png" width="672"></div>
+<p>And a final issue with the plot is that it’s not always very clear which point on the plot is being labeled. A trick used in the <em>R for Data Science</em> book is to surround the points that are being labeled with an open circle using an extra <code><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point()</a></code> function:</p>
+<div class="sourceCode" id="cb157"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">hpi_df</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">Footprint</span>, y <span class="op">=</span> <span class="va">HappyLifeYears</span>, colour <span class="op">=</span> <span class="va">Region</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_brewer.html">scale_colour_brewer</a></span><span class="op">(</span>palette <span class="op">=</span> <span class="st">"Dark2"</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/pkg/ggrepel/man/geom_text_repel.html">geom_label_repel</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">plot_df</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>label <span class="op">=</span> <span class="va">Country</span><span class="op">)</span>, show.legend <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">plot_df</span>, size <span class="op">=</span> <span class="fl">3</span>, shape <span class="op">=</span> <span class="fl">1</span>, show.legend <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span> </span></code></pre></div>
+<div class="inline-figure"><img src="05-comm_files/figure-html/unnamed-chunk-22-1.png" width="672"></div>
+<p>In the code above, <code>shape = 1</code> says that the new point should be an open circle and <code>size = 3</code> makes the point bigger, ensuring that it goes around the original point. <code>show.legend = FALSE</code> ensures that the larger open circles don’t become part of the legend.</p>
+<p>You can use this same strategy to label specific countries. I’m interested in where the United States of America falls on this graph because I’m from the U.S. I’m also interested in where Denmark falls because that’s the country I’m most interested in visiting. Feel free to replace those countries with any that you’re interested in!</p>
+<div class="sourceCode" id="cb158"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">plot_df_us</span> <span class="op">&lt;-</span> <span class="va">hpi_df</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">Country</span> <span class="op">==</span> <span class="st">"United States of America"</span> <span class="op">|</span> <span class="va">Country</span> <span class="op">==</span> <span class="st">"Denmark"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">hpi_df</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">Footprint</span>, y <span class="op">=</span> <span class="va">HappyLifeYears</span>,</span>
+<span>                          colour <span class="op">=</span> <span class="va">Region</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_brewer.html">scale_colour_brewer</a></span><span class="op">(</span>palette <span class="op">=</span> <span class="st">"Dark2"</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">plot_df_us</span>, size <span class="op">=</span> <span class="fl">3</span>, shape <span class="op">=</span> <span class="fl">1</span>,</span>
+<span>             show.legend <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/pkg/ggrepel/man/geom_text_repel.html">geom_label_repel</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">plot_df_us</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>label <span class="op">=</span> <span class="va">Country</span><span class="op">)</span>,</span>
+<span>                   show.legend <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></code></pre></div>
+<div class="inline-figure"><img src="05-comm_files/figure-html/unnamed-chunk-23-1.png" width="672"></div>
+</div>
+<div id="plot-themes" class="section level3" number="5.3.5">
+<h3>
+<span class="header-section-number">5.3.5</span> Plot Themes<a class="anchor" aria-label="anchor" href="#plot-themes"><i class="fas fa-link"></i></a>
+</h3>
+<p>Plot themes are an easy way to change many aspects of your plot with an overall theme that someone developed. The default theme for <code>ggplot2</code> graphs is <code><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_grey()</a></code>, which is the graph with the grey background that we’ve been using in the entirety of this class. The 7 other themes are given in <a href="https://r4ds.had.co.nz/graphics-for-communication.html#themes" target="_blank">R for Data Science</a> in Figure 28.3.</p>
+<p>However, there are many more choices in the <code>ggthemes</code> package. Load the package with <code><a href="https://github.com/jrnold/ggthemes">library(ggthemes)</a></code> and check out <a href="https://yutannihilation.github.io/allYourFigureAreBelongToUs/ggthemes/" target="_blank">https://yutannihilation.github.io/allYourFigureAreBelongToUs/ggthemes/</a> for a few of the themes in the package. My personal favorites, all given below, are <code><a href="https://rdrr.io/pkg/ggthemes/man/theme_solarized.html">theme_solarized()</a></code>, <code><a href="https://rdrr.io/pkg/ggthemes/man/theme_fivethirtyeight.html">theme_fivethirtyeight()</a></code>, and <code><a href="https://rdrr.io/pkg/ggthemes/man/theme_economist.html">theme_economist()</a></code>, but choosing a theme is mostly a matter of personal taste.</p>
+<div class="sourceCode" id="cb159"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/jrnold/ggthemes">ggthemes</a></span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">hpi_df</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">Footprint</span>, y <span class="op">=</span> <span class="va">HappyLifeYears</span>,</span>
+<span>                          colour <span class="op">=</span> <span class="va">Region</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_brewer.html">scale_colour_brewer</a></span><span class="op">(</span>palette <span class="op">=</span> <span class="st">"Dark2"</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">plot_df_us</span>, size <span class="op">=</span> <span class="fl">3</span>, shape <span class="op">=</span> <span class="fl">1</span>, show.legend <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/pkg/ggrepel/man/geom_text_repel.html">geom_label_repel</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">plot_df_us</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>label <span class="op">=</span> <span class="va">Country</span><span class="op">)</span>, show.legend <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/pkg/ggthemes/man/theme_solarized.html">theme_solarized</a></span><span class="op">(</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">hpi_df</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">Footprint</span>, y <span class="op">=</span> <span class="va">HappyLifeYears</span>,</span>
+<span>                          colour <span class="op">=</span> <span class="va">Region</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_brewer.html">scale_colour_brewer</a></span><span class="op">(</span>palette <span class="op">=</span> <span class="st">"Dark2"</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">plot_df_us</span>, size <span class="op">=</span> <span class="fl">3</span>, shape <span class="op">=</span> <span class="fl">1</span>, show.legend <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/pkg/ggrepel/man/geom_text_repel.html">geom_label_repel</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">plot_df_us</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>label <span class="op">=</span> <span class="va">Country</span><span class="op">)</span>, show.legend <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/pkg/ggthemes/man/theme_fivethirtyeight.html">theme_fivethirtyeight</a></span><span class="op">(</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">hpi_df</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">Footprint</span>, y <span class="op">=</span> <span class="va">HappyLifeYears</span>,</span>
+<span>                          colour <span class="op">=</span> <span class="va">Region</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_brewer.html">scale_colour_brewer</a></span><span class="op">(</span>palette <span class="op">=</span> <span class="st">"Dark2"</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">plot_df_us</span>, size <span class="op">=</span> <span class="fl">3</span>, shape <span class="op">=</span> <span class="fl">1</span>, show.legend <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/pkg/ggrepel/man/geom_text_repel.html">geom_label_repel</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">plot_df_us</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>label <span class="op">=</span> <span class="va">Country</span><span class="op">)</span>, show.legend <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/pkg/ggthemes/man/theme_economist.html">theme_economist</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
+<p>There’s still <strong>much</strong> more you can do with <code>ggplot2</code>. In fact, there are entire <a href="http://moderngraphics11.pbworks.com/f/ggplot2-Book09hWickham.pdf" target="_blank">books on it</a>. But, for most other specializations, you can usually use Google to help you!</p>
+</div>
+<div id="exercise-5-3" class="section level3" number="5.3.6">
+<h3>
+<span class="header-section-number">5.3.6</span> Exercises<a class="anchor" aria-label="anchor" href="#exercise-5-3"><i class="fas fa-link"></i></a>
+</h3>
+<p>Exercises marked with an * indicate that the exercise has a solution at the end of the chapter at <a href="communication-with-quarto.html#solutions-5">5.5</a>.</p>
+<p>The <code><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme()</a></code> function is a way to really specialise your plot. We will explore some of these in the exercise below.</p>
+<ol style="list-style-type: decimal">
+<li>Using only options in <code><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme()</a></code> or options to change colours, shapes, sizes, etc., create the ugliest possible <code>ggplot2</code> graph that you can make. You may not change the underlying data for this graph, but your goal is to investigate some of the options given in <code><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme()</a></code>. A list of theme options is given <a href="https://ggplot2.tidyverse.org/reference/theme.html" target="_blank">in this link</a>.</li>
+</ol>
+<div class="sourceCode" id="cb160"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">hpi_df</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">Footprint</span>, y <span class="op">=</span> <span class="va">HappyLifeYears</span>,</span>
+<span>                          colour <span class="op">=</span> <span class="va">Region</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
+<div class="inline-figure"><img src="05-comm_files/figure-html/unnamed-chunk-25-1.png" width="672"></div>
+<p>We will practice more with communicating with plots in the chapter exercises.</p>
+</div>
+</div>
+<div id="chapexercise-5" class="section level2" number="5.4">
+<h2>
+<span class="header-section-number">5.4</span> Chapter Exercises<a class="anchor" aria-label="anchor" href="#chapexercise-5"><i class="fas fa-link"></i></a>
+</h2>
+<p>Exercises marked with an * indicate that the exercise has a solution at the end of the chapter at <a href="communication-with-quarto.html#solutions-5">5.5</a>.</p>
+<p>Some data sets exist within specific <code>R</code> packages. For example, Jenny Bryan, who is quite famous in the stats/data science community, has put together the <code>gapminder</code> package so that users in <code>R</code> have access to a specific data set on countries throughout the world. <a href="https://github.com/jennybc/gapminder" target="_blank">https://github.com/jennybc/gapminder</a>.</p>
+<p>To load a data set within a specific <code>R</code> package, you first need to install the package with <code>install.packages("gapminder")</code> and load the package itself:</p>
+<div class="sourceCode" id="cb161"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/jennybc/gapminder">gapminder</a></span><span class="op">)</span></span></code></pre></div>
+<p>Then, name the data set something. In this case, the name of the data set is <code>gapminder</code>, but it’s not always the same name as the package itself. We will name the data set <code>country_df</code>.</p>
+<div class="sourceCode" id="cb162"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">country_df</span> <span class="op">&lt;-</span> <span class="va">gapminder</span></span></code></pre></div>
+<p>Explore the data set with <code>head(country_df)</code> and <code><a href="https://rdrr.io/pkg/gapminder/man/gapminder.html">?gapminder</a></code> before proceeding to the following exercises.</p>
+<ol style="list-style-type: decimal">
+<li><p>* Make a line graph that shows the relationship between <code>lifeExp</code> and <code>year</code> for each of the countries in the data set, faceting the graph by continent and also colouring by continent (though this is redundant). Add an x-axis label, a y-axis label, a legend label, and a title to the graph.</p></li>
+<li><p>* Change the colour palette to be CVD-friendly using either <code><a href="https://ggplot2.tidyverse.org/reference/scale_brewer.html">scale_colour_brewer()</a></code> or <code><a href="https://ggplot2.tidyverse.org/reference/scale_viridis.html">scale_colour_viridis_d()</a></code>.</p></li>
+<li><p>* We can see a couple of interesting trends in life expectancy. There is one country in Africa and one country in Asia that sees a sharp decline in life expectancy at one point. In Europe, there is one country that has a substantially lower life expectancy than the rest in the 1950s but catches up to other European countries by the 2000s. Use <code><a href="https://dplyr.tidyverse.org/reference/filter.html">filter()</a></code> to create a data set that only has these 3 countries. Then, use <code><a href="https://ggplot2.tidyverse.org/reference/geom_text.html">geom_label()</a></code> to label all three countries on your plot.</p></li>
+<li><p>Google the history of the countries in Africa and Asia that you just labeled. Add a very short description of why each country experienced a dip in life expectancy as a caption in your graph.</p></li>
+<li><p>Read the help file for <code><a href="https://ggplot2.tidyverse.org/reference/annotate.html">?annotate</a></code>. How is this different than <code><a href="https://ggplot2.tidyverse.org/reference/geom_text.html">geom_label()</a></code>. Which one allows finer tuning? Which one takes more code to use? One of the functions (<code><a href="https://ggplot2.tidyverse.org/reference/annotate.html">annotate()</a></code> or <code><a href="https://ggplot2.tidyverse.org/reference/geom_text.html">geom_label()</a></code>) becomes more of a pain to use when there are many labels. Which one becomes harder to use and why?</p></li>
+<li><p>Suppose that we want the legend to appear on the bottom of the graph. Without using an entirely different theme, use Google to figure out how to move the legend from the right-hand side to the bottom.</p></li>
+<li><p>If there are a lot of overlapping points or overlapping lines, we can use <code>alpha</code> to control the transparency of the lines. Google “change transparency of lines in ggplot” and change the <code>alpha</code> so that the lines are more transparent.</p></li>
+<li><p>Change the theme of your plot to a theme in the <code>ggthemes</code> package. Then, change the <strong>order</strong> of your two commands to change the legend position and to change the overall theme. What happens?</p></li>
+<li><p>Modify your .qmd file so that:</p></li>
+</ol>
+<ul>
+<li><p>only the figure that you made in Exercise 8 prints on your .html file. (Hint: use global options to help with this).</p></li>
+<li><p>none of the code gets printed.</p></li>
+<li><p>the warnings/messages that <code>R</code> prints by default are hidden in all code chunks.</p></li>
+<li><p>the figure height is 5 instead of the default 7.</p></li>
+</ul>
+<ol start="10" style="list-style-type: decimal">
+<li>Read the following up to “How can software tools make our research more reproducible?” <a href="https://ropensci.github.io/reproducibility-guide/sections/introduction/" target="_blank">https://ropensci.github.io/reproducibility-guide/sections/introduction/</a>. How does what is discussed in the article related to <code>Quarto</code>?</li>
+</ol>
+</div>
+<div id="solutions-5" class="section level2" number="5.5">
+<h2>
+<span class="header-section-number">5.5</span> Exercise Solutions<a class="anchor" aria-label="anchor" href="#solutions-5"><i class="fas fa-link"></i></a>
+</h2>
+<div id="reproducibility-s" class="section level3" number="5.5.1">
+<h3>
+<span class="header-section-number">5.5.1</span> Reproducibility S<a class="anchor" aria-label="anchor" href="#reproducibility-s"><i class="fas fa-link"></i></a>
+</h3>
+</div>
+<div id="quarto-files-s" class="section level3" number="5.5.2">
+<h3>
+<span class="header-section-number">5.5.2</span> <code>Quarto</code> Files S<a class="anchor" aria-label="anchor" href="#quarto-files-s"><i class="fas fa-link"></i></a>
+</h3>
+<ol style="list-style-type: decimal">
+<li>* Create a table showing the mean <code>mpg</code> for each <code>cyl</code> group (<code>cyl</code> stands for cylinder and can be 4-cylinder, 6-cylinder, or 8-cylinder) with both <code><a href="https://rdrr.io/pkg/knitr/man/kable.html">kable()</a></code> and <code><a href="https://rdrr.io/pkg/pander/man/pander.html">pander()</a></code>. Hint: remember to call the <code>knitr</code> library and the <code>pander</code> library.</li>
+</ol>
+<div class="sourceCode" id="cb163"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://yihui.org/knitr/">knitr</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://rapporter.github.io/pander/">pander</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span></span>
+<span><span class="va">mpg_df</span> <span class="op">&lt;-</span> <span class="va">mtcars</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">cyl</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise</a></span><span class="op">(</span>meanmpg <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">mpg</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="va">mpg_df</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html">kable</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
+<div class="inline-table"><table class="table table-sm">
+<thead><tr class="header">
+<th align="right">cyl</th>
+<th align="right">meanmpg</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td align="right">4</td>
+<td align="right">26.66364</td>
+</tr>
+<tr class="even">
+<td align="right">6</td>
+<td align="right">19.74286</td>
+</tr>
+<tr class="odd">
+<td align="right">8</td>
+<td align="right">15.10000</td>
+</tr>
+</tbody>
+</table></div>
+<div class="sourceCode" id="cb164"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">mpg_df</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/pkg/pander/man/pander.html">pander</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
+<div class="inline-table"><table style="width:22%;" class="table table-sm">
+<colgroup>
+<col width="8%">
+<col width="13%">
+</colgroup>
+<thead><tr class="header">
+<th align="center">cyl</th>
+<th align="center">meanmpg</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td align="center">4</td>
+<td align="center">26.66</td>
+</tr>
+<tr class="even">
+<td align="center">6</td>
+<td align="center">19.74</td>
+</tr>
+<tr class="odd">
+<td align="center">8</td>
+<td align="center">15.1</td>
+</tr>
+</tbody>
+</table></div>
+<ol start="2" style="list-style-type: decimal">
+<li>* Type <code><a href="https://rdrr.io/pkg/knitr/man/kable.html">?kable</a></code> into your console window and scroll through the Help file. Change the rounding of the mean so that it only displays one number after the decimal. Then, add a caption to the table that says “My First Table Caption!!”</li>
+</ol>
+<div class="sourceCode" id="cb165"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">mpg_df</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html">kable</a></span><span class="op">(</span>digits <span class="op">=</span> <span class="fl">1</span>, caption <span class="op">=</span> <span class="st">"My First Table Caption!!"</span><span class="op">)</span></span></code></pre></div>
+<div class="inline-table"><table class="table table-sm">
+<caption>
+<span id="tab:unnamed-chunk-35">Table 5.1: </span>My First Table Caption!!</caption>
+<thead><tr class="header">
+<th align="right">cyl</th>
+<th align="right">meanmpg</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td align="right">4</td>
+<td align="right">26.7</td>
+</tr>
+<tr class="even">
+<td align="right">6</td>
+<td align="right">19.7</td>
+</tr>
+<tr class="odd">
+<td align="right">8</td>
+<td align="right">15.1</td>
+</tr>
+</tbody>
+</table></div>
+<ol start="3" style="list-style-type: decimal">
+<li>* Google “How to Change Column Names in kable” and replace the column names with “Cylinder Numb.” and “Mean Mileage”.</li>
+</ol>
+<div class="sourceCode" id="cb166"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">mpg_df</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html">kable</a></span><span class="op">(</span>digits <span class="op">=</span> <span class="fl">1</span>, caption <span class="op">=</span> <span class="st">"My First Table Caption!!"</span>,</span>
+<span>  col.names <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Cylinder Numb."</span>, <span class="st">"Mean Mileage"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<div class="inline-table"><table class="table table-sm">
+<caption>
+<span id="tab:unnamed-chunk-36">Table 5.2: </span>My First Table Caption!!</caption>
+<thead><tr class="header">
+<th align="right">Cylinder Numb.</th>
+<th align="right">Mean Mileage</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td align="right">4</td>
+<td align="right">26.7</td>
+</tr>
+<tr class="even">
+<td align="right">6</td>
+<td align="right">19.7</td>
+</tr>
+<tr class="odd">
+<td align="right">8</td>
+<td align="right">15.1</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div id="ggplot2-communication-s" class="section level3" number="5.5.3">
+<h3>
+<span class="header-section-number">5.5.3</span> <code>ggplot2</code> Communication S<a class="anchor" aria-label="anchor" href="#ggplot2-communication-s"><i class="fas fa-link"></i></a>
+</h3>
+</div>
+<div id="chapexercise-5-S" class="section level3" number="5.5.4">
+<h3>
+<span class="header-section-number">5.5.4</span> Chapter Exercises S<a class="anchor" aria-label="anchor" href="#chapexercise-5-S"><i class="fas fa-link"></i></a>
+</h3>
+<ol style="list-style-type: decimal">
+<li><p>* Make a line graph that shows the relationship between <code>lifeExp</code> and <code>year</code> for each of the countries in the data set, faceting the graph by continent and also colouring by continent (though this is redundant). Add an x-axis label, a y-axis label, a legend label, and a title to the graph.</p></li>
+<li><p>* Change the colour palette to be CVD-friendly using either <code><a href="https://ggplot2.tidyverse.org/reference/scale_brewer.html">scale_colour_brewer()</a></code> or <code><a href="https://ggplot2.tidyverse.org/reference/scale_viridis.html">scale_colour_viridis_d()</a></code>.</p></li>
+<li><p>* We can see a couple of interesting trends in life expectancy. There is one country in Africa and one country in Asia that sees a sharp decline in life expxectancy at one point. In Europe, there is one country that has a substantially lower life expectancy than the rest in the 1950s but catches up to other European countries by the 2000s. Use <code><a href="https://dplyr.tidyverse.org/reference/filter.html">filter()</a></code> to create a data set that only has these 3 countries. Then, use <code><a href="https://ggplot2.tidyverse.org/reference/geom_text.html">geom_label()</a></code> to label all three countries on your plot.</p></li>
+</ol>
+<div class="sourceCode" id="cb167"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">interest_countries</span> <span class="op">&lt;-</span> <span class="va">country_df</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="op">(</span><span class="va">year</span> <span class="op">==</span> <span class="fl">1952</span> <span class="op">&amp;</span> <span class="va">continent</span> <span class="op">==</span> <span class="st">"Europe"</span> <span class="op">&amp;</span></span>
+<span>    <span class="va">lifeExp</span> <span class="op">&lt;</span> <span class="fl">50</span><span class="op">)</span> <span class="op">|</span> <span class="op">(</span><span class="va">year</span> <span class="op">==</span> <span class="fl">1992</span> <span class="op">&amp;</span> <span class="va">continent</span> <span class="op">==</span> <span class="st">"Africa"</span> <span class="op">&amp;</span></span>
+<span>    <span class="va">lifeExp</span> <span class="op">&lt;</span> <span class="fl">30</span><span class="op">)</span> <span class="op">|</span> <span class="op">(</span><span class="va">year</span> <span class="op">==</span> <span class="fl">1977</span> <span class="op">&amp;</span> <span class="va">continent</span> <span class="op">==</span> <span class="st">"Asia"</span> <span class="op">&amp;</span> </span>
+<span>    <span class="va">lifeExp</span> <span class="op">&lt;</span> <span class="fl">35</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">country_df</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">year</span>, y <span class="op">=</span> <span class="va">lifeExp</span>, group <span class="op">=</span> <span class="va">country</span>,</span>
+<span>  colour <span class="op">=</span> <span class="va">continent</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_path.html">geom_line</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/facet_wrap.html">facet_wrap</a></span><span class="op">(</span> <span class="op">~</span> <span class="va">continent</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_brewer.html">scale_colour_brewer</a></span><span class="op">(</span>palette <span class="op">=</span> <span class="st">"Set2"</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span>x <span class="op">=</span> <span class="st">"Year"</span>, y <span class="op">=</span> <span class="st">"Life Expectancy (Years)"</span>, colour <span class="op">=</span> <span class="st">"Continent"</span>,</span>
+<span>    title <span class="op">=</span> <span class="st">"Life Expectancy Increases Across time for nearly every country"</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_text.html">geom_label</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">interest_countries</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>label <span class="op">=</span> <span class="va">country</span><span class="op">)</span>,</span>
+<span>    nudge_x <span class="op">=</span> <span class="fl">7</span><span class="op">)</span></span></code></pre></div>
+<div class="inline-figure"><img src="05-comm_files/figure-html/unnamed-chunk-39-1.png" width="672"></div>
+</div>
+</div>
+<div id="rcode-5" class="section level2" number="5.6">
+<h2>
+<span class="header-section-number">5.6</span> Non-Exercise <code>R</code> Code<a class="anchor" aria-label="anchor" href="#rcode-5"><i class="fas fa-link"></i></a>
+</h2>
+<div class="sourceCode" id="cb168"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span></span>
+<span><span class="va">hpi_df</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv</a></span><span class="op">(</span><span class="st">"data/hpi-tidy.csv"</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">hpi_df</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">hpi_df</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">Footprint</span>, y <span class="op">=</span> <span class="va">HappyLifeYears</span>,</span>
+<span>                          colour <span class="op">=</span> <span class="va">Region</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">hpi_df</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">Footprint</span>, y <span class="op">=</span> <span class="va">HappyLifeYears</span>,</span>
+<span>                          colour <span class="op">=</span> <span class="va">Region</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span>title <span class="op">=</span> <span class="st">"Countries with a Higher Ecological Footprint Tend to Have Citizens with Longer, Happier Lives"</span>, </span>
+<span>       <span class="co">## add title</span></span>
+<span>       subtitle <span class="op">=</span> <span class="st">"HappyLifeYears is a Combination of Life Expectancy and Citizen Well-Being"</span>, </span>
+<span>       <span class="co">## add subtitle (smaller text size than the title)</span></span>
+<span>       caption <span class="op">=</span> <span class="st">"Data Source: http://happyplanetindex.org/countries"</span>, </span>
+<span>       <span class="co">## add caption to the bottom of the figure</span></span>
+<span>       x <span class="op">=</span> <span class="st">"Ecological Footprint"</span>, <span class="co">## change x axis label</span></span>
+<span>       y <span class="op">=</span> <span class="st">"Happy Life Years"</span>, <span class="co">## change y axis label</span></span>
+<span>       colour <span class="op">=</span> <span class="st">"World Region"</span><span class="op">)</span> <span class="co">## change label of colour legend</span></span>
+<span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">hpi_df</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">Footprint</span>, y <span class="op">=</span> <span class="va">HappyLifeYears</span>,</span>
+<span>                          colour <span class="op">=</span> <span class="va">Region</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/lims.html">ylim</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">70</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">hpi_df</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">Footprint</span>, y <span class="op">=</span> <span class="va">HappyLifeYears</span>,</span>
+<span>                          colour <span class="op">=</span> <span class="va">Region</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_brewer.html">scale_colour_brewer</a></span><span class="op">(</span>palette <span class="op">=</span> <span class="st">"Accent"</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">hpi_df</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">Footprint</span>, y <span class="op">=</span> <span class="va">HappyLifeYears</span>,</span>
+<span>                          colour <span class="op">=</span> <span class="va">Region</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_viridis.html">scale_colour_viridis_d</a></span><span class="op">(</span>option <span class="op">=</span> <span class="st">"plasma"</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">hpi_df</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">Footprint</span>, y <span class="op">=</span> <span class="va">HappyLifeYears</span>,</span>
+<span>                          colour <span class="op">=</span> <span class="va">Region</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_brewer.html">scale_colour_brewer</a></span><span class="op">(</span>palette <span class="op">=</span> <span class="st">"Dark2"</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_text.html">geom_label</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>label <span class="op">=</span> <span class="va">Country</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="va">plot_df</span> <span class="op">&lt;-</span> <span class="va">hpi_df</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">Region</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">HPIRank</span> <span class="op">==</span> <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html">min</a></span><span class="op">(</span><span class="va">HPIRank</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">hpi_df</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">Footprint</span>, y <span class="op">=</span> <span class="va">HappyLifeYears</span>,</span>
+<span>                          colour <span class="op">=</span> <span class="va">Region</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_brewer.html">scale_colour_brewer</a></span><span class="op">(</span>palette <span class="op">=</span> <span class="st">"Dark2"</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_text.html">geom_label</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">plot_df</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>label <span class="op">=</span> <span class="va">Country</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">hpi_df</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">Footprint</span>, y <span class="op">=</span> <span class="va">HappyLifeYears</span>,</span>
+<span>                          colour <span class="op">=</span> <span class="va">Region</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>colour <span class="op">=</span> <span class="va">Region</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_brewer.html">scale_colour_brewer</a></span><span class="op">(</span>palette <span class="op">=</span> <span class="st">"Dark2"</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_text.html">geom_label</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">plot_df</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>label <span class="op">=</span> <span class="va">Country</span><span class="op">)</span>, show.legend <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/slowkow/ggrepel">ggrepel</a></span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">hpi_df</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">Footprint</span>, y <span class="op">=</span> <span class="va">HappyLifeYears</span>,</span>
+<span>                          colour <span class="op">=</span> <span class="va">Region</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_brewer.html">scale_colour_brewer</a></span><span class="op">(</span>palette <span class="op">=</span> <span class="st">"Dark2"</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/pkg/ggrepel/man/geom_text_repel.html">geom_label_repel</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">plot_df</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>label <span class="op">=</span> <span class="va">Country</span><span class="op">)</span>,</span>
+<span>                   show.legend <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span> </span>
+<span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">hpi_df</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">Footprint</span>, y <span class="op">=</span> <span class="va">HappyLifeYears</span>, colour <span class="op">=</span> <span class="va">Region</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_brewer.html">scale_colour_brewer</a></span><span class="op">(</span>palette <span class="op">=</span> <span class="st">"Dark2"</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/pkg/ggrepel/man/geom_text_repel.html">geom_label_repel</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">plot_df</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>label <span class="op">=</span> <span class="va">Country</span><span class="op">)</span>, show.legend <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">plot_df</span>, size <span class="op">=</span> <span class="fl">3</span>, shape <span class="op">=</span> <span class="fl">1</span>, show.legend <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span> </span>
+<span><span class="va">plot_df_us</span> <span class="op">&lt;-</span> <span class="va">hpi_df</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">Country</span> <span class="op">==</span> <span class="st">"United States of America"</span> <span class="op">|</span> <span class="va">Country</span> <span class="op">==</span> <span class="st">"Denmark"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">hpi_df</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">Footprint</span>, y <span class="op">=</span> <span class="va">HappyLifeYears</span>,</span>
+<span>                          colour <span class="op">=</span> <span class="va">Region</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_brewer.html">scale_colour_brewer</a></span><span class="op">(</span>palette <span class="op">=</span> <span class="st">"Dark2"</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">plot_df_us</span>, size <span class="op">=</span> <span class="fl">3</span>, shape <span class="op">=</span> <span class="fl">1</span>,</span>
+<span>             show.legend <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/pkg/ggrepel/man/geom_text_repel.html">geom_label_repel</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">plot_df_us</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>label <span class="op">=</span> <span class="va">Country</span><span class="op">)</span>,</span>
+<span>                   show.legend <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/jrnold/ggthemes">ggthemes</a></span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">hpi_df</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">Footprint</span>, y <span class="op">=</span> <span class="va">HappyLifeYears</span>,</span>
+<span>                          colour <span class="op">=</span> <span class="va">Region</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_brewer.html">scale_colour_brewer</a></span><span class="op">(</span>palette <span class="op">=</span> <span class="st">"Dark2"</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">plot_df_us</span>, size <span class="op">=</span> <span class="fl">3</span>, shape <span class="op">=</span> <span class="fl">1</span>, show.legend <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/pkg/ggrepel/man/geom_text_repel.html">geom_label_repel</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">plot_df_us</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>label <span class="op">=</span> <span class="va">Country</span><span class="op">)</span>, show.legend <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/pkg/ggthemes/man/theme_solarized.html">theme_solarized</a></span><span class="op">(</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">hpi_df</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">Footprint</span>, y <span class="op">=</span> <span class="va">HappyLifeYears</span>,</span>
+<span>                          colour <span class="op">=</span> <span class="va">Region</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_brewer.html">scale_colour_brewer</a></span><span class="op">(</span>palette <span class="op">=</span> <span class="st">"Dark2"</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">plot_df_us</span>, size <span class="op">=</span> <span class="fl">3</span>, shape <span class="op">=</span> <span class="fl">1</span>, show.legend <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/pkg/ggrepel/man/geom_text_repel.html">geom_label_repel</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">plot_df_us</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>label <span class="op">=</span> <span class="va">Country</span><span class="op">)</span>, show.legend <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/pkg/ggthemes/man/theme_fivethirtyeight.html">theme_fivethirtyeight</a></span><span class="op">(</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">hpi_df</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">Footprint</span>, y <span class="op">=</span> <span class="va">HappyLifeYears</span>,</span>
+<span>                          colour <span class="op">=</span> <span class="va">Region</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_brewer.html">scale_colour_brewer</a></span><span class="op">(</span>palette <span class="op">=</span> <span class="st">"Dark2"</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">plot_df_us</span>, size <span class="op">=</span> <span class="fl">3</span>, shape <span class="op">=</span> <span class="fl">1</span>, show.legend <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/pkg/ggrepel/man/geom_text_repel.html">geom_label_repel</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">plot_df_us</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>label <span class="op">=</span> <span class="va">Country</span><span class="op">)</span>, show.legend <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/pkg/ggthemes/man/theme_economist.html">theme_economist</a></span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">hpi_df</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">Footprint</span>, y <span class="op">=</span> <span class="va">HappyLifeYears</span>,</span>
+<span>                          colour <span class="op">=</span> <span class="va">Region</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
+
+</div>
+</div>
+  <div class="chapter-nav">
+<div class="prev"><a href="dplyr.html"><span class="header-section-number">4</span> Wrangling with dplyr</a></div>
+<div class="next"><a href="workflow.html"><span class="header-section-number">6</span> Workflow and Other Skills</a></div>
+</div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
+    <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>On this page</h2>
+      <ul class="nav navbar-nav">
+<li><a class="nav-link" href="#communication-with-quarto"><span class="header-section-number">5</span> Communication with Quarto</a></li>
+<li>
+<a class="nav-link" href="#reproducbility"><span class="header-section-number">5.1</span> Reproducbility</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#r-scripts-vs.-quarto"><span class="header-section-number">5.1.1</span> R Scripts vs. Quarto</a></li>
+<li><a class="nav-link" href="#spell-checking"><span class="header-section-number">5.1.2</span> Spell-Checking</a></li>
+<li><a class="nav-link" href="#exercise-5-1"><span class="header-section-number">5.1.3</span> Exercises</a></li>
+</ul>
+</li>
+<li>
+<a class="nav-link" href="#quarto-files"><span class="header-section-number">5.2</span> Quarto Files</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#code-chunk-options"><span class="header-section-number">5.2.1</span> Code Chunk Options</a></li>
+<li><a class="nav-link" href="#global-options"><span class="header-section-number">5.2.2</span> Global Options</a></li>
+<li><a class="nav-link" href="#figures-and-tables"><span class="header-section-number">5.2.3</span> Figures and Tables</a></li>
+<li><a class="nav-link" href="#non-code-options"><span class="header-section-number">5.2.4</span> Non-Code Options</a></li>
+<li><a class="nav-link" href="#yaml"><span class="header-section-number">5.2.5</span> YAML</a></li>
+<li><a class="nav-link" href="#exercise-5-2"><span class="header-section-number">5.2.6</span> Exercises</a></li>
+</ul>
+</li>
+<li>
+<a class="nav-link" href="#ggplot2-communication"><span class="header-section-number">5.3</span> ggplot2 Communication</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#change-labels-and-titles"><span class="header-section-number">5.3.1</span> Change Labels and Titles</a></li>
+<li><a class="nav-link" href="#changing-x-and-y-axis-limits"><span class="header-section-number">5.3.2</span> Changing x and y axis Limits</a></li>
+<li><a class="nav-link" href="#changing-a-colour-scale"><span class="header-section-number">5.3.3</span> Changing A Colour Scale</a></li>
+<li><a class="nav-link" href="#labeling-points-or-lines-of-interest"><span class="header-section-number">5.3.4</span> Labeling Points or Lines of Interest</a></li>
+<li><a class="nav-link" href="#plot-themes"><span class="header-section-number">5.3.5</span> Plot Themes</a></li>
+<li><a class="nav-link" href="#exercise-5-3"><span class="header-section-number">5.3.6</span> Exercises</a></li>
+</ul>
+</li>
+<li><a class="nav-link" href="#chapexercise-5"><span class="header-section-number">5.4</span> Chapter Exercises</a></li>
+<li>
+<a class="nav-link" href="#solutions-5"><span class="header-section-number">5.5</span> Exercise Solutions</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#reproducibility-s"><span class="header-section-number">5.5.1</span> Reproducibility S</a></li>
+<li><a class="nav-link" href="#quarto-files-s"><span class="header-section-number">5.5.2</span> Quarto Files S</a></li>
+<li><a class="nav-link" href="#ggplot2-communication-s"><span class="header-section-number">5.5.3</span> ggplot2 Communication S</a></li>
+<li><a class="nav-link" href="#chapexercise-5-S"><span class="header-section-number">5.5.4</span> Chapter Exercises S</a></li>
+</ul>
+</li>
+<li><a class="nav-link" href="#rcode-5"><span class="header-section-number">5.6</span> Non-Exercise R Code</a></li>
+</ul>
+
+      <div class="book-extra">
+        <ul class="list-unstyled">
+          
+        </ul>
+</div>
+    </nav>
+</div>
+
+</div>
+</div> <!-- .container -->
+
+<footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>"<strong>STAT 234: Data Science</strong>" was written by Matt Higham. It was last built on 2022-09-14.</p>
+  </div>
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>This book was built by the <a class="text-light" href="https://bookdown.org">bookdown</a> R package.</p>
+  </div>
+
+</div></div>
+</footer><!-- dynamically load mathjax for compatibility with self-contained --><script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script><script type="text/x-mathjax-config">const popovers = document.querySelectorAll('a.footnote-ref[data-toggle="popover"]');
+for (let popover of popovers) {
+  const div = document.createElement('div');
+  div.setAttribute('style', 'position: absolute; top: 0, left:0; width:0, height:0, overflow: hidden; visibility: hidden;');
+  div.innerHTML = popover.getAttribute('data-content');
+
+  var has_math = div.querySelector("span.math");
+  if (has_math) {
+    document.body.appendChild(div);
+    MathJax.Hub.Queue(["Typeset", MathJax.Hub, div]);
+    MathJax.Hub.Queue(function() {
+      popover.setAttribute('data-content', div.innerHTML);
+      document.body.removeChild(div);
+    })
+  }
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,835 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<title> 6 Workflow and Other Skills | STAT 234: Data Science</title>
+<meta name="author" content="Matt Higham">
+<meta name="description" content="Goals: Describe how files are organized in an R project, describe the advantage of a common working directory through an R Project, and use the here package to assist in accessing and reading in...">
+<meta name="generator" content="bookdown 0.27 with bs4_book()">
+<meta property="og:title" content=" 6 Workflow and Other Skills | STAT 234: Data Science">
+<meta property="og:type" content="book">
+<meta property="og:url" content="https://highamm.github.io/datascience234/workflow.html">
+<meta property="og:description" content="Goals: Describe how files are organized in an R project, describe the advantage of a common working directory through an R Project, and use the here package to assist in accessing and reading in...">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content=" 6 Workflow and Other Skills | STAT 234: Data Science">
+<meta name="twitter:description" content="Goals: Describe how files are organized in an R project, describe the advantage of a common working directory through an R Project, and use the here package to assist in accessing and reading in...">
+<!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
+<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.2.5.1/tabs.js"></script><script src="libs/bs3compat-0.2.5.1/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
+<script src="libs/bs4_book-1.0.0/bs4_book.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><style type="text/css">
+    
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  </style>
+<link rel="stylesheet" href="bs4_style.css">
+</head>
+<body data-spy="scroll" data-target="#toc">
+
+<div class="container-fluid">
+<div class="row">
+  <header class="col-sm-12 col-lg-3 sidebar sidebar-book"><a class="sr-only sr-only-focusable" href="#content">Skip to main content</a>
+
+    <div class="d-flex align-items-start justify-content-between">
+      <h1>
+        <a href="index.html" title="">STAT 234: Data Science</a>
+      </h1>
+      <button class="btn btn-outline-primary d-lg-none ml-2 mt-1" type="button" data-toggle="collapse" data-target="#main-nav" aria-expanded="true" aria-controls="main-nav"><i class="fas fa-bars"></i><span class="sr-only">Show table of contents</span></button>
+    </div>
+
+    <div id="main-nav" class="collapse-lg">
+      <form role="search">
+        <input id="search" class="form-control" type="search" placeholder="Search" aria-label="Search">
+</form>
+
+      <nav aria-label="Table of contents"><h2>Table of contents</h2>
+        <ul class="book-toc list-unstyled">
+<li><a class="" href="index.html"><span class="header-section-number">1</span> Syllabus and Course Information</a></li>
+<li class="book-part">The Core: tidyverse Basics</li>
+<li><a class="" href="intro.html"><span class="header-section-number">2</span> Getting Started with R and R Studio</a></li>
+<li><a class="" href="ggplot2.html"><span class="header-section-number">3</span> Plotting with ggplot2</a></li>
+<li><a class="" href="dplyr.html"><span class="header-section-number">4</span> Wrangling with dplyr</a></li>
+<li><a class="" href="communication-with-quarto.html"><span class="header-section-number">5</span> Communication with Quarto</a></li>
+<li><a class="active" href="workflow.html"><span class="header-section-number">6</span> Workflow and Other Skills</a></li>
+<li class="book-part">Data Wrangling</li>
+<li><a class="" href="tidying-with-tidyr.html"><span class="header-section-number">7</span> Tidying with tidyr</a></li>
+<li><a class="" href="coding-in-base-r.html"><span class="header-section-number">8</span> Coding in Base R</a></li>
+<li><a class="" href="factors-with-forcats.html"><span class="header-section-number">9</span> Factors with forcats</a></li>
+<li><a class="" href="data-ethics.html"><span class="header-section-number">10</span> Data Ethics</a></li>
+<li><a class="" href="data-import.html"><span class="header-section-number">11</span> Data Import</a></li>
+<li><a class="" href="merging-with-dplyr.html"><span class="header-section-number">12</span> Merging with dplyr</a></li>
+<li class="book-part">Special Topics</li>
+<li><a class="" href="dates-with-lubridate.html"><span class="header-section-number">13</span> Dates with lubridate</a></li>
+<li><a class="" href="text-data-with-tidytext-and-stringr.html"><span class="header-section-number">14</span> Text Data with tidytext and stringr</a></li>
+<li><a class="" href="predictive-modeling-with-knn.html"><span class="header-section-number">15</span> Predictive Modeling with knn</a></li>
+<li><a class="" href="connections-to-stat-113-stat-213-and-cs-140.html"><span class="header-section-number">16</span> Connections to STAT 113, STAT 213, and CS 140</a></li>
+<li><a class="" href="introduction-to-sql-with-dbplyr.html"><span class="header-section-number">17</span> Introduction to SQL with dbplyr</a></li>
+</ul>
+
+        <div class="book-extra">
+          
+        </div>
+      </nav>
+</div>
+  </header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><div id="workflow" class="section level1" number="6">
+<h1>
+<span class="header-section-number"> 6</span> Workflow and Other Skills<a class="anchor" aria-label="anchor" href="#workflow"><i class="fas fa-link"></i></a>
+</h1>
+<p><strong>Goals:</strong></p>
+<!-- * Describe what a server is, what the benefits and drawbacks are of using a server to run `R Studio`, install `R` and `R Studio` on your own laptop, and install `R` packages.  -->
+<ul>
+<li><p>Describe how files are organized in an <code>R</code> project, describe the advantage of a common working directory through an <code>R</code> Project, and use the <code>here</code> package to assist in accessing and reading in files.</p></li>
+<li><p>Use strategies to debug code that is not working correctly.</p></li>
+<li><p>Explain how the context a data set comes from informs the analysis of the data.</p></li>
+<li><p>Find missing values and outliers, and explain how these might affect conclusions from a data analysis.</p></li>
+<li><p>Use <code>tibble</code> to create data sets in <code>R</code>, and describe the benefits of <strong>reprexes</strong>.</p></li>
+</ul>
+<div id="r-projects-and-file-organization" class="section level2" number="6.1">
+<h2>
+<span class="header-section-number">6.1</span> <code>R Projects</code> and File Organization<a class="anchor" aria-label="anchor" href="#r-projects-and-file-organization"><i class="fas fa-link"></i></a>
+</h2>
+<p><code>R Projects</code> are a convenient way to keep related code, data sets, and analyses together. Read this very short introduction in <code>R</code> for Data Science here: <a href="https://r4ds.had.co.nz/workflow-projects.html#paths-and-directories" target="_blank">https://r4ds.had.co.nz/workflow-projects.html#paths-and-directories</a> and <a href="https://r4ds.had.co.nz/workflow-projects.html#rstudio-projects" target="_blank">https://r4ds.had.co.nz/workflow-projects.html#rstudio-projects</a>.</p>
+<p>Why should you rarely use an absolute directory?</p>
+<p>Look at the top of your bottom-left terminal window. If you’ve made an <code>R project</code> (which you should have!), you should see that a file path that is the current folder you’re working in. This is where <code>R Studio</code> will look for files by default.</p>
+<p>The <code>here</code> package can help keep track of where files are and with reading in files. Install the <code>here</code> package with <code>install.packages("here")</code>. Then, load the package and run the <code><a href="https://here.r-lib.org//reference/here.html">here()</a></code> function with</p>
+<div class="sourceCode" id="cb169"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://here.r-lib.org/">here</a></span><span class="op">)</span></span>
+<span><span class="co">#&gt; here() starts at /Users/highamm/Desktop/datascience234</span></span>
+<span><span class="fu"><a href="https://here.r-lib.org//reference/here.html">here</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
+<p><code><a href="https://here.r-lib.org//reference/here.html">here()</a></code> prints the directory of where your current <code>R</code> project is. When reading in a data set with <code><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv()</a></code>, we would use</p>
+<div class="sourceCode" id="cb170"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span></span>
+<span><span class="co">#&gt; ── Attaching packages ─────────────────── tidyverse 1.3.2 ──</span></span>
+<span><span class="co">#&gt; ✔ ggplot2 3.3.6     ✔ purrr   0.3.4</span></span>
+<span><span class="co">#&gt; ✔ tibble  3.1.8     ✔ dplyr   1.0.9</span></span>
+<span><span class="co">#&gt; ✔ tidyr   1.2.0     ✔ stringr 1.4.0</span></span>
+<span><span class="co">#&gt; ✔ readr   2.1.2     ✔ forcats 0.5.1</span></span>
+<span><span class="co">#&gt; ── Conflicts ────────────────────── tidyverse_conflicts() ──</span></span>
+<span><span class="co">#&gt; ✖ dplyr::filter() masks stats::filter()</span></span>
+<span><span class="co">#&gt; ✖ dplyr::lag()    masks stats::lag()</span></span>
+<span><span class="va">athletes_df</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv</a></span><span class="op">(</span><span class="st">"data/athletesdata.csv"</span><span class="op">)</span></span>
+<span><span class="co">#&gt; New names:</span></span>
+<span><span class="co">#&gt; Rows: 100 Columns: 9</span></span>
+<span><span class="co">#&gt; ── Column specification</span></span>
+<span><span class="co">#&gt; ──────────────────────────────────── Delimiter: "," chr</span></span>
+<span><span class="co">#&gt; (3): Name, Sport, Gender dbl (6): ...1, Rank, endorsements,</span></span>
+<span><span class="co">#&gt; totalpay, salary, age</span></span>
+<span><span class="co">#&gt; ℹ Use `spec()` to retrieve the full column specification</span></span>
+<span><span class="co">#&gt; for this data. ℹ Specify the column types or set</span></span>
+<span><span class="co">#&gt; `show_col_types = FALSE` to quiet this message.</span></span>
+<span><span class="co">#&gt; • `` -&gt; `...1`</span></span></code></pre></div>
+<p><code>R</code> can read in this data set successfully: it starts at the path given in the console that was printed from <code><a href="https://here.r-lib.org//reference/here.html">here()</a></code>, looks for a folder called <code>data</code> in that path and looks for a file called <code>athletesdata.csv</code> in the data folder.</p>
+<p>So, if you zipped up your project and sent it to someone else, they’d be able to open it and read that data file without needing to change any directory code!</p>
+<p>The <code><a href="https://here.r-lib.org//reference/here.html">here()</a></code> function from the <code>here</code> package can be used for more than just printing out the current working directory. To see its usefulness, suppose that, in the folder that has your current <code>R</code> project, you want to make a folder called <code>Quizzes</code> that has your <code>.qmd</code> files for your quizzes in this class. Make this folder, create a new <code>.qmd</code> file, paste in the <code>R</code> chunk that reads in the <code>athletesdata.csv</code> data set, save the file, and then try to render the file.</p>
+<p>You should get an error that the <code>athletesdata.csv</code> data file is not found. When rendering a <code>.qmd</code> file, <code>R</code> looks for the <code>data/</code> folder <strong>within the folder that contains the .qmd file</strong>. Since the <code>data/</code> folder is in the folder with your <code>R</code> Project, not in the folder with your <code>.qmd</code> file, <code>R</code> can’t find it.</p>
+<p>To fix the issue, we could specify the entire file path to the <code>data/</code> file. But, a better fix would be to use the <code><a href="https://here.r-lib.org//reference/here.html">here()</a></code> function, which tells <code>R</code> to start looking for folders and files in the folder with our <code>R</code> Project:</p>
+<div class="sourceCode" id="cb171"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">athletes_test_read</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv</a></span><span class="op">(</span><span class="fu"><a href="https://here.r-lib.org//reference/here.html">here</a></span><span class="op">(</span><span class="st">"data/athletesdata.csv"</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="co">#&gt; New names:</span></span>
+<span><span class="co">#&gt; Rows: 100 Columns: 9</span></span>
+<span><span class="co">#&gt; ── Column specification</span></span>
+<span><span class="co">#&gt; ──────────────────────────────────── Delimiter: "," chr</span></span>
+<span><span class="co">#&gt; (3): Name, Sport, Gender dbl (6): ...1, Rank, endorsements,</span></span>
+<span><span class="co">#&gt; totalpay, salary, age</span></span>
+<span><span class="co">#&gt; ℹ Use `spec()` to retrieve the full column specification</span></span>
+<span><span class="co">#&gt; for this data. ℹ Specify the column types or set</span></span>
+<span><span class="co">#&gt; `show_col_types = FALSE` to quiet this message.</span></span>
+<span><span class="co">#&gt; • `` -&gt; `...1`</span></span></code></pre></div>
+<p>This allows us to have <code>Quarto</code> files within folders in our <code>R</code> project.</p>
+<div id="exercise-14-1" class="section level3" number="6.1.1">
+<h3>
+<span class="header-section-number">6.1.1</span> Exercises<a class="anchor" aria-label="anchor" href="#exercise-14-1"><i class="fas fa-link"></i></a>
+</h3>
+<p>Exercises marked with an * indicate that the exercise has a solution at the end of the chapter at <a href="workflow.html#solutions-14">6.7</a>.</p>
+<ol style="list-style-type: decimal">
+<li><p>Take some time to modify your files in this course by creating a few folders to help keep things a bit more organized. You might consider making a <code>Quizzes</code> folder and a <code>Projects</code> folder, for example. Move the relevant files to these folders and modify each file to load in the <code>here</code> package and use the <code><a href="https://here.r-lib.org//reference/here.html">here()</a></code> function to read in any relevant data sets. We’ve been using the <code><a href="https://here.r-lib.org//reference/here.html">here()</a></code> function quite a bit already so it may already be there!</p></li>
+<li><p>Click the “Packages” button in the lower-right hand window to bring up the packages menu. Instead of using <em>library(name_of_package)</em>, you can click the check-box by the package name to load it into <code>R</code>. Try it out by un-checking and then re-checking <code>tidyverse</code>. Explain, from a reproducibility perspective, why loading packages this way is <strong>not</strong> good practice.</p></li>
+</ol>
+</div>
+</div>
+<div id="code-style" class="section level2" number="6.2">
+<h2>
+<span class="header-section-number">6.2</span> Code Style<a class="anchor" aria-label="anchor" href="#code-style"><i class="fas fa-link"></i></a>
+</h2>
+<p>Writing code that is “readable” is helpful not only for others but also for yourself, especially if the project you are working on is long-term. What constitutes “readable” code varies a bit, but there are some general principles that are more widely accepted for “good” code. Much of the coding “style” you have seen so far has been imposed by me: I have my own style for writing code so naturally, I use that style in the code I write for our course materials.</p>
+<div id="names" class="section level3" number="6.2.1">
+<h3>
+<span class="header-section-number">6.2.1</span> Names<a class="anchor" aria-label="anchor" href="#names"><i class="fas fa-link"></i></a>
+</h3>
+<p>Names of objects that we create should be descriptive yet short. Sometimes, thinking of a name that makes sense can be very challenging! Some examples of “bad” names for objects include names that are too generic that we won’t be able to distinguish them later:</p>
+<div class="sourceCode" id="cb172"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">df1</span> <span class="op">&lt;-</span> <span class="va">mtcars</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">cyl</span> <span class="op">==</span> <span class="fl">4</span><span class="op">)</span></span>
+<span><span class="va">df2</span> <span class="op">&lt;-</span> <span class="va">mtcars</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">cyl</span> <span class="op">==</span> <span class="fl">6</span><span class="op">)</span></span>
+<span><span class="va">df3</span> <span class="op">&lt;-</span> <span class="va">mtcars</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">cyl</span> <span class="op">==</span> <span class="fl">8</span><span class="op">)</span></span></code></pre></div>
+<p>Better names for the above data frames would be <code>cyl4_df</code>, <code>cyl6_df</code>, and <code>cyl8_df</code>, respectively, as these names tell us more about what is in each data frame.</p>
+<p>Other “bad” names for objects are names that are too long:</p>
+<div class="sourceCode" id="cb173"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">cars_with_4_cylinders_data_set</span> <span class="op">&lt;-</span> <span class="va">mtcars</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">cyl</span> <span class="op">==</span> <span class="fl">4</span><span class="op">)</span></span></code></pre></div>
+<p>Long names are descriptive but can be a pain to type out and to read.</p>
+<p>You may have noticed that my coding “style” is to separate words in names with an <code>_</code>: <code>cyl4_df</code>. Others may choose to separate words in names with a <code>.</code>: <code>cyl4.df</code> while others may use capitalization for the second word: <code>cyl4Df</code>. The most important thing here is to <strong>be consistent</strong> in your choice. In other words, using <code>_</code> instead of <code>.</code> isn’t necessarily better, but it would be poor practice to mix naming notation.</p>
+<div class="sourceCode" id="cb174"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">cyl4_df</span> <span class="op">&lt;-</span> <span class="va">mtcars</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">cyl</span> <span class="op">==</span> <span class="fl">4</span><span class="op">)</span></span>
+<span><span class="va">cyl6.df</span> <span class="op">&lt;-</span> <span class="va">mtcars</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">cyl</span> <span class="op">==</span> <span class="fl">6</span><span class="op">)</span></span></code></pre></div>
+<p>If we mixed, then we always have to keep track of whether an object is named with <code>_</code> or <code>.</code> or with capitalization.</p>
+<p>Finally, you may have noticed that most of our data frames our named with the suffix <code>_df</code>. I have worked that into my own coding style because I like keeping track of what is a dataframe (or <code>tibble</code>) and what isn’t. This is generally more helpful as you encounter different types of objects (model output, lists, matrices, vectors, etc.).</p>
+</div>
+<div id="code-readability" class="section level3" number="6.2.2">
+<h3>
+<span class="header-section-number">6.2.2</span> Code Readability<a class="anchor" aria-label="anchor" href="#code-readability"><i class="fas fa-link"></i></a>
+</h3>
+<p>We can also follow some general practices to make our code more “readable.” We have already been employing most of these practices throughout the semester: <code>R Studio</code> generally makes code readable by indenting appropriately.</p>
+<p>Appropriately using spacing can make code much more readable. Consider the following <code><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot()</a></code> code. For example, the following code chunk executes a scatterplot with a fitted regression line but it’s generally tough to read.</p>
+<div class="sourceCode" id="cb175"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span>data<span class="op">=</span><span class="va">mtcars</span>,<span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x<span class="op">=</span><span class="va">wt</span>,y<span class="op">=</span><span class="va">drat</span><span class="op">)</span><span class="op">)</span><span class="op">+</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="op">)</span><span class="op">+</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_smooth.html">geom_smooth</a></span><span class="op">(</span>method<span class="op">=</span><span class="st">"lm"</span>,se<span class="op">=</span><span class="cn">FALSE</span><span class="op">)</span></span>
+<span><span class="co">#&gt; `geom_smooth()` using formula 'y ~ x'</span></span></code></pre></div>
+<div class="inline-figure"><img src="14-workflow_files/figure-html/unnamed-chunk-7-1.png" width="672"></div>
+<p>A couple of conventions can help: (1) spaces around any equal sign, plus sign, and after any comma and (2) putting code after each plus sign on a different line.</p>
+<div class="sourceCode" id="cb176"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">mtcars</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">wt</span>, y <span class="op">=</span> <span class="va">drat</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
+<span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_smooth.html">geom_smooth</a></span><span class="op">(</span>method <span class="op">=</span> <span class="st">"lm"</span>, se <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
+<span><span class="co">#&gt; `geom_smooth()` using formula 'y ~ x'</span></span></code></pre></div>
+<div class="inline-figure"><img src="14-workflow_files/figure-html/unnamed-chunk-8-1.png" width="672"></div>
+<p>Indenting subsequent lines in <code>ggplot2</code> code or in a <code>dplyr</code> pipeline shows that the subsequent lines “go with” the first line:</p>
+<div class="sourceCode" id="cb177"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">mtcars</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">wt</span>, y <span class="op">=</span> <span class="va">drat</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_smooth.html">geom_smooth</a></span><span class="op">(</span>method <span class="op">=</span> <span class="st">"lm"</span>, se <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
+<span><span class="co">#&gt; `geom_smooth()` using formula 'y ~ x'</span></span></code></pre></div>
+<div class="inline-figure"><img src="14-workflow_files/figure-html/unnamed-chunk-9-1.png" width="672"></div>
+<p>The same concepts of using multiple lines holds for a piping statement as well. In general,</p>
+<div class="sourceCode" id="cb178"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">mtcars</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">cyl</span> <span class="op">==</span> <span class="fl">4</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">vs</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise</a></span><span class="op">(</span>mean_mpg <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">mpg</span>, na.rm <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="co">#&gt; # A tibble: 2 × 2</span></span>
+<span><span class="co">#&gt;      vs mean_mpg</span></span>
+<span><span class="co">#&gt;   &lt;dbl&gt;    &lt;dbl&gt;</span></span>
+<span><span class="co">#&gt; 1     0     26  </span></span>
+<span><span class="co">#&gt; 2     1     26.7</span></span></code></pre></div>
+<p>is easier to read than</p>
+<div class="sourceCode" id="cb179"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">mtcars</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">cyl</span> <span class="op">==</span> <span class="fl">4</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">vs</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise</a></span><span class="op">(</span>mean_mpg <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">mpg</span>, na.rm <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="co">#&gt; # A tibble: 2 × 2</span></span>
+<span><span class="co">#&gt;      vs mean_mpg</span></span>
+<span><span class="co">#&gt;   &lt;dbl&gt;    &lt;dbl&gt;</span></span>
+<span><span class="co">#&gt; 1     0     26  </span></span>
+<span><span class="co">#&gt; 2     1     26.7</span></span></code></pre></div>
+</div>
+<div id="exercise-14-2" class="section level3" number="6.2.3">
+<h3>
+<span class="header-section-number">6.2.3</span> Exercises<a class="anchor" aria-label="anchor" href="#exercise-14-2"><i class="fas fa-link"></i></a>
+</h3>
+<p>Exercises marked with an * indicate that the exercise has a solution at the end of the chapter at <a href="workflow.html#solutions-14">6.7</a>.</p>
+<ol style="list-style-type: decimal">
+<li>Change the following object names to be “better:”</li>
+</ol>
+<div class="sourceCode" id="cb180"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">cars_where_wt_is_larger_than_3_tons</span> <span class="op">&lt;-</span> <span class="va">mtcars</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">wt</span> <span class="op">&gt;</span> <span class="fl">3</span><span class="op">)</span></span></code></pre></div>
+<div class="sourceCode" id="cb181"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">dataset</span> <span class="op">&lt;-</span> <span class="va">mtcars</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">am</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise</a></span><span class="op">(</span>mean_disp <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">disp</span><span class="op">)</span>,</span>
+<span>            med_disp <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/median.html">median</a></span><span class="op">(</span><span class="va">disp</span><span class="op">)</span>,</span>
+<span>            sd_disp <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/sd.html">sd</a></span><span class="op">(</span><span class="va">disp</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<ol start="2" style="list-style-type: decimal">
+<li>Change the style of the following code to make the code more readable.</li>
+</ol>
+<div class="sourceCode" id="cb182"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span>data<span class="op">=</span><span class="va">mtcars</span>,<span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">mpg</span><span class="op">)</span><span class="op">)</span><span class="op">+</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_histogram.html">geom_histogram</a></span><span class="op">(</span>colour<span class="op">=</span><span class="st">"black"</span>,fill<span class="op">=</span><span class="st">"white"</span>,bins<span class="op">=</span><span class="fl">15</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/facet_wrap.html">facet_wrap</a></span><span class="op">(</span><span class="op">~</span><span class="va">cyl</span>, ncol<span class="op">=</span><span class="fl">1</span><span class="op">)</span></span></code></pre></div>
+<div class="inline-figure"><img src="14-workflow_files/figure-html/unnamed-chunk-14-1.png" width="672"></div>
+</div>
+</div>
+<div id="debugging-code" class="section level2" number="6.3">
+<h2>
+<span class="header-section-number">6.3</span> Debugging Code<a class="anchor" aria-label="anchor" href="#debugging-code"><i class="fas fa-link"></i></a>
+</h2>
+<p>The previous section on code readability can be seen as one step to helping with code debugging: code that is easier to read is code that is easier to spot errors in. Additionally, there are some other strategies we can take when our code is not working to figure out what the issue is.</p>
+<div id="identify-the-problem" class="section level3" number="6.3.1">
+<h3>
+<span class="header-section-number">6.3.1</span> Identify the Problem<a class="anchor" aria-label="anchor" href="#identify-the-problem"><i class="fas fa-link"></i></a>
+</h3>
+<p>We run <code>R</code> code for our data analyses from “top to bottom,” which makes it a bit easier to identify where the problem code is occurring. We can run our code from the top of our <code>.qmd</code> file, line by line, until we see the red <code>Error</code> message.</p>
+<p>Often this <code>Error</code> message will occur in a <code>ggplot</code> statement or a piping statement. If this is the case, then a further strategy is to run the <code>ggplot</code> statement <code>+</code> sign by <code>+</code> sign or to run the piping statement pipe by pipe to further isolate the error. For example, take the following <code>ggplot</code> code, which generates a somewhat cryptic error.</p>
+<div class="sourceCode" id="cb183"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">mtcars</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">wt</span>, y <span class="op">=</span> <span class="va">mpg</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_smooth.html">geom_smooth</a></span><span class="op">(</span>colour <span class="op">=</span> <span class="va">disp</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/facet_wrap.html">facet_wrap</a></span><span class="op">(</span><span class="op">~</span> <span class="va">cyl</span><span class="op">)</span> </span></code></pre></div>
+<p>In this case, the error message does help us locate the issue, but that is not always the case. If we are not sure what the error is, what we can do is run</p>
+<div class="sourceCode" id="cb184"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">mtcars</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">wt</span>, y <span class="op">=</span> <span class="va">mpg</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<p>to see if we get an error. We don’t, so we move on to the code after the next <code>+</code> sign:</p>
+<div class="sourceCode" id="cb185"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">mtcars</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">wt</span>, y <span class="op">=</span> <span class="va">mpg</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
+<p>We still don’t get an error so we move on to the code after the next <code>+</code> sign:</p>
+<div class="sourceCode" id="cb186"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">mtcars</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">wt</span>, y <span class="op">=</span> <span class="va">mpg</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_smooth.html">geom_smooth</a></span><span class="op">(</span>colour <span class="op">=</span> <span class="va">disp</span><span class="op">)</span></span></code></pre></div>
+<p>We have our error. So now, instead of isolating the error to a particular chunk of code, we have isolated the error to a particular <strong>line</strong> of code: we know the issue is something with how we are using <code><a href="https://ggplot2.tidyverse.org/reference/geom_smooth.html">geom_smooth()</a></code>. (We are missing <code><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes()</a></code> to refer to the variable <code>disp</code>).</p>
+<p>The same strategy can be used with piping. The following code, used to figure out the average bill length to bill depth ratio in Adelie penguins, does not give an error but instead outputs something that we might not expect: a <code>tibble</code> with an <code>NaN</code> (Not a Number) value (note that you must install the palmerpenguins package <code>install.packages("palmerpenguins")</code> before loading the <code>palmerpenguins</code> library.</p>
+<div class="sourceCode" id="cb187"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://allisonhorst.github.io/palmerpenguins/">palmerpenguins</a></span><span class="op">)</span></span>
+<span><span class="va">penguins</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">species</span> <span class="op">==</span> <span class="st">"Adeie"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>bill_ratio <span class="op">=</span> <span class="va">bill_length_mm</span> <span class="op">/</span> <span class="va">bill_depth_mm</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise</a></span><span class="op">(</span>mean_ratio <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">bill_ratio</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<p>We can troubleshoot by running the code “pipe by pipe,” starting with the code through the first <code><a href="https://dplyr.tidyverse.org/reference/filter.html">filter()</a></code> pipe:</p>
+<div class="sourceCode" id="cb188"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">penguins</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">species</span> <span class="op">==</span> <span class="st">"Adeie"</span><span class="op">)</span></span></code></pre></div>
+<p>Right away, we see a problem: we get a tibble with no data because we misspelled <code>Adelie</code>:</p>
+<div class="sourceCode" id="cb189"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">penguins</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">species</span> <span class="op">==</span> <span class="st">"Adelie"</span><span class="op">)</span></span></code></pre></div>
+<p>After correcting this issue, we can continue through the pipes:</p>
+<div class="sourceCode" id="cb190"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">penguins</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">species</span> <span class="op">==</span> <span class="st">"Adelie"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>bill_ratio <span class="op">=</span> <span class="va">bill_length_mm</span> <span class="op">/</span> <span class="va">bill_depth_mm</span><span class="op">)</span></span></code></pre></div>
+<p>There doesn’t seem to be any issues in our <code><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate()</a></code> statement so we can go to the next pipe.</p>
+<div class="sourceCode" id="cb191"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">penguins</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">species</span> <span class="op">==</span> <span class="st">"Adelie"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>bill_ratio <span class="op">=</span> <span class="va">bill_length_mm</span> <span class="op">/</span> <span class="va">bill_depth_mm</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise</a></span><span class="op">(</span>mean_ratio <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">bill_ratio</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<p>We get an <code>NA</code> value, and we have isolated the issue to something with <code><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise()</a></code>, or, possibly something with <code><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate()</a></code> that does not set something up quite right for <code><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise()</a></code>. Can you figure out the issue?</p>
+<p>In addition to isolating the coding issue, a couple of other very basic strategies for trying to fix problematic code are to use a search engine like google to see if anyone else has a similar error message to the one you may have and to restart <code>R</code> to make sure that you are working from a clean slate.</p>
+<p>The “restart <code>R</code>” strategy can be particularly helpful if you have code that will run but your <code>.qmd</code> file will not render. This can happen if you have, for example, created a data set that you use in a later chunk of code but have since deleted the code that created that data set. For example, suppose we create <code>cyl4_df</code> and make a plot:</p>
+<div class="sourceCode" id="cb192"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">cyl4_df</span> <span class="op">&lt;-</span> <span class="va">mtcars</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">cyl</span> <span class="op">==</span> <span class="fl">4</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">cyl4_df</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">mpg</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_histogram.html">geom_histogram</a></span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="co">#&gt; `stat_bin()` using `bins = 30`. Pick better value with</span></span>
+<span><span class="co">#&gt; `binwidth`.</span></span></code></pre></div>
+<div class="inline-figure"><img src="14-workflow_files/figure-html/unnamed-chunk-24-1.png" width="672"></div>
+<p>But, later we delete the line creating <code>cyl4_df</code>. The plot will still work because <code>cyl4_df</code> is already in our environment but the file will not render because we are missing that crucial line of code. Restarting <code>R</code> can help us identify this issue because the plot will no longer work and we will get a sensible error message like <code>cyl4_df</code> not found.</p>
+</div>
+<div id="exercise-14-3" class="section level3" number="6.3.2">
+<h3>
+<span class="header-section-number">6.3.2</span> Exercises<a class="anchor" aria-label="anchor" href="#exercise-14-3"><i class="fas fa-link"></i></a>
+</h3>
+<p>Exercises marked with an * indicate that the exercise has a solution at the end of the chapter at <a href="workflow.html#solutions-14">6.7</a>.</p>
+<ol style="list-style-type: decimal">
+<li>Find the error in the following code chunk by running the code “<code>+</code> sign by <code>+</code> sign).</li>
+</ol>
+<div class="sourceCode" id="cb193"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">mtcars</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">hp</span>, y <span class="op">=</span> <span class="va">drat</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>colour <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">factor</a></span><span class="op">(</span><span class="va">gear</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/facet_wrap.html">facet_wrap</a></span><span class="op">(</span><span class="va">cyl</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_smooth.html">geom_smooth</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
+<ol start="2" style="list-style-type: decimal">
+<li>Find the error in the following code chunk by running the code “pipe by pipe.”</li>
+</ol>
+<div class="sourceCode" id="cb194"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">penguins</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>flipper_ratio <span class="op">=</span> <span class="va">flipper_length_mm</span> <span class="op">/</span> <span class="va">body_mass_g</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">species</span>, <span class="va">island</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise</a></span><span class="op">(</span>mean_flipper <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">flipper_ratio</span>, na.rm <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/arrange.html">arrange</a></span><span class="op">(</span><span class="va">flipper_ratio</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://tidyr.tidyverse.org/reference/pivot_wider.html">pivot_wider</a></span><span class="op">(</span>names_from <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"species"</span><span class="op">)</span>, values_from <span class="op">=</span> <span class="st">"mean_flipper"</span><span class="op">)</span></span></code></pre></div>
+<ol start="3" style="list-style-type: decimal">
+<li>Find the error in the following code chunk by running the code “pipe by pipe.”</li>
+</ol>
+<div class="sourceCode" id="cb195"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">penguins</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>flipper_ratio <span class="op">=</span> <span class="va">flipper_length_mm</span> <span class="op">/</span> <span class="va">body_mass_g</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">flipper_ratio</span> <span class="op">&gt;</span> <span class="fu"><a href="https://rdrr.io/r/stats/median.html">median</a></span><span class="op">(</span><span class="va">flipper_ratio</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">species</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise</a></span><span class="op">(</span>count_var <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/context.html">n</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+</div>
+</div>
+<div id="context-outliers-and-missing-values" class="section level2" number="6.4">
+<h2>
+<span class="header-section-number">6.4</span> Context, Outliers, and Missing Values<a class="anchor" aria-label="anchor" href="#context-outliers-and-missing-values"><i class="fas fa-link"></i></a>
+</h2>
+<p>The primary purpose of this section is to explore why we should always think critically about the data set we are analyzing as opposed to simply making summary tables without thinking about how they could be interpreted. In other words, we need to both examine the data set to see if there are things like missing values or outliers that could affect interpretation as well as consider the context that the data set comes from.</p>
+<div id="context" class="section level3" number="6.4.1">
+<h3>
+<span class="header-section-number">6.4.1</span> Context<a class="anchor" aria-label="anchor" href="#context"><i class="fas fa-link"></i></a>
+</h3>
+<p>Considering context includes thinking about questions like:</p>
+<ul>
+<li><p>where did the data set come from? Who collected it?</p></li>
+<li><p>are there missing values coded as <code>NA</code>s in the data set. Would these affect our analysis or are they missing “at random.” Missing values coded as <code>NA</code> are referred to as <strong>explicitly</strong> missing values.</p></li>
+<li><p>are there missing values in the data set that are not actually observations at all? These are <strong>implicitly</strong> missing. An example might be collecting data on students attending this class. Students not present at the time the data was collected are implicitly missing.</p></li>
+<li><p>does the data come from an observational study or an experiment?</p></li>
+</ul>
+<p>There are many other questions we could ask pertaining to context, but many such questions depend on the particular data collected. As an example, consider the data set on majors at SLU from 2015 to 2020. For now, you can ignore the extra code given to read in the data: pivoting functions and variable types are topics we will learn about in the upcoming weeks.</p>
+<div class="sourceCode" id="cb196"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">majors_df</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv</a></span><span class="op">(</span><span class="fu"><a href="https://here.r-lib.org//reference/here.html">here</a></span><span class="op">(</span><span class="st">"data/majors.csv"</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://tidyr.tidyverse.org/reference/pivot_longer.html">pivot_longer</a></span><span class="op">(</span><span class="op">-</span><span class="fl">1</span>, names_to <span class="op">=</span> <span class="st">"year"</span>, values_to <span class="op">=</span> <span class="st">"n_majors"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>year <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/numeric.html">as.numeric</a></span><span class="op">(</span><span class="va">year</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/rename.html">rename</a></span><span class="op">(</span>major <span class="op">=</span> <span class="va">`...1`</span><span class="op">)</span></span>
+<span><span class="co">#&gt; New names:</span></span>
+<span><span class="co">#&gt; Rows: 63 Columns: 17</span></span>
+<span><span class="co">#&gt; ── Column specification</span></span>
+<span><span class="co">#&gt; ──────────────────────────────────── Delimiter: "," chr</span></span>
+<span><span class="co">#&gt; (1): ...1 dbl (16): 2005, 2006, 2007, 2008, 2009, 2010,</span></span>
+<span><span class="co">#&gt; 2011, 2012...</span></span>
+<span><span class="co">#&gt; ℹ Use `spec()` to retrieve the full column specification</span></span>
+<span><span class="co">#&gt; for this data. ℹ Specify the column types or set</span></span>
+<span><span class="co">#&gt; `show_col_types = FALSE` to quiet this message.</span></span>
+<span><span class="co">#&gt; • `` -&gt; `...1`</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">majors_df</span><span class="op">)</span></span>
+<span><span class="co">#&gt; # A tibble: 6 × 3</span></span>
+<span><span class="co">#&gt;   major         year n_majors</span></span>
+<span><span class="co">#&gt;   &lt;chr&gt;        &lt;dbl&gt;    &lt;dbl&gt;</span></span>
+<span><span class="co">#&gt; 1 Biochemistry  2005        2</span></span>
+<span><span class="co">#&gt; 2 Biochemistry  2006        6</span></span>
+<span><span class="co">#&gt; 3 Biochemistry  2007        5</span></span>
+<span><span class="co">#&gt; 4 Biochemistry  2008        8</span></span>
+<span><span class="co">#&gt; 5 Biochemistry  2009        3</span></span>
+<span><span class="co">#&gt; 6 Biochemistry  2010        7</span></span></code></pre></div>
+<p>In the data, the <code>n_majors</code> variable represents the number of students graduating with that particular major in that particular year. For example, in the year <code>2005</code>, there were just <code>2</code> students graduating with a <code>Biochemistry</code> major.</p>
+<p>Suppose we are interested in trends among majors in <code>Estudios Hispanicos (Spanish)</code>. In the United States, there are many people who speak Spanish so we might expect this to be a somewhat popular major. In particular, we want to see if there is an increase or decrease in the number of these majors since 2005. We can make a line chart with:</p>
+<div class="sourceCode" id="cb197"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">spanish_df</span> <span class="op">&lt;-</span> <span class="va">majors_df</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">major</span> <span class="op">==</span> <span class="st">"Estudios Hispanicos (Spanish)"</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">spanish_df</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">year</span>, y <span class="op">=</span> <span class="va">n_majors</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_path.html">geom_line</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_smooth.html">geom_smooth</a></span><span class="op">(</span>se <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
+<span><span class="co">#&gt; `geom_smooth()` using method = 'loess' and formula 'y ~ x'</span></span></code></pre></div>
+<div class="inline-figure"><img src="14-workflow_files/figure-html/unnamed-chunk-29-1.png" width="672"></div>
+<p>What would we conclude based on this plot?</p>
+<p>The topic of this subsection is the context in which a data set arises in. So, you might guess that the conclusion one would make based on the line graph (that the spanish major at SLU seems to be in decline) does not tell the full story. In fact, about a decade ago, an International Economics Combined major was introduced, in which students complete courses in both Economics as well as foreign language studies. The most popular choice for the foreign language is Spanish.</p>
+<p>We can make a graph of the number of International Economics Combined majors:</p>
+<div class="sourceCode" id="cb198"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">int_econ_df</span> <span class="op">&lt;-</span> <span class="va">majors_df</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">major</span> <span class="op">==</span> <span class="st">"Int'l Economics (Combined)"</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">int_econ_df</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">year</span>, y <span class="op">=</span> <span class="va">n_majors</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_path.html">geom_line</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_smooth.html">geom_smooth</a></span><span class="op">(</span>se <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
+<span><span class="co">#&gt; `geom_smooth()` using method = 'loess' and formula 'y ~ x'</span></span></code></pre></div>
+<div class="inline-figure"><img src="14-workflow_files/figure-html/unnamed-chunk-30-1.png" width="672"></div>
+<p>How does the new contextual information about the International Economics major influence your conclusions about the popularity of Spanish studies at SLU?</p>
+<p>You should find throughout the semester that the data sets on topics that you are more familiar with are easier to analyze than the data sets on topics that you are not as familiar with. A large part of the reasoning for this is that you have much more contextual information with data topics that you have prior knowledge on. That extra contextual information generally allows us to pose deeper questions, identify potentially erroneous data, and write more subtle conclusions. We will discuss context more throughout the semester and will also have another focus on context when we discuss data ethics.</p>
+</div>
+<div id="outliers-and-missing-values" class="section level3" number="6.4.2">
+<h3>
+<span class="header-section-number">6.4.2</span> Outliers and Missing Values<a class="anchor" aria-label="anchor" href="#outliers-and-missing-values"><i class="fas fa-link"></i></a>
+</h3>
+<p>Outliers in a data analysis can affect certain summary statistics, like the mean and the standard deviation (as you learned in STAT 113). They could also be observations that warrant further investigation if we are interested in <em>why</em> a particular point is an outlier.</p>
+<p>Missing values can also cause us to reach a potentially misleading conclusion if we do not carefully consider why such values are missing.</p>
+<p>We will talk about the consequences of outliers and missing values next, but first, we will discuss how to determine if there are outliers or missing values in the data set. An easy function to use for this purpose is the <code><a href="https://docs.ropensci.org/skimr/reference/skim.html">skim()</a></code> function from the <code>skimr</code> package. Install the <code>skimr</code> package and then use the <code><a href="https://docs.ropensci.org/skimr/reference/skim.html">skim()</a></code> function on the<code>videogame_clean.csv</code> file, which contains variables on video games from 2004 - 2019, including</p>
+<ul>
+<li>
+<code>game</code>, the name of the game</li>
+<li>
+<code>release_date</code>, the release date of the game</li>
+<li>
+<code>release_date2</code>, a second coding of release date</li>
+<li>
+<code>price</code>, the price in dollars,</li>
+<li>
+<code>owners</code>, the number of owners (given in a range)</li>
+<li>
+<code>median_playtime</code>, the median playtime of the game</li>
+<li>
+<code>metascore</code>, the score from the website Metacritic</li>
+<li>
+<code>price_cat</code>, 1 for Low (less than 10.00 dollars), 2 for Moderate (between 10 and 29.99 dollars), and 3 for High (30.00 or more dollars)</li>
+<li>
+<code>meta_cat</code>, Metacritic’s review system, with the following categories: “Overwhelming Dislike”, “Generally Unfavorable”, “Mixed Reviews”, “Generally Favorable”, “Universal Acclaim”.</li>
+<li>
+<code>playtime_miss</code>, whether median play time is missing (<code>TRUE</code>) or not (<code>FALSE</code>)</li>
+</ul>
+<p>The data set was modified from <a href="https://github.com/rfordatascience/tidytuesday/tree/master/data/2019/2019-07-30" target="_blank">https://github.com/rfordatascience/tidytuesday/tree/master/data/2019/2019-07-30</a>.</p>
+<div class="sourceCode" id="cb199"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://docs.ropensci.org/skimr/">skimr</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://here.r-lib.org/">here</a></span><span class="op">)</span></span>
+<span><span class="va">videogame_df</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv</a></span><span class="op">(</span><span class="fu"><a href="https://here.r-lib.org//reference/here.html">here</a></span><span class="op">(</span><span class="st">"data/videogame_clean.csv"</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="co">#&gt; Rows: 26688 Columns: 15</span></span>
+<span><span class="co">#&gt; ── Column specification ────────────────────────────────────</span></span>
+<span><span class="co">#&gt; Delimiter: ","</span></span>
+<span><span class="co">#&gt; chr  (7): game, release_date, owners, meta_cat, develope...</span></span>
+<span><span class="co">#&gt; dbl  (6): price, median_playtime, metascore, price_cat, ...</span></span>
+<span><span class="co">#&gt; lgl  (1): playtime_miss</span></span>
+<span><span class="co">#&gt; date (1): release_date2</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; ℹ Use `spec()` to retrieve the full column specification for this data.</span></span>
+<span><span class="co">#&gt; ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</span></span>
+<span><span class="co">## skim(videogame_df)</span></span></code></pre></div>
+<p>See if you can find in the output the following:</p>
+<ul>
+<li>the number of rows in the data set and the number of columns</li>
+<li>the number of missing values for each variable</li>
+<li>the number of unique values for each character variable</li>
+<li>the completion rate (the proportion of values that are non-missing).</li>
+</ul>
+<p>In particular, the number of missing values is given by <code>nmissing</code> and <code>complete_rate</code> gives the proportion of values that are non-missing. These give us some idea about if missing values exist for certain variables, and, if so, how many exist for each variable.</p>
+<p>Also, at the bottom of the output, you should see tiny histograms of each numeric variable and some summary statistics. Looking at the min, max, and the histograms of each variable can inform us about whether each variable has any outliers. For example, we see that the histograms for <code>price</code>, <code>median_playtime</code>, and <code>average_playtime</code> all look extremely skewed right because of the outlier(s) on the upper end.</p>
+<p><br></p>
+<p><br></p>
+<p>So, we now know that there are outliers and missing values for certain variables in the videogame data set. How might these affect the tables and graphs that we make?</p>
+<p>First, let’s focus on the <code>metascore</code> variable, which gives Metacritic’s overall aggregated review score for the videogames. Note that the <code>complete_rate</code> for the <code>metascore</code> variable is only 0.107: almost 90% of the videogames do not have a metascore.</p>
+<p>So, suppose we are interested in exploring what the “typical” metascore is. We can figure out what the average metascore and what the median metascore of the non-missing videogames is with:</p>
+<div class="sourceCode" id="cb200"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">videogame_df</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise</a></span><span class="op">(</span>mean_meta <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">metascore</span>, na.rm <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>,</span>
+<span>                          med_meta <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/median.html">median</a></span><span class="op">(</span><span class="va">metascore</span>, na.rm <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="co">#&gt; # A tibble: 1 × 2</span></span>
+<span><span class="co">#&gt;   mean_meta med_meta</span></span>
+<span><span class="co">#&gt;       &lt;dbl&gt;    &lt;dbl&gt;</span></span>
+<span><span class="co">#&gt; 1      71.9       73</span></span></code></pre></div>
+<p>Ignoring the missing values, we would say that, on average, videogames receive metascores around 72 points. The question we need to ask ourselves is: “Is it reasonable to assume that the missing games receive similar reviews to the non-missing games so that we can thin about the 71.9 as the average review score of all games?”</p>
+<p>How you answer might depend on what you understand about videogames and the review process. But I would argue that the missing games would be reviewed worse than the non-missing games. Major games usually get the most reviews and also usually have the most funding while there are many minor games that have little funding, would not get reviewed, and, if they did get reviewed, may get a lower rating.</p>
+<p>You can certainly make a different argument: we don’t know if my argument is correct or not without further data. The most important thing to do is to at least think about and make clear possible limitations in your conclusions from a data analysis.</p>
+<p>As a second example, consider an exploration of the relationship between <code>median_playtime</code> of a game and its <code>metascore</code>. We can make a scatterplot of the relationship, ignoring the missing values, with</p>
+<div class="sourceCode" id="cb201"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">videogame_df</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">metascore</span>, y <span class="op">=</span> <span class="va">median_playtime</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_smooth.html">geom_smooth</a></span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="co">#&gt; `geom_smooth()` using method = 'gam' and formula 'y ~ s(x, bs = "cs")'</span></span></code></pre></div>
+<div class="inline-figure"><img src="14-workflow_files/figure-html/unnamed-chunk-33-1.png" width="672"></div>
+<p>We see some clear outliers, which we will talk about next, but would the missing values for <code>metascore</code> affect conclusions we draw from the graph? The answer would be “yes” if we think videogames with missing metascores would follow a different overall trend than those with non-missing metascores and “no” if we think that, if the videogames with missing metascores were rated, they would follow a similar trend as those already in the graph.</p>
+<p>For this question, I would make the argument that the games would follow a similar trend. But again, that is an assumption I would need to make and need to be explicit about.</p>
+<p>We also mentioned the idea of implicit missing values. These would be videogames that do not appear in the data set at all. In other words, was this set of videogames a sample or is it all videogames ever published in the United States? If it is a sample, how were they selected, and, if they are a <strong>convenience sample</strong>, what were the types of games that were left out?</p>
+<p><br></p>
+<p>Outliers can also pose interesting challenges in data analysis. For example, consider again the graph of <code>median_playtime</code> vs. <code>metascore</code>. To focus on outliers now, we will ignore the missing values in <code>metascore</code>.</p>
+<div class="sourceCode" id="cb202"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">videogame_df</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">metascore</span>, y <span class="op">=</span> <span class="va">median_playtime</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_smooth.html">geom_smooth</a></span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="co">#&gt; `geom_smooth()` using method = 'gam' and formula 'y ~ s(x, bs = "cs")'</span></span></code></pre></div>
+<div class="inline-figure"><img src="14-workflow_files/figure-html/unnamed-chunk-34-1.png" width="672"></div>
+<p>We see some clear outliers in <code>median_playtime</code>: games with a median playtime of thousands of hours. Once again, having some knowledge about videogames can help us determine what to do with these outliers.</p>
+<p>The most important thing to do when dealing with outliers is to <strong>be explicit</strong> about what you, as the analyst, choose to keep in the graph or summary table and what you choose to remove. If you choose to remove values, give your reasoning, and, if there is space, you can also give a second graph that has the data without removing any outliers.</p>
+<p>In this example, a median playtime of <code>3000+</code> hours seems a bit excessive, but it’s more challenging to determine what a reasonable cutoff for “excessive” is. Is it reasonable for a game to have a median playtime of <code>1000</code> hours? What aobut <code>2000</code> hours? <code>500</code> hours? Choosing which points to keep will affect the fit of the smoother. As you may have learned in STAT 113 or STAT 213, observations that have a high control over the fit of a smoother or regression line are <strong>influential</strong>.</p>
+</div>
+<div id="exercise-14-4" class="section level3" number="6.4.3">
+<h3>
+<span class="header-section-number">6.4.3</span> Exercises<a class="anchor" aria-label="anchor" href="#exercise-14-4"><i class="fas fa-link"></i></a>
+</h3>
+<p>Exercises marked with an * indicate that the exercise has a solution at the end of the chapter at <a href="workflow.html#solutions-14">6.7</a>.</p>
+<ol style="list-style-type: decimal">
+<li>The STAT 113 survey data set contains responses from 397 STAT 113 students from a survey that students take at the beginning of the semester. There are 5 categorical variables and 7 numeric variables. Of the categorical variables, how many variables have <strong>0</strong> missing values? Of the numeric variables, how many variables have <strong>0</strong> missing values?</li>
+</ol>
+<div class="sourceCode" id="cb203"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span></span>
+<span><span class="va">stat113_df</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv</a></span><span class="op">(</span><span class="fu"><a href="https://here.r-lib.org//reference/here.html">here</a></span><span class="op">(</span><span class="st">"data/stat113.csv"</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="co">#&gt; Rows: 397 Columns: 12</span></span>
+<span><span class="co">#&gt; ── Column specification ────────────────────────────────────</span></span>
+<span><span class="co">#&gt; Delimiter: ","</span></span>
+<span><span class="co">#&gt; chr (5): Year, Sex, Sport, Award, SocialMedia</span></span>
+<span><span class="co">#&gt; dbl (7): Hgt, Wgt, Haircut, GPA, Exercise, TV, Pulse</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; ℹ Use `spec()` to retrieve the full column specification for this data.</span></span>
+<span><span class="co">#&gt; ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</span></span></code></pre></div>
+<ol start="2" style="list-style-type: decimal">
+<li><p>Choose a variable that has some missing values that you <strong>would</strong> feel comfortable ignoring the missing values in a table or graph. Give a one to two sentence reason.</p></li>
+<li><p>Choose a variable that has some missing values that you <strong>would not</strong> feel comfortable ignoring the missing values in a table or graph. Give a one to two sentence reason.</p></li>
+<li><p>Find the <strong>mean</strong> and <strong>median</strong> <code>median_playtime</code> for all videogames in the metacritic videogame data set. Then, remove the games with a <code>median_playtime</code> over <code>1000</code> hours. Compute the <strong>mean</strong> and <strong>median</strong> <code>median_playtime</code> of the data set without these games. Which measure, the <strong>mean</strong> or the <strong>median</strong> was more affected by having the outliers present?</p></li>
+</ol>
+</div>
+</div>
+<div id="reprexes-and-tibble" class="section level2" number="6.5">
+<h2>
+<span class="header-section-number">6.5</span> Reprexes and <code>tibble</code><a class="anchor" aria-label="anchor" href="#reprexes-and-tibble"><i class="fas fa-link"></i></a>
+</h2>
+<p>A <em>reproducible example</em>, or <strong>reprex</strong>, is a chunk of code that we can give to someone else that runs without any outside data. These are used often on StackExchange. We can create a data set directly within <code>R</code> with the <code><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble()</a></code> function in the <code>tibble</code> package. This is most useful when we want to make a small reproducible example so that someone else may help with our code.</p>
+<p>The following code chunk is <strong>not</strong> a reprex because people would not necessarily have the data set <code>parsedf.csv</code>.</p>
+<div class="sourceCode" id="cb204"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co">## Hello! How do I get rid of the units from the values in</span></span>
+<span><span class="co">## my variable `x`? Thanks!</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span></span>
+<span><span class="va">test_df</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv</a></span><span class="op">(</span><span class="fu"><a href="https://here.r-lib.org//reference/here.html">here</a></span><span class="op">(</span><span class="st">"data/parsedf.csv"</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">test_df</span><span class="op">)</span></span>
+<span><span class="co">#&gt; # A tibble: 3 × 2</span></span>
+<span><span class="co">#&gt;   x                   y</span></span>
+<span><span class="co">#&gt;   &lt;chr&gt;           &lt;dbl&gt;</span></span>
+<span><span class="co">#&gt; 1 20,000 dollars      1</span></span>
+<span><span class="co">#&gt; 2 40 dollars          2</span></span>
+<span><span class="co">#&gt; 3 only 13 dollars     3</span></span></code></pre></div>
+<p>Suppose that we want to post on StackExchange for someone or ask a friend to help us convert a variable from a character vector with units to a numeric vector without units. We want to be able to give any possible helpers a small example data set to work with and isolate the problem or question that we have. For this, we can create our own tiny data set with <code><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble()</a></code>:</p>
+<div class="sourceCode" id="cb205"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co">## Hello! How do I get rid of the units from the values in</span></span>
+<span><span class="co">## my variable `xvar`? Thanks!</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span></span>
+<span><span class="va">test_df2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble</a></span><span class="op">(</span>xvar <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"20,000 dollars"</span>, <span class="st">"40 dollars"</span><span class="op">)</span>,</span>
+<span>                   yvar <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">2</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="va">test_df2</span></span>
+<span><span class="co">#&gt; # A tibble: 2 × 2</span></span>
+<span><span class="co">#&gt;   xvar            yvar</span></span>
+<span><span class="co">#&gt;   &lt;chr&gt;          &lt;dbl&gt;</span></span>
+<span><span class="co">#&gt; 1 20,000 dollars     1</span></span>
+<span><span class="co">#&gt; 2 40 dollars         2</span></span></code></pre></div>
+<p>Why is <code><a href="https://tidyverse.tidyverse.org">library(tidyverse)</a></code> necessary in the code chunk above for my reprex?</p>
+<p>We can copy and paste the code chunk above to our question: it’s code that anyone can run as long as they have the <code>tidyverse</code> package installed, and really encourages more people to help.</p>
+<p>As a second example, we might have a question about how to find the mean for many numeric variables. For example, in the <code>stat113.csv</code> file, there are many numeric variables. We can compute the mean of each numeric variable by writing a separate <code><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise()</a></code> statement for each variable. But we also may be interested in a quicker way. So, since our helper might not have the <code>stat113.csv</code> file, we can create a reprex for our problem:</p>
+<div class="sourceCode" id="cb206"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co">## is there a way to get a summary measure, like the mean, for </span></span>
+<span><span class="co">## all numeric variables in a data set without writing a separate</span></span>
+<span><span class="co">## summarise() statement for each variable?</span></span>
+<span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span></span>
+<span><span class="va">sum_df</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble</a></span><span class="op">(</span>xvar <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"A"</span>, <span class="st">"B"</span><span class="op">)</span>, yvar <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">4</span><span class="op">)</span>, zvar <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="op">-</span><span class="fl">1</span>, <span class="fl">4</span><span class="op">)</span>,</span>
+<span>                 svar <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"G"</span>, <span class="st">"g"</span><span class="op">)</span>, tvar <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">99</span>, <span class="fl">100000</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<p>Note how we included some categorical variables in our reprex data set. We want code that will work even if there are categorical variables in our data set, so we must include them in our reprex in this example to be as general as possible.</p>
+<p>For reference, the <code><a href="https://dplyr.tidyverse.org/reference/across.html">across()</a></code> function can be used to answer our question (though it’s not the point of this section). The code below reads that we should <code><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise()</a></code> <code><a href="https://dplyr.tidyverse.org/reference/across.html">across()</a></code> all variables that are numeric (<code>is.numeric</code>) and that our summary measure should be the <code>mean</code>.</p>
+<div class="sourceCode" id="cb207"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">sum_df</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise</a></span><span class="op">(</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/across.html">across</a></span><span class="op">(</span><span class="fu">where</span><span class="op">(</span><span class="va">is.numeric</span><span class="op">)</span>, <span class="va">mean</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="co">#&gt; # A tibble: 1 × 3</span></span>
+<span><span class="co">#&gt;    yvar  zvar   tvar</span></span>
+<span><span class="co">#&gt;   &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt;</span></span>
+<span><span class="co">#&gt; 1   2.5   1.5 50050.</span></span></code></pre></div>
+<div id="exercise-14-5" class="section level3" number="6.5.1">
+<h3>
+<span class="header-section-number">6.5.1</span> Exercises<a class="anchor" aria-label="anchor" href="#exercise-14-5"><i class="fas fa-link"></i></a>
+</h3>
+<p>Exercises marked with an * indicate that the exercise has a solution at the end of the chapter at <a href="workflow.html#solutions-14">6.7</a>.</p>
+<p>For Project 2, we will work with some course evaluation data for a professor at SLU. Overall, you’ll answer some questions about how the professor can improve their courses at SLU by looking at course evaluation data. The variables and data set will be described in more detail in the project description.</p>
+<ol style="list-style-type: decimal">
+<li>* Suppose that you can’t figure out how to create a semester variable and a year variable from <code>Term</code> in <code>evals_prof_S21.csv</code>. (You want to split the <code>Term</code> variable into two variables: <code>Semester</code> with levels <code>F</code> and <code>S</code> and <code>Year</code> with levels <code>19</code>, <code>20</code>, and <code>21</code>).</li>
+</ol>
+<div class="sourceCode" id="cb208"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span></span>
+<span><span class="va">evals_df</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv</a></span><span class="op">(</span><span class="fu"><a href="https://here.r-lib.org//reference/here.html">here</a></span><span class="op">(</span><span class="st">"data/evals_prof_S21.csv"</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">evals_df</span><span class="op">)</span></span>
+<span><span class="co">#&gt; # A tibble: 6 × 10</span></span>
+<span><span class="co">#&gt;   Term  Course Quest…¹ Agree…² Agree Agree…³ Neutral Disag…⁴</span></span>
+<span><span class="co">#&gt;   &lt;chr&gt; &lt;chr&gt;  &lt;chr&gt;     &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;</span></span>
+<span><span class="co">#&gt; 1 F19   113-02 1. Cou…       9     9       1       5       0</span></span>
+<span><span class="co">#&gt; 2 F19   113-02 2. Eff…      12     8       1       2       1</span></span>
+<span><span class="co">#&gt; 3 F19   113-02 3. Env…      11     8       2       3       0</span></span>
+<span><span class="co">#&gt; 4 F19   113-02 5a. Fa…       5    13       3       1       1</span></span>
+<span><span class="co">#&gt; 5 F19   113-02 5b. Ti…       8    12       1       2       1</span></span>
+<span><span class="co">#&gt; 6 F19   113-02 5c. Co…       5     8       4       6       1</span></span>
+<span><span class="co">#&gt; # … with 2 more variables: Disagree &lt;dbl&gt;,</span></span>
+<span><span class="co">#&gt; #   `Disagree Strongly` &lt;dbl&gt;, and abbreviated variable</span></span>
+<span><span class="co">#&gt; #   names ¹​Question, ²​`Agree strongly`, ³​`Agree Somewhat`,</span></span>
+<span><span class="co">#&gt; #   ⁴​`Disagree Somewhat`</span></span>
+<span><span class="co">#&gt; # ℹ Use `colnames()` to see all variable names</span></span></code></pre></div>
+<p>Put together a reprex using <code><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble()</a></code> that someone would be able to run to help you figure out your question.</p>
+<!-- 2. \* You should actually be able to answer your own question using a function that we learned a couple of weeks ago. Do so, creating a `Semester` and `Year` variable. -->
+</div>
+</div>
+<div id="chapexercise-14" class="section level2" number="6.6">
+<h2>
+<span class="header-section-number">6.6</span> Chapter Exercises<a class="anchor" aria-label="anchor" href="#chapexercise-14"><i class="fas fa-link"></i></a>
+</h2>
+<p>There are no chapter exercises for this section on workflow.</p>
+</div>
+<div id="solutions-14" class="section level2" number="6.7">
+<h2>
+<span class="header-section-number">6.7</span> Exercise Solutions<a class="anchor" aria-label="anchor" href="#solutions-14"><i class="fas fa-link"></i></a>
+</h2>
+<div id="r-projects-and-file-organization-s" class="section level3" number="6.7.1">
+<h3>
+<span class="header-section-number">6.7.1</span> <code>R Projects</code> and File Organization S<a class="anchor" aria-label="anchor" href="#r-projects-and-file-organization-s"><i class="fas fa-link"></i></a>
+</h3>
+</div>
+<div id="code-style-s" class="section level3" number="6.7.2">
+<h3>
+<span class="header-section-number">6.7.2</span> Code Style S<a class="anchor" aria-label="anchor" href="#code-style-s"><i class="fas fa-link"></i></a>
+</h3>
+</div>
+<div id="debugging-code-s" class="section level3" number="6.7.3">
+<h3>
+<span class="header-section-number">6.7.3</span> Debugging Code S<a class="anchor" aria-label="anchor" href="#debugging-code-s"><i class="fas fa-link"></i></a>
+</h3>
+</div>
+<div id="context-outliers-and-missing-values-s" class="section level3" number="6.7.4">
+<h3>
+<span class="header-section-number">6.7.4</span> Context, Outliers, and Missing Values S<a class="anchor" aria-label="anchor" href="#context-outliers-and-missing-values-s"><i class="fas fa-link"></i></a>
+</h3>
+</div>
+<div id="reprexes-and-tibble-s" class="section level3" number="6.7.5">
+<h3>
+<span class="header-section-number">6.7.5</span> Reprexes and <code>tibble</code> S<a class="anchor" aria-label="anchor" href="#reprexes-and-tibble-s"><i class="fas fa-link"></i></a>
+</h3>
+<ol style="list-style-type: decimal">
+<li>* Suppose that you can’t figure out how to create a semester variable and a year variable from <code>Term</code> in <code>evals_prof_S21.csv</code>. (You want to split the <code>Term</code> variable into two variables: <code>Semester</code> with levels <code>F</code> and <code>S</code> and <code>Year</code> with levels <code>19</code>, <code>20</code>, and <code>21</code>).</li>
+</ol>
+<div class="sourceCode" id="cb209"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span></span>
+<span><span class="va">evals_df</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv</a></span><span class="op">(</span><span class="fu"><a href="https://here.r-lib.org//reference/here.html">here</a></span><span class="op">(</span><span class="st">"data/evals_prof_S21.csv"</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">evals_df</span><span class="op">)</span></span>
+<span><span class="co">#&gt; # A tibble: 6 × 10</span></span>
+<span><span class="co">#&gt;   Term  Course Quest…¹ Agree…² Agree Agree…³ Neutral Disag…⁴</span></span>
+<span><span class="co">#&gt;   &lt;chr&gt; &lt;chr&gt;  &lt;chr&gt;     &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;</span></span>
+<span><span class="co">#&gt; 1 F19   113-02 1. Cou…       9     9       1       5       0</span></span>
+<span><span class="co">#&gt; 2 F19   113-02 2. Eff…      12     8       1       2       1</span></span>
+<span><span class="co">#&gt; 3 F19   113-02 3. Env…      11     8       2       3       0</span></span>
+<span><span class="co">#&gt; 4 F19   113-02 5a. Fa…       5    13       3       1       1</span></span>
+<span><span class="co">#&gt; 5 F19   113-02 5b. Ti…       8    12       1       2       1</span></span>
+<span><span class="co">#&gt; 6 F19   113-02 5c. Co…       5     8       4       6       1</span></span>
+<span><span class="co">#&gt; # … with 2 more variables: Disagree &lt;dbl&gt;,</span></span>
+<span><span class="co">#&gt; #   `Disagree Strongly` &lt;dbl&gt;, and abbreviated variable</span></span>
+<span><span class="co">#&gt; #   names ¹​Question, ²​`Agree strongly`, ³​`Agree Somewhat`,</span></span>
+<span><span class="co">#&gt; #   ⁴​`Disagree Somewhat`</span></span>
+<span><span class="co">#&gt; # ℹ Use `colnames()` to see all variable names</span></span></code></pre></div>
+<p>Put together a reprex using <code><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble()</a></code> that someone would be able to run to help you figure out your question.</p>
+<div class="sourceCode" id="cb210"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span></span>
+<span><span class="va">df</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble</a></span><span class="op">(</span>Term <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"F19"</span>, <span class="st">"S20"</span><span class="op">)</span>, x <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">2</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="co">## Hello! I need help creating a variable that has F/S and </span></span>
+<span><span class="co">## a separate year variable that has 19 and 20 from the data set above.</span></span>
+<span><span class="co">## Thanks!</span></span></code></pre></div>
+<!-- 2. \* You should actually be able to answer your own question using a function that we learned a couple of weeks ago. Do so, creating a `Semester` and `Year` variable. -->
+</div>
+</div>
+<div id="rcode-14" class="section level2" number="6.8">
+<h2>
+<span class="header-section-number">6.8</span> Non-Exercise <code>R</code> Code<a class="anchor" aria-label="anchor" href="#rcode-14"><i class="fas fa-link"></i></a>
+</h2>
+<div class="sourceCode" id="cb211"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://here.r-lib.org/">here</a></span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://here.r-lib.org//reference/here.html">here</a></span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span></span>
+<span><span class="va">athletes_df</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv</a></span><span class="op">(</span><span class="st">"data/athletesdata.csv"</span><span class="op">)</span></span>
+<span><span class="va">athletes_test_read</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv</a></span><span class="op">(</span><span class="fu"><a href="https://here.r-lib.org//reference/here.html">here</a></span><span class="op">(</span><span class="st">"data/athletesdata.csv"</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="va">df1</span> <span class="op">&lt;-</span> <span class="va">mtcars</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">cyl</span> <span class="op">==</span> <span class="fl">4</span><span class="op">)</span></span>
+<span><span class="va">df2</span> <span class="op">&lt;-</span> <span class="va">mtcars</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">cyl</span> <span class="op">==</span> <span class="fl">6</span><span class="op">)</span></span>
+<span><span class="va">df3</span> <span class="op">&lt;-</span> <span class="va">mtcars</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">cyl</span> <span class="op">==</span> <span class="fl">8</span><span class="op">)</span></span>
+<span><span class="va">cars_with_4_cylinders_data_set</span> <span class="op">&lt;-</span> <span class="va">mtcars</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">cyl</span> <span class="op">==</span> <span class="fl">4</span><span class="op">)</span></span>
+<span><span class="va">cyl4_df</span> <span class="op">&lt;-</span> <span class="va">mtcars</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">cyl</span> <span class="op">==</span> <span class="fl">4</span><span class="op">)</span></span>
+<span><span class="va">cyl6.df</span> <span class="op">&lt;-</span> <span class="va">mtcars</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">cyl</span> <span class="op">==</span> <span class="fl">6</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span>data<span class="op">=</span><span class="va">mtcars</span>,<span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x<span class="op">=</span><span class="va">wt</span>,y<span class="op">=</span><span class="va">drat</span><span class="op">)</span><span class="op">)</span><span class="op">+</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="op">)</span><span class="op">+</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_smooth.html">geom_smooth</a></span><span class="op">(</span>method<span class="op">=</span><span class="st">"lm"</span>,se<span class="op">=</span><span class="cn">FALSE</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">mtcars</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">wt</span>, y <span class="op">=</span> <span class="va">drat</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
+<span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_smooth.html">geom_smooth</a></span><span class="op">(</span>method <span class="op">=</span> <span class="st">"lm"</span>, se <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">mtcars</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">wt</span>, y <span class="op">=</span> <span class="va">drat</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_smooth.html">geom_smooth</a></span><span class="op">(</span>method <span class="op">=</span> <span class="st">"lm"</span>, se <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
+<span><span class="va">mtcars</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">cyl</span> <span class="op">==</span> <span class="fl">4</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">vs</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise</a></span><span class="op">(</span>mean_mpg <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">mpg</span>, na.rm <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="va">mtcars</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">cyl</span> <span class="op">==</span> <span class="fl">4</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">vs</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise</a></span><span class="op">(</span>mean_mpg <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">mpg</span>, na.rm <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="va">cyl4_df</span> <span class="op">&lt;-</span> <span class="va">mtcars</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">cyl</span> <span class="op">==</span> <span class="fl">4</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">cyl4_df</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">mpg</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_histogram.html">geom_histogram</a></span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="va">majors_df</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv</a></span><span class="op">(</span><span class="fu"><a href="https://here.r-lib.org//reference/here.html">here</a></span><span class="op">(</span><span class="st">"data/majors.csv"</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://tidyr.tidyverse.org/reference/pivot_longer.html">pivot_longer</a></span><span class="op">(</span><span class="op">-</span><span class="fl">1</span>, names_to <span class="op">=</span> <span class="st">"year"</span>, values_to <span class="op">=</span> <span class="st">"n_majors"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>year <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/numeric.html">as.numeric</a></span><span class="op">(</span><span class="va">year</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/rename.html">rename</a></span><span class="op">(</span>major <span class="op">=</span> <span class="va">`...1`</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">majors_df</span><span class="op">)</span></span>
+<span><span class="va">spanish_df</span> <span class="op">&lt;-</span> <span class="va">majors_df</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">major</span> <span class="op">==</span> <span class="st">"Estudios Hispanicos (Spanish)"</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">spanish_df</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">year</span>, y <span class="op">=</span> <span class="va">n_majors</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_path.html">geom_line</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_smooth.html">geom_smooth</a></span><span class="op">(</span>se <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
+<span><span class="va">int_econ_df</span> <span class="op">&lt;-</span> <span class="va">majors_df</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">major</span> <span class="op">==</span> <span class="st">"Int'l Economics (Combined)"</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">int_econ_df</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">year</span>, y <span class="op">=</span> <span class="va">n_majors</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_path.html">geom_line</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_smooth.html">geom_smooth</a></span><span class="op">(</span>se <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://docs.ropensci.org/skimr/">skimr</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://here.r-lib.org/">here</a></span><span class="op">)</span></span>
+<span><span class="va">videogame_df</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv</a></span><span class="op">(</span><span class="fu"><a href="https://here.r-lib.org//reference/here.html">here</a></span><span class="op">(</span><span class="st">"data/videogame_clean.csv"</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="co">## skim(videogame_df)</span></span>
+<span><span class="va">videogame_df</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise</a></span><span class="op">(</span>mean_meta <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">metascore</span>, na.rm <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>,</span>
+<span>                          med_meta <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/median.html">median</a></span><span class="op">(</span><span class="va">metascore</span>, na.rm <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">videogame_df</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">metascore</span>, y <span class="op">=</span> <span class="va">median_playtime</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_smooth.html">geom_smooth</a></span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">videogame_df</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">metascore</span>, y <span class="op">=</span> <span class="va">median_playtime</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_smooth.html">geom_smooth</a></span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="co">## Hello! How do I get rid of the units from the values in</span></span>
+<span><span class="co">## my variable `x`? Thanks!</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span></span>
+<span><span class="va">test_df</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv</a></span><span class="op">(</span><span class="fu"><a href="https://here.r-lib.org//reference/here.html">here</a></span><span class="op">(</span><span class="st">"data/parsedf.csv"</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">test_df</span><span class="op">)</span></span>
+<span><span class="co">## Hello! How do I get rid of the units from the values in</span></span>
+<span><span class="co">## my variable `xvar`? Thanks!</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span></span>
+<span><span class="va">test_df2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble</a></span><span class="op">(</span>xvar <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"20,000 dollars"</span>, <span class="st">"40 dollars"</span><span class="op">)</span>,</span>
+<span>                   yvar <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">2</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="va">test_df2</span></span></code></pre></div>
+
+</div>
+</div>
+
+
+
+  <div class="chapter-nav">
+<div class="prev"><a href="communication-with-quarto.html"><span class="header-section-number">5</span> Communication with Quarto</a></div>
+<div class="next"><a href="tidying-with-tidyr.html"><span class="header-section-number">7</span> Tidying with tidyr</a></div>
+</div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
+    <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>On this page</h2>
+      <ul class="nav navbar-nav">
+<li><a class="nav-link" href="#workflow"><span class="header-section-number">6</span> Workflow and Other Skills</a></li>
+<li>
+<a class="nav-link" href="#r-projects-and-file-organization"><span class="header-section-number">6.1</span> R Projects and File Organization</a><ul class="nav navbar-nav"><li><a class="nav-link" href="#exercise-14-1"><span class="header-section-number">6.1.1</span> Exercises</a></li></ul>
+</li>
+<li>
+<a class="nav-link" href="#code-style"><span class="header-section-number">6.2</span> Code Style</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#names"><span class="header-section-number">6.2.1</span> Names</a></li>
+<li><a class="nav-link" href="#code-readability"><span class="header-section-number">6.2.2</span> Code Readability</a></li>
+<li><a class="nav-link" href="#exercise-14-2"><span class="header-section-number">6.2.3</span> Exercises</a></li>
+</ul>
+</li>
+<li>
+<a class="nav-link" href="#debugging-code"><span class="header-section-number">6.3</span> Debugging Code</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#identify-the-problem"><span class="header-section-number">6.3.1</span> Identify the Problem</a></li>
+<li><a class="nav-link" href="#exercise-14-3"><span class="header-section-number">6.3.2</span> Exercises</a></li>
+</ul>
+</li>
+<li>
+<a class="nav-link" href="#context-outliers-and-missing-values"><span class="header-section-number">6.4</span> Context, Outliers, and Missing Values</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#context"><span class="header-section-number">6.4.1</span> Context</a></li>
+<li><a class="nav-link" href="#outliers-and-missing-values"><span class="header-section-number">6.4.2</span> Outliers and Missing Values</a></li>
+<li><a class="nav-link" href="#exercise-14-4"><span class="header-section-number">6.4.3</span> Exercises</a></li>
+</ul>
+</li>
+<li>
+<a class="nav-link" href="#reprexes-and-tibble"><span class="header-section-number">6.5</span> Reprexes and tibble</a><ul class="nav navbar-nav"><li><a class="nav-link" href="#exercise-14-5"><span class="header-section-number">6.5.1</span> Exercises</a></li></ul>
+</li>
+<li><a class="nav-link" href="#chapexercise-14"><span class="header-section-number">6.6</span> Chapter Exercises</a></li>
+<li>
+<a class="nav-link" href="#solutions-14"><span class="header-section-number">6.7</span> Exercise Solutions</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#r-projects-and-file-organization-s"><span class="header-section-number">6.7.1</span> R Projects and File Organization S</a></li>
+<li><a class="nav-link" href="#code-style-s"><span class="header-section-number">6.7.2</span> Code Style S</a></li>
+<li><a class="nav-link" href="#debugging-code-s"><span class="header-section-number">6.7.3</span> Debugging Code S</a></li>
+<li><a class="nav-link" href="#context-outliers-and-missing-values-s"><span class="header-section-number">6.7.4</span> Context, Outliers, and Missing Values S</a></li>
+<li><a class="nav-link" href="#reprexes-and-tibble-s"><span class="header-section-number">6.7.5</span> Reprexes and tibble S</a></li>
+</ul>
+</li>
+<li><a class="nav-link" href="#rcode-14"><span class="header-section-number">6.8</span> Non-Exercise R Code</a></li>
+</ul>
+
+      <div class="book-extra">
+        <ul class="list-unstyled">
+          
+        </ul>
+</div>
+    </nav>
+</div>
+
+</div>
+</div> <!-- .container -->
+
+<footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>"<strong>STAT 234: Data Science</strong>" was written by Matt Higham. It was last built on 2022-09-14.</p>
+  </div>
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>This book was built by the <a class="text-light" href="https://bookdown.org">bookdown</a> R package.</p>
+  </div>
+
+</div></div>
+</footer><!-- dynamically load mathjax for compatibility with self-contained --><script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script><script type="text/x-mathjax-config">const popovers = document.querySelectorAll('a.footnote-ref[data-toggle="popover"]');
+for (let popover of popovers) {
+  const div = document.createElement('div');
+  div.setAttribute('style', 'position: absolute; top: 0, left:0; width:0, height:0, overflow: hidden; visibility: hidden;');
+  div.innerHTML = popover.getAttribute('data-content');
+
+  var has_math = div.querySelector("span.math");
+  if (has_math) {
+    document.body.appendChild(div);
+    MathJax.Hub.Queue(["Typeset", MathJax.Hub, div]);
+    MathJax.Hub.Queue(function() {
+      popover.setAttribute('data-content', div.innerHTML);
+      document.body.removeChild(div);
+    })
+  }
+}
+</script>
+</body>
+</html>

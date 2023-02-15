@@ -1,0 +1,943 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<title> 17 Introduction to SQL with dbplyr | STAT 234: Data Science</title>
+<meta name="author" content="Matt Higham">
+<meta name="description" content="Goals: explain what a database is, how it is different from a data set, and why you might use a database. use the dbplyr to translate R code with dplyr to SQL queries on database tables. draw...">
+<meta name="generator" content="bookdown 0.27 with bs4_book()">
+<meta property="og:title" content=" 17 Introduction to SQL with dbplyr | STAT 234: Data Science">
+<meta property="og:type" content="book">
+<meta property="og:url" content="https://highamm.github.io/datascience234/introduction-to-sql-with-dbplyr.html">
+<meta property="og:description" content="Goals: explain what a database is, how it is different from a data set, and why you might use a database. use the dbplyr to translate R code with dplyr to SQL queries on database tables. draw...">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content=" 17 Introduction to SQL with dbplyr | STAT 234: Data Science">
+<meta name="twitter:description" content="Goals: explain what a database is, how it is different from a data set, and why you might use a database. use the dbplyr to translate R code with dplyr to SQL queries on database tables. draw...">
+<!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
+<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.2.5.1/tabs.js"></script><script src="libs/bs3compat-0.2.5.1/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
+<script src="libs/bs4_book-1.0.0/bs4_book.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><style type="text/css">
+    
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  </style>
+<link rel="stylesheet" href="bs4_style.css">
+</head>
+<body data-spy="scroll" data-target="#toc">
+
+<div class="container-fluid">
+<div class="row">
+  <header class="col-sm-12 col-lg-3 sidebar sidebar-book"><a class="sr-only sr-only-focusable" href="#content">Skip to main content</a>
+
+    <div class="d-flex align-items-start justify-content-between">
+      <h1>
+        <a href="index.html" title="">STAT 234: Data Science</a>
+      </h1>
+      <button class="btn btn-outline-primary d-lg-none ml-2 mt-1" type="button" data-toggle="collapse" data-target="#main-nav" aria-expanded="true" aria-controls="main-nav"><i class="fas fa-bars"></i><span class="sr-only">Show table of contents</span></button>
+    </div>
+
+    <div id="main-nav" class="collapse-lg">
+      <form role="search">
+        <input id="search" class="form-control" type="search" placeholder="Search" aria-label="Search">
+</form>
+
+      <nav aria-label="Table of contents"><h2>Table of contents</h2>
+        <ul class="book-toc list-unstyled">
+<li><a class="" href="index.html"><span class="header-section-number">1</span> Syllabus and Course Information</a></li>
+<li class="book-part">The Core: tidyverse Basics</li>
+<li><a class="" href="intro.html"><span class="header-section-number">2</span> Getting Started with R and R Studio</a></li>
+<li><a class="" href="ggplot2.html"><span class="header-section-number">3</span> Plotting with ggplot2</a></li>
+<li><a class="" href="dplyr.html"><span class="header-section-number">4</span> Wrangling with dplyr</a></li>
+<li><a class="" href="communication-with-quarto.html"><span class="header-section-number">5</span> Communication with Quarto</a></li>
+<li><a class="" href="workflow.html"><span class="header-section-number">6</span> Workflow and Other Skills</a></li>
+<li class="book-part">Data Wrangling</li>
+<li><a class="" href="tidying-with-tidyr.html"><span class="header-section-number">7</span> Tidying with tidyr</a></li>
+<li><a class="" href="coding-in-base-r.html"><span class="header-section-number">8</span> Coding in Base R</a></li>
+<li><a class="" href="factors-with-forcats.html"><span class="header-section-number">9</span> Factors with forcats</a></li>
+<li><a class="" href="data-ethics.html"><span class="header-section-number">10</span> Data Ethics</a></li>
+<li><a class="" href="data-import.html"><span class="header-section-number">11</span> Data Import</a></li>
+<li><a class="" href="merging-with-dplyr.html"><span class="header-section-number">12</span> Merging with dplyr</a></li>
+<li class="book-part">Special Topics</li>
+<li><a class="" href="dates-with-lubridate.html"><span class="header-section-number">13</span> Dates with lubridate</a></li>
+<li><a class="" href="text-data-with-tidytext-and-stringr.html"><span class="header-section-number">14</span> Text Data with tidytext and stringr</a></li>
+<li><a class="" href="predictive-modeling-with-knn.html"><span class="header-section-number">15</span> Predictive Modeling with knn</a></li>
+<li><a class="" href="connections-to-stat-113-stat-213-and-cs-140.html"><span class="header-section-number">16</span> Connections to STAT 113, STAT 213, and CS 140</a></li>
+<li><a class="active" href="introduction-to-sql-with-dbplyr.html"><span class="header-section-number">17</span> Introduction to SQL with dbplyr</a></li>
+</ul>
+
+        <div class="book-extra">
+          
+        </div>
+      </nav>
+</div>
+  </header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><div id="introduction-to-sql-with-dbplyr" class="section level1" number="17">
+<h1>
+<span class="header-section-number"> 17</span> Introduction to SQL with <code>dbplyr</code><a class="anchor" aria-label="anchor" href="#introduction-to-sql-with-dbplyr"><i class="fas fa-link"></i></a>
+</h1>
+<p><strong>Goals:</strong></p>
+<ul>
+<li>explain what a <strong>database</strong> is, how it is different from a data set, and why you might use a database.</li>
+<li>use the <code>dbplyr</code> to translate <code>R</code> code with <code>dplyr</code> to <code>SQL</code> queries on database tables.</li>
+<li>draw parallels between <code>dplyr</code> functions and the syntax used in <code>SQL</code>.</li>
+</ul>
+<p>All of the <code>dplyr</code> functions we’ve used (both the ones from early in the semester and from the <code>xxxx_join()</code> family more recently) have corresponding components in <code>SQL</code>. <code>SQL</code> stands for Structured Query Language and is a very common language used with databases. Compared to <code>dplyr</code>, in general, <code>SQL</code> code is much harder to read, as SQL isn’t designed specifically for data analysis like <code>dplyr</code> is. In this section, we will introduce databases and give a brief introduction to <code>SQL</code> for analyzing data from a database.</p>
+<div id="what-is-a-database" class="section level2" number="17.1">
+<h2>
+<span class="header-section-number">17.1</span> What is a Database<a class="anchor" aria-label="anchor" href="#what-is-a-database"><i class="fas fa-link"></i></a>
+</h2>
+<p>The <em>R for Data Science</em> textbook defines a database as “a collection of data frames,” each called a <strong>database table</strong>. There a few key differences between a data frame (what we’ve been using the entire semester) and a database table. They are summarised from <em>R for Data Science</em> here as:</p>
+<ul>
+<li>a database table can be larger and is stored on disk while a data frame is stored in memory so their size is more limited.</li>
+<li>a database table usually indices while data frames do not.</li>
+<li>many , but not all, data base tables are “row-oriented” while tidy data frames are “column-oriented.”</li>
+</ul>
+<p>Databases are run through Database Management Systems. The <em>R for Data Science</em> textbook divides Database Management Systems into 3 types:</p>
+<ul>
+<li>
+<strong>client-server</strong> like PostgreSQL and SQL Server</li>
+<li>
+<strong>Cloud-based</strong> like Amazon’s Redshift</li>
+<li>
+<strong>In-process</strong> like SQLite</li>
+</ul>
+<p>We won’t really discuss these any further, but an advanced course in database systems through the CS department would give more information about Database Management Systems (and databases in general).</p>
+<p>How to connect to a database from <code>R</code> depends on the type of database management system. There is an <code>R</code> package for most major Database Management Systems. For our purposes, because how to connect to a Database management system depends so heavily on the type, we will focus on a database management system that is contained in the <code>R</code> package <code>duckdb</code>.</p>
+<p>We also need a database interface to connect to the database tables in <code>duckdb</code> in the <code>DBI</code> package.</p>
+<p><strong>Note</strong>: This section on connecting to a database management systems may be confusing, particularly if you do not have a computer science background. But don’t let that derail your learning for this rest of this chapter, which will consist of primarily of <code>R</code> code from here on! The take-home message is that we need a way to connect to the system within <code>R</code>. It’s challenging to give specific directions because the connection depends on the type of system, so we are avoiding most of that by connecting to a database management system in the <code>duckdb</code> <code>R</code> package using functions from the <code>DBI</code> package.</p>
+<p><a href="https://r4ds.hadley.nz/databases.html" class="uri">https://r4ds.hadley.nz/databases.html</a>
+SQL is short from Structured Query Language.
+We first load in the <code>duckdb</code> and <code>DBI</code> libraries and make a connection to the database management system, which we will name <code>con</code>:</p>
+<div class="sourceCode" id="cb510"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://dbi.r-dbi.org">DBI</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://duckdb.org/">duckdb</a></span><span class="op">)</span></span>
+<span><span class="va">con</span> <span class="op">&lt;-</span> <span class="fu">DBI</span><span class="fu">::</span><span class="fu"><a href="https://dbi.r-dbi.org/reference/dbConnect.html">dbConnect</a></span><span class="op">(</span><span class="fu">duckdb</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/duckdb/man/duckdb.html">duckdb</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<p>We can type in <code>con</code> to see what it stores:</p>
+<div class="sourceCode" id="cb511"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">con</span></span>
+<span><span class="co">#&gt; &lt;duckdb_connection 9cd00 driver=&lt;duckdb_driver 09a40 dbdir=':memory:' read_only=FALSE&gt;&gt;</span></span></code></pre></div>
+<p>We’ve created a brand-new database, so we can next add some data tables with the <code><a href="https://rdrr.io/pkg/duckdb/man/duckdb_read_csv.html">duckdb_read_csv()</a></code> function. Compared to <code><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv()</a></code> from the <code>readr</code> package, <code><a href="https://rdrr.io/pkg/duckdb/man/duckdb_read_csv.html">duckdb_read_csv()</a></code> has a couple of extra arguments: a <code>conn</code> argument giving the database management connection and a <code>name</code> argument giving the name that we want to give to the data table:</p>
+<div class="sourceCode" id="cb512"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://here.r-lib.org/">here</a></span><span class="op">)</span></span>
+<span><span class="co">#&gt; here() starts at /Users/highamm/Desktop/datascience234</span></span>
+<span><span class="fu"><a href="https://rdrr.io/pkg/duckdb/man/duckdb_read_csv.html">duckdb_read_csv</a></span><span class="op">(</span>conn <span class="op">=</span> <span class="va">con</span>, name <span class="op">=</span> <span class="st">"tennis2018"</span>, </span>
+<span>                files <span class="op">=</span> <span class="fu"><a href="https://here.r-lib.org//reference/here.html">here</a></span><span class="op">(</span><span class="st">"data/atp_matches_2018.csv"</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/pkg/duckdb/man/duckdb_read_csv.html">duckdb_read_csv</a></span><span class="op">(</span>conn <span class="op">=</span> <span class="va">con</span>, name <span class="op">=</span> <span class="st">"tennis2019"</span>, </span>
+<span>                files <span class="op">=</span> <span class="fu"><a href="https://here.r-lib.org//reference/here.html">here</a></span><span class="op">(</span><span class="st">"data/atp_matches_2019.csv"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<p>The <code>doListTables()</code> function lists the names of the data tables in the database we just created:</p>
+<div class="sourceCode" id="cb513"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://dbi.r-dbi.org/reference/dbListTables.html">dbListTables</a></span><span class="op">(</span><span class="va">con</span><span class="op">)</span></span>
+<span><span class="co">#&gt; [1] "tennis2018" "tennis2019"</span></span></code></pre></div>
+<p>And, <code><a href="https://dbi.r-dbi.org/reference/dbExistsTable.html">dbExistsTable()</a></code> can be used to examine whether or not a data table exists in the current database:</p>
+<div class="sourceCode" id="cb514"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://dbi.r-dbi.org/reference/dbExistsTable.html">dbExistsTable</a></span><span class="op">(</span><span class="va">con</span>, <span class="st">"tennis2019"</span><span class="op">)</span></span>
+<span><span class="co">#&gt; [1] TRUE</span></span>
+<span><span class="fu"><a href="https://dbi.r-dbi.org/reference/dbExistsTable.html">dbExistsTable</a></span><span class="op">(</span><span class="va">con</span>, <span class="st">"tennis2020"</span><span class="op">)</span></span>
+<span><span class="co">#&gt; [1] FALSE</span></span></code></pre></div>
+<p>Note that, in many practical situations, the data tables will already exist in the database you are working with, so the step of <code><a href="https://rdrr.io/pkg/duckdb/man/duckdb_read_csv.html">duckdb_read_csv()</a></code> would not be necessary.</p>
+<p>To use raw SQL code and query the database that we just created, we can create a string of SQL code, name it <code>sql</code>, and pass it to the <code><a href="https://dbi.r-dbi.org/reference/dbGetQuery.html">dbGetQuery()</a></code> function. We also load in the <code>tidyverse</code> package here to use the <code><a href="https://tibble.tidyverse.org/reference/as_tibble.html">as_tibble()</a></code> function to convert the <code>data.frame</code> to a <code>tibble</code>.</p>
+<div class="sourceCode" id="cb515"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span></span>
+<span><span class="co">#&gt; ── Attaching packages ─────────────────── tidyverse 1.3.2 ──</span></span>
+<span><span class="co">#&gt; ✔ ggplot2 3.3.6     ✔ purrr   0.3.4</span></span>
+<span><span class="co">#&gt; ✔ tibble  3.1.8     ✔ dplyr   1.0.9</span></span>
+<span><span class="co">#&gt; ✔ tidyr   1.2.0     ✔ stringr 1.4.0</span></span>
+<span><span class="co">#&gt; ✔ readr   2.1.2     ✔ forcats 0.5.1</span></span>
+<span><span class="co">#&gt; ── Conflicts ────────────────────── tidyverse_conflicts() ──</span></span>
+<span><span class="co">#&gt; ✖ dplyr::filter() masks stats::filter()</span></span>
+<span><span class="co">#&gt; ✖ dplyr::lag()    masks stats::lag()</span></span>
+<span></span>
+<span><span class="va">sql</span> <span class="op">&lt;-</span> <span class="st">"</span></span>
+<span><span class="st">  SELECT surface, winner_name, loser_name, w_ace, l_ace, minutes</span></span>
+<span><span class="st">  FROM tennis2019 </span></span>
+<span><span class="st">  WHERE minutes &gt; 240</span></span>
+<span><span class="st">"</span></span>
+<span><span class="fu"><a href="https://dbi.r-dbi.org/reference/dbGetQuery.html">dbGetQuery</a></span><span class="op">(</span><span class="va">con</span>, <span class="va">sql</span><span class="op">)</span><span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://tibble.tidyverse.org/reference/as_tibble.html">as_tibble</a></span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="co">#&gt; # A tibble: 30 × 6</span></span>
+<span><span class="co">#&gt;    surface winner_name           loser…¹ w_ace l_ace minutes</span></span>
+<span><span class="co">#&gt;    &lt;chr&gt;   &lt;chr&gt;                 &lt;chr&gt;   &lt;int&gt; &lt;int&gt;   &lt;int&gt;</span></span>
+<span><span class="co">#&gt;  1 Hard    Joao Sousa            Guido …    19    18     241</span></span>
+<span><span class="co">#&gt;  2 Hard    Jeremy Chardy         Ugo Hu…    29    20     244</span></span>
+<span><span class="co">#&gt;  3 Hard    Roberto Bautista Agut Andy M…     7    19     249</span></span>
+<span><span class="co">#&gt;  4 Hard    Joao Sousa            Philip…    28    20     258</span></span>
+<span><span class="co">#&gt;  5 Hard    Alex Bolt             Gilles…    11    14     244</span></span>
+<span><span class="co">#&gt;  6 Hard    Milos Raonic          Stan W…    39    28     241</span></span>
+<span><span class="co">#&gt;  7 Hard    Marin Cilic           Fernan…     8    27     258</span></span>
+<span><span class="co">#&gt;  8 Hard    Kei Nishikori         Pablo …    15     5     305</span></span>
+<span><span class="co">#&gt;  9 Hard    Frances Tiafoe        David …     3    11     244</span></span>
+<span><span class="co">#&gt; 10 Clay    Alexander Zverev      John M…    17     0     248</span></span>
+<span><span class="co">#&gt; # … with 20 more rows, and abbreviated variable name</span></span>
+<span><span class="co">#&gt; #   ¹​loser_name</span></span>
+<span><span class="co">#&gt; # ℹ Use `print(n = ...)` to see more rows</span></span></code></pre></div>
+<div id="exercise-16-1" class="section level3" number="17.1.1">
+<h3>
+<span class="header-section-number">17.1.1</span> Exercises<a class="anchor" aria-label="anchor" href="#exercise-16-1"><i class="fas fa-link"></i></a>
+</h3>
+<p>Exercises marked with an * indicate that the exercise has a solution at the end of the chapter at <a href="introduction-to-sql-with-dbplyr.html#solutions-16">17.5</a>.</p>
+<ol style="list-style-type: decimal">
+<li><p>* Though we do not know SQL code, we can probably figure out what the code above is doing. Which matches are being returned from our query?</p></li>
+<li><p>What is the <code>dplyr</code> equivalent function to <code>WHERE</code> in the SQL code above? What is the <code>dplyr</code> equivalent function to <code>SELECT</code> in the SQL code above?</p></li>
+</ol>
+</div>
+</div>
+<div id="dbplyr-a-database-version-of-dplyr" class="section level2" number="17.2">
+<h2>
+<span class="header-section-number">17.2</span> <code>dbplyr</code>: A Database Version of <code>dplyr</code><a class="anchor" aria-label="anchor" href="#dbplyr-a-database-version-of-dplyr"><i class="fas fa-link"></i></a>
+</h2>
+<p><code>dbplyr</code> is a package that will allow us to continue to write <code>dplyr</code>-style code to query databases instead of writing native <code>SQL</code>, as in the code-chunk above.</p>
+<p>We begin by loading in the package and creating a database table object with the <code><a href="https://dplyr.tidyverse.org/reference/tbl.html">tbl()</a></code> function. In this case, we create a database table with the <code>tennis2019</code> data and name it <code>tennis_db</code>:</p>
+<div class="sourceCode" id="cb516"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://dbplyr.tidyverse.org/">dbplyr</a></span><span class="op">)</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; Attaching package: 'dbplyr'</span></span>
+<span><span class="co">#&gt; The following objects are masked from 'package:dplyr':</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt;     ident, sql</span></span>
+<span><span class="va">tennis_db</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/tbl.html">tbl</a></span><span class="op">(</span><span class="va">con</span>, <span class="st">"tennis2019"</span><span class="op">)</span></span>
+<span><span class="va">tennis_db</span></span>
+<span><span class="co">#&gt; # Source:   table&lt;tennis2019&gt; [?? x 49]</span></span>
+<span><span class="co">#&gt; # Database: DuckDB 0.3.5-dev1410 [root@Darwin 21.6.0:R 4.2.1/:memory:]</span></span>
+<span><span class="co">#&gt;    tourney…¹ tourn…² surface draw_…³ tourn…⁴ tourn…⁵ match…⁶</span></span>
+<span><span class="co">#&gt;    &lt;chr&gt;     &lt;chr&gt;   &lt;chr&gt;     &lt;int&gt; &lt;chr&gt;     &lt;int&gt;   &lt;int&gt;</span></span>
+<span><span class="co">#&gt;  1 2019-M020 Brisba… Hard         32 A        2.02e7     300</span></span>
+<span><span class="co">#&gt;  2 2019-M020 Brisba… Hard         32 A        2.02e7     299</span></span>
+<span><span class="co">#&gt;  3 2019-M020 Brisba… Hard         32 A        2.02e7     298</span></span>
+<span><span class="co">#&gt;  4 2019-M020 Brisba… Hard         32 A        2.02e7     297</span></span>
+<span><span class="co">#&gt;  5 2019-M020 Brisba… Hard         32 A        2.02e7     296</span></span>
+<span><span class="co">#&gt;  6 2019-M020 Brisba… Hard         32 A        2.02e7     295</span></span>
+<span><span class="co">#&gt;  7 2019-M020 Brisba… Hard         32 A        2.02e7     294</span></span>
+<span><span class="co">#&gt;  8 2019-M020 Brisba… Hard         32 A        2.02e7     293</span></span>
+<span><span class="co">#&gt;  9 2019-M020 Brisba… Hard         32 A        2.02e7     292</span></span>
+<span><span class="co">#&gt; 10 2019-M020 Brisba… Hard         32 A        2.02e7     291</span></span>
+<span><span class="co">#&gt; # … with more rows, 42 more variables: winner_id &lt;int&gt;,</span></span>
+<span><span class="co">#&gt; #   winner_seed &lt;chr&gt;, winner_entry &lt;chr&gt;,</span></span>
+<span><span class="co">#&gt; #   winner_name &lt;chr&gt;, winner_hand &lt;chr&gt;, winner_ht &lt;int&gt;,</span></span>
+<span><span class="co">#&gt; #   winner_ioc &lt;chr&gt;, winner_age &lt;dbl&gt;, loser_id &lt;int&gt;,</span></span>
+<span><span class="co">#&gt; #   loser_seed &lt;chr&gt;, loser_entry &lt;chr&gt;, loser_name &lt;chr&gt;,</span></span>
+<span><span class="co">#&gt; #   loser_hand &lt;chr&gt;, loser_ht &lt;int&gt;, loser_ioc &lt;chr&gt;,</span></span>
+<span><span class="co">#&gt; #   loser_age &lt;dbl&gt;, score &lt;chr&gt;, best_of &lt;int&gt;, …</span></span>
+<span><span class="co">#&gt; # ℹ Use `print(n = ...)` to see more rows, and `colnames()` to see all variable names</span></span></code></pre></div>
+<p>Examine the print for <code>tennis_db</code>, which should look similar to the print for a <code>tibble</code> or <code>data.frame</code>. Let’s use some <code>dplyr</code> code to obtain only the matches that lasted longer than <code>240</code> minutes and keep only a few of the columns. We will name the result <code>tennis_query1</code>:</p>
+<div class="sourceCode" id="cb517"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">tennis_query1</span> <span class="op">&lt;-</span> <span class="va">tennis_db</span> <span class="op">|&gt;</span> </span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">minutes</span> <span class="op">&gt;</span> <span class="fl">240</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">minutes</span>, <span class="va">winner_name</span>, <span class="va">loser_name</span>, <span class="va">minutes</span>, <span class="va">tourney_name</span><span class="op">)</span></span>
+<span><span class="va">tennis_query1</span></span>
+<span><span class="co">#&gt; # Source:   SQL [?? x 4]</span></span>
+<span><span class="co">#&gt; # Database: DuckDB 0.3.5-dev1410 [root@Darwin 21.6.0:R 4.2.1/:memory:]</span></span>
+<span><span class="co">#&gt;    minutes winner_name           loser_name          tourn…¹</span></span>
+<span><span class="co">#&gt;      &lt;int&gt; &lt;chr&gt;                 &lt;chr&gt;               &lt;chr&gt;  </span></span>
+<span><span class="co">#&gt;  1     241 Joao Sousa            Guido Pella         Austra…</span></span>
+<span><span class="co">#&gt;  2     244 Jeremy Chardy         Ugo Humbert         Austra…</span></span>
+<span><span class="co">#&gt;  3     249 Roberto Bautista Agut Andy Murray         Austra…</span></span>
+<span><span class="co">#&gt;  4     258 Joao Sousa            Philipp Kohlschrei… Austra…</span></span>
+<span><span class="co">#&gt;  5     244 Alex Bolt             Gilles Simon        Austra…</span></span>
+<span><span class="co">#&gt;  6     241 Milos Raonic          Stan Wawrinka       Austra…</span></span>
+<span><span class="co">#&gt;  7     258 Marin Cilic           Fernando Verdasco   Austra…</span></span>
+<span><span class="co">#&gt;  8     305 Kei Nishikori         Pablo Carreno Busta Austra…</span></span>
+<span><span class="co">#&gt;  9     244 Frances Tiafoe        David Goffin        Miami …</span></span>
+<span><span class="co">#&gt; 10     248 Alexander Zverev      John Millman        Roland…</span></span>
+<span><span class="co">#&gt; # … with more rows, and abbreviated variable name</span></span>
+<span><span class="co">#&gt; #   ¹​tourney_name</span></span>
+<span><span class="co">#&gt; # ℹ Use `print(n = ...)` to see more rows</span></span></code></pre></div>
+<p>We should note that the result is still a database object: it’s not our “usual” <code>tibble</code>. One major difference between the database object and the usual <code>tibble</code> is that our <code>tennis_query1</code> does not tell us how many rows are in the data (see the <code>??</code> and the specification <code>with more rows</code>). The code that we wrote is not actually looking in the entire data set for matches that are longer than 240 minutes: it is saving time by only performing our query on part of the database table. This is very useful behaviour for database tables that are very, very large, where code might take a long time to run.</p>
+<p>If we want to obtain the result of our query as a <code>tibble</code>, we can use the <code><a href="https://dplyr.tidyverse.org/reference/compute.html">collect()</a></code> function:</p>
+<div class="sourceCode" id="cb518"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">tennis_query1</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/compute.html">collect</a></span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="co">#&gt; # A tibble: 30 × 4</span></span>
+<span><span class="co">#&gt;    minutes winner_name           loser_name          tourn…¹</span></span>
+<span><span class="co">#&gt;      &lt;int&gt; &lt;chr&gt;                 &lt;chr&gt;               &lt;chr&gt;  </span></span>
+<span><span class="co">#&gt;  1     241 Joao Sousa            Guido Pella         Austra…</span></span>
+<span><span class="co">#&gt;  2     244 Jeremy Chardy         Ugo Humbert         Austra…</span></span>
+<span><span class="co">#&gt;  3     249 Roberto Bautista Agut Andy Murray         Austra…</span></span>
+<span><span class="co">#&gt;  4     258 Joao Sousa            Philipp Kohlschrei… Austra…</span></span>
+<span><span class="co">#&gt;  5     244 Alex Bolt             Gilles Simon        Austra…</span></span>
+<span><span class="co">#&gt;  6     241 Milos Raonic          Stan Wawrinka       Austra…</span></span>
+<span><span class="co">#&gt;  7     258 Marin Cilic           Fernando Verdasco   Austra…</span></span>
+<span><span class="co">#&gt;  8     305 Kei Nishikori         Pablo Carreno Busta Austra…</span></span>
+<span><span class="co">#&gt;  9     244 Frances Tiafoe        David Goffin        Miami …</span></span>
+<span><span class="co">#&gt; 10     248 Alexander Zverev      John Millman        Roland…</span></span>
+<span><span class="co">#&gt; # … with 20 more rows, and abbreviated variable name</span></span>
+<span><span class="co">#&gt; #   ¹​tourney_name</span></span>
+<span><span class="co">#&gt; # ℹ Use `print(n = ...)` to see more rows</span></span></code></pre></div>
+<p>The result is a <code>tibble</code> that we can now use any <code>R</code> functions on (not just functions from <code>dplyr</code> and a few other packages).</p>
+<p>The <code><a href="https://dplyr.tidyverse.org/reference/explain.html">show_query()</a></code> function can be used on our <code>tennis_query1</code> to give the SQL code that was executed:</p>
+<div class="sourceCode" id="cb519"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">tennis_query1</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/explain.html">show_query</a></span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="co">#&gt; &lt;SQL&gt;</span></span>
+<span><span class="co">#&gt; SELECT "minutes", "winner_name", "loser_name", "tourney_name"</span></span>
+<span><span class="co">#&gt; FROM "tennis2019"</span></span>
+<span><span class="co">#&gt; WHERE ("minutes" &gt; 240.0)</span></span></code></pre></div>
+<p>To get a better idea about what <code>SQL</code> code looks like, let’s make one more query with <code>dplyr</code> code and use the <code><a href="https://dplyr.tidyverse.org/reference/explain.html">show_query()</a></code> function to give the native <code>SQL</code>:</p>
+<div class="sourceCode" id="cb520"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">medvedev_query</span> <span class="op">&lt;-</span> <span class="va">tennis_db</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://tidyr.tidyverse.org/reference/pivot_longer.html">pivot_longer</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="va">winner_name</span>, <span class="va">loser_name</span><span class="op">)</span>, names_to <span class="op">=</span> <span class="st">"win_loss"</span>,</span>
+<span>               values_to <span class="op">=</span> <span class="st">"player"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">player</span> <span class="op">==</span> <span class="st">"Daniil Medvedev"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">win_loss</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise</a></span><span class="op">(</span>win_loss_count <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/context.html">n</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="va">medvedev_query</span></span>
+<span><span class="co">#&gt; # Source:   SQL [2 x 2]</span></span>
+<span><span class="co">#&gt; # Database: DuckDB 0.3.5-dev1410 [root@Darwin 21.6.0:R 4.2.1/:memory:]</span></span>
+<span><span class="co">#&gt;   win_loss    win_loss_count</span></span>
+<span><span class="co">#&gt;   &lt;chr&gt;                &lt;dbl&gt;</span></span>
+<span><span class="co">#&gt; 1 winner_name             59</span></span>
+<span><span class="co">#&gt; 2 loser_name              21</span></span>
+<span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/explain.html">show_query</a></span><span class="op">(</span><span class="va">medvedev_query</span><span class="op">)</span></span>
+<span><span class="co">#&gt; &lt;SQL&gt;</span></span>
+<span><span class="co">#&gt; SELECT "win_loss", COUNT(*) AS "win_loss_count"</span></span>
+<span><span class="co">#&gt; FROM (</span></span>
+<span><span class="co">#&gt;   (</span></span>
+<span><span class="co">#&gt;     SELECT</span></span>
+<span><span class="co">#&gt;       "tourney_id",</span></span>
+<span><span class="co">#&gt;       "tourney_name",</span></span>
+<span><span class="co">#&gt;       "surface",</span></span>
+<span><span class="co">#&gt;       "draw_size",</span></span>
+<span><span class="co">#&gt;       "tourney_level",</span></span>
+<span><span class="co">#&gt;       "tourney_date",</span></span>
+<span><span class="co">#&gt;       "match_num",</span></span>
+<span><span class="co">#&gt;       "winner_id",</span></span>
+<span><span class="co">#&gt;       "winner_seed",</span></span>
+<span><span class="co">#&gt;       "winner_entry",</span></span>
+<span><span class="co">#&gt;       "winner_hand",</span></span>
+<span><span class="co">#&gt;       "winner_ht",</span></span>
+<span><span class="co">#&gt;       "winner_ioc",</span></span>
+<span><span class="co">#&gt;       "winner_age",</span></span>
+<span><span class="co">#&gt;       "loser_id",</span></span>
+<span><span class="co">#&gt;       "loser_seed",</span></span>
+<span><span class="co">#&gt;       "loser_entry",</span></span>
+<span><span class="co">#&gt;       "loser_hand",</span></span>
+<span><span class="co">#&gt;       "loser_ht",</span></span>
+<span><span class="co">#&gt;       "loser_ioc",</span></span>
+<span><span class="co">#&gt;       "loser_age",</span></span>
+<span><span class="co">#&gt;       "score",</span></span>
+<span><span class="co">#&gt;       "best_of",</span></span>
+<span><span class="co">#&gt;       "round",</span></span>
+<span><span class="co">#&gt;       "minutes",</span></span>
+<span><span class="co">#&gt;       "w_ace",</span></span>
+<span><span class="co">#&gt;       "w_df",</span></span>
+<span><span class="co">#&gt;       "w_svpt",</span></span>
+<span><span class="co">#&gt;       "w_1stIn",</span></span>
+<span><span class="co">#&gt;       "w_1stWon",</span></span>
+<span><span class="co">#&gt;       "w_2ndWon",</span></span>
+<span><span class="co">#&gt;       "w_SvGms",</span></span>
+<span><span class="co">#&gt;       "w_bpSaved",</span></span>
+<span><span class="co">#&gt;       "w_bpFaced",</span></span>
+<span><span class="co">#&gt;       "l_ace",</span></span>
+<span><span class="co">#&gt;       "l_df",</span></span>
+<span><span class="co">#&gt;       "l_svpt",</span></span>
+<span><span class="co">#&gt;       "l_1stIn",</span></span>
+<span><span class="co">#&gt;       "l_1stWon",</span></span>
+<span><span class="co">#&gt;       "l_2ndWon",</span></span>
+<span><span class="co">#&gt;       "l_SvGms",</span></span>
+<span><span class="co">#&gt;       "l_bpSaved",</span></span>
+<span><span class="co">#&gt;       "l_bpFaced",</span></span>
+<span><span class="co">#&gt;       "winner_rank",</span></span>
+<span><span class="co">#&gt;       "winner_rank_points",</span></span>
+<span><span class="co">#&gt;       "loser_rank",</span></span>
+<span><span class="co">#&gt;       "loser_rank_points",</span></span>
+<span><span class="co">#&gt;       'winner_name' AS "win_loss",</span></span>
+<span><span class="co">#&gt;       "winner_name" AS "player"</span></span>
+<span><span class="co">#&gt;     FROM "tennis2019"</span></span>
+<span><span class="co">#&gt;   )</span></span>
+<span><span class="co">#&gt;   UNION ALL</span></span>
+<span><span class="co">#&gt;   (</span></span>
+<span><span class="co">#&gt;     SELECT</span></span>
+<span><span class="co">#&gt;       "tourney_id",</span></span>
+<span><span class="co">#&gt;       "tourney_name",</span></span>
+<span><span class="co">#&gt;       "surface",</span></span>
+<span><span class="co">#&gt;       "draw_size",</span></span>
+<span><span class="co">#&gt;       "tourney_level",</span></span>
+<span><span class="co">#&gt;       "tourney_date",</span></span>
+<span><span class="co">#&gt;       "match_num",</span></span>
+<span><span class="co">#&gt;       "winner_id",</span></span>
+<span><span class="co">#&gt;       "winner_seed",</span></span>
+<span><span class="co">#&gt;       "winner_entry",</span></span>
+<span><span class="co">#&gt;       "winner_hand",</span></span>
+<span><span class="co">#&gt;       "winner_ht",</span></span>
+<span><span class="co">#&gt;       "winner_ioc",</span></span>
+<span><span class="co">#&gt;       "winner_age",</span></span>
+<span><span class="co">#&gt;       "loser_id",</span></span>
+<span><span class="co">#&gt;       "loser_seed",</span></span>
+<span><span class="co">#&gt;       "loser_entry",</span></span>
+<span><span class="co">#&gt;       "loser_hand",</span></span>
+<span><span class="co">#&gt;       "loser_ht",</span></span>
+<span><span class="co">#&gt;       "loser_ioc",</span></span>
+<span><span class="co">#&gt;       "loser_age",</span></span>
+<span><span class="co">#&gt;       "score",</span></span>
+<span><span class="co">#&gt;       "best_of",</span></span>
+<span><span class="co">#&gt;       "round",</span></span>
+<span><span class="co">#&gt;       "minutes",</span></span>
+<span><span class="co">#&gt;       "w_ace",</span></span>
+<span><span class="co">#&gt;       "w_df",</span></span>
+<span><span class="co">#&gt;       "w_svpt",</span></span>
+<span><span class="co">#&gt;       "w_1stIn",</span></span>
+<span><span class="co">#&gt;       "w_1stWon",</span></span>
+<span><span class="co">#&gt;       "w_2ndWon",</span></span>
+<span><span class="co">#&gt;       "w_SvGms",</span></span>
+<span><span class="co">#&gt;       "w_bpSaved",</span></span>
+<span><span class="co">#&gt;       "w_bpFaced",</span></span>
+<span><span class="co">#&gt;       "l_ace",</span></span>
+<span><span class="co">#&gt;       "l_df",</span></span>
+<span><span class="co">#&gt;       "l_svpt",</span></span>
+<span><span class="co">#&gt;       "l_1stIn",</span></span>
+<span><span class="co">#&gt;       "l_1stWon",</span></span>
+<span><span class="co">#&gt;       "l_2ndWon",</span></span>
+<span><span class="co">#&gt;       "l_SvGms",</span></span>
+<span><span class="co">#&gt;       "l_bpSaved",</span></span>
+<span><span class="co">#&gt;       "l_bpFaced",</span></span>
+<span><span class="co">#&gt;       "winner_rank",</span></span>
+<span><span class="co">#&gt;       "winner_rank_points",</span></span>
+<span><span class="co">#&gt;       "loser_rank",</span></span>
+<span><span class="co">#&gt;       "loser_rank_points",</span></span>
+<span><span class="co">#&gt;       'loser_name' AS "win_loss",</span></span>
+<span><span class="co">#&gt;       "loser_name" AS "player"</span></span>
+<span><span class="co">#&gt;     FROM "tennis2019"</span></span>
+<span><span class="co">#&gt;   )</span></span>
+<span><span class="co">#&gt; ) "q01"</span></span>
+<span><span class="co">#&gt; WHERE ("player" = 'Daniil Medvedev')</span></span>
+<span><span class="co">#&gt; GROUP BY "win_loss"</span></span></code></pre></div>
+<p>The <code><a href="https://dplyr.tidyverse.org/reference/explain.html">show_query()</a></code> shows the native <code>SQL</code> code for a pivot: yikes! Remember that <code>SQL</code> was <strong>not</strong> designed for data analysis, so it doesn’t always look pretty. We’ll do one more simpler query:</p>
+<div class="sourceCode" id="cb521"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">over20aces</span> <span class="op">&lt;-</span> <span class="va">tennis_db</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">w_ace</span> <span class="op">&gt;</span> <span class="fl">20</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">w_ace</span>, <span class="va">winner_name</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">winner_name</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise</a></span><span class="op">(</span>nmatch <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/context.html">n</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/arrange.html">arrange</a></span><span class="op">(</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/desc.html">desc</a></span><span class="op">(</span><span class="va">nmatch</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="va">over20aces</span></span>
+<span><span class="co">#&gt; # Source:     SQL [?? x 2]</span></span>
+<span><span class="co">#&gt; # Database:   DuckDB 0.3.5-dev1410 [root@Darwin 21.6.0:R 4.2.1/:memory:]</span></span>
+<span><span class="co">#&gt; # Ordered by: desc(nmatch)</span></span>
+<span><span class="co">#&gt;    winner_name        nmatch</span></span>
+<span><span class="co">#&gt;    &lt;chr&gt;               &lt;dbl&gt;</span></span>
+<span><span class="co">#&gt;  1 John Isner             15</span></span>
+<span><span class="co">#&gt;  2 Reilly Opelka          14</span></span>
+<span><span class="co">#&gt;  3 Milos Raonic           10</span></span>
+<span><span class="co">#&gt;  4 Sam Querrey             9</span></span>
+<span><span class="co">#&gt;  5 Nick Kyrgios            8</span></span>
+<span><span class="co">#&gt;  6 Alexander Bublik        7</span></span>
+<span><span class="co">#&gt;  7 Ivo Karlovic            6</span></span>
+<span><span class="co">#&gt;  8 Jan Lennard Struff      4</span></span>
+<span><span class="co">#&gt;  9 Jo-Wilfried Tsonga      4</span></span>
+<span><span class="co">#&gt; 10 Alexander Zverev        4</span></span>
+<span><span class="co">#&gt; # … with more rows</span></span>
+<span><span class="co">#&gt; # ℹ Use `print(n = ...)` to see more rows</span></span>
+<span></span>
+<span><span class="va">over20aces</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/explain.html">show_query</a></span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="co">#&gt; &lt;SQL&gt;</span></span>
+<span><span class="co">#&gt; SELECT "winner_name", COUNT(*) AS "nmatch"</span></span>
+<span><span class="co">#&gt; FROM (</span></span>
+<span><span class="co">#&gt;   SELECT "w_ace", "winner_name"</span></span>
+<span><span class="co">#&gt;   FROM "tennis2019"</span></span>
+<span><span class="co">#&gt;   WHERE ("w_ace" &gt; 20.0)</span></span>
+<span><span class="co">#&gt; ) "q01"</span></span>
+<span><span class="co">#&gt; GROUP BY "winner_name"</span></span>
+<span><span class="co">#&gt; ORDER BY "nmatch" DESC</span></span></code></pre></div>
+<p>Can you match some of the <code>SQL</code> code with the corresponding <code>dplyr</code> functions used?</p>
+<div id="exercise-16-2" class="section level3" number="17.2.1">
+<h3>
+<span class="header-section-number">17.2.1</span> Exercises<a class="anchor" aria-label="anchor" href="#exercise-16-2"><i class="fas fa-link"></i></a>
+</h3>
+<p>Exercises marked with an * indicate that the exercise has a solution at the end of the chapter at <a href="introduction-to-sql-with-dbplyr.html#solutions-16">17.5</a>.</p>
+<ol style="list-style-type: decimal">
+<li><p>* Obtain the distribution of the <code>surface</code> variable by making a table of the total number of matches played on each surface in the 2019 season using <code>dplyr</code> functions on <code>tennis_db</code>. Then, use <code><a href="https://dplyr.tidyverse.org/reference/explain.html">show_query()</a></code> to show the corresponding <code>SQL</code> code.</p></li>
+<li><p>Create a new variable that is the difference in the <code>winner_rank_points</code> and <code>loser_rank_points</code> using a <code>dplyr</code> function. Then, have your query return only the column you just created, the <code>winner_name</code> column, and the <code>loser_name</code> column. Use the <code><a href="https://dplyr.tidyverse.org/reference/explain.html">show_query()</a></code> function to show the corresponding <code>SQL</code> code.</p></li>
+<li><p>Perform a query of your choosing on <code>tennis_db</code> and use the <code><a href="https://dplyr.tidyverse.org/reference/explain.html">show_query()</a></code> function to show the corresponding <code>SQL</code> code.</p></li>
+</ol>
+</div>
+</div>
+<div id="sql" class="section level2" number="17.3">
+<h2>
+<span class="header-section-number">17.3</span> SQL<a class="anchor" aria-label="anchor" href="#sql"><i class="fas fa-link"></i></a>
+</h2>
+<p>The purpose of this section is to explore <code>SQL</code> syntax a little more, focusing on its connections to <code>dplyr</code>. Knowing <code>dplyr</code> is quite helpful in learning this <code>SQL</code> syntax because, while the syntax differs, the concepts are quite similar. Much of the text in this section is paraphrased from the <em>R for Data Science textbook</em>.</p>
+<p>There are five core components of an <code>SQL</code> query. The two most basic are a <code>SELECT</code> statement (similar to <code><a href="https://dplyr.tidyverse.org/reference/select.html">select()</a></code>, and, as discussed below, <code><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate()</a></code> and <code><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise()</a></code>) and a <code>FROM</code> statement (similar to the <code>data</code> argument). Using the <code><a href="https://dplyr.tidyverse.org/reference/explain.html">show_query()</a></code> function directly on <code>tennis_db</code> shows an <code>SQL</code> query that <code>SELECT</code>s all columns (denoted by the <code>*</code>), <code>FROM</code> the <code>tennis2019</code> database.</p>
+<div class="sourceCode" id="cb522"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">tennis_db</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/explain.html">show_query</a></span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="co">#&gt; &lt;SQL&gt;</span></span>
+<span><span class="co">#&gt; SELECT *</span></span>
+<span><span class="co">#&gt; FROM "tennis2019"</span></span></code></pre></div>
+<p>The <code>WHERE</code> and <code>ORDER BY</code> statements control which rows are returned (similar to <code><a href="https://dplyr.tidyverse.org/reference/filter.html">filter()</a></code>) and in what order those rows get returned (similar to <code><a href="https://dplyr.tidyverse.org/reference/arrange.html">arrange()</a></code>):</p>
+<div class="sourceCode" id="cb523"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">tennis_db</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">winner_hand</span> <span class="op">==</span> <span class="st">"L"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/arrange.html">arrange</a></span><span class="op">(</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/desc.html">desc</a></span><span class="op">(</span><span class="va">tourney_date</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/explain.html">show_query</a></span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="co">#&gt; &lt;SQL&gt;</span></span>
+<span><span class="co">#&gt; SELECT *</span></span>
+<span><span class="co">#&gt; FROM "tennis2019"</span></span>
+<span><span class="co">#&gt; WHERE ("winner_hand" = 'L')</span></span>
+<span><span class="co">#&gt; ORDER BY "tourney_date" DESC</span></span></code></pre></div>
+<p>Finally, <code>GROUP BY</code> is used for aggregation (similar to the <code>dplyr</code> <code><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by()</a></code> and <code><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise()</a></code> combination).</p>
+<div class="sourceCode" id="cb524"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">tennis_db</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">winner_name</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise</a></span><span class="op">(</span>meanace <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">w_ace</span>, na.rm <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/explain.html">show_query</a></span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="co">#&gt; &lt;SQL&gt;</span></span>
+<span><span class="co">#&gt; SELECT "winner_name", AVG("w_ace") AS "meanace"</span></span>
+<span><span class="co">#&gt; FROM "tennis2019"</span></span>
+<span><span class="co">#&gt; GROUP BY "winner_name"</span></span></code></pre></div>
+<p>In the above code chunk, remove the <code>na.rm = TRUE</code> argument and run the query. What do you learn?</p>
+<p>The <code>SQL</code> syntax <strong>must</strong> always follow the order <code>SELECT, FROM, WHERE, GROUP BY, ORDER BY</code>, even though the operations can be performed in a different order than what is specified. This is one aspect that makes <code>SQL</code> harder to pick up than something like <code>dplyr</code>, where we specify what we want done in the order that we want.</p>
+<p>Below we give a little more detail about the 5 operations.</p>
+<p><strong><code>SELECT</code></strong>: <code>SELECT</code> covers a lot of <code>dplyr</code> functions. In the code below, we explore how it is used in <code>SQL</code> to choose which columns get returned, rename columns, and create new variables:</p>
+<ul>
+<li>
+<code>SELECT</code> to choose which columns to return:</li>
+</ul>
+<div class="sourceCode" id="cb525"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">tennis_db</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">4</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/explain.html">show_query</a></span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="co">#&gt; &lt;SQL&gt;</span></span>
+<span><span class="co">#&gt; SELECT "tourney_id", "tourney_name", "surface", "draw_size"</span></span>
+<span><span class="co">#&gt; FROM "tennis2019"</span></span></code></pre></div>
+<ul>
+<li>
+<code>SELECT</code> to rename columns:</li>
+</ul>
+<div class="sourceCode" id="cb526"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">tennis_db</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/rename.html">rename</a></span><span class="op">(</span>tournament <span class="op">=</span> <span class="va">tourney_name</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/explain.html">show_query</a></span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="co">#&gt; &lt;SQL&gt;</span></span>
+<span><span class="co">#&gt; SELECT</span></span>
+<span><span class="co">#&gt;   "tourney_id",</span></span>
+<span><span class="co">#&gt;   "tourney_name" AS "tournament",</span></span>
+<span><span class="co">#&gt;   "surface",</span></span>
+<span><span class="co">#&gt;   "draw_size",</span></span>
+<span><span class="co">#&gt;   "tourney_level",</span></span>
+<span><span class="co">#&gt;   "tourney_date",</span></span>
+<span><span class="co">#&gt;   "match_num",</span></span>
+<span><span class="co">#&gt;   "winner_id",</span></span>
+<span><span class="co">#&gt;   "winner_seed",</span></span>
+<span><span class="co">#&gt;   "winner_entry",</span></span>
+<span><span class="co">#&gt;   "winner_name",</span></span>
+<span><span class="co">#&gt;   "winner_hand",</span></span>
+<span><span class="co">#&gt;   "winner_ht",</span></span>
+<span><span class="co">#&gt;   "winner_ioc",</span></span>
+<span><span class="co">#&gt;   "winner_age",</span></span>
+<span><span class="co">#&gt;   "loser_id",</span></span>
+<span><span class="co">#&gt;   "loser_seed",</span></span>
+<span><span class="co">#&gt;   "loser_entry",</span></span>
+<span><span class="co">#&gt;   "loser_name",</span></span>
+<span><span class="co">#&gt;   "loser_hand",</span></span>
+<span><span class="co">#&gt;   "loser_ht",</span></span>
+<span><span class="co">#&gt;   "loser_ioc",</span></span>
+<span><span class="co">#&gt;   "loser_age",</span></span>
+<span><span class="co">#&gt;   "score",</span></span>
+<span><span class="co">#&gt;   "best_of",</span></span>
+<span><span class="co">#&gt;   "round",</span></span>
+<span><span class="co">#&gt;   "minutes",</span></span>
+<span><span class="co">#&gt;   "w_ace",</span></span>
+<span><span class="co">#&gt;   "w_df",</span></span>
+<span><span class="co">#&gt;   "w_svpt",</span></span>
+<span><span class="co">#&gt;   "w_1stIn",</span></span>
+<span><span class="co">#&gt;   "w_1stWon",</span></span>
+<span><span class="co">#&gt;   "w_2ndWon",</span></span>
+<span><span class="co">#&gt;   "w_SvGms",</span></span>
+<span><span class="co">#&gt;   "w_bpSaved",</span></span>
+<span><span class="co">#&gt;   "w_bpFaced",</span></span>
+<span><span class="co">#&gt;   "l_ace",</span></span>
+<span><span class="co">#&gt;   "l_df",</span></span>
+<span><span class="co">#&gt;   "l_svpt",</span></span>
+<span><span class="co">#&gt;   "l_1stIn",</span></span>
+<span><span class="co">#&gt;   "l_1stWon",</span></span>
+<span><span class="co">#&gt;   "l_2ndWon",</span></span>
+<span><span class="co">#&gt;   "l_SvGms",</span></span>
+<span><span class="co">#&gt;   "l_bpSaved",</span></span>
+<span><span class="co">#&gt;   "l_bpFaced",</span></span>
+<span><span class="co">#&gt;   "winner_rank",</span></span>
+<span><span class="co">#&gt;   "winner_rank_points",</span></span>
+<span><span class="co">#&gt;   "loser_rank",</span></span>
+<span><span class="co">#&gt;   "loser_rank_points"</span></span>
+<span><span class="co">#&gt; FROM "tennis2019"</span></span></code></pre></div>
+<ul>
+<li>
+<code>SELECT</code> to create a new variable</li>
+</ul>
+<div class="sourceCode" id="cb527"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">tennis_db</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>prop_first_won <span class="op">=</span> <span class="va">w_1stIn</span> <span class="op">/</span> <span class="va">w_1stWon</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">prop_first_won</span>, <span class="va">winner_name</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/explain.html">show_query</a></span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="co">#&gt; &lt;SQL&gt;</span></span>
+<span><span class="co">#&gt; SELECT "w_1stIn" / "w_1stWon" AS "prop_first_won", "winner_name"</span></span>
+<span><span class="co">#&gt; FROM "tennis2019"</span></span></code></pre></div>
+<ul>
+<li>
+<code>SELECT</code> to create a new variable that is a summary:</li>
+</ul>
+<div class="sourceCode" id="cb528"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">tennis_db</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise</a></span><span class="op">(</span>mean_length <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">minutes</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/explain.html">show_query</a></span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="co">#&gt; &lt;SQL&gt;</span></span>
+<span><span class="co">#&gt; SELECT AVG("minutes") AS "mean_length"</span></span>
+<span><span class="co">#&gt; FROM "tennis2019"</span></span></code></pre></div>
+<p><br></p>
+<p><strong><code>GROUP BY</code></strong>: <code>GROUP BY</code> covers aggregation in a similar way as <code>dplyr</code>’s <code><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by()</a></code> function:</p>
+<div class="sourceCode" id="cb529"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">tennis_db</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">winner_name</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise</a></span><span class="op">(</span>meanlength <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">minutes</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/explain.html">show_query</a></span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="co">#&gt; &lt;SQL&gt;</span></span>
+<span><span class="co">#&gt; SELECT "winner_name", AVG("minutes") AS "meanlength"</span></span>
+<span><span class="co">#&gt; FROM "tennis2019"</span></span>
+<span><span class="co">#&gt; GROUP BY "winner_name"</span></span></code></pre></div>
+<p><strong><code>WHERE</code></strong>: <code>WHERE</code> is used for <code><a href="https://dplyr.tidyverse.org/reference/filter.html">filter()</a></code>, though <code>SQL</code> uses different Boolean operators than <code>R</code> (for example, <code>&amp;</code> becomes <code>AND</code>, <code>|</code> becomes <code>or</code>).</p>
+<div class="sourceCode" id="cb530"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">tennis_db</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">winner_age</span> <span class="op">&gt;</span> <span class="fl">35</span> <span class="op">|</span> <span class="va">loser_age</span> <span class="op">&gt;</span> <span class="fl">35</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/explain.html">show_query</a></span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="co">#&gt; &lt;SQL&gt;</span></span>
+<span><span class="co">#&gt; SELECT *</span></span>
+<span><span class="co">#&gt; FROM "tennis2019"</span></span>
+<span><span class="co">#&gt; WHERE ("winner_age" &gt; 35.0 OR "loser_age" &gt; 35.0)</span></span></code></pre></div>
+<p><strong><code>ORDER BY</code></strong>: <code>ORDER BY</code> is used for <code><a href="https://dplyr.tidyverse.org/reference/arrange.html">arrange()</a></code>. This one is quite straightforward:</p>
+<div class="sourceCode" id="cb531"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">tennis_db</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/arrange.html">arrange</a></span><span class="op">(</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/desc.html">desc</a></span><span class="op">(</span><span class="va">winner_rank_points</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/explain.html">show_query</a></span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="co">#&gt; &lt;SQL&gt;</span></span>
+<span><span class="co">#&gt; SELECT *</span></span>
+<span><span class="co">#&gt; FROM "tennis2019"</span></span>
+<span><span class="co">#&gt; ORDER BY "winner_rank_points" DESC</span></span></code></pre></div>
+<p><code>SQL</code> also has corresponding syntax for the <code>xxxx_join()</code> family of functions, but we do not have time to discuss this in detail. Note that we have really just scratched the surface of <code>SQL</code>. There are entire courses devoted to learning <code>SQL</code> syntax and more about databases in general. If you ever do find yourself in a situation where you need to learn <code>SQL</code>, either for a course or for a job, you should have a major head-start with your <code>dplyr</code> knowledge!</p>
+<div id="exercise-16-3" class="section level3" number="17.3.1">
+<h3>
+<span class="header-section-number">17.3.1</span> Exercises<a class="anchor" aria-label="anchor" href="#exercise-16-3"><i class="fas fa-link"></i></a>
+</h3>
+<p>Exercises marked with an * indicate that the exercise has a solution at the end of the chapter at <a href="introduction-to-sql-with-dbplyr.html#solutions-16">17.5</a>.</p>
+<p>In much of this section, we have created code with <code>dplyr</code> and seen how that code translates to <code>SQL</code>. In these exercises, you will intead be given <code>SQL</code> code and asked to write <code>dplyr</code> code that achieves the same thing.</p>
+<ol style="list-style-type: decimal">
+<li>* Examine the <code>SQL</code> code below and write equivalent <code>dplyr</code> code.</li>
+</ol>
+<div class="sourceCode" id="cb532"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb532-1"><a href="introduction-to-sql-with-dbplyr.html#cb532-1" aria-hidden="true" tabindex="-1"></a>SELECT <span class="sc">*</span> </span>
+<span id="cb532-2"><a href="introduction-to-sql-with-dbplyr.html#cb532-2" aria-hidden="true" tabindex="-1"></a>FROM <span class="st">"tennis2019"</span></span>
+<span id="cb532-3"><a href="introduction-to-sql-with-dbplyr.html#cb532-3" aria-hidden="true" tabindex="-1"></a><span class="fu">WHERE</span> (<span class="st">"tourney_name"</span> <span class="ot">=</span> <span class="st">'Wimbledon'</span>)</span></code></pre></div>
+<ol start="2" style="list-style-type: decimal">
+<li>Examine the <code>SQL</code> code below and write equivalent <code>dplyr</code> code.</li>
+</ol>
+<div class="sourceCode" id="cb533"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb533-1"><a href="introduction-to-sql-with-dbplyr.html#cb533-1" aria-hidden="true" tabindex="-1"></a>SELECT <span class="st">"winner_name"</span>, <span class="st">"loser_name"</span>, <span class="st">"w_ace"</span>, <span class="st">"l_ace"</span>, <span class="st">"w_ace"</span> <span class="sc">-</span> <span class="st">"l_ace"</span> AS <span class="st">"ace_diff"</span></span>
+<span id="cb533-2"><a href="introduction-to-sql-with-dbplyr.html#cb533-2" aria-hidden="true" tabindex="-1"></a>FROM <span class="st">"tennis2019"</span></span>
+<span id="cb533-3"><a href="introduction-to-sql-with-dbplyr.html#cb533-3" aria-hidden="true" tabindex="-1"></a>ORDER BY <span class="st">"ace_diff"</span> DESC</span></code></pre></div>
+<ol start="3" style="list-style-type: decimal">
+<li>Examine the <code>SQL</code> code below and write equivalent <code>dplyr</code> code.</li>
+</ol>
+<div class="sourceCode" id="cb534"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb534-1"><a href="introduction-to-sql-with-dbplyr.html#cb534-1" aria-hidden="true" tabindex="-1"></a>SELECT <span class="st">"tourney_name"</span>, <span class="fu">AVG</span>(<span class="st">"minutes"</span>) AS <span class="st">"mean_min"</span></span>
+<span id="cb534-2"><a href="introduction-to-sql-with-dbplyr.html#cb534-2" aria-hidden="true" tabindex="-1"></a>FROM <span class="st">"tennis2019"</span></span>
+<span id="cb534-3"><a href="introduction-to-sql-with-dbplyr.html#cb534-3" aria-hidden="true" tabindex="-1"></a>GROUP BY <span class="st">"tourney_name"</span></span></code></pre></div>
+</div>
+</div>
+<div id="chapexercise-16" class="section level2" number="17.4">
+<h2>
+<span class="header-section-number">17.4</span> Chapter Exercises<a class="anchor" aria-label="anchor" href="#chapexercise-16"><i class="fas fa-link"></i></a>
+</h2>
+<p>Exercises marked with an * indicate that the exercise has a solution at the end of the chapter at <a href="introduction-to-sql-with-dbplyr.html#solutions-16">17.5</a>.</p>
+<ol style="list-style-type: decimal">
+<li>Run the following code:</li>
+</ol>
+<div class="sourceCode" id="cb535"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">tennis_db</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/slice.html">slice</a></span><span class="op">(</span><span class="fl">1000</span><span class="op">:</span><span class="fl">1005</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/explain.html">show_query</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
+<p>Make a hypothesis about why a function like <code><a href="https://dplyr.tidyverse.org/reference/slice.html">slice()</a></code> is not compatible with <code>dbplyr</code>.</p>
+<ol start="2" style="list-style-type: decimal">
+<li><p>* Try to run a function from <code>lubridate</code> or <code>forcats</code> on <code>tennis_db</code> with <code><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate()</a></code>. Does the function work? Did you expect it to work?</p></li>
+<li><p>Run the following code and write how the <code>!</code> is translated to <code>SQL</code>.</p></li>
+</ol>
+<div class="sourceCode" id="cb536"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">tennis_db</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">winner_name</span> <span class="op">!=</span> <span class="st">"Daniil Medvedev"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/explain.html">show_query</a></span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="co">#&gt; &lt;SQL&gt;</span></span>
+<span><span class="co">#&gt; SELECT *</span></span>
+<span><span class="co">#&gt; FROM "tennis2019"</span></span>
+<span><span class="co">#&gt; WHERE ("winner_name" != 'Daniil Medvedev')</span></span></code></pre></div>
+<ol start="4" style="list-style-type: decimal">
+<li>Run the following code and write how the <code>%in%</code> symbol is translated to <code>SQL</code>.</li>
+</ol>
+<div class="sourceCode" id="cb537"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">tennis_db</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">winner_name</span> <span class="op"><a href="https://rdrr.io/r/base/match.html">%in%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Daniil Medvedev"</span>, <span class="st">"Dominic Thiem"</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/explain.html">show_query</a></span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="co">#&gt; &lt;SQL&gt;</span></span>
+<span><span class="co">#&gt; SELECT *</span></span>
+<span><span class="co">#&gt; FROM "tennis2019"</span></span>
+<span><span class="co">#&gt; WHERE ("winner_name" IN ('Daniil Medvedev', 'Dominic Thiem'))</span></span></code></pre></div>
+</div>
+<div id="solutions-16" class="section level2" number="17.5">
+<h2>
+<span class="header-section-number">17.5</span> Exercise Solutions<a class="anchor" aria-label="anchor" href="#solutions-16"><i class="fas fa-link"></i></a>
+</h2>
+<div id="what-is-a-database-s" class="section level3" number="17.5.1">
+<h3>
+<span class="header-section-number">17.5.1</span> What is a Database S<a class="anchor" aria-label="anchor" href="#what-is-a-database-s"><i class="fas fa-link"></i></a>
+</h3>
+<ol style="list-style-type: decimal">
+<li>* Though we do not know SQL code, we can probably figure out what the code above is doing. Which matches are being returned from our query?</li>
+</ol>
+<p>The code is keeping any matches that are longer than 240 minutes. It is also getting rid of all of the columns except for those specified in <code>SELECT</code>.</p>
+</div>
+<div id="dbplyr-a-database-version-of-dplyr-s" class="section level3" number="17.5.2">
+<h3>
+<span class="header-section-number">17.5.2</span> <code>dbplyr</code>: A Database Version of <code>dplyr</code> S<a class="anchor" aria-label="anchor" href="#dbplyr-a-database-version-of-dplyr-s"><i class="fas fa-link"></i></a>
+</h3>
+<ol style="list-style-type: decimal">
+<li>* Obtain the distribution of the <code>surface</code> variable by making a table of the total number of matches played on each surface in the 2019 season using <code>dplyr</code> functions on <code>tennis_db</code>. Then, use <code><a href="https://dplyr.tidyverse.org/reference/explain.html">show_query()</a></code> to show the corresponding <code>SQL</code> code.</li>
+</ol>
+<div class="sourceCode" id="cb538"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">tennis_db</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">surface</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise</a></span><span class="op">(</span>nmatch <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/context.html">n</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="co">#&gt; # Source:   SQL [3 x 2]</span></span>
+<span><span class="co">#&gt; # Database: DuckDB 0.3.5-dev1410 [root@Darwin 21.6.0:R 4.2.1/:memory:]</span></span>
+<span><span class="co">#&gt;   surface nmatch</span></span>
+<span><span class="co">#&gt;   &lt;chr&gt;    &lt;dbl&gt;</span></span>
+<span><span class="co">#&gt; 1 Hard      1626</span></span>
+<span><span class="co">#&gt; 2 Clay       828</span></span>
+<span><span class="co">#&gt; 3 Grass      327</span></span>
+<span></span>
+<span><span class="va">tennis_db</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">surface</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise</a></span><span class="op">(</span>nmatch <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/context.html">n</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/explain.html">show_query</a></span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="co">#&gt; &lt;SQL&gt;</span></span>
+<span><span class="co">#&gt; SELECT "surface", COUNT(*) AS "nmatch"</span></span>
+<span><span class="co">#&gt; FROM "tennis2019"</span></span>
+<span><span class="co">#&gt; GROUP BY "surface"</span></span></code></pre></div>
+</div>
+<div id="sql-s" class="section level3" number="17.5.3">
+<h3>
+<span class="header-section-number">17.5.3</span> SQL S<a class="anchor" aria-label="anchor" href="#sql-s"><i class="fas fa-link"></i></a>
+</h3>
+<ol style="list-style-type: decimal">
+<li>* Examine the <code>SQL</code> code below and write equivalent <code>dplyr</code> code.</li>
+</ol>
+<div class="sourceCode" id="cb539"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb539-1"><a href="introduction-to-sql-with-dbplyr.html#cb539-1" aria-hidden="true" tabindex="-1"></a>SELECT <span class="sc">*</span> </span>
+<span id="cb539-2"><a href="introduction-to-sql-with-dbplyr.html#cb539-2" aria-hidden="true" tabindex="-1"></a>FROM <span class="st">"tennis2019"</span></span>
+<span id="cb539-3"><a href="introduction-to-sql-with-dbplyr.html#cb539-3" aria-hidden="true" tabindex="-1"></a><span class="fu">WHERE</span> (<span class="st">"tourney_name"</span> <span class="ot">=</span> <span class="st">'Wimbledon'</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb540"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">tennis_db</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">tourney_name</span> <span class="op">==</span> <span class="st">"Wimbledon"</span><span class="op">)</span></span>
+<span><span class="co">#&gt; # Source:   SQL [?? x 49]</span></span>
+<span><span class="co">#&gt; # Database: DuckDB 0.3.5-dev1410 [root@Darwin 21.6.0:R 4.2.1/:memory:]</span></span>
+<span><span class="co">#&gt;    tourney…¹ tourn…² surface draw_…³ tourn…⁴ tourn…⁵ match…⁶</span></span>
+<span><span class="co">#&gt;    &lt;chr&gt;     &lt;chr&gt;   &lt;chr&gt;     &lt;int&gt; &lt;chr&gt;     &lt;int&gt;   &lt;int&gt;</span></span>
+<span><span class="co">#&gt;  1 2019-540  Wimble… Grass       128 G        2.02e7     100</span></span>
+<span><span class="co">#&gt;  2 2019-540  Wimble… Grass       128 G        2.02e7     101</span></span>
+<span><span class="co">#&gt;  3 2019-540  Wimble… Grass       128 G        2.02e7     102</span></span>
+<span><span class="co">#&gt;  4 2019-540  Wimble… Grass       128 G        2.02e7     103</span></span>
+<span><span class="co">#&gt;  5 2019-540  Wimble… Grass       128 G        2.02e7     104</span></span>
+<span><span class="co">#&gt;  6 2019-540  Wimble… Grass       128 G        2.02e7     105</span></span>
+<span><span class="co">#&gt;  7 2019-540  Wimble… Grass       128 G        2.02e7     106</span></span>
+<span><span class="co">#&gt;  8 2019-540  Wimble… Grass       128 G        2.02e7     107</span></span>
+<span><span class="co">#&gt;  9 2019-540  Wimble… Grass       128 G        2.02e7     108</span></span>
+<span><span class="co">#&gt; 10 2019-540  Wimble… Grass       128 G        2.02e7     109</span></span>
+<span><span class="co">#&gt; # … with more rows, 42 more variables: winner_id &lt;int&gt;,</span></span>
+<span><span class="co">#&gt; #   winner_seed &lt;chr&gt;, winner_entry &lt;chr&gt;,</span></span>
+<span><span class="co">#&gt; #   winner_name &lt;chr&gt;, winner_hand &lt;chr&gt;, winner_ht &lt;int&gt;,</span></span>
+<span><span class="co">#&gt; #   winner_ioc &lt;chr&gt;, winner_age &lt;dbl&gt;, loser_id &lt;int&gt;,</span></span>
+<span><span class="co">#&gt; #   loser_seed &lt;chr&gt;, loser_entry &lt;chr&gt;, loser_name &lt;chr&gt;,</span></span>
+<span><span class="co">#&gt; #   loser_hand &lt;chr&gt;, loser_ht &lt;int&gt;, loser_ioc &lt;chr&gt;,</span></span>
+<span><span class="co">#&gt; #   loser_age &lt;dbl&gt;, score &lt;chr&gt;, best_of &lt;int&gt;, …</span></span>
+<span><span class="co">#&gt; # ℹ Use `print(n = ...)` to see more rows, and `colnames()` to see all variable names</span></span>
+<span></span>
+<span><span class="co">## check query:</span></span>
+<span><span class="va">tennis_db</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">tourney_name</span> <span class="op">==</span> <span class="st">"Wimbledon"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/explain.html">show_query</a></span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="co">#&gt; &lt;SQL&gt;</span></span>
+<span><span class="co">#&gt; SELECT *</span></span>
+<span><span class="co">#&gt; FROM "tennis2019"</span></span>
+<span><span class="co">#&gt; WHERE ("tourney_name" = 'Wimbledon')</span></span></code></pre></div>
+</div>
+<div id="chapexercise-16-S" class="section level3" number="17.5.4">
+<h3>
+<span class="header-section-number">17.5.4</span> Chapter Exercises S<a class="anchor" aria-label="anchor" href="#chapexercise-16-S"><i class="fas fa-link"></i></a>
+</h3>
+<ol start="2" style="list-style-type: decimal">
+<li>* Try to run a function from <code>lubridate</code> or <code>forcats</code> on <code>tennis_db</code> with <code><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate()</a></code>. Does the function work? Did you expect it to work?</li>
+</ol>
+<div class="sourceCode" id="cb541"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">tennis_db</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>tourney_name_reorder <span class="op">=</span> <span class="fu"><a href="https://forcats.tidyverse.org/reference/fct_reorder.html">fct_reorder</a></span><span class="op">(</span><span class="va">tourney_name</span>, </span>
+<span>                                                       <span class="va">draw_size</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<p>The result is an error. Only functions compatible with the <code>dbplyr</code> package can be used on a database table. Functions specific to <code>R</code>, like those in <code>lubridate</code> and <code>forcats</code> cannot work until we <code><a href="https://dplyr.tidyverse.org/reference/compute.html">collect()</a></code> the database table into a data frame or tibble:</p>
+<div class="sourceCode" id="cb542"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">tennis_db</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/compute.html">collect</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>tourney_name_reorder <span class="op">=</span> <span class="fu"><a href="https://forcats.tidyverse.org/reference/fct_reorder.html">fct_reorder</a></span><span class="op">(</span><span class="va">tourney_name</span>, </span>
+<span>                                                       <span class="va">draw_size</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="co">#&gt; # A tibble: 2,781 × 50</span></span>
+<span><span class="co">#&gt;    tourney…¹ tourn…² surface draw_…³ tourn…⁴ tourn…⁵ match…⁶</span></span>
+<span><span class="co">#&gt;    &lt;chr&gt;     &lt;chr&gt;   &lt;chr&gt;     &lt;int&gt; &lt;chr&gt;     &lt;int&gt;   &lt;int&gt;</span></span>
+<span><span class="co">#&gt;  1 2019-M020 Brisba… Hard         32 A        2.02e7     300</span></span>
+<span><span class="co">#&gt;  2 2019-M020 Brisba… Hard         32 A        2.02e7     299</span></span>
+<span><span class="co">#&gt;  3 2019-M020 Brisba… Hard         32 A        2.02e7     298</span></span>
+<span><span class="co">#&gt;  4 2019-M020 Brisba… Hard         32 A        2.02e7     297</span></span>
+<span><span class="co">#&gt;  5 2019-M020 Brisba… Hard         32 A        2.02e7     296</span></span>
+<span><span class="co">#&gt;  6 2019-M020 Brisba… Hard         32 A        2.02e7     295</span></span>
+<span><span class="co">#&gt;  7 2019-M020 Brisba… Hard         32 A        2.02e7     294</span></span>
+<span><span class="co">#&gt;  8 2019-M020 Brisba… Hard         32 A        2.02e7     293</span></span>
+<span><span class="co">#&gt;  9 2019-M020 Brisba… Hard         32 A        2.02e7     292</span></span>
+<span><span class="co">#&gt; 10 2019-M020 Brisba… Hard         32 A        2.02e7     291</span></span>
+<span><span class="co">#&gt; # … with 2,771 more rows, 43 more variables:</span></span>
+<span><span class="co">#&gt; #   winner_id &lt;int&gt;, winner_seed &lt;chr&gt;, winner_entry &lt;chr&gt;,</span></span>
+<span><span class="co">#&gt; #   winner_name &lt;chr&gt;, winner_hand &lt;chr&gt;, winner_ht &lt;int&gt;,</span></span>
+<span><span class="co">#&gt; #   winner_ioc &lt;chr&gt;, winner_age &lt;dbl&gt;, loser_id &lt;int&gt;,</span></span>
+<span><span class="co">#&gt; #   loser_seed &lt;chr&gt;, loser_entry &lt;chr&gt;, loser_name &lt;chr&gt;,</span></span>
+<span><span class="co">#&gt; #   loser_hand &lt;chr&gt;, loser_ht &lt;int&gt;, loser_ioc &lt;chr&gt;,</span></span>
+<span><span class="co">#&gt; #   loser_age &lt;dbl&gt;, score &lt;chr&gt;, best_of &lt;int&gt;, …</span></span>
+<span><span class="co">#&gt; # ℹ Use `print(n = ...)` to see more rows, and `colnames()` to see all variable names</span></span></code></pre></div>
+</div>
+</div>
+<div id="rcode-16" class="section level2" number="17.6">
+<h2>
+<span class="header-section-number">17.6</span> Non-Exercise <code>R</code> Code<a class="anchor" aria-label="anchor" href="#rcode-16"><i class="fas fa-link"></i></a>
+</h2>
+<div class="sourceCode" id="cb543"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://dbi.r-dbi.org">DBI</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://duckdb.org/">duckdb</a></span><span class="op">)</span></span>
+<span><span class="va">con</span> <span class="op">&lt;-</span> <span class="fu">DBI</span><span class="fu">::</span><span class="fu"><a href="https://dbi.r-dbi.org/reference/dbConnect.html">dbConnect</a></span><span class="op">(</span><span class="fu">duckdb</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/duckdb/man/duckdb.html">duckdb</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="va">con</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://here.r-lib.org/">here</a></span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/pkg/duckdb/man/duckdb_read_csv.html">duckdb_read_csv</a></span><span class="op">(</span>conn <span class="op">=</span> <span class="va">con</span>, name <span class="op">=</span> <span class="st">"tennis2018"</span>, </span>
+<span>                files <span class="op">=</span> <span class="fu"><a href="https://here.r-lib.org//reference/here.html">here</a></span><span class="op">(</span><span class="st">"data/atp_matches_2018.csv"</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/pkg/duckdb/man/duckdb_read_csv.html">duckdb_read_csv</a></span><span class="op">(</span>conn <span class="op">=</span> <span class="va">con</span>, name <span class="op">=</span> <span class="st">"tennis2019"</span>, </span>
+<span>                files <span class="op">=</span> <span class="fu"><a href="https://here.r-lib.org//reference/here.html">here</a></span><span class="op">(</span><span class="st">"data/atp_matches_2019.csv"</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://dbi.r-dbi.org/reference/dbListTables.html">dbListTables</a></span><span class="op">(</span><span class="va">con</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://dbi.r-dbi.org/reference/dbExistsTable.html">dbExistsTable</a></span><span class="op">(</span><span class="va">con</span>, <span class="st">"tennis2019"</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://dbi.r-dbi.org/reference/dbExistsTable.html">dbExistsTable</a></span><span class="op">(</span><span class="va">con</span>, <span class="st">"tennis2020"</span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">sql</span> <span class="op">&lt;-</span> <span class="st">"</span></span>
+<span><span class="st">  SELECT surface, winner_name, loser_name, w_ace, l_ace, minutes</span></span>
+<span><span class="st">  FROM tennis2019 </span></span>
+<span><span class="st">  WHERE minutes &gt; 240</span></span>
+<span><span class="st">"</span></span>
+<span><span class="fu"><a href="https://dbi.r-dbi.org/reference/dbGetQuery.html">dbGetQuery</a></span><span class="op">(</span><span class="va">con</span>, <span class="va">sql</span><span class="op">)</span><span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://tibble.tidyverse.org/reference/as_tibble.html">as_tibble</a></span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://dbplyr.tidyverse.org/">dbplyr</a></span><span class="op">)</span></span>
+<span><span class="va">tennis_db</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/tbl.html">tbl</a></span><span class="op">(</span><span class="va">con</span>, <span class="st">"tennis2019"</span><span class="op">)</span></span>
+<span><span class="va">tennis_db</span></span>
+<span><span class="va">tennis_query1</span> <span class="op">&lt;-</span> <span class="va">tennis_db</span> <span class="op">|&gt;</span> </span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">minutes</span> <span class="op">&gt;</span> <span class="fl">240</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">minutes</span>, <span class="va">winner_name</span>, <span class="va">loser_name</span>, <span class="va">minutes</span>, <span class="va">tourney_name</span><span class="op">)</span></span>
+<span><span class="va">tennis_query1</span></span>
+<span><span class="va">tennis_query1</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/compute.html">collect</a></span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="va">tennis_query1</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/explain.html">show_query</a></span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="va">medvedev_query</span> <span class="op">&lt;-</span> <span class="va">tennis_db</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://tidyr.tidyverse.org/reference/pivot_longer.html">pivot_longer</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="va">winner_name</span>, <span class="va">loser_name</span><span class="op">)</span>, names_to <span class="op">=</span> <span class="st">"win_loss"</span>,</span>
+<span>               values_to <span class="op">=</span> <span class="st">"player"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">player</span> <span class="op">==</span> <span class="st">"Daniil Medvedev"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">win_loss</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise</a></span><span class="op">(</span>win_loss_count <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/context.html">n</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="va">medvedev_query</span></span>
+<span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/explain.html">show_query</a></span><span class="op">(</span><span class="va">medvedev_query</span><span class="op">)</span></span>
+<span><span class="va">over20aces</span> <span class="op">&lt;-</span> <span class="va">tennis_db</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">w_ace</span> <span class="op">&gt;</span> <span class="fl">20</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">w_ace</span>, <span class="va">winner_name</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">winner_name</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise</a></span><span class="op">(</span>nmatch <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/context.html">n</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/arrange.html">arrange</a></span><span class="op">(</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/desc.html">desc</a></span><span class="op">(</span><span class="va">nmatch</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="va">over20aces</span></span>
+<span></span>
+<span><span class="va">over20aces</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/explain.html">show_query</a></span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="va">tennis_db</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/explain.html">show_query</a></span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="va">tennis_db</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">winner_hand</span> <span class="op">==</span> <span class="st">"L"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/arrange.html">arrange</a></span><span class="op">(</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/desc.html">desc</a></span><span class="op">(</span><span class="va">tourney_date</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/explain.html">show_query</a></span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="va">tennis_db</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">winner_name</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise</a></span><span class="op">(</span>meanace <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">w_ace</span>, na.rm <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/explain.html">show_query</a></span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="va">tennis_db</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">4</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/explain.html">show_query</a></span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="va">tennis_db</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/rename.html">rename</a></span><span class="op">(</span>tournament <span class="op">=</span> <span class="va">tourney_name</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/explain.html">show_query</a></span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="va">tennis_db</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>prop_first_won <span class="op">=</span> <span class="va">w_1stIn</span> <span class="op">/</span> <span class="va">w_1stWon</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">prop_first_won</span>, <span class="va">winner_name</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/explain.html">show_query</a></span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="va">tennis_db</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise</a></span><span class="op">(</span>mean_length <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">minutes</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/explain.html">show_query</a></span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="va">tennis_db</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">winner_name</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise</a></span><span class="op">(</span>meanlength <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">minutes</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/explain.html">show_query</a></span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="va">tennis_db</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">winner_age</span> <span class="op">&gt;</span> <span class="fl">35</span> <span class="op">|</span> <span class="va">loser_age</span> <span class="op">&gt;</span> <span class="fl">35</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/explain.html">show_query</a></span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="va">tennis_db</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/arrange.html">arrange</a></span><span class="op">(</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/desc.html">desc</a></span><span class="op">(</span><span class="va">winner_rank_points</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/explain.html">show_query</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
+
+</div>
+</div>
+  <div class="chapter-nav">
+<div class="prev"><a href="connections-to-stat-113-stat-213-and-cs-140.html"><span class="header-section-number">16</span> Connections to STAT 113, STAT 213, and CS 140</a></div>
+<div class="empty"></div>
+</div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
+    <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>On this page</h2>
+      <ul class="nav navbar-nav">
+<li><a class="nav-link" href="#introduction-to-sql-with-dbplyr"><span class="header-section-number">17</span> Introduction to SQL with dbplyr</a></li>
+<li>
+<a class="nav-link" href="#what-is-a-database"><span class="header-section-number">17.1</span> What is a Database</a><ul class="nav navbar-nav"><li><a class="nav-link" href="#exercise-16-1"><span class="header-section-number">17.1.1</span> Exercises</a></li></ul>
+</li>
+<li>
+<a class="nav-link" href="#dbplyr-a-database-version-of-dplyr"><span class="header-section-number">17.2</span> dbplyr: A Database Version of dplyr</a><ul class="nav navbar-nav"><li><a class="nav-link" href="#exercise-16-2"><span class="header-section-number">17.2.1</span> Exercises</a></li></ul>
+</li>
+<li>
+<a class="nav-link" href="#sql"><span class="header-section-number">17.3</span> SQL</a><ul class="nav navbar-nav"><li><a class="nav-link" href="#exercise-16-3"><span class="header-section-number">17.3.1</span> Exercises</a></li></ul>
+</li>
+<li><a class="nav-link" href="#chapexercise-16"><span class="header-section-number">17.4</span> Chapter Exercises</a></li>
+<li>
+<a class="nav-link" href="#solutions-16"><span class="header-section-number">17.5</span> Exercise Solutions</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#what-is-a-database-s"><span class="header-section-number">17.5.1</span> What is a Database S</a></li>
+<li><a class="nav-link" href="#dbplyr-a-database-version-of-dplyr-s"><span class="header-section-number">17.5.2</span> dbplyr: A Database Version of dplyr S</a></li>
+<li><a class="nav-link" href="#sql-s"><span class="header-section-number">17.5.3</span> SQL S</a></li>
+<li><a class="nav-link" href="#chapexercise-16-S"><span class="header-section-number">17.5.4</span> Chapter Exercises S</a></li>
+</ul>
+</li>
+<li><a class="nav-link" href="#rcode-16"><span class="header-section-number">17.6</span> Non-Exercise R Code</a></li>
+</ul>
+
+      <div class="book-extra">
+        <ul class="list-unstyled">
+          
+        </ul>
+</div>
+    </nav>
+</div>
+
+</div>
+</div> <!-- .container -->
+
+<footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>"<strong>STAT 234: Data Science</strong>" was written by Matt Higham. It was last built on 2022-09-14.</p>
+  </div>
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>This book was built by the <a class="text-light" href="https://bookdown.org">bookdown</a> R package.</p>
+  </div>
+
+</div></div>
+</footer><!-- dynamically load mathjax for compatibility with self-contained --><script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script><script type="text/x-mathjax-config">const popovers = document.querySelectorAll('a.footnote-ref[data-toggle="popover"]');
+for (let popover of popovers) {
+  const div = document.createElement('div');
+  div.setAttribute('style', 'position: absolute; top: 0, left:0; width:0, height:0, overflow: hidden; visibility: hidden;');
+  div.innerHTML = popover.getAttribute('data-content');
+
+  var has_math = div.querySelector("span.math");
+  if (has_math) {
+    document.body.appendChild(div);
+    MathJax.Hub.Queue(["Typeset", MathJax.Hub, div]);
+    MathJax.Hub.Queue(function() {
+      popover.setAttribute('data-content', div.innerHTML);
+      document.body.removeChild(div);
+    })
+  }
+}
+</script>
+</body>
+</html>

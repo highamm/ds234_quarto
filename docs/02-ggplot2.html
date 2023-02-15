@@ -1,0 +1,1271 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.0.36">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>DATA / STAT 234 - 3&nbsp; Plotting with ggplot2</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+span.underline{text-decoration: underline;}
+div.column{display: inline-block; vertical-align: top; width: 50%;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./03-dplyr.html" rel="next">
+<link href="./01-intro.html" rel="prev">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+
+
+</head>
+
+<body class="nav-sidebar floating">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+    <div class="container-fluid d-flex justify-content-between">
+      <h1 class="quarto-secondary-nav-title"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Plotting with <code>ggplot2</code></span></h1>
+      <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
+        <i class="bi bi-chevron-right"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">DATA / STAT 234</a> 
+    </div>
+      </div>
+      <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+      </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">The Core</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">STAT 234: Data Science</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./01-intro.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Getting Started with <code>R</code> and <code>R Studio</code></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./02-ggplot2.html" class="sidebar-item-text sidebar-link active"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Plotting with <code>ggplot2</code></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./03-dplyr.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Wrangling with <code>dplyr</code></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./05-comm.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Communication with <code>Quarto</code></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./14-workflow.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Workflow and Other Skills</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">Data Wrangling</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./04-tidyr.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Tidying with <code>tidyr</code></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./06-basics.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Coding in Base <code>R</code></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./07-forcats.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Factors with <code>forcats</code></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./09-ethics.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Data Ethics</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./08-import.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Data Import</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./10-merging.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Merging with <code>dplyr</code></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">Special Topics</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./11-lubridate.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Dates with <code>lubridate</code></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./12-stringr.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Text Data with <code>tidytext</code> and <code>stringr</code></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./13-knn.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Predictive Modeling with knn</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./15-connections.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Connections to STAT 113, STAT 213, and CS 140</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./16-sql.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Introduction to SQL with <code>dbplyr</code></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#introduction-and-basic-terminology" id="toc-introduction-and-basic-terminology" class="nav-link active" data-scroll-target="#introduction-and-basic-terminology"> <span class="header-section-number">3.1</span> Introduction and Basic Terminology</a></li>
+  <li><a href="#basic-plot-structure" id="toc-basic-plot-structure" class="nav-link" data-scroll-target="#basic-plot-structure"> <span class="header-section-number">3.2</span> Basic Plot Structure</a></li>
+  <li><a href="#graphing-a-single-variable" id="toc-graphing-a-single-variable" class="nav-link" data-scroll-target="#graphing-a-single-variable"> <span class="header-section-number">3.3</span> Graphing a Single Variable</a>
+  <ul class="collapse">
+  <li><a href="#histograms-and-frequency-plots-for-a-quantitative-variable" id="toc-histograms-and-frequency-plots-for-a-quantitative-variable" class="nav-link" data-scroll-target="#histograms-and-frequency-plots-for-a-quantitative-variable"> <span class="header-section-number">3.3.1</span> Histograms and Frequency Plots for a Quantitative Variable</a></li>
+  <li><a href="#r-code-style" id="toc-r-code-style" class="nav-link" data-scroll-target="#r-code-style"> <span class="header-section-number">3.3.2</span> <code>R</code> Code Style</a></li>
+  <li><a href="#bar-plots-for-a-categorical-variable" id="toc-bar-plots-for-a-categorical-variable" class="nav-link" data-scroll-target="#bar-plots-for-a-categorical-variable"> <span class="header-section-number">3.3.3</span> Bar Plots for a Categorical Variable</a></li>
+  <li><a href="#exercise-2-1" id="toc-exercise-2-1" class="nav-link" data-scroll-target="#exercise-2-1"> <span class="header-section-number">3.3.4</span> Exercises</a></li>
+  </ul></li>
+  <li><a href="#graphing-two-quantitative-variables-faceting-and-aes-options" id="toc-graphing-two-quantitative-variables-faceting-and-aes-options" class="nav-link" data-scroll-target="#graphing-two-quantitative-variables-faceting-and-aes-options"> <span class="header-section-number">3.4</span> Graphing Two Quantitative Variables, Faceting, and <code>aes()</code> Options</a>
+  <ul class="collapse">
+  <li><a href="#scatterplots" id="toc-scatterplots" class="nav-link" data-scroll-target="#scatterplots"> <span class="header-section-number">3.4.1</span> Scatterplots</a></li>
+  <li><a href="#aesthetics-in-aes" id="toc-aesthetics-in-aes" class="nav-link" data-scroll-target="#aesthetics-in-aes"> <span class="header-section-number">3.4.2</span> Aesthetics in <code>aes()</code></a></li>
+  <li><a href="#using-more-than-one-geom" id="toc-using-more-than-one-geom" class="nav-link" data-scroll-target="#using-more-than-one-geom"> <span class="header-section-number">3.4.3</span> Using More Than One <code>geom()</code></a></li>
+  <li><a href="#line-plots-with-geom_line" id="toc-line-plots-with-geom_line" class="nav-link" data-scroll-target="#line-plots-with-geom_line"> <span class="header-section-number">3.4.4</span> Line Plots with <code>geom_line()</code></a></li>
+  <li><a href="#faceting" id="toc-faceting" class="nav-link" data-scroll-target="#faceting"> <span class="header-section-number">3.4.5</span> Faceting</a></li>
+  <li><a href="#exercise-2-2" id="toc-exercise-2-2" class="nav-link" data-scroll-target="#exercise-2-2"> <span class="header-section-number">3.4.6</span> Exercises</a></li>
+  </ul></li>
+  <li><a href="#boxplots-stacked-barplots-and-others" id="toc-boxplots-stacked-barplots-and-others" class="nav-link" data-scroll-target="#boxplots-stacked-barplots-and-others"> <span class="header-section-number">3.5</span> Boxplots, Stacked Barplots and Others</a>
+  <ul class="collapse">
+  <li><a href="#graphing-a-quant.-variable-vs.-a-cat.-variable" id="toc-graphing-a-quant.-variable-vs.-a-cat.-variable" class="nav-link" data-scroll-target="#graphing-a-quant.-variable-vs.-a-cat.-variable"> <span class="header-section-number">3.5.1</span> Graphing a Quant. Variable vs.&nbsp;a Cat. Variable</a></li>
+  <li><a href="#graphing-two-categorical-variables" id="toc-graphing-two-categorical-variables" class="nav-link" data-scroll-target="#graphing-two-categorical-variables"> <span class="header-section-number">3.5.2</span> Graphing Two Categorical Variables</a></li>
+  <li><a href="#exercise-2-3" id="toc-exercise-2-3" class="nav-link" data-scroll-target="#exercise-2-3"> <span class="header-section-number">3.5.3</span> Exercises</a></li>
+  </ul></li>
+  <li><a href="#chapexercise-2" id="toc-chapexercise-2" class="nav-link" data-scroll-target="#chapexercise-2"> <span class="header-section-number">3.6</span> Chapter Exercises</a></li>
+  <li><a href="#solutions-2" id="toc-solutions-2" class="nav-link" data-scroll-target="#solutions-2"> <span class="header-section-number">3.7</span> Exercise Solutions</a>
+  <ul class="collapse">
+  <li><a href="#introduction-etc.-s" id="toc-introduction-etc.-s" class="nav-link" data-scroll-target="#introduction-etc.-s"> <span class="header-section-number">3.7.1</span> Introduction etc. S</a></li>
+  <li><a href="#basic-plot-structure-s" id="toc-basic-plot-structure-s" class="nav-link" data-scroll-target="#basic-plot-structure-s"> <span class="header-section-number">3.7.2</span> Basic Plot Structure S</a></li>
+  <li><a href="#graphing-a-single-variable-s" id="toc-graphing-a-single-variable-s" class="nav-link" data-scroll-target="#graphing-a-single-variable-s"> <span class="header-section-number">3.7.3</span> Graphing a Single Variable S</a></li>
+  <li><a href="#graphing-two-quant.-etc.-s" id="toc-graphing-two-quant.-etc.-s" class="nav-link" data-scroll-target="#graphing-two-quant.-etc.-s"> <span class="header-section-number">3.7.4</span> Graphing Two Quant. etc. S</a></li>
+  <li><a href="#boxplots-stacked-etc.-s" id="toc-boxplots-stacked-etc.-s" class="nav-link" data-scroll-target="#boxplots-stacked-etc.-s"> <span class="header-section-number">3.7.5</span> Boxplots, Stacked, etc. S</a></li>
+  <li><a href="#chapexercise-2-S" id="toc-chapexercise-2-S" class="nav-link" data-scroll-target="#chapexercise-2-S"> <span class="header-section-number">3.7.6</span> Chapter Exercises S</a></li>
+  </ul></li>
+  <li><a href="#rcode-2" id="toc-rcode-2" class="nav-link" data-scroll-target="#rcode-2"> <span class="header-section-number">3.8</span> Non-Exercise <code>R</code> Code</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title"><span id="ggplot2" class="quarto-section-identifier d-none d-lg-block"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Plotting with <code>ggplot2</code></span></span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+    
+  </div>
+  
+
+</header>
+
+<p><strong>Goals:</strong></p>
+<ol type="1">
+<li><p>Use the <code>ggplot2</code> package to make exploratory plots from STAT 113 of a single quantitative variable, two quantitative variables, a quantitative and a categorical variable, a single categorical variable, and two categorical variables.</p></li>
+<li><p>Use the plots produced to answer questions about the Presidential election data set and the Fitness data set.</p></li>
+<li><p>Further practice running code in <code>R</code>.</p></li>
+</ol>
+<section id="introduction-and-basic-terminology" class="level2" data-number="3.1">
+<h2 data-number="3.1" class="anchored" data-anchor-id="introduction-and-basic-terminology"><span class="header-section-number">3.1</span> Introduction and Basic Terminology</h2>
+<p>We will begin our data science journey with plotting in the <code>ggplot2</code> package. We are starting with plotting for a couple of reasons:</p>
+<ol type="1">
+<li><p>Plotting is cool! We get to see an immediate result of our coding efforts in the form of a nice-to-look-at plot.</p></li>
+<li><p>In an exploratory data analysis, you would typically start by making plots of your data.</p></li>
+<li><p>Plotting can lead us to ask and subsequently investigate interesting questions, as we will see in our first example.</p></li>
+</ol>
+<p>We will first use a data set on the 2000 United States Presidential election between former President George Bush and Al Gore obtained from <a href="http://www.econometrics.com/intro/votes.htm" target="_blank">http://www.econometrics.com/intro/votes.htm</a>. For those unfamiliar with U.S. political elections, it is enough to know that each state is allocated a certain number of “electoral votes” for the president: states award all of their electoral votes to the candidate that receives the most ballots in that state. You can read more about this strange system <a href="https://en.wikipedia.org/wiki/United_States_Electoral_College" target="_blank">on Wikipedia</a>.</p>
+<p>Florida is typically a highly-contentious “battleground” state. The data set that we have has the following variables, recorded for each of the 67 counties in Florida:</p>
+<ul>
+<li><code>Gore</code>, the number of people who voted for Al Gore in 2000</li>
+<li><code>Bush</code>, the number of people who voted for George Bush in 2000</li>
+<li><code>Buchanan</code>, the number of people who voted for the third-party candidate Buchanan</li>
+<li><code>Nader</code>, the number of people who voted for the third-party candidate Nader</li>
+<li><code>Other</code>, the number of people who voted for a candidate other than the previous 4 listed</li>
+<li><code>County</code>, the name of the county in Florida</li>
+</ul>
+<p>To get started exploring the data, complete the following steps that you learned in Week 0:</p>
+<ol type="1">
+<li><p>Open your <code>R Project</code> by double clicking the <code>.RProj</code> icon in the folder on your desktop, or, by opening <code>R Studio</code> and clicking <code>File -&gt; Open Project</code>.</p></li>
+<li><p>Create a new .qmd file in the same folder as your Notes <code>R Project</code> using File -&gt; New File -&gt; <code>Quarto</code>.</p></li>
+<li><p>Finally, read in and name the data set <code>pres_df</code>, and take a look at the data set by running the <code>head(pres_df)</code> line, which shows the first few observations of the data set:</p></li>
+</ol>
+<div class="cell" data-appendix="true">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>pres_df <span class="ot">&lt;-</span> <span class="fu">read_table</span>(<span class="st">"data/PRES2000.txt"</span>) </span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="do">## don't worry about the `read_table` function....yet</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(pres_df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 6 × 6
+    Gore   Bush Buchanan Nader Other County  
+   &lt;dbl&gt;  &lt;dbl&gt;    &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;   
+1  47365  34124      263  3226   751 ALACHUA 
+2   2392   5610       73    53    26 BAKER   
+3  18850  38637      248   828   242 BAY     
+4   3075   5414       65    84    35 BRADFORD
+5  97318 115185      570  4470   852 BREVARD 
+6 386561 177323      788  7101  1623 BROWAR  </code></pre>
+</div>
+</div>
+<p>Pay special attention to the variable names: we’ll need to use these names when we make all of our plots. And, <code>R</code> is case-sensitive, meaning that we will, for example, need to use <code>Gore</code>, not <code>gore</code>.</p>
+<p>We are trying to go very light on the technical code terminology to start out with (but we will come back to some things later in the semester). The terminology will make a lot more sense once you’ve actually worked with data. But, there are three terms that will be thrown around quite a bit in the next few weeks: <em>function</em>, <em>argument</em>, and <em>object</em>.</p>
+<ul>
+<li><p>a <em>function</em> in <code>R</code> is always* (*always for this class) followed by an open <code>(</code> and ended with a closed <code>)</code>. In non-technical terms, a <em>function</em> <strong>does</strong> something to its inputs and is often analogous to an English verb. For example, the <code>mean()</code> function calculates the mean, the <code>rank()</code> functions ranks a variable from lowest to highest, and the <code>labs()</code> is used to add labels to a plot. Every function has a help file that can be accessed by typing in <code>?name_of_function</code>. Try typing <code>?mean</code> in your lower left window.</p></li>
+<li><p>an <em>argument</em> is something that goes inside the parentheses in a function. Arguments could include <em>objects</em>, or they might not. In the bottom-left window, type <code>?mean</code> to view the Help file on this <code>R</code> function. We see that <code>mean()</code> has 3 arguments: <code>x</code>, which is an <code>R</code> object, <code>trim</code>, and <code>na.rm</code>. <code>trim = 0</code> is the default, which means that, by default, <code>R</code> will not trim any of the numbers when computing the mean.</p></li>
+<li><p>an <em>object</em> is something created in <code>R</code>, usually with <code>&lt;-</code>. So, looking at the code above where we read in the data, <code>pres_df</code> is an <code>R</code> object.</p></li>
+</ul>
+<p>All of this will make more sense as we go through these first couple of weeks.</p>
+</section>
+<section id="basic-plot-structure" class="level2" data-number="3.2">
+<h2 data-number="3.2" class="anchored" data-anchor-id="basic-plot-structure"><span class="header-section-number">3.2</span> Basic Plot Structure</h2>
+<p>We will use the <code>ggplot()</code> function in the <code>ggplot2</code> package to construct visualizations of data. the <code>ggplot()</code> function has 3 basic components:</p>
+<ul>
+<li>a <code>data</code> argument, specifying the name of your data set (<code>pres_df</code> above)</li>
+<li>a <code>mapping</code> argument, specifying that specifies the aesthetics of your plot (<code>aes()</code>). Common aesthetics are <code>x</code> position, <code>y</code> position, <code>colour</code>, <code>size</code>, <code>shape</code>, <code>group</code>, and <code>fill</code>.</li>
+<li>a <code>geom_    ()</code> component, specifying the geometric shape used to display the data.</li>
+</ul>
+<p>The components are combined in the following form:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> name_of_data, <span class="fu">aes</span>(<span class="at">x =</span> name_of_x_var, </span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>                                          <span class="at">y =</span> name_of_y_var,</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>                                          <span class="at">colour =</span> name_of_colour_var,</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>                                          etc.)) <span class="sc">+</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_nameofgeom</span>() <span class="sc">+</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>  .....<span class="sc">&lt;</span>other stuff<span class="sc">&gt;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>The structure of <code>ggplot()</code> plots is based on the Grammar of Graphics <a href="https://www.springer.com/gp/book/9780387245447" target="_blank">https://www.springer.com/gp/book/9780387245447</a>. As with most new things, the components above will be easier to think about with some examples.</p>
+</section>
+<section id="graphing-a-single-variable" class="level2" data-number="3.3">
+<h2 data-number="3.3" class="anchored" data-anchor-id="graphing-a-single-variable"><span class="header-section-number">3.3</span> Graphing a Single Variable</h2>
+<section id="histograms-and-frequency-plots-for-a-quantitative-variable" class="level3" data-number="3.3.1">
+<h3 data-number="3.3.1" class="anchored" data-anchor-id="histograms-and-frequency-plots-for-a-quantitative-variable"><span class="header-section-number">3.3.1</span> Histograms and Frequency Plots for a Quantitative Variable</h3>
+<p>Let’s go ahead and begin our exploration of the data by making a histogram of the number of people who voted for <code>Gore</code> in each county. Recall that a histogram is useful if we would like a graph of a single quantitative variable. Copy the following code to an <code>R</code> chunk and run the code:</p>
+<div class="cell" data-appendix="true">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> pres_df, <span class="fu">aes</span>(<span class="at">x =</span> Gore)) <span class="sc">+</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">colour =</span> <span class="st">"black"</span>, <span class="at">fill =</span> <span class="st">"white"</span>) <span class="sc">+</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">"Votes for Gore in Florida"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>`stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</code></pre>
+</div>
+<div class="cell-output-display">
+<p><img src="02-ggplot2_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>What do the 1e+05, 2e+05, etc. labels on the x-axis mean?</p>
+<p><code>R</code> gives us a message to “Pick a better value with <code>binwidth</code>” instead of the default <code>bins = 30</code>. Add <code>, bins = 15</code> inside the parentheses of <code>geom_histogram()</code> to change the number of bins in the histogram.</p>
+<p>Change the colour of the inside of the bins to “darkred”. Do you think that the colour of the inside of the bins maps to <code>colour</code> or <code>fill</code>? Try both!</p>
+<p>There are a couple of observations with very high vote values. What could explain these large outliers?</p>
+<p><br></p>
+<p>Another graph useful in visualizing a single quantitative variable is a frequency plot. The code to make a frequency plot is given below. We are simply replacing <code>geom_histogram()</code> with <code>geom_freqpoly()</code>.</p>
+<div class="cell" data-appendix="true">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> pres_df, <span class="fu">aes</span>(<span class="at">x =</span> Gore)) <span class="sc">+</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_freqpoly</span>(<span class="at">colour =</span> <span class="st">"black"</span>) <span class="sc">+</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">"Votes for Gore in Florida"</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>`stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</code></pre>
+</div>
+<div class="cell-output-display">
+<p><img src="02-ggplot2_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>The frequency plot is just like a histogram but the counts are connected by a line instead of represented with bins. You can see how they relate by including <strong>both</strong> a geom_freqpoly() and a geom_histogram() in your plot, though it doesn’t make for the prettiest graph:</p>
+<div class="cell" data-appendix="true">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> pres_df, <span class="fu">aes</span>(<span class="at">x =</span> Gore)) <span class="sc">+</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_freqpoly</span>(<span class="at">colour =</span> <span class="st">"black"</span>) <span class="sc">+</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">"Votes for Gore in Florida"</span>) <span class="sc">+</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>() </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>`stat_bin()` using `bins = 30`. Pick better value with `binwidth`.
+`stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</code></pre>
+</div>
+<div class="cell-output-display">
+<p><img src="02-ggplot2_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</section>
+<section id="r-code-style" class="level3" data-number="3.3.2">
+<h3 data-number="3.3.2" class="anchored" data-anchor-id="r-code-style"><span class="header-section-number">3.3.2</span> <code>R</code> Code Style</h3>
+<p>We want our code to be as readable as possible. This not only benefits other people who may read your code (like me), but it also benefits you, particularly if you read your own code in the future. I try to follow the Style Guide in the Advanced <code>R</code> book: <a href="http://adv-r.had.co.nz/Style.html" target="_blank">http://adv-r.had.co.nz/Style.html</a>. Feel free to skim through that, but you don’t need to worry about it too much: you should be able to pick up on some important elements just from going through this course. You might actually end up having better code style if you <em>haven’t</em> had any previous coding experience.</p>
+<p>As a quick example of why code style can be important, consider the following two code chunks, both of which produce the same graph.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data=</span>pres_df,<span class="at">mapping=</span><span class="fu">aes</span>(<span class="at">x=</span>Gore))<span class="sc">+</span><span class="fu">geom_histogram</span>(<span class="at">colour=</span><span class="st">"black"</span>,<span class="at">fill=</span><span class="st">"white"</span>)<span class="sc">+</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">"Votes for Gore in Florida"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> pres_df, <span class="fu">aes</span>(<span class="at">x =</span> Gore)) <span class="sc">+</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">colour =</span> <span class="st">"black"</span>, <span class="at">fill =</span> <span class="st">"white"</span>) <span class="sc">+</span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">"Votes for Gore in Florida"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Which code chunk would you want to read two years from now? Which code chunk would you want your classmate/friend/coworker to read? (assuming you like your classmate/friend/coworker….)</p>
+</section>
+<section id="bar-plots-for-a-categorical-variable" class="level3" data-number="3.3.3">
+<h3 data-number="3.3.3" class="anchored" data-anchor-id="bar-plots-for-a-categorical-variable"><span class="header-section-number">3.3.3</span> Bar Plots for a Categorical Variable</h3>
+<p>Recall from STAT 113 that bar plots are useful if you want to examine the distribution of one categorical variable. Side-by-side bar plots or stacked bar plots are plots that are useful for looking at the relationship between two categorical variables. There actually aren’t any categorical variables that would be interesting to plot in this data set, so we’ll make one, called <code>winner</code> using code that we don’t need to understand until next week. <code>winner</code> will be <code>"Gore"</code> if Gore won the county and <code>"Bush"</code> if Bush won the county. We’ll name this new data set <code>pres_cat</code>.</p>
+<div class="cell" data-appendix="true">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>pres_cat <span class="ot">&lt;-</span> pres_df <span class="sc">|&gt;</span> <span class="fu">mutate</span>(<span class="at">winner =</span> <span class="fu">if_else</span>(Gore <span class="sc">&gt;</span> Bush,</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>                                                <span class="at">true =</span> <span class="st">"Gore"</span>,</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>                                                <span class="at">false =</span> <span class="st">"Bush"</span>))</span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>pres_cat</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 67 × 7
+     Gore   Bush Buchanan Nader Other County    winner
+    &lt;dbl&gt;  &lt;dbl&gt;    &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;     &lt;chr&gt; 
+ 1  47365  34124      263  3226   751 ALACHUA   Gore  
+ 2   2392   5610       73    53    26 BAKER     Bush  
+ 3  18850  38637      248   828   242 BAY       Bush  
+ 4   3075   5414       65    84    35 BRADFORD  Bush  
+ 5  97318 115185      570  4470   852 BREVARD   Bush  
+ 6 386561 177323      788  7101  1623 BROWAR    Gore  
+ 7   2155   2873       90    39    17 CALHOUN   Bush  
+ 8  29645  35426      182  1462   181 CHARLOTTE Bush  
+ 9  25525  29765      270  1379   261 CITRUS    Bush  
+10  14632  41736      186   562   237 CLAY      Bush  
+# … with 57 more rows
+# ℹ Use `print(n = ...)` to see more rows</code></pre>
+</div>
+</div>
+<p>Using this data set, we can make a bar plot with <code>geom_bar()</code>. The beauty of <code>ggplot()</code> is that the code is super-similar to what we used for histograms and frequency plots!</p>
+<div class="cell" data-appendix="true">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> pres_cat, <span class="fu">aes</span>(<span class="at">x =</span> winner)) <span class="sc">+</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="02-ggplot2_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>Note that, sometimes, data are in format such that one column contains the <em>levels</em> of the categorical variable while another column contains the counts directly. For example, we can create such a data set using code that we will learn next week:</p>
+<div class="cell" data-appendix="true">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>pres_cat2 <span class="ot">&lt;-</span> pres_cat <span class="sc">|&gt;</span> <span class="fu">group_by</span>(winner) <span class="sc">|&gt;</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">nwins =</span> <span class="fu">n</span>())</span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>pres_cat2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 2 × 2
+  winner nwins
+  &lt;chr&gt;  &lt;int&gt;
+1 Bush      51
+2 Gore      16</code></pre>
+</div>
+</div>
+<p>This data set has just two observations and contains a column for the two major presidential candidates and a column for the number of counties that each candidate won. If we wanted to make a barplot showing the number of wins for each candidate, we can’t use <code>geom_bar()</code>. Predict what the result will be from running the following code.</p>
+<div class="cell" data-appendix="true">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(pres_cat2, <span class="fu">aes</span>(<span class="at">x =</span> winner)) <span class="sc">+</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Instead, we can use <code>geom_col()</code>, which takes an <code>x</code> aesthetic giving the column with names of the levels of our categorical variable, and a <code>y</code> aesthetic giving the column with the counts:</p>
+<div class="cell" data-appendix="true">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(pres_cat2, <span class="fu">aes</span>(<span class="at">x =</span> winner, <span class="at">y =</span> nwins)) <span class="sc">+</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="02-ggplot2_files/figure-html/unnamed-chunk-12-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</section>
+<section id="exercise-2-1" class="level3" data-number="3.3.4">
+<h3 data-number="3.3.4" class="anchored" data-anchor-id="exercise-2-1"><span class="header-section-number">3.3.4</span> Exercises</h3>
+<p>Exercises marked with an * indicate that the exercise has a solution at the end of the chapter at @ref(solutions-2).</p>
+<ol type="1">
+<li><p>Change the frequency plot to plot the number of votes for Bush instead of the number for Gore. Are there any obvious outliers in the Bush frequency plot?</p></li>
+<li><p>Do you have a preference for histograms or a preference for frequency plots? Can you think of a situation where one would be more desirable than the other?</p></li>
+<li><p>It looks like Bush won a lot more….does that necessarily mean that Bush won more votes in total in Florida? Why or why not?</p></li>
+</ol>
+<p>We will be using survey data from STAT 113 in the 2018-2019 academic year for many exercises in this section. For those who may not have taken STAT 113 from having AP credit or another reason, the STAT 113 survey is given to all students in STAT 113 across all sections. Some analyses in Intro Stat are then carried out using the survey.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>stat113_df <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"data/stat113.csv"</span>)</span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(stat113_df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 6 × 12
+  Year   Sex     Hgt   Wgt Haircut   GPA Exerc…¹ Sport    TV Award Pulse Socia…²
+  &lt;chr&gt;  &lt;chr&gt; &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt; &lt;chr&gt; &lt;dbl&gt; &lt;chr&gt; &lt;dbl&gt; &lt;chr&gt;  
+1 Sopho… M        66   155       0  2.9       15 Yes       8 Olym…    72 Snapch…
+2 First… F        69   170      17  3.87      14 Yes      12 Olym…    51 Instag…
+3 First… F        64   130      40  3.3        5 No        5 Olym…    68 Instag…
+4 First… M        68   157      35  3.21      10 Yes      15 Olym…    54 Snapch…
+5 First… M        72   175      20  3.1        2 No        5 Nobel    NA Instag…
+6 Junior F        62   150      50  3.3        8 Yes       5 Olym…    86 Instag…
+# … with abbreviated variable names ¹​Exercise, ²​SocialMedia</code></pre>
+</div>
+</div>
+<p>The data set contains the following variables:</p>
+<ul>
+<li><code>Year</code>, FirstYear, Sophomore, Junior, or Senior</li>
+<li><code>Sex</code>, M or F (for this data set, <code>Sex</code> is considered binary).</li>
+<li><code>Hgt</code>, height, in inches.</li>
+<li><code>Wgt</code>, weight, in pounds.</li>
+<li><code>Haircut</code>, how much is paid for a haircut, typically.</li>
+<li><code>GPA</code></li>
+<li><code>Exercise</code>, amount of hours of exercise in a typical week.</li>
+<li><code>Sport</code>, whether or not the student plays a varsity sport.</li>
+<li><code>TV</code>, amount of hours spent watching TV in a typical week.</li>
+<li><code>Award</code>, Award preferred: choices are Olympic Medal, Nobel Prize, or Academy Award.</li>
+<li><code>Pulse</code>, pulse rate, in beats per minute.</li>
+<li><code>SocialMedia</code>, most used social media platform (Instagram, SnapChat, FaceBook, Twitter, Other, or None).</li>
+</ul>
+<ol start="4" type="1">
+<li><p>* Create a histogram of the <code>Exercise</code> variable, change the x-axis label to be “Exercise (hours per typical week)”, change the number of <code>bins</code> to <code>14</code>, and change the <code>fill</code> of the bins to be “lightpink2” and the outline <code>colour</code> of the bins to be black.</p></li>
+<li><p>* We can change the y-axis of a histogram to be “density” instead of a raw count. This means that each bar shows a <strong>proportion</strong> of cases instead of a raw count. Google something like “geom_histogram with density” to figure out how to create a y <code>aes()</code> to show density instead of count.</p></li>
+<li><p>Construct a histogram using a quantitative variable of your choice. Change the <code>fill</code> and <code>colour</code> using <a href="http://www.stat.columbia.edu/~tzheng/files/Rcolor.pdf" target="_blank">http://www.stat.columbia.edu/~tzheng/files/Rcolor.pdf</a> to help you choose colours.</p></li>
+</ol>
+<div class="cell">
+
+</div>
+<ol start="7" type="1">
+<li>Construct a bar plot for a variable of your choosing. What do you find?</li>
+</ol>
+<div class="cell">
+
+</div>
+<ol start="8" type="1">
+<li>What format would the STAT 113 data set need to be in to construct your bar plot with <code>geom_col()</code> instead of <code>geom_bar()</code>?</li>
+</ol>
+</section>
+</section>
+<section id="graphing-two-quantitative-variables-faceting-and-aes-options" class="level2" data-number="3.4">
+<h2 data-number="3.4" class="anchored" data-anchor-id="graphing-two-quantitative-variables-faceting-and-aes-options"><span class="header-section-number">3.4</span> Graphing Two Quantitative Variables, Faceting, and <code>aes()</code> Options</h2>
+<section id="scatterplots" class="level3" data-number="3.4.1">
+<h3 data-number="3.4.1" class="anchored" data-anchor-id="scatterplots"><span class="header-section-number">3.4.1</span> Scatterplots</h3>
+<p>Moving back to the 2000 presidential election data set, thus far, we’ve figured out that there a couple of counties with very large numbers of votes for Gore and very large number of votes for Bush. We don’t know the reason for this (if some counties are very democratic, very republican, or if some counties are just more populous). Do the counties that have a large number of votes for Bush also tend to have a large number of votes for Gore? And what about the other candidates: do they have any interesting patterns?</p>
+<p>Let’s start by making a scatterplot of the number of votes for Gore and the number of votes for Bush. Note that the <code>geom_</code> for making a scatterplot is called <code>geom_point()</code> because we are adding a layer of points to the plot.</p>
+<div class="cell" data-appendix="true">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> pres_df, <span class="fu">aes</span>(<span class="at">x =</span> Gore, <span class="at">y =</span> Bush)) <span class="sc">+</span></span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="02-ggplot2_files/figure-html/unnamed-chunk-16-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>What patterns do you see in the scatterplot?</p>
+<p>Now, change the x variable from <code>Gore</code> to <code>Buchanan</code>. You should notice something strange in this scatterplot. Try to come up with one explanation for why the outlying point has so many votes for <code>Buchanan</code>.</p>
+<p>In trying to come up with an explanation, it would be nice to figure out which Florida county has that outlying point and it would be nice if we knew something about Florida counties. To remedy the first issue, recall that we can type <code>View(pres_df)</code> to pull up the data set. Once you have the new window open, click on the column heading <code>Buchanan</code> to sort the votes for Buchanan from high to low to figure out which county is the outlier.</p>
+<p>Use some Google sleuthing skills to find an explanation: try to search for “2000 united states presidential election [name of outlier county]”. Write a sentence about what you find. Hint: if nothing useful pops up, try adding the term “butterfly ballot” to your search.</p>
+<p><br></p>
+<p>We have used the 2000 Presidential data set to find out something really interesting! In particular, we have used <em>exploratory data analysis</em> to examine a data set, without having a specific question of interest that we want to answer. This type of exploring is often really useful, but does have some drawbacks, which we will discuss later in the semester.</p>
+</section>
+<section id="aesthetics-in-aes" class="level3" data-number="3.4.2">
+<h3 data-number="3.4.2" class="anchored" data-anchor-id="aesthetics-in-aes"><span class="header-section-number">3.4.2</span> Aesthetics in <code>aes()</code></h3>
+<p>For the remainder of this chapter, we will work with some fitness data collected from my Apple Watch since November 2018. The <code>higham_fitness_clean.csv</code> contains information on the following variables:</p>
+<ul>
+<li><code>Start</code>, the month, day, and year that the fitness data was recorded on</li>
+<li><code>month</code>, the month</li>
+<li><code>weekday</code>, the day of the week</li>
+<li><code>dayofyear</code>, the day of the year (so that 304 corresponds to the 304th day of the year)</li>
+<li><code>distance</code>, distance walked in miles</li>
+<li><code>steps</code>, the number of steps taken</li>
+<li><code>flights</code>, the number of flights of stairs climbed</li>
+<li><code>active_cals</code>, the number of calories burned from activity</li>
+<li><code>stepgoal</code>, whether or not I reached 10,000 steps for the day</li>
+<li><code>weekend_ind</code>, a variable for whether or not the day of the week was a weekend day (Saturday or Sunday) or a weekday (Monday - Friday).</li>
+</ul>
+<div class="cell" data-appendix="true">
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>fitness_full <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"data/higham_fitness_clean.csv"</span>) <span class="sc">|&gt;</span> <span class="fu">mutate</span>(<span class="at">weekend_ind =</span> <span class="fu">case_when</span>(weekday <span class="sc">==</span> <span class="st">"Sat"</span> <span class="sc">|</span> weekday <span class="sc">==</span> <span class="st">"Sun"</span> <span class="sc">~</span> <span class="st">"weekend"</span>,</span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>  <span class="cn">TRUE</span> <span class="sc">~</span> <span class="st">"weekday"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Rows: 993 Columns: 9
+── Column specification ────────────────────────────────────────────────────────
+Delimiter: ","
+chr  (2): month, weekday
+dbl  (6): active_cals, distance, flights, steps, dayofyear, stepgoal
+date (1): Start
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
+</div>
+</div>
+<p>First, let’s make a basic scatterplot to illustrate why it’s so important to plot your data. I’ll use the variable <code>distance</code> as the x-variable and <code>active_cals</code> as the y-variable.</p>
+<div class="cell" data-appendix="true">
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> fitness_full, <span class="fu">aes</span>(<span class="at">x =</span> distance, <span class="at">y =</span> active_cals)) <span class="sc">+</span></span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="02-ggplot2_files/figure-html/unnamed-chunk-18-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>One aspect of the plot that you may notice is that there are observations where I burned 0 or very few active calories, yet walked/jogged/ran/moved some distance. Is it possible to not burn any calories and move ~ 4 miles? Probably not, so let’s drop these observations from the data set and make a note of why we dropped those observations. Unfortunately, we don’t have the tools to do this yet, so just run the following chunk of code without worrying too much about the syntax.</p>
+<div class="cell" data-appendix="true">
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="do">## drop observations that have active calories &lt; 50. </span></span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a><span class="do">## assuming that these are data errors or </span></span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a><span class="do">## days where the Apple Watch wasn't worn.</span></span>
+<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a>fitness <span class="ot">&lt;-</span> fitness_full <span class="sc">|&gt;</span></span>
+<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(active_cals <span class="sc">&gt;</span> <span class="dv">50</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Let’s make the plot again with the <code>fitness</code> data set instead of <code>fitness_full</code> to see if the outliers are actually gone. This time, we will put the <code>aes()</code> in the <code>geom_point()</code> function:</p>
+<div class="cell" data-appendix="true">
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> fitness) <span class="sc">+</span></span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">x =</span> distance, <span class="at">y =</span> active_cals))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="02-ggplot2_files/figure-html/unnamed-chunk-20-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>Putting the <code>aes()</code> in <code>ggplot()</code> and putting the <code>aes()</code> in <code>geom_point()</code> results in the same graph in this case. When you put the <code>aes()</code> in <code>ggplot()</code>, <code>R</code> perpetuates these <code>aes()</code> aesthetics in all <code>geom_</code>s in your plotting command. However, if you put your <code>aes()</code> in <code>geom_point()</code>, then any future <code>geom</code>s that you use will need you to re-specify different <code>aes()</code>. We’ll see an example of this in the exercises.</p>
+<p><strong>Other <code>aes()</code> Options</strong></p>
+<p>In addition to <code>x</code> and <code>y</code>, we can also use <code>aes()</code> to map variables to things like <code>colour</code>, <code>size</code>, and <code>shape</code>. For example, we might make a scatterplot with <code>Start</code> on the x-axis (for the date) and <code>active_cals</code> on the y-axis, colouring by whether or not the day of the week was a weekend.</p>
+<div class="cell" data-appendix="true">
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> fitness) <span class="sc">+</span></span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">x =</span> Start, <span class="at">y =</span> active_cals, <span class="at">colour =</span> weekend_ind))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="02-ggplot2_files/figure-html/unnamed-chunk-21-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>Is there anything useful that you notice about the plot? Is there anything about the plot that could be improved?</p>
+<p>Instead of using colour, you can also specify the point shape. This could be useful, for example, if you are printing something in black and white.</p>
+<div class="cell" data-appendix="true">
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> fitness) <span class="sc">+</span></span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">x =</span> Start, <span class="at">y =</span> active_cals, <span class="at">shape =</span> weekend_ind))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="02-ggplot2_files/figure-html/unnamed-chunk-22-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>Do you prefer the colour or the shape? Why?</p>
+<p>Finally, another common <code>aes()</code> is <code>size</code>. For example, we could make the size of the points in the scatterplot change depending on how many <code>flights</code> of stairs I climbed.</p>
+<div class="cell" data-appendix="true">
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> fitness) <span class="sc">+</span></span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">x =</span> Start, <span class="at">y =</span> active_cals, <span class="at">size =</span> flights))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="02-ggplot2_files/figure-html/unnamed-chunk-23-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>I don’t think any of the previous three plots are necessarily the “best” and need some work, but, part of the fun of exploratory data analysis is making trying out different plots to see what “works.”</p>
+<p><strong>Inside vs Outside <code>aes()</code></strong></p>
+<p>We’ve changed the colour of the points to correspond to <code>weekend_ind</code>, but what if we just wanted to change the colour of points to all be the same colour, <code>"purple"</code>. Try running the following code chunk:</p>
+<div class="cell" data-appendix="true">
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> fitness) <span class="sc">+</span></span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">x =</span> Start, <span class="at">y =</span> active_cals, <span class="at">colour =</span> <span class="st">"purple"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="02-ggplot2_files/figure-html/unnamed-chunk-24-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>What does the graph look like? Did it do what you expected?</p>
+<p>Putting <code>colour = ____</code> inside <code>aes()</code> or outside <code>aes()</code> achieves different things. In general,</p>
+<ul>
+<li><p>when we want to map something in our data set (<code>fitness</code>) to something in our plot (<code>x</code>, <code>y</code>, <code>colour</code>, <code>size</code>, etc.), we put that <strong>inside</strong> the <code>aes()</code> as in <code>geom_point(aes(colour = weekend_ind))</code>.</p></li>
+<li><p>When we assign fixed characteristics that don’t come from the data, we put them <strong>outside</strong> the <code>aes()</code>, as in <code>geom_point(colour = "purple")</code>.</p></li>
+</ul>
+<p>You can also change the overall point size and shape. The standard size is <code>1</code> so the following code chunk makes the points bigger. The standard shape is <code>19</code>: you can try changing that to other integers to see what other shapes you can get.</p>
+<div class="cell" data-appendix="true">
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> fitness) <span class="sc">+</span></span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">x =</span> Start, <span class="at">y =</span> active_cals), <span class="at">size =</span> <span class="fl">1.5</span>, <span class="at">shape =</span> <span class="dv">19</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="02-ggplot2_files/figure-html/unnamed-chunk-25-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</section>
+<section id="using-more-than-one-geom" class="level3" data-number="3.4.3">
+<h3 data-number="3.4.3" class="anchored" data-anchor-id="using-more-than-one-geom"><span class="header-section-number">3.4.3</span> Using More Than One <code>geom()</code></h3>
+<p>We might also be interested in fitting a smooth curve to our scatterplot. When we want to put more than one “geom” on our plot, we can use multiple <code>geoms</code>. Since I want the <code>aes()</code> to apply to <strong>both</strong> <code>geom_point()</code> and <code>geom_smooth()</code>, I am going to move the <code>aes()</code> command to the overall <code>ggplot()</code> line of code:</p>
+<div class="cell" data-appendix="true">
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> fitness, <span class="fu">aes</span>(<span class="at">x =</span> Start, <span class="at">y =</span> active_cals)) <span class="sc">+</span></span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">span =</span> <span class="fl">0.3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>`geom_smooth()` using method = 'loess' and formula 'y ~ x'</code></pre>
+</div>
+<div class="cell-output-display">
+<p><img src="02-ggplot2_files/figure-html/unnamed-chunk-26-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>Within <code>geom_smooth()</code>, you can set <code>se = FALSE</code> to get rid of the grey standard errors around each of the lines, and you can set<code>method = "lm"</code> to fit straight linear regression lines instead of smooth curves:</p>
+<div class="cell" data-appendix="true">
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> fitness, <span class="fu">aes</span>(<span class="at">x =</span> Start, <span class="at">y =</span> active_cals)) <span class="sc">+</span></span>
+<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">se =</span> <span class="cn">FALSE</span>, <span class="at">method =</span> <span class="st">"lm"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>`geom_smooth()` using formula 'y ~ x'</code></pre>
+</div>
+<div class="cell-output-display">
+<p><img src="02-ggplot2_files/figure-html/unnamed-chunk-27-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>Does it look like there is an increasing overall trend? decreasing? Does it make sense to use a line to model the relationship or did you prefer the smooth curve?</p>
+</section>
+<section id="line-plots-with-geom_line" class="level3" data-number="3.4.4">
+<h3 data-number="3.4.4" class="anchored" data-anchor-id="line-plots-with-geom_line"><span class="header-section-number">3.4.4</span> Line Plots with <code>geom_line()</code></h3>
+<p>Line plots are often useful when you have a quantitative variable that you’d like to explore over time. The y-axis is the quantitative variable while the x-axis is typically time. More generally, line plots are often used when the x-axis variable has one discrete value for each y-axis variable. For example, suppose we want to explore how my step count has changed through time over the past couple of years. Compare the standard scatterplot with the following line plot: which do you prefer?</p>
+<div class="cell" data-appendix="true">
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> fitness, <span class="fu">aes</span>(<span class="at">x =</span> Start, <span class="at">y =</span> steps)) <span class="sc">+</span></span>
+<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span> <span class="fu">geom_smooth</span>() <span class="sc">+</span> <span class="fu">xlab</span>(<span class="st">"Date"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>`geom_smooth()` using method = 'loess' and formula 'y ~ x'</code></pre>
+</div>
+<div class="cell-output-display">
+<p><img src="02-ggplot2_files/figure-html/unnamed-chunk-28-1.png" class="img-fluid" width="672"></p>
+</div>
+<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> fitness, <span class="fu">aes</span>(<span class="at">x =</span> Start, <span class="at">y =</span> steps)) <span class="sc">+</span></span>
+<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>() <span class="sc">+</span> <span class="fu">geom_smooth</span>() <span class="sc">+</span> <span class="fu">xlab</span>(<span class="st">"Date"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>`geom_smooth()` using method = 'loess' and formula 'y ~ x'</code></pre>
+</div>
+<div class="cell-output-display">
+<p><img src="02-ggplot2_files/figure-html/unnamed-chunk-28-2.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>Can you spot the start of the pandemic in the graph? What seemed to happen with the step count?</p>
+</section>
+<section id="faceting" class="level3" data-number="3.4.5">
+<h3 data-number="3.4.5" class="anchored" data-anchor-id="faceting"><span class="header-section-number">3.4.5</span> Faceting</h3>
+<p>Using colour to colour points of different levels of a categorical variable is generally fine when there are just a couple of levels and/or there is little overlap among the levels. But, what if there are a lot more than two categories to colour by. For example, let’s move back to the STAT 113 survey data set and investigate the relationship between <code>Pulse</code> and <code>Exercise</code> for different class <code>Year</code>’s. We might hypothesize that students who get more exercise tend to have lower pulse rates.</p>
+<div class="cell" data-appendix="true">
+<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> stat113_df, <span class="fu">aes</span>(<span class="at">x =</span> Exercise, <span class="at">y =</span> Pulse,</span>
+<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a>                           <span class="at">colour =</span> Year)) <span class="sc">+</span></span>
+<span id="cb40-3"><a href="#cb40-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb40-4"><a href="#cb40-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">se =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>`geom_smooth()` using method = 'loess' and formula 'y ~ x'</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Removed 40 rows containing non-finite values (stat_smooth).</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Removed 40 rows containing missing values (geom_point).</code></pre>
+</div>
+<div class="cell-output-display">
+<p><img src="02-ggplot2_files/figure-html/unnamed-chunk-29-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>When there are many different categories for a categorical variable (there are only 4 categories for <code>Year</code>, but this particular plot is still a bit difficult to read), it can sometimes be useful to <code>facet</code> the plot by that variable instead of trying to use different <code>colour</code>s or <code>shape</code>s.</p>
+<div class="cell" data-appendix="true">
+<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> stat113_df, <span class="fu">aes</span>(<span class="at">x =</span> Exercise, <span class="at">y =</span> Pulse)) <span class="sc">+</span></span>
+<span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb44-3"><a href="#cb44-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">se =</span> <span class="cn">TRUE</span>) <span class="sc">+</span></span>
+<span id="cb44-4"><a href="#cb44-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span> Year)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>`geom_smooth()` using method = 'loess' and formula 'y ~ x'</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Removed 40 rows containing non-finite values (stat_smooth).</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Removed 40 rows containing missing values (geom_point).</code></pre>
+</div>
+<div class="cell-output-display">
+<p><img src="02-ggplot2_files/figure-html/unnamed-chunk-30-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>We have eliminated the <code>colour =</code> argument and added <code>facet_wrap( ~ name_of_facet_variable)</code>. Doing so creates a different scatterplot and smooth line for each level of <code>name_of_facet_variable</code>.</p>
+<p>What can you see from this plot that was harder to see from the plot with colour?</p>
+<p>Does the data seem to support the hypothesis that more exercise is associated with lower pulse rates in this sample of students?</p>
+</section>
+<section id="exercise-2-2" class="level3" data-number="3.4.6">
+<h3 data-number="3.4.6" class="anchored" data-anchor-id="exercise-2-2"><span class="header-section-number">3.4.6</span> Exercises</h3>
+<p>Exercises marked with an * indicate that the exercise has a solution at the end of the chapter at @ref(solutions-2).</p>
+<ol type="1">
+<li><p>Fix the code chunk where we tried to specify the colour of all points to be purple to actually make all of the points “purple” by moving <code>colour = "purple"</code> outside the parentheses in <code>aes()</code> (but still inside <code>geom_point()</code>).</p></li>
+<li><p>In the console (bottom-left) window, type <code>?geom_smooth</code> and scroll down to “Arguments.” Find <code>span</code>, read about it, and then, within the <code>geom_smooth()</code> argument of the line plot with steps vs.&nbsp;date, add a <code>span</code> argument to make the smooth line wigglier.</p></li>
+<li><p>Explain why it doesn’t make sense to construct a line plot of <code>Exercise</code> vs.&nbsp;<code>GPA</code>.</p></li>
+<li><p>* Make a scatterplot of <code>Hgt</code> on the y-axis and <code>Wgt</code> on the x-axis, colouring by <code>Sport</code>. Add a smooth fitted curve to your scatterplot. Then, move <code>colour = Sport</code> from an <code>aes()</code> in the <code>ggplot()</code> function to an <code>aes()</code> in the <code>geom_point()</code> function. What changes in the plot? Can you give an explanation as to why that change occurs?</p></li>
+<li><p>* Faceting can be used for other types of plots too! Make a pair of faceted histograms for a quantitative variable of your choosing that are faceted by a categorical variable of your choosing.</p></li>
+</ol>
+<p><br></p>
+</section>
+</section>
+<section id="boxplots-stacked-barplots-and-others" class="level2" data-number="3.5">
+<h2 data-number="3.5" class="anchored" data-anchor-id="boxplots-stacked-barplots-and-others"><span class="header-section-number">3.5</span> Boxplots, Stacked Barplots and Others</h2>
+<p>There are a few other common geoms that will be useful throughout the semester. These only skim the surface: we’ll come back to plotting in a few weeks, after we’re able to do more with data wrangling and reshaping.</p>
+<section id="graphing-a-quant.-variable-vs.-a-cat.-variable" class="level3" data-number="3.5.1">
+<h3 data-number="3.5.1" class="anchored" data-anchor-id="graphing-a-quant.-variable-vs.-a-cat.-variable"><span class="header-section-number">3.5.1</span> Graphing a Quant. Variable vs.&nbsp;a Cat. Variable</h3>
+<p>Another common plot used in Intro Stat courses is a boxplot. Side-by-side boxplots are particularly useful if you want to compare a quantitative response variable across two or more levels of a categorical variable. Let’s stick with the STAT 113 survey data to examine the relationship between <code>Exercise</code> and <code>Award</code> preference.</p>
+<div class="cell" data-appendix="true">
+<div class="sourceCode cell-code" id="cb48"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> stat113_df, <span class="fu">aes</span>(<span class="at">x =</span> Award, <span class="at">y =</span> Exercise)) <span class="sc">+</span></span>
+<span id="cb48-2"><a href="#cb48-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Removed 7 rows containing non-finite values (stat_boxplot).</code></pre>
+</div>
+<div class="cell-output-display">
+<p><img src="02-ggplot2_files/figure-html/unnamed-chunk-31-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>What can you conclude from the plot?</p>
+<p><br></p>
+<p>An alternative to side-by-side boxplots are violin plots:</p>
+<div class="cell" data-appendix="true">
+<div class="sourceCode cell-code" id="cb50"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> stat113_df, <span class="fu">aes</span>(<span class="at">x =</span> Award, <span class="at">y =</span> Exercise)) <span class="sc">+</span></span>
+<span id="cb50-2"><a href="#cb50-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_violin</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Removed 7 rows containing non-finite values (stat_ydensity).</code></pre>
+</div>
+<div class="cell-output-display">
+<p><img src="02-ggplot2_files/figure-html/unnamed-chunk-32-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>Read about Violin plots by typing <code>?geom_violin</code> into your console (bottom-left window). How are they different than boxplots?</p>
+</section>
+<section id="graphing-two-categorical-variables" class="level3" data-number="3.5.2">
+<h3 data-number="3.5.2" class="anchored" data-anchor-id="graphing-two-categorical-variables"><span class="header-section-number">3.5.2</span> Graphing Two Categorical Variables</h3>
+<p>The only combination of two variables that we have yet to explore are two variables that are both categorical. Let’s look at the relationship between <code>Year</code> and <code>SocialMedia</code> first using a stacked bar plot.</p>
+<p>To make the graph, we specify <code>position = "fill"</code> so that the bars are “filled” by <code>stepgoal</code>.</p>
+<div class="cell" data-appendix="true">
+<div class="sourceCode cell-code" id="cb52"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> stat113_df, <span class="fu">aes</span>(<span class="at">x =</span> Year, <span class="at">fill =</span> SocialMedia)) <span class="sc">+</span></span>
+<span id="cb52-2"><a href="#cb52-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">position =</span> <span class="st">"fill"</span>) <span class="sc">+</span></span>
+<span id="cb52-3"><a href="#cb52-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">"Proportion"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="02-ggplot2_files/figure-html/unnamed-chunk-33-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>What patterns do you notice from the plot? Is there anything about the plot that could be improved?</p>
+</section>
+<section id="exercise-2-3" class="level3" data-number="3.5.3">
+<h3 data-number="3.5.3" class="anchored" data-anchor-id="exercise-2-3"><span class="header-section-number">3.5.3</span> Exercises</h3>
+<p>Exercises marked with an * indicate that the exercise has a solution at the end of the chapter at @ref(solutions-2).</p>
+<ol type="1">
+<li><p>* Change the colour of the inside of the boxplots in the Exercise vs.&nbsp;Award graph to be <code>"blue"</code>. Do you think you’ll use <code>colour = "blue"</code> or <code>fill = "blue"</code>?</p></li>
+<li><p>* Create a side-by-side boxplot that compares the <code>GPA</code>s of students who prefer different <code>Award</code>s. Then change the fill of the boxplot to be a colour of your choice. What do you notice in the plot?</p></li>
+<li><p>* When making the previous plot, <code>R</code> gives us a warning message that it “Removed 70 rows containing non-finite values”. This is <code>R</code>’s robotic way of telling us that 70 <code>GPA</code> values are missing in the data set. Use what you know about how the data was collected (Fall and Spring semester of the 2018-2019 school-year) to guess why these are missing.</p></li>
+<li><p>* Make a stacked bar plot for two variables of your choosing in the STAT 113 data set. Comment on something that you notice in the plot.</p></li>
+</ol>
+</section>
+</section>
+<section id="chapexercise-2" class="level2" data-number="3.6">
+<h2 data-number="3.6" class="anchored" data-anchor-id="chapexercise-2"><span class="header-section-number">3.6</span> Chapter Exercises</h2>
+<p>Exercises marked with an * indicate that the exercise has a solution at the end of the chapter at @ref(solutions-2).</p>
+<ol type="1">
+<li><p>* The default of <code>geom_smooth()</code> is to use LOESS (locally estimated scatterplot smoothing). Read about LOESS here: <a href="https://19january2017snapshot.epa.gov/sites/production/files/2016-07/documents/loess-lowess.pdf" target="_blank">here</a>. Write one or two sentences explaining what LOESS does.</p></li>
+<li><p>* Thus far, we have only faceted by a single variable. Use Google to figure out how to facet by two variables to make a plot that shows the relationship between GPA (y-axis) and Exercise (x-axis) with four facets: one for male students who play a sport, one for female students who play a sport, one for male students who do not play a sport, and one for female students who do not play a sport.</p></li>
+<li><p>* In Intro-Stat, boxplots are typically introduced using the <code>*</code> symbol to identify outliers. Using a combination of the help <code>?geom_boxplot</code> and Googling “R point shapes”, figure out how to modify your side-by-side boxplots so that the outliers are shown using <code>*</code>, not the default dots. Then, using Google, figure out how to add the mean to each boxplot as a “darkgreen” diamond-shaped symbol with <code>stat_summary()</code>.</p></li>
+<li><p>A common theme that we’ll see throughout the course is that it’s advantageous to know as much background information as possible about the data set we are analyzing. Data sets will be easier to analyze and pose questions about if you’re familiar with the subject matter.</p></li>
+</ol>
+<p>Give an example of something that you know about STAT 113 and the survey data set that helped you answer or pose a question that someone from another university (and therefore unfamiliar with our intro stat course) wouldn’t know.</p>
+<p>Give an example of something that you don’t know about the fitness data set that the person who owns the fitness data would know. Why does that give an advantage to the person who is more familiar with the fitness data?</p>
+</section>
+<section id="solutions-2" class="level2" data-number="3.7">
+<h2 data-number="3.7" class="anchored" data-anchor-id="solutions-2"><span class="header-section-number">3.7</span> Exercise Solutions</h2>
+<section id="introduction-etc.-s" class="level3" data-number="3.7.1">
+<h3 data-number="3.7.1" class="anchored" data-anchor-id="introduction-etc.-s"><span class="header-section-number">3.7.1</span> Introduction etc. S</h3>
+</section>
+<section id="basic-plot-structure-s" class="level3" data-number="3.7.2">
+<h3 data-number="3.7.2" class="anchored" data-anchor-id="basic-plot-structure-s"><span class="header-section-number">3.7.2</span> Basic Plot Structure S</h3>
+</section>
+<section id="graphing-a-single-variable-s" class="level3" data-number="3.7.3">
+<h3 data-number="3.7.3" class="anchored" data-anchor-id="graphing-a-single-variable-s"><span class="header-section-number">3.7.3</span> Graphing a Single Variable S</h3>
+<ol start="4" type="1">
+<li>* Create a histogram of the <code>Exercise</code> variable, change the x-axis label to be “Exercise (hours per typical week)”, change the number of <code>bins</code> to <code>14</code>, and change the <code>fill</code> of the bins to be “lightpink2” and the outline <code>colour</code> of the bins to be black.</li>
+</ol>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb53"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> stat113_df, <span class="fu">aes</span>(<span class="at">x =</span> Exercise)) <span class="sc">+</span></span>
+<span id="cb53-2"><a href="#cb53-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">bins =</span> <span class="dv">14</span>, <span class="at">fill =</span> <span class="st">"lightpink2"</span>, <span class="at">colour =</span> <span class="st">"black"</span>) <span class="sc">+</span></span>
+<span id="cb53-3"><a href="#cb53-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">"Exercise (hours per typical week)"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Removed 7 rows containing non-finite values (stat_bin).</code></pre>
+</div>
+<div class="cell-output-display">
+<p><img src="02-ggplot2_files/figure-html/unnamed-chunk-34-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<ol start="5" type="1">
+<li>* We can change the y-axis of a histogram to be “density” instead of a raw count. This means that each bar shows a <strong>proportion</strong> of cases instead of a raw count. Google something like “geom_histogram with density” to figure out how to create a y <code>aes()</code> to show density instead of count.</li>
+</ol>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb55"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb55-1"><a href="#cb55-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> stat113_df, <span class="fu">aes</span>(<span class="at">x =</span> Exercise, <span class="at">y =</span> ..density..)) <span class="sc">+</span></span>
+<span id="cb55-2"><a href="#cb55-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">bins =</span> <span class="dv">14</span>, <span class="at">fill =</span> <span class="st">"lightpink2"</span>, <span class="at">colour =</span> <span class="st">"black"</span>) <span class="sc">+</span></span>
+<span id="cb55-3"><a href="#cb55-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">"Exercise (hours per typical week)"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Removed 7 rows containing non-finite values (stat_bin).</code></pre>
+</div>
+<div class="cell-output-display">
+<p><img src="02-ggplot2_files/figure-html/unnamed-chunk-35-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</section>
+<section id="graphing-two-quant.-etc.-s" class="level3" data-number="3.7.4">
+<h3 data-number="3.7.4" class="anchored" data-anchor-id="graphing-two-quant.-etc.-s"><span class="header-section-number">3.7.4</span> Graphing Two Quant. etc. S</h3>
+<ol start="4" type="1">
+<li>* Make a scatterplot of <code>Hgt</code> on the y-axis and <code>Wgt</code> on the x-axis, colouring by <code>Sport</code>. Add a smooth fitted curve to your scatterplot. Then, move <code>colour = Sport</code> from an <code>aes()</code> in the <code>ggplot()</code> function to an <code>aes()</code> in the <code>geom_point()</code> function. What changes in the plot? Can you give an explanation as to why that change occurs?</li>
+</ol>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb57"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb57-1"><a href="#cb57-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> stat113_df, <span class="fu">aes</span>(<span class="at">x =</span> Wgt, <span class="at">y =</span> Hgt, <span class="at">colour =</span> Sport)) <span class="sc">+</span></span>
+<span id="cb57-2"><a href="#cb57-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb57-3"><a href="#cb57-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="02-ggplot2_files/figure-html/unnamed-chunk-36-1.png" class="img-fluid" width="672"></p>
+</div>
+<div class="sourceCode cell-code" id="cb58"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb58-1"><a href="#cb58-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> stat113_df, <span class="fu">aes</span>(<span class="at">x =</span> Wgt, <span class="at">y =</span> Hgt)) <span class="sc">+</span></span>
+<span id="cb58-2"><a href="#cb58-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">colour =</span> Sport)) <span class="sc">+</span></span>
+<span id="cb58-3"><a href="#cb58-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="02-ggplot2_files/figure-html/unnamed-chunk-36-2.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>The points are now coloured by <code>Sport</code> but there is only one smooth fitted line. This makes sense because <code>geom_point()</code> now has the two global aesthetics x and y, as well as the colour aesthetic. <code>geom_smooth()</code> no longer has the colour aesthetic but still inherits the two global aesthetics, x and y.</p>
+<ol start="5" type="1">
+<li>* Faceting can be used for other types of plots too! Make a pair of faceted histograms for a quantitative variable of your choosing that are faceted by a categorical variable of your choosing.</li>
+</ol>
+<p>Answers will vary:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb59"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb59-1"><a href="#cb59-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> stat113_df, <span class="fu">aes</span>(<span class="at">x =</span> GPA)) <span class="sc">+</span> </span>
+<span id="cb59-2"><a href="#cb59-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">bins =</span> <span class="dv">15</span>) <span class="sc">+</span></span>
+<span id="cb59-3"><a href="#cb59-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>( <span class="sc">~</span> Sport)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="02-ggplot2_files/figure-html/unnamed-chunk-37-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</section>
+<section id="boxplots-stacked-etc.-s" class="level3" data-number="3.7.5">
+<h3 data-number="3.7.5" class="anchored" data-anchor-id="boxplots-stacked-etc.-s"><span class="header-section-number">3.7.5</span> Boxplots, Stacked, etc. S</h3>
+<ol type="1">
+<li>* Change the colour of the inside of the boxplots in the Exercise vs.&nbsp;Award graph to be <code>"blue"</code>. Do you think you’ll use <code>colour = "blue"</code> or <code>fill = "blue"</code>?</li>
+</ol>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb60"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb60-1"><a href="#cb60-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> stat113_df, <span class="fu">aes</span>(<span class="at">x =</span> Award, <span class="at">y =</span> Exercise)) <span class="sc">+</span></span>
+<span id="cb60-2"><a href="#cb60-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="at">fill =</span> <span class="st">"blue"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Removed 7 rows containing non-finite values (stat_boxplot).</code></pre>
+</div>
+<div class="cell-output-display">
+<p><img src="02-ggplot2_files/figure-html/unnamed-chunk-38-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p><code>fill</code> because it’s the inside of the boxplots that we want to modify. <code>colour</code> will modify the outline colour.</p>
+<ol start="2" type="1">
+<li>* Create a side-by-side boxplot that compares the <code>GPA</code>s of students who prefer different <code>Award</code>s. Then change the fill of the boxplot to be a colour of your choice. What do you notice in the plot?</li>
+</ol>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb62"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb62-1"><a href="#cb62-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> stat113_df, <span class="fu">aes</span>(<span class="at">x =</span> Award, <span class="at">y =</span> GPA)) <span class="sc">+</span></span>
+<span id="cb62-2"><a href="#cb62-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="at">fill =</span> <span class="st">"lightpink1"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Removed 70 rows containing non-finite values (stat_boxplot).</code></pre>
+</div>
+<div class="cell-output-display">
+<p><img src="02-ggplot2_files/figure-html/unnamed-chunk-39-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>There are a few outlier students, but the three groups overall seem to have similar GPAs.</p>
+<ol start="3" type="1">
+<li>* When making the previous plot, <code>R</code> gives us a warning message that it “Removed 70 rows containing non-finite values”. This is <code>R</code>’s robotic way of telling us that 70 <code>GPA</code> values are missing in the data set. Use what you know about how the data was collected (Fall and Spring semeseter of the 2018-2019 school-year) to guess why these are missing.</li>
+</ol>
+<p>STAT 113 has first-year students: first-years taking the course in the fall would not have a GPA to report. Additionally, another reason might be that a student chose not to report his or her GPA.</p>
+<ol start="4" type="1">
+<li>* Make a stacked bar plot for two variables of your choosing in the STAT 113 data set. Comment on something that you notice in the plot.</li>
+</ol>
+<p>Answers will vary.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb64"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb64-1"><a href="#cb64-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> stat113_df, <span class="fu">aes</span>(<span class="at">x =</span> Sport, <span class="at">fill =</span> Award)) <span class="sc">+</span></span>
+<span id="cb64-2"><a href="#cb64-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">position =</span> <span class="st">"fill"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="02-ggplot2_files/figure-html/unnamed-chunk-40-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>As we might expect, it does seem like a higher proportion of students who play a sport would prefer to win an Olympic medal, compared with students who do not play a sport.</p>
+</section>
+<section id="chapexercise-2-S" class="level3" data-number="3.7.6">
+<h3 data-number="3.7.6" class="anchored" data-anchor-id="chapexercise-2-S"><span class="header-section-number">3.7.6</span> Chapter Exercises S</h3>
+<ol type="1">
+<li>* The default of <code>geom_smooth()</code> is to use LOESS (locally estimated scatterplot smoothing). Read about LOESS here: <a href="https://19january2017snapshot.epa.gov/sites/production/files/2016-07/documents/loess-lowess.pdf" target="_blank">here</a>. Write one or two sentences explaining what LOESS does.</li>
+</ol>
+<p>Loess uses a bunch of local regressions to predict the y-variable at each point, giving more weight to observations near the point of interest on the x-axis. Once this is done for every point, the predictions are connected with a smooth curve.</p>
+<ol start="2" type="1">
+<li>* Thus far, we have only faceted by a single variable. Use Google to figure out how to facet by two variables to make a plot that shows the relationship between GPA (y-axis) and Exercise (x-axis) with four facets: one for male students who play a sport, one for female students who play a sport, one for male students who do not play a sport, and one for female students who do not play a sport.</li>
+</ol>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb65"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb65-1"><a href="#cb65-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> stat113_df <span class="sc">|&gt;</span> <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(Sport) <span class="sc">&amp;</span> <span class="sc">!</span><span class="fu">is.na</span>(Sex)),</span>
+<span id="cb65-2"><a href="#cb65-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">aes</span>(<span class="at">x =</span> Exercise, <span class="at">y =</span> GPA)) <span class="sc">+</span> </span>
+<span id="cb65-3"><a href="#cb65-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span> <span class="fu">geom_smooth</span>() <span class="sc">+</span></span>
+<span id="cb65-4"><a href="#cb65-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_grid</span>(Sex <span class="sc">~</span> Sport)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>`geom_smooth()` using method = 'loess' and formula 'y ~ x'</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Removed 71 rows containing non-finite values (stat_smooth).</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Removed 71 rows containing missing values (geom_point).</code></pre>
+</div>
+<div class="cell-output-display">
+<p><img src="02-ggplot2_files/figure-html/unnamed-chunk-41-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<ol start="3" type="1">
+<li>* In Intro-Stat, boxplots are typically introduced using the <code>*</code> symbol to identify outliers. Using a combination of the help <code>?geom_boxplot</code> and Googling “R point shapes”, figure out how to modify your side-by-side boxplots so that the outliers are shown using <code>*</code>, not the default dots.</li>
+</ol>
+<p>Then, using Google, figure out how to add the mean to each boxplot as a “darkgreen” diamond-shaped symbol with <code>stat_summary()</code>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb69"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb69-1"><a href="#cb69-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> stat113_df, <span class="fu">aes</span>(<span class="at">x =</span> Sex, <span class="at">y =</span> GPA)) <span class="sc">+</span></span>
+<span id="cb69-2"><a href="#cb69-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="at">fill =</span> <span class="st">"lightpink1"</span>, <span class="at">outlier.shape =</span> <span class="dv">8</span>) <span class="sc">+</span></span>
+<span id="cb69-3"><a href="#cb69-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stat_summary</span>(<span class="at">fun =</span> mean, <span class="at">shape =</span> <span class="dv">18</span>, <span class="at">colour =</span> <span class="st">"darkgreen"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Removed 70 rows containing non-finite values (stat_boxplot).</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Removed 70 rows containing non-finite values (stat_summary).</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Removed 3 rows containing missing values (geom_segment).</code></pre>
+</div>
+<div class="cell-output-display">
+<p><img src="02-ggplot2_files/figure-html/unnamed-chunk-42-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</section>
+</section>
+<section id="rcode-2" class="level2" data-number="3.8">
+<h2 data-number="3.8" class="anchored" data-anchor-id="rcode-2"><span class="header-section-number">3.8</span> Non-Exercise <code>R</code> Code</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb73"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb73-1"><a href="#cb73-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb73-2"><a href="#cb73-2" aria-hidden="true" tabindex="-1"></a>pres_df <span class="ot">&lt;-</span> <span class="fu">read_table</span>(<span class="st">"data/PRES2000.txt"</span>) </span>
+<span id="cb73-3"><a href="#cb73-3" aria-hidden="true" tabindex="-1"></a><span class="do">## don't worry about the `read_table` function....yet</span></span>
+<span id="cb73-4"><a href="#cb73-4" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(pres_df)</span>
+<span id="cb73-5"><a href="#cb73-5" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> pres_df, <span class="fu">aes</span>(<span class="at">x =</span> Gore)) <span class="sc">+</span></span>
+<span id="cb73-6"><a href="#cb73-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">colour =</span> <span class="st">"black"</span>, <span class="at">fill =</span> <span class="st">"white"</span>) <span class="sc">+</span></span>
+<span id="cb73-7"><a href="#cb73-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">"Votes for Gore in Florida"</span>)</span>
+<span id="cb73-8"><a href="#cb73-8" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> pres_df, <span class="fu">aes</span>(<span class="at">x =</span> Gore)) <span class="sc">+</span></span>
+<span id="cb73-9"><a href="#cb73-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_freqpoly</span>(<span class="at">colour =</span> <span class="st">"black"</span>) <span class="sc">+</span></span>
+<span id="cb73-10"><a href="#cb73-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">"Votes for Gore in Florida"</span>) </span>
+<span id="cb73-11"><a href="#cb73-11" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> pres_df, <span class="fu">aes</span>(<span class="at">x =</span> Gore)) <span class="sc">+</span></span>
+<span id="cb73-12"><a href="#cb73-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_freqpoly</span>(<span class="at">colour =</span> <span class="st">"black"</span>) <span class="sc">+</span></span>
+<span id="cb73-13"><a href="#cb73-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">"Votes for Gore in Florida"</span>) <span class="sc">+</span></span>
+<span id="cb73-14"><a href="#cb73-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>() </span>
+<span id="cb73-15"><a href="#cb73-15" aria-hidden="true" tabindex="-1"></a>pres_cat <span class="ot">&lt;-</span> pres_df <span class="sc">|&gt;</span> <span class="fu">mutate</span>(<span class="at">winner =</span> <span class="fu">if_else</span>(Gore <span class="sc">&gt;</span> Bush,</span>
+<span id="cb73-16"><a href="#cb73-16" aria-hidden="true" tabindex="-1"></a>                                                <span class="at">true =</span> <span class="st">"Gore"</span>,</span>
+<span id="cb73-17"><a href="#cb73-17" aria-hidden="true" tabindex="-1"></a>                                                <span class="at">false =</span> <span class="st">"Bush"</span>))</span>
+<span id="cb73-18"><a href="#cb73-18" aria-hidden="true" tabindex="-1"></a>pres_cat</span>
+<span id="cb73-19"><a href="#cb73-19" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> pres_cat, <span class="fu">aes</span>(<span class="at">x =</span> winner)) <span class="sc">+</span></span>
+<span id="cb73-20"><a href="#cb73-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>()</span>
+<span id="cb73-21"><a href="#cb73-21" aria-hidden="true" tabindex="-1"></a>pres_cat2 <span class="ot">&lt;-</span> pres_cat <span class="sc">|&gt;</span> <span class="fu">group_by</span>(winner) <span class="sc">|&gt;</span></span>
+<span id="cb73-22"><a href="#cb73-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">nwins =</span> <span class="fu">n</span>())</span>
+<span id="cb73-23"><a href="#cb73-23" aria-hidden="true" tabindex="-1"></a>pres_cat2</span>
+<span id="cb73-24"><a href="#cb73-24" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(pres_cat2, <span class="fu">aes</span>(<span class="at">x =</span> winner)) <span class="sc">+</span></span>
+<span id="cb73-25"><a href="#cb73-25" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>()</span>
+<span id="cb73-26"><a href="#cb73-26" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(pres_cat2, <span class="fu">aes</span>(<span class="at">x =</span> winner, <span class="at">y =</span> nwins)) <span class="sc">+</span></span>
+<span id="cb73-27"><a href="#cb73-27" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>()</span>
+<span id="cb73-28"><a href="#cb73-28" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> pres_df, <span class="fu">aes</span>(<span class="at">x =</span> Gore, <span class="at">y =</span> Bush)) <span class="sc">+</span></span>
+<span id="cb73-29"><a href="#cb73-29" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()</span>
+<span id="cb73-30"><a href="#cb73-30" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb73-31"><a href="#cb73-31" aria-hidden="true" tabindex="-1"></a>fitness_full <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"data/higham_fitness_clean.csv"</span>) <span class="sc">|&gt;</span> <span class="fu">mutate</span>(<span class="at">weekend_ind =</span> <span class="fu">case_when</span>(weekday <span class="sc">==</span> <span class="st">"Sat"</span> <span class="sc">|</span> weekday <span class="sc">==</span> <span class="st">"Sun"</span> <span class="sc">~</span> <span class="st">"weekend"</span>,</span>
+<span id="cb73-32"><a href="#cb73-32" aria-hidden="true" tabindex="-1"></a>  <span class="cn">TRUE</span> <span class="sc">~</span> <span class="st">"weekday"</span>))</span>
+<span id="cb73-33"><a href="#cb73-33" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> fitness_full, <span class="fu">aes</span>(<span class="at">x =</span> distance, <span class="at">y =</span> active_cals)) <span class="sc">+</span></span>
+<span id="cb73-34"><a href="#cb73-34" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()</span>
+<span id="cb73-35"><a href="#cb73-35" aria-hidden="true" tabindex="-1"></a><span class="do">## drop observations that have active calories &lt; 50. </span></span>
+<span id="cb73-36"><a href="#cb73-36" aria-hidden="true" tabindex="-1"></a><span class="do">## assuming that these are data errors or </span></span>
+<span id="cb73-37"><a href="#cb73-37" aria-hidden="true" tabindex="-1"></a><span class="do">## days where the Apple Watch wasn't worn.</span></span>
+<span id="cb73-38"><a href="#cb73-38" aria-hidden="true" tabindex="-1"></a>fitness <span class="ot">&lt;-</span> fitness_full <span class="sc">|&gt;</span></span>
+<span id="cb73-39"><a href="#cb73-39" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(active_cals <span class="sc">&gt;</span> <span class="dv">50</span>)</span>
+<span id="cb73-40"><a href="#cb73-40" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> fitness) <span class="sc">+</span></span>
+<span id="cb73-41"><a href="#cb73-41" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">x =</span> distance, <span class="at">y =</span> active_cals))</span>
+<span id="cb73-42"><a href="#cb73-42" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> fitness) <span class="sc">+</span></span>
+<span id="cb73-43"><a href="#cb73-43" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">x =</span> Start, <span class="at">y =</span> active_cals, <span class="at">colour =</span> weekend_ind))</span>
+<span id="cb73-44"><a href="#cb73-44" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> fitness) <span class="sc">+</span></span>
+<span id="cb73-45"><a href="#cb73-45" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">x =</span> Start, <span class="at">y =</span> active_cals, <span class="at">shape =</span> weekend_ind))</span>
+<span id="cb73-46"><a href="#cb73-46" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> fitness) <span class="sc">+</span></span>
+<span id="cb73-47"><a href="#cb73-47" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">x =</span> Start, <span class="at">y =</span> active_cals, <span class="at">size =</span> flights))</span>
+<span id="cb73-48"><a href="#cb73-48" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> fitness) <span class="sc">+</span></span>
+<span id="cb73-49"><a href="#cb73-49" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">x =</span> Start, <span class="at">y =</span> active_cals, <span class="at">colour =</span> <span class="st">"purple"</span>))</span>
+<span id="cb73-50"><a href="#cb73-50" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> fitness) <span class="sc">+</span></span>
+<span id="cb73-51"><a href="#cb73-51" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">x =</span> Start, <span class="at">y =</span> active_cals), <span class="at">size =</span> <span class="fl">1.5</span>, <span class="at">shape =</span> <span class="dv">19</span>)</span>
+<span id="cb73-52"><a href="#cb73-52" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> fitness, <span class="fu">aes</span>(<span class="at">x =</span> Start, <span class="at">y =</span> active_cals)) <span class="sc">+</span></span>
+<span id="cb73-53"><a href="#cb73-53" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb73-54"><a href="#cb73-54" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">span =</span> <span class="fl">0.3</span>)</span>
+<span id="cb73-55"><a href="#cb73-55" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> fitness, <span class="fu">aes</span>(<span class="at">x =</span> Start, <span class="at">y =</span> active_cals)) <span class="sc">+</span></span>
+<span id="cb73-56"><a href="#cb73-56" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb73-57"><a href="#cb73-57" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">se =</span> <span class="cn">FALSE</span>, <span class="at">method =</span> <span class="st">"lm"</span>)</span>
+<span id="cb73-58"><a href="#cb73-58" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> fitness, <span class="fu">aes</span>(<span class="at">x =</span> Start, <span class="at">y =</span> steps)) <span class="sc">+</span></span>
+<span id="cb73-59"><a href="#cb73-59" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span> <span class="fu">geom_smooth</span>() <span class="sc">+</span> <span class="fu">xlab</span>(<span class="st">"Date"</span>)</span>
+<span id="cb73-60"><a href="#cb73-60" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> fitness, <span class="fu">aes</span>(<span class="at">x =</span> Start, <span class="at">y =</span> steps)) <span class="sc">+</span></span>
+<span id="cb73-61"><a href="#cb73-61" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>() <span class="sc">+</span> <span class="fu">geom_smooth</span>() <span class="sc">+</span> <span class="fu">xlab</span>(<span class="st">"Date"</span>)</span>
+<span id="cb73-62"><a href="#cb73-62" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> stat113_df, <span class="fu">aes</span>(<span class="at">x =</span> Exercise, <span class="at">y =</span> Pulse,</span>
+<span id="cb73-63"><a href="#cb73-63" aria-hidden="true" tabindex="-1"></a>                           <span class="at">colour =</span> Year)) <span class="sc">+</span></span>
+<span id="cb73-64"><a href="#cb73-64" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb73-65"><a href="#cb73-65" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">se =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb73-66"><a href="#cb73-66" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> stat113_df, <span class="fu">aes</span>(<span class="at">x =</span> Exercise, <span class="at">y =</span> Pulse)) <span class="sc">+</span></span>
+<span id="cb73-67"><a href="#cb73-67" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb73-68"><a href="#cb73-68" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">se =</span> <span class="cn">TRUE</span>) <span class="sc">+</span></span>
+<span id="cb73-69"><a href="#cb73-69" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span> Year)</span>
+<span id="cb73-70"><a href="#cb73-70" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> stat113_df, <span class="fu">aes</span>(<span class="at">x =</span> Award, <span class="at">y =</span> Exercise)) <span class="sc">+</span></span>
+<span id="cb73-71"><a href="#cb73-71" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>()</span>
+<span id="cb73-72"><a href="#cb73-72" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> stat113_df, <span class="fu">aes</span>(<span class="at">x =</span> Award, <span class="at">y =</span> Exercise)) <span class="sc">+</span></span>
+<span id="cb73-73"><a href="#cb73-73" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_violin</span>()</span>
+<span id="cb73-74"><a href="#cb73-74" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> stat113_df, <span class="fu">aes</span>(<span class="at">x =</span> Year, <span class="at">fill =</span> SocialMedia)) <span class="sc">+</span></span>
+<span id="cb73-75"><a href="#cb73-75" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">position =</span> <span class="st">"fill"</span>) <span class="sc">+</span></span>
+<span id="cb73-76"><a href="#cb73-76" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">"Proportion"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    setTimeout(function() {
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      let href = ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const cites = ref.parentNode.getAttribute('data-cites').split(' ');
+    tippyHover(ref, function() {
+      var popup = window.document.createElement('div');
+      cites.forEach(function(cite) {
+        var citeDiv = window.document.createElement('div');
+        citeDiv.classList.add('hanging-indent');
+        citeDiv.classList.add('csl-entry');
+        var biblioDiv = window.document.getElementById('ref-' + cite);
+        if (biblioDiv) {
+          citeDiv.innerHTML = biblioDiv.innerHTML;
+        }
+        popup.appendChild(citeDiv);
+      });
+      return popup.innerHTML;
+    });
+  }
+});
+</script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./01-intro.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Getting Started with <code>R</code> and <code>R Studio</code></span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./03-dplyr.html" class="pagination-link">
+        <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Wrangling with <code>dplyr</code></span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">Course Materials were written by Matt Higham for STAT/DATA 234 at St.&nbsp;Lawrence University</div>   
+    <div class="nav-footer-right">This book was built with <a href="https://quarto.org/">Quarto</a>.</div>
+  </div>
+</footer>
+
+
+
+</body></html>

@@ -1,0 +1,381 @@
+# Introduction to SQL with `dbplyr`
+
+__Goals:__
+
+* explain what a __database__ is, how it is different from a data set, and why you might use a database.
+* use the `dbplyr` to translate `R` code with `dplyr` to `SQL` queries on database tables.
+* draw parallels between `dplyr` functions and the syntax used in `SQL`.
+
+All of the `dplyr` functions we've used (both the ones from early in the semester and from the `xxxx_join()` family more recently) have corresponding components in `SQL`. `SQL` stands for Structured Query Language and is a very common language used with databases. Compared to `dplyr`, in general, `SQL` code is much harder to read, as SQL isn't designed specifically for data analysis like `dplyr` is. In this section, we will introduce databases and give a brief introduction to `SQL` for analyzing data from a database.
+
+## What is a Database
+
+The _R for Data Science_ textbook defines a database as "a collection of data frames," each called a __database table__. There a few key differences between a data frame (what we've been using the entire semester) and a database table. They are summarised from _R for Data Science_ here as:
+
+* a database table can be larger and is stored on disk while a data frame is stored in memory so their size is more limited.
+* a database table usually indices while data frames do not.
+* many , but not all, data base tables are "row-oriented" while tidy data frames are "column-oriented."
+
+Databases are run through Database Management Systems. The _R for Data Science_ textbook divides Database Management Systems into 3 types:
+
+* __client-server__ like PostgreSQL and SQL Server
+* __Cloud-based__ like Amazon's Redshift
+* __In-process__ like SQLite
+
+We won't really discuss these any further, but an advanced course in database systems through the CS department would give more information about Database Management Systems (and databases in general).
+
+How to connect to a database from `R` depends on the type of database management system. There is an `R` package for most major Database Management Systems. For our purposes, because how to connect to a Database management system depends so heavily on the type, we will focus on a database management system that is contained in the `R` package `duckdb`.
+
+We also need a database interface to connect to the database tables in `duckdb` in the `DBI` package.
+
+__Note__: This section on connecting to a database management systems may be confusing, particularly if you do not have a computer science background. But don't let that derail your learning for this rest of this chapter, which will consist of primarily of `R` code from here on! The take-home message is that we need a way to connect to the system within `R`. It's challenging to give specific directions because the connection depends on the type of system, so we are avoiding most of that by connecting to a database management system in the `duckdb` `R` package using functions from the `DBI` package.
+
+https://r4ds.hadley.nz/databases.html
+SQL is short from Structured Query Language.
+We first load in the `duckdb` and `DBI` libraries and make a connection to the database management system, which we will name `con`:
+
+```{r, appendix = TRUE}
+library(DBI)
+library(duckdb)
+con <- DBI::dbConnect(duckdb::duckdb())
+```
+
+We can type in `con` to see what it stores:
+
+```{r, appendix = TRUE}
+con
+```
+
+We've created a brand-new database, so we can next add some data tables with the `duckdb_read_csv()` function. Compared to `read_csv()` from the `readr` package, `duckdb_read_csv()` has a couple of extra arguments: a `conn` argument giving the database management connection and a `name` argument giving the name that we want to give to the data table:
+
+```{r, appendix = TRUE}
+library(here)
+duckdb_read_csv(conn = con, name = "tennis2018", 
+                files = here("data/atp_matches_2018.csv"))
+duckdb_read_csv(conn = con, name = "tennis2019", 
+                files = here("data/atp_matches_2019.csv"))
+```
+
+The `doListTables()` function lists the names of the data tables in the database we just created:
+
+```{r, appendix = TRUE}
+dbListTables(con)
+```
+
+And, `dbExistsTable()` can be used to examine whether or not a data table exists in the current database:
+
+```{r, appendix = TRUE}
+dbExistsTable(con, "tennis2019")
+dbExistsTable(con, "tennis2020")
+```
+
+Note that, in many practical situations, the data tables will already exist in the database you are working with, so the step of `duckdb_read_csv()` would not be necessary.
+
+To use raw SQL code and query the database that we just created, we can create a string of SQL code, name it `sql`, and pass it to the `dbGetQuery()` function. We also load in the `tidyverse` package here to use the `as_tibble()` function to convert the `data.frame` to a `tibble`.
+
+```{r, appendix = TRUE}
+library(tidyverse)
+
+sql <- "
+  SELECT surface, winner_name, loser_name, w_ace, l_ace, minutes
+  FROM tennis2019 
+  WHERE minutes > 240
+"
+dbGetQuery(con, sql)|>
+  as_tibble()
+```
+
+### Exercises {#exercise-16-1}
+
+Exercises marked with an \* indicate that the exercise has a solution at the end of the chapter at \@ref(solutions-16).
+
+1. \* Though we do not know SQL code, we can probably figure out what the code above is doing. Which matches are being returned from our query?
+
+2. What is the `dplyr` equivalent function to `WHERE` in the SQL code above? What is the `dplyr` equivalent function to `SELECT` in the SQL code above?
+
+## `dbplyr`: A Database Version of `dplyr`
+
+`dbplyr` is a package that will allow us to continue to write `dplyr`-style code to query databases instead of writing native `SQL`, as in the code-chunk above. 
+
+We begin by loading in the package and creating a database table object with the `tbl()` function. In this case, we create a database table with the `tennis2019` data and name it `tennis_db`:
+
+```{r, appendix = TRUE}
+library(dbplyr)
+tennis_db <- tbl(con, "tennis2019")
+tennis_db
+```
+
+Examine the print for `tennis_db`, which should look similar to the print for a `tibble` or `data.frame`. Let's use some `dplyr` code to obtain only the matches that lasted longer than `240` minutes and keep only a few of the columns. We will name the result `tennis_query1`:
+
+```{r, appendix = TRUE}
+tennis_query1 <- tennis_db |> 
+  filter(minutes > 240) |> 
+  select(minutes, winner_name, loser_name, minutes, tourney_name)
+tennis_query1
+```
+
+We should note that the result is still a database object: it's not our "usual" `tibble`. One major difference between the database object and the usual `tibble` is that our `tennis_query1` does not tell us how many rows are in the data (see the `??` and the specification `with more rows`). The code that we wrote is not actually looking in the entire data set for matches that are longer than 240 minutes: it is saving time by only performing our query on part of the database table. This is very useful behaviour for database tables that are very, very large, where code might take a long time to run. 
+
+If we want to obtain the result of our query as a `tibble`, we can use the `collect()` function:
+
+```{r, appendix = TRUE}
+tennis_query1 |>
+  collect()
+```
+
+The result is a `tibble` that we can now use any `R` functions on (not just functions from `dplyr` and a few other packages).
+
+The `show_query()` function can be used on our `tennis_query1` to give the SQL code that was executed:
+
+```{r, appendix = TRUE}
+tennis_query1 |>
+  show_query()
+```
+
+To get a better idea about what `SQL` code looks like, let's make one more query with `dplyr` code and use the `show_query()` function to give the native `SQL`:
+
+```{r, appendix = TRUE}
+medvedev_query <- tennis_db |>
+  pivot_longer(c(winner_name, loser_name), names_to = "win_loss",
+               values_to = "player") |>
+  filter(player == "Daniil Medvedev") |>
+  group_by(win_loss) |>
+  summarise(win_loss_count = n())
+medvedev_query
+show_query(medvedev_query)
+```
+
+The `show_query()` shows the native `SQL` code for a pivot: yikes! Remember that `SQL` was __not__ designed for data analysis, so it doesn't always look pretty. We'll do one more simpler query:
+
+```{r, appendix = TRUE}
+over20aces <- tennis_db |> filter(w_ace > 20) |>
+  select(w_ace, winner_name) |>
+  group_by(winner_name) |>
+  summarise(nmatch = n()) |>
+  arrange(desc(nmatch))
+over20aces
+
+over20aces |> show_query()
+```
+
+Can you match some of the `SQL` code with the corresponding `dplyr` functions used?
+
+### Exercises {#exercise-16-2}
+
+Exercises marked with an \* indicate that the exercise has a solution at the end of the chapter at \@ref(solutions-16).
+
+1. \* Obtain the distribution of the `surface` variable by making a table of the total number of matches played on each surface in the 2019 season using `dplyr` functions on `tennis_db`. Then, use `show_query()` to show the corresponding `SQL` code.
+
+2. Create a new variable that is the difference in the `winner_rank_points` and `loser_rank_points` using a `dplyr` function. Then, have your query return only the column you just created, the `winner_name` column, and the `loser_name` column. Use the `show_query()` function to show the corresponding `SQL` code.
+
+3. Perform a query of your choosing on `tennis_db` and use the `show_query()` function to show the corresponding `SQL` code.
+
+## SQL
+
+The purpose of this section is to explore `SQL` syntax a little more, focusing on its connections to `dplyr`. Knowing `dplyr` is quite helpful in learning this `SQL` syntax because, while the syntax differs, the concepts are quite similar. Much of the text in this section is paraphrased from the _R for Data Science textbook_.
+
+There are five core components of an `SQL` query. The two most basic are a `SELECT` statement (similar to `select()`, and, as discussed below, `mutate()` and `summarise()`) and a `FROM` statement (similar to the `data` argument). Using the `show_query()` function directly on `tennis_db` shows an `SQL` query that `SELECT`s all columns (denoted by the `*`), `FROM` the `tennis2019` database.
+
+```{r, appendix = TRUE}
+tennis_db |> show_query()
+```
+
+The `WHERE` and `ORDER BY` statements control which rows are returned (similar to `filter()`) and in what order those rows get returned (similar to `arrange()`):
+
+```{r, appendix = TRUE}
+tennis_db |> filter(winner_hand == "L") |>
+  arrange(desc(tourney_date)) |>
+  show_query()
+```
+
+Finally, `GROUP BY` is used for aggregation (similar to the `dplyr` `group_by()` and `summarise()` combination).
+
+```{r, appendix = TRUE}
+tennis_db |>
+  group_by(winner_name) |>
+  summarise(meanace = mean(w_ace, na.rm = TRUE)) |>
+  show_query()
+```
+
+In the above code chunk, remove the `na.rm = TRUE` argument and run the query. What do you learn?
+
+The `SQL` syntax __must__ always follow the order `SELECT, FROM, WHERE, GROUP BY, ORDER BY`, even though the operations can be performed in a different order than what is specified. This is one aspect that makes `SQL` harder to pick up than something like `dplyr`, where we specify what we want done in the order that we want.
+
+Below we give a little more detail about the 5 operations.
+
+__`SELECT`__: `SELECT` covers a lot of `dplyr` functions. In the code below, we explore how it is used in `SQL` to choose which columns get returned, rename columns, and create new variables:
+
+* `SELECT` to choose which columns to return:
+
+```{r, appendix = TRUE}
+tennis_db |> select(1:4) |> show_query()
+```
+
+* `SELECT` to rename columns:
+
+```{r, appendix = TRUE}
+tennis_db |> rename(tournament = tourney_name) |>
+  show_query()
+```
+
+* `SELECT` to create a new variable
+
+```{r, appendix = TRUE}
+tennis_db |> mutate(prop_first_won = w_1stIn / w_1stWon) |>
+  select(prop_first_won, winner_name) |>
+  show_query()
+```
+
+* `SELECT` to create a new variable that is a summary:
+
+```{r, appendix = TRUE}
+tennis_db |> summarise(mean_length = mean(minutes)) |>
+  show_query()
+```
+
+<br>
+
+__`GROUP BY`__: `GROUP BY` covers aggregation in a similar way as `dplyr`'s `group_by()` function:
+
+```{r, appendix = TRUE}
+tennis_db |> group_by(winner_name) |>
+  summarise(meanlength = mean(minutes)) |>
+  show_query()
+```
+
+__`WHERE`__: `WHERE` is used for `filter()`, though `SQL` uses different Boolean operators than `R` (for example, `&` becomes `AND`, `|` becomes `or`).
+
+```{r, appendix = TRUE}
+tennis_db |> filter(winner_age > 35 | loser_age > 35) |>
+  show_query()
+```
+
+__`ORDER BY`__: `ORDER BY` is used for `arrange()`. This one is quite straightforward:
+
+```{r, appendix = TRUE}
+tennis_db |> arrange(desc(winner_rank_points)) |>
+  show_query()
+```
+
+`SQL` also has corresponding syntax for the `xxxx_join()` family of functions, but we do not have time to discuss this in detail. Note that we have really just scratched the surface of `SQL`. There are entire courses devoted to learning `SQL` syntax and more about databases in general. If you ever do find yourself in a situation where you need to learn `SQL`, either for a course or for a job, you should have a major head-start with your `dplyr` knowledge!
+
+### Exercises {#exercise-16-3}
+
+Exercises marked with an \* indicate that the exercise has a solution at the end of the chapter at \@ref(solutions-16).
+
+In much of this section, we have created code with `dplyr` and seen how that code translates to `SQL`. In these exercises, you will intead be given `SQL` code and asked to write `dplyr` code that achieves the same thing.
+
+1. \* Examine the `SQL` code below and write equivalent `dplyr` code.
+
+```{r, eval = FALSE}
+SELECT * 
+FROM "tennis2019"
+WHERE ("tourney_name" = 'Wimbledon')
+```
+
+2. Examine the `SQL` code below and write equivalent `dplyr` code.
+
+```{r, eval = FALSE}
+SELECT "winner_name", "loser_name", "w_ace", "l_ace", "w_ace" - "l_ace" AS "ace_diff"
+FROM "tennis2019"
+ORDER BY "ace_diff" DESC
+```
+
+3. Examine the `SQL` code below and write equivalent `dplyr` code.
+
+```{r, eval = FALSE}
+SELECT "tourney_name", AVG("minutes") AS "mean_min"
+FROM "tennis2019"
+GROUP BY "tourney_name"
+```
+
+## Chapter Exercises {#chapexercise-16}
+
+Exercises marked with an \* indicate that the exercise has a solution at the end of the chapter at \@ref(solutions-16).
+
+1. Run the following code:
+
+```{r, eval = FALSE}
+tennis_db |> slice(1000:1005) |>
+  show_query()
+```
+
+Make a hypothesis about why a function like `slice()` is not compatible with `dbplyr`.
+
+2. \* Try to run a function from `lubridate` or `forcats` on `tennis_db` with `mutate()`. Does the function work? Did you expect it to work?
+
+3. Run the following code and write how the `!` is translated to `SQL`.
+
+```{r}
+tennis_db |> filter(winner_name != "Daniil Medvedev") |>
+  show_query()
+```
+
+4. Run the following code and write how the `%in%` symbol is translated to `SQL`.
+
+```{r}
+tennis_db |>
+  filter(winner_name %in% c("Daniil Medvedev", "Dominic Thiem")) |>
+  show_query()
+```
+
+## Exercise Solutions {#solutions-16}
+
+### What is a Database S
+
+1. \* Though we do not know SQL code, we can probably figure out what the code above is doing. Which matches are being returned from our query?
+
+The code is keeping any matches that are longer than 240 minutes. It is also getting rid of all of the columns except for those specified in `SELECT`.
+
+### `dbplyr`: A Database Version of `dplyr` S
+
+1. \* Obtain the distribution of the `surface` variable by making a table of the total number of matches played on each surface in the 2019 season using `dplyr` functions on `tennis_db`. Then, use `show_query()` to show the corresponding `SQL` code.
+
+```{r}
+tennis_db |> group_by(surface) |> summarise(nmatch = n())
+
+tennis_db |> group_by(surface) |> summarise(nmatch = n()) |>
+  show_query()
+```
+
+### SQL S
+
+1. \* Examine the `SQL` code below and write equivalent `dplyr` code.
+
+```{r, eval = FALSE}
+SELECT * 
+FROM "tennis2019"
+WHERE ("tourney_name" = 'Wimbledon')
+```
+
+```{r}
+tennis_db |>
+  filter(tourney_name == "Wimbledon")
+
+## check query:
+tennis_db |>
+  filter(tourney_name == "Wimbledon") |>
+  show_query()
+```
+
+### Chapter Exercises S {#chapexercise-16-S}
+
+2. \* Try to run a function from `lubridate` or `forcats` on `tennis_db` with `mutate()`. Does the function work? Did you expect it to work?
+
+```{r, eval = FALSE}
+tennis_db |> mutate(tourney_name_reorder = fct_reorder(tourney_name, 
+                                                       draw_size))
+```
+
+The result is an error. Only functions compatible with the `dbplyr` package can be used on a database table. Functions specific to `R`, like those in `lubridate` and `forcats` cannot work until we `collect()` the database table into a data frame or tibble:
+
+```{r}
+tennis_db |> collect() |>
+  mutate(tourney_name_reorder = fct_reorder(tourney_name, 
+                                                       draw_size))
+```
+
+## Non-Exercise `R` Code {#rcode-16}
+
+```{r ref.label=knitr::all_labels(appendix == TRUE), echo=TRUE, eval=FALSE}
+```

@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<title> 10 Data Ethics | STAT 234: Data Science</title>
+<meta name="author" content="Matt Higham">
+<meta name="description" content="Goals: explain why data ethics is an important issue in data science using a couple of examples. describe a few issues with data privacy and explain why, just because data doesn’t have an...">
+<meta name="generator" content="bookdown 0.27 with bs4_book()">
+<meta property="og:title" content=" 10 Data Ethics | STAT 234: Data Science">
+<meta property="og:type" content="book">
+<meta property="og:url" content="https://highamm.github.io/datascience234/data-ethics.html">
+<meta property="og:description" content="Goals: explain why data ethics is an important issue in data science using a couple of examples. describe a few issues with data privacy and explain why, just because data doesn’t have an...">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content=" 10 Data Ethics | STAT 234: Data Science">
+<meta name="twitter:description" content="Goals: explain why data ethics is an important issue in data science using a couple of examples. describe a few issues with data privacy and explain why, just because data doesn’t have an...">
+<!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
+<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.2.5.1/tabs.js"></script><script src="libs/bs3compat-0.2.5.1/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
+<script src="libs/bs4_book-1.0.0/bs4_book.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><style type="text/css">
+    
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  </style>
+<link rel="stylesheet" href="bs4_style.css">
+</head>
+<body data-spy="scroll" data-target="#toc">
+
+<div class="container-fluid">
+<div class="row">
+  <header class="col-sm-12 col-lg-3 sidebar sidebar-book"><a class="sr-only sr-only-focusable" href="#content">Skip to main content</a>
+
+    <div class="d-flex align-items-start justify-content-between">
+      <h1>
+        <a href="index.html" title="">STAT 234: Data Science</a>
+      </h1>
+      <button class="btn btn-outline-primary d-lg-none ml-2 mt-1" type="button" data-toggle="collapse" data-target="#main-nav" aria-expanded="true" aria-controls="main-nav"><i class="fas fa-bars"></i><span class="sr-only">Show table of contents</span></button>
+    </div>
+
+    <div id="main-nav" class="collapse-lg">
+      <form role="search">
+        <input id="search" class="form-control" type="search" placeholder="Search" aria-label="Search">
+</form>
+
+      <nav aria-label="Table of contents"><h2>Table of contents</h2>
+        <ul class="book-toc list-unstyled">
+<li><a class="" href="index.html"><span class="header-section-number">1</span> Syllabus and Course Information</a></li>
+<li class="book-part">The Core: tidyverse Basics</li>
+<li><a class="" href="intro.html"><span class="header-section-number">2</span> Getting Started with R and R Studio</a></li>
+<li><a class="" href="ggplot2.html"><span class="header-section-number">3</span> Plotting with ggplot2</a></li>
+<li><a class="" href="dplyr.html"><span class="header-section-number">4</span> Wrangling with dplyr</a></li>
+<li><a class="" href="communication-with-quarto.html"><span class="header-section-number">5</span> Communication with Quarto</a></li>
+<li><a class="" href="workflow.html"><span class="header-section-number">6</span> Workflow and Other Skills</a></li>
+<li class="book-part">Data Wrangling</li>
+<li><a class="" href="tidying-with-tidyr.html"><span class="header-section-number">7</span> Tidying with tidyr</a></li>
+<li><a class="" href="coding-in-base-r.html"><span class="header-section-number">8</span> Coding in Base R</a></li>
+<li><a class="" href="factors-with-forcats.html"><span class="header-section-number">9</span> Factors with forcats</a></li>
+<li><a class="active" href="data-ethics.html"><span class="header-section-number">10</span> Data Ethics</a></li>
+<li><a class="" href="data-import.html"><span class="header-section-number">11</span> Data Import</a></li>
+<li><a class="" href="merging-with-dplyr.html"><span class="header-section-number">12</span> Merging with dplyr</a></li>
+<li class="book-part">Special Topics</li>
+<li><a class="" href="dates-with-lubridate.html"><span class="header-section-number">13</span> Dates with lubridate</a></li>
+<li><a class="" href="text-data-with-tidytext-and-stringr.html"><span class="header-section-number">14</span> Text Data with tidytext and stringr</a></li>
+<li><a class="" href="predictive-modeling-with-knn.html"><span class="header-section-number">15</span> Predictive Modeling with knn</a></li>
+<li><a class="" href="connections-to-stat-113-stat-213-and-cs-140.html"><span class="header-section-number">16</span> Connections to STAT 113, STAT 213, and CS 140</a></li>
+<li><a class="" href="introduction-to-sql-with-dbplyr.html"><span class="header-section-number">17</span> Introduction to SQL with dbplyr</a></li>
+</ul>
+
+        <div class="book-extra">
+          
+        </div>
+      </nav>
+</div>
+  </header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><div id="data-ethics" class="section level1" number="10">
+<h1>
+<span class="header-section-number"> 10</span> Data Ethics<a class="anchor" aria-label="anchor" href="#data-ethics"><i class="fas fa-link"></i></a>
+</h1>
+<p><strong>Goals:</strong></p>
+<ul>
+<li>explain why data ethics is an important issue in data science using a couple of examples.</li>
+<li>describe a few issues with data privacy and explain why, just because data doesn’t have an individual’s name doesn’t necessarily make the data truly anonymous.</li>
+<li>explain the difference between <em>hypothesis confirmation</em> and <em>hypothesis exploration</em> and why the distinction matters.</li>
+</ul>
+<div id="ethical-examples" class="section level2" number="10.1">
+<h2>
+<span class="header-section-number">10.1</span> Ethical Examples<a class="anchor" aria-label="anchor" href="#ethical-examples"><i class="fas fa-link"></i></a>
+</h2>
+<p>We’ve tried to interweave issues of ethics throughout many examples used already in this course, but the purpose of this section is to put data ethics in direct focus.</p>
+<p>Some questions to consider for any data collected, especially data collected on human subjects:</p>
+<ul>
+<li><p>who gets to use data and for what purposes?</p></li>
+<li><p>who collected the data and does that organization have any conflicts of interest?</p></li>
+<li><p>is presentation of an analysis harmful to a particular person or group of people? Are there benefits of an analysis?</p></li>
+<li>
+<p>have the subjects of a data collection procedure been treated respectfully and have they given consent to their information being collected?</p>
+<ul>
+<li><p>When is consent needed and when is it not? For example, we have looked at data on professional athletes. Do they need to provide consent or is consent inherent in being in the spotlight?</p></li>
+<li><p>We’ve also scraped data from SLU’s athletics website to look at data pertaining to some of you! Is that ethical? Is there a line you wouldn’t cross pertaining to data collected on named, individual people?</p></li>
+</ul>
+</li>
+</ul>
+<div id="exercise-9-1" class="section level3" number="10.1.1">
+<h3>
+<span class="header-section-number">10.1.1</span> Exercises<a class="anchor" aria-label="anchor" href="#exercise-9-1"><i class="fas fa-link"></i></a>
+</h3>
+<p>Exercises marked with an * indicate that the exercise has a solution at the end of the chapter at <a href="data-ethics.html#solutions-9">10.5</a>.</p>
+<ol style="list-style-type: decimal">
+<li><p>Read Sections 8.1 - 8.3 in <a href="https://mdsr-book.github.io/mdsr2e/" target="_blank">Modern Data Science with R</a>. Then, write a one paragraph summary of the reading and how it might pertain to the way you use or interpret data.</p></li>
+<li><p><em>Data Feminism</em> is related to data ethics, though the two terms are certainly not synonymous. Recently, Catherine D’Ignazio and Lauren F. Klein published a book called <em>Data Feminism</em> <a href="https://datafeminism.io/" target="_blank">https://datafeminism.io/ </a></p></li>
+</ol>
+<p>Read the following blog post on Data Feminism, focusing on the section on Missing Data. <a href="https://teachdatascience.com/datafem/" target="_blank">https://teachdatascience.com/datafem/ </a>.</p>
+<p>Pick one example from the bulleted list and write a 2 sentence explanation that explains why it might be important to acknowledge the missing data in an analysis.</p>
+<ol start="3" style="list-style-type: decimal">
+<li>Choose <strong>1</strong> of the following two articles to read</li>
+</ol>
+<ul>
+<li>
+<a href="https://www.theguardian.com/world/2017/sep/08/ai-gay-gaydar-algorithm-facial-recognition-criticism-stanford" target="_blank">https://www.theguardian.com/world/2017/sep/08/ai-gay-gaydar-algorithm-facial-recognition-criticism-stanford </a> on the use of data in the LGBTQIA+ community</li>
+<li>
+<a href="https://towardsdatascience.com/5-steps-to-take-as-an-antiracist-data-scientist-89712877c214" target="_blank">https://towardsdatascience.com/5-steps-to-take-as-an-antiracist-data-scientist-89712877c214 </a> on anti-racist data practices.</li>
+</ul>
+<ol style="list-style-type: lower-alpha">
+<li>For the LGBTQIA+ article, write a two sentence summary for the side of the argument that research in facial recognition software to identify members of the LGBTQ+ community should <strong>not</strong> occur, even if this viewpoint isn’t your own.</li>
+</ol>
+<p>Then, write a two sentence summary for the side of the argument that research in facial recognition software to identify members of the LGBTQ+ community is okay as long as the results are used responsibly, even if this viewpoint isn’t your own.</p>
+<ol start="2" style="list-style-type: lower-alpha">
+<li>For the anti-racist data science article, under Step 2, pick a News Article and read the first few paragraphs. Describe, in 2-3 sentences, what your article’s example of bias is and why the incidence of bias matters.</li>
+</ol>
+</div>
+</div>
+<div id="data-privacy" class="section level2" number="10.2">
+<h2>
+<span class="header-section-number">10.2</span> Data Privacy<a class="anchor" aria-label="anchor" href="#data-privacy"><i class="fas fa-link"></i></a>
+</h2>
+<p>Related to data ethics is the idea of <em>data privacy</em>.</p>
+<ul>
+<li>What data is private and what data is public? For some examples, this may seem obvious, but for others (e.g. data on a government agency that collects data on people), the answer might not be as clear cut.</li>
+<li>Is anonymous data truly anonymous?</li>
+<li>What type of consent should be provided before collecting data on someone?</li>
+</ul>
+<p>We will explore some of these issues in the following exercises.</p>
+<div id="exercise-9-2" class="section level3" number="10.2.1">
+<h3>
+<span class="header-section-number">10.2.1</span> Exercises<a class="anchor" aria-label="anchor" href="#exercise-9-2"><i class="fas fa-link"></i></a>
+</h3>
+<p>Exercises marked with an * indicate that the exercise has a solution at the end of the chapter at <a href="data-ethics.html#solutions-9">10.5</a>.</p>
+<ol style="list-style-type: decimal">
+<li>Recall the course evaluations data set, which you used for Mini-Project 2. This might have been obvious, but the course evaluations were my course evaluations from last year, so I felt that it was ethically okay for me to share them. But, data privacy is not always a cut-and-dry issue. Consider the following course evaluation formats, and think about whether or not you would consider it ethically okay for me to share the evaluation information with you:</li>
+</ol>
+<ol style="list-style-type: lower-alpha">
+<li><p>I not only gave you the course averages, but I also give you PDFs of each student’s written responses. The PDFs are anonymous, but they do have the student’s sex, year, and whether they took the course for a Major, Minor, Distribution Requirement, etc. Assume that you also can obtain the class roster for each class.</p></li>
+<li><p>I not only gave you the course averages and the PDFs in (a), but I also give you the <strong>grade</strong> each student received in the course on their PDF list of responses (but they are still anonymous and you can still obtain the class roster).</p></li>
+<li><p>Another professor at SLU posts her evaluation averages in a table on a personal website. I scrape the data table and give it to you all, along with the professor’s name and courses. I don’t ask for permission, but the website that the tables are on is public.</p></li>
+</ol>
+<ol start="2" style="list-style-type: decimal">
+<li>Suppose that I collect data on students in <strong>this</strong> Data Science class. In each setting (a) through (d), suppose that I give you a data set with the following variables collected on each student in the class. Which option, if any, would it be ethically okay for me to share the data with all students in the class.</li>
+</ol>
+<ol style="list-style-type: lower-alpha">
+<li><p>current grade and time spent on the <code>R Studio</code> server</p></li>
+<li><p>current grade, class year, and whether or not the student is a stat major</p></li>
+<li><p>favorite R package, whether or not the student took STAT 213, whether or not the student took CS 140, and Major</p></li>
+<li><p>favorite R package, whether or not the student took STAT 213, whether or not the student took CS 140, and current grade in the course</p></li>
+</ol>
+<ol start="3" style="list-style-type: decimal">
+<li>How anonymous are SLU’s course evaluations? We will do an in-class activity to investigate this.</li>
+</ol>
+</div>
+</div>
+<div id="hypothesis-generation-vs.-confirmation" class="section level2" number="10.3">
+<h2>
+<span class="header-section-number">10.3</span> Hypothesis Generation vs. Confirmation<a class="anchor" aria-label="anchor" href="#hypothesis-generation-vs.-confirmation"><i class="fas fa-link"></i></a>
+</h2>
+<p>We have focused on <em>hypothesis generation</em> for all data sets in this particular course. Read the following two articles that explain the difference between <em>hypothesis generation</em> and <em>hypothesis confirmation</em>:</p>
+<p>Read the following two very short articles, one from our textbook and one from another source:</p>
+<ul>
+<li><a href="https://r4ds.had.co.nz/model-intro.html#hypothesis-generation-vs.-hypothesis-confirmation" target="_blank">https://r4ds.had.co.nz/model-intro.html#hypothesis-generation-vs.-hypothesis-confirmation</a></li>
+<li><a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC6718169/" target="_blank">https://www.ncbi.nlm.nih.gov/pmc/articles/PMC6718169/</a></li>
+</ul>
+<div id="exercise-9-3" class="section level3" number="10.3.1">
+<h3>
+<span class="header-section-number">10.3.1</span> Exercises<a class="anchor" aria-label="anchor" href="#exercise-9-3"><i class="fas fa-link"></i></a>
+</h3>
+<p>Exercises marked with an * indicate that the exercise has a solution at the end of the chapter at <a href="data-ethics.html#solutions-9">10.5</a>.</p>
+<ol style="list-style-type: decimal">
+<li><p>Explain the difference between hypothesis generation and hypothesis confirmation.</p></li>
+<li><p>How many times can you use a single observation for hypothesis generation? for hypothesis confirmation?</p></li>
+<li><p>Which of the following questions, pertaining to someone’s fitness, sound more suitable to be answered with Hypothesis Exploration? Which with Hypothesis Confirmation?</p></li>
+</ol>
+<ol style="list-style-type: lower-alpha">
+<li><p>You want to know if, on average, this person exercises more on weekends or more on weekdays, with no other questions of interest.</p></li>
+<li><p>You want to look at general trends in the person’s step count and try to determine if various events influenced the step count.</p></li>
+<li><p>You want to know if the person exercises more in winter or more in summer, and you would also like to investigate other seasonal trends.</p></li>
+</ol>
+<p><strong>Note</strong>: Prediction is different from hypothesis confirmation, because you typically don’t really care which variables are associated with your response. You only want a model that gives the “best” predictions. Because of this, if your goal is prediction, you typically have a lot more freedom with how many times you can “use” a single observation. We will talk a little more about prediction later in the semester.</p>
+</div>
+</div>
+<div id="chapexercise-9" class="section level2" number="10.4">
+<h2>
+<span class="header-section-number">10.4</span> Chapter Exercises<a class="anchor" aria-label="anchor" href="#chapexercise-9"><i class="fas fa-link"></i></a>
+</h2>
+<p>There are no chapter exercises for this chapter.</p>
+</div>
+<div id="solutions-9" class="section level2" number="10.5">
+<h2>
+<span class="header-section-number">10.5</span> Exercise Solutions<a class="anchor" aria-label="anchor" href="#solutions-9"><i class="fas fa-link"></i></a>
+</h2>
+<p>There are no exercise solutions for this chapter.</p>
+
+</div>
+</div>
+  <div class="chapter-nav">
+<div class="prev"><a href="factors-with-forcats.html"><span class="header-section-number">9</span> Factors with forcats</a></div>
+<div class="next"><a href="data-import.html"><span class="header-section-number">11</span> Data Import</a></div>
+</div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
+    <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>On this page</h2>
+      <ul class="nav navbar-nav">
+<li><a class="nav-link" href="#data-ethics"><span class="header-section-number">10</span> Data Ethics</a></li>
+<li>
+<a class="nav-link" href="#ethical-examples"><span class="header-section-number">10.1</span> Ethical Examples</a><ul class="nav navbar-nav"><li><a class="nav-link" href="#exercise-9-1"><span class="header-section-number">10.1.1</span> Exercises</a></li></ul>
+</li>
+<li>
+<a class="nav-link" href="#data-privacy"><span class="header-section-number">10.2</span> Data Privacy</a><ul class="nav navbar-nav"><li><a class="nav-link" href="#exercise-9-2"><span class="header-section-number">10.2.1</span> Exercises</a></li></ul>
+</li>
+<li>
+<a class="nav-link" href="#hypothesis-generation-vs.-confirmation"><span class="header-section-number">10.3</span> Hypothesis Generation vs. Confirmation</a><ul class="nav navbar-nav"><li><a class="nav-link" href="#exercise-9-3"><span class="header-section-number">10.3.1</span> Exercises</a></li></ul>
+</li>
+<li><a class="nav-link" href="#chapexercise-9"><span class="header-section-number">10.4</span> Chapter Exercises</a></li>
+<li><a class="nav-link" href="#solutions-9"><span class="header-section-number">10.5</span> Exercise Solutions</a></li>
+</ul>
+
+      <div class="book-extra">
+        <ul class="list-unstyled">
+          
+        </ul>
+</div>
+    </nav>
+</div>
+
+</div>
+</div> <!-- .container -->
+
+<footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>"<strong>STAT 234: Data Science</strong>" was written by Matt Higham. It was last built on 2022-09-14.</p>
+  </div>
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>This book was built by the <a class="text-light" href="https://bookdown.org">bookdown</a> R package.</p>
+  </div>
+
+</div></div>
+</footer><!-- dynamically load mathjax for compatibility with self-contained --><script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script><script type="text/x-mathjax-config">const popovers = document.querySelectorAll('a.footnote-ref[data-toggle="popover"]');
+for (let popover of popovers) {
+  const div = document.createElement('div');
+  div.setAttribute('style', 'position: absolute; top: 0, left:0; width:0, height:0, overflow: hidden; visibility: hidden;');
+  div.innerHTML = popover.getAttribute('data-content');
+
+  var has_math = div.querySelector("span.math");
+  if (has_math) {
+    document.body.appendChild(div);
+    MathJax.Hub.Queue(["Typeset", MathJax.Hub, div]);
+    MathJax.Hub.Queue(function() {
+      popover.setAttribute('data-content', div.innerHTML);
+      document.body.removeChild(div);
+    })
+  }
+}
+</script>
+</body>
+</html>

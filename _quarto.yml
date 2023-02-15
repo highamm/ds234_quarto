@@ -1,0 +1,49 @@
+project:
+  type: book
+  output-dir: docs
+  
+book:
+  title: DATA / STAT 234
+  author: Matt Higham
+  # logo: altair-hist.png
+  # repo-url: https://github.com/uwdata/visualization-curriculum
+  # repo-branch: master
+  # repo-actions: [issue]
+  # sharing: [twitter, facebook]
+  page-footer:
+    left: |
+      Course Materials were written by Matt Higham for STAT/DATA 234 at St. Lawrence University
+    right: |
+      This book was built with <a href="https://quarto.org/">Quarto</a>.
+  chapters:
+    # - index.md
+    - part: The Core
+      chapters:
+        - index.qmd
+        - 01-intro.qmd
+        - 02-ggplot2.qmd
+        - 03-dplyr.qmd
+        - 05-comm.qmd
+        - 14-workflow.qmd
+    - part: Data Wrangling
+      chapters:
+        - 04-tidyr.qmd
+        - 06-basics.qmd
+        - 07-forcats.qmd
+        - 09-ethics.qmd
+        - 08-import.qmd
+        - 10-merging.qmd
+    - part: Special Topics
+      chapters:
+        - 11-lubridate.qmd
+        - 12-stringr.qmd
+        - 13-knn.qmd
+        - 15-connections.qmd
+        - 16-sql.qmd
+
+format:
+  html:
+    theme: 
+      - cosmo
+      - ds234.scss
+

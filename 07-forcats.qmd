@@ -1,0 +1,510 @@
+# Factors with `forcats`
+
+__Goals:__
+
+* Use the `forcats` package to change the levels of factors, or to re-order levels of factors in a way that makes tables and graphs easier to read.
+
+## Change Factor Levels
+
+__The Data__: The `pokemon_allgen.csv` data set contains observations on Pokemon from the first 6 Generations (the first 6 games). There are 20 variable in this data set, but, of particular interest for this chapter are
+
+* `Type 1`, the first Type characteristic of the Pokemon (a factor with 13 levels)
+* `Type 2`, the second Type characteristic of the Pokemon (a factor with 13 levels, `NA` if the Pokemon only has one type)
+* `Generation`, the generation the Pokemon first appeared in (a factor with 6 levels)
+
+Read in the data set with `read_csv()`. Then, use a `mutate()` statement to make a `Generation_cat` variable that is a factor.
+
+```{r, message = FALSE, warning = FALSE, appendix = TRUE}
+library(tidyverse)
+library(here)
+pokemon_df <- read_csv(here("data/pokemon_allgen.csv")) |>
+  mutate(Generation_cat = factor(Generation))
+```
+
+One easy way to get a quick summary of a `factor` variable is to use `group_by()` and `n()` within a `summarise()` statement:
+
+```{r, appendix = TRUE}
+pokemon_df |> group_by(`Type 1`) |>
+  summarise(counttype = n())
+```
+
+<br>
+
+### `fct_recode()` to Rename Levels
+
+Now, let's make a bar plot that examines how many `Legendary` Pokemon first appear in each generation, using `dplyr` commands that we've used and a simple `geom_col()`:
+
+```{r, appendix = TRUE}
+pokemon_legend <- pokemon_df |> filter(Legendary == TRUE) |>
+  group_by(Generation_cat) |>
+  summarise(nlegend = n())
+ggplot(data = pokemon_legend, aes(x = Generation_cat, y = nlegend)) +
+  geom_col()
+```
+
+We've discussed how to change many aspects of `ggplot2` graphs, but we haven't discussed how to rename the labels of levels of a categorical variable, whether those appear in the x-axis or in a separate legend. The easiest way to do this is to rename the levels in the factor itself using `fct_recode()`. Suppose, for example, that we want to relabel the Generation number with the actual region corresponding to each game (Kanto, Johto, Hoenn, Sinnoh, Unova, and Kalos). The function `fct_recode()` takes the name of a factor already present in the data set as its first argument and then a series of renaming schemes (new_name = "old_name") as its remaining arguments.
+
+```{r, appendix = TRUE}
+pokemon_legend <- pokemon_legend |>
+  mutate(Generation_cat2 = fct_recode(Generation_cat, Kanto = "1",
+                                      Johto = "2", Hoenn = "3",
+                                      Sinnoh = "4", Unova = "5",
+                                      Kalos = "6")) |>
+  select(Generation_cat2, everything())
+head(pokemon_legend)
+ggplot(data = pokemon_legend,
+       aes(x = Generation_cat2, y = nlegend)) +
+  geom_col()
+```
+
+### Collapsing Many Levels Into Fewer Levels with `fct_collapse()`
+
+Sometimes, you might want to collapse the levels of two or more factors into a single level. With the Pokemon data set, there isn't an example where this really makes sense, but, in the exercises, you'll see a good use for this function with the social survey data set. For practice, we can collapse the `Ice` and `Dark` type Pokemon into a new level called `Coolest` and we can collapse the `Poison`, `Fighting`, and `Fire` type Pokemon into a new level called `Least_Cool`. 
+
+```{r, appendix = TRUE}
+pokemon_long <- pokemon_df |> pivot_longer(c(`Type 1`, `Type 2`),
+                            names_to = "Number",
+                            values_to = "Type")
+pokemon_long |>
+  mutate(new_type = fct_collapse(Type, Coolest = c("Ice", "Dark"),
+                                 Least_Cool = c("Fire", "Fighting", "Poison"))) |>
+  select(new_type, Type, everything())
+```
+
+What happens to the levels that aren't being re-specified?
+
+<br>
+
+### Exercises {#exercise-7-1}
+
+Exercises marked with an \* indicate that the exercise has a solution at the end of the chapter at \@ref(solutions-7).
+
+1. What `dplyr` function(s) could you also use to create the new levels that were created with `fct_collapse()`? Why might it be a little easier to use `fct_collapse()`? 
+
+2. \* We did not properly explore the data set before making the graphs above, and, in fact, there is some double counting of Pokemon in this data set (this is another example where being familiar with the data set you're working with is advantageous: people familiar with Pokemon know that there are fewer than 947 Pokemon in Generations 1 through 6). 
+
+Figure out why some Pokemon are double counted. Then, create a new data set that only keeps one observation per Pokemon `#`. 
+
+3. Create the bar plot with your non-duplicated data set. Are your results significantly changed?
+
+<br>
+
+## Reorder Factor Levels
+
+### Change the Order of Levels by a Quantitative Variable with `fct_reorder()`
+
+You might also be interested in re-ordering the x or y-axis of a particular graph so that the order of the factors correspond to, for example, the median of a quantitative variable for each level. The reason you would want to do this is easiest to see with an example. For example, suppose you want to look at the most common Pokemon types across the first 6 generations. We use the non-duplicated data set from the previous section's exercises, we pivot the data so that type is in one column, and we remove observations with missing `Type`, which correspond to the second `Type` of Pokemon that only have a single `Type`:
+
+```{r, appendix = TRUE}
+pokemon_nodup <- pokemon_df |> group_by(`#`) |> slice(1) |>
+  ungroup()
+pokemon_long <- pokemon_nodup |>
+  pivot_longer(c(`Type 1`, `Type 2`),
+               names_to = "Number",
+               values_to = "Type")
+pokemon_sum <- pokemon_long |>
+  group_by(Type) |>
+  summarise(count_type = n()) |>
+  filter(!is.na(Type))
+ggplot(data = pokemon_sum, aes(x = Type,
+                               y = count_type)) +
+  geom_col() +
+  coord_flip()  ## flips the x and y axes
+```
+
+How does `R` order the levels of the `Type` factor, by default? How might you like them to be ordered to make the graph more readable?
+
+<br>
+
+The following code creates a new factor variable called `Type_ordered` that orders type by the `count_type` variable. `fct_reorder()` takes a factor as its first argument and a numeric variable to re-order that factor by as its second argument. The bar plot is then reconstructed with this new variable.
+
+```{r, appendix = TRUE}
+pokemon_sum <- pokemon_sum |> 
+  mutate(Type_ordered = fct_reorder(.f = Type, .x = count_type))
+ggplot(data = pokemon_sum, aes(x = Type_ordered,
+                               y = count_type)) +
+  geom_col() +
+  coord_flip()
+```
+
+### Lollipop Plots
+
+Lollipop plots are a popular alternative to bar plots because they often look cleaner with less ink. To make a lollipop plot in `R`, we specify two different geoms: `geom_segment()` to form the stick of the lollipop and `geom_point()` to form the pop part of the lollipop. `geom_segment()` requires 4 aesthetics: `x`, `xend`, `y`, and `yend`.
+
+```{r, appendix = TRUE}
+ggplot(data = pokemon_sum, aes(x = Type_ordered,
+                               y = count_type)) +
+  geom_segment(aes(x = Type_ordered, xend = Type_ordered,
+                   y = 0, yend = count_type)) +
+  geom_point() +
+  coord_flip()
+```
+
+`fct_reorder()` also works with boxplots or simple point plots that show, for example, the median response for each level of a factor. The following set of plots investigate how the `Defense` stat changes for different Pokemon types
+
+```{r, appendix = TRUE}
+pokemon_long <- pokemon_long |>
+  filter(!is.na(Type)) |>
+  mutate(Type_Deford = fct_reorder(.f = Type, .x = Defense,
+                                   .fun = median))
+ggplot(data = pokemon_long, aes(x = Type_Deford,
+                               y = Defense)) +
+  geom_boxplot() + 
+  coord_flip()
+```
+
+The following code makes a point plot that shows the median defense for each type instead of boxplots.
+
+```{r, appendix = TRUE}
+pokemon_med <- pokemon_long |> group_by(Type_Deford) |>
+  summarise(med_def = median(Defense)) |>
+  mutate(Type_Deford = fct_reorder(.f = Type_Deford, .x = med_def,
+                                   .fun = median))
+
+ggplot(data = pokemon_med, aes(x = med_def, y = Type_Deford)) +
+  geom_point()
+```
+
+Finally, we can make a lollipop plot of median defense.
+
+```{r, appendix = TRUE}
+ggplot(data = pokemon_med, aes(x = Type_Deford, y = med_def)) +
+  geom_segment(aes(xend = Type_Deford, y = 0, yend = med_def)) +
+  geom_point() +
+  coord_flip()
+```
+
+
+Do you have a preference between the boxplot graph, the point plot, and the lollipop plot?
+
+<br>
+
+__New Data__. The `gun_violence_us.csv` data set was obtained from <a href="https://www.openintro.org/book/statdata/index.php?data=gun_violence_us" target="_blank">https://www.openintro.org/book/statdata/index.php?data=gun_violence_us</a> and contains the following variables on gun violence in 2014:
+
+* `state`, the name of the U.S. state
+* `mortality_rate`, number of deaths from gun violence per 100,000 people
+* `ownership_rate`, the proportion of adults who own a gun
+* `region`, region of the U.S. (`South`, `West`, `NE`, and `MW`)
+
+```{r, message = FALSE, appendix = TRUE}
+mortality_df <- read_csv(here("data/gun_violence_us.csv")) |>
+  mutate(region = factor(region))
+```
+
+### Re-Leveling By Two Quantitative Variables with `fct_reorder2()`
+
+Suppose that we want to investigate the relationship between `mortality_rate` and `ownership_rate` using this data set. Run the following code to create a scatterplot of `mortality_rate` vs. `ownership_rate` with fitted linear regression lines for each `region` of the United States:
+
+```{r, message = FALSE, appendix = TRUE}
+ggplot(data = mortality_df,
+       aes(x = ownership_rate, y = mortality_rate, colour = region)) +
+  geom_point() +
+  geom_smooth(method = "lm")
+```
+
+Notice the order of the levels in the legend. Most people would prefer the order to actually match up with where the lines in the plot end, not for the order to be alphabetical. To achieve this, we can use `fct_reorder2()` to change the order of the factor levels:
+
+```{r, message = FALSE, appendix = TRUE}
+mortality_df <- mortality_df |>
+  mutate(region_2 = fct_reorder2(region,
+                                 .x = ownership_rate,
+                                 .y = mortality_rate))
+ggplot(data = mortality_df,
+       aes(x = ownership_rate, y = mortality_rate, colour = region_2)) +
+  geom_point() +
+  geom_smooth(method = "lm")
+```
+
+Did it change the order of the levels how you would expect? `fct_reorder2()` actually looks at __points__, not lines, when determining the ordering. If you want the levels to match up exactly, then we'll have to reorder the levels manually with `fct_relevel()`:
+
+### Reordering Levels Manually with `fct_relevel()`
+
+Factors are ordered alphabetically by default. If we want precise control over the order of the levels of a factor, we can use `fct_relevel()`, which takes a factor and a vector of the new levels as inputs:
+
+```{r, message = FALSE, appendix = TRUE}
+mortality_df <- mortality_df |>
+  mutate(region_3 = fct_relevel(region, c("South", "West", "MW", "NE")))
+ggplot(data = mortality_df,
+       aes(x = ownership_rate, y = mortality_rate, colour = region_3)) +
+  geom_point() +
+  geom_smooth(method = "lm")
+```
+
+Reordering the levels of a factor manually might also be useful in fitting linear models. Recall that, by default, `R` makes the __reference group__ in a linear model the first level alphabetically. If you'd like a different reference group, you can reorder the levels of the factor:
+
+```{r, results = "hide", appendix = TRUE}
+mod <- lm(mortality_rate ~ ownership_rate + region, data = mortality_df)
+mod2 <- lm(mortality_rate ~ ownership_rate + region_2, data = mortality_df)
+mod3 <- lm(mortality_rate ~ ownership_rate + region_3, data = mortality_df)
+summary(mod)
+summary(mod2)
+summary(mod3)
+```
+
+### Exercises {#exercise-7-2}
+
+1. Make the side-by-side boxplots again with the pokemon data but do not use `ungroup()` by running the following code.
+
+```{r}
+pokemon_nodup <- pokemon_df |> group_by(`#`) |> slice(1) ## |>
+  ## ungroup()
+pokemon_long <- pokemon_nodup |>
+  pivot_longer(c(`Type 1`, `Type 2`),
+               names_to = "Number",
+               values_to = "Type")
+
+pokemon_long <- pokemon_long |>
+  filter(!is.na(Type)) |>
+  mutate(Type_Deford = fct_reorder(.f = Type, .x = Defense,
+                                   .fun = median))
+ggplot(data = pokemon_long, aes(x = Type_Deford,
+                               y = Defense)) +
+  geom_boxplot() + 
+  coord_flip()
+```
+
+Why aren't the types ordered by median defense anymore? 
+
+2. The `.fun` argument in `fct_reorder()` controls how the `Type` factor is ordered. Change this to specify ordering by the `mean`, `max`, and `min`. What ordering makes the most sense? Why?
+
+## Chapter Exercises {#chapexercise-7}
+
+Exercises marked with an \* indicate that the exercise has a solution at the end of the chapter at \@ref(solutions-7).
+
+For these chapter exercises, we will use a data set on National Football League standings from 2000 to 2020. Read in the data set with:
+
+```{r}
+library(tidyverse)
+library(here)
+standings_df <- read_csv(here("data/standings.csv"))
+standings_df
+```
+
+The important variables that we will use include:
+
+* `team`, the city where the team is based in
+* `team_name`, the name of the team
+* `playoffs`, whether or not the team made the playoffs that year
+* `sb_winner`, whether or not the team won the superbowl that year
+
+1. Use the `table()` function with `table(name_of_data_frame$name_of_variable)` to make a table of `team_name`. This is useful to use for categorical variables to give a quick summary of what the levels are and how many times each level appears in the data set.
+
+2. Until a couple of years ago, the Washington Commanders team used to be known as the Washington Redskins. Because of the obvious racism the name conveys, in 2022, the name was changed from Redskins to Commanders. Use a `forcats` function to rename the `Redskins` `team_name` to `Commanders`. Note that, usually, we have been renaming the new variable after we use a `forcats` function, but, oftentimes, it makes sense to just overwrite the old variable by using the same name in our `mutate()` statement.
+
+3. Use a function from `tidyr` to combine `team` and `team_name` into a single variable called `franchise`. You may want to specify `sep = " "` for consistency with the city names.
+
+4. There are a couple of franchises in the national football league that moved cities in the late 2010s. In particular, the San Diego Chargers became the Los Angeles Chargers and the St. Louis Rams became the Los Angeles Rams (this is another instance where being familiar with context is helpful here: it may have taken you much longer to figure this out, had you not known much about the NFL). Use a `forcats` function to put the `San Diego Chargers` and `Los Angeles Chargers` into a single level, `San Diego LA Chargers`, and to put the `St. Louis Rams` and `Los Angeles Rams` into a single level, `St. Louis LA Rams`.
+
+5. Using the updated data set, create a lollipop plot of the ten `franchise`s who have made the playoffs most often. You will need to do some work with `dplyr` before making the plot.
+
+```{r, echo = FALSE, eval = FALSE}
+standings_df <- standings_df |> mutate(team_name = fct_recode(team_name,
+                                              Commanders = "Redskins")) |>
+  unite(col = "franchise", c(team, team_name), sep = " ",
+        remove = FALSE) |>
+  mutate(franchise = fct_collapse(franchise,
+                                  `St. Louis LA Rams` =  c("St. Louis Rams", "Los Angeles Rams"),
+                                  `San Diego LA Chargers` = c("Los Angeles Chargers", "San Diego Chargers")))
+
+top_ten <- standings_df |> filter(playoffs == "Playoffs") |>
+  group_by(franchise) |>
+  summarise(n_playoffs = n()) |>
+  arrange(desc(n_playoffs)) |>
+  slice(1:10) |>
+  mutate(franchise = fct_reorder(franchise, n_playoffs))
+ggplot(data = top_ten, aes(x = franchise, y = n_playoffs)) +
+  geom_point() +
+  geom_segment(aes(x = franchise, xend = franchise,
+                   y = 0, yend = n_playoffs)) +
+  coord_flip()
+```
+
+6. Customize your lollipop plot by changing the way the points look at the end and / or the way the "stems" of the lollipops look. You may use <https://r-graph-gallery.com/301-custom-lollipop-chart.html> for inspiration.
+
+<br>
+
+<br>
+
+The following are the old chapter exercises for `forcats`: I've left them in here in case you want some extra practice!
+We will use the general social survey data set, which is in the `forcats` library in `R`. You should some of this Wikipedia page to better understand where this data comes from <a href="https://en.wikipedia.org/wiki/General_Social_Survey" target="_blank">Wikipedia</a>.
+
+Most variables are self-explanatory, but a couple that aren't are:
+
+* `partyid`, political leaning and 
+* `denom`, religious denomination (if unfamiliar with this, you can think of it as a "more specific" subset of a particular religion).
+
+Note that some of these exercises are from the R for Data Science textbook.
+
+Load in the data set with
+
+```{r, echo = TRUE, results = "hide"}
+library(tidyverse)
+gss_cat
+```
+
+1. \* Using a `forcats` function, change the name of the level `Not str republican` to be `Weak republican` and change the name of the level `Not str democrat` to be `Weak democrat`. These names more closely match the levels `Strong republican` and `Strong democrat`. Then, create a table of counts that shows the number of respondents in each political party `partyid`. 
+
+__Note__: Levels that aren't specified in your `forcats` function do not change.
+
+__Note 2__: In naming something `Weak republican`, you'll need to use backticks since there is a space in the level name.
+
+2. \* Use a `forcats` function so that `partyid` just has 4 categories: Other (corresponding to No answer, Don't know, Other party), Ind (corresponding to Ind,near rep, Independent, Ind, near dem), Rep (corresponding to Strong republican and Not str republican), and Dem (corresponding to Not str democrat and Strong democrat).
+
+3. \* Run the code to create the following plot that shows the average number of hours of television people watch from various religions. 
+
+```{r, fig.keep = "none"}
+relig_summary <- gss_cat |>
+  group_by(relig) |>
+  summarise(
+    age = mean(age, na.rm = TRUE),
+    tvhours = mean(tvhours, na.rm = TRUE),
+    n = n()
+  )
+
+ggplot(data = relig_summary, aes(tvhours, relig)) +
+  geom_point()
+```
+
+Then, use a `forcats` function create a new variable in the data set that reorders the religion factor levels and make a lollipop plot so that the religion watches the most television, on average, is on the top, and the religion that watches the least television, on average, is on the bottom.
+
+4. \* Run the code to make the following line plot that shows age on the x-axis, the proportion on the y-axis, and is coloured by various marital statuses (married, divorced, widowed, etc.):
+
+```{r, fig.keep = "none"}
+by_age <- gss_cat |>
+  filter(!is.na(age)) |>
+  count(age, marital) |>
+  group_by(age) |>
+  mutate(prop = n / sum(n))
+
+ggplot(by_age, aes(age, prop,
+                  colour = marital)) +
+  geom_line(na.rm = TRUE) +
+  labs(colour = "marital")
+```
+
+Then, use a `forcats` function to make the plot so that the legend labels line up better with the different coloured marital status lines (e.g. so that the label for widowed is the first that appears in the legend, the label for married is second, etc.).
+
+5. We haven't talked much about creating two-way tables (or contingency tables). These are generally quite difficult to make with the `tidyverse` functions, but you can use the base `R` `table()` and `prop.table()` functions to make these.
+
+Using data only from the year 2014, run the following code to make 4 two-way tables with the `party_small` variable that was constructed earlier and `race`:
+
+```{r}
+gss_cat <- gss_cat |> mutate(party_small = fct_collapse(partyid,
+                                              Other = c("No answer", "Don't know", "Other party"),
+                                              Ind = c("Ind,near rep", "Independent", "Ind,near dem"),
+                                              Rep = c("Strong republican", "Not str republican"),
+                                              Dem = c("Not str democrat", "Strong democrat")))
+
+gss_recent <- gss_cat |> filter(year == 2014)
+
+tab1 <- table(gss_recent$party_small, gss_recent$race)
+tab1
+prop.table(tab1)
+prop.table(tab1, margin = 1)
+prop.table(tab1, margin = 2)
+```
+
+Use the help on `?prop.table` to figure out how each of these three tables are constructed.
+
+Which table do you think is most informative? What conclusions does it help you to draw?
+
+## Exercise Solutions {#solutions-7}
+
+### Change Factor Levels S
+
+2. \* We did not properly explore the data set before making the graphs above, and, in fact, there is some double counting of Pokemon in this data set (this is another example where being familiar with the data set you're working with is advantageous: people familiar with Pokemon know that there are fewer than 947 Pokemon in Generations 1 through 6). 
+
+Figure out why some Pokemon are double counted. Then, create a new data set that only keeps one observation per Pokemon `#`. 
+
+```{r}
+pokemon_nodup <- pokemon_df |> group_by(`#`) |> slice(1) |>
+  ungroup()
+```
+
+### Reorder Factor Levels S
+
+### Chapter Exercises S {#chapexercise-7-S}
+
+1. \* Using a `forcats` function, change the name of the level `Not str republican` to be `Weak republican` and change the name of the level `Not str democrat` to be `Weak democrat`. These names more closely match the levels `Strong republican` and `Strong democrat`. Then, create a table of counts that shows the number of respondents in each political party `partyid`. 
+
+__Note__: Levels that aren't specified in your `forcats` function do not change.
+
+__Note 2__: In naming something `Weak republican`, you'll need to use backticks since there is a space in the level name.
+
+```{r, results = "hide"}
+gss_cat |>
+  mutate(partyid_new = fct_recode(partyid,
+                                  `Weak republican` = "Not str republican",
+                                  `Weak democrat` = "Not str democrat")) |> group_by(partyid_new) |>
+  summarise(ncount = n())
+```
+
+2. \* Use a `forcats` function so that `partyid` just has 4 categories: Other (corresponding to No answer, Don't know, Other party), Ind (corresponding to Ind,near rep, Independent, Ind, near dem), Rep (corresponding to Strong republican and Not str republican), and Dem (corresponding to Not str democrat and Strong democrat).
+
+```{r, results = "hide"}
+gss_cat <- gss_cat |> mutate(party_small = fct_collapse(partyid,
+                                              Other = c("No answer", "Don't know", "Other party"),
+                                              Ind = c("Ind,near rep", "Independent", "Ind,near dem"),
+                                              Rep = c("Strong republican", "Not str republican"),
+                                              Dem = c("Not str democrat", "Strong democrat")))
+```
+
+3. \* Run the code to create the following plot that shows the average number of hours of television people watch from various religions. 
+
+```{r, fig.keep = "none"}
+relig_summary <- gss_cat |>
+  group_by(relig) |>
+  summarise(
+    age = mean(age, na.rm = TRUE),
+    tvhours = mean(tvhours, na.rm = TRUE),
+    n = n()
+  )
+
+ggplot(data = relig_summary, aes(tvhours, relig)) +
+  geom_point()
+```
+
+Then, use a `forcats` function create a new variable in the data set that reorders the religion factor levels and remake the barplot so that the religion watches the most television, on average, is on the top, and the religion that watches the least television, on average, is on the bottom.
+
+```{r}
+relig_summary <- relig_summary |>
+  mutate(relig = fct_reorder(relig, tvhours))
+ggplot(data = relig_summary, aes(x = relig, y = tvhours)) +
+  geom_segment(aes(x = relig, xend = relig, y = 0, yend = tvhours)) +
+  geom_point() +
+  coord_flip()
+```
+
+4. \* Run the code to make the following line plot that shows age on the x-axis, the proportion on the y-axis, and is coloured by various marital statuses (married, divorced, widowed, etc.):
+
+```{r, fig.keep = "none"}
+by_age <- gss_cat |>
+  filter(!is.na(age)) |>
+  count(age, marital) |>
+  group_by(age) |>
+  mutate(prop = n / sum(n))
+
+ggplot(by_age, aes(age, prop,
+                  colour = marital)) +
+  geom_line(na.rm = TRUE) +
+  labs(colour = "marital")
+```
+
+Then, use a `forcats` function to make the plot so that the legend labels line up better with the different coloured marital status lines (e.g. so that the label for widowed is the first that appears in the legend, the label for married is second, etc.).
+
+```{r, fig.keep = "none"}
+by_age2 <- by_age |> ungroup() |>
+  mutate(marital2 = fct_reorder2(marital, .x = age, .y = prop))
+ggplot(by_age2, aes(age, prop,
+                  colour = marital2)) +
+  geom_line(na.rm = TRUE) +
+  labs(colour = "marital") +
+  scale_colour_viridis_d()
+```
+
+## Non-Exercise `R` Code {#rcode-7}
+
+```{r ref.label=knitr::all_labels(appendix == TRUE), echo=TRUE, eval=FALSE}
+```
+
+

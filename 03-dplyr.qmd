@@ -1,0 +1,766 @@
+# Wrangling with `dplyr` {#dplyr}
+
+__Goals:__
+
+*  Use the `mutate()`, `if_else()`, and `case_when()` functions to create new variables.
+
+* Use the `filter()` and `slice()`, `select()`, and `arrange()` functions in `dplyr` to choose certain rows to keep or get rid of, choose certain columns to keep or get rid of, and to sort the data, respectively.
+
+* Use `group_by()` and `summarise()` to create useful summaries of a data set. 
+
+* Combine the above goals with plotting to explore the `babynames` data set and a data set on SLU majors.
+
+* Explain what the pipe operator `|>` does and explain when you can and cannot use the pipe operator.
+
+Throughout this chapter, we will use the `babynames` data set in the `babynames` `R` package. To begin, install the `babynames` package by typing `install.packages("babynames")` in your bottom-left console winow, and read about the data set by running 
+
+```{r, appendix = TRUE}
+library(babynames)
+```
+
+and then typing `?babynames` in your bottom-left window of `R Studio`. We see that this data set contains baby name data provided by the SSA in the United States dating back to 1880:
+
+```{r, appendix = TRUE}
+head(babynames)
+```
+
+The second data set that we will use has 27 observations, one for each of SLU's majors and contains 3 variables:
+
+* `Major`, the name of the major.
+* `nfemales`, the number of female graduates in that major from 2015 - 2019.
+* `nmales`, the number of male graduates in that major from 2015 - 2019.
+
+The data has kindly been provided by Dr. Ramler. With your Notes `R Project` open, you can read in the data set with
+
+```{r, message = FALSE, warning = FALSE, appendix = TRUE}
+library(tidyverse)
+slumajors_df <- read_csv("data/SLU_Majors_15_19.csv")
+slumajors_df
+```
+
+There are many interesting and informative plots that we could make with either data set, but most require some data wrangling first. This chapter will provide the foundation for such wrangling skills.
+
+## `mutate()`: Create Variables
+
+Sometimes, we will want to create a new variable that's not in the data set, oftentimes using `if_else()`, `case_when()`, or basic algebraic operations on one or more of the columns already present in the data set.
+
+`R` understands the following symbols:
+
+* `+` for addition, `-` for subtraction
+* `*` for multiplication, `/` for division
+* `^` for raising something to a power (`3 ^ 2` is equal to `9`)
+
+`R` also does the same order of operations as usual: parentheses, then exponents, then multiplication and division, then addition and subtraction.
+
+For example, suppose that we want to create a variable in `slumajors_df` that has the total number of students graduating in each major. We can do this with `mutate()`:
+
+```{r, appendix = TRUE}
+slumajors_df |> mutate(ntotal = nfemales + nmales)
+```
+
+There's a lot to break down in that code chunk: most importantly, we're seeing our first of many, many, many, many, many, many, many instances of using `|>` to pipe! The `|>` operator approximately reads take `slumajors_df` "and then" `mutate()` it.
+
+Piping is a really convenient, easy-to-read way to build a sequence of commands. How you can read the above code is:
+
+1. Take `slumajors_df` and with `slumajors_df`,
+
+1. perform a `mutate()` step to create the new variable called `ntotal`, which is `nfemales` plus `nmales`. 
+
+Since this is our first time using `mutate()`, let's also delve into what the function is doing. In general, `mutate()` reads:
+
+`mutate(name_of_new_variable = operations_on_old_variables)`.
+
+`R` just automatically assumes that you want to do the operation for every single row in the data set, which is often quite convenient!
+
+We might also want to create a variable that is the percentage of students identifying as female for each major:
+
+```{r, appendix = TRUE}
+slumajors_df |>
+  mutate(percfemale = 100 * nfemales / (nfemales + nmales))
+```
+
+But what happened to `ntotal`? Is it still in the printout? It's not: when we created the variable `ntotal`, we didn't actually __save__ the new data set as anything. So `R` makes and prints the new variable, but it doesn't get saved to any data set. If we want to save the new data set, then we can use the `<-` operator. Here, we're saving the new data set with the same name as the old data set: `slumajors_df`. Then, we're doing the same thing for the `percfemale` variable. We won't always want to give the new data set the same name as the old one: we'll talk about this more in the chapter exercises.
+
+```{r, appendix = TRUE}
+slumajors_df <- slumajors_df |>
+  mutate(percfemale = 100 * nfemales / (nfemales + nmales))
+```
+
+```{r, appendix = TRUE}
+slumajors_df <- slumajors_df |> mutate(ntotal = nfemales + nmales)
+```
+
+But, you can pipe as many things together as you want to, so it's probably easier to just create both variables in one go. The following chunk says to "Take `slumajors_df` and create a new variable `ntotal`. With that new data set, create a new variable called `percfemale`." Finally, the `slumajors_df <- ` at the beginning says to "save this new data set as a data set with the same name, `slumajors_df`."
+
+```{r, appendix = TRUE}
+slumajors_df <- slumajors_df |>
+  mutate(ntotal = nfemales + nmales) |>
+  mutate(percfemale = 100 * nfemales / (nfemales + nmales))
+```
+
+### `if_else()` and `case_when()` 
+
+Suppose that you want to make a new variable that is conditional on another variable (or more than one variable) in the data set. Then we would typically use `mutate()` coupled with
+
+* `if_else()` if your new variable is created on only one condition
+* `case_when()` if your new variable is created on more than one condition
+
+Suppose we want to create a new variable that tells us whether or not the `Major` has a majority of Women. That is, we want this new variable, `morewomen` to be `"Yes"` if the `Major` has more than 50% women and `"No"` if it has 50% or less. 
+
+```{r, appendix = TRUE}
+slumajors_df |> mutate(morewomen = if_else(percfemale > 50,
+                                            true = "Yes",
+                                            false = "No"))
+```
+
+The `mutate()` statement reads: create a new variable called `morewomen` that is equal to `"Yes"` if `percfemale` > `50` is true and is equal to `"No"` if `perfemale` is not > `0.5`. The first argument is the condition, the second is what to name the new variable when the condition holds, and the third is what to name the variable if the condition does not hold.
+
+We use __conditions__ all of the time in every day life. For example, New York had a quarantine order stating that people coming from 22 states in July 2020 would need to quarantine. In terms of a condition, this would read "if you are traveling to New York from one of the 22 states, then you need to quarantine for 2 weeks. Else, if not, then you don't need to quarantine." The trick in using these conditions in `R` is getting used to the syntax of the code.
+
+We can see from the above set up that if we had more than one condition, then we'd need to use a different function (or use nested `if_else()` statements, which can be a nightmare to read). If we have more than one condition for creating the new variable, we will use `case_when()`. 
+
+For example, when looking at the output, we see that `Biochemistry` has 56% female graduates. That's "about" a 50/50 split, so suppose we want a variable called `large_majority` that is "female" when the percent women is 70 or more, "male" when the percent women is 30 or less, and "none" when the percent female is between 30 and 70. 
+
+```{r, appendix = TRUE}
+slumajors_df |> mutate(large_majority =
+                          case_when(percfemale >= 70 ~ "female",
+                                    percfemale <= 30 ~ "male",
+                                    percfemale > 30 & percfemale < 70 ~ "none")) 
+```
+
+The `case_when()` function reads "When the percent female is more than or equal to 70, assign the new variable `large_majority` the value of "female", when it's less or equal to 30, assign the more than 30 and less than 70, assign the variable the value of "none" ." The `&` is a boolean operator: we'll talk more about that later so don't worry too much about that for now.
+
+Let's save these two new variables to the `slumajors_df`:
+
+```{r, appendix = TRUE}
+slumajors_df <- slumajors_df |>
+  mutate(morewomen = if_else(percfemale > 50,
+                             true = "Yes",
+                             false = "No")) |>
+  mutate(large_majority =
+           case_when(percfemale >= 70 ~ "female",
+                     percfemale <= 30 ~ "male",
+                     percfemale > 30 & percfemale < 70 ~ "none")) 
+```
+
+### Exercises {#exercise-3-1}
+
+Exercises marked with an \* indicate that the exercise has a solution at the end of the chapter at \@ref(solutions-3).
+
+1. Do you think it is ethical to exclude non-binary genders from analyses and graphs in the slumajors data set? Why or why not?
+
+2. \* Create a new variable that is called `major_size` and is "large" when the total number of majors is 100 or more and "small" when the total number of majors is less than 100.
+
+3. Create a new variable that is called `major_size2` and is "large when the total number of majors is 150 or more, "medium" when the total number of majors is between 41 and 149, and "small" when the total number of majors is 40 or fewer.
+
+4. About 55% of SLU students identify as female. So, in the definition of the `morewomen` variable, does it make more sense to use 55% as the cutoff or 50%?
+
+5. \* Investigate what happens with `case_when()` when you give overlapping conditions and when you give conditions that don't cover all observations. For overlapping conditions, create a variable `testcase` that is `"Yes"` when `percfemale` is greater than or equal to 40 and `"No"` when `percfemale` is greater than 60 For conditions that don't cover all observations, create a variable `testcase2` that is `"Yes"` when `percfemale` is greater than or equal to 55 and `"No"` when `percfemale` is less than 35.
+
+6. With one or two of the newly created variables from `mutate()`, create a plot that investigates a question of interest you might have about the data.
+
+## `arrange()` (Ordering Rows), `select()` (Choosing Columns), and `slice()` and `filter()` (Choosing Rows)
+
+`arrange()` is used to order rows in the data set according to some variable, `select()` is used to choose columns to keep (or get rid of) and `filter()` is used to keep (or get rid of) only some of the observations (rows).
+
+### `arrange()`: Ordering Rows
+
+The `arrange()` function allows us to order rows in the data set using one or more variables. The function is very straightforward. Suppose that we want to order the rows so that the majors with the lowest `percfemale` are first:
+
+```{r, appendix = TRUE}
+slumajors_df |> arrange(percfemale)
+```
+
+Which major has the lowest percentage of female graduates?
+
+We see that, by default, `arrange()` orders the rows from low to high. To order from high to low so that the majors with the highest `percfemale` are first, use `desc()` around the variable that you are ordering by:
+
+```{r, appendix = TRUE}
+slumajors_df |> arrange(desc(percfemale))
+```
+
+What is the major with the highest percentage of women graduates?
+
+### `select()` Choose Columns 
+
+We might also be interested in getting rid of some of the columns in a data set. One reason to do this is if there are an overwhelming (30+) columns in a data set, but we know that we just need a few of them. The easiest way to use `select()` is to just input the names of the columns that you want to keep. For example, if we were only interested in majors and their totals, we could do
+
+```{r, appendix = TRUE}
+slumajors_df |> select(Major, ntotal)
+```
+
+If I wanted to use this data set for anything else, I'd also need to name, or rename, it with `<-`. We would probably want to name it something other than `slumajors_df` so as to not overwrite the original data set, in case we want to use those other variables again later!
+
+We might also want to use `select()` to get rid of one or two columns. If this is the case, we denote any column you want to get rid of with `-`. For example, we might want to get rid of the `ntotal` column that we made and get rid of the `nmales` and `nfemales` columns:
+
+```{r, appendix = TRUE}
+slumajors_df |> select(-ntotal, -nfemales, -nmales)
+```
+
+`select()` comes with many useful helper functions, but these are oftentimes not needed. One of the helper functions that __is__ actually often useful is `everything()`. We can, for example, use this after using `mutate()` to put the variable that was just created at the front of the data set to make sure there weren't any unexpected issues:
+
+```{r, appendix = TRUE}
+slumajors_df |> mutate(propfemale = percfemale / 100) |>
+  select(propfemale, everything())
+```
+
+Verify that `propfemale` now appears first in the data set. `everything()` tacks on all of the remaining variables after `propfemale`. So, in this case, it's a useful way to re-order the columns so that what you might be most interested in appears first.
+
+### `slice()` and `filter()`: Choose Rows
+
+Instead of choosing which columns to keep, we can also choose certain rows to keep using either `slice()` or `filter()`.
+
+`slice()` allows you to specify the __row numbers__ corresponding to rows that you want to keep. For example, suppose that we only want to keep the rows with the five most popular majors:
+
+```{r, appendix = TRUE}
+slumajors_df |> arrange(desc(ntotal)) |>
+  slice(1, 2, 3, 4, 5)
+```
+
+We can alternatively use `slice(1:5)`, which is shorthand for `slice(1, 2, 3, 4, 5)`. While `slice()` is useful, it is relatively simple. We'll come back to it again in a few weeks as well when we discuss subsetting in base `R`.
+
+`filter()` is a way to keep rows by specifying a __condition__ related to one or more of the variables in the data set. We've already seen conditions in `if_else()` and `case_when()` statements, but they'll now be used to "filter" the rows in our data set.
+
+We can keep rows based on a categorical variable or a quantitative variable or a combination of any number of categorical and quantitative variables. `R` uses the following symbols to make comparisons. We've already been using the more intuitive symbols (like `<` and `>`):
+
+* `<` and `<=` for less than and less than or equal to, respectively
+* `>` and `>=` for greater than and greater than or equal to, respectively
+* `==` for equal to (careful: equal to is a double equal sign `==`)
+* `!=` for not equal to (in general, `!` denotes "not")
+
+It's probably time for a change of data set too! We'll be working with the `babynames` data set for the rest of this chapter:
+
+```{r, appendix = TRUE}
+library(babynames)
+babynames
+```
+
+If needed, we can remind ourselves what is in the `babynames` data set by typing `?babynames` in the console window.
+
+What do the following statements do? See if you can guess before running the code.
+
+```{r, results = "hide", appendix = TRUE}
+babynames |> filter(name == "Matthew")
+babynames |> filter(year >= 2000)
+babynames |> filter(sex != "M")
+babynames |> filter(prop > 0.05)
+babynames |> filter(year == max(year))
+```
+
+Why are some things put in quotes, like `"Matthew"` while some things aren't, like `2000`? Can you make out a pattern?
+
+We can also combine conditions on multiple variables in `filter()` using Boolean operators. We've already seen one of these in the `case_when()` statement above: `&` means "and". 
+
+Look at the Venn diagrams in `R` for Data Science to learn about the various Boolean operators you can use in `R`: <a href="https://r4ds.had.co.nz/transform.html#logical-operators" target="_blank">https://r4ds.had.co.nz/transform.html#logical-operators</a>. The Boolean operators can be used in other functions in `R` as well, as we've already seen with `if_else()` and `case_when()`.
+
+The following gives some examples. See if you can figure out what each line of code is doing before running it.
+
+```{r, results = "hide", appendix = TRUE}
+babynames |> filter(n > 20000 | prop > 0.05)
+babynames |> filter(sex == "F" & name == "Mary")
+babynames |> filter(sex == "F" & name == "Mary" & prop > 0.05)
+```
+
+### Exercises {#exercise-3-2}
+
+Exercises marked with an \* indicate that the exercise has a solution at the end of the chapter at \@ref(solutions-3).
+
+1. What happens when you `arrange()` by one of the categorical variables in the `slumajors_df` data set? 
+
+2. \* Use `select()` and `everything()` to put the `large_majority` variable as the first column in the `slumajors_df` data set.
+
+3. \* In the `babynames` data set, use `filter()`, `mutate()` with `rank()`, and `arrange()` to print the 10 most popular Male babynames in 2017.
+
+4. In the `babynames` data set, use `filter()` to keep only the rows with your name (or, another name that interests you) and one sex (either `"M"` or `"F"`). Name the new data set something and then construct a line plot that looks at the either the `n` or `prop` of your chosen name through `year`.
+
+## `summarise()` and `group_by()`: Create Summaries
+
+The `summarise()` function is useful to get summaries from the data. For example, suppose that we want to know the average major size at SLU across the five year span or the total number of majors across those five years. Then we can use `summarise()` and a summary function, like `mean()`, `sum()`, `median()`, `max()`, `min()`, `n()`, etc. You'll notice that the format of `summarise()` is extremely similar to the format of `mutate()`. Using the `slumajors_df` data again just for one quick example,
+
+```{r, appendix = TRUE}
+slumajors_df |>
+  summarise(meantotalmajor = mean(ntotal),
+            totalgrad = sum(ntotal))
+```
+
+### `group_by()`: Groups
+
+`summarise()` is often most useful when paired with a `group_by()` statement. Doing so allows us to get summaries across different groups.
+
+For example, suppose that you wanted the total number of registered births per year in the `babynames` data set:
+
+```{r, appendix = TRUE}
+babynames |> group_by(year) |>
+  summarise(totalbirths = sum(n))
+```
+
+`group_by()` takes a grouping variable, and then, using `summarise()` computes the given summary function on each group.
+
+Most summary functions are intuitive if you've had intro stat. But, if you're not sure whether the summary for getting the maximum is `maximum()` or `max()`, just try both! 
+
+The `n()` function can be used within `summarise()` to obtain the number of observations. It will give you the total number of rows, if used without `group_by()`
+
+```{r, appendix = TRUE}
+babynames |> summarise(totalobs = n())
+```
+
+Note that `n()` typically doesn't have any inputs. It's typically more useful when paired with `group_by()`: this allows us to see the number of observations within each `year`, for instance:
+
+```{r, appendix = TRUE}
+babynames |> group_by(year) |>
+  summarise(ngroup = n())
+```
+
+### Exercises {#exercise-3-3}
+
+Exercises marked with an \* indicate that the exercise has a solution at the end of the chapter at \@ref(solutions-3).
+
+1. Compare `summarise()` with `mutate()` using the following code. What's the difference between the two functions?
+
+```{r, results = "hide"}
+slumajors_df |>
+  summarise(meantotalmajor = mean(ntotal),
+            totalgrad = sum(ntotal)) 
+slumajors_df |>
+  mutate(meantotalmajor = mean(ntotal),
+            totalgrad = sum(ntotal)) |>
+  select(meantotalmajor, totalgrad, everything())
+```
+
+2. Using the data set from the `group_by()` and `n()` combination,
+
+```{r}
+babynames |> group_by(year) |>
+  summarise(ngroup = n())
+```
+
+make a line plot with `ngroup` on the x-axis and `year` on the y-axis. How would you interpret the plot?
+
+3. \* Create a data set that has a column for `name` and a column that shows the total number of births for that name across all years and both sexes.
+
+4. \* `group_by()` can also be used with other functions, including `mutate()`. Use `group_by()` and `mutate()` to rank the names from most to least popular in each year-sex combination.
+
+5. \* From the data set in 4, `filter()` the data to keep only the most popular name in each year-sex combination and then construct a summary table showing how many times each name appears as the most popular name.
+
+6. \* Run the following code. Intuitively, a `slice(1, 2, 3, 4, 5)` should grab the first five rows of the data set, but, when we try to run that, we get 1380 rows. Try to figure out what the issue is by using Google to search something like "`dplyr` not slicing correctly after using group by." What do you find?
+
+```{r}
+babynames_test <- babynames |>
+  group_by(year, sex) |> mutate(ntest = n / prop)
+babynames_test |> slice(1, 2, 3, 4, 5)
+```
+
+## Missing Values
+
+Both of the data sets that we've worked with are nice in that they do not have any missing values. We'll see plenty of examples of data sets with missing values later, so we should examine how the various functions that we've talked about so far tackle missing values.
+
+Missing values in `R` are denoted with `NA` for "Not Available." Run the following code to create a toy data set with some missing values so that we can see how the various functions we've used so far deal with `NA` values.
+
+```{r, appendix = TRUE}
+toy_df <- tibble(x = c(NA, 3, 4, 7),
+                 y = c(1, 4, 3, 2),
+                 z = c("A", "A", "B", NA))
+toy_df
+```
+
+### Exercises {#exercise-3-4}
+
+Exercises marked with an \* indicate that the exercise has a solution at the end of the chapter at \@ref(solutions-3).
+
+1. \* `mutate()`. Try to create a new variable with `mutate()` involving `x`. What does `R` do with the missing value?
+
+2. `arrange()`. Try arranging the data set by `x`. What does `R` do with the missing value?
+
+3. `filter()`. Try filtering so that only observations where x is less than 5 are kept. What does `R` do with the missing value?
+
+4. `summarise()`. Try using `summarise()` with a function involving x. What does `R` return?
+
+5. `group_by()` and `summarise()`. To your statement in 4, add a `group_by(z)` statement before your `summarise()`. What does `R` return now?
+
+### Removing Missing Values
+
+Missing values should not be removed without carefully examination and a note of what the consequences might be (e.g. why are these values missing?). We have a toy data set that is meaningless, so we aren't asking those questions now, but we will for any data set that does have missing values!
+
+__If__ we have investigated the missing values and are comfortable with removing them, many functions that we would use in `summarise()` have an `na.rm` argument that we can set to `TRUE` to tell `summarise()` to remove any `NA`s before taking the `mean()`, `median()`, `max()`, etc.
+
+```{r, appendix = TRUE}
+toy_df |> summarise(meanx = mean(x, na.rm = TRUE))
+```
+
+If we want to remove the missing values more directly, we can use the `is.na()` function in combination with `filter()`. If the variable is `NA` (Not Available) for an observation, `is.na()` evaluates to `TRUE`; if not, `is.na()` evaluates to `FALSE`. Test this out using `mutate()` to create a new variable for whether `Median` is missing:
+
+```{r, appendix = TRUE}
+toy_df |> mutate(missingx = is.na(x))
+```
+
+`missingx` is `TRUE` only for the the first observation.  We can use this to our advantage with `filter()` to filter it out of the data set, without going through the extra step of actually making a new variable `missingx`:
+
+```{r, appendix = TRUE}
+toy_df |> filter(is.na(x) != TRUE)
+```
+
+You'll commonly see this written as short-hand in people's code you may come across as:
+
+```{r, appendix = TRUE}
+toy_df |> filter(!is.na(x))
+```
+
+which says to "keep anything that does not have a missing x value" (recall that the `!` means "not"). 
+
+## More about the Pipe
+
+We are jumping straight into using piping, but we do want to have an appreciation on how terrible life would be without it. What piping does is make whatever is given before the `|>` pipe the first argument of whatever function follows the `|>`. So 
+
+```{r, eval = FALSE}
+df |> mutate(x = y + 4)
+```
+
+is equivalent to
+
+```{r, eval = FALSE}
+mutate(df, x = y + 4)
+```
+
+It might also help to use an analogy when thinking about piping. Consider the Ke$ha's morning routine in the opening of the song Tik Tok. If we were to write her morning routine in terms of piping,
+
+```{r, eval = FALSE}
+kesha |> wake_up(time = "morning", feels_like = "P-Diddy") |>
+  grab(glasses) |>
+  brush(teeth, item = "jack", unit = "bottle") |> ....
+```
+
+Kesha first wakes up in the morning, _and then_ the Kesha that has woken up grabs her glasses, _and then_ the Kesha who has woken up and has her glasses brushes her teeth, etc.
+
+The pipe operator `|>` is loaded automatically with `R`. We've been using the pipe quite a bit, but let's delve a little deeper into what it's actually doing. We will use the `videogame_clean.csv` data file, which contains variables on video games from 2004 - 2019, including
+
+* `game`, the name of the game
+* `release_date`, the release date of the game
+* `release_date2`, a second coding of release date
+* `price`, the price in dollars,
+* `owners`, the number of owners (given in a range)
+* `median_playtime`, the median playtime of the game
+* `metascore`, the score from the website Metacritic
+* `price_cat`, 1 for Low (less than 10.00 dollars), 2 for Moderate (between 10 and 29.99 dollars), and 3 for High (30.00 or more dollars)
+* `meta_cat`, Metacritic's review system, with the following categories: "Overwhelming Dislike", "Generally Unfavorable", "Mixed Reviews", "Generally Favorable", "Universal Acclaim".
+* `playtime_miss`, whether median play time is missing (`TRUE`) or not (`FALSE`)
+
+Load in the data set with
+
+```{r}
+videogame_df <- read_csv("data/videogame_clean.csv")
+head(videogame_df)
+```
+
+Let's say we want to `filter()` the data set to include only videogames with a `metascore` that isn't missing. We've been using code like
+
+```{r, results = "hide", appendix = TRUE}
+videogame_df |> filter(!is.na(metascore))
+```
+
+What the pipe is doing is putting `videogame_df` as the first argument in the `filter()` function so that the piping statement in the chunk above is equivalent to:
+
+```{r, results = "hide", appendix = TRUE}
+filter(videogame_df, !is.na(metascore))
+```
+
+If we want to first filter out games with a non-missing metascore, get rid of all observations with a median play time of 0, and then obtain the "median" `median_playtime` for each of the 3 price categories, we would typically use
+
+```{r, results = "hide", appendix = TRUE}
+videogame_df |> filter(!is.na(metascore)) |>
+  filter(median_playtime > 0) |>
+  group_by(price_cat) |>
+  summarise(avg_med_time = median(median_playtime, na.rm = TRUE))
+```
+
+We see from the summary that, in general, games do tend to give you more "bang for the buck": more expensive games tend to have a larger median play time. Consecutive pipes build on each other: we can slowly build out what the pipe is doing step-by-step. Starting from the top, `videogame_df` is the first argument in the `filter(!is.na(metascore))` function:
+
+```{r, results = "hide", appendix = TRUE}
+filter(videogame_df, !is.na(metascore))
+```
+
+`filter(videogame_df, !is.na(metascore))` is the first argument in `filter(median_playtime > 0)`:
+
+```{r, results = "hide", appendix = TRUE}
+filter(filter(videogame_df, !is.na(metascore)), median_playtime > 0)
+```
+
+`filter(filter(videogame_df, !is.na(metascore)), median_playtime > 0)` is the first argument in `group_by(price_cat)`:
+
+```{r, results = "hide", appendix = TRUE}
+group_by(filter(filter(videogame_df, !is.na(metascore)),
+                median_playtime > 0), price_cat)
+```
+
+and `group_by(filter(filter(videogame_df, !is.na(metascore)), median_playtime > 0), price_cat)` is the first argument of `summarise(avg_med_time = median(median_playtime, na.rm = TRUE))`:
+
+```{r, results = "hide", appendix = TRUE}
+summarise(group_by(filter(filter(videogame_df, !is.na(metascore)),
+  median_playtime > 0), price_cat), 
+  avg_med_time = median(median_playtime, na.rm = TRUE))
+```
+
+and we obtain the same result without the `|>` pipe. So, why use the pipe? Compare the code the uses the pipe operator to find the average median playtime to the code that doesn't. Which is easier to read? Which do you think is easier to write? The example shows that, for our purposes, the pipe is most useful in aiding the readability of our code. It's a lot easier to see what's happening in the code chunk with the pipes than it is in the previous code chunk without the pipe because, with the pipe, we can read the code from left to right and top to bottom. Without the pipe, we need to read the code from the "inside to the outside", which is much more challenging. 
+
+### When You Can't Use the Pipe
+
+So, the pipe is a convenient way to put what precedes the pipe as the first argument to the function that follows the pipe. It's important to understand this as you learn more about `R` because, while the functions in `tidyverse` are purposefully made to make good use of the pipe, not all functions in `R` utilize the pipe. Most of the functions in the `tidyverse` have a first argument that is a data set (which is why we can use pipes consecutively), but this isn't the case with all `R` functions.
+
+For example, if you have taken STAT 213, you've used `lm()` to fit many different types of linear models. If you haven't taken STAT 213, `lm(response ~ explanatory, data = name_of_data_set)` stands for "linear model" and can be used to fit the simple linear regression model that you learned about in STAT 113. You might expect something like this to work:
+
+```{r, error = TRUE}
+videogame_df |> lm(metascore ~ price)
+```
+
+But it throws us an error. Typing in `?lm` reveals that its first argument is a `formula` to fit the model, not a data set. So the function is trying to run
+
+```{r, error = TRUE}
+lm(videogame_df, metascore ~ price)
+```
+
+which doesn't work because the arguments to the function are mixed up (the formula should appear first and the data set should appear second).
+
+For one final note about the pipe, note that the pipe operator `|>` is relatively new. Previously, the primary pipe operator used was `%>%` and came from the `magrittr` package. For almost all cases, the two operators are equivalent. However, when scanning the Internet for help with code, you will probably see `|>` used in many of people's responses on sites like StackOverflow.
+
+### Exercises {#exercise-3-4}
+
+Exercises marked with an \* indicate that the exercise has a solution at the end of the chapter at \@ref(solutions-3).
+
+1. \* Recode the following to look cleaner by using the pipe `|>`.
+
+```{r}
+fitness_df <- read_csv("data/higham_fitness_clean.csv")
+summarise(group_by(filter(fitness_df, weekday == "Sat" | weekday == "Sun"),
+                   month),
+          meanweekend = mean(distance, na.rm = TRUE)) 
+```
+
+2. Explain why the following code gives a warning message and returns `NA`. Use the list of Arguments in `?mean` in your explanation.
+
+```{r, echo = TRUE}
+fitness_df |> mean(distance, na.rm = TRUE)
+```
+
+```{r, echo = FALSE}
+## the first argument of mean() is not a data set or `tibble`. Therefore,
+## fitness_df |> mean(distance, na.rm = TRUE), which is equivalent to
+## mean(fitness_df, distance, na.rm = TRUE)
+## doesn't make any sense.
+```
+
+## Chapter Exercises {#chapexercise-3}
+
+1. We found both in the SLU majors data set and in the FiveThirtyEight majors data set that Statistics has a higher proportion of women than almost all other STEM fields. Read the first two sections of <a href="https://www.washingtonpost.com/local/women-flocking-to-statistics-the-new-hot-high-tech-field-of-data-science/2014/12/19/f3e2e486-62ed-11e4-9fdc-d43b053ecb4d_story.html" target="_blank">this article</a>. Write 2-3 sentences about the article's reasoning of why there are more women in statistics than in other STEM fields. 
+
+2. \* a. Choose 5 names that interest you and create a new data set that only has data on those 5 names.
+
+b. Use `group_by()` and `summarise()` to add together the number of Females and Males for each name in each year. __Hint__: you can `group_by()` more than one variable!
+
+c. Make a line plot showing the popularity of these 5 names over time. 
+
+3. a. Choose a year and a sex that interests you and filter the data set to only contain observations from that year and sex.
+
+b. Create a new variable that ranks the names from most popular to least popular.
+
+c. Create a bar plot that shows the 10 most popular names as well as the count for each name.
+
+4. \* In some cases throughout this chapter, we've renamed data sets using `<-` with the same name like
+
+```{r}
+toy_df <- toy_df |> mutate(newvar = x / y)
+```
+
+In other cases, we've given the data set a new name, like
+
+```{r}
+toy_small <- toy_df |> filter(!is.na(x))
+```
+
+For which of the functions below is a generally "safe" to name the data set using the same name after using the function. Why?
+
+a. `mutate()`
+
+b. `arrange()`
+
+c. `filter()`
+
+d. `summarise()`
+
+e. `select()`
+
+5. Pose a question about the `babynames` data set and then answer your question with either a graphic or a data summary.
+
+## Exercise Solutions {#solutions-3}
+
+### `mutate()` S
+
+2. \* Create a new variable that is called `major_size` and is "large" when the total number of majors is 100 or more and "small" when the total number of majors is less than 100.
+
+```{r}
+slumajors_df |> mutate(major_size = if_else(ntotal >= 100,
+                                             true = "large",
+                                             false = "small"))
+## OR
+slumajors_df |>
+  mutate(major_size = case_when(ntotal >= 100 ~ "large",
+                                ntotal < 100 ~ "small"))
+```
+
+5. \* Investigate what happens with `case_when()` when you give overlapping conditions and when you give conditions that don't cover all observations. For overlapping conditions, create a variable `testcase` that is `"Yes"` when `percfemale` is greater than or equal to 40 and `"No"` when `percfemale` is greater than 60 For conditions that don't cover all observations, create a variable `testcase2` that is `"Yes"` when `percefemale` is greater than or equal to 55 and `"No"` when `percfemale` is less than 35.
+
+```{r, echo = FALSE}
+slumajors_df |>
+  mutate(testcase = case_when(percfemale >= 55 ~ "Yes",
+  percfemale > 65 ~ "No"),
+  testcase2 = case_when(percfemale >= 55 ~ "Yes",
+    percfemale < 35 ~ "No"))
+```
+
+For overlapping cases, case_when prioritizes the first case given.
+
+For non-coverage, any observation that is not covered is given an NA.
+
+### `arrange()`, `select()`, .... S
+
+2. \* Use `select()` and `everything()` to put the `large_majority` variable as the first column in the `slumajors_df` data set.
+
+```{r}
+slumajors_df |> select(large_majority, everything())
+```
+
+3. \* In the `babynames` data set, use `filter()`, `mutate()` with `rank()`, and `arrange()` to print the 10 most popular Male babynames in 2017.
+
+```{r}
+babynames |> filter(sex == "M" & year == 2017) |>
+  mutate(rankname = rank(desc(n))) |>
+  filter(rankname <= 10)
+```
+
+### `summarise()` and `group_by()` S
+
+3. \* Create a data set that has a column for `name` and a column that shows the total number of births for that name across all years and both sexes.
+
+```{r}
+babynames |> group_by(name) |>
+  summarise(totalbirths = sum(n))
+```
+
+4. \* `group_by()` can also be used with other functions, including `mutate()`. Use `group_by()` and `mutate()` to rank the names from most to least popular in each year-sex combination.
+
+```{r}
+ranked_babynames <- babynames |> group_by(year, sex) |>
+  mutate(rankname = rank((desc(n))))
+```
+
+5. \* From the data set in 4, `filter()` the data to keep only the most popular name in each year-sex combination and then construct a summary table showing how many times each name appears as the most popular name.
+
+```{r}
+ranked_babynames |> filter(rankname == 1) |>
+  group_by(name) |>
+  summarise(nappear = n()) |>
+  arrange(desc(nappear))
+```
+
+6. \* Run the following code. Intuitively, a `slice(1, 2, 3, 4, 5)` should grab the first five rows of the data set, but, when we try to run that, we get 1380 rows. Try to figure out what the issue is by using Google to search something like "`dplyr` not slicing correctly after using group by." What do you find?
+
+```{r}
+babynames_test <- babynames |>
+  group_by(year, sex) |> mutate(ntest = n / prop)
+babynames_test |> slice(1, 2, 3, 4, 5)
+```
+
+Functions like `slice()` and `rank()` operate on defined groups in the data set if using a function like `group_by()` first. Sometimes this feature is quite convenient. But, if we no longer want `slice()` or `rank()` or other functions to account for these groups, we need to add an `ungroup()` pipe, which simply drops the groups that we had formed:
+
+```{r}
+babynames_test |> ungroup() |> slice(1:5)
+```
+
+### Missing Values S
+
+1. \* `mutate()`. Try to create a new variable with `mutate()` involving `x`. What does `R` do with the missing value?
+
+```{r}
+toy_df |> mutate(xy = x * y)
+```
+
+`R` puts another `NA` in place of x times y for the observation with the missing x.
+
+### Piping S
+
+1. \* Recode the following to look cleaner by using the pipe `|>`:
+
+```{r}
+fitness_df <- read_csv("data/higham_fitness_clean.csv")
+summarise(group_by(filter(fitness_df, weekday == 1 | weekday == 7),
+                   month),
+          meanweekend = mean(distance, na.rm = TRUE)) 
+```
+
+```{r}
+fitness_df |> filter(weekday == 1 | weekday == 7) |>
+  group_by(month) |>
+  summarise(meanweekend = mean(distance, na.rm = TRUE)) 
+```
+
+### Chapter Exercises S {#chapexercise-3-S}
+
+2. \* a. Choose 5 names that interest you and create a new data set that only has data on those 5 names.
+
+b. Use `group_by()` and `summarise()` to add together the number of Females and Males for each name in each year. __Hint__: you can `group_by()` more than one variable!
+
+c. Make a line plot showing the popularity of these 5 names over time. 
+
+```{r}
+baby5 <- babynames |> filter(name == "Matthew" | name == "Ivan" |
+                                name == "Jessica" | name == "Robin" |
+                                name == "Michael")
+baby5_tot <- baby5 |> group_by(year, name) |>
+  summarise(ntot = sum(n))
+ggplot(data = baby5_tot, aes(x = year, y = ntot, colour = name)) +
+  geom_line()
+```
+
+4. \* In some cases throughout this chapter, we've renamed data sets using `<-` with the same name like
+
+```{r}
+toy_df <- toy_df |> mutate(newvar = x / y)
+```
+
+In other cases, we've given the data set a new name, like
+
+```{r}
+toy_small <- toy_df |> filter(!is.na(x))
+```
+
+For which of the functions below is a generally "safe" to name the data set using the same name after using the function. Why?
+
+a. `mutate()`
+
+Usually fine: mutating creates a new variable, which doesn't change any of the other variables in the data set, if things get messed up with the new variable.
+
+b. `arrange()`
+
+Usually fine: ordering the rows a certain way won't change any plots and doesn't change any of the underlying data.
+
+c. `filter()`
+
+Usually not the best practice. Naming the data set the same name after the filter means that you permanently lose data that you filtered out, unless you re-read in the data set at the beginning.
+
+d. `summarise()`
+
+Usually not the best practice. Again, naming the summarized data set the same as the original data means that you lose the original data, unless you re-read it in at the beginning. For example,
+
+```{r}
+toy_df <- toy_df |> summarise(meanx = mean(x))
+toy_df
+```
+
+means that we now have no way to access the original data in `toy_df`.
+
+e. `select()`
+
+This can sometimes be okay if you're sure that the variables you are removing won't ever be used. 
+
+## Non-Exercise `R` Code {#rcode-3}
+
+```{r ref.label=knitr::all_labels(appendix == TRUE), echo=TRUE, eval=FALSE}
+```

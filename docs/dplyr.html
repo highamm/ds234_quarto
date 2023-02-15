@@ -1,0 +1,1404 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<title> 4 Wrangling with dplyr | STAT 234: Data Science</title>
+<meta name="author" content="Matt Higham">
+<meta name="description" content="Goals: Use the mutate(), if_else(), and case_when() functions to create new variables. Use the filter() and slice(), select(), and arrange() functions in dplyr to choose certain rows to keep or...">
+<meta name="generator" content="bookdown 0.27 with bs4_book()">
+<meta property="og:title" content=" 4 Wrangling with dplyr | STAT 234: Data Science">
+<meta property="og:type" content="book">
+<meta property="og:url" content="https://highamm.github.io/datascience234/dplyr.html">
+<meta property="og:description" content="Goals: Use the mutate(), if_else(), and case_when() functions to create new variables. Use the filter() and slice(), select(), and arrange() functions in dplyr to choose certain rows to keep or...">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content=" 4 Wrangling with dplyr | STAT 234: Data Science">
+<meta name="twitter:description" content="Goals: Use the mutate(), if_else(), and case_when() functions to create new variables. Use the filter() and slice(), select(), and arrange() functions in dplyr to choose certain rows to keep or...">
+<!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
+<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.2.5.1/tabs.js"></script><script src="libs/bs3compat-0.2.5.1/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
+<script src="libs/bs4_book-1.0.0/bs4_book.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><style type="text/css">
+    
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  </style>
+<link rel="stylesheet" href="bs4_style.css">
+</head>
+<body data-spy="scroll" data-target="#toc">
+
+<div class="container-fluid">
+<div class="row">
+  <header class="col-sm-12 col-lg-3 sidebar sidebar-book"><a class="sr-only sr-only-focusable" href="#content">Skip to main content</a>
+
+    <div class="d-flex align-items-start justify-content-between">
+      <h1>
+        <a href="index.html" title="">STAT 234: Data Science</a>
+      </h1>
+      <button class="btn btn-outline-primary d-lg-none ml-2 mt-1" type="button" data-toggle="collapse" data-target="#main-nav" aria-expanded="true" aria-controls="main-nav"><i class="fas fa-bars"></i><span class="sr-only">Show table of contents</span></button>
+    </div>
+
+    <div id="main-nav" class="collapse-lg">
+      <form role="search">
+        <input id="search" class="form-control" type="search" placeholder="Search" aria-label="Search">
+</form>
+
+      <nav aria-label="Table of contents"><h2>Table of contents</h2>
+        <ul class="book-toc list-unstyled">
+<li><a class="" href="index.html"><span class="header-section-number">1</span> Syllabus and Course Information</a></li>
+<li class="book-part">The Core: tidyverse Basics</li>
+<li><a class="" href="intro.html"><span class="header-section-number">2</span> Getting Started with R and R Studio</a></li>
+<li><a class="" href="ggplot2.html"><span class="header-section-number">3</span> Plotting with ggplot2</a></li>
+<li><a class="active" href="dplyr.html"><span class="header-section-number">4</span> Wrangling with dplyr</a></li>
+<li><a class="" href="communication-with-quarto.html"><span class="header-section-number">5</span> Communication with Quarto</a></li>
+<li><a class="" href="workflow.html"><span class="header-section-number">6</span> Workflow and Other Skills</a></li>
+<li class="book-part">Data Wrangling</li>
+<li><a class="" href="tidying-with-tidyr.html"><span class="header-section-number">7</span> Tidying with tidyr</a></li>
+<li><a class="" href="coding-in-base-r.html"><span class="header-section-number">8</span> Coding in Base R</a></li>
+<li><a class="" href="factors-with-forcats.html"><span class="header-section-number">9</span> Factors with forcats</a></li>
+<li><a class="" href="data-ethics.html"><span class="header-section-number">10</span> Data Ethics</a></li>
+<li><a class="" href="data-import.html"><span class="header-section-number">11</span> Data Import</a></li>
+<li><a class="" href="merging-with-dplyr.html"><span class="header-section-number">12</span> Merging with dplyr</a></li>
+<li class="book-part">Special Topics</li>
+<li><a class="" href="dates-with-lubridate.html"><span class="header-section-number">13</span> Dates with lubridate</a></li>
+<li><a class="" href="text-data-with-tidytext-and-stringr.html"><span class="header-section-number">14</span> Text Data with tidytext and stringr</a></li>
+<li><a class="" href="predictive-modeling-with-knn.html"><span class="header-section-number">15</span> Predictive Modeling with knn</a></li>
+<li><a class="" href="connections-to-stat-113-stat-213-and-cs-140.html"><span class="header-section-number">16</span> Connections to STAT 113, STAT 213, and CS 140</a></li>
+<li><a class="" href="introduction-to-sql-with-dbplyr.html"><span class="header-section-number">17</span> Introduction to SQL with dbplyr</a></li>
+</ul>
+
+        <div class="book-extra">
+          
+        </div>
+      </nav>
+</div>
+  </header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><div id="dplyr" class="section level1" number="4">
+<h1>
+<span class="header-section-number"> 4</span> Wrangling with <code>dplyr</code><a class="anchor" aria-label="anchor" href="#dplyr"><i class="fas fa-link"></i></a>
+</h1>
+<p><strong>Goals:</strong></p>
+<ul>
+<li><p>Use the <code><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate()</a></code>, <code><a href="https://dplyr.tidyverse.org/reference/if_else.html">if_else()</a></code>, and <code><a href="https://dplyr.tidyverse.org/reference/case_when.html">case_when()</a></code> functions to create new variables.</p></li>
+<li><p>Use the <code><a href="https://dplyr.tidyverse.org/reference/filter.html">filter()</a></code> and <code><a href="https://dplyr.tidyverse.org/reference/slice.html">slice()</a></code>, <code><a href="https://dplyr.tidyverse.org/reference/select.html">select()</a></code>, and <code><a href="https://dplyr.tidyverse.org/reference/arrange.html">arrange()</a></code> functions in <code>dplyr</code> to choose certain rows to keep or get rid of, choose certain columns to keep or get rid of, and to sort the data, respectively.</p></li>
+<li><p>Use <code><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by()</a></code> and <code><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise()</a></code> to create useful summaries of a data set.</p></li>
+<li><p>Combine the above goals with plotting to explore the <code>babynames</code> data set and a data set on SLU majors.</p></li>
+<li><p>Explain what the pipe operator <code>|&gt;</code> does and explain when you can and cannot use the pipe operator.</p></li>
+</ul>
+<p>Throughout this chapter, we will use the <code>babynames</code> data set in the <code>babynames</code> <code>R</code> package. To begin, install the <code>babynames</code> package by typing <code>install.packages("babynames")</code> in your bottom-left console winow, and read about the data set by running</p>
+<div class="sourceCode" id="cb69"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/hadley/babynames">babynames</a></span><span class="op">)</span></span></code></pre></div>
+<p>and then typing <code><a href="https://rdrr.io/pkg/babynames/man/babynames.html">?babynames</a></code> in your bottom-left window of <code>R Studio</code>. We see that this data set contains baby name data provided by the SSA in the United States dating back to 1880:</p>
+<div class="sourceCode" id="cb70"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">babynames</span><span class="op">)</span></span>
+<span><span class="co">#&gt; # A tibble: 6 × 5</span></span>
+<span><span class="co">#&gt;    year sex   name          n   prop</span></span>
+<span><span class="co">#&gt;   &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt;     &lt;int&gt;  &lt;dbl&gt;</span></span>
+<span><span class="co">#&gt; 1  1880 F     Mary       7065 0.0724</span></span>
+<span><span class="co">#&gt; 2  1880 F     Anna       2604 0.0267</span></span>
+<span><span class="co">#&gt; 3  1880 F     Emma       2003 0.0205</span></span>
+<span><span class="co">#&gt; 4  1880 F     Elizabeth  1939 0.0199</span></span>
+<span><span class="co">#&gt; 5  1880 F     Minnie     1746 0.0179</span></span>
+<span><span class="co">#&gt; 6  1880 F     Margaret   1578 0.0162</span></span></code></pre></div>
+<p>The second data set that we will use has 27 observations, one for each of SLU’s majors and contains 3 variables:</p>
+<ul>
+<li>
+<code>Major</code>, the name of the major.</li>
+<li>
+<code>nfemales</code>, the number of female graduates in that major from 2015 - 2019.</li>
+<li>
+<code>nmales</code>, the number of male graduates in that major from 2015 - 2019.</li>
+</ul>
+<p>The data has kindly been provided by Dr. Ramler. With your Notes <code>R Project</code> open, you can read in the data set with</p>
+<div class="sourceCode" id="cb71"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span></span>
+<span><span class="va">slumajors_df</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv</a></span><span class="op">(</span><span class="st">"data/SLU_Majors_15_19.csv"</span><span class="op">)</span></span>
+<span><span class="va">slumajors_df</span></span>
+<span><span class="co">#&gt; # A tibble: 27 × 3</span></span>
+<span><span class="co">#&gt;    Major                        nfemales nmales</span></span>
+<span><span class="co">#&gt;    &lt;chr&gt;                           &lt;dbl&gt;  &lt;dbl&gt;</span></span>
+<span><span class="co">#&gt;  1 Anthropology                       34     15</span></span>
+<span><span class="co">#&gt;  2 Art &amp; Art History                  65     11</span></span>
+<span><span class="co">#&gt;  3 Biochemistry                       14     11</span></span>
+<span><span class="co">#&gt;  4 Biology                           162     67</span></span>
+<span><span class="co">#&gt;  5 Business in the Liberal Arts      135    251</span></span>
+<span><span class="co">#&gt;  6 Chemistry                          26     14</span></span>
+<span><span class="co">#&gt;  7 Computer Science                   21     47</span></span>
+<span><span class="co">#&gt;  8 Conservation Biology               38     20</span></span>
+<span><span class="co">#&gt;  9 Economics                         128    349</span></span>
+<span><span class="co">#&gt; 10 English                           131     54</span></span>
+<span><span class="co">#&gt; # … with 17 more rows</span></span>
+<span><span class="co">#&gt; # ℹ Use `print(n = ...)` to see more rows</span></span></code></pre></div>
+<p>There are many interesting and informative plots that we could make with either data set, but most require some data wrangling first. This chapter will provide the foundation for such wrangling skills.</p>
+<div id="mutate-create-variables" class="section level2" number="4.1">
+<h2>
+<span class="header-section-number">4.1</span> <code>mutate()</code>: Create Variables<a class="anchor" aria-label="anchor" href="#mutate-create-variables"><i class="fas fa-link"></i></a>
+</h2>
+<p>Sometimes, we will want to create a new variable that’s not in the data set, oftentimes using <code><a href="https://dplyr.tidyverse.org/reference/if_else.html">if_else()</a></code>, <code><a href="https://dplyr.tidyverse.org/reference/case_when.html">case_when()</a></code>, or basic algebraic operations on one or more of the columns already present in the data set.</p>
+<p><code>R</code> understands the following symbols:</p>
+<ul>
+<li>
+<code>+</code> for addition, <code>-</code> for subtraction</li>
+<li>
+<code>*</code> for multiplication, <code>/</code> for division</li>
+<li>
+<code>^</code> for raising something to a power (<code>3 ^ 2</code> is equal to <code>9</code>)</li>
+</ul>
+<p><code>R</code> also does the same order of operations as usual: parentheses, then exponents, then multiplication and division, then addition and subtraction.</p>
+<p>For example, suppose that we want to create a variable in <code>slumajors_df</code> that has the total number of students graduating in each major. We can do this with <code><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate()</a></code>:</p>
+<div class="sourceCode" id="cb72"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">slumajors_df</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>ntotal <span class="op">=</span> <span class="va">nfemales</span> <span class="op">+</span> <span class="va">nmales</span><span class="op">)</span></span>
+<span><span class="co">#&gt; # A tibble: 27 × 4</span></span>
+<span><span class="co">#&gt;    Major                        nfemales nmales ntotal</span></span>
+<span><span class="co">#&gt;    &lt;chr&gt;                           &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;</span></span>
+<span><span class="co">#&gt;  1 Anthropology                       34     15     49</span></span>
+<span><span class="co">#&gt;  2 Art &amp; Art History                  65     11     76</span></span>
+<span><span class="co">#&gt;  3 Biochemistry                       14     11     25</span></span>
+<span><span class="co">#&gt;  4 Biology                           162     67    229</span></span>
+<span><span class="co">#&gt;  5 Business in the Liberal Arts      135    251    386</span></span>
+<span><span class="co">#&gt;  6 Chemistry                          26     14     40</span></span>
+<span><span class="co">#&gt;  7 Computer Science                   21     47     68</span></span>
+<span><span class="co">#&gt;  8 Conservation Biology               38     20     58</span></span>
+<span><span class="co">#&gt;  9 Economics                         128    349    477</span></span>
+<span><span class="co">#&gt; 10 English                           131     54    185</span></span>
+<span><span class="co">#&gt; # … with 17 more rows</span></span>
+<span><span class="co">#&gt; # ℹ Use `print(n = ...)` to see more rows</span></span></code></pre></div>
+<p>There’s a lot to break down in that code chunk: most importantly, we’re seeing our first of many, many, many, many, many, many, many instances of using <code>|&gt;</code> to pipe! The <code>|&gt;</code> operator approximately reads take <code>slumajors_df</code> “and then” <code><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate()</a></code> it.</p>
+<p>Piping is a really convenient, easy-to-read way to build a sequence of commands. How you can read the above code is:</p>
+<ol style="list-style-type: decimal">
+<li><p>Take <code>slumajors_df</code> and with <code>slumajors_df</code>,</p></li>
+<li><p>perform a <code><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate()</a></code> step to create the new variable called <code>ntotal</code>, which is <code>nfemales</code> plus <code>nmales</code>.</p></li>
+</ol>
+<p>Since this is our first time using <code><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate()</a></code>, let’s also delve into what the function is doing. In general, <code><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate()</a></code> reads:</p>
+<p><code>mutate(name_of_new_variable = operations_on_old_variables)</code>.</p>
+<p><code>R</code> just automatically assumes that you want to do the operation for every single row in the data set, which is often quite convenient!</p>
+<p>We might also want to create a variable that is the percentage of students identifying as female for each major:</p>
+<div class="sourceCode" id="cb73"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">slumajors_df</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>percfemale <span class="op">=</span> <span class="fl">100</span> <span class="op">*</span> <span class="va">nfemales</span> <span class="op">/</span> <span class="op">(</span><span class="va">nfemales</span> <span class="op">+</span> <span class="va">nmales</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="co">#&gt; # A tibble: 27 × 4</span></span>
+<span><span class="co">#&gt;    Major                        nfemales nmales percfemale</span></span>
+<span><span class="co">#&gt;    &lt;chr&gt;                           &lt;dbl&gt;  &lt;dbl&gt;      &lt;dbl&gt;</span></span>
+<span><span class="co">#&gt;  1 Anthropology                       34     15       69.4</span></span>
+<span><span class="co">#&gt;  2 Art &amp; Art History                  65     11       85.5</span></span>
+<span><span class="co">#&gt;  3 Biochemistry                       14     11       56  </span></span>
+<span><span class="co">#&gt;  4 Biology                           162     67       70.7</span></span>
+<span><span class="co">#&gt;  5 Business in the Liberal Arts      135    251       35.0</span></span>
+<span><span class="co">#&gt;  6 Chemistry                          26     14       65  </span></span>
+<span><span class="co">#&gt;  7 Computer Science                   21     47       30.9</span></span>
+<span><span class="co">#&gt;  8 Conservation Biology               38     20       65.5</span></span>
+<span><span class="co">#&gt;  9 Economics                         128    349       26.8</span></span>
+<span><span class="co">#&gt; 10 English                           131     54       70.8</span></span>
+<span><span class="co">#&gt; # … with 17 more rows</span></span>
+<span><span class="co">#&gt; # ℹ Use `print(n = ...)` to see more rows</span></span></code></pre></div>
+<p>But what happened to <code>ntotal</code>? Is it still in the printout? It’s not: when we created the variable <code>ntotal</code>, we didn’t actually <strong>save</strong> the new data set as anything. So <code>R</code> makes and prints the new variable, but it doesn’t get saved to any data set. If we want to save the new data set, then we can use the <code>&lt;-</code> operator. Here, we’re saving the new data set with the same name as the old data set: <code>slumajors_df</code>. Then, we’re doing the same thing for the <code>percfemale</code> variable. We won’t always want to give the new data set the same name as the old one: we’ll talk about this more in the chapter exercises.</p>
+<div class="sourceCode" id="cb74"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">slumajors_df</span> <span class="op">&lt;-</span> <span class="va">slumajors_df</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>percfemale <span class="op">=</span> <span class="fl">100</span> <span class="op">*</span> <span class="va">nfemales</span> <span class="op">/</span> <span class="op">(</span><span class="va">nfemales</span> <span class="op">+</span> <span class="va">nmales</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<div class="sourceCode" id="cb75"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">slumajors_df</span> <span class="op">&lt;-</span> <span class="va">slumajors_df</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>ntotal <span class="op">=</span> <span class="va">nfemales</span> <span class="op">+</span> <span class="va">nmales</span><span class="op">)</span></span></code></pre></div>
+<p>But, you can pipe as many things together as you want to, so it’s probably easier to just create both variables in one go. The following chunk says to “Take <code>slumajors_df</code> and create a new variable <code>ntotal</code>. With that new data set, create a new variable called <code>percfemale</code>.” Finally, the <code>slumajors_df &lt;-</code> at the beginning says to “save this new data set as a data set with the same name, <code>slumajors_df</code>.”</p>
+<div class="sourceCode" id="cb76"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">slumajors_df</span> <span class="op">&lt;-</span> <span class="va">slumajors_df</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>ntotal <span class="op">=</span> <span class="va">nfemales</span> <span class="op">+</span> <span class="va">nmales</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>percfemale <span class="op">=</span> <span class="fl">100</span> <span class="op">*</span> <span class="va">nfemales</span> <span class="op">/</span> <span class="op">(</span><span class="va">nfemales</span> <span class="op">+</span> <span class="va">nmales</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<div id="if_else-and-case_when" class="section level3" number="4.1.1">
+<h3>
+<span class="header-section-number">4.1.1</span> <code>if_else()</code> and <code>case_when()</code><a class="anchor" aria-label="anchor" href="#if_else-and-case_when"><i class="fas fa-link"></i></a>
+</h3>
+<p>Suppose that you want to make a new variable that is conditional on another variable (or more than one variable) in the data set. Then we would typically use <code><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate()</a></code> coupled with</p>
+<ul>
+<li>
+<code><a href="https://dplyr.tidyverse.org/reference/if_else.html">if_else()</a></code> if your new variable is created on only one condition</li>
+<li>
+<code><a href="https://dplyr.tidyverse.org/reference/case_when.html">case_when()</a></code> if your new variable is created on more than one condition</li>
+</ul>
+<p>Suppose we want to create a new variable that tells us whether or not the <code>Major</code> has a majority of Women. That is, we want this new variable, <code>morewomen</code> to be <code>"Yes"</code> if the <code>Major</code> has more than 50% women and <code>"No"</code> if it has 50% or less.</p>
+<div class="sourceCode" id="cb77"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">slumajors_df</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>morewomen <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/if_else.html">if_else</a></span><span class="op">(</span><span class="va">percfemale</span> <span class="op">&gt;</span> <span class="fl">50</span>,</span>
+<span>                                            true <span class="op">=</span> <span class="st">"Yes"</span>,</span>
+<span>                                            false <span class="op">=</span> <span class="st">"No"</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="co">#&gt; # A tibble: 27 × 6</span></span>
+<span><span class="co">#&gt;    Major               nfema…¹ nmales percf…² ntotal morew…³</span></span>
+<span><span class="co">#&gt;    &lt;chr&gt;                 &lt;dbl&gt;  &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt; &lt;chr&gt;  </span></span>
+<span><span class="co">#&gt;  1 Anthropology             34     15    69.4     49 Yes    </span></span>
+<span><span class="co">#&gt;  2 Art &amp; Art History        65     11    85.5     76 Yes    </span></span>
+<span><span class="co">#&gt;  3 Biochemistry             14     11    56       25 Yes    </span></span>
+<span><span class="co">#&gt;  4 Biology                 162     67    70.7    229 Yes    </span></span>
+<span><span class="co">#&gt;  5 Business in the Li…     135    251    35.0    386 No     </span></span>
+<span><span class="co">#&gt;  6 Chemistry                26     14    65       40 Yes    </span></span>
+<span><span class="co">#&gt;  7 Computer Science         21     47    30.9     68 No     </span></span>
+<span><span class="co">#&gt;  8 Conservation Biolo…      38     20    65.5     58 Yes    </span></span>
+<span><span class="co">#&gt;  9 Economics               128    349    26.8    477 No     </span></span>
+<span><span class="co">#&gt; 10 English                 131     54    70.8    185 Yes    </span></span>
+<span><span class="co">#&gt; # … with 17 more rows, and abbreviated variable names</span></span>
+<span><span class="co">#&gt; #   ¹​nfemales, ²​percfemale, ³​morewomen</span></span>
+<span><span class="co">#&gt; # ℹ Use `print(n = ...)` to see more rows</span></span></code></pre></div>
+<p>The <code><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate()</a></code> statement reads: create a new variable called <code>morewomen</code> that is equal to <code>"Yes"</code> if <code>percfemale</code> &gt; <code>50</code> is true and is equal to <code>"No"</code> if <code>perfemale</code> is not &gt; <code>0.5</code>. The first argument is the condition, the second is what to name the new variable when the condition holds, and the third is what to name the variable if the condition does not hold.</p>
+<p>We use <strong>conditions</strong> all of the time in every day life. For example, New York had a quarantine order stating that people coming from 22 states in July 2020 would need to quarantine. In terms of a condition, this would read “if you are traveling to New York from one of the 22 states, then you need to quarantine for 2 weeks. Else, if not, then you don’t need to quarantine.” The trick in using these conditions in <code>R</code> is getting used to the syntax of the code.</p>
+<p>We can see from the above set up that if we had more than one condition, then we’d need to use a different function (or use nested <code><a href="https://dplyr.tidyverse.org/reference/if_else.html">if_else()</a></code> statements, which can be a nightmare to read). If we have more than one condition for creating the new variable, we will use <code><a href="https://dplyr.tidyverse.org/reference/case_when.html">case_when()</a></code>.</p>
+<p>For example, when looking at the output, we see that <code>Biochemistry</code> has 56% female graduates. That’s “about” a 50/50 split, so suppose we want a variable called <code>large_majority</code> that is “female” when the percent women is 70 or more, “male” when the percent women is 30 or less, and “none” when the percent female is between 30 and 70.</p>
+<div class="sourceCode" id="cb78"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">slumajors_df</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>large_majority <span class="op">=</span></span>
+<span>                          <span class="fu"><a href="https://dplyr.tidyverse.org/reference/case_when.html">case_when</a></span><span class="op">(</span><span class="va">percfemale</span> <span class="op">&gt;=</span> <span class="fl">70</span> <span class="op">~</span> <span class="st">"female"</span>,</span>
+<span>                                    <span class="va">percfemale</span> <span class="op">&lt;=</span> <span class="fl">30</span> <span class="op">~</span> <span class="st">"male"</span>,</span>
+<span>                                    <span class="va">percfemale</span> <span class="op">&gt;</span> <span class="fl">30</span> <span class="op">&amp;</span> <span class="va">percfemale</span> <span class="op">&lt;</span> <span class="fl">70</span> <span class="op">~</span> <span class="st">"none"</span><span class="op">)</span><span class="op">)</span> </span>
+<span><span class="co">#&gt; # A tibble: 27 × 6</span></span>
+<span><span class="co">#&gt;    Major               nfema…¹ nmales percf…² ntotal large…³</span></span>
+<span><span class="co">#&gt;    &lt;chr&gt;                 &lt;dbl&gt;  &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt; &lt;chr&gt;  </span></span>
+<span><span class="co">#&gt;  1 Anthropology             34     15    69.4     49 none   </span></span>
+<span><span class="co">#&gt;  2 Art &amp; Art History        65     11    85.5     76 female </span></span>
+<span><span class="co">#&gt;  3 Biochemistry             14     11    56       25 none   </span></span>
+<span><span class="co">#&gt;  4 Biology                 162     67    70.7    229 female </span></span>
+<span><span class="co">#&gt;  5 Business in the Li…     135    251    35.0    386 none   </span></span>
+<span><span class="co">#&gt;  6 Chemistry                26     14    65       40 none   </span></span>
+<span><span class="co">#&gt;  7 Computer Science         21     47    30.9     68 none   </span></span>
+<span><span class="co">#&gt;  8 Conservation Biolo…      38     20    65.5     58 none   </span></span>
+<span><span class="co">#&gt;  9 Economics               128    349    26.8    477 male   </span></span>
+<span><span class="co">#&gt; 10 English                 131     54    70.8    185 female </span></span>
+<span><span class="co">#&gt; # … with 17 more rows, and abbreviated variable names</span></span>
+<span><span class="co">#&gt; #   ¹​nfemales, ²​percfemale, ³​large_majority</span></span>
+<span><span class="co">#&gt; # ℹ Use `print(n = ...)` to see more rows</span></span></code></pre></div>
+<p>The <code><a href="https://dplyr.tidyverse.org/reference/case_when.html">case_when()</a></code> function reads “When the percent female is more than or equal to 70, assign the new variable <code>large_majority</code> the value of”female”, when it’s less or equal to 30, assign the more than 30 and less than 70, assign the variable the value of “none” .” The <code>&amp;</code> is a boolean operator: we’ll talk more about that later so don’t worry too much about that for now.</p>
+<p>Let’s save these two new variables to the <code>slumajors_df</code>:</p>
+<div class="sourceCode" id="cb79"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">slumajors_df</span> <span class="op">&lt;-</span> <span class="va">slumajors_df</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>morewomen <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/if_else.html">if_else</a></span><span class="op">(</span><span class="va">percfemale</span> <span class="op">&gt;</span> <span class="fl">50</span>,</span>
+<span>                             true <span class="op">=</span> <span class="st">"Yes"</span>,</span>
+<span>                             false <span class="op">=</span> <span class="st">"No"</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>large_majority <span class="op">=</span></span>
+<span>           <span class="fu"><a href="https://dplyr.tidyverse.org/reference/case_when.html">case_when</a></span><span class="op">(</span><span class="va">percfemale</span> <span class="op">&gt;=</span> <span class="fl">70</span> <span class="op">~</span> <span class="st">"female"</span>,</span>
+<span>                     <span class="va">percfemale</span> <span class="op">&lt;=</span> <span class="fl">30</span> <span class="op">~</span> <span class="st">"male"</span>,</span>
+<span>                     <span class="va">percfemale</span> <span class="op">&gt;</span> <span class="fl">30</span> <span class="op">&amp;</span> <span class="va">percfemale</span> <span class="op">&lt;</span> <span class="fl">70</span> <span class="op">~</span> <span class="st">"none"</span><span class="op">)</span><span class="op">)</span> </span></code></pre></div>
+</div>
+<div id="exercise-3-1" class="section level3" number="4.1.2">
+<h3>
+<span class="header-section-number">4.1.2</span> Exercises<a class="anchor" aria-label="anchor" href="#exercise-3-1"><i class="fas fa-link"></i></a>
+</h3>
+<p>Exercises marked with an * indicate that the exercise has a solution at the end of the chapter at <a href="dplyr.html#solutions-3">4.7</a>.</p>
+<ol style="list-style-type: decimal">
+<li><p>Do you think it is ethical to exclude non-binary genders from analyses and graphs in the slumajors data set? Why or why not?</p></li>
+<li><p>* Create a new variable that is called <code>major_size</code> and is “large” when the total number of majors is 100 or more and “small” when the total number of majors is less than 100.</p></li>
+<li><p>Create a new variable that is called <code>major_size2</code> and is “large when the total number of majors is 150 or more,”medium” when the total number of majors is between 41 and 149, and “small” when the total number of majors is 40 or fewer.</p></li>
+<li><p>About 55% of SLU students identify as female. So, in the definition of the <code>morewomen</code> variable, does it make more sense to use 55% as the cutoff or 50%?</p></li>
+<li><p>* Investigate what happens with <code><a href="https://dplyr.tidyverse.org/reference/case_when.html">case_when()</a></code> when you give overlapping conditions and when you give conditions that don’t cover all observations. For overlapping conditions, create a variable <code>testcase</code> that is <code>"Yes"</code> when <code>percfemale</code> is greater than or equal to 40 and <code>"No"</code> when <code>percfemale</code> is greater than 60 For conditions that don’t cover all observations, create a variable <code>testcase2</code> that is <code>"Yes"</code> when <code>percfemale</code> is greater than or equal to 55 and <code>"No"</code> when <code>percfemale</code> is less than 35.</p></li>
+<li><p>With one or two of the newly created variables from <code><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate()</a></code>, create a plot that investigates a question of interest you might have about the data.</p></li>
+</ol>
+</div>
+</div>
+<div id="arrange-ordering-rows-select-choosing-columns-and-slice-and-filter-choosing-rows" class="section level2" number="4.2">
+<h2>
+<span class="header-section-number">4.2</span> <code>arrange()</code> (Ordering Rows), <code>select()</code> (Choosing Columns), and <code>slice()</code> and <code>filter()</code> (Choosing Rows)<a class="anchor" aria-label="anchor" href="#arrange-ordering-rows-select-choosing-columns-and-slice-and-filter-choosing-rows"><i class="fas fa-link"></i></a>
+</h2>
+<p><code><a href="https://dplyr.tidyverse.org/reference/arrange.html">arrange()</a></code> is used to order rows in the data set according to some variable, <code><a href="https://dplyr.tidyverse.org/reference/select.html">select()</a></code> is used to choose columns to keep (or get rid of) and <code><a href="https://dplyr.tidyverse.org/reference/filter.html">filter()</a></code> is used to keep (or get rid of) only some of the observations (rows).</p>
+<div id="arrange-ordering-rows" class="section level3" number="4.2.1">
+<h3>
+<span class="header-section-number">4.2.1</span> <code>arrange()</code>: Ordering Rows<a class="anchor" aria-label="anchor" href="#arrange-ordering-rows"><i class="fas fa-link"></i></a>
+</h3>
+<p>The <code><a href="https://dplyr.tidyverse.org/reference/arrange.html">arrange()</a></code> function allows us to order rows in the data set using one or more variables. The function is very straightforward. Suppose that we want to order the rows so that the majors with the lowest <code>percfemale</code> are first:</p>
+<div class="sourceCode" id="cb80"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">slumajors_df</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/arrange.html">arrange</a></span><span class="op">(</span><span class="va">percfemale</span><span class="op">)</span></span>
+<span><span class="co">#&gt; # A tibble: 27 × 7</span></span>
+<span><span class="co">#&gt;    Major       nfema…¹ nmales percf…² ntotal morew…³ large…⁴</span></span>
+<span><span class="co">#&gt;    &lt;chr&gt;         &lt;dbl&gt;  &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt; &lt;chr&gt;   &lt;chr&gt;  </span></span>
+<span><span class="co">#&gt;  1 Economics       128    349    26.8    477 No      male   </span></span>
+<span><span class="co">#&gt;  2 Physics           6     14    30       20 No      male   </span></span>
+<span><span class="co">#&gt;  3 Computer S…      21     47    30.9     68 No      none   </span></span>
+<span><span class="co">#&gt;  4 Business i…     135    251    35.0    386 No      none   </span></span>
+<span><span class="co">#&gt;  5 Music            13     21    38.2     34 No      none   </span></span>
+<span><span class="co">#&gt;  6 Geology          28     41    40.6     69 No      none   </span></span>
+<span><span class="co">#&gt;  7 History          62     82    43.1    144 No      none   </span></span>
+<span><span class="co">#&gt;  8 Philosophy       24     29    45.3     53 No      none   </span></span>
+<span><span class="co">#&gt;  9 Mathematics      74     83    47.1    157 No      none   </span></span>
+<span><span class="co">#&gt; 10 Government      127    116    52.3    243 Yes     none   </span></span>
+<span><span class="co">#&gt; # … with 17 more rows, and abbreviated variable names</span></span>
+<span><span class="co">#&gt; #   ¹​nfemales, ²​percfemale, ³​morewomen, ⁴​large_majority</span></span>
+<span><span class="co">#&gt; # ℹ Use `print(n = ...)` to see more rows</span></span></code></pre></div>
+<p>Which major has the lowest percentage of female graduates?</p>
+<p>We see that, by default, <code><a href="https://dplyr.tidyverse.org/reference/arrange.html">arrange()</a></code> orders the rows from low to high. To order from high to low so that the majors with the highest <code>percfemale</code> are first, use <code><a href="https://dplyr.tidyverse.org/reference/desc.html">desc()</a></code> around the variable that you are ordering by:</p>
+<div class="sourceCode" id="cb81"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">slumajors_df</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/arrange.html">arrange</a></span><span class="op">(</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/desc.html">desc</a></span><span class="op">(</span><span class="va">percfemale</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="co">#&gt; # A tibble: 27 × 7</span></span>
+<span><span class="co">#&gt;    Major       nfema…¹ nmales percf…² ntotal morew…³ large…⁴</span></span>
+<span><span class="co">#&gt;    &lt;chr&gt;         &lt;dbl&gt;  &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt; &lt;chr&gt;   &lt;chr&gt;  </span></span>
+<span><span class="co">#&gt;  1 Art &amp; Art …      65     11    85.5     76 Yes     female </span></span>
+<span><span class="co">#&gt;  2 Psychology      278     61    82.0    339 Yes     female </span></span>
+<span><span class="co">#&gt;  3 French           27      7    79.4     34 Yes     female </span></span>
+<span><span class="co">#&gt;  4 Spanish          35     10    77.8     45 Yes     female </span></span>
+<span><span class="co">#&gt;  5 Statistics       28      9    75.7     37 Yes     female </span></span>
+<span><span class="co">#&gt;  6 Global Stu…      69     27    71.9     96 Yes     female </span></span>
+<span><span class="co">#&gt;  7 Neuroscien…      61     24    71.8     85 Yes     female </span></span>
+<span><span class="co">#&gt;  8 Performanc…     144     57    71.6    201 Yes     female </span></span>
+<span><span class="co">#&gt;  9 Religious …      10      4    71.4     14 Yes     female </span></span>
+<span><span class="co">#&gt; 10 English         131     54    70.8    185 Yes     female </span></span>
+<span><span class="co">#&gt; # … with 17 more rows, and abbreviated variable names</span></span>
+<span><span class="co">#&gt; #   ¹​nfemales, ²​percfemale, ³​morewomen, ⁴​large_majority</span></span>
+<span><span class="co">#&gt; # ℹ Use `print(n = ...)` to see more rows</span></span></code></pre></div>
+<p>What is the major with the highest percentage of women graduates?</p>
+</div>
+<div id="select-choose-columns" class="section level3" number="4.2.2">
+<h3>
+<span class="header-section-number">4.2.2</span> <code>select()</code> Choose Columns<a class="anchor" aria-label="anchor" href="#select-choose-columns"><i class="fas fa-link"></i></a>
+</h3>
+<p>We might also be interested in getting rid of some of the columns in a data set. One reason to do this is if there are an overwhelming (30+) columns in a data set, but we know that we just need a few of them. The easiest way to use <code><a href="https://dplyr.tidyverse.org/reference/select.html">select()</a></code> is to just input the names of the columns that you want to keep. For example, if we were only interested in majors and their totals, we could do</p>
+<div class="sourceCode" id="cb82"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">slumajors_df</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">Major</span>, <span class="va">ntotal</span><span class="op">)</span></span>
+<span><span class="co">#&gt; # A tibble: 27 × 2</span></span>
+<span><span class="co">#&gt;    Major                        ntotal</span></span>
+<span><span class="co">#&gt;    &lt;chr&gt;                         &lt;dbl&gt;</span></span>
+<span><span class="co">#&gt;  1 Anthropology                     49</span></span>
+<span><span class="co">#&gt;  2 Art &amp; Art History                76</span></span>
+<span><span class="co">#&gt;  3 Biochemistry                     25</span></span>
+<span><span class="co">#&gt;  4 Biology                         229</span></span>
+<span><span class="co">#&gt;  5 Business in the Liberal Arts    386</span></span>
+<span><span class="co">#&gt;  6 Chemistry                        40</span></span>
+<span><span class="co">#&gt;  7 Computer Science                 68</span></span>
+<span><span class="co">#&gt;  8 Conservation Biology             58</span></span>
+<span><span class="co">#&gt;  9 Economics                       477</span></span>
+<span><span class="co">#&gt; 10 English                         185</span></span>
+<span><span class="co">#&gt; # … with 17 more rows</span></span>
+<span><span class="co">#&gt; # ℹ Use `print(n = ...)` to see more rows</span></span></code></pre></div>
+<p>If I wanted to use this data set for anything else, I’d also need to name, or rename, it with <code>&lt;-</code>. We would probably want to name it something other than <code>slumajors_df</code> so as to not overwrite the original data set, in case we want to use those other variables again later!</p>
+<p>We might also want to use <code><a href="https://dplyr.tidyverse.org/reference/select.html">select()</a></code> to get rid of one or two columns. If this is the case, we denote any column you want to get rid of with <code>-</code>. For example, we might want to get rid of the <code>ntotal</code> column that we made and get rid of the <code>nmales</code> and <code>nfemales</code> columns:</p>
+<div class="sourceCode" id="cb83"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">slumajors_df</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="op">-</span><span class="va">ntotal</span>, <span class="op">-</span><span class="va">nfemales</span>, <span class="op">-</span><span class="va">nmales</span><span class="op">)</span></span>
+<span><span class="co">#&gt; # A tibble: 27 × 4</span></span>
+<span><span class="co">#&gt;    Major                        percfemale morewomen large…¹</span></span>
+<span><span class="co">#&gt;    &lt;chr&gt;                             &lt;dbl&gt; &lt;chr&gt;     &lt;chr&gt;  </span></span>
+<span><span class="co">#&gt;  1 Anthropology                       69.4 Yes       none   </span></span>
+<span><span class="co">#&gt;  2 Art &amp; Art History                  85.5 Yes       female </span></span>
+<span><span class="co">#&gt;  3 Biochemistry                       56   Yes       none   </span></span>
+<span><span class="co">#&gt;  4 Biology                            70.7 Yes       female </span></span>
+<span><span class="co">#&gt;  5 Business in the Liberal Arts       35.0 No        none   </span></span>
+<span><span class="co">#&gt;  6 Chemistry                          65   Yes       none   </span></span>
+<span><span class="co">#&gt;  7 Computer Science                   30.9 No        none   </span></span>
+<span><span class="co">#&gt;  8 Conservation Biology               65.5 Yes       none   </span></span>
+<span><span class="co">#&gt;  9 Economics                          26.8 No        male   </span></span>
+<span><span class="co">#&gt; 10 English                            70.8 Yes       female </span></span>
+<span><span class="co">#&gt; # … with 17 more rows, and abbreviated variable name</span></span>
+<span><span class="co">#&gt; #   ¹​large_majority</span></span>
+<span><span class="co">#&gt; # ℹ Use `print(n = ...)` to see more rows</span></span></code></pre></div>
+<p><code><a href="https://dplyr.tidyverse.org/reference/select.html">select()</a></code> comes with many useful helper functions, but these are oftentimes not needed. One of the helper functions that <strong>is</strong> actually often useful is <code><a href="https://tidyselect.r-lib.org/reference/everything.html">everything()</a></code>. We can, for example, use this after using <code><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate()</a></code> to put the variable that was just created at the front of the data set to make sure there weren’t any unexpected issues:</p>
+<div class="sourceCode" id="cb84"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">slumajors_df</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>propfemale <span class="op">=</span> <span class="va">percfemale</span> <span class="op">/</span> <span class="fl">100</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">propfemale</span>, <span class="fu"><a href="https://tidyselect.r-lib.org/reference/everything.html">everything</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="co">#&gt; # A tibble: 27 × 8</span></span>
+<span><span class="co">#&gt;    propfemale Major    nfema…¹ nmales percf…² ntotal morew…³</span></span>
+<span><span class="co">#&gt;         &lt;dbl&gt; &lt;chr&gt;      &lt;dbl&gt;  &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt; &lt;chr&gt;  </span></span>
+<span><span class="co">#&gt;  1      0.694 Anthrop…      34     15    69.4     49 Yes    </span></span>
+<span><span class="co">#&gt;  2      0.855 Art &amp; A…      65     11    85.5     76 Yes    </span></span>
+<span><span class="co">#&gt;  3      0.56  Biochem…      14     11    56       25 Yes    </span></span>
+<span><span class="co">#&gt;  4      0.707 Biology      162     67    70.7    229 Yes    </span></span>
+<span><span class="co">#&gt;  5      0.350 Busines…     135    251    35.0    386 No     </span></span>
+<span><span class="co">#&gt;  6      0.65  Chemist…      26     14    65       40 Yes    </span></span>
+<span><span class="co">#&gt;  7      0.309 Compute…      21     47    30.9     68 No     </span></span>
+<span><span class="co">#&gt;  8      0.655 Conserv…      38     20    65.5     58 Yes    </span></span>
+<span><span class="co">#&gt;  9      0.268 Economi…     128    349    26.8    477 No     </span></span>
+<span><span class="co">#&gt; 10      0.708 English      131     54    70.8    185 Yes    </span></span>
+<span><span class="co">#&gt; # … with 17 more rows, 1 more variable:</span></span>
+<span><span class="co">#&gt; #   large_majority &lt;chr&gt;, and abbreviated variable names</span></span>
+<span><span class="co">#&gt; #   ¹​nfemales, ²​percfemale, ³​morewomen</span></span>
+<span><span class="co">#&gt; # ℹ Use `print(n = ...)` to see more rows, and `colnames()` to see all variable names</span></span></code></pre></div>
+<p>Verify that <code>propfemale</code> now appears first in the data set. <code><a href="https://tidyselect.r-lib.org/reference/everything.html">everything()</a></code> tacks on all of the remaining variables after <code>propfemale</code>. So, in this case, it’s a useful way to re-order the columns so that what you might be most interested in appears first.</p>
+</div>
+<div id="slice-and-filter-choose-rows" class="section level3" number="4.2.3">
+<h3>
+<span class="header-section-number">4.2.3</span> <code>slice()</code> and <code>filter()</code>: Choose Rows<a class="anchor" aria-label="anchor" href="#slice-and-filter-choose-rows"><i class="fas fa-link"></i></a>
+</h3>
+<p>Instead of choosing which columns to keep, we can also choose certain rows to keep using either <code><a href="https://dplyr.tidyverse.org/reference/slice.html">slice()</a></code> or <code><a href="https://dplyr.tidyverse.org/reference/filter.html">filter()</a></code>.</p>
+<p><code><a href="https://dplyr.tidyverse.org/reference/slice.html">slice()</a></code> allows you to specify the <strong>row numbers</strong> corresponding to rows that you want to keep. For example, suppose that we only want to keep the rows with the five most popular majors:</p>
+<div class="sourceCode" id="cb85"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">slumajors_df</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/arrange.html">arrange</a></span><span class="op">(</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/desc.html">desc</a></span><span class="op">(</span><span class="va">ntotal</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/slice.html">slice</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">2</span>, <span class="fl">3</span>, <span class="fl">4</span>, <span class="fl">5</span><span class="op">)</span></span>
+<span><span class="co">#&gt; # A tibble: 5 × 7</span></span>
+<span><span class="co">#&gt;   Major        nfema…¹ nmales percf…² ntotal morew…³ large…⁴</span></span>
+<span><span class="co">#&gt;   &lt;chr&gt;          &lt;dbl&gt;  &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt; &lt;chr&gt;   &lt;chr&gt;  </span></span>
+<span><span class="co">#&gt; 1 Economics        128    349    26.8    477 No      male   </span></span>
+<span><span class="co">#&gt; 2 Business in…     135    251    35.0    386 No      none   </span></span>
+<span><span class="co">#&gt; 3 Psychology       278     61    82.0    339 Yes     female </span></span>
+<span><span class="co">#&gt; 4 Government       127    116    52.3    243 Yes     none   </span></span>
+<span><span class="co">#&gt; 5 Biology          162     67    70.7    229 Yes     female </span></span>
+<span><span class="co">#&gt; # … with abbreviated variable names ¹​nfemales, ²​percfemale,</span></span>
+<span><span class="co">#&gt; #   ³​morewomen, ⁴​large_majority</span></span></code></pre></div>
+<p>We can alternatively use <code>slice(1:5)</code>, which is shorthand for <code>slice(1, 2, 3, 4, 5)</code>. While <code><a href="https://dplyr.tidyverse.org/reference/slice.html">slice()</a></code> is useful, it is relatively simple. We’ll come back to it again in a few weeks as well when we discuss subsetting in base <code>R</code>.</p>
+<p><code><a href="https://dplyr.tidyverse.org/reference/filter.html">filter()</a></code> is a way to keep rows by specifying a <strong>condition</strong> related to one or more of the variables in the data set. We’ve already seen conditions in <code><a href="https://dplyr.tidyverse.org/reference/if_else.html">if_else()</a></code> and <code><a href="https://dplyr.tidyverse.org/reference/case_when.html">case_when()</a></code> statements, but they’ll now be used to “filter” the rows in our data set.</p>
+<p>We can keep rows based on a categorical variable or a quantitative variable or a combination of any number of categorical and quantitative variables. <code>R</code> uses the following symbols to make comparisons. We’ve already been using the more intuitive symbols (like <code>&lt;</code> and <code>&gt;</code>):</p>
+<ul>
+<li>
+<code>&lt;</code> and <code>&lt;=</code> for less than and less than or equal to, respectively</li>
+<li>
+<code>&gt;</code> and <code>&gt;=</code> for greater than and greater than or equal to, respectively</li>
+<li>
+<code>==</code> for equal to (careful: equal to is a double equal sign <code>==</code>)</li>
+<li>
+<code>!=</code> for not equal to (in general, <code>!</code> denotes “not”)</li>
+</ul>
+<p>It’s probably time for a change of data set too! We’ll be working with the <code>babynames</code> data set for the rest of this chapter:</p>
+<div class="sourceCode" id="cb86"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/hadley/babynames">babynames</a></span><span class="op">)</span></span>
+<span><span class="va">babynames</span></span>
+<span><span class="co">#&gt; # A tibble: 1,924,665 × 5</span></span>
+<span><span class="co">#&gt;     year sex   name          n   prop</span></span>
+<span><span class="co">#&gt;    &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt;     &lt;int&gt;  &lt;dbl&gt;</span></span>
+<span><span class="co">#&gt;  1  1880 F     Mary       7065 0.0724</span></span>
+<span><span class="co">#&gt;  2  1880 F     Anna       2604 0.0267</span></span>
+<span><span class="co">#&gt;  3  1880 F     Emma       2003 0.0205</span></span>
+<span><span class="co">#&gt;  4  1880 F     Elizabeth  1939 0.0199</span></span>
+<span><span class="co">#&gt;  5  1880 F     Minnie     1746 0.0179</span></span>
+<span><span class="co">#&gt;  6  1880 F     Margaret   1578 0.0162</span></span>
+<span><span class="co">#&gt;  7  1880 F     Ida        1472 0.0151</span></span>
+<span><span class="co">#&gt;  8  1880 F     Alice      1414 0.0145</span></span>
+<span><span class="co">#&gt;  9  1880 F     Bertha     1320 0.0135</span></span>
+<span><span class="co">#&gt; 10  1880 F     Sarah      1288 0.0132</span></span>
+<span><span class="co">#&gt; # … with 1,924,655 more rows</span></span>
+<span><span class="co">#&gt; # ℹ Use `print(n = ...)` to see more rows</span></span></code></pre></div>
+<p>If needed, we can remind ourselves what is in the <code>babynames</code> data set by typing <code><a href="https://rdrr.io/pkg/babynames/man/babynames.html">?babynames</a></code> in the console window.</p>
+<p>What do the following statements do? See if you can guess before running the code.</p>
+<div class="sourceCode" id="cb87"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">babynames</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">name</span> <span class="op">==</span> <span class="st">"Matthew"</span><span class="op">)</span></span>
+<span><span class="va">babynames</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">year</span> <span class="op">&gt;=</span> <span class="fl">2000</span><span class="op">)</span></span>
+<span><span class="va">babynames</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">sex</span> <span class="op">!=</span> <span class="st">"M"</span><span class="op">)</span></span>
+<span><span class="va">babynames</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">prop</span> <span class="op">&gt;</span> <span class="fl">0.05</span><span class="op">)</span></span>
+<span><span class="va">babynames</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">year</span> <span class="op">==</span> <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html">max</a></span><span class="op">(</span><span class="va">year</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<p>Why are some things put in quotes, like <code>"Matthew"</code> while some things aren’t, like <code>2000</code>? Can you make out a pattern?</p>
+<p>We can also combine conditions on multiple variables in <code><a href="https://dplyr.tidyverse.org/reference/filter.html">filter()</a></code> using Boolean operators. We’ve already seen one of these in the <code><a href="https://dplyr.tidyverse.org/reference/case_when.html">case_when()</a></code> statement above: <code>&amp;</code> means “and”.</p>
+<p>Look at the Venn diagrams in <code>R</code> for Data Science to learn about the various Boolean operators you can use in <code>R</code>: <a href="https://r4ds.had.co.nz/transform.html#logical-operators" target="_blank">https://r4ds.had.co.nz/transform.html#logical-operators</a>. The Boolean operators can be used in other functions in <code>R</code> as well, as we’ve already seen with <code><a href="https://dplyr.tidyverse.org/reference/if_else.html">if_else()</a></code> and <code><a href="https://dplyr.tidyverse.org/reference/case_when.html">case_when()</a></code>.</p>
+<p>The following gives some examples. See if you can figure out what each line of code is doing before running it.</p>
+<div class="sourceCode" id="cb88"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">babynames</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">n</span> <span class="op">&gt;</span> <span class="fl">20000</span> <span class="op">|</span> <span class="va">prop</span> <span class="op">&gt;</span> <span class="fl">0.05</span><span class="op">)</span></span>
+<span><span class="va">babynames</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">sex</span> <span class="op">==</span> <span class="st">"F"</span> <span class="op">&amp;</span> <span class="va">name</span> <span class="op">==</span> <span class="st">"Mary"</span><span class="op">)</span></span>
+<span><span class="va">babynames</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">sex</span> <span class="op">==</span> <span class="st">"F"</span> <span class="op">&amp;</span> <span class="va">name</span> <span class="op">==</span> <span class="st">"Mary"</span> <span class="op">&amp;</span> <span class="va">prop</span> <span class="op">&gt;</span> <span class="fl">0.05</span><span class="op">)</span></span></code></pre></div>
+</div>
+<div id="exercise-3-2" class="section level3" number="4.2.4">
+<h3>
+<span class="header-section-number">4.2.4</span> Exercises<a class="anchor" aria-label="anchor" href="#exercise-3-2"><i class="fas fa-link"></i></a>
+</h3>
+<p>Exercises marked with an * indicate that the exercise has a solution at the end of the chapter at <a href="dplyr.html#solutions-3">4.7</a>.</p>
+<ol style="list-style-type: decimal">
+<li><p>What happens when you <code><a href="https://dplyr.tidyverse.org/reference/arrange.html">arrange()</a></code> by one of the categorical variables in the <code>slumajors_df</code> data set?</p></li>
+<li><p>* Use <code><a href="https://dplyr.tidyverse.org/reference/select.html">select()</a></code> and <code><a href="https://tidyselect.r-lib.org/reference/everything.html">everything()</a></code> to put the <code>large_majority</code> variable as the first column in the <code>slumajors_df</code> data set.</p></li>
+<li><p>* In the <code>babynames</code> data set, use <code><a href="https://dplyr.tidyverse.org/reference/filter.html">filter()</a></code>, <code><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate()</a></code> with <code><a href="https://rdrr.io/r/base/rank.html">rank()</a></code>, and <code><a href="https://dplyr.tidyverse.org/reference/arrange.html">arrange()</a></code> to print the 10 most popular Male babynames in 2017.</p></li>
+<li><p>In the <code>babynames</code> data set, use <code><a href="https://dplyr.tidyverse.org/reference/filter.html">filter()</a></code> to keep only the rows with your name (or, another name that interests you) and one sex (either <code>"M"</code> or <code>"F"</code>). Name the new data set something and then construct a line plot that looks at the either the <code>n</code> or <code>prop</code> of your chosen name through <code>year</code>.</p></li>
+</ol>
+</div>
+</div>
+<div id="summarise-and-group_by-create-summaries" class="section level2" number="4.3">
+<h2>
+<span class="header-section-number">4.3</span> <code>summarise()</code> and <code>group_by()</code>: Create Summaries<a class="anchor" aria-label="anchor" href="#summarise-and-group_by-create-summaries"><i class="fas fa-link"></i></a>
+</h2>
+<p>The <code><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise()</a></code> function is useful to get summaries from the data. For example, suppose that we want to know the average major size at SLU across the five year span or the total number of majors across those five years. Then we can use <code><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise()</a></code> and a summary function, like <code><a href="https://rdrr.io/r/base/mean.html">mean()</a></code>, <code><a href="https://rdrr.io/r/base/sum.html">sum()</a></code>, <code><a href="https://rdrr.io/r/stats/median.html">median()</a></code>, <code><a href="https://rdrr.io/r/base/Extremes.html">max()</a></code>, <code><a href="https://rdrr.io/r/base/Extremes.html">min()</a></code>, <code><a href="https://dplyr.tidyverse.org/reference/context.html">n()</a></code>, etc. You’ll notice that the format of <code><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise()</a></code> is extremely similar to the format of <code><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate()</a></code>. Using the <code>slumajors_df</code> data again just for one quick example,</p>
+<div class="sourceCode" id="cb89"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">slumajors_df</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise</a></span><span class="op">(</span>meantotalmajor <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">ntotal</span><span class="op">)</span>,</span>
+<span>            totalgrad <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">ntotal</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="co">#&gt; # A tibble: 1 × 2</span></span>
+<span><span class="co">#&gt;   meantotalmajor totalgrad</span></span>
+<span><span class="co">#&gt;            &lt;dbl&gt;     &lt;dbl&gt;</span></span>
+<span><span class="co">#&gt; 1           124.      3347</span></span></code></pre></div>
+<div id="group_by-groups" class="section level3" number="4.3.1">
+<h3>
+<span class="header-section-number">4.3.1</span> <code>group_by()</code>: Groups<a class="anchor" aria-label="anchor" href="#group_by-groups"><i class="fas fa-link"></i></a>
+</h3>
+<p><code><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise()</a></code> is often most useful when paired with a <code><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by()</a></code> statement. Doing so allows us to get summaries across different groups.</p>
+<p>For example, suppose that you wanted the total number of registered births per year in the <code>babynames</code> data set:</p>
+<div class="sourceCode" id="cb90"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">babynames</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">year</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise</a></span><span class="op">(</span>totalbirths <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">n</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="co">#&gt; # A tibble: 138 × 2</span></span>
+<span><span class="co">#&gt;     year totalbirths</span></span>
+<span><span class="co">#&gt;    &lt;dbl&gt;       &lt;int&gt;</span></span>
+<span><span class="co">#&gt;  1  1880      201484</span></span>
+<span><span class="co">#&gt;  2  1881      192696</span></span>
+<span><span class="co">#&gt;  3  1882      221533</span></span>
+<span><span class="co">#&gt;  4  1883      216946</span></span>
+<span><span class="co">#&gt;  5  1884      243462</span></span>
+<span><span class="co">#&gt;  6  1885      240854</span></span>
+<span><span class="co">#&gt;  7  1886      255317</span></span>
+<span><span class="co">#&gt;  8  1887      247394</span></span>
+<span><span class="co">#&gt;  9  1888      299473</span></span>
+<span><span class="co">#&gt; 10  1889      288946</span></span>
+<span><span class="co">#&gt; # … with 128 more rows</span></span>
+<span><span class="co">#&gt; # ℹ Use `print(n = ...)` to see more rows</span></span></code></pre></div>
+<p><code><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by()</a></code> takes a grouping variable, and then, using <code><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise()</a></code> computes the given summary function on each group.</p>
+<p>Most summary functions are intuitive if you’ve had intro stat. But, if you’re not sure whether the summary for getting the maximum is <code>maximum()</code> or <code><a href="https://rdrr.io/r/base/Extremes.html">max()</a></code>, just try both!</p>
+<p>The <code><a href="https://dplyr.tidyverse.org/reference/context.html">n()</a></code> function can be used within <code><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise()</a></code> to obtain the number of observations. It will give you the total number of rows, if used without <code><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by()</a></code></p>
+<div class="sourceCode" id="cb91"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">babynames</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise</a></span><span class="op">(</span>totalobs <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/context.html">n</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="co">#&gt; # A tibble: 1 × 1</span></span>
+<span><span class="co">#&gt;   totalobs</span></span>
+<span><span class="co">#&gt;      &lt;int&gt;</span></span>
+<span><span class="co">#&gt; 1  1924665</span></span></code></pre></div>
+<p>Note that <code><a href="https://dplyr.tidyverse.org/reference/context.html">n()</a></code> typically doesn’t have any inputs. It’s typically more useful when paired with <code><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by()</a></code>: this allows us to see the number of observations within each <code>year</code>, for instance:</p>
+<div class="sourceCode" id="cb92"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">babynames</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">year</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise</a></span><span class="op">(</span>ngroup <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/context.html">n</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="co">#&gt; # A tibble: 138 × 2</span></span>
+<span><span class="co">#&gt;     year ngroup</span></span>
+<span><span class="co">#&gt;    &lt;dbl&gt;  &lt;int&gt;</span></span>
+<span><span class="co">#&gt;  1  1880   2000</span></span>
+<span><span class="co">#&gt;  2  1881   1935</span></span>
+<span><span class="co">#&gt;  3  1882   2127</span></span>
+<span><span class="co">#&gt;  4  1883   2084</span></span>
+<span><span class="co">#&gt;  5  1884   2297</span></span>
+<span><span class="co">#&gt;  6  1885   2294</span></span>
+<span><span class="co">#&gt;  7  1886   2392</span></span>
+<span><span class="co">#&gt;  8  1887   2373</span></span>
+<span><span class="co">#&gt;  9  1888   2651</span></span>
+<span><span class="co">#&gt; 10  1889   2590</span></span>
+<span><span class="co">#&gt; # … with 128 more rows</span></span>
+<span><span class="co">#&gt; # ℹ Use `print(n = ...)` to see more rows</span></span></code></pre></div>
+</div>
+<div id="exercise-3-3" class="section level3" number="4.3.2">
+<h3>
+<span class="header-section-number">4.3.2</span> Exercises<a class="anchor" aria-label="anchor" href="#exercise-3-3"><i class="fas fa-link"></i></a>
+</h3>
+<p>Exercises marked with an * indicate that the exercise has a solution at the end of the chapter at <a href="dplyr.html#solutions-3">4.7</a>.</p>
+<ol style="list-style-type: decimal">
+<li>Compare <code><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise()</a></code> with <code><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate()</a></code> using the following code. What’s the difference between the two functions?</li>
+</ol>
+<div class="sourceCode" id="cb93"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">slumajors_df</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise</a></span><span class="op">(</span>meantotalmajor <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">ntotal</span><span class="op">)</span>,</span>
+<span>            totalgrad <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">ntotal</span><span class="op">)</span><span class="op">)</span> </span>
+<span><span class="va">slumajors_df</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>meantotalmajor <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">ntotal</span><span class="op">)</span>,</span>
+<span>            totalgrad <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">ntotal</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">meantotalmajor</span>, <span class="va">totalgrad</span>, <span class="fu"><a href="https://tidyselect.r-lib.org/reference/everything.html">everything</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<ol start="2" style="list-style-type: decimal">
+<li>Using the data set from the <code><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by()</a></code> and <code><a href="https://dplyr.tidyverse.org/reference/context.html">n()</a></code> combination,</li>
+</ol>
+<div class="sourceCode" id="cb94"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">babynames</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">year</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise</a></span><span class="op">(</span>ngroup <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/context.html">n</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="co">#&gt; # A tibble: 138 × 2</span></span>
+<span><span class="co">#&gt;     year ngroup</span></span>
+<span><span class="co">#&gt;    &lt;dbl&gt;  &lt;int&gt;</span></span>
+<span><span class="co">#&gt;  1  1880   2000</span></span>
+<span><span class="co">#&gt;  2  1881   1935</span></span>
+<span><span class="co">#&gt;  3  1882   2127</span></span>
+<span><span class="co">#&gt;  4  1883   2084</span></span>
+<span><span class="co">#&gt;  5  1884   2297</span></span>
+<span><span class="co">#&gt;  6  1885   2294</span></span>
+<span><span class="co">#&gt;  7  1886   2392</span></span>
+<span><span class="co">#&gt;  8  1887   2373</span></span>
+<span><span class="co">#&gt;  9  1888   2651</span></span>
+<span><span class="co">#&gt; 10  1889   2590</span></span>
+<span><span class="co">#&gt; # … with 128 more rows</span></span>
+<span><span class="co">#&gt; # ℹ Use `print(n = ...)` to see more rows</span></span></code></pre></div>
+<p>make a line plot with <code>ngroup</code> on the x-axis and <code>year</code> on the y-axis. How would you interpret the plot?</p>
+<ol start="3" style="list-style-type: decimal">
+<li><p>* Create a data set that has a column for <code>name</code> and a column that shows the total number of births for that name across all years and both sexes.</p></li>
+<li><p>* <code><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by()</a></code> can also be used with other functions, including <code><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate()</a></code>. Use <code><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by()</a></code> and <code><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate()</a></code> to rank the names from most to least popular in each year-sex combination.</p></li>
+<li><p>* From the data set in 4, <code><a href="https://dplyr.tidyverse.org/reference/filter.html">filter()</a></code> the data to keep only the most popular name in each year-sex combination and then construct a summary table showing how many times each name appears as the most popular name.</p></li>
+<li><p>* Run the following code. Intuitively, a <code>slice(1, 2, 3, 4, 5)</code> should grab the first five rows of the data set, but, when we try to run that, we get 1380 rows. Try to figure out what the issue is by using Google to search something like “<code>dplyr</code> not slicing correctly after using group by.” What do you find?</p></li>
+</ol>
+<div class="sourceCode" id="cb95"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">babynames_test</span> <span class="op">&lt;-</span> <span class="va">babynames</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">year</span>, <span class="va">sex</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>ntest <span class="op">=</span> <span class="va">n</span> <span class="op">/</span> <span class="va">prop</span><span class="op">)</span></span>
+<span><span class="va">babynames_test</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/slice.html">slice</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">2</span>, <span class="fl">3</span>, <span class="fl">4</span>, <span class="fl">5</span><span class="op">)</span></span>
+<span><span class="co">#&gt; # A tibble: 1,380 × 6</span></span>
+<span><span class="co">#&gt; # Groups:   year, sex [276]</span></span>
+<span><span class="co">#&gt;     year sex   name          n   prop   ntest</span></span>
+<span><span class="co">#&gt;    &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt;     &lt;int&gt;  &lt;dbl&gt;   &lt;dbl&gt;</span></span>
+<span><span class="co">#&gt;  1  1880 F     Mary       7065 0.0724  97605.</span></span>
+<span><span class="co">#&gt;  2  1880 F     Anna       2604 0.0267  97605.</span></span>
+<span><span class="co">#&gt;  3  1880 F     Emma       2003 0.0205  97605.</span></span>
+<span><span class="co">#&gt;  4  1880 F     Elizabeth  1939 0.0199  97605.</span></span>
+<span><span class="co">#&gt;  5  1880 F     Minnie     1746 0.0179  97605.</span></span>
+<span><span class="co">#&gt;  6  1880 M     John       9655 0.0815 118400.</span></span>
+<span><span class="co">#&gt;  7  1880 M     William    9532 0.0805 118400.</span></span>
+<span><span class="co">#&gt;  8  1880 M     James      5927 0.0501 118400.</span></span>
+<span><span class="co">#&gt;  9  1880 M     Charles    5348 0.0452 118400.</span></span>
+<span><span class="co">#&gt; 10  1880 M     George     5126 0.0433 118400.</span></span>
+<span><span class="co">#&gt; # … with 1,370 more rows</span></span>
+<span><span class="co">#&gt; # ℹ Use `print(n = ...)` to see more rows</span></span></code></pre></div>
+</div>
+</div>
+<div id="missing-values" class="section level2" number="4.4">
+<h2>
+<span class="header-section-number">4.4</span> Missing Values<a class="anchor" aria-label="anchor" href="#missing-values"><i class="fas fa-link"></i></a>
+</h2>
+<p>Both of the data sets that we’ve worked with are nice in that they do not have any missing values. We’ll see plenty of examples of data sets with missing values later, so we should examine how the various functions that we’ve talked about so far tackle missing values.</p>
+<p>Missing values in <code>R</code> are denoted with <code>NA</code> for “Not Available.” Run the following code to create a toy data set with some missing values so that we can see how the various functions we’ve used so far deal with <code>NA</code> values.</p>
+<div class="sourceCode" id="cb96"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">toy_df</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble</a></span><span class="op">(</span>x <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="cn">NA</span>, <span class="fl">3</span>, <span class="fl">4</span>, <span class="fl">7</span><span class="op">)</span>,</span>
+<span>                 y <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">4</span>, <span class="fl">3</span>, <span class="fl">2</span><span class="op">)</span>,</span>
+<span>                 z <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"A"</span>, <span class="st">"A"</span>, <span class="st">"B"</span>, <span class="cn">NA</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="va">toy_df</span></span>
+<span><span class="co">#&gt; # A tibble: 4 × 3</span></span>
+<span><span class="co">#&gt;       x     y z    </span></span>
+<span><span class="co">#&gt;   &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;</span></span>
+<span><span class="co">#&gt; 1    NA     1 A    </span></span>
+<span><span class="co">#&gt; 2     3     4 A    </span></span>
+<span><span class="co">#&gt; 3     4     3 B    </span></span>
+<span><span class="co">#&gt; 4     7     2 &lt;NA&gt;</span></span></code></pre></div>
+<div id="exercise-3-4" class="section level3" number="4.4.1">
+<h3>
+<span class="header-section-number">4.4.1</span> Exercises<a class="anchor" aria-label="anchor" href="#exercise-3-4"><i class="fas fa-link"></i></a>
+</h3>
+<p>Exercises marked with an * indicate that the exercise has a solution at the end of the chapter at <a href="dplyr.html#solutions-3">4.7</a>.</p>
+<ol style="list-style-type: decimal">
+<li><p>* <code><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate()</a></code>. Try to create a new variable with <code><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate()</a></code> involving <code>x</code>. What does <code>R</code> do with the missing value?</p></li>
+<li><p><code><a href="https://dplyr.tidyverse.org/reference/arrange.html">arrange()</a></code>. Try arranging the data set by <code>x</code>. What does <code>R</code> do with the missing value?</p></li>
+<li><p><code><a href="https://dplyr.tidyverse.org/reference/filter.html">filter()</a></code>. Try filtering so that only observations where x is less than 5 are kept. What does <code>R</code> do with the missing value?</p></li>
+<li><p><code><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise()</a></code>. Try using <code><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise()</a></code> with a function involving x. What does <code>R</code> return?</p></li>
+<li><p><code><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by()</a></code> and <code><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise()</a></code>. To your statement in 4, add a <code>group_by(z)</code> statement before your <code><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise()</a></code>. What does <code>R</code> return now?</p></li>
+</ol>
+</div>
+<div id="removing-missing-values" class="section level3" number="4.4.2">
+<h3>
+<span class="header-section-number">4.4.2</span> Removing Missing Values<a class="anchor" aria-label="anchor" href="#removing-missing-values"><i class="fas fa-link"></i></a>
+</h3>
+<p>Missing values should not be removed without carefully examination and a note of what the consequences might be (e.g. why are these values missing?). We have a toy data set that is meaningless, so we aren’t asking those questions now, but we will for any data set that does have missing values!</p>
+<p><strong>If</strong> we have investigated the missing values and are comfortable with removing them, many functions that we would use in <code><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise()</a></code> have an <code>na.rm</code> argument that we can set to <code>TRUE</code> to tell <code><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise()</a></code> to remove any <code>NA</code>s before taking the <code><a href="https://rdrr.io/r/base/mean.html">mean()</a></code>, <code><a href="https://rdrr.io/r/stats/median.html">median()</a></code>, <code><a href="https://rdrr.io/r/base/Extremes.html">max()</a></code>, etc.</p>
+<div class="sourceCode" id="cb97"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">toy_df</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise</a></span><span class="op">(</span>meanx <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">x</span>, na.rm <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="co">#&gt; # A tibble: 1 × 1</span></span>
+<span><span class="co">#&gt;   meanx</span></span>
+<span><span class="co">#&gt;   &lt;dbl&gt;</span></span>
+<span><span class="co">#&gt; 1  4.67</span></span></code></pre></div>
+<p>If we want to remove the missing values more directly, we can use the <code><a href="https://rdrr.io/r/base/NA.html">is.na()</a></code> function in combination with <code><a href="https://dplyr.tidyverse.org/reference/filter.html">filter()</a></code>. If the variable is <code>NA</code> (Not Available) for an observation, <code><a href="https://rdrr.io/r/base/NA.html">is.na()</a></code> evaluates to <code>TRUE</code>; if not, <code><a href="https://rdrr.io/r/base/NA.html">is.na()</a></code> evaluates to <code>FALSE</code>. Test this out using <code><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate()</a></code> to create a new variable for whether <code>Median</code> is missing:</p>
+<div class="sourceCode" id="cb98"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">toy_df</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>missingx <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/NA.html">is.na</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="co">#&gt; # A tibble: 4 × 4</span></span>
+<span><span class="co">#&gt;       x     y z     missingx</span></span>
+<span><span class="co">#&gt;   &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt; &lt;lgl&gt;   </span></span>
+<span><span class="co">#&gt; 1    NA     1 A     TRUE    </span></span>
+<span><span class="co">#&gt; 2     3     4 A     FALSE   </span></span>
+<span><span class="co">#&gt; 3     4     3 B     FALSE   </span></span>
+<span><span class="co">#&gt; 4     7     2 &lt;NA&gt;  FALSE</span></span></code></pre></div>
+<p><code>missingx</code> is <code>TRUE</code> only for the the first observation. We can use this to our advantage with <code><a href="https://dplyr.tidyverse.org/reference/filter.html">filter()</a></code> to filter it out of the data set, without going through the extra step of actually making a new variable <code>missingx</code>:</p>
+<div class="sourceCode" id="cb99"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">toy_df</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/NA.html">is.na</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="op">!=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
+<span><span class="co">#&gt; # A tibble: 3 × 3</span></span>
+<span><span class="co">#&gt;       x     y z    </span></span>
+<span><span class="co">#&gt;   &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;</span></span>
+<span><span class="co">#&gt; 1     3     4 A    </span></span>
+<span><span class="co">#&gt; 2     4     3 B    </span></span>
+<span><span class="co">#&gt; 3     7     2 &lt;NA&gt;</span></span></code></pre></div>
+<p>You’ll commonly see this written as short-hand in people’s code you may come across as:</p>
+<div class="sourceCode" id="cb100"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">toy_df</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/NA.html">is.na</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="co">#&gt; # A tibble: 3 × 3</span></span>
+<span><span class="co">#&gt;       x     y z    </span></span>
+<span><span class="co">#&gt;   &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;</span></span>
+<span><span class="co">#&gt; 1     3     4 A    </span></span>
+<span><span class="co">#&gt; 2     4     3 B    </span></span>
+<span><span class="co">#&gt; 3     7     2 &lt;NA&gt;</span></span></code></pre></div>
+<p>which says to “keep anything that does not have a missing x value” (recall that the <code>!</code> means “not”).</p>
+</div>
+</div>
+<div id="more-about-the-pipe" class="section level2" number="4.5">
+<h2>
+<span class="header-section-number">4.5</span> More about the Pipe<a class="anchor" aria-label="anchor" href="#more-about-the-pipe"><i class="fas fa-link"></i></a>
+</h2>
+<p>We are jumping straight into using piping, but we do want to have an appreciation on how terrible life would be without it. What piping does is make whatever is given before the <code>|&gt;</code> pipe the first argument of whatever function follows the <code>|&gt;</code>. So</p>
+<div class="sourceCode" id="cb101"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">df</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">y</span> <span class="op">+</span> <span class="fl">4</span><span class="op">)</span></span></code></pre></div>
+<p>is equivalent to</p>
+<div class="sourceCode" id="cb102"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span><span class="va">df</span>, x <span class="op">=</span> <span class="va">y</span> <span class="op">+</span> <span class="fl">4</span><span class="op">)</span></span></code></pre></div>
+<p>It might also help to use an analogy when thinking about piping. Consider the Ke$ha’s morning routine in the opening of the song Tik Tok. If we were to write her morning routine in terms of piping,</p>
+<div class="sourceCode" id="cb103"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb103-1"><a href="dplyr.html#cb103-1" aria-hidden="true" tabindex="-1"></a>kesha <span class="sc">|&gt;</span> <span class="fu">wake_up</span>(<span class="at">time =</span> <span class="st">"morning"</span>, <span class="at">feels_like =</span> <span class="st">"P-Diddy"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb103-2"><a href="dplyr.html#cb103-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">grab</span>(glasses) <span class="sc">|&gt;</span></span>
+<span id="cb103-3"><a href="dplyr.html#cb103-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">brush</span>(teeth, <span class="at">item =</span> <span class="st">"jack"</span>, <span class="at">unit =</span> <span class="st">"bottle"</span>) <span class="sc">|&gt;</span> ....</span></code></pre></div>
+<p>Kesha first wakes up in the morning, <em>and then</em> the Kesha that has woken up grabs her glasses, <em>and then</em> the Kesha who has woken up and has her glasses brushes her teeth, etc.</p>
+<p>The pipe operator <code>|&gt;</code> is loaded automatically with <code>R</code>. We’ve been using the pipe quite a bit, but let’s delve a little deeper into what it’s actually doing. We will use the <code>videogame_clean.csv</code> data file, which contains variables on video games from 2004 - 2019, including</p>
+<ul>
+<li>
+<code>game</code>, the name of the game</li>
+<li>
+<code>release_date</code>, the release date of the game</li>
+<li>
+<code>release_date2</code>, a second coding of release date</li>
+<li>
+<code>price</code>, the price in dollars,</li>
+<li>
+<code>owners</code>, the number of owners (given in a range)</li>
+<li>
+<code>median_playtime</code>, the median playtime of the game</li>
+<li>
+<code>metascore</code>, the score from the website Metacritic</li>
+<li>
+<code>price_cat</code>, 1 for Low (less than 10.00 dollars), 2 for Moderate (between 10 and 29.99 dollars), and 3 for High (30.00 or more dollars)</li>
+<li>
+<code>meta_cat</code>, Metacritic’s review system, with the following categories: “Overwhelming Dislike”, “Generally Unfavorable”, “Mixed Reviews”, “Generally Favorable”, “Universal Acclaim”.</li>
+<li>
+<code>playtime_miss</code>, whether median play time is missing (<code>TRUE</code>) or not (<code>FALSE</code>)</li>
+</ul>
+<p>Load in the data set with</p>
+<div class="sourceCode" id="cb104"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">videogame_df</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv</a></span><span class="op">(</span><span class="st">"data/videogame_clean.csv"</span><span class="op">)</span></span>
+<span><span class="co">#&gt; Rows: 26688 Columns: 15</span></span>
+<span><span class="co">#&gt; ── Column specification ────────────────────────────────────</span></span>
+<span><span class="co">#&gt; Delimiter: ","</span></span>
+<span><span class="co">#&gt; chr  (7): game, release_date, owners, meta_cat, develope...</span></span>
+<span><span class="co">#&gt; dbl  (6): price, median_playtime, metascore, price_cat, ...</span></span>
+<span><span class="co">#&gt; lgl  (1): playtime_miss</span></span>
+<span><span class="co">#&gt; date (1): release_date2</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; ℹ Use `spec()` to retrieve the full column specification for this data.</span></span>
+<span><span class="co">#&gt; ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">videogame_df</span><span class="op">)</span></span>
+<span><span class="co">#&gt; # A tibble: 6 × 15</span></span>
+<span><span class="co">#&gt;   game       relea…¹ release_…² price owners media…³ metas…⁴</span></span>
+<span><span class="co">#&gt;   &lt;chr&gt;      &lt;chr&gt;   &lt;date&gt;     &lt;dbl&gt; &lt;chr&gt;    &lt;dbl&gt;   &lt;dbl&gt;</span></span>
+<span><span class="co">#&gt; 1 Half-Life… Nov 16… 2004-11-16  9.99 10,00…      66      96</span></span>
+<span><span class="co">#&gt; 2 Counter-S… Nov 1,… 2004-11-01  9.99 10,00…     128      88</span></span>
+<span><span class="co">#&gt; 3 Counter-S… Mar 1,… 2004-03-01  9.99 10,00…       3      65</span></span>
+<span><span class="co">#&gt; 4 Half-Life… Nov 1,… 2004-11-01  4.99 5,000…       0      NA</span></span>
+<span><span class="co">#&gt; 5 Half-Life… Jun 1,… 2004-06-01  9.99 2,000…       0      NA</span></span>
+<span><span class="co">#&gt; 6 CS2D       Dec 24… 2004-12-24 NA    1,000…      10      NA</span></span>
+<span><span class="co">#&gt; # … with 8 more variables: price_cat &lt;dbl&gt;, meta_cat &lt;chr&gt;,</span></span>
+<span><span class="co">#&gt; #   playtime_miss &lt;lgl&gt;, number &lt;dbl&gt;, developer &lt;chr&gt;,</span></span>
+<span><span class="co">#&gt; #   publisher &lt;chr&gt;, average_playtime &lt;dbl&gt;,</span></span>
+<span><span class="co">#&gt; #   meta_cat_factor &lt;chr&gt;, and abbreviated variable names</span></span>
+<span><span class="co">#&gt; #   ¹​release_date, ²​release_date2, ³​median_playtime,</span></span>
+<span><span class="co">#&gt; #   ⁴​metascore</span></span>
+<span><span class="co">#&gt; # ℹ Use `colnames()` to see all variable names</span></span></code></pre></div>
+<p>Let’s say we want to <code><a href="https://dplyr.tidyverse.org/reference/filter.html">filter()</a></code> the data set to include only videogames with a <code>metascore</code> that isn’t missing. We’ve been using code like</p>
+<div class="sourceCode" id="cb105"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">videogame_df</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/NA.html">is.na</a></span><span class="op">(</span><span class="va">metascore</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<p>What the pipe is doing is putting <code>videogame_df</code> as the first argument in the <code><a href="https://dplyr.tidyverse.org/reference/filter.html">filter()</a></code> function so that the piping statement in the chunk above is equivalent to:</p>
+<div class="sourceCode" id="cb106"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">videogame_df</span>, <span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/NA.html">is.na</a></span><span class="op">(</span><span class="va">metascore</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<p>If we want to first filter out games with a non-missing metascore, get rid of all observations with a median play time of 0, and then obtain the “median” <code>median_playtime</code> for each of the 3 price categories, we would typically use</p>
+<div class="sourceCode" id="cb107"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">videogame_df</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/NA.html">is.na</a></span><span class="op">(</span><span class="va">metascore</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">median_playtime</span> <span class="op">&gt;</span> <span class="fl">0</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">price_cat</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise</a></span><span class="op">(</span>avg_med_time <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/median.html">median</a></span><span class="op">(</span><span class="va">median_playtime</span>, na.rm <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<p>We see from the summary that, in general, games do tend to give you more “bang for the buck”: more expensive games tend to have a larger median play time. Consecutive pipes build on each other: we can slowly build out what the pipe is doing step-by-step. Starting from the top, <code>videogame_df</code> is the first argument in the <code>filter(!is.na(metascore))</code> function:</p>
+<div class="sourceCode" id="cb108"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">videogame_df</span>, <span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/NA.html">is.na</a></span><span class="op">(</span><span class="va">metascore</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<p><code>filter(videogame_df, !is.na(metascore))</code> is the first argument in <code>filter(median_playtime &gt; 0)</code>:</p>
+<div class="sourceCode" id="cb109"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">videogame_df</span>, <span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/NA.html">is.na</a></span><span class="op">(</span><span class="va">metascore</span><span class="op">)</span><span class="op">)</span>, <span class="va">median_playtime</span> <span class="op">&gt;</span> <span class="fl">0</span><span class="op">)</span></span></code></pre></div>
+<p><code>filter(filter(videogame_df, !is.na(metascore)), median_playtime &gt; 0)</code> is the first argument in <code>group_by(price_cat)</code>:</p>
+<div class="sourceCode" id="cb110"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">videogame_df</span>, <span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/NA.html">is.na</a></span><span class="op">(</span><span class="va">metascore</span><span class="op">)</span><span class="op">)</span>,</span>
+<span>                <span class="va">median_playtime</span> <span class="op">&gt;</span> <span class="fl">0</span><span class="op">)</span>, <span class="va">price_cat</span><span class="op">)</span></span></code></pre></div>
+<p>and <code>group_by(filter(filter(videogame_df, !is.na(metascore)), median_playtime &gt; 0), price_cat)</code> is the first argument of <code>summarise(avg_med_time = median(median_playtime, na.rm = TRUE))</code>:</p>
+<div class="sourceCode" id="cb111"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise</a></span><span class="op">(</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">videogame_df</span>, <span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/NA.html">is.na</a></span><span class="op">(</span><span class="va">metascore</span><span class="op">)</span><span class="op">)</span>,</span>
+<span>  <span class="va">median_playtime</span> <span class="op">&gt;</span> <span class="fl">0</span><span class="op">)</span>, <span class="va">price_cat</span><span class="op">)</span>, </span>
+<span>  avg_med_time <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/median.html">median</a></span><span class="op">(</span><span class="va">median_playtime</span>, na.rm <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<p>and we obtain the same result without the <code>|&gt;</code> pipe. So, why use the pipe? Compare the code the uses the pipe operator to find the average median playtime to the code that doesn’t. Which is easier to read? Which do you think is easier to write? The example shows that, for our purposes, the pipe is most useful in aiding the readability of our code. It’s a lot easier to see what’s happening in the code chunk with the pipes than it is in the previous code chunk without the pipe because, with the pipe, we can read the code from left to right and top to bottom. Without the pipe, we need to read the code from the “inside to the outside”, which is much more challenging.</p>
+<div id="when-you-cant-use-the-pipe" class="section level3" number="4.5.1">
+<h3>
+<span class="header-section-number">4.5.1</span> When You Can’t Use the Pipe<a class="anchor" aria-label="anchor" href="#when-you-cant-use-the-pipe"><i class="fas fa-link"></i></a>
+</h3>
+<p>So, the pipe is a convenient way to put what precedes the pipe as the first argument to the function that follows the pipe. It’s important to understand this as you learn more about <code>R</code> because, while the functions in <code>tidyverse</code> are purposefully made to make good use of the pipe, not all functions in <code>R</code> utilize the pipe. Most of the functions in the <code>tidyverse</code> have a first argument that is a data set (which is why we can use pipes consecutively), but this isn’t the case with all <code>R</code> functions.</p>
+<p>For example, if you have taken STAT 213, you’ve used <code><a href="https://rdrr.io/r/stats/lm.html">lm()</a></code> to fit many different types of linear models. If you haven’t taken STAT 213, <code>lm(response ~ explanatory, data = name_of_data_set)</code> stands for “linear model” and can be used to fit the simple linear regression model that you learned about in STAT 113. You might expect something like this to work:</p>
+<div class="sourceCode" id="cb112"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">videogame_df</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span><span class="op">(</span><span class="va">metascore</span> <span class="op">~</span> <span class="va">price</span><span class="op">)</span></span>
+<span><span class="co">#&gt; Error in as.data.frame.default(data): cannot coerce class '"formula"' to a data.frame</span></span></code></pre></div>
+<p>But it throws us an error. Typing in <code><a href="https://rdrr.io/r/stats/lm.html">?lm</a></code> reveals that its first argument is a <code>formula</code> to fit the model, not a data set. So the function is trying to run</p>
+<div class="sourceCode" id="cb113"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span><span class="op">(</span><span class="va">videogame_df</span>, <span class="va">metascore</span> <span class="op">~</span> <span class="va">price</span><span class="op">)</span></span>
+<span><span class="co">#&gt; Error in as.data.frame.default(data): cannot coerce class '"formula"' to a data.frame</span></span></code></pre></div>
+<p>which doesn’t work because the arguments to the function are mixed up (the formula should appear first and the data set should appear second).</p>
+<p>For one final note about the pipe, note that the pipe operator <code>|&gt;</code> is relatively new. Previously, the primary pipe operator used was <code>%&gt;%</code> and came from the <code>magrittr</code> package. For almost all cases, the two operators are equivalent. However, when scanning the Internet for help with code, you will probably see <code>|&gt;</code> used in many of people’s responses on sites like StackOverflow.</p>
+</div>
+<div id="exercise-3-4" class="section level3" number="4.5.2">
+<h3>
+<span class="header-section-number">4.5.2</span> Exercises<a class="anchor" aria-label="anchor" href="#exercise-3-4"><i class="fas fa-link"></i></a>
+</h3>
+<p>Exercises marked with an * indicate that the exercise has a solution at the end of the chapter at <a href="dplyr.html#solutions-3">4.7</a>.</p>
+<ol style="list-style-type: decimal">
+<li>* Recode the following to look cleaner by using the pipe <code>|&gt;</code>.</li>
+</ol>
+<div class="sourceCode" id="cb114"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">fitness_df</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv</a></span><span class="op">(</span><span class="st">"data/higham_fitness_clean.csv"</span><span class="op">)</span></span>
+<span><span class="co">#&gt; Rows: 993 Columns: 9</span></span>
+<span><span class="co">#&gt; ── Column specification ────────────────────────────────────</span></span>
+<span><span class="co">#&gt; Delimiter: ","</span></span>
+<span><span class="co">#&gt; chr  (2): month, weekday</span></span>
+<span><span class="co">#&gt; dbl  (6): active_cals, distance, flights, steps, dayofye...</span></span>
+<span><span class="co">#&gt; date (1): Start</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; ℹ Use `spec()` to retrieve the full column specification for this data.</span></span>
+<span><span class="co">#&gt; ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</span></span>
+<span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise</a></span><span class="op">(</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">fitness_df</span>, <span class="va">weekday</span> <span class="op">==</span> <span class="st">"Sat"</span> <span class="op">|</span> <span class="va">weekday</span> <span class="op">==</span> <span class="st">"Sun"</span><span class="op">)</span>,</span>
+<span>                   <span class="va">month</span><span class="op">)</span>,</span>
+<span>          meanweekend <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">distance</span>, na.rm <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span> </span>
+<span><span class="co">#&gt; # A tibble: 12 × 2</span></span>
+<span><span class="co">#&gt;    month meanweekend</span></span>
+<span><span class="co">#&gt;    &lt;chr&gt;       &lt;dbl&gt;</span></span>
+<span><span class="co">#&gt;  1 Apr          5.30</span></span>
+<span><span class="co">#&gt;  2 Aug          5.52</span></span>
+<span><span class="co">#&gt;  3 Dec          3.30</span></span>
+<span><span class="co">#&gt;  4 Feb          4.87</span></span>
+<span><span class="co">#&gt;  5 Jan          3.89</span></span>
+<span><span class="co">#&gt;  6 Jul          4.85</span></span>
+<span><span class="co">#&gt;  7 Jun          4.18</span></span>
+<span><span class="co">#&gt;  8 Mar          4.86</span></span>
+<span><span class="co">#&gt;  9 May          5.00</span></span>
+<span><span class="co">#&gt; 10 Nov          3.06</span></span>
+<span><span class="co">#&gt; 11 Oct          3.82</span></span>
+<span><span class="co">#&gt; 12 Sep          4.02</span></span></code></pre></div>
+<ol start="2" style="list-style-type: decimal">
+<li>Explain why the following code gives a warning message and returns <code>NA</code>. Use the list of Arguments in <code><a href="https://rdrr.io/r/base/mean.html">?mean</a></code> in your explanation.</li>
+</ol>
+<div class="sourceCode" id="cb115"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">fitness_df</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">distance</span>, na.rm <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
+<span><span class="co">#&gt; [1] NA</span></span></code></pre></div>
+</div>
+</div>
+<div id="chapexercise-3" class="section level2" number="4.6">
+<h2>
+<span class="header-section-number">4.6</span> Chapter Exercises<a class="anchor" aria-label="anchor" href="#chapexercise-3"><i class="fas fa-link"></i></a>
+</h2>
+<ol style="list-style-type: decimal">
+<li><p>We found both in the SLU majors data set and in the FiveThirtyEight majors data set that Statistics has a higher proportion of women than almost all other STEM fields. Read the first two sections of <a href="https://www.washingtonpost.com/local/women-flocking-to-statistics-the-new-hot-high-tech-field-of-data-science/2014/12/19/f3e2e486-62ed-11e4-9fdc-d43b053ecb4d_story.html" target="_blank">this article</a>. Write 2-3 sentences about the article’s reasoning of why there are more women in statistics than in other STEM fields.</p></li>
+<li><p>* a. Choose 5 names that interest you and create a new data set that only has data on those 5 names.</p></li>
+</ol>
+<ol start="2" style="list-style-type: lower-alpha">
+<li><p>Use <code><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by()</a></code> and <code><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise()</a></code> to add together the number of Females and Males for each name in each year. <strong>Hint</strong>: you can <code><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by()</a></code> more than one variable!</p></li>
+<li><p>Make a line plot showing the popularity of these 5 names over time.</p></li>
+</ol>
+<ol start="3" style="list-style-type: decimal">
+<li><ol style="list-style-type: lower-alpha">
+<li>Choose a year and a sex that interests you and filter the data set to only contain observations from that year and sex.</li>
+</ol></li>
+</ol>
+<ol start="2" style="list-style-type: lower-alpha">
+<li><p>Create a new variable that ranks the names from most popular to least popular.</p></li>
+<li><p>Create a bar plot that shows the 10 most popular names as well as the count for each name.</p></li>
+</ol>
+<ol start="4" style="list-style-type: decimal">
+<li>* In some cases throughout this chapter, we’ve renamed data sets using <code>&lt;-</code> with the same name like</li>
+</ol>
+<div class="sourceCode" id="cb116"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">toy_df</span> <span class="op">&lt;-</span> <span class="va">toy_df</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>newvar <span class="op">=</span> <span class="va">x</span> <span class="op">/</span> <span class="va">y</span><span class="op">)</span></span></code></pre></div>
+<p>In other cases, we’ve given the data set a new name, like</p>
+<div class="sourceCode" id="cb117"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">toy_small</span> <span class="op">&lt;-</span> <span class="va">toy_df</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/NA.html">is.na</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<p>For which of the functions below is a generally “safe” to name the data set using the same name after using the function. Why?</p>
+<ol style="list-style-type: lower-alpha">
+<li><p><code><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate()</a></code></p></li>
+<li><p><code><a href="https://dplyr.tidyverse.org/reference/arrange.html">arrange()</a></code></p></li>
+<li><p><code><a href="https://dplyr.tidyverse.org/reference/filter.html">filter()</a></code></p></li>
+<li><p><code><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise()</a></code></p></li>
+<li><p><code><a href="https://dplyr.tidyverse.org/reference/select.html">select()</a></code></p></li>
+</ol>
+<ol start="5" style="list-style-type: decimal">
+<li>Pose a question about the <code>babynames</code> data set and then answer your question with either a graphic or a data summary.</li>
+</ol>
+</div>
+<div id="solutions-3" class="section level2" number="4.7">
+<h2>
+<span class="header-section-number">4.7</span> Exercise Solutions<a class="anchor" aria-label="anchor" href="#solutions-3"><i class="fas fa-link"></i></a>
+</h2>
+<div id="mutate-s" class="section level3" number="4.7.1">
+<h3>
+<span class="header-section-number">4.7.1</span> <code>mutate()</code> S<a class="anchor" aria-label="anchor" href="#mutate-s"><i class="fas fa-link"></i></a>
+</h3>
+<ol start="2" style="list-style-type: decimal">
+<li>* Create a new variable that is called <code>major_size</code> and is “large” when the total number of majors is 100 or more and “small” when the total number of majors is less than 100.</li>
+</ol>
+<div class="sourceCode" id="cb118"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">slumajors_df</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>major_size <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/if_else.html">if_else</a></span><span class="op">(</span><span class="va">ntotal</span> <span class="op">&gt;=</span> <span class="fl">100</span>,</span>
+<span>                                             true <span class="op">=</span> <span class="st">"large"</span>,</span>
+<span>                                             false <span class="op">=</span> <span class="st">"small"</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="co">#&gt; # A tibble: 27 × 8</span></span>
+<span><span class="co">#&gt;    Major       nfema…¹ nmales percf…² ntotal morew…³ large…⁴</span></span>
+<span><span class="co">#&gt;    &lt;chr&gt;         &lt;dbl&gt;  &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt; &lt;chr&gt;   &lt;chr&gt;  </span></span>
+<span><span class="co">#&gt;  1 Anthropolo…      34     15    69.4     49 Yes     none   </span></span>
+<span><span class="co">#&gt;  2 Art &amp; Art …      65     11    85.5     76 Yes     female </span></span>
+<span><span class="co">#&gt;  3 Biochemist…      14     11    56       25 Yes     none   </span></span>
+<span><span class="co">#&gt;  4 Biology         162     67    70.7    229 Yes     female </span></span>
+<span><span class="co">#&gt;  5 Business i…     135    251    35.0    386 No      none   </span></span>
+<span><span class="co">#&gt;  6 Chemistry        26     14    65       40 Yes     none   </span></span>
+<span><span class="co">#&gt;  7 Computer S…      21     47    30.9     68 No      none   </span></span>
+<span><span class="co">#&gt;  8 Conservati…      38     20    65.5     58 Yes     none   </span></span>
+<span><span class="co">#&gt;  9 Economics       128    349    26.8    477 No      male   </span></span>
+<span><span class="co">#&gt; 10 English         131     54    70.8    185 Yes     female </span></span>
+<span><span class="co">#&gt; # … with 17 more rows, 1 more variable: major_size &lt;chr&gt;,</span></span>
+<span><span class="co">#&gt; #   and abbreviated variable names ¹​nfemales, ²​percfemale,</span></span>
+<span><span class="co">#&gt; #   ³​morewomen, ⁴​large_majority</span></span>
+<span><span class="co">#&gt; # ℹ Use `print(n = ...)` to see more rows, and `colnames()` to see all variable names</span></span>
+<span><span class="co">## OR</span></span>
+<span><span class="va">slumajors_df</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>major_size <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/case_when.html">case_when</a></span><span class="op">(</span><span class="va">ntotal</span> <span class="op">&gt;=</span> <span class="fl">100</span> <span class="op">~</span> <span class="st">"large"</span>,</span>
+<span>                                <span class="va">ntotal</span> <span class="op">&lt;</span> <span class="fl">100</span> <span class="op">~</span> <span class="st">"small"</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="co">#&gt; # A tibble: 27 × 8</span></span>
+<span><span class="co">#&gt;    Major       nfema…¹ nmales percf…² ntotal morew…³ large…⁴</span></span>
+<span><span class="co">#&gt;    &lt;chr&gt;         &lt;dbl&gt;  &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt; &lt;chr&gt;   &lt;chr&gt;  </span></span>
+<span><span class="co">#&gt;  1 Anthropolo…      34     15    69.4     49 Yes     none   </span></span>
+<span><span class="co">#&gt;  2 Art &amp; Art …      65     11    85.5     76 Yes     female </span></span>
+<span><span class="co">#&gt;  3 Biochemist…      14     11    56       25 Yes     none   </span></span>
+<span><span class="co">#&gt;  4 Biology         162     67    70.7    229 Yes     female </span></span>
+<span><span class="co">#&gt;  5 Business i…     135    251    35.0    386 No      none   </span></span>
+<span><span class="co">#&gt;  6 Chemistry        26     14    65       40 Yes     none   </span></span>
+<span><span class="co">#&gt;  7 Computer S…      21     47    30.9     68 No      none   </span></span>
+<span><span class="co">#&gt;  8 Conservati…      38     20    65.5     58 Yes     none   </span></span>
+<span><span class="co">#&gt;  9 Economics       128    349    26.8    477 No      male   </span></span>
+<span><span class="co">#&gt; 10 English         131     54    70.8    185 Yes     female </span></span>
+<span><span class="co">#&gt; # … with 17 more rows, 1 more variable: major_size &lt;chr&gt;,</span></span>
+<span><span class="co">#&gt; #   and abbreviated variable names ¹​nfemales, ²​percfemale,</span></span>
+<span><span class="co">#&gt; #   ³​morewomen, ⁴​large_majority</span></span>
+<span><span class="co">#&gt; # ℹ Use `print(n = ...)` to see more rows, and `colnames()` to see all variable names</span></span></code></pre></div>
+<ol start="5" style="list-style-type: decimal">
+<li>* Investigate what happens with <code><a href="https://dplyr.tidyverse.org/reference/case_when.html">case_when()</a></code> when you give overlapping conditions and when you give conditions that don’t cover all observations. For overlapping conditions, create a variable <code>testcase</code> that is <code>"Yes"</code> when <code>percfemale</code> is greater than or equal to 40 and <code>"No"</code> when <code>percfemale</code> is greater than 60 For conditions that don’t cover all observations, create a variable <code>testcase2</code> that is <code>"Yes"</code> when <code>percefemale</code> is greater than or equal to 55 and <code>"No"</code> when <code>percfemale</code> is less than 35.</li>
+</ol>
+<pre><code>#&gt; # A tibble: 27 × 9
+#&gt;    Major       nfema…¹ nmales percf…² ntotal morew…³ large…⁴
+#&gt;    &lt;chr&gt;         &lt;dbl&gt;  &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt; &lt;chr&gt;   &lt;chr&gt;  
+#&gt;  1 Anthropolo…      34     15    69.4     49 Yes     none   
+#&gt;  2 Art &amp; Art …      65     11    85.5     76 Yes     female 
+#&gt;  3 Biochemist…      14     11    56       25 Yes     none   
+#&gt;  4 Biology         162     67    70.7    229 Yes     female 
+#&gt;  5 Business i…     135    251    35.0    386 No      none   
+#&gt;  6 Chemistry        26     14    65       40 Yes     none   
+#&gt;  7 Computer S…      21     47    30.9     68 No      none   
+#&gt;  8 Conservati…      38     20    65.5     58 Yes     none   
+#&gt;  9 Economics       128    349    26.8    477 No      male   
+#&gt; 10 English         131     54    70.8    185 Yes     female 
+#&gt; # … with 17 more rows, 2 more variables: testcase &lt;chr&gt;,
+#&gt; #   testcase2 &lt;chr&gt;, and abbreviated variable names
+#&gt; #   ¹​nfemales, ²​percfemale, ³​morewomen, ⁴​large_majority
+#&gt; # ℹ Use `print(n = ...)` to see more rows, and `colnames()` to see all variable names</code></pre>
+<p>For overlapping cases, case_when prioritizes the first case given.</p>
+<p>For non-coverage, any observation that is not covered is given an NA.</p>
+</div>
+<div id="arrange-select-.-s" class="section level3" number="4.7.2">
+<h3>
+<span class="header-section-number">4.7.2</span> <code>arrange()</code>, <code>select()</code>, …. S<a class="anchor" aria-label="anchor" href="#arrange-select-.-s"><i class="fas fa-link"></i></a>
+</h3>
+<ol start="2" style="list-style-type: decimal">
+<li>* Use <code><a href="https://dplyr.tidyverse.org/reference/select.html">select()</a></code> and <code><a href="https://tidyselect.r-lib.org/reference/everything.html">everything()</a></code> to put the <code>large_majority</code> variable as the first column in the <code>slumajors_df</code> data set.</li>
+</ol>
+<div class="sourceCode" id="cb120"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">slumajors_df</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">large_majority</span>, <span class="fu"><a href="https://tidyselect.r-lib.org/reference/everything.html">everything</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="co">#&gt; # A tibble: 27 × 7</span></span>
+<span><span class="co">#&gt;    large_major…¹ Major nfema…² nmales percf…³ ntotal morew…⁴</span></span>
+<span><span class="co">#&gt;    &lt;chr&gt;         &lt;chr&gt;   &lt;dbl&gt;  &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt; &lt;chr&gt;  </span></span>
+<span><span class="co">#&gt;  1 none          Anth…      34     15    69.4     49 Yes    </span></span>
+<span><span class="co">#&gt;  2 female        Art …      65     11    85.5     76 Yes    </span></span>
+<span><span class="co">#&gt;  3 none          Bioc…      14     11    56       25 Yes    </span></span>
+<span><span class="co">#&gt;  4 female        Biol…     162     67    70.7    229 Yes    </span></span>
+<span><span class="co">#&gt;  5 none          Busi…     135    251    35.0    386 No     </span></span>
+<span><span class="co">#&gt;  6 none          Chem…      26     14    65       40 Yes    </span></span>
+<span><span class="co">#&gt;  7 none          Comp…      21     47    30.9     68 No     </span></span>
+<span><span class="co">#&gt;  8 none          Cons…      38     20    65.5     58 Yes    </span></span>
+<span><span class="co">#&gt;  9 male          Econ…     128    349    26.8    477 No     </span></span>
+<span><span class="co">#&gt; 10 female        Engl…     131     54    70.8    185 Yes    </span></span>
+<span><span class="co">#&gt; # … with 17 more rows, and abbreviated variable names</span></span>
+<span><span class="co">#&gt; #   ¹​large_majority, ²​nfemales, ³​percfemale, ⁴​morewomen</span></span>
+<span><span class="co">#&gt; # ℹ Use `print(n = ...)` to see more rows</span></span></code></pre></div>
+<ol start="3" style="list-style-type: decimal">
+<li>* In the <code>babynames</code> data set, use <code><a href="https://dplyr.tidyverse.org/reference/filter.html">filter()</a></code>, <code><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate()</a></code> with <code><a href="https://rdrr.io/r/base/rank.html">rank()</a></code>, and <code><a href="https://dplyr.tidyverse.org/reference/arrange.html">arrange()</a></code> to print the 10 most popular Male babynames in 2017.</li>
+</ol>
+<div class="sourceCode" id="cb121"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">babynames</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">sex</span> <span class="op">==</span> <span class="st">"M"</span> <span class="op">&amp;</span> <span class="va">year</span> <span class="op">==</span> <span class="fl">2017</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>rankname <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/rank.html">rank</a></span><span class="op">(</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/desc.html">desc</a></span><span class="op">(</span><span class="va">n</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">rankname</span> <span class="op">&lt;=</span> <span class="fl">10</span><span class="op">)</span></span>
+<span><span class="co">#&gt; # A tibble: 10 × 6</span></span>
+<span><span class="co">#&gt;     year sex   name         n    prop rankname</span></span>
+<span><span class="co">#&gt;    &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt;    &lt;int&gt;   &lt;dbl&gt;    &lt;dbl&gt;</span></span>
+<span><span class="co">#&gt;  1  2017 M     Liam     18728 0.00954        1</span></span>
+<span><span class="co">#&gt;  2  2017 M     Noah     18326 0.00933        2</span></span>
+<span><span class="co">#&gt;  3  2017 M     William  14904 0.00759        3</span></span>
+<span><span class="co">#&gt;  4  2017 M     James    14232 0.00725        4</span></span>
+<span><span class="co">#&gt;  5  2017 M     Logan    13974 0.00712        5</span></span>
+<span><span class="co">#&gt;  6  2017 M     Benjamin 13733 0.00699        6</span></span>
+<span><span class="co">#&gt;  7  2017 M     Mason    13502 0.00688        7</span></span>
+<span><span class="co">#&gt;  8  2017 M     Elijah   13268 0.00676        8</span></span>
+<span><span class="co">#&gt;  9  2017 M     Oliver   13141 0.00669        9</span></span>
+<span><span class="co">#&gt; 10  2017 M     Jacob    13106 0.00668       10</span></span></code></pre></div>
+</div>
+<div id="summarise-and-group_by-s" class="section level3" number="4.7.3">
+<h3>
+<span class="header-section-number">4.7.3</span> <code>summarise()</code> and <code>group_by()</code> S<a class="anchor" aria-label="anchor" href="#summarise-and-group_by-s"><i class="fas fa-link"></i></a>
+</h3>
+<ol start="3" style="list-style-type: decimal">
+<li>* Create a data set that has a column for <code>name</code> and a column that shows the total number of births for that name across all years and both sexes.</li>
+</ol>
+<div class="sourceCode" id="cb122"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">babynames</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">name</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise</a></span><span class="op">(</span>totalbirths <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">n</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="co">#&gt; # A tibble: 97,310 × 2</span></span>
+<span><span class="co">#&gt;    name      totalbirths</span></span>
+<span><span class="co">#&gt;    &lt;chr&gt;           &lt;int&gt;</span></span>
+<span><span class="co">#&gt;  1 Aaban             107</span></span>
+<span><span class="co">#&gt;  2 Aabha              35</span></span>
+<span><span class="co">#&gt;  3 Aabid              10</span></span>
+<span><span class="co">#&gt;  4 Aabir               5</span></span>
+<span><span class="co">#&gt;  5 Aabriella          32</span></span>
+<span><span class="co">#&gt;  6 Aada                5</span></span>
+<span><span class="co">#&gt;  7 Aadam             254</span></span>
+<span><span class="co">#&gt;  8 Aadan             130</span></span>
+<span><span class="co">#&gt;  9 Aadarsh           199</span></span>
+<span><span class="co">#&gt; 10 Aaden            4658</span></span>
+<span><span class="co">#&gt; # … with 97,300 more rows</span></span>
+<span><span class="co">#&gt; # ℹ Use `print(n = ...)` to see more rows</span></span></code></pre></div>
+<ol start="4" style="list-style-type: decimal">
+<li>* <code><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by()</a></code> can also be used with other functions, including <code><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate()</a></code>. Use <code><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by()</a></code> and <code><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate()</a></code> to rank the names from most to least popular in each year-sex combination.</li>
+</ol>
+<div class="sourceCode" id="cb123"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">ranked_babynames</span> <span class="op">&lt;-</span> <span class="va">babynames</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">year</span>, <span class="va">sex</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>rankname <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/rank.html">rank</a></span><span class="op">(</span><span class="op">(</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/desc.html">desc</a></span><span class="op">(</span><span class="va">n</span><span class="op">)</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<ol start="5" style="list-style-type: decimal">
+<li>* From the data set in 4, <code><a href="https://dplyr.tidyverse.org/reference/filter.html">filter()</a></code> the data to keep only the most popular name in each year-sex combination and then construct a summary table showing how many times each name appears as the most popular name.</li>
+</ol>
+<div class="sourceCode" id="cb124"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">ranked_babynames</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">rankname</span> <span class="op">==</span> <span class="fl">1</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">name</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise</a></span><span class="op">(</span>nappear <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/context.html">n</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/arrange.html">arrange</a></span><span class="op">(</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/desc.html">desc</a></span><span class="op">(</span><span class="va">nappear</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="co">#&gt; # A tibble: 18 × 2</span></span>
+<span><span class="co">#&gt;    name     nappear</span></span>
+<span><span class="co">#&gt;    &lt;chr&gt;      &lt;int&gt;</span></span>
+<span><span class="co">#&gt;  1 Mary          76</span></span>
+<span><span class="co">#&gt;  2 John          44</span></span>
+<span><span class="co">#&gt;  3 Michael       44</span></span>
+<span><span class="co">#&gt;  4 Robert        17</span></span>
+<span><span class="co">#&gt;  5 Jennifer      15</span></span>
+<span><span class="co">#&gt;  6 Jacob         14</span></span>
+<span><span class="co">#&gt;  7 James         13</span></span>
+<span><span class="co">#&gt;  8 Emily         12</span></span>
+<span><span class="co">#&gt;  9 Jessica        9</span></span>
+<span><span class="co">#&gt; 10 Lisa           8</span></span>
+<span><span class="co">#&gt; 11 Linda          6</span></span>
+<span><span class="co">#&gt; 12 Emma           5</span></span>
+<span><span class="co">#&gt; 13 Noah           4</span></span>
+<span><span class="co">#&gt; 14 Sophia         3</span></span>
+<span><span class="co">#&gt; 15 Ashley         2</span></span>
+<span><span class="co">#&gt; 16 Isabella       2</span></span>
+<span><span class="co">#&gt; 17 David          1</span></span>
+<span><span class="co">#&gt; 18 Liam           1</span></span></code></pre></div>
+<ol start="6" style="list-style-type: decimal">
+<li>* Run the following code. Intuitively, a <code>slice(1, 2, 3, 4, 5)</code> should grab the first five rows of the data set, but, when we try to run that, we get 1380 rows. Try to figure out what the issue is by using Google to search something like “<code>dplyr</code> not slicing correctly after using group by.” What do you find?</li>
+</ol>
+<div class="sourceCode" id="cb125"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">babynames_test</span> <span class="op">&lt;-</span> <span class="va">babynames</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">year</span>, <span class="va">sex</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>ntest <span class="op">=</span> <span class="va">n</span> <span class="op">/</span> <span class="va">prop</span><span class="op">)</span></span>
+<span><span class="va">babynames_test</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/slice.html">slice</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">2</span>, <span class="fl">3</span>, <span class="fl">4</span>, <span class="fl">5</span><span class="op">)</span></span>
+<span><span class="co">#&gt; # A tibble: 1,380 × 6</span></span>
+<span><span class="co">#&gt; # Groups:   year, sex [276]</span></span>
+<span><span class="co">#&gt;     year sex   name          n   prop   ntest</span></span>
+<span><span class="co">#&gt;    &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt;     &lt;int&gt;  &lt;dbl&gt;   &lt;dbl&gt;</span></span>
+<span><span class="co">#&gt;  1  1880 F     Mary       7065 0.0724  97605.</span></span>
+<span><span class="co">#&gt;  2  1880 F     Anna       2604 0.0267  97605.</span></span>
+<span><span class="co">#&gt;  3  1880 F     Emma       2003 0.0205  97605.</span></span>
+<span><span class="co">#&gt;  4  1880 F     Elizabeth  1939 0.0199  97605.</span></span>
+<span><span class="co">#&gt;  5  1880 F     Minnie     1746 0.0179  97605.</span></span>
+<span><span class="co">#&gt;  6  1880 M     John       9655 0.0815 118400.</span></span>
+<span><span class="co">#&gt;  7  1880 M     William    9532 0.0805 118400.</span></span>
+<span><span class="co">#&gt;  8  1880 M     James      5927 0.0501 118400.</span></span>
+<span><span class="co">#&gt;  9  1880 M     Charles    5348 0.0452 118400.</span></span>
+<span><span class="co">#&gt; 10  1880 M     George     5126 0.0433 118400.</span></span>
+<span><span class="co">#&gt; # … with 1,370 more rows</span></span>
+<span><span class="co">#&gt; # ℹ Use `print(n = ...)` to see more rows</span></span></code></pre></div>
+<p>Functions like <code><a href="https://dplyr.tidyverse.org/reference/slice.html">slice()</a></code> and <code><a href="https://rdrr.io/r/base/rank.html">rank()</a></code> operate on defined groups in the data set if using a function like <code><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by()</a></code> first. Sometimes this feature is quite convenient. But, if we no longer want <code><a href="https://dplyr.tidyverse.org/reference/slice.html">slice()</a></code> or <code><a href="https://rdrr.io/r/base/rank.html">rank()</a></code> or other functions to account for these groups, we need to add an <code><a href="https://dplyr.tidyverse.org/reference/group_by.html">ungroup()</a></code> pipe, which simply drops the groups that we had formed:</p>
+<div class="sourceCode" id="cb126"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">babynames_test</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">ungroup</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/slice.html">slice</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">5</span><span class="op">)</span></span>
+<span><span class="co">#&gt; # A tibble: 5 × 6</span></span>
+<span><span class="co">#&gt;    year sex   name          n   prop  ntest</span></span>
+<span><span class="co">#&gt;   &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt;     &lt;int&gt;  &lt;dbl&gt;  &lt;dbl&gt;</span></span>
+<span><span class="co">#&gt; 1  1880 F     Mary       7065 0.0724 97605.</span></span>
+<span><span class="co">#&gt; 2  1880 F     Anna       2604 0.0267 97605.</span></span>
+<span><span class="co">#&gt; 3  1880 F     Emma       2003 0.0205 97605.</span></span>
+<span><span class="co">#&gt; 4  1880 F     Elizabeth  1939 0.0199 97605.</span></span>
+<span><span class="co">#&gt; 5  1880 F     Minnie     1746 0.0179 97605.</span></span></code></pre></div>
+</div>
+<div id="missing-values-s" class="section level3" number="4.7.4">
+<h3>
+<span class="header-section-number">4.7.4</span> Missing Values S<a class="anchor" aria-label="anchor" href="#missing-values-s"><i class="fas fa-link"></i></a>
+</h3>
+<ol style="list-style-type: decimal">
+<li>* <code><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate()</a></code>. Try to create a new variable with <code><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate()</a></code> involving <code>x</code>. What does <code>R</code> do with the missing value?</li>
+</ol>
+<div class="sourceCode" id="cb127"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">toy_df</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>xy <span class="op">=</span> <span class="va">x</span> <span class="op">*</span> <span class="va">y</span><span class="op">)</span></span>
+<span><span class="co">#&gt; # A tibble: 4 × 5</span></span>
+<span><span class="co">#&gt;       x     y z     newvar    xy</span></span>
+<span><span class="co">#&gt;   &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;  &lt;dbl&gt; &lt;dbl&gt;</span></span>
+<span><span class="co">#&gt; 1    NA     1 A      NA       NA</span></span>
+<span><span class="co">#&gt; 2     3     4 A       0.75    12</span></span>
+<span><span class="co">#&gt; 3     4     3 B       1.33    12</span></span>
+<span><span class="co">#&gt; 4     7     2 &lt;NA&gt;    3.5     14</span></span></code></pre></div>
+<p><code>R</code> puts another <code>NA</code> in place of x times y for the observation with the missing x.</p>
+</div>
+<div id="piping-s" class="section level3" number="4.7.5">
+<h3>
+<span class="header-section-number">4.7.5</span> Piping S<a class="anchor" aria-label="anchor" href="#piping-s"><i class="fas fa-link"></i></a>
+</h3>
+<ol style="list-style-type: decimal">
+<li>* Recode the following to look cleaner by using the pipe <code>|&gt;</code>:</li>
+</ol>
+<div class="sourceCode" id="cb128"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">fitness_df</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv</a></span><span class="op">(</span><span class="st">"data/higham_fitness_clean.csv"</span><span class="op">)</span></span>
+<span><span class="co">#&gt; Rows: 993 Columns: 9</span></span>
+<span><span class="co">#&gt; ── Column specification ────────────────────────────────────</span></span>
+<span><span class="co">#&gt; Delimiter: ","</span></span>
+<span><span class="co">#&gt; chr  (2): month, weekday</span></span>
+<span><span class="co">#&gt; dbl  (6): active_cals, distance, flights, steps, dayofye...</span></span>
+<span><span class="co">#&gt; date (1): Start</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; ℹ Use `spec()` to retrieve the full column specification for this data.</span></span>
+<span><span class="co">#&gt; ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</span></span>
+<span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise</a></span><span class="op">(</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">fitness_df</span>, <span class="va">weekday</span> <span class="op">==</span> <span class="fl">1</span> <span class="op">|</span> <span class="va">weekday</span> <span class="op">==</span> <span class="fl">7</span><span class="op">)</span>,</span>
+<span>                   <span class="va">month</span><span class="op">)</span>,</span>
+<span>          meanweekend <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">distance</span>, na.rm <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span> </span>
+<span><span class="co">#&gt; # A tibble: 0 × 2</span></span>
+<span><span class="co">#&gt; # … with 2 variables: month &lt;chr&gt;, meanweekend &lt;dbl&gt;</span></span>
+<span><span class="co">#&gt; # ℹ Use `colnames()` to see all variable names</span></span></code></pre></div>
+<div class="sourceCode" id="cb129"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">fitness_df</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">weekday</span> <span class="op">==</span> <span class="fl">1</span> <span class="op">|</span> <span class="va">weekday</span> <span class="op">==</span> <span class="fl">7</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">month</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise</a></span><span class="op">(</span>meanweekend <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">distance</span>, na.rm <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span> </span>
+<span><span class="co">#&gt; # A tibble: 0 × 2</span></span>
+<span><span class="co">#&gt; # … with 2 variables: month &lt;chr&gt;, meanweekend &lt;dbl&gt;</span></span>
+<span><span class="co">#&gt; # ℹ Use `colnames()` to see all variable names</span></span></code></pre></div>
+</div>
+<div id="chapexercise-3-S" class="section level3" number="4.7.6">
+<h3>
+<span class="header-section-number">4.7.6</span> Chapter Exercises S<a class="anchor" aria-label="anchor" href="#chapexercise-3-S"><i class="fas fa-link"></i></a>
+</h3>
+<ol start="2" style="list-style-type: decimal">
+<li>* a. Choose 5 names that interest you and create a new data set that only has data on those 5 names.</li>
+</ol>
+<ol start="2" style="list-style-type: lower-alpha">
+<li><p>Use <code><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by()</a></code> and <code><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise()</a></code> to add together the number of Females and Males for each name in each year. <strong>Hint</strong>: you can <code><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by()</a></code> more than one variable!</p></li>
+<li><p>Make a line plot showing the popularity of these 5 names over time.</p></li>
+</ol>
+<div class="sourceCode" id="cb130"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">baby5</span> <span class="op">&lt;-</span> <span class="va">babynames</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">name</span> <span class="op">==</span> <span class="st">"Matthew"</span> <span class="op">|</span> <span class="va">name</span> <span class="op">==</span> <span class="st">"Ivan"</span> <span class="op">|</span></span>
+<span>                                <span class="va">name</span> <span class="op">==</span> <span class="st">"Jessica"</span> <span class="op">|</span> <span class="va">name</span> <span class="op">==</span> <span class="st">"Robin"</span> <span class="op">|</span></span>
+<span>                                <span class="va">name</span> <span class="op">==</span> <span class="st">"Michael"</span><span class="op">)</span></span>
+<span><span class="va">baby5_tot</span> <span class="op">&lt;-</span> <span class="va">baby5</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">year</span>, <span class="va">name</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise</a></span><span class="op">(</span>ntot <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">n</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="co">#&gt; `summarise()` has grouped output by 'year'. You can</span></span>
+<span><span class="co">#&gt; override using the `.groups` argument.</span></span>
+<span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">baby5_tot</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">year</span>, y <span class="op">=</span> <span class="va">ntot</span>, colour <span class="op">=</span> <span class="va">name</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_path.html">geom_line</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
+<div class="inline-figure"><img src="03-dplyr_files/figure-html/unnamed-chunk-63-1.png" width="672"></div>
+<ol start="4" style="list-style-type: decimal">
+<li>* In some cases throughout this chapter, we’ve renamed data sets using <code>&lt;-</code> with the same name like</li>
+</ol>
+<div class="sourceCode" id="cb131"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">toy_df</span> <span class="op">&lt;-</span> <span class="va">toy_df</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>newvar <span class="op">=</span> <span class="va">x</span> <span class="op">/</span> <span class="va">y</span><span class="op">)</span></span></code></pre></div>
+<p>In other cases, we’ve given the data set a new name, like</p>
+<div class="sourceCode" id="cb132"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">toy_small</span> <span class="op">&lt;-</span> <span class="va">toy_df</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/NA.html">is.na</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<p>For which of the functions below is a generally “safe” to name the data set using the same name after using the function. Why?</p>
+<ol style="list-style-type: lower-alpha">
+<li><code><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate()</a></code></li>
+</ol>
+<p>Usually fine: mutating creates a new variable, which doesn’t change any of the other variables in the data set, if things get messed up with the new variable.</p>
+<ol start="2" style="list-style-type: lower-alpha">
+<li><code><a href="https://dplyr.tidyverse.org/reference/arrange.html">arrange()</a></code></li>
+</ol>
+<p>Usually fine: ordering the rows a certain way won’t change any plots and doesn’t change any of the underlying data.</p>
+<ol start="3" style="list-style-type: lower-alpha">
+<li><code><a href="https://dplyr.tidyverse.org/reference/filter.html">filter()</a></code></li>
+</ol>
+<p>Usually not the best practice. Naming the data set the same name after the filter means that you permanently lose data that you filtered out, unless you re-read in the data set at the beginning.</p>
+<ol start="4" style="list-style-type: lower-alpha">
+<li><code><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise()</a></code></li>
+</ol>
+<p>Usually not the best practice. Again, naming the summarized data set the same as the original data means that you lose the original data, unless you re-read it in at the beginning. For example,</p>
+<div class="sourceCode" id="cb133"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">toy_df</span> <span class="op">&lt;-</span> <span class="va">toy_df</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise</a></span><span class="op">(</span>meanx <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="va">toy_df</span></span>
+<span><span class="co">#&gt; # A tibble: 1 × 1</span></span>
+<span><span class="co">#&gt;   meanx</span></span>
+<span><span class="co">#&gt;   &lt;dbl&gt;</span></span>
+<span><span class="co">#&gt; 1    NA</span></span></code></pre></div>
+<p>means that we now have no way to access the original data in <code>toy_df</code>.</p>
+<ol start="5" style="list-style-type: lower-alpha">
+<li><code><a href="https://dplyr.tidyverse.org/reference/select.html">select()</a></code></li>
+</ol>
+<p>This can sometimes be okay if you’re sure that the variables you are removing won’t ever be used.</p>
+</div>
+</div>
+<div id="rcode-3" class="section level2" number="4.8">
+<h2>
+<span class="header-section-number">4.8</span> Non-Exercise <code>R</code> Code<a class="anchor" aria-label="anchor" href="#rcode-3"><i class="fas fa-link"></i></a>
+</h2>
+<div class="sourceCode" id="cb134"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/hadley/babynames">babynames</a></span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">babynames</span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span></span>
+<span><span class="va">slumajors_df</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv</a></span><span class="op">(</span><span class="st">"data/SLU_Majors_15_19.csv"</span><span class="op">)</span></span>
+<span><span class="va">slumajors_df</span></span>
+<span><span class="va">slumajors_df</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>ntotal <span class="op">=</span> <span class="va">nfemales</span> <span class="op">+</span> <span class="va">nmales</span><span class="op">)</span></span>
+<span><span class="va">slumajors_df</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>percfemale <span class="op">=</span> <span class="fl">100</span> <span class="op">*</span> <span class="va">nfemales</span> <span class="op">/</span> <span class="op">(</span><span class="va">nfemales</span> <span class="op">+</span> <span class="va">nmales</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="va">slumajors_df</span> <span class="op">&lt;-</span> <span class="va">slumajors_df</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>percfemale <span class="op">=</span> <span class="fl">100</span> <span class="op">*</span> <span class="va">nfemales</span> <span class="op">/</span> <span class="op">(</span><span class="va">nfemales</span> <span class="op">+</span> <span class="va">nmales</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="va">slumajors_df</span> <span class="op">&lt;-</span> <span class="va">slumajors_df</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>ntotal <span class="op">=</span> <span class="va">nfemales</span> <span class="op">+</span> <span class="va">nmales</span><span class="op">)</span></span>
+<span><span class="va">slumajors_df</span> <span class="op">&lt;-</span> <span class="va">slumajors_df</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>ntotal <span class="op">=</span> <span class="va">nfemales</span> <span class="op">+</span> <span class="va">nmales</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>percfemale <span class="op">=</span> <span class="fl">100</span> <span class="op">*</span> <span class="va">nfemales</span> <span class="op">/</span> <span class="op">(</span><span class="va">nfemales</span> <span class="op">+</span> <span class="va">nmales</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="va">slumajors_df</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>morewomen <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/if_else.html">if_else</a></span><span class="op">(</span><span class="va">percfemale</span> <span class="op">&gt;</span> <span class="fl">50</span>,</span>
+<span>                                            true <span class="op">=</span> <span class="st">"Yes"</span>,</span>
+<span>                                            false <span class="op">=</span> <span class="st">"No"</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="va">slumajors_df</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>large_majority <span class="op">=</span></span>
+<span>                          <span class="fu"><a href="https://dplyr.tidyverse.org/reference/case_when.html">case_when</a></span><span class="op">(</span><span class="va">percfemale</span> <span class="op">&gt;=</span> <span class="fl">70</span> <span class="op">~</span> <span class="st">"female"</span>,</span>
+<span>                                    <span class="va">percfemale</span> <span class="op">&lt;=</span> <span class="fl">30</span> <span class="op">~</span> <span class="st">"male"</span>,</span>
+<span>                                    <span class="va">percfemale</span> <span class="op">&gt;</span> <span class="fl">30</span> <span class="op">&amp;</span> <span class="va">percfemale</span> <span class="op">&lt;</span> <span class="fl">70</span> <span class="op">~</span> <span class="st">"none"</span><span class="op">)</span><span class="op">)</span> </span>
+<span><span class="va">slumajors_df</span> <span class="op">&lt;-</span> <span class="va">slumajors_df</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>morewomen <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/if_else.html">if_else</a></span><span class="op">(</span><span class="va">percfemale</span> <span class="op">&gt;</span> <span class="fl">50</span>,</span>
+<span>                             true <span class="op">=</span> <span class="st">"Yes"</span>,</span>
+<span>                             false <span class="op">=</span> <span class="st">"No"</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>large_majority <span class="op">=</span></span>
+<span>           <span class="fu"><a href="https://dplyr.tidyverse.org/reference/case_when.html">case_when</a></span><span class="op">(</span><span class="va">percfemale</span> <span class="op">&gt;=</span> <span class="fl">70</span> <span class="op">~</span> <span class="st">"female"</span>,</span>
+<span>                     <span class="va">percfemale</span> <span class="op">&lt;=</span> <span class="fl">30</span> <span class="op">~</span> <span class="st">"male"</span>,</span>
+<span>                     <span class="va">percfemale</span> <span class="op">&gt;</span> <span class="fl">30</span> <span class="op">&amp;</span> <span class="va">percfemale</span> <span class="op">&lt;</span> <span class="fl">70</span> <span class="op">~</span> <span class="st">"none"</span><span class="op">)</span><span class="op">)</span> </span>
+<span><span class="va">slumajors_df</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/arrange.html">arrange</a></span><span class="op">(</span><span class="va">percfemale</span><span class="op">)</span></span>
+<span><span class="va">slumajors_df</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/arrange.html">arrange</a></span><span class="op">(</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/desc.html">desc</a></span><span class="op">(</span><span class="va">percfemale</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="va">slumajors_df</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">Major</span>, <span class="va">ntotal</span><span class="op">)</span></span>
+<span><span class="va">slumajors_df</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="op">-</span><span class="va">ntotal</span>, <span class="op">-</span><span class="va">nfemales</span>, <span class="op">-</span><span class="va">nmales</span><span class="op">)</span></span>
+<span><span class="va">slumajors_df</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>propfemale <span class="op">=</span> <span class="va">percfemale</span> <span class="op">/</span> <span class="fl">100</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">propfemale</span>, <span class="fu"><a href="https://tidyselect.r-lib.org/reference/everything.html">everything</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="va">slumajors_df</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/arrange.html">arrange</a></span><span class="op">(</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/desc.html">desc</a></span><span class="op">(</span><span class="va">ntotal</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/slice.html">slice</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">2</span>, <span class="fl">3</span>, <span class="fl">4</span>, <span class="fl">5</span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/hadley/babynames">babynames</a></span><span class="op">)</span></span>
+<span><span class="va">babynames</span></span>
+<span><span class="va">babynames</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">name</span> <span class="op">==</span> <span class="st">"Matthew"</span><span class="op">)</span></span>
+<span><span class="va">babynames</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">year</span> <span class="op">&gt;=</span> <span class="fl">2000</span><span class="op">)</span></span>
+<span><span class="va">babynames</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">sex</span> <span class="op">!=</span> <span class="st">"M"</span><span class="op">)</span></span>
+<span><span class="va">babynames</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">prop</span> <span class="op">&gt;</span> <span class="fl">0.05</span><span class="op">)</span></span>
+<span><span class="va">babynames</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">year</span> <span class="op">==</span> <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html">max</a></span><span class="op">(</span><span class="va">year</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="va">babynames</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">n</span> <span class="op">&gt;</span> <span class="fl">20000</span> <span class="op">|</span> <span class="va">prop</span> <span class="op">&gt;</span> <span class="fl">0.05</span><span class="op">)</span></span>
+<span><span class="va">babynames</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">sex</span> <span class="op">==</span> <span class="st">"F"</span> <span class="op">&amp;</span> <span class="va">name</span> <span class="op">==</span> <span class="st">"Mary"</span><span class="op">)</span></span>
+<span><span class="va">babynames</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">sex</span> <span class="op">==</span> <span class="st">"F"</span> <span class="op">&amp;</span> <span class="va">name</span> <span class="op">==</span> <span class="st">"Mary"</span> <span class="op">&amp;</span> <span class="va">prop</span> <span class="op">&gt;</span> <span class="fl">0.05</span><span class="op">)</span></span>
+<span><span class="va">slumajors_df</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise</a></span><span class="op">(</span>meantotalmajor <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">ntotal</span><span class="op">)</span>,</span>
+<span>            totalgrad <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">ntotal</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="va">babynames</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">year</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise</a></span><span class="op">(</span>totalbirths <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">n</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="va">babynames</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise</a></span><span class="op">(</span>totalobs <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/context.html">n</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="va">babynames</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">year</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise</a></span><span class="op">(</span>ngroup <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/context.html">n</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="va">toy_df</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble</a></span><span class="op">(</span>x <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="cn">NA</span>, <span class="fl">3</span>, <span class="fl">4</span>, <span class="fl">7</span><span class="op">)</span>,</span>
+<span>                 y <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">4</span>, <span class="fl">3</span>, <span class="fl">2</span><span class="op">)</span>,</span>
+<span>                 z <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"A"</span>, <span class="st">"A"</span>, <span class="st">"B"</span>, <span class="cn">NA</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="va">toy_df</span></span>
+<span><span class="va">toy_df</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise</a></span><span class="op">(</span>meanx <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">x</span>, na.rm <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="va">toy_df</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>missingx <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/NA.html">is.na</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="va">toy_df</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/NA.html">is.na</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="op">!=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
+<span><span class="va">toy_df</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/NA.html">is.na</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="va">videogame_df</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/NA.html">is.na</a></span><span class="op">(</span><span class="va">metascore</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">videogame_df</span>, <span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/NA.html">is.na</a></span><span class="op">(</span><span class="va">metascore</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="va">videogame_df</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/NA.html">is.na</a></span><span class="op">(</span><span class="va">metascore</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">median_playtime</span> <span class="op">&gt;</span> <span class="fl">0</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">price_cat</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise</a></span><span class="op">(</span>avg_med_time <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/median.html">median</a></span><span class="op">(</span><span class="va">median_playtime</span>, na.rm <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">videogame_df</span>, <span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/NA.html">is.na</a></span><span class="op">(</span><span class="va">metascore</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">videogame_df</span>, <span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/NA.html">is.na</a></span><span class="op">(</span><span class="va">metascore</span><span class="op">)</span><span class="op">)</span>, <span class="va">median_playtime</span> <span class="op">&gt;</span> <span class="fl">0</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">videogame_df</span>, <span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/NA.html">is.na</a></span><span class="op">(</span><span class="va">metascore</span><span class="op">)</span><span class="op">)</span>,</span>
+<span>                <span class="va">median_playtime</span> <span class="op">&gt;</span> <span class="fl">0</span><span class="op">)</span>, <span class="va">price_cat</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise</a></span><span class="op">(</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">videogame_df</span>, <span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/NA.html">is.na</a></span><span class="op">(</span><span class="va">metascore</span><span class="op">)</span><span class="op">)</span>,</span>
+<span>  <span class="va">median_playtime</span> <span class="op">&gt;</span> <span class="fl">0</span><span class="op">)</span>, <span class="va">price_cat</span><span class="op">)</span>, </span>
+<span>  avg_med_time <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/median.html">median</a></span><span class="op">(</span><span class="va">median_playtime</span>, na.rm <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+
+</div>
+</div>
+  <div class="chapter-nav">
+<div class="prev"><a href="ggplot2.html"><span class="header-section-number">3</span> Plotting with ggplot2</a></div>
+<div class="next"><a href="communication-with-quarto.html"><span class="header-section-number">5</span> Communication with Quarto</a></div>
+</div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
+    <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>On this page</h2>
+      <ul class="nav navbar-nav">
+<li><a class="nav-link" href="#dplyr"><span class="header-section-number">4</span> Wrangling with dplyr</a></li>
+<li>
+<a class="nav-link" href="#mutate-create-variables"><span class="header-section-number">4.1</span> mutate(): Create Variables</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#if_else-and-case_when"><span class="header-section-number">4.1.1</span> if_else() and case_when()</a></li>
+<li><a class="nav-link" href="#exercise-3-1"><span class="header-section-number">4.1.2</span> Exercises</a></li>
+</ul>
+</li>
+<li>
+<a class="nav-link" href="#arrange-ordering-rows-select-choosing-columns-and-slice-and-filter-choosing-rows"><span class="header-section-number">4.2</span> arrange() (Ordering Rows), select() (Choosing Columns), and slice() and filter() (Choosing Rows)</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#arrange-ordering-rows"><span class="header-section-number">4.2.1</span> arrange(): Ordering Rows</a></li>
+<li><a class="nav-link" href="#select-choose-columns"><span class="header-section-number">4.2.2</span> select() Choose Columns</a></li>
+<li><a class="nav-link" href="#slice-and-filter-choose-rows"><span class="header-section-number">4.2.3</span> slice() and filter(): Choose Rows</a></li>
+<li><a class="nav-link" href="#exercise-3-2"><span class="header-section-number">4.2.4</span> Exercises</a></li>
+</ul>
+</li>
+<li>
+<a class="nav-link" href="#summarise-and-group_by-create-summaries"><span class="header-section-number">4.3</span> summarise() and group_by(): Create Summaries</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#group_by-groups"><span class="header-section-number">4.3.1</span> group_by(): Groups</a></li>
+<li><a class="nav-link" href="#exercise-3-3"><span class="header-section-number">4.3.2</span> Exercises</a></li>
+</ul>
+</li>
+<li>
+<a class="nav-link" href="#missing-values"><span class="header-section-number">4.4</span> Missing Values</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#exercise-3-4"><span class="header-section-number">4.4.1</span> Exercises</a></li>
+<li><a class="nav-link" href="#removing-missing-values"><span class="header-section-number">4.4.2</span> Removing Missing Values</a></li>
+</ul>
+</li>
+<li>
+<a class="nav-link" href="#more-about-the-pipe"><span class="header-section-number">4.5</span> More about the Pipe</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#when-you-cant-use-the-pipe"><span class="header-section-number">4.5.1</span> When You Can’t Use the Pipe</a></li>
+<li><a class="nav-link" href="#exercise-3-4"><span class="header-section-number">4.5.2</span> Exercises</a></li>
+</ul>
+</li>
+<li><a class="nav-link" href="#chapexercise-3"><span class="header-section-number">4.6</span> Chapter Exercises</a></li>
+<li>
+<a class="nav-link" href="#solutions-3"><span class="header-section-number">4.7</span> Exercise Solutions</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#mutate-s"><span class="header-section-number">4.7.1</span> mutate() S</a></li>
+<li><a class="nav-link" href="#arrange-select-.-s"><span class="header-section-number">4.7.2</span> arrange(), select(), …. S</a></li>
+<li><a class="nav-link" href="#summarise-and-group_by-s"><span class="header-section-number">4.7.3</span> summarise() and group_by() S</a></li>
+<li><a class="nav-link" href="#missing-values-s"><span class="header-section-number">4.7.4</span> Missing Values S</a></li>
+<li><a class="nav-link" href="#piping-s"><span class="header-section-number">4.7.5</span> Piping S</a></li>
+<li><a class="nav-link" href="#chapexercise-3-S"><span class="header-section-number">4.7.6</span> Chapter Exercises S</a></li>
+</ul>
+</li>
+<li><a class="nav-link" href="#rcode-3"><span class="header-section-number">4.8</span> Non-Exercise R Code</a></li>
+</ul>
+
+      <div class="book-extra">
+        <ul class="list-unstyled">
+          
+        </ul>
+</div>
+    </nav>
+</div>
+
+</div>
+</div> <!-- .container -->
+
+<footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>"<strong>STAT 234: Data Science</strong>" was written by Matt Higham. It was last built on 2022-09-14.</p>
+  </div>
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>This book was built by the <a class="text-light" href="https://bookdown.org">bookdown</a> R package.</p>
+  </div>
+
+</div></div>
+</footer><!-- dynamically load mathjax for compatibility with self-contained --><script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script><script type="text/x-mathjax-config">const popovers = document.querySelectorAll('a.footnote-ref[data-toggle="popover"]');
+for (let popover of popovers) {
+  const div = document.createElement('div');
+  div.setAttribute('style', 'position: absolute; top: 0, left:0; width:0, height:0, overflow: hidden; visibility: hidden;');
+  div.innerHTML = popover.getAttribute('data-content');
+
+  var has_math = div.querySelector("span.math");
+  if (has_math) {
+    document.body.appendChild(div);
+    MathJax.Hub.Queue(["Typeset", MathJax.Hub, div]);
+    MathJax.Hub.Queue(function() {
+      popover.setAttribute('data-content', div.innerHTML);
+      document.body.removeChild(div);
+    })
+  }
+}
+</script>
+</body>
+</html>

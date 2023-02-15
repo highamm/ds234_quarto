@@ -1,0 +1,1117 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.0.36">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>DATA 234 - 7&nbsp; Factors with forcats</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+span.underline{text-decoration: underline;}
+div.column{display: inline-block; vertical-align: top; width: 50%;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./09-ethics.html" rel="next">
+<link href="./06-basics.html" rel="prev">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="dark">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+
+
+</head>
+
+<body class="nav-sidebar floating">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+    <div class="container-fluid d-flex justify-content-between">
+      <h1 class="quarto-secondary-nav-title"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Factors with <code>forcats</code></span></h1>
+      <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
+        <i class="bi bi-chevron-right"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">DATA 234</a> 
+    </div>
+      </div>
+      <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+      </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">Basics</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">STAT 234: Data Science</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./01-intro.html" class="sidebar-item-text sidebar-link">(PART) The Core: <code>tidyverse</code> Basics</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./02-ggplot2.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Plotting with <code>ggplot2</code></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./03-dplyr.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Wrangling with <code>dplyr</code></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./05-comm.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Communication with <code>Quarto</code></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./14-workflow.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Workflow and Other Skills</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">Support</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./04-tidyr.html" class="sidebar-item-text sidebar-link">(PART) Data Wrangling</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./06-basics.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Coding in Base <code>R</code></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./07-forcats.html" class="sidebar-item-text sidebar-link active"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Factors with <code>forcats</code></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./09-ethics.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Data Ethics</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./08-import.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Data Import</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./10-merging.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Merging with <code>dplyr</code></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./11-lubridate.html" class="sidebar-item-text sidebar-link">(PART) Special Topics</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./12-stringr.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Text Data with <code>tidytext</code> and <code>stringr</code></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./13-knn.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Predictive Modeling with knn</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./15-connections.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Connections to STAT 113, STAT 213, and CS 140</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./16-sql.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Introduction to SQL with <code>dbplyr</code></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#change-factor-levels" id="toc-change-factor-levels" class="nav-link active" data-scroll-target="#change-factor-levels"> <span class="header-section-number">7.1</span> Change Factor Levels</a>
+  <ul class="collapse">
+  <li><a href="#fct_recode-to-rename-levels" id="toc-fct_recode-to-rename-levels" class="nav-link" data-scroll-target="#fct_recode-to-rename-levels"> <span class="header-section-number">7.1.1</span> <code>fct_recode()</code> to Rename Levels</a></li>
+  <li><a href="#collapsing-many-levels-into-fewer-levels-with-fct_collapse" id="toc-collapsing-many-levels-into-fewer-levels-with-fct_collapse" class="nav-link" data-scroll-target="#collapsing-many-levels-into-fewer-levels-with-fct_collapse"> <span class="header-section-number">7.1.2</span> Collapsing Many Levels Into Fewer Levels with <code>fct_collapse()</code></a></li>
+  <li><a href="#exercise-7-1" id="toc-exercise-7-1" class="nav-link" data-scroll-target="#exercise-7-1"> <span class="header-section-number">7.1.3</span> Exercises</a></li>
+  </ul></li>
+  <li><a href="#reorder-factor-levels" id="toc-reorder-factor-levels" class="nav-link" data-scroll-target="#reorder-factor-levels"> <span class="header-section-number">7.2</span> Reorder Factor Levels</a>
+  <ul class="collapse">
+  <li><a href="#change-the-order-of-levels-by-a-quantitative-variable-with-fct_reorder" id="toc-change-the-order-of-levels-by-a-quantitative-variable-with-fct_reorder" class="nav-link" data-scroll-target="#change-the-order-of-levels-by-a-quantitative-variable-with-fct_reorder"> <span class="header-section-number">7.2.1</span> Change the Order of Levels by a Quantitative Variable with <code>fct_reorder()</code></a></li>
+  <li><a href="#lollipop-plots" id="toc-lollipop-plots" class="nav-link" data-scroll-target="#lollipop-plots"> <span class="header-section-number">7.2.2</span> Lollipop Plots</a></li>
+  <li><a href="#re-leveling-by-two-quantitative-variables-with-fct_reorder2" id="toc-re-leveling-by-two-quantitative-variables-with-fct_reorder2" class="nav-link" data-scroll-target="#re-leveling-by-two-quantitative-variables-with-fct_reorder2"> <span class="header-section-number">7.2.3</span> Re-Leveling By Two Quantitative Variables with <code>fct_reorder2()</code></a></li>
+  <li><a href="#reordering-levels-manually-with-fct_relevel" id="toc-reordering-levels-manually-with-fct_relevel" class="nav-link" data-scroll-target="#reordering-levels-manually-with-fct_relevel"> <span class="header-section-number">7.2.4</span> Reordering Levels Manually with <code>fct_relevel()</code></a></li>
+  <li><a href="#exercise-7-2" id="toc-exercise-7-2" class="nav-link" data-scroll-target="#exercise-7-2"> <span class="header-section-number">7.2.5</span> Exercises</a></li>
+  </ul></li>
+  <li><a href="#chapexercise-7" id="toc-chapexercise-7" class="nav-link" data-scroll-target="#chapexercise-7"> <span class="header-section-number">7.3</span> Chapter Exercises</a></li>
+  <li><a href="#solutions-7" id="toc-solutions-7" class="nav-link" data-scroll-target="#solutions-7"> <span class="header-section-number">7.4</span> Exercise Solutions</a>
+  <ul class="collapse">
+  <li><a href="#change-factor-levels-s" id="toc-change-factor-levels-s" class="nav-link" data-scroll-target="#change-factor-levels-s"> <span class="header-section-number">7.4.1</span> Change Factor Levels S</a></li>
+  <li><a href="#reorder-factor-levels-s" id="toc-reorder-factor-levels-s" class="nav-link" data-scroll-target="#reorder-factor-levels-s"> <span class="header-section-number">7.4.2</span> Reorder Factor Levels S</a></li>
+  <li><a href="#chapexercise-7-S" id="toc-chapexercise-7-S" class="nav-link" data-scroll-target="#chapexercise-7-S"> <span class="header-section-number">7.4.3</span> Chapter Exercises S</a></li>
+  </ul></li>
+  <li><a href="#rcode-7" id="toc-rcode-7" class="nav-link" data-scroll-target="#rcode-7"> <span class="header-section-number">7.5</span> Non-Exercise <code>R</code> Code</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title d-none d-lg-block"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Factors with <code>forcats</code></span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+    
+  </div>
+  
+
+</header>
+
+<p><strong>Goals:</strong></p>
+<ul>
+<li>Use the <code>forcats</code> package to change the levels of factors, or to re-order levels of factors in a way that makes tables and graphs easier to read.</li>
+</ul>
+<section id="change-factor-levels" class="level2" data-number="7.1">
+<h2 data-number="7.1" class="anchored" data-anchor-id="change-factor-levels"><span class="header-section-number">7.1</span> Change Factor Levels</h2>
+<p><strong>The Data</strong>: The <code>pokemon_allgen.csv</code> data set contains observations on Pokemon from the first 6 Generations (the first 6 games). There are 20 variable in this data set, but, of particular interest for this chapter are</p>
+<ul>
+<li><code>Type 1</code>, the first Type characteristic of the Pokemon (a factor with 13 levels)</li>
+<li><code>Type 2</code>, the second Type characteristic of the Pokemon (a factor with 13 levels, <code>NA</code> if the Pokemon only has one type)</li>
+<li><code>Generation</code>, the generation the Pokemon first appeared in (a factor with 6 levels)</li>
+</ul>
+<p>Read in the data set with <code>read_csv()</code>. Then, use a <code>mutate()</code> statement to make a <code>Generation_cat</code> variable that is a factor.</p>
+<div class="cell" data-appendix="true">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(here)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>pokemon_df <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="fu">here</span>(<span class="st">"data/pokemon_allgen.csv"</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">Generation_cat =</span> <span class="fu">factor</span>(Generation))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>One easy way to get a quick summary of a <code>factor</code> variable is to use <code>group_by()</code> and <code>n()</code> within a <code>summarise()</code> statement:</p>
+<div class="cell" data-appendix="true">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>pokemon_df <span class="sc">|&gt;</span> <span class="fu">group_by</span>(<span class="st">`</span><span class="at">Type 1</span><span class="st">`</span>) <span class="sc">|&gt;</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">counttype =</span> <span class="fu">n</span>())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 18 × 2
+   `Type 1` counttype
+   &lt;chr&gt;        &lt;int&gt;
+ 1 Bug             75
+ 2 Dark            31
+ 3 Dragon          41
+ 4 Electric        90
+ 5 Fairy           18
+ 6 Fighting        27
+ 7 Fire            56
+ 8 Flying           6
+ 9 Ghost           58
+10 Grass           73
+11 Ground          42
+12 Ice             24
+13 Normal         108
+14 Poison          30
+15 Psychic         73
+16 Rock            47
+17 Steel           29
+18 Water          119</code></pre>
+</div>
+</div>
+<p><br></p>
+<section id="fct_recode-to-rename-levels" class="level3" data-number="7.1.1">
+<h3 data-number="7.1.1" class="anchored" data-anchor-id="fct_recode-to-rename-levels"><span class="header-section-number">7.1.1</span> <code>fct_recode()</code> to Rename Levels</h3>
+<p>Now, let’s make a bar plot that examines how many <code>Legendary</code> Pokemon first appear in each generation, using <code>dplyr</code> commands that we’ve used and a simple <code>geom_col()</code>:</p>
+<div class="cell" data-appendix="true">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>pokemon_legend <span class="ot">&lt;-</span> pokemon_df <span class="sc">|&gt;</span> <span class="fu">filter</span>(Legendary <span class="sc">==</span> <span class="cn">TRUE</span>) <span class="sc">|&gt;</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(Generation_cat) <span class="sc">|&gt;</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">nlegend =</span> <span class="fu">n</span>())</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> pokemon_legend, <span class="fu">aes</span>(<span class="at">x =</span> Generation_cat, <span class="at">y =</span> nlegend)) <span class="sc">+</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="07-forcats_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>We’ve discussed how to change many aspects of <code>ggplot2</code> graphs, but we haven’t discussed how to rename the labels of levels of a categorical variable, whether those appear in the x-axis or in a separate legend. The easiest way to do this is to rename the levels in the factor itself using <code>fct_recode()</code>. Suppose, for example, that we want to relabel the Generation number with the actual region corresponding to each game (Kanto, Johto, Hoenn, Sinnoh, Unova, and Kalos). The function <code>fct_recode()</code> takes the name of a factor already present in the data set as its first argument and then a series of renaming schemes (new_name = “old_name”) as its remaining arguments.</p>
+<div class="cell" data-appendix="true">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>pokemon_legend <span class="ot">&lt;-</span> pokemon_legend <span class="sc">|&gt;</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">Generation_cat2 =</span> <span class="fu">fct_recode</span>(Generation_cat, <span class="at">Kanto =</span> <span class="st">"1"</span>,</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>                                      <span class="at">Johto =</span> <span class="st">"2"</span>, <span class="at">Hoenn =</span> <span class="st">"3"</span>,</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>                                      <span class="at">Sinnoh =</span> <span class="st">"4"</span>, <span class="at">Unova =</span> <span class="st">"5"</span>,</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>                                      <span class="at">Kalos =</span> <span class="st">"6"</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(Generation_cat2, <span class="fu">everything</span>())</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(pokemon_legend)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 6 × 3
+  Generation_cat2 Generation_cat nlegend
+  &lt;fct&gt;           &lt;fct&gt;            &lt;int&gt;
+1 Kanto           1                    6
+2 Johto           2                    5
+3 Hoenn           3                   34
+4 Sinnoh          4                   17
+5 Unova           5                   27
+6 Kalos           6                   13</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> pokemon_legend,</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x =</span> Generation_cat2, <span class="at">y =</span> nlegend)) <span class="sc">+</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="07-forcats_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</section>
+<section id="collapsing-many-levels-into-fewer-levels-with-fct_collapse" class="level3" data-number="7.1.2">
+<h3 data-number="7.1.2" class="anchored" data-anchor-id="collapsing-many-levels-into-fewer-levels-with-fct_collapse"><span class="header-section-number">7.1.2</span> Collapsing Many Levels Into Fewer Levels with <code>fct_collapse()</code></h3>
+<p>Sometimes, you might want to collapse the levels of two or more factors into a single level. With the Pokemon data set, there isn’t an example where this really makes sense, but, in the exercises, you’ll see a good use for this function with the social survey data set. For practice, we can collapse the <code>Ice</code> and <code>Dark</code> type Pokemon into a new level called <code>Coolest</code> and we can collapse the <code>Poison</code>, <code>Fighting</code>, and <code>Fire</code> type Pokemon into a new level called <code>Least_Cool</code>.</p>
+<div class="cell" data-appendix="true">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>pokemon_long <span class="ot">&lt;-</span> pokemon_df <span class="sc">|&gt;</span> <span class="fu">pivot_longer</span>(<span class="fu">c</span>(<span class="st">`</span><span class="at">Type 1</span><span class="st">`</span>, <span class="st">`</span><span class="at">Type 2</span><span class="st">`</span>),</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>                            <span class="at">names_to =</span> <span class="st">"Number"</span>,</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>                            <span class="at">values_to =</span> <span class="st">"Type"</span>)</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>pokemon_long <span class="sc">|&gt;</span></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">new_type =</span> <span class="fu">fct_collapse</span>(Type, <span class="at">Coolest =</span> <span class="fu">c</span>(<span class="st">"Ice"</span>, <span class="st">"Dark"</span>),</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>                                 <span class="at">Least_Cool =</span> <span class="fu">c</span>(<span class="st">"Fire"</span>, <span class="st">"Fighting"</span>, <span class="st">"Poison"</span>))) <span class="sc">|&gt;</span></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(new_type, Type, <span class="fu">everything</span>())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 1,894 × 22
+   new_type   Type    `#` Name  Total    HP Attack Defense Sp. A…¹ Sp. D…² Speed
+   &lt;fct&gt;      &lt;chr&gt; &lt;dbl&gt; &lt;chr&gt; &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt; &lt;dbl&gt;
+ 1 Grass      Grass     1 Bulb…   318    45     49      49      65      65    45
+ 2 Least_Cool Pois…     1 Bulb…   318    45     49      49      65      65    45
+ 3 Grass      Grass     2 Ivys…   405    60     62      63      80      80    60
+ 4 Least_Cool Pois…     2 Ivys…   405    60     62      63      80      80    60
+ 5 Grass      Grass     3 Venu…   525    80     82      83     100     100    80
+ 6 Least_Cool Pois…     3 Venu…   525    80     82      83     100     100    80
+ 7 Grass      Grass     3 Venu…   525    80     82      83     100     100    80
+ 8 Least_Cool Pois…     3 Venu…   525    80     82      83     100     100    80
+ 9 Least_Cool Fire      4 Char…   309    39     52      43      60      50    65
+10 &lt;NA&gt;       &lt;NA&gt;      4 Char…   309    39     52      43      60      50    65
+# … with 1,884 more rows, 11 more variables: Generation &lt;dbl&gt;, Legendary &lt;lgl&gt;,
+#   id &lt;chr&gt;, identifier &lt;chr&gt;, height &lt;dbl&gt;, weight &lt;dbl&gt;,
+#   base_experience &lt;dbl&gt;, order &lt;dbl&gt;, is_default &lt;dbl&gt;, Generation_cat &lt;fct&gt;,
+#   Number &lt;chr&gt;, and abbreviated variable names ¹​`Sp. Atk`, ²​`Sp. Def`</code></pre>
+</div>
+</div>
+<p>What happens to the levels that aren’t being re-specified?</p>
+<p><br></p>
+</section>
+<section id="exercise-7-1" class="level3" data-number="7.1.3">
+<h3 data-number="7.1.3" class="anchored" data-anchor-id="exercise-7-1"><span class="header-section-number">7.1.3</span> Exercises</h3>
+<p>Exercises marked with an * indicate that the exercise has a solution at the end of the chapter at @ref(solutions-7).</p>
+<ol type="1">
+<li><p>What <code>dplyr</code> function(s) could you also use to create the new levels that were created with <code>fct_collapse()</code>? Why might it be a little easier to use <code>fct_collapse()</code>?</p></li>
+<li><p>* We did not properly explore the data set before making the graphs above, and, in fact, there is some double counting of Pokemon in this data set (this is another example where being familiar with the data set you’re working with is advantageous: people familiar with Pokemon know that there are fewer than 947 Pokemon in Generations 1 through 6).</p></li>
+</ol>
+<p>Figure out why some Pokemon are double counted. Then, create a new data set that only keeps one observation per Pokemon <code>#</code>.</p>
+<ol start="3" type="1">
+<li>Create the bar plot with your non-duplicated data set. Are your results significantly changed?</li>
+</ol>
+<p><br></p>
+</section>
+</section>
+<section id="reorder-factor-levels" class="level2" data-number="7.2">
+<h2 data-number="7.2" class="anchored" data-anchor-id="reorder-factor-levels"><span class="header-section-number">7.2</span> Reorder Factor Levels</h2>
+<section id="change-the-order-of-levels-by-a-quantitative-variable-with-fct_reorder" class="level3" data-number="7.2.1">
+<h3 data-number="7.2.1" class="anchored" data-anchor-id="change-the-order-of-levels-by-a-quantitative-variable-with-fct_reorder"><span class="header-section-number">7.2.1</span> Change the Order of Levels by a Quantitative Variable with <code>fct_reorder()</code></h3>
+<p>You might also be interested in re-ordering the x or y-axis of a particular graph so that the order of the factors correspond to, for example, the median of a quantitative variable for each level. The reason you would want to do this is easiest to see with an example. For example, suppose you want to look at the most common Pokemon types across the first 6 generations. We use the non-duplicated data set from the previous section’s exercises, we pivot the data so that type is in one column, and we remove observations with missing <code>Type</code>, which correspond to the second <code>Type</code> of Pokemon that only have a single <code>Type</code>:</p>
+<div class="cell" data-appendix="true">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>pokemon_nodup <span class="ot">&lt;-</span> pokemon_df <span class="sc">|&gt;</span> <span class="fu">group_by</span>(<span class="st">`</span><span class="at">#</span><span class="st">`</span>) <span class="sc">|&gt;</span> <span class="fu">slice</span>(<span class="dv">1</span>) <span class="sc">|&gt;</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ungroup</span>()</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>pokemon_long <span class="ot">&lt;-</span> pokemon_nodup <span class="sc">|&gt;</span></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="fu">c</span>(<span class="st">`</span><span class="at">Type 1</span><span class="st">`</span>, <span class="st">`</span><span class="at">Type 2</span><span class="st">`</span>),</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>               <span class="at">names_to =</span> <span class="st">"Number"</span>,</span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>               <span class="at">values_to =</span> <span class="st">"Type"</span>)</span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>pokemon_sum <span class="ot">&lt;-</span> pokemon_long <span class="sc">|&gt;</span></span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(Type) <span class="sc">|&gt;</span></span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">count_type =</span> <span class="fu">n</span>()) <span class="sc">|&gt;</span></span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(Type))</span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> pokemon_sum, <span class="fu">aes</span>(<span class="at">x =</span> Type,</span>
+<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a>                               <span class="at">y =</span> count_type)) <span class="sc">+</span></span>
+<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>() <span class="sc">+</span></span>
+<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_flip</span>()  <span class="do">## flips the x and y axes</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="07-forcats_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>How does <code>R</code> order the levels of the <code>Type</code> factor, by default? How might you like them to be ordered to make the graph more readable?</p>
+<p><br></p>
+<p>The following code creates a new factor variable called <code>Type_ordered</code> that orders type by the <code>count_type</code> variable. <code>fct_reorder()</code> takes a factor as its first argument and a numeric variable to re-order that factor by as its second argument. The bar plot is then reconstructed with this new variable.</p>
+<div class="cell" data-appendix="true">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>pokemon_sum <span class="ot">&lt;-</span> pokemon_sum <span class="sc">|&gt;</span> </span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">Type_ordered =</span> <span class="fu">fct_reorder</span>(<span class="at">.f =</span> Type, <span class="at">.x =</span> count_type))</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> pokemon_sum, <span class="fu">aes</span>(<span class="at">x =</span> Type_ordered,</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>                               <span class="at">y =</span> count_type)) <span class="sc">+</span></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>() <span class="sc">+</span></span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_flip</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="07-forcats_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</section>
+<section id="lollipop-plots" class="level3" data-number="7.2.2">
+<h3 data-number="7.2.2" class="anchored" data-anchor-id="lollipop-plots"><span class="header-section-number">7.2.2</span> Lollipop Plots</h3>
+<p>Lollipop plots are a popular alternative to bar plots because they often look cleaner with less ink. To make a lollipop plot in <code>R</code>, we specify two different geoms: <code>geom_segment()</code> to form the stick of the lollipop and <code>geom_point()</code> to form the pop part of the lollipop. <code>geom_segment()</code> requires 4 aesthetics: <code>x</code>, <code>xend</code>, <code>y</code>, and <code>yend</code>.</p>
+<div class="cell" data-appendix="true">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> pokemon_sum, <span class="fu">aes</span>(<span class="at">x =</span> Type_ordered,</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>                               <span class="at">y =</span> count_type)) <span class="sc">+</span></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_segment</span>(<span class="fu">aes</span>(<span class="at">x =</span> Type_ordered, <span class="at">xend =</span> Type_ordered,</span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>                   <span class="at">y =</span> <span class="dv">0</span>, <span class="at">yend =</span> count_type)) <span class="sc">+</span></span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_flip</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="07-forcats_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p><code>fct_reorder()</code> also works with boxplots or simple point plots that show, for example, the median response for each level of a factor. The following set of plots investigate how the <code>Defense</code> stat changes for different Pokemon types</p>
+<div class="cell" data-appendix="true">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>pokemon_long <span class="ot">&lt;-</span> pokemon_long <span class="sc">|&gt;</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(Type)) <span class="sc">|&gt;</span></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">Type_Deford =</span> <span class="fu">fct_reorder</span>(<span class="at">.f =</span> Type, <span class="at">.x =</span> Defense,</span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>                                   <span class="at">.fun =</span> median))</span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> pokemon_long, <span class="fu">aes</span>(<span class="at">x =</span> Type_Deford,</span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>                               <span class="at">y =</span> Defense)) <span class="sc">+</span></span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>() <span class="sc">+</span> </span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_flip</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="07-forcats_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>The following code makes a point plot that shows the median defense for each type instead of boxplots.</p>
+<div class="cell" data-appendix="true">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>pokemon_med <span class="ot">&lt;-</span> pokemon_long <span class="sc">|&gt;</span> <span class="fu">group_by</span>(Type_Deford) <span class="sc">|&gt;</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">med_def =</span> <span class="fu">median</span>(Defense)) <span class="sc">|&gt;</span></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">Type_Deford =</span> <span class="fu">fct_reorder</span>(<span class="at">.f =</span> Type_Deford, <span class="at">.x =</span> med_def,</span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>                                   <span class="at">.fun =</span> median))</span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> pokemon_med, <span class="fu">aes</span>(<span class="at">x =</span> med_def, <span class="at">y =</span> Type_Deford)) <span class="sc">+</span></span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="07-forcats_files/figure-html/unnamed-chunk-10-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>Finally, we can make a lollipop plot of median defense.</p>
+<div class="cell" data-appendix="true">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> pokemon_med, <span class="fu">aes</span>(<span class="at">x =</span> Type_Deford, <span class="at">y =</span> med_def)) <span class="sc">+</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_segment</span>(<span class="fu">aes</span>(<span class="at">xend =</span> Type_Deford, <span class="at">y =</span> <span class="dv">0</span>, <span class="at">yend =</span> med_def)) <span class="sc">+</span></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_flip</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="07-forcats_files/figure-html/unnamed-chunk-11-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>Do you have a preference between the boxplot graph, the point plot, and the lollipop plot?</p>
+<p><br></p>
+<p><strong>New Data</strong>. The <code>gun_violence_us.csv</code> data set was obtained from <a href="https://www.openintro.org/book/statdata/index.php?data=gun_violence_us" target="_blank">https://www.openintro.org/book/statdata/index.php?data=gun_violence_us</a> and contains the following variables on gun violence in 2014:</p>
+<ul>
+<li><code>state</code>, the name of the U.S. state</li>
+<li><code>mortality_rate</code>, number of deaths from gun violence per 100,000 people</li>
+<li><code>ownership_rate</code>, the proportion of adults who own a gun</li>
+<li><code>region</code>, region of the U.S. (<code>South</code>, <code>West</code>, <code>NE</code>, and <code>MW</code>)</li>
+</ul>
+<div class="cell" data-appendix="true">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>mortality_df <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="fu">here</span>(<span class="st">"data/gun_violence_us.csv"</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">region =</span> <span class="fu">factor</span>(region))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="re-leveling-by-two-quantitative-variables-with-fct_reorder2" class="level3" data-number="7.2.3">
+<h3 data-number="7.2.3" class="anchored" data-anchor-id="re-leveling-by-two-quantitative-variables-with-fct_reorder2"><span class="header-section-number">7.2.3</span> Re-Leveling By Two Quantitative Variables with <code>fct_reorder2()</code></h3>
+<p>Suppose that we want to investigate the relationship between <code>mortality_rate</code> and <code>ownership_rate</code> using this data set. Run the following code to create a scatterplot of <code>mortality_rate</code> vs.&nbsp;<code>ownership_rate</code> with fitted linear regression lines for each <code>region</code> of the United States:</p>
+<div class="cell" data-appendix="true">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> mortality_df,</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x =</span> ownership_rate, <span class="at">y =</span> mortality_rate, <span class="at">colour =</span> region)) <span class="sc">+</span></span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="07-forcats_files/figure-html/unnamed-chunk-13-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>Notice the order of the levels in the legend. Most people would prefer the order to actually match up with where the lines in the plot end, not for the order to be alphabetical. To achieve this, we can use <code>fct_reorder2()</code> to change the order of the factor levels:</p>
+<div class="cell" data-appendix="true">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>mortality_df <span class="ot">&lt;-</span> mortality_df <span class="sc">|&gt;</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">region_2 =</span> <span class="fu">fct_reorder2</span>(region,</span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>                                 <span class="at">.x =</span> ownership_rate,</span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>                                 <span class="at">.y =</span> mortality_rate))</span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> mortality_df,</span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x =</span> ownership_rate, <span class="at">y =</span> mortality_rate, <span class="at">colour =</span> region_2)) <span class="sc">+</span></span>
+<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="07-forcats_files/figure-html/unnamed-chunk-14-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>Did it change the order of the levels how you would expect? <code>fct_reorder2()</code> actually looks at <strong>points</strong>, not lines, when determining the ordering. If you want the levels to match up exactly, then we’ll have to reorder the levels manually with <code>fct_relevel()</code>:</p>
+</section>
+<section id="reordering-levels-manually-with-fct_relevel" class="level3" data-number="7.2.4">
+<h3 data-number="7.2.4" class="anchored" data-anchor-id="reordering-levels-manually-with-fct_relevel"><span class="header-section-number">7.2.4</span> Reordering Levels Manually with <code>fct_relevel()</code></h3>
+<p>Factors are ordered alphabetically by default. If we want precise control over the order of the levels of a factor, we can use <code>fct_relevel()</code>, which takes a factor and a vector of the new levels as inputs:</p>
+<div class="cell" data-appendix="true">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>mortality_df <span class="ot">&lt;-</span> mortality_df <span class="sc">|&gt;</span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">region_3 =</span> <span class="fu">fct_relevel</span>(region, <span class="fu">c</span>(<span class="st">"South"</span>, <span class="st">"West"</span>, <span class="st">"MW"</span>, <span class="st">"NE"</span>)))</span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> mortality_df,</span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x =</span> ownership_rate, <span class="at">y =</span> mortality_rate, <span class="at">colour =</span> region_3)) <span class="sc">+</span></span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="07-forcats_files/figure-html/unnamed-chunk-15-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>Reordering the levels of a factor manually might also be useful in fitting linear models. Recall that, by default, <code>R</code> makes the <strong>reference group</strong> in a linear model the first level alphabetically. If you’d like a different reference group, you can reorder the levels of the factor:</p>
+<div class="cell" data-appendix="true">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>mod <span class="ot">&lt;-</span> <span class="fu">lm</span>(mortality_rate <span class="sc">~</span> ownership_rate <span class="sc">+</span> region, <span class="at">data =</span> mortality_df)</span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>mod2 <span class="ot">&lt;-</span> <span class="fu">lm</span>(mortality_rate <span class="sc">~</span> ownership_rate <span class="sc">+</span> region_2, <span class="at">data =</span> mortality_df)</span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>mod3 <span class="ot">&lt;-</span> <span class="fu">lm</span>(mortality_rate <span class="sc">~</span> ownership_rate <span class="sc">+</span> region_3, <span class="at">data =</span> mortality_df)</span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(mod)</span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(mod2)</span>
+<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(mod3)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="exercise-7-2" class="level3" data-number="7.2.5">
+<h3 data-number="7.2.5" class="anchored" data-anchor-id="exercise-7-2"><span class="header-section-number">7.2.5</span> Exercises</h3>
+<ol type="1">
+<li>Make the side-by-side boxplots again with the pokemon data but do not use <code>ungroup()</code> by running the following code.</li>
+</ol>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>pokemon_nodup <span class="ot">&lt;-</span> pokemon_df <span class="sc">|&gt;</span> <span class="fu">group_by</span>(<span class="st">`</span><span class="at">#</span><span class="st">`</span>) <span class="sc">|&gt;</span> <span class="fu">slice</span>(<span class="dv">1</span>) <span class="do">## |&gt;</span></span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>  <span class="do">## ungroup()</span></span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>pokemon_long <span class="ot">&lt;-</span> pokemon_nodup <span class="sc">|&gt;</span></span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="fu">c</span>(<span class="st">`</span><span class="at">Type 1</span><span class="st">`</span>, <span class="st">`</span><span class="at">Type 2</span><span class="st">`</span>),</span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>               <span class="at">names_to =</span> <span class="st">"Number"</span>,</span>
+<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a>               <span class="at">values_to =</span> <span class="st">"Type"</span>)</span>
+<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a>pokemon_long <span class="ot">&lt;-</span> pokemon_long <span class="sc">|&gt;</span></span>
+<span id="cb21-9"><a href="#cb21-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(Type)) <span class="sc">|&gt;</span></span>
+<span id="cb21-10"><a href="#cb21-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">Type_Deford =</span> <span class="fu">fct_reorder</span>(<span class="at">.f =</span> Type, <span class="at">.x =</span> Defense,</span>
+<span id="cb21-11"><a href="#cb21-11" aria-hidden="true" tabindex="-1"></a>                                   <span class="at">.fun =</span> median))</span>
+<span id="cb21-12"><a href="#cb21-12" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> pokemon_long, <span class="fu">aes</span>(<span class="at">x =</span> Type_Deford,</span>
+<span id="cb21-13"><a href="#cb21-13" aria-hidden="true" tabindex="-1"></a>                               <span class="at">y =</span> Defense)) <span class="sc">+</span></span>
+<span id="cb21-14"><a href="#cb21-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>() <span class="sc">+</span> </span>
+<span id="cb21-15"><a href="#cb21-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_flip</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="07-forcats_files/figure-html/unnamed-chunk-17-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>Why aren’t the types ordered by median defense anymore?</p>
+<ol start="2" type="1">
+<li>The <code>.fun</code> argument in <code>fct_reorder()</code> controls how the <code>Type</code> factor is ordered. Change this to specify ordering by the <code>mean</code>, <code>max</code>, and <code>min</code>. What ordering makes the most sense? Why?</li>
+</ol>
+</section>
+</section>
+<section id="chapexercise-7" class="level2" data-number="7.3">
+<h2 data-number="7.3" class="anchored" data-anchor-id="chapexercise-7"><span class="header-section-number">7.3</span> Chapter Exercises</h2>
+<p>Exercises marked with an * indicate that the exercise has a solution at the end of the chapter at @ref(solutions-7).</p>
+<p>For these chapter exercises, we will use a data set on National Football League standings from 2000 to 2020. Read in the data set with:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(here)</span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>standings_df <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="fu">here</span>(<span class="st">"data/standings.csv"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Rows: 638 Columns: 15
+── Column specification ────────────────────────────────────────────────────────
+Delimiter: ","
+chr  (4): team, team_name, playoffs, sb_winner
+dbl (11): year, wins, loss, points_for, points_against, points_differential,...
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>standings_df</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 638 × 15
+   team        team_…¹  year  wins  loss point…² point…³ point…⁴ margi…⁵ stren…⁶
+   &lt;chr&gt;       &lt;chr&gt;   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;
+ 1 Miami       Dolphi…  2000    11     5     323     226      97     6.1     1  
+ 2 Indianapol… Colts    2000    10     6     429     326     103     6.4     1.5
+ 3 New York    Jets     2000     9     7     321     321       0     0       3.5
+ 4 Buffalo     Bills    2000     8     8     315     350     -35    -2.2     2.2
+ 5 New England Patrio…  2000     5    11     276     338     -62    -3.9     1.4
+ 6 Tennessee   Titans   2000    13     3     346     191     155     9.7    -1.3
+ 7 Baltimore   Ravens   2000    12     4     333     165     168    10.5    -2.5
+ 8 Pittsburgh  Steele…  2000     9     7     321     255      66     4.1    -0.2
+ 9 Jacksonvil… Jaguars  2000     7     9     367     327      40     2.5    -1.4
+10 Cincinnati  Bengals  2000     4    12     185     359    -174   -10.9     0.4
+# … with 628 more rows, 5 more variables: simple_rating &lt;dbl&gt;,
+#   offensive_ranking &lt;dbl&gt;, defensive_ranking &lt;dbl&gt;, playoffs &lt;chr&gt;,
+#   sb_winner &lt;chr&gt;, and abbreviated variable names ¹​team_name, ²​points_for,
+#   ³​points_against, ⁴​points_differential, ⁵​margin_of_victory,
+#   ⁶​strength_of_schedule</code></pre>
+</div>
+</div>
+<p>The important variables that we will use include:</p>
+<ul>
+<li><code>team</code>, the city where the team is based in</li>
+<li><code>team_name</code>, the name of the team</li>
+<li><code>playoffs</code>, whether or not the team made the playoffs that year</li>
+<li><code>sb_winner</code>, whether or not the team won the superbowl that year</li>
+</ul>
+<ol type="1">
+<li><p>Use the <code>table()</code> function with <code>table(name_of_data_frame$name_of_variable)</code> to make a table of <code>team_name</code>. This is useful to use for categorical variables to give a quick summary of what the levels are and how many times each level appears in the data set.</p></li>
+<li><p>Until a couple of years ago, the Washington Commanders team used to be known as the Washington Redskins. Because of the obvious racism the name conveys, in 2022, the name was changed from Redskins to Commanders. Use a <code>forcats</code> function to rename the <code>Redskins</code> <code>team_name</code> to <code>Commanders</code>. Note that, usually, we have been renaming the new variable after we use a <code>forcats</code> function, but, oftentimes, it makes sense to just overwrite the old variable by using the same name in our <code>mutate()</code> statement.</p></li>
+<li><p>Use a function from <code>tidyr</code> to combine <code>team</code> and <code>team_name</code> into a single variable called <code>franchise</code>. You may want to specify <code>sep = " "</code> for consistency with the city names.</p></li>
+<li><p>There are a couple of franchises in the national football league that moved cities in the late 2010s. In particular, the San Diego Chargers became the Los Angeles Chargers and the St.&nbsp;Louis Rams became the Los Angeles Rams (this is another instance where being familiar with context is helpful here: it may have taken you much longer to figure this out, had you not known much about the NFL). Use a <code>forcats</code> function to put the <code>San Diego Chargers</code> and <code>Los Angeles Chargers</code> into a single level, <code>San Diego LA Chargers</code>, and to put the <code>St. Louis Rams</code> and <code>Los Angeles Rams</code> into a single level, <code>St. Louis LA Rams</code>.</p></li>
+<li><p>Using the updated data set, create a lollipop plot of the ten <code>franchise</code>s who have made the playoffs most often. You will need to do some work with <code>dplyr</code> before making the plot.</p></li>
+</ol>
+<div class="cell">
+
+</div>
+<ol start="6" type="1">
+<li>Customize your lollipop plot by changing the way the points look at the end and / or the way the “stems” of the lollipops look. You may use <a href="https://r-graph-gallery.com/301-custom-lollipop-chart.html" class="uri">https://r-graph-gallery.com/301-custom-lollipop-chart.html</a> for inspiration.</li>
+</ol>
+<p><br></p>
+<p><br></p>
+<p>The following are the old chapter exercises for <code>forcats</code>: I’ve left them in here in case you want some extra practice! We will use the general social survey data set, which is in the <code>forcats</code> library in <code>R</code>. You should some of this Wikipedia page to better understand where this data comes from <a href="https://en.wikipedia.org/wiki/General_Social_Survey" target="_blank">Wikipedia</a>.</p>
+<p>Most variables are self-explanatory, but a couple that aren’t are:</p>
+<ul>
+<li><code>partyid</code>, political leaning and</li>
+<li><code>denom</code>, religious denomination (if unfamiliar with this, you can think of it as a “more specific” subset of a particular religion).</li>
+</ul>
+<p>Note that some of these exercises are from the R for Data Science textbook.</p>
+<p>Load in the data set with</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>gss_cat</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<ol type="1">
+<li>* Using a <code>forcats</code> function, change the name of the level <code>Not str republican</code> to be <code>Weak republican</code> and change the name of the level <code>Not str democrat</code> to be <code>Weak democrat</code>. These names more closely match the levels <code>Strong republican</code> and <code>Strong democrat</code>. Then, create a table of counts that shows the number of respondents in each political party <code>partyid</code>.</li>
+</ol>
+<p><strong>Note</strong>: Levels that aren’t specified in your <code>forcats</code> function do not change.</p>
+<p><strong>Note 2</strong>: In naming something <code>Weak republican</code>, you’ll need to use backticks since there is a space in the level name.</p>
+<ol start="2" type="1">
+<li><p>* Use a <code>forcats</code> function so that <code>partyid</code> just has 4 categories: Other (corresponding to No answer, Don’t know, Other party), Ind (corresponding to Ind,near rep, Independent, Ind, near dem), Rep (corresponding to Strong republican and Not str republican), and Dem (corresponding to Not str democrat and Strong democrat).</p></li>
+<li><p>* Run the code to create the following plot that shows the average number of hours of television people watch from various religions.</p></li>
+</ol>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>relig_summary <span class="ot">&lt;-</span> gss_cat <span class="sc">|&gt;</span></span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(relig) <span class="sc">|&gt;</span></span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
+<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">age =</span> <span class="fu">mean</span>(age, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">tvhours =</span> <span class="fu">mean</span>(tvhours, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb27-6"><a href="#cb27-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">n =</span> <span class="fu">n</span>()</span>
+<span id="cb27-7"><a href="#cb27-7" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb27-8"><a href="#cb27-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-9"><a href="#cb27-9" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> relig_summary, <span class="fu">aes</span>(tvhours, relig)) <span class="sc">+</span></span>
+<span id="cb27-10"><a href="#cb27-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Then, use a <code>forcats</code> function create a new variable in the data set that reorders the religion factor levels and make a lollipop plot so that the religion watches the most television, on average, is on the top, and the religion that watches the least television, on average, is on the bottom.</p>
+<ol start="4" type="1">
+<li>* Run the code to make the following line plot that shows age on the x-axis, the proportion on the y-axis, and is coloured by various marital statuses (married, divorced, widowed, etc.):</li>
+</ol>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>by_age <span class="ot">&lt;-</span> gss_cat <span class="sc">|&gt;</span></span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(age)) <span class="sc">|&gt;</span></span>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(age, marital) <span class="sc">|&gt;</span></span>
+<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(age) <span class="sc">|&gt;</span></span>
+<span id="cb28-5"><a href="#cb28-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">prop =</span> n <span class="sc">/</span> <span class="fu">sum</span>(n))</span>
+<span id="cb28-6"><a href="#cb28-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-7"><a href="#cb28-7" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(by_age, <span class="fu">aes</span>(age, prop,</span>
+<span id="cb28-8"><a href="#cb28-8" aria-hidden="true" tabindex="-1"></a>                  <span class="at">colour =</span> marital)) <span class="sc">+</span></span>
+<span id="cb28-9"><a href="#cb28-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">na.rm =</span> <span class="cn">TRUE</span>) <span class="sc">+</span></span>
+<span id="cb28-10"><a href="#cb28-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">colour =</span> <span class="st">"marital"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Then, use a <code>forcats</code> function to make the plot so that the legend labels line up better with the different coloured marital status lines (e.g.&nbsp;so that the label for widowed is the first that appears in the legend, the label for married is second, etc.).</p>
+<ol start="5" type="1">
+<li>We haven’t talked much about creating two-way tables (or contingency tables). These are generally quite difficult to make with the <code>tidyverse</code> functions, but you can use the base <code>R</code> <code>table()</code> and <code>prop.table()</code> functions to make these.</li>
+</ol>
+<p>Using data only from the year 2014, run the following code to make 4 two-way tables with the <code>party_small</code> variable that was constructed earlier and <code>race</code>:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>gss_cat <span class="ot">&lt;-</span> gss_cat <span class="sc">|&gt;</span> <span class="fu">mutate</span>(<span class="at">party_small =</span> <span class="fu">fct_collapse</span>(partyid,</span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>                                              <span class="at">Other =</span> <span class="fu">c</span>(<span class="st">"No answer"</span>, <span class="st">"Don't know"</span>, <span class="st">"Other party"</span>),</span>
+<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>                                              <span class="at">Ind =</span> <span class="fu">c</span>(<span class="st">"Ind,near rep"</span>, <span class="st">"Independent"</span>, <span class="st">"Ind,near dem"</span>),</span>
+<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a>                                              <span class="at">Rep =</span> <span class="fu">c</span>(<span class="st">"Strong republican"</span>, <span class="st">"Not str republican"</span>),</span>
+<span id="cb29-5"><a href="#cb29-5" aria-hidden="true" tabindex="-1"></a>                                              <span class="at">Dem =</span> <span class="fu">c</span>(<span class="st">"Not str democrat"</span>, <span class="st">"Strong democrat"</span>)))</span>
+<span id="cb29-6"><a href="#cb29-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-7"><a href="#cb29-7" aria-hidden="true" tabindex="-1"></a>gss_recent <span class="ot">&lt;-</span> gss_cat <span class="sc">|&gt;</span> <span class="fu">filter</span>(year <span class="sc">==</span> <span class="dv">2014</span>)</span>
+<span id="cb29-8"><a href="#cb29-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-9"><a href="#cb29-9" aria-hidden="true" tabindex="-1"></a>tab1 <span class="ot">&lt;-</span> <span class="fu">table</span>(gss_recent<span class="sc">$</span>party_small, gss_recent<span class="sc">$</span>race)</span>
+<span id="cb29-10"><a href="#cb29-10" aria-hidden="true" tabindex="-1"></a>tab1</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>       
+        Other Black White Not applicable
+  Other     8    12    68              0
+  Rep      22    17   498              0
+  Ind     152   108   828              0
+  Dem      80   249   496              0</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="fu">prop.table</span>(tab1)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>       
+              Other       Black       White Not applicable
+  Other 0.003152088 0.004728132 0.026792750    0.000000000
+  Rep   0.008668243 0.006698188 0.196217494    0.000000000
+  Ind   0.059889677 0.042553191 0.326241135    0.000000000
+  Dem   0.031520883 0.098108747 0.195429472    0.000000000</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="fu">prop.table</span>(tab1, <span class="at">margin =</span> <span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>       
+             Other      Black      White Not applicable
+  Other 0.09090909 0.13636364 0.77272727     0.00000000
+  Rep   0.04096834 0.03165736 0.92737430     0.00000000
+  Ind   0.13970588 0.09926471 0.76102941     0.00000000
+  Dem   0.09696970 0.30181818 0.60121212     0.00000000</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="fu">prop.table</span>(tab1, <span class="at">margin =</span> <span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>       
+             Other      Black      White Not applicable
+  Other 0.03053435 0.03108808 0.03597884               
+  Rep   0.08396947 0.04404145 0.26349206               
+  Ind   0.58015267 0.27979275 0.43809524               
+  Dem   0.30534351 0.64507772 0.26243386               </code></pre>
+</div>
+</div>
+<p>Use the help on <code>?prop.table</code> to figure out how each of these three tables are constructed.</p>
+<p>Which table do you think is most informative? What conclusions does it help you to draw?</p>
+</section>
+<section id="solutions-7" class="level2" data-number="7.4">
+<h2 data-number="7.4" class="anchored" data-anchor-id="solutions-7"><span class="header-section-number">7.4</span> Exercise Solutions</h2>
+<section id="change-factor-levels-s" class="level3" data-number="7.4.1">
+<h3 data-number="7.4.1" class="anchored" data-anchor-id="change-factor-levels-s"><span class="header-section-number">7.4.1</span> Change Factor Levels S</h3>
+<ol start="2" type="1">
+<li>* We did not properly explore the data set before making the graphs above, and, in fact, there is some double counting of Pokemon in this data set (this is another example where being familiar with the data set you’re working with is advantageous: people familiar with Pokemon know that there are fewer than 947 Pokemon in Generations 1 through 6).</li>
+</ol>
+<p>Figure out why some Pokemon are double counted. Then, create a new data set that only keeps one observation per Pokemon <code>#</code>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a>pokemon_nodup <span class="ot">&lt;-</span> pokemon_df <span class="sc">|&gt;</span> <span class="fu">group_by</span>(<span class="st">`</span><span class="at">#</span><span class="st">`</span>) <span class="sc">|&gt;</span> <span class="fu">slice</span>(<span class="dv">1</span>) <span class="sc">|&gt;</span></span>
+<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ungroup</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="reorder-factor-levels-s" class="level3" data-number="7.4.2">
+<h3 data-number="7.4.2" class="anchored" data-anchor-id="reorder-factor-levels-s"><span class="header-section-number">7.4.2</span> Reorder Factor Levels S</h3>
+</section>
+<section id="chapexercise-7-S" class="level3" data-number="7.4.3">
+<h3 data-number="7.4.3" class="anchored" data-anchor-id="chapexercise-7-S"><span class="header-section-number">7.4.3</span> Chapter Exercises S</h3>
+<ol type="1">
+<li>* Using a <code>forcats</code> function, change the name of the level <code>Not str republican</code> to be <code>Weak republican</code> and change the name of the level <code>Not str democrat</code> to be <code>Weak democrat</code>. These names more closely match the levels <code>Strong republican</code> and <code>Strong democrat</code>. Then, create a table of counts that shows the number of respondents in each political party <code>partyid</code>.</li>
+</ol>
+<p><strong>Note</strong>: Levels that aren’t specified in your <code>forcats</code> function do not change.</p>
+<p><strong>Note 2</strong>: In naming something <code>Weak republican</code>, you’ll need to use backticks since there is a space in the level name.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a>gss_cat <span class="sc">|&gt;</span></span>
+<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">partyid_new =</span> <span class="fu">fct_recode</span>(partyid,</span>
+<span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a>                                  <span class="st">`</span><span class="at">Weak republican</span><span class="st">`</span> <span class="ot">=</span> <span class="st">"Not str republican"</span>,</span>
+<span id="cb38-4"><a href="#cb38-4" aria-hidden="true" tabindex="-1"></a>                                  <span class="st">`</span><span class="at">Weak democrat</span><span class="st">`</span> <span class="ot">=</span> <span class="st">"Not str democrat"</span>)) <span class="sc">|&gt;</span> <span class="fu">group_by</span>(partyid_new) <span class="sc">|&gt;</span></span>
+<span id="cb38-5"><a href="#cb38-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">ncount =</span> <span class="fu">n</span>())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<ol start="2" type="1">
+<li>* Use a <code>forcats</code> function so that <code>partyid</code> just has 4 categories: Other (corresponding to No answer, Don’t know, Other party), Ind (corresponding to Ind,near rep, Independent, Ind, near dem), Rep (corresponding to Strong republican and Not str republican), and Dem (corresponding to Not str democrat and Strong democrat).</li>
+</ol>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a>gss_cat <span class="ot">&lt;-</span> gss_cat <span class="sc">|&gt;</span> <span class="fu">mutate</span>(<span class="at">party_small =</span> <span class="fu">fct_collapse</span>(partyid,</span>
+<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a>                                              <span class="at">Other =</span> <span class="fu">c</span>(<span class="st">"No answer"</span>, <span class="st">"Don't know"</span>, <span class="st">"Other party"</span>),</span>
+<span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a>                                              <span class="at">Ind =</span> <span class="fu">c</span>(<span class="st">"Ind,near rep"</span>, <span class="st">"Independent"</span>, <span class="st">"Ind,near dem"</span>),</span>
+<span id="cb39-4"><a href="#cb39-4" aria-hidden="true" tabindex="-1"></a>                                              <span class="at">Rep =</span> <span class="fu">c</span>(<span class="st">"Strong republican"</span>, <span class="st">"Not str republican"</span>),</span>
+<span id="cb39-5"><a href="#cb39-5" aria-hidden="true" tabindex="-1"></a>                                              <span class="at">Dem =</span> <span class="fu">c</span>(<span class="st">"Not str democrat"</span>, <span class="st">"Strong democrat"</span>)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<ol start="3" type="1">
+<li>* Run the code to create the following plot that shows the average number of hours of television people watch from various religions.</li>
+</ol>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a>relig_summary <span class="ot">&lt;-</span> gss_cat <span class="sc">|&gt;</span></span>
+<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(relig) <span class="sc">|&gt;</span></span>
+<span id="cb40-3"><a href="#cb40-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
+<span id="cb40-4"><a href="#cb40-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">age =</span> <span class="fu">mean</span>(age, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb40-5"><a href="#cb40-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">tvhours =</span> <span class="fu">mean</span>(tvhours, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb40-6"><a href="#cb40-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">n =</span> <span class="fu">n</span>()</span>
+<span id="cb40-7"><a href="#cb40-7" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb40-8"><a href="#cb40-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb40-9"><a href="#cb40-9" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> relig_summary, <span class="fu">aes</span>(tvhours, relig)) <span class="sc">+</span></span>
+<span id="cb40-10"><a href="#cb40-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Then, use a <code>forcats</code> function create a new variable in the data set that reorders the religion factor levels and remake the barplot so that the religion watches the most television, on average, is on the top, and the religion that watches the least television, on average, is on the bottom.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a>relig_summary <span class="ot">&lt;-</span> relig_summary <span class="sc">|&gt;</span></span>
+<span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">relig =</span> <span class="fu">fct_reorder</span>(relig, tvhours))</span>
+<span id="cb41-3"><a href="#cb41-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> relig_summary, <span class="fu">aes</span>(<span class="at">x =</span> relig, <span class="at">y =</span> tvhours)) <span class="sc">+</span></span>
+<span id="cb41-4"><a href="#cb41-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_segment</span>(<span class="fu">aes</span>(<span class="at">x =</span> relig, <span class="at">xend =</span> relig, <span class="at">y =</span> <span class="dv">0</span>, <span class="at">yend =</span> tvhours)) <span class="sc">+</span></span>
+<span id="cb41-5"><a href="#cb41-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb41-6"><a href="#cb41-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_flip</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="07-forcats_files/figure-html/unnamed-chunk-28-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<ol start="4" type="1">
+<li>* Run the code to make the following line plot that shows age on the x-axis, the proportion on the y-axis, and is coloured by various marital statuses (married, divorced, widowed, etc.):</li>
+</ol>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a>by_age <span class="ot">&lt;-</span> gss_cat <span class="sc">|&gt;</span></span>
+<span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(age)) <span class="sc">|&gt;</span></span>
+<span id="cb42-3"><a href="#cb42-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(age, marital) <span class="sc">|&gt;</span></span>
+<span id="cb42-4"><a href="#cb42-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(age) <span class="sc">|&gt;</span></span>
+<span id="cb42-5"><a href="#cb42-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">prop =</span> n <span class="sc">/</span> <span class="fu">sum</span>(n))</span>
+<span id="cb42-6"><a href="#cb42-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb42-7"><a href="#cb42-7" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(by_age, <span class="fu">aes</span>(age, prop,</span>
+<span id="cb42-8"><a href="#cb42-8" aria-hidden="true" tabindex="-1"></a>                  <span class="at">colour =</span> marital)) <span class="sc">+</span></span>
+<span id="cb42-9"><a href="#cb42-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">na.rm =</span> <span class="cn">TRUE</span>) <span class="sc">+</span></span>
+<span id="cb42-10"><a href="#cb42-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">colour =</span> <span class="st">"marital"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Then, use a <code>forcats</code> function to make the plot so that the legend labels line up better with the different coloured marital status lines (e.g.&nbsp;so that the label for widowed is the first that appears in the legend, the label for married is second, etc.).</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a>by_age2 <span class="ot">&lt;-</span> by_age <span class="sc">|&gt;</span> <span class="fu">ungroup</span>() <span class="sc">|&gt;</span></span>
+<span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">marital2 =</span> <span class="fu">fct_reorder2</span>(marital, <span class="at">.x =</span> age, <span class="at">.y =</span> prop))</span>
+<span id="cb43-3"><a href="#cb43-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(by_age2, <span class="fu">aes</span>(age, prop,</span>
+<span id="cb43-4"><a href="#cb43-4" aria-hidden="true" tabindex="-1"></a>                  <span class="at">colour =</span> marital2)) <span class="sc">+</span></span>
+<span id="cb43-5"><a href="#cb43-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">na.rm =</span> <span class="cn">TRUE</span>) <span class="sc">+</span></span>
+<span id="cb43-6"><a href="#cb43-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">colour =</span> <span class="st">"marital"</span>) <span class="sc">+</span></span>
+<span id="cb43-7"><a href="#cb43-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_colour_viridis_d</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+</section>
+<section id="rcode-7" class="level2" data-number="7.5">
+<h2 data-number="7.5" class="anchored" data-anchor-id="rcode-7"><span class="header-section-number">7.5</span> Non-Exercise <code>R</code> Code</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(here)</span>
+<span id="cb44-3"><a href="#cb44-3" aria-hidden="true" tabindex="-1"></a>pokemon_df <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="fu">here</span>(<span class="st">"data/pokemon_allgen.csv"</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb44-4"><a href="#cb44-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">Generation_cat =</span> <span class="fu">factor</span>(Generation))</span>
+<span id="cb44-5"><a href="#cb44-5" aria-hidden="true" tabindex="-1"></a>pokemon_df <span class="sc">|&gt;</span> <span class="fu">group_by</span>(<span class="st">`</span><span class="at">Type 1</span><span class="st">`</span>) <span class="sc">|&gt;</span></span>
+<span id="cb44-6"><a href="#cb44-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">counttype =</span> <span class="fu">n</span>())</span>
+<span id="cb44-7"><a href="#cb44-7" aria-hidden="true" tabindex="-1"></a>pokemon_legend <span class="ot">&lt;-</span> pokemon_df <span class="sc">|&gt;</span> <span class="fu">filter</span>(Legendary <span class="sc">==</span> <span class="cn">TRUE</span>) <span class="sc">|&gt;</span></span>
+<span id="cb44-8"><a href="#cb44-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(Generation_cat) <span class="sc">|&gt;</span></span>
+<span id="cb44-9"><a href="#cb44-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">nlegend =</span> <span class="fu">n</span>())</span>
+<span id="cb44-10"><a href="#cb44-10" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> pokemon_legend, <span class="fu">aes</span>(<span class="at">x =</span> Generation_cat, <span class="at">y =</span> nlegend)) <span class="sc">+</span></span>
+<span id="cb44-11"><a href="#cb44-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>()</span>
+<span id="cb44-12"><a href="#cb44-12" aria-hidden="true" tabindex="-1"></a>pokemon_legend <span class="ot">&lt;-</span> pokemon_legend <span class="sc">|&gt;</span></span>
+<span id="cb44-13"><a href="#cb44-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">Generation_cat2 =</span> <span class="fu">fct_recode</span>(Generation_cat, <span class="at">Kanto =</span> <span class="st">"1"</span>,</span>
+<span id="cb44-14"><a href="#cb44-14" aria-hidden="true" tabindex="-1"></a>                                      <span class="at">Johto =</span> <span class="st">"2"</span>, <span class="at">Hoenn =</span> <span class="st">"3"</span>,</span>
+<span id="cb44-15"><a href="#cb44-15" aria-hidden="true" tabindex="-1"></a>                                      <span class="at">Sinnoh =</span> <span class="st">"4"</span>, <span class="at">Unova =</span> <span class="st">"5"</span>,</span>
+<span id="cb44-16"><a href="#cb44-16" aria-hidden="true" tabindex="-1"></a>                                      <span class="at">Kalos =</span> <span class="st">"6"</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb44-17"><a href="#cb44-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(Generation_cat2, <span class="fu">everything</span>())</span>
+<span id="cb44-18"><a href="#cb44-18" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(pokemon_legend)</span>
+<span id="cb44-19"><a href="#cb44-19" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> pokemon_legend,</span>
+<span id="cb44-20"><a href="#cb44-20" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x =</span> Generation_cat2, <span class="at">y =</span> nlegend)) <span class="sc">+</span></span>
+<span id="cb44-21"><a href="#cb44-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>()</span>
+<span id="cb44-22"><a href="#cb44-22" aria-hidden="true" tabindex="-1"></a>pokemon_long <span class="ot">&lt;-</span> pokemon_df <span class="sc">|&gt;</span> <span class="fu">pivot_longer</span>(<span class="fu">c</span>(<span class="st">`</span><span class="at">Type 1</span><span class="st">`</span>, <span class="st">`</span><span class="at">Type 2</span><span class="st">`</span>),</span>
+<span id="cb44-23"><a href="#cb44-23" aria-hidden="true" tabindex="-1"></a>                            <span class="at">names_to =</span> <span class="st">"Number"</span>,</span>
+<span id="cb44-24"><a href="#cb44-24" aria-hidden="true" tabindex="-1"></a>                            <span class="at">values_to =</span> <span class="st">"Type"</span>)</span>
+<span id="cb44-25"><a href="#cb44-25" aria-hidden="true" tabindex="-1"></a>pokemon_long <span class="sc">|&gt;</span></span>
+<span id="cb44-26"><a href="#cb44-26" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">new_type =</span> <span class="fu">fct_collapse</span>(Type, <span class="at">Coolest =</span> <span class="fu">c</span>(<span class="st">"Ice"</span>, <span class="st">"Dark"</span>),</span>
+<span id="cb44-27"><a href="#cb44-27" aria-hidden="true" tabindex="-1"></a>                                 <span class="at">Least_Cool =</span> <span class="fu">c</span>(<span class="st">"Fire"</span>, <span class="st">"Fighting"</span>, <span class="st">"Poison"</span>))) <span class="sc">|&gt;</span></span>
+<span id="cb44-28"><a href="#cb44-28" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(new_type, Type, <span class="fu">everything</span>())</span>
+<span id="cb44-29"><a href="#cb44-29" aria-hidden="true" tabindex="-1"></a>pokemon_nodup <span class="ot">&lt;-</span> pokemon_df <span class="sc">|&gt;</span> <span class="fu">group_by</span>(<span class="st">`</span><span class="at">#</span><span class="st">`</span>) <span class="sc">|&gt;</span> <span class="fu">slice</span>(<span class="dv">1</span>) <span class="sc">|&gt;</span></span>
+<span id="cb44-30"><a href="#cb44-30" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ungroup</span>()</span>
+<span id="cb44-31"><a href="#cb44-31" aria-hidden="true" tabindex="-1"></a>pokemon_long <span class="ot">&lt;-</span> pokemon_nodup <span class="sc">|&gt;</span></span>
+<span id="cb44-32"><a href="#cb44-32" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="fu">c</span>(<span class="st">`</span><span class="at">Type 1</span><span class="st">`</span>, <span class="st">`</span><span class="at">Type 2</span><span class="st">`</span>),</span>
+<span id="cb44-33"><a href="#cb44-33" aria-hidden="true" tabindex="-1"></a>               <span class="at">names_to =</span> <span class="st">"Number"</span>,</span>
+<span id="cb44-34"><a href="#cb44-34" aria-hidden="true" tabindex="-1"></a>               <span class="at">values_to =</span> <span class="st">"Type"</span>)</span>
+<span id="cb44-35"><a href="#cb44-35" aria-hidden="true" tabindex="-1"></a>pokemon_sum <span class="ot">&lt;-</span> pokemon_long <span class="sc">|&gt;</span></span>
+<span id="cb44-36"><a href="#cb44-36" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(Type) <span class="sc">|&gt;</span></span>
+<span id="cb44-37"><a href="#cb44-37" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">count_type =</span> <span class="fu">n</span>()) <span class="sc">|&gt;</span></span>
+<span id="cb44-38"><a href="#cb44-38" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(Type))</span>
+<span id="cb44-39"><a href="#cb44-39" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> pokemon_sum, <span class="fu">aes</span>(<span class="at">x =</span> Type,</span>
+<span id="cb44-40"><a href="#cb44-40" aria-hidden="true" tabindex="-1"></a>                               <span class="at">y =</span> count_type)) <span class="sc">+</span></span>
+<span id="cb44-41"><a href="#cb44-41" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>() <span class="sc">+</span></span>
+<span id="cb44-42"><a href="#cb44-42" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_flip</span>()  <span class="do">## flips the x and y axes</span></span>
+<span id="cb44-43"><a href="#cb44-43" aria-hidden="true" tabindex="-1"></a>pokemon_sum <span class="ot">&lt;-</span> pokemon_sum <span class="sc">|&gt;</span> </span>
+<span id="cb44-44"><a href="#cb44-44" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">Type_ordered =</span> <span class="fu">fct_reorder</span>(<span class="at">.f =</span> Type, <span class="at">.x =</span> count_type))</span>
+<span id="cb44-45"><a href="#cb44-45" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> pokemon_sum, <span class="fu">aes</span>(<span class="at">x =</span> Type_ordered,</span>
+<span id="cb44-46"><a href="#cb44-46" aria-hidden="true" tabindex="-1"></a>                               <span class="at">y =</span> count_type)) <span class="sc">+</span></span>
+<span id="cb44-47"><a href="#cb44-47" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>() <span class="sc">+</span></span>
+<span id="cb44-48"><a href="#cb44-48" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_flip</span>()</span>
+<span id="cb44-49"><a href="#cb44-49" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> pokemon_sum, <span class="fu">aes</span>(<span class="at">x =</span> Type_ordered,</span>
+<span id="cb44-50"><a href="#cb44-50" aria-hidden="true" tabindex="-1"></a>                               <span class="at">y =</span> count_type)) <span class="sc">+</span></span>
+<span id="cb44-51"><a href="#cb44-51" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_segment</span>(<span class="fu">aes</span>(<span class="at">x =</span> Type_ordered, <span class="at">xend =</span> Type_ordered,</span>
+<span id="cb44-52"><a href="#cb44-52" aria-hidden="true" tabindex="-1"></a>                   <span class="at">y =</span> <span class="dv">0</span>, <span class="at">yend =</span> count_type)) <span class="sc">+</span></span>
+<span id="cb44-53"><a href="#cb44-53" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb44-54"><a href="#cb44-54" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_flip</span>()</span>
+<span id="cb44-55"><a href="#cb44-55" aria-hidden="true" tabindex="-1"></a>pokemon_long <span class="ot">&lt;-</span> pokemon_long <span class="sc">|&gt;</span></span>
+<span id="cb44-56"><a href="#cb44-56" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(Type)) <span class="sc">|&gt;</span></span>
+<span id="cb44-57"><a href="#cb44-57" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">Type_Deford =</span> <span class="fu">fct_reorder</span>(<span class="at">.f =</span> Type, <span class="at">.x =</span> Defense,</span>
+<span id="cb44-58"><a href="#cb44-58" aria-hidden="true" tabindex="-1"></a>                                   <span class="at">.fun =</span> median))</span>
+<span id="cb44-59"><a href="#cb44-59" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> pokemon_long, <span class="fu">aes</span>(<span class="at">x =</span> Type_Deford,</span>
+<span id="cb44-60"><a href="#cb44-60" aria-hidden="true" tabindex="-1"></a>                               <span class="at">y =</span> Defense)) <span class="sc">+</span></span>
+<span id="cb44-61"><a href="#cb44-61" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>() <span class="sc">+</span> </span>
+<span id="cb44-62"><a href="#cb44-62" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_flip</span>()</span>
+<span id="cb44-63"><a href="#cb44-63" aria-hidden="true" tabindex="-1"></a>pokemon_med <span class="ot">&lt;-</span> pokemon_long <span class="sc">|&gt;</span> <span class="fu">group_by</span>(Type_Deford) <span class="sc">|&gt;</span></span>
+<span id="cb44-64"><a href="#cb44-64" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">med_def =</span> <span class="fu">median</span>(Defense)) <span class="sc">|&gt;</span></span>
+<span id="cb44-65"><a href="#cb44-65" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">Type_Deford =</span> <span class="fu">fct_reorder</span>(<span class="at">.f =</span> Type_Deford, <span class="at">.x =</span> med_def,</span>
+<span id="cb44-66"><a href="#cb44-66" aria-hidden="true" tabindex="-1"></a>                                   <span class="at">.fun =</span> median))</span>
+<span id="cb44-67"><a href="#cb44-67" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-68"><a href="#cb44-68" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> pokemon_med, <span class="fu">aes</span>(<span class="at">x =</span> med_def, <span class="at">y =</span> Type_Deford)) <span class="sc">+</span></span>
+<span id="cb44-69"><a href="#cb44-69" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()</span>
+<span id="cb44-70"><a href="#cb44-70" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> pokemon_med, <span class="fu">aes</span>(<span class="at">x =</span> Type_Deford, <span class="at">y =</span> med_def)) <span class="sc">+</span></span>
+<span id="cb44-71"><a href="#cb44-71" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_segment</span>(<span class="fu">aes</span>(<span class="at">xend =</span> Type_Deford, <span class="at">y =</span> <span class="dv">0</span>, <span class="at">yend =</span> med_def)) <span class="sc">+</span></span>
+<span id="cb44-72"><a href="#cb44-72" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb44-73"><a href="#cb44-73" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_flip</span>()</span>
+<span id="cb44-74"><a href="#cb44-74" aria-hidden="true" tabindex="-1"></a>mortality_df <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="fu">here</span>(<span class="st">"data/gun_violence_us.csv"</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb44-75"><a href="#cb44-75" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">region =</span> <span class="fu">factor</span>(region))</span>
+<span id="cb44-76"><a href="#cb44-76" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> mortality_df,</span>
+<span id="cb44-77"><a href="#cb44-77" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x =</span> ownership_rate, <span class="at">y =</span> mortality_rate, <span class="at">colour =</span> region)) <span class="sc">+</span></span>
+<span id="cb44-78"><a href="#cb44-78" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb44-79"><a href="#cb44-79" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>)</span>
+<span id="cb44-80"><a href="#cb44-80" aria-hidden="true" tabindex="-1"></a>mortality_df <span class="ot">&lt;-</span> mortality_df <span class="sc">|&gt;</span></span>
+<span id="cb44-81"><a href="#cb44-81" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">region_2 =</span> <span class="fu">fct_reorder2</span>(region,</span>
+<span id="cb44-82"><a href="#cb44-82" aria-hidden="true" tabindex="-1"></a>                                 <span class="at">.x =</span> ownership_rate,</span>
+<span id="cb44-83"><a href="#cb44-83" aria-hidden="true" tabindex="-1"></a>                                 <span class="at">.y =</span> mortality_rate))</span>
+<span id="cb44-84"><a href="#cb44-84" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> mortality_df,</span>
+<span id="cb44-85"><a href="#cb44-85" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x =</span> ownership_rate, <span class="at">y =</span> mortality_rate, <span class="at">colour =</span> region_2)) <span class="sc">+</span></span>
+<span id="cb44-86"><a href="#cb44-86" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb44-87"><a href="#cb44-87" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>)</span>
+<span id="cb44-88"><a href="#cb44-88" aria-hidden="true" tabindex="-1"></a>mortality_df <span class="ot">&lt;-</span> mortality_df <span class="sc">|&gt;</span></span>
+<span id="cb44-89"><a href="#cb44-89" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">region_3 =</span> <span class="fu">fct_relevel</span>(region, <span class="fu">c</span>(<span class="st">"South"</span>, <span class="st">"West"</span>, <span class="st">"MW"</span>, <span class="st">"NE"</span>)))</span>
+<span id="cb44-90"><a href="#cb44-90" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> mortality_df,</span>
+<span id="cb44-91"><a href="#cb44-91" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x =</span> ownership_rate, <span class="at">y =</span> mortality_rate, <span class="at">colour =</span> region_3)) <span class="sc">+</span></span>
+<span id="cb44-92"><a href="#cb44-92" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb44-93"><a href="#cb44-93" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>)</span>
+<span id="cb44-94"><a href="#cb44-94" aria-hidden="true" tabindex="-1"></a>mod <span class="ot">&lt;-</span> <span class="fu">lm</span>(mortality_rate <span class="sc">~</span> ownership_rate <span class="sc">+</span> region, <span class="at">data =</span> mortality_df)</span>
+<span id="cb44-95"><a href="#cb44-95" aria-hidden="true" tabindex="-1"></a>mod2 <span class="ot">&lt;-</span> <span class="fu">lm</span>(mortality_rate <span class="sc">~</span> ownership_rate <span class="sc">+</span> region_2, <span class="at">data =</span> mortality_df)</span>
+<span id="cb44-96"><a href="#cb44-96" aria-hidden="true" tabindex="-1"></a>mod3 <span class="ot">&lt;-</span> <span class="fu">lm</span>(mortality_rate <span class="sc">~</span> ownership_rate <span class="sc">+</span> region_3, <span class="at">data =</span> mortality_df)</span>
+<span id="cb44-97"><a href="#cb44-97" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(mod)</span>
+<span id="cb44-98"><a href="#cb44-98" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(mod2)</span>
+<span id="cb44-99"><a href="#cb44-99" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(mod3)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    setTimeout(function() {
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      let href = ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const cites = ref.parentNode.getAttribute('data-cites').split(' ');
+    tippyHover(ref, function() {
+      var popup = window.document.createElement('div');
+      cites.forEach(function(cite) {
+        var citeDiv = window.document.createElement('div');
+        citeDiv.classList.add('hanging-indent');
+        citeDiv.classList.add('csl-entry');
+        var biblioDiv = window.document.getElementById('ref-' + cite);
+        if (biblioDiv) {
+          citeDiv.innerHTML = biblioDiv.innerHTML;
+        }
+        popup.appendChild(citeDiv);
+      });
+      return popup.innerHTML;
+    });
+  }
+});
+</script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./06-basics.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Coding in Base <code>R</code></span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./09-ethics.html" class="pagination-link">
+        <span class="nav-page-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Data Ethics</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+</body></html>

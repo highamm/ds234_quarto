@@ -1,0 +1,733 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.0.36">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Matt Higham">
+<meta name="dcterms.date" content="2023-02-15">
+<meta name="description" content="This book contains examples for SLU’s Introduction to Data Science course.">
+
+<title>DATA / STAT 234</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+span.underline{text-decoration: underline;}
+div.column{display: inline-block; vertical-align: top; width: 50%;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./01-intro.html" rel="next">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+
+
+</head>
+
+<body class="nav-sidebar floating">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+    <div class="container-fluid d-flex justify-content-between">
+      <h1 class="quarto-secondary-nav-title">DATA / STAT 234</h1>
+      <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
+        <i class="bi bi-chevron-right"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">DATA / STAT 234</a> 
+    </div>
+      </div>
+      <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+      </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">The Core</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link active"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">STAT 234: Data Science</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./01-intro.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Getting Started with <code>R</code> and <code>R Studio</code></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./02-ggplot2.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Plotting with <code>ggplot2</code></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./03-dplyr.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Wrangling with <code>dplyr</code></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./05-comm.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Communication with <code>Quarto</code></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./14-workflow.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Workflow and Other Skills</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">Data Wrangling</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./04-tidyr.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Tidying with <code>tidyr</code></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./06-basics.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Coding in Base <code>R</code></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./07-forcats.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Factors with <code>forcats</code></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./09-ethics.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Data Ethics</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./08-import.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Data Import</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./10-merging.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Merging with <code>dplyr</code></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">Special Topics</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./11-lubridate.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Dates with <code>lubridate</code></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./12-stringr.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Text Data with <code>tidytext</code> and <code>stringr</code></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./13-knn.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Predictive Modeling with knn</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./15-connections.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Connections to STAT 113, STAT 213, and CS 140</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./16-sql.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Introduction to SQL with <code>dbplyr</code></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#syllabus-and-course-information" id="toc-syllabus-and-course-information" class="nav-link active" data-scroll-target="#syllabus-and-course-information"> <span class="header-section-number">1</span> Syllabus and Course Information</a>
+  <ul class="collapse">
+  <li><a href="#general-information" id="toc-general-information" class="nav-link" data-scroll-target="#general-information"> <span class="header-section-number">1.1</span> General Information</a></li>
+  <li><a href="#course-information" id="toc-course-information" class="nav-link" data-scroll-target="#course-information"> <span class="header-section-number">1.2</span> Course Information</a>
+  <ul class="collapse">
+  <li><a href="#use-of-r-and-rstudio" id="toc-use-of-r-and-rstudio" class="nav-link" data-scroll-target="#use-of-r-and-rstudio"> <span class="header-section-number">1.2.1</span> Use of <code>R</code> and <code>RStudio</code></a></li>
+  </ul></li>
+  <li><a href="#general-course-outcomes" id="toc-general-course-outcomes" class="nav-link" data-scroll-target="#general-course-outcomes"> <span class="header-section-number">1.3</span> General Course Outcomes</a></li>
+  <li><a href="#how-you-will-be-assessed" id="toc-how-you-will-be-assessed" class="nav-link" data-scroll-target="#how-you-will-be-assessed"> <span class="header-section-number">1.4</span> How You Will Be Assessed</a>
+  <ul class="collapse">
+  <li><a href="#breakdown" id="toc-breakdown" class="nav-link" data-scroll-target="#breakdown"> <span class="header-section-number">1.4.1</span> Breakdown</a></li>
+  <li><a href="#grading-scale" id="toc-grading-scale" class="nav-link" data-scroll-target="#grading-scale"> <span class="header-section-number">1.4.2</span> Grading Scale</a></li>
+  </ul></li>
+  <li><a href="#collaboration-diversity-accessibility-and-academic-integrity" id="toc-collaboration-diversity-accessibility-and-academic-integrity" class="nav-link" data-scroll-target="#collaboration-diversity-accessibility-and-academic-integrity"> <span class="header-section-number">1.5</span> Collaboration, Diversity, Accessibility, and Academic Integrity</a>
+  <ul class="collapse">
+  <li><a href="#rules-for-collaboration" id="toc-rules-for-collaboration" class="nav-link" data-scroll-target="#rules-for-collaboration"> <span class="header-section-number">1.5.1</span> Rules for Collaboration</a></li>
+  <li><a href="#diversity-statement" id="toc-diversity-statement" class="nav-link" data-scroll-target="#diversity-statement"> <span class="header-section-number">1.5.2</span> Diversity Statement</a></li>
+  <li><a href="#accessibility-statement" id="toc-accessibility-statement" class="nav-link" data-scroll-target="#accessibility-statement"> <span class="header-section-number">1.5.3</span> Accessibility Statement</a></li>
+  <li><a href="#academic-dishonesty" id="toc-academic-dishonesty" class="nav-link" data-scroll-target="#academic-dishonesty"> <span class="header-section-number">1.5.4</span> Academic Dishonesty</a></li>
+  </ul></li>
+  <li><a href="#tentative-schedule" id="toc-tentative-schedule" class="nav-link" data-scroll-target="#tentative-schedule"> <span class="header-section-number">1.6</span> Tentative Schedule</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title d-none d-lg-block">DATA / STAT 234</h1>
+</div>
+
+<div>
+  <div class="description">
+    This book contains examples for SLU’s Introduction to Data Science course.
+  </div>
+</div>
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Matt Higham </p>
+          </div>
+  </div>
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">February 15, 2023</p>
+    </div>
+  </div>
+    
+  </div>
+  
+
+</header>
+
+<section id="syllabus-and-course-information" class="level1" data-number="1">
+<h1 data-number="1"><span class="header-section-number">1</span> Syllabus and Course Information</h1>
+<section id="general-information" class="level2" data-number="1.1">
+<h2 data-number="1.1" class="anchored" data-anchor-id="general-information"><span class="header-section-number">1.1</span> General Information</h2>
+<p><strong>Instructor Information</strong></p>
+<ul>
+<li>Professor: Matt Higham</li>
+<li>Office: Bewkes 123</li>
+<li>Email: <a href="mailto:mhigham@stlawu.edu" class="email">mhigham@stlawu.edu</a></li>
+<li>Semester: Fall 2022</li>
+<li>Sections:
+<ul>
+<li>MW 2:30 - 4:00</li>
+</ul></li>
+<li>Office Hours: 15 minute slots bookable at <a href="https://calendly.com/mhigham/prof-higham-office-hours" target="_blank">my calendly page</a>.
+<ul>
+<li>Note that you must book a time for office hours at least 12 hours in advance to guarantee that I am present and available at that time.</li>
+</ul></li>
+</ul>
+<p><strong>Course Materials</strong></p>
+<ul>
+<li><a href="https://highamm.github.io/datascience234/" target="_blank">STAT 234 Materials Bundle</a>. This will be our primary source of materials.</li>
+<li>Textbooks (only used as references):
+<ul>
+<li>Modern Data Science with <code>R</code> by Baumer, Kaplan, and Horton, found <a href="https://mdsr-book.github.io/mdsr2e/" target="_blank">here</a> in a free online version.</li>
+<li>R for Data Science by Grolemund and Wickham, found <a href="https://r4ds.had.co.nz/" target="_blank">here</a> in a free online version.</li>
+</ul></li>
+<li>Computer with Internet access.</li>
+</ul>
+<hr>
+<hr>
+</section>
+<section id="course-information" class="level2" data-number="1.2">
+<h2 data-number="1.2" class="anchored" data-anchor-id="course-information"><span class="header-section-number">1.2</span> Course Information</h2>
+<p>Welcome to STAT 234! The overall purpose of this course is learn the data science skills necessary to complete large-scale data analysis projects. The tool that we will be using to achieve this goal is the statistical software language <code>R</code>. We will work with a wide variety of interesting data sets throughout the semester to build our <code>R</code> skills. In particular, we will focus on the Data Analysis Life Cycle (Grolemund and Wickham 2020):</p>
+<p><img src="data-science.png" class="img-fluid"></p>
+<p>We will put more emphasis on the <em>Import, Tidy, Transform, Visualize, and Communicate</em> parts of the cycle, as an introduction to <em>Modeling</em> part is covered in STAT 213.</p>
+<section id="use-of-r-and-rstudio" class="level3" data-number="1.2.1">
+<h3 data-number="1.2.1" class="anchored" data-anchor-id="use-of-r-and-rstudio"><span class="header-section-number">1.2.1</span> Use of <code>R</code> and <code>RStudio</code></h3>
+<p>We will use the statistical software <code>R</code> to construct graphs and analyze data. A few notes:</p>
+<ul>
+<li><code>R</code> and <code>RStudio</code> are both free to use.</li>
+<li>We will primarily be using the SLU <code>R Studio</code> server at first: <a href="rstudio.stlawu.local:8787" target="_blank">rstudio.stlawu.local:8787</a>.</li>
+<li>Additionally, we will be using <code>RMarkdown</code> for data analysis reports. <em>Note</em>: It’s always nice to start assignments and projects as early as possible, but this is particularly important to do for assignments and projects involving <code>R</code>. It’s no fun to try and figure out why code is not working at the last minute. If you start early enough though, you will have plenty of time to seek help and therefore won’t waste a lot of time on a coding error.</li>
+</ul>
+<hr>
+<hr>
+</section>
+</section>
+<section id="general-course-outcomes" class="level2" data-number="1.3">
+<h2 data-number="1.3" class="anchored" data-anchor-id="general-course-outcomes"><span class="header-section-number">1.3</span> General Course Outcomes</h2>
+<ol type="1">
+<li><p><em>Import</em> data of a few different types into <code>R</code> for analysis.</p></li>
+<li><p><em>Tidy</em> data into a form that can be more easily visualized, summarised, and modeled.</p></li>
+<li><p><em>Transform</em>, <em>Wrangle</em>, and <em>Visualize</em> variables in a data set to assess patterns in the data.</p></li>
+<li><p><em>Communicate</em> the results of your analysis to a target audience with a written report, or, possibly an oral presentation.</p></li>
+<li><p>Practice reproducible statistical practices through the use of <code>Quarto</code> for data analysis projects.</p></li>
+<li><p>Explain why it is ethically important to consider the context that a data set comes in.</p></li>
+<li><p>Develop the necessary skills to be able to ask and answer future data analysis questions on your own, either using <code>R</code> or another program, such as Python.</p></li>
+</ol>
+<p>To paraphrase the <em>R for Data Science</em> textbook, about 80% of the skills necessary to do a complete data analysis project can be learned through coursework in classes like this one. But, 20% of any particular project will involve learning new things that are specific to that project. Achieving Goal # 6 will allow you to learn this extra 20% on your own.</p>
+<hr>
+<hr>
+</section>
+<section id="how-you-will-be-assessed" class="level2" data-number="1.4">
+<h2 data-number="1.4" class="anchored" data-anchor-id="how-you-will-be-assessed"><span class="header-section-number">1.4</span> How You Will Be Assessed</h2>
+<p>The components to your grade are described below:</p>
+<ul>
+<li>Modules</li>
+</ul>
+<p>Each week, you will submit a 60-point Module, consisting of the following:</p>
+<ul>
+<li>an <strong>Exercise Set</strong> (10 points): Due Mondays and usually from our <a href="https://highamm.github.io/datascience234/" target="_blank">STAT 234 Materials Bundle</a>. Exercises are graded for completion only and solutions are typically provided after you submit to Canvas. Collaboration is allowed.</li>
+<li>a <strong>Take-Home Quiz</strong> (20 points): Due Wednesdays. Take-Home quizzes are graded for correctness. Collaboration is allowed.</li>
+<li>an <strong>In-Class Quiz</strong> (30 points): Given on Wednesdays at the start of class. In-Class quizzes are graded for correctness. Collaboration is not allowed. Some questions on the in-class quiz will be based on exercises we complete in class, the exercise sets you complete, and the take-home quiz questions.</li>
+</ul>
+<p>There are 13 modules in total. In three modules, you will complete a 50-point Project instead of the two quizzes. The Project which will have some tasks for you to complete for a particular data set. The lowest module will be dropped from your grade so the total number of points available is <code>12 * 60 = 720</code> points.</p>
+<p>Additionally, for one module, you are permitted to take the in-class quiz as a take-home and turn it in the following Monday. For this quiz, you must let me know that you are doing this before grades are posted, and you are not permitted to collaborate with anyone.</p>
+<p>Finally, if you choose to take the (optional) in-person final exam (described below), the score that you earn on that final will replace your second and third-lowest module scores.</p>
+<ul>
+<li>Class</li>
+</ul>
+<p>Class participation will be assessed three times throughout the semester in a 20 point rubric for a total of 60 points. The rubric used will be shared on the first day of class.</p>
+<ul>
+<li>Final Project</li>
+</ul>
+<p>There is one final project, worth 100 points. The primary purpose of the final project is to give you an opportunity to assemble topics throughout the course into one coherent data analysis. You will be able to choose the data set you use for your final project, so you might begin thinking about a particular topic or data set you are interested in exploring. The final project will be presented in a format to be decided later in the semester.</p>
+<ul>
+<li>Final Exam</li>
+</ul>
+<p>There is an optional Final Exam, worth 120 points total. You <strong>must</strong> be on campus for our final exam time to take the final exam.</p>
+<p>There are two options for the final exam:</p>
+<ul>
+<li><p>Option 1: Skip the final exam and assign the average percentage of your 12 highest modules to be your percentage score for the 120 point final. For example, suppose your 13 module scores are: <code>60, 60, 59, 58, 57, 53, 53, 53, 53, 45, 43, 30, 0</code>. Then, you would drop your lowest score (the <code>0</code>) and your score for the final would be: <code>(60 + 60 + 59 + 58 + 57 + 53 + 53 + 53 + 53 + 45 + 43 + 30 + 30) / 720 * 120</code> = <code>109 / 120</code> points.</p></li>
+<li><p>Option 2: Take the final exam. Your score will be used for the 120 points devoted to the final exam. Additionally, if your final exam score is better than your 2nd and 3rd lowest module grades, the will be replaced with your final exam score. For example, suppose your 13 module scores are: <code>60, 60, 59, 58, 57, 53, 53, 53, 53, 45, 43, 30, 0</code>. You take the final exam and score a <code>110 / 120</code>. Then, your score for the final is <code>110 / 120</code> points and your new module scores would be: <code>60, 60, 59, 58, 57, 53, 53, 53, 53, 45, 55, 55, 0</code>. The <code>0</code> would still be dropped as your lowest module score.</p></li>
+</ul>
+<section id="breakdown" class="level3" data-number="1.4.1">
+<h3 data-number="1.4.1" class="anchored" data-anchor-id="breakdown"><span class="header-section-number">1.4.1</span> Breakdown</h3>
+<ul>
+<li>720 points for Modules</li>
+<li>60 points for Class Participation</li>
+<li>100 points for the Final Project</li>
+<li>120 points for the (optional) in-person Final Exam</li>
+</ul>
+<p>Points add up to 1000 so your grade at the end of the semester will be the number of points you’ve earned across all categories divided by 1000.</p>
+</section>
+<section id="grading-scale" class="level3" data-number="1.4.2">
+<h3 data-number="1.4.2" class="anchored" data-anchor-id="grading-scale"><span class="header-section-number">1.4.2</span> Grading Scale</h3>
+<p>The following is a <em>rough</em> grading scale. I reserve the right to make any changes to the scale if necessary.</p>
+<table class="table">
+<colgroup>
+<col style="width: 6%">
+<col style="width: 6%">
+<col style="width: 6%">
+<col style="width: 6%">
+<col style="width: 6%">
+<col style="width: 6%">
+<col style="width: 6%">
+<col style="width: 6%">
+<col style="width: 6%">
+<col style="width: 6%">
+<col style="width: 6%">
+<col style="width: 6%">
+<col style="width: 6%">
+<col style="width: 6%">
+<col style="width: 6%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Grade</th>
+<th>4.0</th>
+<th>3.75</th>
+<th>3.5</th>
+<th>3.25</th>
+<th>3.0</th>
+<th>2.75</th>
+<th>2.5</th>
+<th>2.25</th>
+<th>2.0</th>
+<th>1.75</th>
+<th>1.5</th>
+<th>1.25</th>
+<th>1.0</th>
+<th>0.0</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Points</td>
+<td>950-1000</td>
+<td>920-949</td>
+<td>890-919</td>
+<td>860-889</td>
+<td>830-859</td>
+<td>810-829</td>
+<td>770-809</td>
+<td>750-769</td>
+<td>720-749</td>
+<td>700-719</td>
+<td>670-699</td>
+<td>640-669</td>
+<td>600-639</td>
+<td>0-599</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<hr>
+</section>
+</section>
+<section id="collaboration-diversity-accessibility-and-academic-integrity" class="level2" data-number="1.5">
+<h2 data-number="1.5" class="anchored" data-anchor-id="collaboration-diversity-accessibility-and-academic-integrity"><span class="header-section-number">1.5</span> Collaboration, Diversity, Accessibility, and Academic Integrity</h2>
+<section id="rules-for-collaboration" class="level3" data-number="1.5.1">
+<h3 data-number="1.5.1" class="anchored" data-anchor-id="rules-for-collaboration"><span class="header-section-number">1.5.1</span> Rules for Collaboration</h3>
+<p>Collaboration with your classmates on exercises, take-home quizzes, and projects is encouraged, but you must follow these guidelines:</p>
+<ul>
+<li>you must state the name(s) of who you collaborated with at the top of each assessment.</li>
+<li>all work must be your own. This means that you should <strong>never</strong> send someone your code via email or let someone directly type code off of your screen. Instead, you can talk about strategies for solving problems and help or ask someone about a coding error.</li>
+<li>you may use the Internet and StackExchange, but you also should not copy paste code directly from the website, without citing that you did so.</li>
+<li>this isn’t a rule, but keep in mind that collaboration is not permitted on quizzes, exams, and very limited collaboration will be permitted on the final project. Therefore, when working with someone, make sure that you are both really learning so that you both can have success on the non-collaborative assessments.</li>
+</ul>
+<hr>
+<hr>
+</section>
+<section id="diversity-statement" class="level3" data-number="1.5.2">
+<h3 data-number="1.5.2" class="anchored" data-anchor-id="diversity-statement"><span class="header-section-number">1.5.2</span> Diversity Statement</h3>
+<p>Diversity encompasses differences in age, colour, ethnicity, national origin, gender, physical or mental ability, religion, socioeconomic background, veteran status, sexual orientation, and marginalized groups. The interaction of different human characteristics brings about a positive learning environment. Diversity is both respected and valued in this classroom.</p>
+<hr>
+<hr>
+</section>
+<section id="accessibility-statement" class="level3" data-number="1.5.3">
+<h3 data-number="1.5.3" class="anchored" data-anchor-id="accessibility-statement"><span class="header-section-number">1.5.3</span> Accessibility Statement</h3>
+<p>If you have a specific learning profile, medical and or mental health condition and need accommodations, please be sure to contact the Student Accessibility Services Office right away so they can help you get the accommodations you require. If you need to use any accommodations in this class, please meet with your instructor early and provide them with your Individualized Educational Accommodation Plan (IEAP) letter so you can have the best possible experience this semester.</p>
+<p>Although not required, your instructor would like to know of any accommodations that are needed at least 10 days before a quiz or test. Please be proactive and set up an appointment to meet with someone from the Student Accessibility Services Office.</p>
+<p><strong>Color-Vision Deficiency:</strong> If you are Color-Vision Deficient, the Student Accessibility Services office has on loan glasses for students who are color vision deficient. Please contact the office to make an appointment.</p>
+<p>For more specific information about setting up an appointment with Student Accessibility Services please see the listed options below:</p>
+<ul>
+<li>Telephone: 315.229.5537</li>
+<li>Email: <a href="mailto:studentaccessibility@stlawu.edu" class="email">studentaccessibility@stlawu.edu</a></li>
+</ul>
+<p>For further information about Student Accessibility Services you can check the website at: <a href="https://www.stlawu.edu/student-accessibility-services" class="uri">https://www.stlawu.edu/student-accessibility-services</a></p>
+<hr>
+<hr>
+</section>
+<section id="academic-dishonesty" class="level3" data-number="1.5.4">
+<h3 data-number="1.5.4" class="anchored" data-anchor-id="academic-dishonesty"><span class="header-section-number">1.5.4</span> Academic Dishonesty</h3>
+<p>Academic dishonesty will not be tolerated. Any specific policies for this course are supplementary to the</p>
+<p>Honor Code. According to the St.&nbsp;Lawrence University Academic Honor Policy,</p>
+<ol type="1">
+<li>It is assumed that all work is done by the student unless the instructor/mentor/employer gives specific permission for collaboration.</li>
+<li>Cheating on examinations and tests consists of knowingly giving or using or attempting to use unauthorized assistance during examinations or tests.</li>
+<li>Dishonesty in work outside of examinations and tests consists of handing in or presenting as original work which is not original, where originality is required.</li>
+</ol>
+<p><em>Claims of ignorance and academic or personal pressure are unacceptable as excuses for academic dishonesty.</em> Students must learn what constitutes one’s own work and how the work of others must be acknowledged.</p>
+<p>For more information, refer to <a href="../../C:%5CUsers%5Ciramler%5CAppData%5CLocal%5CTemp%5Cwww.stlawu.edu%5Cacadaffairs%5Cacademic_honor_policy.pdf">www.stlawu.edu/acadaffairs/<strong>academic</strong>_<strong>honor</strong>_policy.pdf</a>.</p>
+<p>To avoid academic dishonesty, it is important that you follow all directions and collaboration rules and ask for clarification if you have any questions about what is acceptable for a particular assignment or exam. If I suspect academic dishonesty, a score of zero will be given for the entire assignment in which the academic dishonesty occurred <strong>for all individuals involved</strong> and Academic Honor Council will be notified. If a pattern of academic dishonesty is found to have occurred, a grade of 0.0 for the entire course can be given.</p>
+<p>It is important to work in a way that maximizes your learning. Be aware that students who rely too much on others for the homework and projects tend to do poorly on the quizzes and exams.</p>
+<p><em>Please note that in addition the above, any assignments in which your score is reduced due to academic dishonesty will not be dropped according to the quiz policy e.g., if you receive a zero on a quiz because of academic dishonesty, it will not be dropped from your grade.</em></p>
+<hr>
+<hr>
+</section>
+</section>
+<section id="tentative-schedule" class="level2" data-number="1.6">
+<h2 data-number="1.6" class="anchored" data-anchor-id="tentative-schedule"><span class="header-section-number">1.6</span> Tentative Schedule</h2>
+<table class="table">
+<colgroup>
+<col style="width: 18%">
+<col style="width: 18%">
+<col style="width: 63%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Week</th>
+<th>Date</th>
+<th>Topics</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>0</td>
+<td>8/24</td>
+<td>Introduction to <code>R</code>, <code>R Studio</code></td>
+</tr>
+<tr class="even">
+<td>1</td>
+<td>8/29</td>
+<td>Graphics with <code>ggplot2</code></td>
+</tr>
+<tr class="odd">
+<td>2</td>
+<td>9/5</td>
+<td>Data Wrangling and Transformation with <code>dplyr</code></td>
+</tr>
+<tr class="even">
+<td>3</td>
+<td>9/12</td>
+<td>Communication with <code>Quarto</code> and <code>ggplot2</code></td>
+</tr>
+<tr class="odd">
+<td>4</td>
+<td>9/19</td>
+<td>Soft Skills and Workflow</td>
+</tr>
+<tr class="even">
+<td>5</td>
+<td>9/26*</td>
+<td>Data Tidying with <code>tidyr</code></td>
+</tr>
+<tr class="odd">
+<td>6</td>
+<td>10/3</td>
+<td>Base <code>R</code></td>
+</tr>
+<tr class="even">
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>7</td>
+<td>10/10</td>
+<td>Factors with <code>forcats</code> and Data Ethics</td>
+</tr>
+<tr class="even">
+<td>8</td>
+<td>10/17*</td>
+<td>Data Import with <code>readr</code>, <code>jsonlite</code>, <code>rvest</code>, and <code>tibble</code></td>
+</tr>
+<tr class="odd">
+<td>9</td>
+<td>10/24</td>
+<td>Data Merging with <code>dplyr</code></td>
+</tr>
+<tr class="even">
+<td>10</td>
+<td>10/31*</td>
+<td>Dates and Times with <code>lubridate</code></td>
+</tr>
+<tr class="odd">
+<td>11</td>
+<td>11/7</td>
+<td>Text Data with <code>tidytext</code> and <code>stringr</code></td>
+</tr>
+<tr class="even">
+<td>12</td>
+<td>11/14</td>
+<td>Intro to Statistical/Machine Learning with knn</td>
+</tr>
+<tr class="odd">
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td>13</td>
+<td>11/21</td>
+<td>Thanksgiving Break</td>
+</tr>
+<tr class="odd">
+<td>14</td>
+<td>11/28</td>
+<td>Connections to STAT and CS</td>
+</tr>
+<tr class="even">
+<td>14</td>
+<td>12/5</td>
+<td>Databases and SQL with <code>dbplyr</code></td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>The three projects are tentatively scheduled to be due on September 28, October 19, and November 2, though these are subject to change.</li>
+</ul>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    setTimeout(function() {
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      let href = ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const cites = ref.parentNode.getAttribute('data-cites').split(' ');
+    tippyHover(ref, function() {
+      var popup = window.document.createElement('div');
+      cites.forEach(function(cite) {
+        var citeDiv = window.document.createElement('div');
+        citeDiv.classList.add('hanging-indent');
+        citeDiv.classList.add('csl-entry');
+        var biblioDiv = window.document.getElementById('ref-' + cite);
+        if (biblioDiv) {
+          citeDiv.innerHTML = biblioDiv.innerHTML;
+        }
+        popup.appendChild(citeDiv);
+      });
+      return popup.innerHTML;
+    });
+  }
+});
+</script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./01-intro.html" class="pagination-link">
+        <span class="nav-page-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Getting Started with <code>R</code> and <code>R Studio</code></span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">Course Materials were written by Matt Higham for STAT/DATA 234 at St.&nbsp;Lawrence University</div>   
+    <div class="nav-footer-right">This book was built with <a href="https://quarto.org/">Quarto</a>.</div>
+  </div>
+</footer>
+
+
+
+</body></html>
