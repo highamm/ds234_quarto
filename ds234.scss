@@ -6,6 +6,7 @@ $primary: #9647b5 !default;
 
 .sidebar-title {
   color: #9647b5;
+  font-weight: bold;
 }
 
 img.quarto-cover-image {
@@ -28,14 +29,14 @@ h1, h2, h3, h4, h5 {
 }
 
 .quarto-section-identifier {
-  color: #6C6C6C;
-  font-weight: normal;
+  color: #9647b5;
+  font-weight: bold;
 }
 
 /* Code ------------------------------------------------ */
 
 code {
-  color: #373a3c;
+  color: #3f4447;
 }
 
 code a:any-link {
@@ -51,7 +52,7 @@ pre {
 
 @media print {
   :root {
-    font-size: 11pt;
+    font-size: 12pt;
   }
   #quarto-sidebar, #TOC, .nav-page {
     display: none;

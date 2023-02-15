@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>DATA 234 - 7&nbsp; Factors with forcats</title>
+<title>DATA / STAT 234 - 9&nbsp; Factors with forcats</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -95,10 +95,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="dark">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -128,7 +128,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <header id="quarto-header" class="headroom fixed-top">
   <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
     <div class="container-fluid d-flex justify-content-between">
-      <h1 class="quarto-secondary-nav-title"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Factors with <code>forcats</code></span></h1>
+      <h1 class="quarto-secondary-nav-title"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Factors with <code>forcats</code></span></h1>
       <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
         <i class="bi bi-chevron-right"></i>
       </button>
@@ -141,7 +141,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation floating overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
-      <a href="./">DATA 234</a> 
+      <a href="./">DATA / STAT 234</a> 
     </div>
       </div>
       <div class="mt-2 flex-shrink-0 align-items-center">
@@ -153,7 +153,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">Basics</a>
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">The Core</a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -166,34 +166,34 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./01-intro.html" class="sidebar-item-text sidebar-link">(PART) The Core: <code>tidyverse</code> Basics</a>
+  <a href="./01-intro.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Getting Started with <code>R</code> and <code>R Studio</code></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./02-ggplot2.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Plotting with <code>ggplot2</code></span></a>
+  <a href="./02-ggplot2.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Plotting with <code>ggplot2</code></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./03-dplyr.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Wrangling with <code>dplyr</code></span></a>
+  <a href="./03-dplyr.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Wrangling with <code>dplyr</code></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./05-comm.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Communication with <code>Quarto</code></span></a>
+  <a href="./05-comm.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Communication with <code>Quarto</code></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./14-workflow.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Workflow and Other Skills</span></a>
+  <a href="./14-workflow.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Workflow and Other Skills</span></a>
   </div>
 </li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">Support</a>
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">Data Wrangling</a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -201,57 +201,67 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./04-tidyr.html" class="sidebar-item-text sidebar-link">(PART) Data Wrangling</a>
+  <a href="./04-tidyr.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Tidying with <code>tidyr</code></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./06-basics.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Coding in Base <code>R</code></span></a>
+  <a href="./06-basics.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Coding in Base <code>R</code></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./07-forcats.html" class="sidebar-item-text sidebar-link active"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Factors with <code>forcats</code></span></a>
+  <a href="./07-forcats.html" class="sidebar-item-text sidebar-link active"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Factors with <code>forcats</code></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./09-ethics.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Data Ethics</span></a>
+  <a href="./09-ethics.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Data Ethics</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./08-import.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Data Import</span></a>
+  <a href="./08-import.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Data Import</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./10-merging.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Merging with <code>dplyr</code></span></a>
+  <a href="./10-merging.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Merging with <code>dplyr</code></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">Special Topics</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./11-lubridate.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Dates with <code>lubridate</code></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./11-lubridate.html" class="sidebar-item-text sidebar-link">(PART) Special Topics</a>
+  <a href="./12-stringr.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Text Data with <code>tidytext</code> and <code>stringr</code></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./12-stringr.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Text Data with <code>tidytext</code> and <code>stringr</code></span></a>
+  <a href="./13-knn.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Predictive Modeling with knn</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./13-knn.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Predictive Modeling with knn</span></a>
+  <a href="./15-connections.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Connections to STAT 113, STAT 213, and CS 140</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./15-connections.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Connections to STAT 113, STAT 213, and CS 140</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./16-sql.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Introduction to SQL with <code>dbplyr</code></span></a>
+  <a href="./16-sql.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Introduction to SQL with <code>dbplyr</code></span></a>
   </div>
 </li>
       </ul>
@@ -265,28 +275,28 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#change-factor-levels" id="toc-change-factor-levels" class="nav-link active" data-scroll-target="#change-factor-levels"> <span class="header-section-number">7.1</span> Change Factor Levels</a>
+  <li><a href="#change-factor-levels" id="toc-change-factor-levels" class="nav-link active" data-scroll-target="#change-factor-levels"> <span class="header-section-number">9.1</span> Change Factor Levels</a>
   <ul class="collapse">
-  <li><a href="#fct_recode-to-rename-levels" id="toc-fct_recode-to-rename-levels" class="nav-link" data-scroll-target="#fct_recode-to-rename-levels"> <span class="header-section-number">7.1.1</span> <code>fct_recode()</code> to Rename Levels</a></li>
-  <li><a href="#collapsing-many-levels-into-fewer-levels-with-fct_collapse" id="toc-collapsing-many-levels-into-fewer-levels-with-fct_collapse" class="nav-link" data-scroll-target="#collapsing-many-levels-into-fewer-levels-with-fct_collapse"> <span class="header-section-number">7.1.2</span> Collapsing Many Levels Into Fewer Levels with <code>fct_collapse()</code></a></li>
-  <li><a href="#exercise-7-1" id="toc-exercise-7-1" class="nav-link" data-scroll-target="#exercise-7-1"> <span class="header-section-number">7.1.3</span> Exercises</a></li>
+  <li><a href="#fct_recode-to-rename-levels" id="toc-fct_recode-to-rename-levels" class="nav-link" data-scroll-target="#fct_recode-to-rename-levels"> <span class="header-section-number">9.1.1</span> <code>fct_recode()</code> to Rename Levels</a></li>
+  <li><a href="#collapsing-many-levels-into-fewer-levels-with-fct_collapse" id="toc-collapsing-many-levels-into-fewer-levels-with-fct_collapse" class="nav-link" data-scroll-target="#collapsing-many-levels-into-fewer-levels-with-fct_collapse"> <span class="header-section-number">9.1.2</span> Collapsing Many Levels Into Fewer Levels with <code>fct_collapse()</code></a></li>
+  <li><a href="#exercise-7-1" id="toc-exercise-7-1" class="nav-link" data-scroll-target="#exercise-7-1"> <span class="header-section-number">9.1.3</span> Exercises</a></li>
   </ul></li>
-  <li><a href="#reorder-factor-levels" id="toc-reorder-factor-levels" class="nav-link" data-scroll-target="#reorder-factor-levels"> <span class="header-section-number">7.2</span> Reorder Factor Levels</a>
+  <li><a href="#reorder-factor-levels" id="toc-reorder-factor-levels" class="nav-link" data-scroll-target="#reorder-factor-levels"> <span class="header-section-number">9.2</span> Reorder Factor Levels</a>
   <ul class="collapse">
-  <li><a href="#change-the-order-of-levels-by-a-quantitative-variable-with-fct_reorder" id="toc-change-the-order-of-levels-by-a-quantitative-variable-with-fct_reorder" class="nav-link" data-scroll-target="#change-the-order-of-levels-by-a-quantitative-variable-with-fct_reorder"> <span class="header-section-number">7.2.1</span> Change the Order of Levels by a Quantitative Variable with <code>fct_reorder()</code></a></li>
-  <li><a href="#lollipop-plots" id="toc-lollipop-plots" class="nav-link" data-scroll-target="#lollipop-plots"> <span class="header-section-number">7.2.2</span> Lollipop Plots</a></li>
-  <li><a href="#re-leveling-by-two-quantitative-variables-with-fct_reorder2" id="toc-re-leveling-by-two-quantitative-variables-with-fct_reorder2" class="nav-link" data-scroll-target="#re-leveling-by-two-quantitative-variables-with-fct_reorder2"> <span class="header-section-number">7.2.3</span> Re-Leveling By Two Quantitative Variables with <code>fct_reorder2()</code></a></li>
-  <li><a href="#reordering-levels-manually-with-fct_relevel" id="toc-reordering-levels-manually-with-fct_relevel" class="nav-link" data-scroll-target="#reordering-levels-manually-with-fct_relevel"> <span class="header-section-number">7.2.4</span> Reordering Levels Manually with <code>fct_relevel()</code></a></li>
-  <li><a href="#exercise-7-2" id="toc-exercise-7-2" class="nav-link" data-scroll-target="#exercise-7-2"> <span class="header-section-number">7.2.5</span> Exercises</a></li>
+  <li><a href="#change-the-order-of-levels-by-a-quantitative-variable-with-fct_reorder" id="toc-change-the-order-of-levels-by-a-quantitative-variable-with-fct_reorder" class="nav-link" data-scroll-target="#change-the-order-of-levels-by-a-quantitative-variable-with-fct_reorder"> <span class="header-section-number">9.2.1</span> Change the Order of Levels by a Quantitative Variable with <code>fct_reorder()</code></a></li>
+  <li><a href="#lollipop-plots" id="toc-lollipop-plots" class="nav-link" data-scroll-target="#lollipop-plots"> <span class="header-section-number">9.2.2</span> Lollipop Plots</a></li>
+  <li><a href="#re-leveling-by-two-quantitative-variables-with-fct_reorder2" id="toc-re-leveling-by-two-quantitative-variables-with-fct_reorder2" class="nav-link" data-scroll-target="#re-leveling-by-two-quantitative-variables-with-fct_reorder2"> <span class="header-section-number">9.2.3</span> Re-Leveling By Two Quantitative Variables with <code>fct_reorder2()</code></a></li>
+  <li><a href="#reordering-levels-manually-with-fct_relevel" id="toc-reordering-levels-manually-with-fct_relevel" class="nav-link" data-scroll-target="#reordering-levels-manually-with-fct_relevel"> <span class="header-section-number">9.2.4</span> Reordering Levels Manually with <code>fct_relevel()</code></a></li>
+  <li><a href="#exercise-7-2" id="toc-exercise-7-2" class="nav-link" data-scroll-target="#exercise-7-2"> <span class="header-section-number">9.2.5</span> Exercises</a></li>
   </ul></li>
-  <li><a href="#chapexercise-7" id="toc-chapexercise-7" class="nav-link" data-scroll-target="#chapexercise-7"> <span class="header-section-number">7.3</span> Chapter Exercises</a></li>
-  <li><a href="#solutions-7" id="toc-solutions-7" class="nav-link" data-scroll-target="#solutions-7"> <span class="header-section-number">7.4</span> Exercise Solutions</a>
+  <li><a href="#chapexercise-7" id="toc-chapexercise-7" class="nav-link" data-scroll-target="#chapexercise-7"> <span class="header-section-number">9.3</span> Chapter Exercises</a></li>
+  <li><a href="#solutions-7" id="toc-solutions-7" class="nav-link" data-scroll-target="#solutions-7"> <span class="header-section-number">9.4</span> Exercise Solutions</a>
   <ul class="collapse">
-  <li><a href="#change-factor-levels-s" id="toc-change-factor-levels-s" class="nav-link" data-scroll-target="#change-factor-levels-s"> <span class="header-section-number">7.4.1</span> Change Factor Levels S</a></li>
-  <li><a href="#reorder-factor-levels-s" id="toc-reorder-factor-levels-s" class="nav-link" data-scroll-target="#reorder-factor-levels-s"> <span class="header-section-number">7.4.2</span> Reorder Factor Levels S</a></li>
-  <li><a href="#chapexercise-7-S" id="toc-chapexercise-7-S" class="nav-link" data-scroll-target="#chapexercise-7-S"> <span class="header-section-number">7.4.3</span> Chapter Exercises S</a></li>
+  <li><a href="#change-factor-levels-s" id="toc-change-factor-levels-s" class="nav-link" data-scroll-target="#change-factor-levels-s"> <span class="header-section-number">9.4.1</span> Change Factor Levels S</a></li>
+  <li><a href="#reorder-factor-levels-s" id="toc-reorder-factor-levels-s" class="nav-link" data-scroll-target="#reorder-factor-levels-s"> <span class="header-section-number">9.4.2</span> Reorder Factor Levels S</a></li>
+  <li><a href="#chapexercise-7-S" id="toc-chapexercise-7-S" class="nav-link" data-scroll-target="#chapexercise-7-S"> <span class="header-section-number">9.4.3</span> Chapter Exercises S</a></li>
   </ul></li>
-  <li><a href="#rcode-7" id="toc-rcode-7" class="nav-link" data-scroll-target="#rcode-7"> <span class="header-section-number">7.5</span> Non-Exercise <code>R</code> Code</a></li>
+  <li><a href="#rcode-7" id="toc-rcode-7" class="nav-link" data-scroll-target="#rcode-7"> <span class="header-section-number">9.5</span> Non-Exercise <code>R</code> Code</a></li>
   </ul>
 </nav>
     </div>
@@ -295,7 +305,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title d-none d-lg-block"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Factors with <code>forcats</code></span></h1>
+<h1 class="title d-none d-lg-block"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Factors with <code>forcats</code></span></h1>
 </div>
 
 
@@ -313,8 +323,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li>Use the <code>forcats</code> package to change the levels of factors, or to re-order levels of factors in a way that makes tables and graphs easier to read.</li>
 </ul>
-<section id="change-factor-levels" class="level2" data-number="7.1">
-<h2 data-number="7.1" class="anchored" data-anchor-id="change-factor-levels"><span class="header-section-number">7.1</span> Change Factor Levels</h2>
+<section id="change-factor-levels" class="level2" data-number="9.1">
+<h2 data-number="9.1" class="anchored" data-anchor-id="change-factor-levels"><span class="header-section-number">9.1</span> Change Factor Levels</h2>
 <p><strong>The Data</strong>: The <code>pokemon_allgen.csv</code> data set contains observations on Pokemon from the first 6 Generations (the first 6 games). There are 20 variable in this data set, but, of particular interest for this chapter are</p>
 <ul>
 <li><code>Type 1</code>, the first Type characteristic of the Pokemon (a factor with 13 levels)</li>
@@ -357,8 +367,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 </div>
 <p><br></p>
-<section id="fct_recode-to-rename-levels" class="level3" data-number="7.1.1">
-<h3 data-number="7.1.1" class="anchored" data-anchor-id="fct_recode-to-rename-levels"><span class="header-section-number">7.1.1</span> <code>fct_recode()</code> to Rename Levels</h3>
+<section id="fct_recode-to-rename-levels" class="level3" data-number="9.1.1">
+<h3 data-number="9.1.1" class="anchored" data-anchor-id="fct_recode-to-rename-levels"><span class="header-section-number">9.1.1</span> <code>fct_recode()</code> to Rename Levels</h3>
 <p>Now, let’s make a bar plot that examines how many <code>Legendary</code> Pokemon first appear in each generation, using <code>dplyr</code> commands that we’ve used and a simple <code>geom_col()</code>:</p>
 <div class="cell" data-appendix="true">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>pokemon_legend <span class="ot">&lt;-</span> pokemon_df <span class="sc">|&gt;</span> <span class="fu">filter</span>(Legendary <span class="sc">==</span> <span class="cn">TRUE</span>) <span class="sc">|&gt;</span></span>
@@ -398,8 +408,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 </div>
 </section>
-<section id="collapsing-many-levels-into-fewer-levels-with-fct_collapse" class="level3" data-number="7.1.2">
-<h3 data-number="7.1.2" class="anchored" data-anchor-id="collapsing-many-levels-into-fewer-levels-with-fct_collapse"><span class="header-section-number">7.1.2</span> Collapsing Many Levels Into Fewer Levels with <code>fct_collapse()</code></h3>
+<section id="collapsing-many-levels-into-fewer-levels-with-fct_collapse" class="level3" data-number="9.1.2">
+<h3 data-number="9.1.2" class="anchored" data-anchor-id="collapsing-many-levels-into-fewer-levels-with-fct_collapse"><span class="header-section-number">9.1.2</span> Collapsing Many Levels Into Fewer Levels with <code>fct_collapse()</code></h3>
 <p>Sometimes, you might want to collapse the levels of two or more factors into a single level. With the Pokemon data set, there isn’t an example where this really makes sense, but, in the exercises, you’ll see a good use for this function with the social survey data set. For practice, we can collapse the <code>Ice</code> and <code>Dark</code> type Pokemon into a new level called <code>Coolest</code> and we can collapse the <code>Poison</code>, <code>Fighting</code>, and <code>Fire</code> type Pokemon into a new level called <code>Least_Cool</code>.</p>
 <div class="cell" data-appendix="true">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>pokemon_long <span class="ot">&lt;-</span> pokemon_df <span class="sc">|&gt;</span> <span class="fu">pivot_longer</span>(<span class="fu">c</span>(<span class="st">`</span><span class="at">Type 1</span><span class="st">`</span>, <span class="st">`</span><span class="at">Type 2</span><span class="st">`</span>),</span>
@@ -432,8 +442,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>What happens to the levels that aren’t being re-specified?</p>
 <p><br></p>
 </section>
-<section id="exercise-7-1" class="level3" data-number="7.1.3">
-<h3 data-number="7.1.3" class="anchored" data-anchor-id="exercise-7-1"><span class="header-section-number">7.1.3</span> Exercises</h3>
+<section id="exercise-7-1" class="level3" data-number="9.1.3">
+<h3 data-number="9.1.3" class="anchored" data-anchor-id="exercise-7-1"><span class="header-section-number">9.1.3</span> Exercises</h3>
 <p>Exercises marked with an * indicate that the exercise has a solution at the end of the chapter at @ref(solutions-7).</p>
 <ol type="1">
 <li><p>What <code>dplyr</code> function(s) could you also use to create the new levels that were created with <code>fct_collapse()</code>? Why might it be a little easier to use <code>fct_collapse()</code>?</p></li>
@@ -446,10 +456,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p><br></p>
 </section>
 </section>
-<section id="reorder-factor-levels" class="level2" data-number="7.2">
-<h2 data-number="7.2" class="anchored" data-anchor-id="reorder-factor-levels"><span class="header-section-number">7.2</span> Reorder Factor Levels</h2>
-<section id="change-the-order-of-levels-by-a-quantitative-variable-with-fct_reorder" class="level3" data-number="7.2.1">
-<h3 data-number="7.2.1" class="anchored" data-anchor-id="change-the-order-of-levels-by-a-quantitative-variable-with-fct_reorder"><span class="header-section-number">7.2.1</span> Change the Order of Levels by a Quantitative Variable with <code>fct_reorder()</code></h3>
+<section id="reorder-factor-levels" class="level2" data-number="9.2">
+<h2 data-number="9.2" class="anchored" data-anchor-id="reorder-factor-levels"><span class="header-section-number">9.2</span> Reorder Factor Levels</h2>
+<section id="change-the-order-of-levels-by-a-quantitative-variable-with-fct_reorder" class="level3" data-number="9.2.1">
+<h3 data-number="9.2.1" class="anchored" data-anchor-id="change-the-order-of-levels-by-a-quantitative-variable-with-fct_reorder"><span class="header-section-number">9.2.1</span> Change the Order of Levels by a Quantitative Variable with <code>fct_reorder()</code></h3>
 <p>You might also be interested in re-ordering the x or y-axis of a particular graph so that the order of the factors correspond to, for example, the median of a quantitative variable for each level. The reason you would want to do this is easiest to see with an example. For example, suppose you want to look at the most common Pokemon types across the first 6 generations. We use the non-duplicated data set from the previous section’s exercises, we pivot the data so that type is in one column, and we remove observations with missing <code>Type</code>, which correspond to the second <code>Type</code> of Pokemon that only have a single <code>Type</code>:</p>
 <div class="cell" data-appendix="true">
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>pokemon_nodup <span class="ot">&lt;-</span> pokemon_df <span class="sc">|&gt;</span> <span class="fu">group_by</span>(<span class="st">`</span><span class="at">#</span><span class="st">`</span>) <span class="sc">|&gt;</span> <span class="fu">slice</span>(<span class="dv">1</span>) <span class="sc">|&gt;</span></span>
@@ -485,8 +495,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 </div>
 </section>
-<section id="lollipop-plots" class="level3" data-number="7.2.2">
-<h3 data-number="7.2.2" class="anchored" data-anchor-id="lollipop-plots"><span class="header-section-number">7.2.2</span> Lollipop Plots</h3>
+<section id="lollipop-plots" class="level3" data-number="9.2.2">
+<h3 data-number="9.2.2" class="anchored" data-anchor-id="lollipop-plots"><span class="header-section-number">9.2.2</span> Lollipop Plots</h3>
 <p>Lollipop plots are a popular alternative to bar plots because they often look cleaner with less ink. To make a lollipop plot in <code>R</code>, we specify two different geoms: <code>geom_segment()</code> to form the stick of the lollipop and <code>geom_point()</code> to form the pop part of the lollipop. <code>geom_segment()</code> requires 4 aesthetics: <code>x</code>, <code>xend</code>, <code>y</code>, and <code>yend</code>.</p>
 <div class="cell" data-appendix="true">
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> pokemon_sum, <span class="fu">aes</span>(<span class="at">x =</span> Type_ordered,</span>
@@ -550,8 +560,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">region =</span> <span class="fu">factor</span>(region))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="re-leveling-by-two-quantitative-variables-with-fct_reorder2" class="level3" data-number="7.2.3">
-<h3 data-number="7.2.3" class="anchored" data-anchor-id="re-leveling-by-two-quantitative-variables-with-fct_reorder2"><span class="header-section-number">7.2.3</span> Re-Leveling By Two Quantitative Variables with <code>fct_reorder2()</code></h3>
+<section id="re-leveling-by-two-quantitative-variables-with-fct_reorder2" class="level3" data-number="9.2.3">
+<h3 data-number="9.2.3" class="anchored" data-anchor-id="re-leveling-by-two-quantitative-variables-with-fct_reorder2"><span class="header-section-number">9.2.3</span> Re-Leveling By Two Quantitative Variables with <code>fct_reorder2()</code></h3>
 <p>Suppose that we want to investigate the relationship between <code>mortality_rate</code> and <code>ownership_rate</code> using this data set. Run the following code to create a scatterplot of <code>mortality_rate</code> vs.&nbsp;<code>ownership_rate</code> with fitted linear regression lines for each <code>region</code> of the United States:</p>
 <div class="cell" data-appendix="true">
 <div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> mortality_df,</span>
@@ -578,8 +588,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <p>Did it change the order of the levels how you would expect? <code>fct_reorder2()</code> actually looks at <strong>points</strong>, not lines, when determining the ordering. If you want the levels to match up exactly, then we’ll have to reorder the levels manually with <code>fct_relevel()</code>:</p>
 </section>
-<section id="reordering-levels-manually-with-fct_relevel" class="level3" data-number="7.2.4">
-<h3 data-number="7.2.4" class="anchored" data-anchor-id="reordering-levels-manually-with-fct_relevel"><span class="header-section-number">7.2.4</span> Reordering Levels Manually with <code>fct_relevel()</code></h3>
+<section id="reordering-levels-manually-with-fct_relevel" class="level3" data-number="9.2.4">
+<h3 data-number="9.2.4" class="anchored" data-anchor-id="reordering-levels-manually-with-fct_relevel"><span class="header-section-number">9.2.4</span> Reordering Levels Manually with <code>fct_relevel()</code></h3>
 <p>Factors are ordered alphabetically by default. If we want precise control over the order of the levels of a factor, we can use <code>fct_relevel()</code>, which takes a factor and a vector of the new levels as inputs:</p>
 <div class="cell" data-appendix="true">
 <div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>mortality_df <span class="ot">&lt;-</span> mortality_df <span class="sc">|&gt;</span></span>
@@ -602,8 +612,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(mod3)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="exercise-7-2" class="level3" data-number="7.2.5">
-<h3 data-number="7.2.5" class="anchored" data-anchor-id="exercise-7-2"><span class="header-section-number">7.2.5</span> Exercises</h3>
+<section id="exercise-7-2" class="level3" data-number="9.2.5">
+<h3 data-number="9.2.5" class="anchored" data-anchor-id="exercise-7-2"><span class="header-section-number">9.2.5</span> Exercises</h3>
 <ol type="1">
 <li>Make the side-by-side boxplots again with the pokemon data but do not use <code>ungroup()</code> by running the following code.</li>
 </ol>
@@ -633,8 +643,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ol>
 </section>
 </section>
-<section id="chapexercise-7" class="level2" data-number="7.3">
-<h2 data-number="7.3" class="anchored" data-anchor-id="chapexercise-7"><span class="header-section-number">7.3</span> Chapter Exercises</h2>
+<section id="chapexercise-7" class="level2" data-number="9.3">
+<h2 data-number="9.3" class="anchored" data-anchor-id="chapexercise-7"><span class="header-section-number">9.3</span> Chapter Exercises</h2>
 <p>Exercises marked with an * indicate that the exercise has a solution at the end of the chapter at @ref(solutions-7).</p>
 <p>For these chapter exercises, we will use a data set on National Football League standings from 2000 to 2020. Read in the data set with:</p>
 <div class="cell">
@@ -799,10 +809,10 @@ dbl (11): year, wins, loss, points_for, points_against, points_differential,...
 <p>Use the help on <code>?prop.table</code> to figure out how each of these three tables are constructed.</p>
 <p>Which table do you think is most informative? What conclusions does it help you to draw?</p>
 </section>
-<section id="solutions-7" class="level2" data-number="7.4">
-<h2 data-number="7.4" class="anchored" data-anchor-id="solutions-7"><span class="header-section-number">7.4</span> Exercise Solutions</h2>
-<section id="change-factor-levels-s" class="level3" data-number="7.4.1">
-<h3 data-number="7.4.1" class="anchored" data-anchor-id="change-factor-levels-s"><span class="header-section-number">7.4.1</span> Change Factor Levels S</h3>
+<section id="solutions-7" class="level2" data-number="9.4">
+<h2 data-number="9.4" class="anchored" data-anchor-id="solutions-7"><span class="header-section-number">9.4</span> Exercise Solutions</h2>
+<section id="change-factor-levels-s" class="level3" data-number="9.4.1">
+<h3 data-number="9.4.1" class="anchored" data-anchor-id="change-factor-levels-s"><span class="header-section-number">9.4.1</span> Change Factor Levels S</h3>
 <ol start="2" type="1">
 <li>* We did not properly explore the data set before making the graphs above, and, in fact, there is some double counting of Pokemon in this data set (this is another example where being familiar with the data set you’re working with is advantageous: people familiar with Pokemon know that there are fewer than 947 Pokemon in Generations 1 through 6).</li>
 </ol>
@@ -812,11 +822,11 @@ dbl (11): year, wins, loss, points_for, points_against, points_differential,...
 <span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ungroup</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="reorder-factor-levels-s" class="level3" data-number="7.4.2">
-<h3 data-number="7.4.2" class="anchored" data-anchor-id="reorder-factor-levels-s"><span class="header-section-number">7.4.2</span> Reorder Factor Levels S</h3>
+<section id="reorder-factor-levels-s" class="level3" data-number="9.4.2">
+<h3 data-number="9.4.2" class="anchored" data-anchor-id="reorder-factor-levels-s"><span class="header-section-number">9.4.2</span> Reorder Factor Levels S</h3>
 </section>
-<section id="chapexercise-7-S" class="level3" data-number="7.4.3">
-<h3 data-number="7.4.3" class="anchored" data-anchor-id="chapexercise-7-S"><span class="header-section-number">7.4.3</span> Chapter Exercises S</h3>
+<section id="chapexercise-7-S" class="level3" data-number="9.4.3">
+<h3 data-number="9.4.3" class="anchored" data-anchor-id="chapexercise-7-S"><span class="header-section-number">9.4.3</span> Chapter Exercises S</h3>
 <ol type="1">
 <li>* Using a <code>forcats</code> function, change the name of the level <code>Not str republican</code> to be <code>Weak republican</code> and change the name of the level <code>Not str democrat</code> to be <code>Weak democrat</code>. These names more closely match the levels <code>Strong republican</code> and <code>Strong democrat</code>. Then, create a table of counts that shows the number of respondents in each political party <code>partyid</code>.</li>
 </ol>
@@ -893,8 +903,8 @@ dbl (11): year, wins, loss, points_for, points_against, points_differential,...
 </div>
 </section>
 </section>
-<section id="rcode-7" class="level2" data-number="7.5">
-<h2 data-number="7.5" class="anchored" data-anchor-id="rcode-7"><span class="header-section-number">7.5</span> Non-Exercise <code>R</code> Code</h2>
+<section id="rcode-7" class="level2" data-number="9.5">
+<h2 data-number="9.5" class="anchored" data-anchor-id="rcode-7"><span class="header-section-number">9.5</span> Non-Exercise <code>R</code> Code</h2>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb44"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
 <span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(here)</span>
@@ -1101,16 +1111,22 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
       <a href="./06-basics.html" class="pagination-link">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Coding in Base <code>R</code></span></span>
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Coding in Base <code>R</code></span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
       <a href="./09-ethics.html" class="pagination-link">
-        <span class="nav-page-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Data Ethics</span></span> <i class="bi bi-arrow-right-short"></i>
+        <span class="nav-page-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Data Ethics</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
 </div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">Course Materials were written by Matt Higham for STAT/DATA 234 at St.&nbsp;Lawrence University</div>   
+    <div class="nav-footer-right">This book was built with <a href="https://quarto.org/">Quarto</a>.</div>
+  </div>
+</footer>
 
 
 
