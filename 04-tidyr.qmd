@@ -1,4 +1,4 @@
-# Tidying with `tidyr`
+# Tidying with `tidyr` {#tidyr}
 
 <!-- For a quiz: unheadr::AOEunits_raw -->
 <!-- For a quiz: smoothie data  -->

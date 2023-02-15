@@ -1,4 +1,4 @@
-# Syllabus and Course Information
+# Syllabus and Course Information {.unnumbered}
 
 Welcome! This is the course materials website for DATA / STAT 234. Though we will use other sources at times, we will use materials on this site most heavily.
 

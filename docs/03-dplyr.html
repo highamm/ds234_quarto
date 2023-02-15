@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>DATA / STAT 234 - 4&nbsp; Wrangling with dplyr</title>
+<title>DATA / STAT 234 - 3&nbsp; Wrangling with dplyr</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -128,7 +128,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <header id="quarto-header" class="headroom fixed-top">
   <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
     <div class="container-fluid d-flex justify-content-between">
-      <h1 class="quarto-secondary-nav-title"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Wrangling with <code>dplyr</code></span></h1>
+      <h1 class="quarto-secondary-nav-title"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Wrangling with <code>dplyr</code></span></h1>
       <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
         <i class="bi bi-chevron-right"></i>
       </button>
@@ -151,6 +151,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       </div>
     <div class="sidebar-menu-container"> 
     <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">Syllabus and Course Information</a>
+  </div>
+</li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">The Core</a>
@@ -161,32 +166,27 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./index.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Syllabus and Course Information</span></a>
+  <a href="./01-intro.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Getting Started with <code>R</code> and <code>R Studio</code></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./01-intro.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Getting Started with <code>R</code> and <code>R Studio</code></span></a>
+  <a href="./02-ggplot2.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Plotting with <code>ggplot2</code></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./02-ggplot2.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Plotting with <code>ggplot2</code></span></a>
+  <a href="./03-dplyr.html" class="sidebar-item-text sidebar-link active"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Wrangling with <code>dplyr</code></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./03-dplyr.html" class="sidebar-item-text sidebar-link active"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Wrangling with <code>dplyr</code></span></a>
+  <a href="./05-comm.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Communication with <code>Quarto</code></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./05-comm.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Communication with <code>Quarto</code></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./14-workflow.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Workflow and Other Skills</span></a>
+  <a href="./14-workflow.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Workflow and Other Skills</span></a>
   </div>
 </li>
       </ul>
@@ -201,32 +201,32 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./04-tidyr.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Tidying with <code>tidyr</code></span></a>
+  <a href="./04-tidyr.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Tidying with <code>tidyr</code></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./06-basics.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Coding in Base <code>R</code></span></a>
+  <a href="./06-basics.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Coding in Base <code>R</code></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./07-forcats.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Factors with <code>forcats</code></span></a>
+  <a href="./07-forcats.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Factors with <code>forcats</code></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./09-ethics.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Data Ethics</span></a>
+  <a href="./09-ethics.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Data Ethics</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./08-import.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Data Import</span></a>
+  <a href="./08-import.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Data Import</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./10-merging.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Merging with <code>dplyr</code></span></a>
+  <a href="./10-merging.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Merging with <code>dplyr</code></span></a>
   </div>
 </li>
       </ul>
@@ -241,27 +241,27 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./11-lubridate.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Dates with <code>lubridate</code></span></a>
+  <a href="./11-lubridate.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Dates with <code>lubridate</code></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./12-stringr.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Text Data with <code>tidytext</code> and <code>stringr</code></span></a>
+  <a href="./12-stringr.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Text Data with <code>tidytext</code> and <code>stringr</code></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./13-knn.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Predictive Modeling with knn</span></a>
+  <a href="./13-knn.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Predictive Modeling with knn</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./15-connections.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Connections to STAT 113, STAT 213, and CS 140</span></a>
+  <a href="./15-connections.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Connections to STAT 113, STAT 213, and CS 140</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./16-sql.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Introduction to SQL with <code>dbplyr</code></span></a>
+  <a href="./16-sql.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Introduction to SQL with <code>dbplyr</code></span></a>
   </div>
 </li>
       </ul>
@@ -275,44 +275,44 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#mutate-create-variables" id="toc-mutate-create-variables" class="nav-link active" data-scroll-target="#mutate-create-variables"> <span class="header-section-number">4.1</span> <code>mutate()</code>: Create Variables</a>
+  <li><a href="#mutate-create-variables" id="toc-mutate-create-variables" class="nav-link active" data-scroll-target="#mutate-create-variables"> <span class="header-section-number">3.1</span> <code>mutate()</code>: Create Variables</a>
   <ul class="collapse">
-  <li><a href="#if_else-and-case_when" id="toc-if_else-and-case_when" class="nav-link" data-scroll-target="#if_else-and-case_when"> <span class="header-section-number">4.1.1</span> <code>if_else()</code> and <code>case_when()</code></a></li>
-  <li><a href="#exercise-3-1" id="toc-exercise-3-1" class="nav-link" data-scroll-target="#exercise-3-1"> <span class="header-section-number">4.1.2</span> Exercises</a></li>
+  <li><a href="#if_else-and-case_when" id="toc-if_else-and-case_when" class="nav-link" data-scroll-target="#if_else-and-case_when"> <span class="header-section-number">3.1.1</span> <code>if_else()</code> and <code>case_when()</code></a></li>
+  <li><a href="#exercise-3-1" id="toc-exercise-3-1" class="nav-link" data-scroll-target="#exercise-3-1"> <span class="header-section-number">3.1.2</span> Exercises</a></li>
   </ul></li>
-  <li><a href="#arrange-ordering-rows-select-choosing-columns-and-slice-and-filter-choosing-rows" id="toc-arrange-ordering-rows-select-choosing-columns-and-slice-and-filter-choosing-rows" class="nav-link" data-scroll-target="#arrange-ordering-rows-select-choosing-columns-and-slice-and-filter-choosing-rows"> <span class="header-section-number">4.2</span> <code>arrange()</code> (Ordering Rows), <code>select()</code> (Choosing Columns), and <code>slice()</code> and <code>filter()</code> (Choosing Rows)</a>
+  <li><a href="#arrange-ordering-rows-select-choosing-columns-and-slice-and-filter-choosing-rows" id="toc-arrange-ordering-rows-select-choosing-columns-and-slice-and-filter-choosing-rows" class="nav-link" data-scroll-target="#arrange-ordering-rows-select-choosing-columns-and-slice-and-filter-choosing-rows"> <span class="header-section-number">3.2</span> <code>arrange()</code> (Ordering Rows), <code>select()</code> (Choosing Columns), and <code>slice()</code> and <code>filter()</code> (Choosing Rows)</a>
   <ul class="collapse">
-  <li><a href="#arrange-ordering-rows" id="toc-arrange-ordering-rows" class="nav-link" data-scroll-target="#arrange-ordering-rows"> <span class="header-section-number">4.2.1</span> <code>arrange()</code>: Ordering Rows</a></li>
-  <li><a href="#select-choose-columns" id="toc-select-choose-columns" class="nav-link" data-scroll-target="#select-choose-columns"> <span class="header-section-number">4.2.2</span> <code>select()</code> Choose Columns</a></li>
-  <li><a href="#slice-and-filter-choose-rows" id="toc-slice-and-filter-choose-rows" class="nav-link" data-scroll-target="#slice-and-filter-choose-rows"> <span class="header-section-number">4.2.3</span> <code>slice()</code> and <code>filter()</code>: Choose Rows</a></li>
-  <li><a href="#exercise-3-2" id="toc-exercise-3-2" class="nav-link" data-scroll-target="#exercise-3-2"> <span class="header-section-number">4.2.4</span> Exercises</a></li>
+  <li><a href="#arrange-ordering-rows" id="toc-arrange-ordering-rows" class="nav-link" data-scroll-target="#arrange-ordering-rows"> <span class="header-section-number">3.2.1</span> <code>arrange()</code>: Ordering Rows</a></li>
+  <li><a href="#select-choose-columns" id="toc-select-choose-columns" class="nav-link" data-scroll-target="#select-choose-columns"> <span class="header-section-number">3.2.2</span> <code>select()</code> Choose Columns</a></li>
+  <li><a href="#slice-and-filter-choose-rows" id="toc-slice-and-filter-choose-rows" class="nav-link" data-scroll-target="#slice-and-filter-choose-rows"> <span class="header-section-number">3.2.3</span> <code>slice()</code> and <code>filter()</code>: Choose Rows</a></li>
+  <li><a href="#exercise-3-2" id="toc-exercise-3-2" class="nav-link" data-scroll-target="#exercise-3-2"> <span class="header-section-number">3.2.4</span> Exercises</a></li>
   </ul></li>
-  <li><a href="#summarise-and-group_by-create-summaries" id="toc-summarise-and-group_by-create-summaries" class="nav-link" data-scroll-target="#summarise-and-group_by-create-summaries"> <span class="header-section-number">4.3</span> <code>summarise()</code> and <code>group_by()</code>: Create Summaries</a>
+  <li><a href="#summarise-and-group_by-create-summaries" id="toc-summarise-and-group_by-create-summaries" class="nav-link" data-scroll-target="#summarise-and-group_by-create-summaries"> <span class="header-section-number">3.3</span> <code>summarise()</code> and <code>group_by()</code>: Create Summaries</a>
   <ul class="collapse">
-  <li><a href="#group_by-groups" id="toc-group_by-groups" class="nav-link" data-scroll-target="#group_by-groups"> <span class="header-section-number">4.3.1</span> <code>group_by()</code>: Groups</a></li>
-  <li><a href="#exercise-3-3" id="toc-exercise-3-3" class="nav-link" data-scroll-target="#exercise-3-3"> <span class="header-section-number">4.3.2</span> Exercises</a></li>
+  <li><a href="#group_by-groups" id="toc-group_by-groups" class="nav-link" data-scroll-target="#group_by-groups"> <span class="header-section-number">3.3.1</span> <code>group_by()</code>: Groups</a></li>
+  <li><a href="#exercise-3-3" id="toc-exercise-3-3" class="nav-link" data-scroll-target="#exercise-3-3"> <span class="header-section-number">3.3.2</span> Exercises</a></li>
   </ul></li>
-  <li><a href="#missing-values" id="toc-missing-values" class="nav-link" data-scroll-target="#missing-values"> <span class="header-section-number">4.4</span> Missing Values</a>
+  <li><a href="#missing-values" id="toc-missing-values" class="nav-link" data-scroll-target="#missing-values"> <span class="header-section-number">3.4</span> Missing Values</a>
   <ul class="collapse">
-  <li><a href="#exercise-3-4" id="toc-exercise-3-4" class="nav-link" data-scroll-target="#exercise-3-4"> <span class="header-section-number">4.4.1</span> Exercises</a></li>
-  <li><a href="#removing-missing-values" id="toc-removing-missing-values" class="nav-link" data-scroll-target="#removing-missing-values"> <span class="header-section-number">4.4.2</span> Removing Missing Values</a></li>
+  <li><a href="#exercise-3-4" id="toc-exercise-3-4" class="nav-link" data-scroll-target="#exercise-3-4"> <span class="header-section-number">3.4.1</span> Exercises</a></li>
+  <li><a href="#removing-missing-values" id="toc-removing-missing-values" class="nav-link" data-scroll-target="#removing-missing-values"> <span class="header-section-number">3.4.2</span> Removing Missing Values</a></li>
   </ul></li>
-  <li><a href="#more-about-the-pipe" id="toc-more-about-the-pipe" class="nav-link" data-scroll-target="#more-about-the-pipe"> <span class="header-section-number">4.5</span> More about the Pipe</a>
+  <li><a href="#more-about-the-pipe" id="toc-more-about-the-pipe" class="nav-link" data-scroll-target="#more-about-the-pipe"> <span class="header-section-number">3.5</span> More about the Pipe</a>
   <ul class="collapse">
-  <li><a href="#when-you-cant-use-the-pipe" id="toc-when-you-cant-use-the-pipe" class="nav-link" data-scroll-target="#when-you-cant-use-the-pipe"> <span class="header-section-number">4.5.1</span> When You Can’t Use the Pipe</a></li>
-  <li><a href="#exercise-3-4" id="toc-exercise-3-4" class="nav-link" data-scroll-target="#exercise-3-4"> <span class="header-section-number">4.5.2</span> Exercises</a></li>
+  <li><a href="#when-you-cant-use-the-pipe" id="toc-when-you-cant-use-the-pipe" class="nav-link" data-scroll-target="#when-you-cant-use-the-pipe"> <span class="header-section-number">3.5.1</span> When You Can’t Use the Pipe</a></li>
+  <li><a href="#exercise-3-4" id="toc-exercise-3-4" class="nav-link" data-scroll-target="#exercise-3-4"> <span class="header-section-number">3.5.2</span> Exercises</a></li>
   </ul></li>
-  <li><a href="#chapexercise-3" id="toc-chapexercise-3" class="nav-link" data-scroll-target="#chapexercise-3"> <span class="header-section-number">4.6</span> Chapter Exercises</a></li>
-  <li><a href="#solutions-3" id="toc-solutions-3" class="nav-link" data-scroll-target="#solutions-3"> <span class="header-section-number">4.7</span> Exercise Solutions</a>
+  <li><a href="#chapexercise-3" id="toc-chapexercise-3" class="nav-link" data-scroll-target="#chapexercise-3"> <span class="header-section-number">3.6</span> Chapter Exercises</a></li>
+  <li><a href="#solutions-3" id="toc-solutions-3" class="nav-link" data-scroll-target="#solutions-3"> <span class="header-section-number">3.7</span> Exercise Solutions</a>
   <ul class="collapse">
-  <li><a href="#mutate-s" id="toc-mutate-s" class="nav-link" data-scroll-target="#mutate-s"> <span class="header-section-number">4.7.1</span> <code>mutate()</code> S</a></li>
-  <li><a href="#arrange-select-.-s" id="toc-arrange-select-.-s" class="nav-link" data-scroll-target="#arrange-select-.-s"> <span class="header-section-number">4.7.2</span> <code>arrange()</code>, <code>select()</code>, …. S</a></li>
-  <li><a href="#summarise-and-group_by-s" id="toc-summarise-and-group_by-s" class="nav-link" data-scroll-target="#summarise-and-group_by-s"> <span class="header-section-number">4.7.3</span> <code>summarise()</code> and <code>group_by()</code> S</a></li>
-  <li><a href="#missing-values-s" id="toc-missing-values-s" class="nav-link" data-scroll-target="#missing-values-s"> <span class="header-section-number">4.7.4</span> Missing Values S</a></li>
-  <li><a href="#piping-s" id="toc-piping-s" class="nav-link" data-scroll-target="#piping-s"> <span class="header-section-number">4.7.5</span> Piping S</a></li>
-  <li><a href="#chapexercise-3-S" id="toc-chapexercise-3-S" class="nav-link" data-scroll-target="#chapexercise-3-S"> <span class="header-section-number">4.7.6</span> Chapter Exercises S</a></li>
+  <li><a href="#mutate-s" id="toc-mutate-s" class="nav-link" data-scroll-target="#mutate-s"> <span class="header-section-number">3.7.1</span> <code>mutate()</code> S</a></li>
+  <li><a href="#arrange-select-.-s" id="toc-arrange-select-.-s" class="nav-link" data-scroll-target="#arrange-select-.-s"> <span class="header-section-number">3.7.2</span> <code>arrange()</code>, <code>select()</code>, …. S</a></li>
+  <li><a href="#summarise-and-group_by-s" id="toc-summarise-and-group_by-s" class="nav-link" data-scroll-target="#summarise-and-group_by-s"> <span class="header-section-number">3.7.3</span> <code>summarise()</code> and <code>group_by()</code> S</a></li>
+  <li><a href="#missing-values-s" id="toc-missing-values-s" class="nav-link" data-scroll-target="#missing-values-s"> <span class="header-section-number">3.7.4</span> Missing Values S</a></li>
+  <li><a href="#piping-s" id="toc-piping-s" class="nav-link" data-scroll-target="#piping-s"> <span class="header-section-number">3.7.5</span> Piping S</a></li>
+  <li><a href="#chapexercise-3-S" id="toc-chapexercise-3-S" class="nav-link" data-scroll-target="#chapexercise-3-S"> <span class="header-section-number">3.7.6</span> Chapter Exercises S</a></li>
   </ul></li>
-  <li><a href="#rcode-3" id="toc-rcode-3" class="nav-link" data-scroll-target="#rcode-3"> <span class="header-section-number">4.8</span> Non-Exercise <code>R</code> Code</a></li>
+  <li><a href="#rcode-3" id="toc-rcode-3" class="nav-link" data-scroll-target="#rcode-3"> <span class="header-section-number">3.8</span> Non-Exercise <code>R</code> Code</a></li>
   </ul>
 </nav>
     </div>
@@ -321,7 +321,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span id="dplyr" class="quarto-section-identifier d-none d-lg-block"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Wrangling with <code>dplyr</code></span></span></h1>
+<h1 class="title"><span id="dplyr" class="quarto-section-identifier d-none d-lg-block"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Wrangling with <code>dplyr</code></span></span></h1>
 </div>
 
 
@@ -391,8 +391,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 </div>
 <p>There are many interesting and informative plots that we could make with either data set, but most require some data wrangling first. This chapter will provide the foundation for such wrangling skills.</p>
-<section id="mutate-create-variables" class="level2" data-number="4.1">
-<h2 data-number="4.1" class="anchored" data-anchor-id="mutate-create-variables"><span class="header-section-number">4.1</span> <code>mutate()</code>: Create Variables</h2>
+<section id="mutate-create-variables" class="level2" data-number="3.1">
+<h2 data-number="3.1" class="anchored" data-anchor-id="mutate-create-variables"><span class="header-section-number">3.1</span> <code>mutate()</code>: Create Variables</h2>
 <p>Sometimes, we will want to create a new variable that’s not in the data set, oftentimes using <code>if_else()</code>, <code>case_when()</code>, or basic algebraic operations on one or more of the columns already present in the data set.</p>
 <p><code>R</code> understands the following symbols:</p>
 <ul>
@@ -465,8 +465,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">ntotal =</span> nfemales <span class="sc">+</span> nmales) <span class="sc">|&gt;</span></span>
 <span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">percfemale =</span> <span class="dv">100</span> <span class="sc">*</span> nfemales <span class="sc">/</span> (nfemales <span class="sc">+</span> nmales))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<section id="if_else-and-case_when" class="level3" data-number="4.1.1">
-<h3 data-number="4.1.1" class="anchored" data-anchor-id="if_else-and-case_when"><span class="header-section-number">4.1.1</span> <code>if_else()</code> and <code>case_when()</code></h3>
+<section id="if_else-and-case_when" class="level3" data-number="3.1.1">
+<h3 data-number="3.1.1" class="anchored" data-anchor-id="if_else-and-case_when"><span class="header-section-number">3.1.1</span> <code>if_else()</code> and <code>case_when()</code></h3>
 <p>Suppose that you want to make a new variable that is conditional on another variable (or more than one variable) in the data set. Then we would typically use <code>mutate()</code> coupled with</p>
 <ul>
 <li><code>if_else()</code> if your new variable is created on only one condition</li>
@@ -533,8 +533,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a>                     percfemale <span class="sc">&gt;</span> <span class="dv">30</span> <span class="sc">&amp;</span> percfemale <span class="sc">&lt;</span> <span class="dv">70</span> <span class="sc">~</span> <span class="st">"none"</span>)) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="exercise-3-1" class="level3" data-number="4.1.2">
-<h3 data-number="4.1.2" class="anchored" data-anchor-id="exercise-3-1"><span class="header-section-number">4.1.2</span> Exercises</h3>
+<section id="exercise-3-1" class="level3" data-number="3.1.2">
+<h3 data-number="3.1.2" class="anchored" data-anchor-id="exercise-3-1"><span class="header-section-number">3.1.2</span> Exercises</h3>
 <p>Exercises marked with an * indicate that the exercise has a solution at the end of the chapter at @ref(solutions-3).</p>
 <ol type="1">
 <li><p>Do you think it is ethical to exclude non-binary genders from analyses and graphs in the slumajors data set? Why or why not?</p></li>
@@ -546,11 +546,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ol>
 </section>
 </section>
-<section id="arrange-ordering-rows-select-choosing-columns-and-slice-and-filter-choosing-rows" class="level2" data-number="4.2">
-<h2 data-number="4.2" class="anchored" data-anchor-id="arrange-ordering-rows-select-choosing-columns-and-slice-and-filter-choosing-rows"><span class="header-section-number">4.2</span> <code>arrange()</code> (Ordering Rows), <code>select()</code> (Choosing Columns), and <code>slice()</code> and <code>filter()</code> (Choosing Rows)</h2>
+<section id="arrange-ordering-rows-select-choosing-columns-and-slice-and-filter-choosing-rows" class="level2" data-number="3.2">
+<h2 data-number="3.2" class="anchored" data-anchor-id="arrange-ordering-rows-select-choosing-columns-and-slice-and-filter-choosing-rows"><span class="header-section-number">3.2</span> <code>arrange()</code> (Ordering Rows), <code>select()</code> (Choosing Columns), and <code>slice()</code> and <code>filter()</code> (Choosing Rows)</h2>
 <p><code>arrange()</code> is used to order rows in the data set according to some variable, <code>select()</code> is used to choose columns to keep (or get rid of) and <code>filter()</code> is used to keep (or get rid of) only some of the observations (rows).</p>
-<section id="arrange-ordering-rows" class="level3" data-number="4.2.1">
-<h3 data-number="4.2.1" class="anchored" data-anchor-id="arrange-ordering-rows"><span class="header-section-number">4.2.1</span> <code>arrange()</code>: Ordering Rows</h3>
+<section id="arrange-ordering-rows" class="level3" data-number="3.2.1">
+<h3 data-number="3.2.1" class="anchored" data-anchor-id="arrange-ordering-rows"><span class="header-section-number">3.2.1</span> <code>arrange()</code>: Ordering Rows</h3>
 <p>The <code>arrange()</code> function allows us to order rows in the data set using one or more variables. The function is very straightforward. Suppose that we want to order the rows so that the majors with the lowest <code>percfemale</code> are first:</p>
 <div class="cell" data-appendix="true">
 <div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>slumajors_df <span class="sc">|&gt;</span> <span class="fu">arrange</span>(percfemale)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -595,8 +595,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <p>What is the major with the highest percentage of women graduates?</p>
 </section>
-<section id="select-choose-columns" class="level3" data-number="4.2.2">
-<h3 data-number="4.2.2" class="anchored" data-anchor-id="select-choose-columns"><span class="header-section-number">4.2.2</span> <code>select()</code> Choose Columns</h3>
+<section id="select-choose-columns" class="level3" data-number="3.2.2">
+<h3 data-number="3.2.2" class="anchored" data-anchor-id="select-choose-columns"><span class="header-section-number">3.2.2</span> <code>select()</code> Choose Columns</h3>
 <p>We might also be interested in getting rid of some of the columns in a data set. One reason to do this is if there are an overwhelming (30+) columns in a data set, but we know that we just need a few of them. The easiest way to use <code>select()</code> is to just input the names of the columns that you want to keep. For example, if we were only interested in majors and their totals, we could do</p>
 <div class="cell" data-appendix="true">
 <div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>slumajors_df <span class="sc">|&gt;</span> <span class="fu">select</span>(Major, ntotal)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -662,8 +662,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <p>Verify that <code>propfemale</code> now appears first in the data set. <code>everything()</code> tacks on all of the remaining variables after <code>propfemale</code>. So, in this case, it’s a useful way to re-order the columns so that what you might be most interested in appears first.</p>
 </section>
-<section id="slice-and-filter-choose-rows" class="level3" data-number="4.2.3">
-<h3 data-number="4.2.3" class="anchored" data-anchor-id="slice-and-filter-choose-rows"><span class="header-section-number">4.2.3</span> <code>slice()</code> and <code>filter()</code>: Choose Rows</h3>
+<section id="slice-and-filter-choose-rows" class="level3" data-number="3.2.3">
+<h3 data-number="3.2.3" class="anchored" data-anchor-id="slice-and-filter-choose-rows"><span class="header-section-number">3.2.3</span> <code>slice()</code> and <code>filter()</code>: Choose Rows</h3>
 <p>Instead of choosing which columns to keep, we can also choose certain rows to keep using either <code>slice()</code> or <code>filter()</code>.</p>
 <p><code>slice()</code> allows you to specify the <strong>row numbers</strong> corresponding to rows that you want to keep. For example, suppose that we only want to keep the rows with the five most popular majors:</p>
 <div class="cell" data-appendix="true">
@@ -730,8 +730,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a>babynames <span class="sc">|&gt;</span> <span class="fu">filter</span>(sex <span class="sc">==</span> <span class="st">"F"</span> <span class="sc">&amp;</span> name <span class="sc">==</span> <span class="st">"Mary"</span> <span class="sc">&amp;</span> prop <span class="sc">&gt;</span> <span class="fl">0.05</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="exercise-3-2" class="level3" data-number="4.2.4">
-<h3 data-number="4.2.4" class="anchored" data-anchor-id="exercise-3-2"><span class="header-section-number">4.2.4</span> Exercises</h3>
+<section id="exercise-3-2" class="level3" data-number="3.2.4">
+<h3 data-number="3.2.4" class="anchored" data-anchor-id="exercise-3-2"><span class="header-section-number">3.2.4</span> Exercises</h3>
 <p>Exercises marked with an * indicate that the exercise has a solution at the end of the chapter at @ref(solutions-3).</p>
 <ol type="1">
 <li><p>What happens when you <code>arrange()</code> by one of the categorical variables in the <code>slumajors_df</code> data set?</p></li>
@@ -741,8 +741,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ol>
 </section>
 </section>
-<section id="summarise-and-group_by-create-summaries" class="level2" data-number="4.3">
-<h2 data-number="4.3" class="anchored" data-anchor-id="summarise-and-group_by-create-summaries"><span class="header-section-number">4.3</span> <code>summarise()</code> and <code>group_by()</code>: Create Summaries</h2>
+<section id="summarise-and-group_by-create-summaries" class="level2" data-number="3.3">
+<h2 data-number="3.3" class="anchored" data-anchor-id="summarise-and-group_by-create-summaries"><span class="header-section-number">3.3</span> <code>summarise()</code> and <code>group_by()</code>: Create Summaries</h2>
 <p>The <code>summarise()</code> function is useful to get summaries from the data. For example, suppose that we want to know the average major size at SLU across the five year span or the total number of majors across those five years. Then we can use <code>summarise()</code> and a summary function, like <code>mean()</code>, <code>sum()</code>, <code>median()</code>, <code>max()</code>, <code>min()</code>, <code>n()</code>, etc. You’ll notice that the format of <code>summarise()</code> is extremely similar to the format of <code>mutate()</code>. Using the <code>slumajors_df</code> data again just for one quick example,</p>
 <div class="cell" data-appendix="true">
 <div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>slumajors_df <span class="sc">|&gt;</span></span>
@@ -755,8 +755,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 1           124.      3347</code></pre>
 </div>
 </div>
-<section id="group_by-groups" class="level3" data-number="4.3.1">
-<h3 data-number="4.3.1" class="anchored" data-anchor-id="group_by-groups"><span class="header-section-number">4.3.1</span> <code>group_by()</code>: Groups</h3>
+<section id="group_by-groups" class="level3" data-number="3.3.1">
+<h3 data-number="3.3.1" class="anchored" data-anchor-id="group_by-groups"><span class="header-section-number">3.3.1</span> <code>group_by()</code>: Groups</h3>
 <p><code>summarise()</code> is often most useful when paired with a <code>group_by()</code> statement. Doing so allows us to get summaries across different groups.</p>
 <p>For example, suppose that you wanted the total number of registered births per year in the <code>babynames</code> data set:</p>
 <div class="cell" data-appendix="true">
@@ -813,8 +813,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 </div>
 </section>
-<section id="exercise-3-3" class="level3" data-number="4.3.2">
-<h3 data-number="4.3.2" class="anchored" data-anchor-id="exercise-3-3"><span class="header-section-number">4.3.2</span> Exercises</h3>
+<section id="exercise-3-3" class="level3" data-number="3.3.2">
+<h3 data-number="3.3.2" class="anchored" data-anchor-id="exercise-3-3"><span class="header-section-number">3.3.2</span> Exercises</h3>
 <p>Exercises marked with an * indicate that the exercise has a solution at the end of the chapter at @ref(solutions-3).</p>
 <ol type="1">
 <li>Compare <code>summarise()</code> with <code>mutate()</code> using the following code. What’s the difference between the two functions?</li>
@@ -882,8 +882,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 </section>
 </section>
-<section id="missing-values" class="level2" data-number="4.4">
-<h2 data-number="4.4" class="anchored" data-anchor-id="missing-values"><span class="header-section-number">4.4</span> Missing Values</h2>
+<section id="missing-values" class="level2" data-number="3.4">
+<h2 data-number="3.4" class="anchored" data-anchor-id="missing-values"><span class="header-section-number">3.4</span> Missing Values</h2>
 <p>Both of the data sets that we’ve worked with are nice in that they do not have any missing values. We’ll see plenty of examples of data sets with missing values later, so we should examine how the various functions that we’ve talked about so far tackle missing values.</p>
 <p>Missing values in <code>R</code> are denoted with <code>NA</code> for “Not Available.” Run the following code to create a toy data set with some missing values so that we can see how the various functions we’ve used so far deal with <code>NA</code> values.</p>
 <div class="cell" data-appendix="true">
@@ -901,8 +901,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 4     7     2 &lt;NA&gt; </code></pre>
 </div>
 </div>
-<section id="exercise-3-4" class="level3" data-number="4.4.1">
-<h3 data-number="4.4.1" class="anchored" data-anchor-id="exercise-3-4"><span class="header-section-number">4.4.1</span> Exercises</h3>
+<section id="exercise-3-4" class="level3" data-number="3.4.1">
+<h3 data-number="3.4.1" class="anchored" data-anchor-id="exercise-3-4"><span class="header-section-number">3.4.1</span> Exercises</h3>
 <p>Exercises marked with an * indicate that the exercise has a solution at the end of the chapter at @ref(solutions-3).</p>
 <ol type="1">
 <li><p>* <code>mutate()</code>. Try to create a new variable with <code>mutate()</code> involving <code>x</code>. What does <code>R</code> do with the missing value?</p></li>
@@ -912,8 +912,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><p><code>group_by()</code> and <code>summarise()</code>. To your statement in 4, add a <code>group_by(z)</code> statement before your <code>summarise()</code>. What does <code>R</code> return now?</p></li>
 </ol>
 </section>
-<section id="removing-missing-values" class="level3" data-number="4.4.2">
-<h3 data-number="4.4.2" class="anchored" data-anchor-id="removing-missing-values"><span class="header-section-number">4.4.2</span> Removing Missing Values</h3>
+<section id="removing-missing-values" class="level3" data-number="3.4.2">
+<h3 data-number="3.4.2" class="anchored" data-anchor-id="removing-missing-values"><span class="header-section-number">3.4.2</span> Removing Missing Values</h3>
 <p>Missing values should not be removed without carefully examination and a note of what the consequences might be (e.g.&nbsp;why are these values missing?). We have a toy data set that is meaningless, so we aren’t asking those questions now, but we will for any data set that does have missing values!</p>
 <p><strong>If</strong> we have investigated the missing values and are comfortable with removing them, many functions that we would use in <code>summarise()</code> have an <code>na.rm</code> argument that we can set to <code>TRUE</code> to tell <code>summarise()</code> to remove any <code>NA</code>s before taking the <code>mean()</code>, <code>median()</code>, <code>max()</code>, etc.</p>
 <div class="cell" data-appendix="true">
@@ -965,8 +965,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>which says to “keep anything that does not have a missing x value” (recall that the <code>!</code> means “not”).</p>
 </section>
 </section>
-<section id="more-about-the-pipe" class="level2" data-number="4.5">
-<h2 data-number="4.5" class="anchored" data-anchor-id="more-about-the-pipe"><span class="header-section-number">4.5</span> More about the Pipe</h2>
+<section id="more-about-the-pipe" class="level2" data-number="3.5">
+<h2 data-number="3.5" class="anchored" data-anchor-id="more-about-the-pipe"><span class="header-section-number">3.5</span> More about the Pipe</h2>
 <p>We are jumping straight into using piping, but we do want to have an appreciation on how terrible life would be without it. What piping does is make whatever is given before the <code>|&gt;</code> pipe the first argument of whatever function follows the <code>|&gt;</code>. So</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb57"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb57-1"><a href="#cb57-1" aria-hidden="true" tabindex="-1"></a>df <span class="sc">|&gt;</span> <span class="fu">mutate</span>(<span class="at">x =</span> y <span class="sc">+</span> <span class="dv">4</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -1062,8 +1062,8 @@ date (1): release_date2
 <span id="cb70-3"><a href="#cb70-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">avg_med_time =</span> <span class="fu">median</span>(median_playtime, <span class="at">na.rm =</span> <span class="cn">TRUE</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>and we obtain the same result without the <code>|&gt;</code> pipe. So, why use the pipe? Compare the code the uses the pipe operator to find the average median playtime to the code that doesn’t. Which is easier to read? Which do you think is easier to write? The example shows that, for our purposes, the pipe is most useful in aiding the readability of our code. It’s a lot easier to see what’s happening in the code chunk with the pipes than it is in the previous code chunk without the pipe because, with the pipe, we can read the code from left to right and top to bottom. Without the pipe, we need to read the code from the “inside to the outside”, which is much more challenging.</p>
-<section id="when-you-cant-use-the-pipe" class="level3" data-number="4.5.1">
-<h3 data-number="4.5.1" class="anchored" data-anchor-id="when-you-cant-use-the-pipe"><span class="header-section-number">4.5.1</span> When You Can’t Use the Pipe</h3>
+<section id="when-you-cant-use-the-pipe" class="level3" data-number="3.5.1">
+<h3 data-number="3.5.1" class="anchored" data-anchor-id="when-you-cant-use-the-pipe"><span class="header-section-number">3.5.1</span> When You Can’t Use the Pipe</h3>
 <p>So, the pipe is a convenient way to put what precedes the pipe as the first argument to the function that follows the pipe. It’s important to understand this as you learn more about <code>R</code> because, while the functions in <code>tidyverse</code> are purposefully made to make good use of the pipe, not all functions in <code>R</code> utilize the pipe. Most of the functions in the <code>tidyverse</code> have a first argument that is a data set (which is why we can use pipes consecutively), but this isn’t the case with all <code>R</code> functions.</p>
 <p>For example, if you have taken STAT 213, you’ve used <code>lm()</code> to fit many different types of linear models. If you haven’t taken STAT 213, <code>lm(response ~ explanatory, data = name_of_data_set)</code> stands for “linear model” and can be used to fit the simple linear regression model that you learned about in STAT 113. You might expect something like this to work:</p>
 <div class="cell">
@@ -1082,8 +1082,8 @@ date (1): release_date2
 <p>which doesn’t work because the arguments to the function are mixed up (the formula should appear first and the data set should appear second).</p>
 <p>For one final note about the pipe, note that the pipe operator <code>|&gt;</code> is relatively new. Previously, the primary pipe operator used was <code>%&gt;%</code> and came from the <code>magrittr</code> package. For almost all cases, the two operators are equivalent. However, when scanning the Internet for help with code, you will probably see <code>|&gt;</code> used in many of people’s responses on sites like StackOverflow.</p>
 </section>
-<section id="exercise-3-4" class="level3" data-number="4.5.2">
-<h3 data-number="4.5.2" class="anchored" data-anchor-id="exercise-3-4"><span class="header-section-number">4.5.2</span> Exercises</h3>
+<section id="exercise-3-4" class="level3" data-number="3.5.2">
+<h3 data-number="3.5.2" class="anchored" data-anchor-id="exercise-3-4"><span class="header-section-number">3.5.2</span> Exercises</h3>
 <p>Exercises marked with an * indicate that the exercise has a solution at the end of the chapter at @ref(solutions-3).</p>
 <ol type="1">
 <li>* Recode the following to look cleaner by using the pipe <code>|&gt;</code>.</li>
@@ -1140,8 +1140,8 @@ numeric or logical: returning NA</code></pre>
 </div>
 </section>
 </section>
-<section id="chapexercise-3" class="level2" data-number="4.6">
-<h2 data-number="4.6" class="anchored" data-anchor-id="chapexercise-3"><span class="header-section-number">4.6</span> Chapter Exercises</h2>
+<section id="chapexercise-3" class="level2" data-number="3.6">
+<h2 data-number="3.6" class="anchored" data-anchor-id="chapexercise-3"><span class="header-section-number">3.6</span> Chapter Exercises</h2>
 <ol type="1">
 <li><p>We found both in the SLU majors data set and in the FiveThirtyEight majors data set that Statistics has a higher proportion of women than almost all other STEM fields. Read the first two sections of <a href="https://www.washingtonpost.com/local/women-flocking-to-statistics-the-new-hot-high-tech-field-of-data-science/2014/12/19/f3e2e486-62ed-11e4-9fdc-d43b053ecb4d_story.html" target="_blank">this article</a>. Write 2-3 sentences about the article’s reasoning of why there are more women in statistics than in other STEM fields.</p></li>
 <li><p>* a. Choose 5 names that interest you and create a new data set that only has data on those 5 names.</p></li>
@@ -1181,10 +1181,10 @@ numeric or logical: returning NA</code></pre>
 <li>Pose a question about the <code>babynames</code> data set and then answer your question with either a graphic or a data summary.</li>
 </ol>
 </section>
-<section id="solutions-3" class="level2" data-number="4.7">
-<h2 data-number="4.7" class="anchored" data-anchor-id="solutions-3"><span class="header-section-number">4.7</span> Exercise Solutions</h2>
-<section id="mutate-s" class="level3" data-number="4.7.1">
-<h3 data-number="4.7.1" class="anchored" data-anchor-id="mutate-s"><span class="header-section-number">4.7.1</span> <code>mutate()</code> S</h3>
+<section id="solutions-3" class="level2" data-number="3.7">
+<h2 data-number="3.7" class="anchored" data-anchor-id="solutions-3"><span class="header-section-number">3.7</span> Exercise Solutions</h2>
+<section id="mutate-s" class="level3" data-number="3.7.1">
+<h3 data-number="3.7.1" class="anchored" data-anchor-id="mutate-s"><span class="header-section-number">3.7.1</span> <code>mutate()</code> S</h3>
 <ol start="2" type="1">
 <li>* Create a new variable that is called <code>major_size</code> and is “large” when the total number of majors is 100 or more and “small” when the total number of majors is less than 100.</li>
 </ol>
@@ -1256,8 +1256,8 @@ numeric or logical: returning NA</code></pre>
 <p>For overlapping cases, case_when prioritizes the first case given.</p>
 <p>For non-coverage, any observation that is not covered is given an NA.</p>
 </section>
-<section id="arrange-select-.-s" class="level3" data-number="4.7.2">
-<h3 data-number="4.7.2" class="anchored" data-anchor-id="arrange-select-.-s"><span class="header-section-number">4.7.2</span> <code>arrange()</code>, <code>select()</code>, …. S</h3>
+<section id="arrange-select-.-s" class="level3" data-number="3.7.2">
+<h3 data-number="3.7.2" class="anchored" data-anchor-id="arrange-select-.-s"><span class="header-section-number">3.7.2</span> <code>arrange()</code>, <code>select()</code>, …. S</h3>
 <ol start="2" type="1">
 <li>* Use <code>select()</code> and <code>everything()</code> to put the <code>large_majority</code> variable as the first column in the <code>slumajors_df</code> data set.</li>
 </ol>
@@ -1305,8 +1305,8 @@ numeric or logical: returning NA</code></pre>
 </div>
 </div>
 </section>
-<section id="summarise-and-group_by-s" class="level3" data-number="4.7.3">
-<h3 data-number="4.7.3" class="anchored" data-anchor-id="summarise-and-group_by-s"><span class="header-section-number">4.7.3</span> <code>summarise()</code> and <code>group_by()</code> S</h3>
+<section id="summarise-and-group_by-s" class="level3" data-number="3.7.3">
+<h3 data-number="3.7.3" class="anchored" data-anchor-id="summarise-and-group_by-s"><span class="header-section-number">3.7.3</span> <code>summarise()</code> and <code>group_by()</code> S</h3>
 <ol start="3" type="1">
 <li>* Create a data set that has a column for <code>name</code> and a column that shows the total number of births for that name across all years and both sexes.</li>
 </ol>
@@ -1409,8 +1409,8 @@ numeric or logical: returning NA</code></pre>
 </div>
 </div>
 </section>
-<section id="missing-values-s" class="level3" data-number="4.7.4">
-<h3 data-number="4.7.4" class="anchored" data-anchor-id="missing-values-s"><span class="header-section-number">4.7.4</span> Missing Values S</h3>
+<section id="missing-values-s" class="level3" data-number="3.7.4">
+<h3 data-number="3.7.4" class="anchored" data-anchor-id="missing-values-s"><span class="header-section-number">3.7.4</span> Missing Values S</h3>
 <ol type="1">
 <li>* <code>mutate()</code>. Try to create a new variable with <code>mutate()</code> involving <code>x</code>. What does <code>R</code> do with the missing value?</li>
 </ol>
@@ -1428,8 +1428,8 @@ numeric or logical: returning NA</code></pre>
 </div>
 <p><code>R</code> puts another <code>NA</code> in place of x times y for the observation with the missing x.</p>
 </section>
-<section id="piping-s" class="level3" data-number="4.7.5">
-<h3 data-number="4.7.5" class="anchored" data-anchor-id="piping-s"><span class="header-section-number">4.7.5</span> Piping S</h3>
+<section id="piping-s" class="level3" data-number="3.7.5">
+<h3 data-number="3.7.5" class="anchored" data-anchor-id="piping-s"><span class="header-section-number">3.7.5</span> Piping S</h3>
 <ol type="1">
 <li>* Recode the following to look cleaner by using the pipe <code>|&gt;</code>:</li>
 </ol>
@@ -1464,8 +1464,8 @@ date (1): Start
 </div>
 </div>
 </section>
-<section id="chapexercise-3-S" class="level3" data-number="4.7.6">
-<h3 data-number="4.7.6" class="anchored" data-anchor-id="chapexercise-3-S"><span class="header-section-number">4.7.6</span> Chapter Exercises S</h3>
+<section id="chapexercise-3-S" class="level3" data-number="3.7.6">
+<h3 data-number="3.7.6" class="anchored" data-anchor-id="chapexercise-3-S"><span class="header-section-number">3.7.6</span> Chapter Exercises S</h3>
 <ol start="2" type="1">
 <li>* a. Choose 5 names that interest you and create a new data set that only has data on those 5 names.</li>
 </ol>
@@ -1533,8 +1533,8 @@ date (1): Start
 <p>This can sometimes be okay if you’re sure that the variables you are removing won’t ever be used.</p>
 </section>
 </section>
-<section id="rcode-3" class="level2" data-number="4.8">
-<h2 data-number="4.8" class="anchored" data-anchor-id="rcode-3"><span class="header-section-number">4.8</span> Non-Exercise <code>R</code> Code</h2>
+<section id="rcode-3" class="level2" data-number="3.8">
+<h2 data-number="3.8" class="anchored" data-anchor-id="rcode-3"><span class="header-section-number">3.8</span> Non-Exercise <code>R</code> Code</h2>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb117"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb117-1"><a href="#cb117-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(babynames)</span>
 <span id="cb117-2"><a href="#cb117-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(babynames)</span>
@@ -1718,19 +1718,19 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
       <a href="./02-ggplot2.html" class="pagination-link">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Plotting with <code>ggplot2</code></span></span>
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Plotting with <code>ggplot2</code></span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
       <a href="./05-comm.html" class="pagination-link">
-        <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Communication with <code>Quarto</code></span></span> <i class="bi bi-arrow-right-short"></i>
+        <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Communication with <code>Quarto</code></span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
 </div> <!-- /content -->
 <footer class="footer">
   <div class="nav-footer">
-    <div class="nav-footer-left">Course Materials were written by Matt Higham for STAT/DATA 234 at St.&nbsp;Lawrence University</div>   
+    <div class="nav-footer-left">Course Materials were written by Matt Higham for STAT/DATA 234 at St.&nbsp;Lawrence University.</div>   
     <div class="nav-footer-right">This book was built with <a href="https://quarto.org/">Quarto</a>.</div>
   </div>
 </footer>

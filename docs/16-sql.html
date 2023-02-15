@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>DATA / STAT 234 - 17&nbsp; Introduction to SQL with dbplyr</title>
+<title>DATA / STAT 234 - 16&nbsp; Introduction to SQL with dbplyr</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -127,7 +127,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <header id="quarto-header" class="headroom fixed-top">
   <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
     <div class="container-fluid d-flex justify-content-between">
-      <h1 class="quarto-secondary-nav-title"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Introduction to SQL with <code>dbplyr</code></span></h1>
+      <h1 class="quarto-secondary-nav-title"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Introduction to SQL with <code>dbplyr</code></span></h1>
       <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
         <i class="bi bi-chevron-right"></i>
       </button>
@@ -150,6 +150,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       </div>
     <div class="sidebar-menu-container"> 
     <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">Syllabus and Course Information</a>
+  </div>
+</li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">The Core</a>
@@ -160,32 +165,27 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./index.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Syllabus and Course Information</span></a>
+  <a href="./01-intro.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Getting Started with <code>R</code> and <code>R Studio</code></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./01-intro.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Getting Started with <code>R</code> and <code>R Studio</code></span></a>
+  <a href="./02-ggplot2.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Plotting with <code>ggplot2</code></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./02-ggplot2.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Plotting with <code>ggplot2</code></span></a>
+  <a href="./03-dplyr.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Wrangling with <code>dplyr</code></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./03-dplyr.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Wrangling with <code>dplyr</code></span></a>
+  <a href="./05-comm.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Communication with <code>Quarto</code></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./05-comm.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Communication with <code>Quarto</code></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./14-workflow.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Workflow and Other Skills</span></a>
+  <a href="./14-workflow.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Workflow and Other Skills</span></a>
   </div>
 </li>
       </ul>
@@ -200,32 +200,32 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./04-tidyr.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Tidying with <code>tidyr</code></span></a>
+  <a href="./04-tidyr.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Tidying with <code>tidyr</code></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./06-basics.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Coding in Base <code>R</code></span></a>
+  <a href="./06-basics.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Coding in Base <code>R</code></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./07-forcats.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Factors with <code>forcats</code></span></a>
+  <a href="./07-forcats.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Factors with <code>forcats</code></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./09-ethics.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Data Ethics</span></a>
+  <a href="./09-ethics.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Data Ethics</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./08-import.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Data Import</span></a>
+  <a href="./08-import.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Data Import</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./10-merging.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Merging with <code>dplyr</code></span></a>
+  <a href="./10-merging.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Merging with <code>dplyr</code></span></a>
   </div>
 </li>
       </ul>
@@ -240,27 +240,27 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./11-lubridate.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Dates with <code>lubridate</code></span></a>
+  <a href="./11-lubridate.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Dates with <code>lubridate</code></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./12-stringr.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Text Data with <code>tidytext</code> and <code>stringr</code></span></a>
+  <a href="./12-stringr.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Text Data with <code>tidytext</code> and <code>stringr</code></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./13-knn.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Predictive Modeling with knn</span></a>
+  <a href="./13-knn.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Predictive Modeling with knn</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./15-connections.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Connections to STAT 113, STAT 213, and CS 140</span></a>
+  <a href="./15-connections.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Connections to STAT 113, STAT 213, and CS 140</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./16-sql.html" class="sidebar-item-text sidebar-link active"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Introduction to SQL with <code>dbplyr</code></span></a>
+  <a href="./16-sql.html" class="sidebar-item-text sidebar-link active"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Introduction to SQL with <code>dbplyr</code></span></a>
   </div>
 </li>
       </ul>
@@ -274,27 +274,27 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#what-is-a-database" id="toc-what-is-a-database" class="nav-link active" data-scroll-target="#what-is-a-database"> <span class="header-section-number">17.1</span> What is a Database</a>
+  <li><a href="#what-is-a-database" id="toc-what-is-a-database" class="nav-link active" data-scroll-target="#what-is-a-database"> <span class="header-section-number">16.1</span> What is a Database</a>
   <ul class="collapse">
-  <li><a href="#exercise-16-1" id="toc-exercise-16-1" class="nav-link" data-scroll-target="#exercise-16-1"> <span class="header-section-number">17.1.1</span> Exercises</a></li>
+  <li><a href="#exercise-16-1" id="toc-exercise-16-1" class="nav-link" data-scroll-target="#exercise-16-1"> <span class="header-section-number">16.1.1</span> Exercises</a></li>
   </ul></li>
-  <li><a href="#dbplyr-a-database-version-of-dplyr" id="toc-dbplyr-a-database-version-of-dplyr" class="nav-link" data-scroll-target="#dbplyr-a-database-version-of-dplyr"> <span class="header-section-number">17.2</span> <code>dbplyr</code>: A Database Version of <code>dplyr</code></a>
+  <li><a href="#dbplyr-a-database-version-of-dplyr" id="toc-dbplyr-a-database-version-of-dplyr" class="nav-link" data-scroll-target="#dbplyr-a-database-version-of-dplyr"> <span class="header-section-number">16.2</span> <code>dbplyr</code>: A Database Version of <code>dplyr</code></a>
   <ul class="collapse">
-  <li><a href="#exercise-16-2" id="toc-exercise-16-2" class="nav-link" data-scroll-target="#exercise-16-2"> <span class="header-section-number">17.2.1</span> Exercises</a></li>
+  <li><a href="#exercise-16-2" id="toc-exercise-16-2" class="nav-link" data-scroll-target="#exercise-16-2"> <span class="header-section-number">16.2.1</span> Exercises</a></li>
   </ul></li>
-  <li><a href="#sql" id="toc-sql" class="nav-link" data-scroll-target="#sql"> <span class="header-section-number">17.3</span> SQL</a>
+  <li><a href="#sql" id="toc-sql" class="nav-link" data-scroll-target="#sql"> <span class="header-section-number">16.3</span> SQL</a>
   <ul class="collapse">
-  <li><a href="#exercise-16-3" id="toc-exercise-16-3" class="nav-link" data-scroll-target="#exercise-16-3"> <span class="header-section-number">17.3.1</span> Exercises</a></li>
+  <li><a href="#exercise-16-3" id="toc-exercise-16-3" class="nav-link" data-scroll-target="#exercise-16-3"> <span class="header-section-number">16.3.1</span> Exercises</a></li>
   </ul></li>
-  <li><a href="#chapexercise-16" id="toc-chapexercise-16" class="nav-link" data-scroll-target="#chapexercise-16"> <span class="header-section-number">17.4</span> Chapter Exercises</a></li>
-  <li><a href="#solutions-16" id="toc-solutions-16" class="nav-link" data-scroll-target="#solutions-16"> <span class="header-section-number">17.5</span> Exercise Solutions</a>
+  <li><a href="#chapexercise-16" id="toc-chapexercise-16" class="nav-link" data-scroll-target="#chapexercise-16"> <span class="header-section-number">16.4</span> Chapter Exercises</a></li>
+  <li><a href="#solutions-16" id="toc-solutions-16" class="nav-link" data-scroll-target="#solutions-16"> <span class="header-section-number">16.5</span> Exercise Solutions</a>
   <ul class="collapse">
-  <li><a href="#what-is-a-database-s" id="toc-what-is-a-database-s" class="nav-link" data-scroll-target="#what-is-a-database-s"> <span class="header-section-number">17.5.1</span> What is a Database S</a></li>
-  <li><a href="#dbplyr-a-database-version-of-dplyr-s" id="toc-dbplyr-a-database-version-of-dplyr-s" class="nav-link" data-scroll-target="#dbplyr-a-database-version-of-dplyr-s"> <span class="header-section-number">17.5.2</span> <code>dbplyr</code>: A Database Version of <code>dplyr</code> S</a></li>
-  <li><a href="#sql-s" id="toc-sql-s" class="nav-link" data-scroll-target="#sql-s"> <span class="header-section-number">17.5.3</span> SQL S</a></li>
-  <li><a href="#chapexercise-16-S" id="toc-chapexercise-16-S" class="nav-link" data-scroll-target="#chapexercise-16-S"> <span class="header-section-number">17.5.4</span> Chapter Exercises S</a></li>
+  <li><a href="#what-is-a-database-s" id="toc-what-is-a-database-s" class="nav-link" data-scroll-target="#what-is-a-database-s"> <span class="header-section-number">16.5.1</span> What is a Database S</a></li>
+  <li><a href="#dbplyr-a-database-version-of-dplyr-s" id="toc-dbplyr-a-database-version-of-dplyr-s" class="nav-link" data-scroll-target="#dbplyr-a-database-version-of-dplyr-s"> <span class="header-section-number">16.5.2</span> <code>dbplyr</code>: A Database Version of <code>dplyr</code> S</a></li>
+  <li><a href="#sql-s" id="toc-sql-s" class="nav-link" data-scroll-target="#sql-s"> <span class="header-section-number">16.5.3</span> SQL S</a></li>
+  <li><a href="#chapexercise-16-S" id="toc-chapexercise-16-S" class="nav-link" data-scroll-target="#chapexercise-16-S"> <span class="header-section-number">16.5.4</span> Chapter Exercises S</a></li>
   </ul></li>
-  <li><a href="#rcode-16" id="toc-rcode-16" class="nav-link" data-scroll-target="#rcode-16"> <span class="header-section-number">17.6</span> Non-Exercise <code>R</code> Code</a></li>
+  <li><a href="#rcode-16" id="toc-rcode-16" class="nav-link" data-scroll-target="#rcode-16"> <span class="header-section-number">16.6</span> Non-Exercise <code>R</code> Code</a></li>
   </ul>
 </nav>
     </div>
@@ -303,7 +303,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title d-none d-lg-block"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Introduction to SQL with <code>dbplyr</code></span></h1>
+<h1 class="title"><span id="sql" class="quarto-section-identifier d-none d-lg-block"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Introduction to SQL with <code>dbplyr</code></span></span></h1>
 </div>
 
 
@@ -324,8 +324,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>draw parallels between <code>dplyr</code> functions and the syntax used in <code>SQL</code>.</li>
 </ul>
 <p>All of the <code>dplyr</code> functions we’ve used (both the ones from early in the semester and from the <code>xxxx_join()</code> family more recently) have corresponding components in <code>SQL</code>. <code>SQL</code> stands for Structured Query Language and is a very common language used with databases. Compared to <code>dplyr</code>, in general, <code>SQL</code> code is much harder to read, as SQL isn’t designed specifically for data analysis like <code>dplyr</code> is. In this section, we will introduce databases and give a brief introduction to <code>SQL</code> for analyzing data from a database.</p>
-<section id="what-is-a-database" class="level2" data-number="17.1">
-<h2 data-number="17.1" class="anchored" data-anchor-id="what-is-a-database"><span class="header-section-number">17.1</span> What is a Database</h2>
+<section id="what-is-a-database" class="level2" data-number="16.1">
+<h2 data-number="16.1" class="anchored" data-anchor-id="what-is-a-database"><span class="header-section-number">16.1</span> What is a Database</h2>
 <p>The <em>R for Data Science</em> textbook defines a database as “a collection of data frames,” each called a <strong>database table</strong>. There a few key differences between a data frame (what we’ve been using the entire semester) and a database table. They are summarised from <em>R for Data Science</em> here as:</p>
 <ul>
 <li>a database table can be larger and is stored on disk while a data frame is stored in memory so their size is more limited.</li>
@@ -352,7 +352,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="cell" data-appendix="true">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>con</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
-<pre><code>&lt;duckdb_connection 34060 driver=&lt;duckdb_driver 119d0 dbdir=':memory:' read_only=FALSE&gt;&gt;</code></pre>
+<pre><code>&lt;duckdb_connection 9d020 driver=&lt;duckdb_driver 982a0 dbdir=':memory:' read_only=FALSE&gt;&gt;</code></pre>
 </div>
 </div>
 <p>We’ve created a brand-new database, so we can next add some data tables with the <code>duckdb_read_csv()</code> function. Compared to <code>read_csv()</code> from the <code>readr</code> package, <code>duckdb_read_csv()</code> has a couple of extra arguments: a <code>conn</code> argument giving the database management connection and a <code>name</code> argument giving the name that we want to give to the data table:</p>
@@ -422,8 +422,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 # … with 20 more rows</code></pre>
 </div>
 </div>
-<section id="exercise-16-1" class="level3" data-number="17.1.1">
-<h3 data-number="17.1.1" class="anchored" data-anchor-id="exercise-16-1"><span class="header-section-number">17.1.1</span> Exercises</h3>
+<section id="exercise-16-1" class="level3" data-number="16.1.1">
+<h3 data-number="16.1.1" class="anchored" data-anchor-id="exercise-16-1"><span class="header-section-number">16.1.1</span> Exercises</h3>
 <p>Exercises marked with an * indicate that the exercise has a solution at the end of the chapter at @ref(solutions-16).</p>
 <ol type="1">
 <li><p>* Though we do not know SQL code, we can probably figure out what the code above is doing. Which matches are being returned from our query?</p></li>
@@ -431,8 +431,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ol>
 </section>
 </section>
-<section id="dbplyr-a-database-version-of-dplyr" class="level2" data-number="17.2">
-<h2 data-number="17.2" class="anchored" data-anchor-id="dbplyr-a-database-version-of-dplyr"><span class="header-section-number">17.2</span> <code>dbplyr</code>: A Database Version of <code>dplyr</code></h2>
+<section id="dbplyr-a-database-version-of-dplyr" class="level2" data-number="16.2">
+<h2 data-number="16.2" class="anchored" data-anchor-id="dbplyr-a-database-version-of-dplyr"><span class="header-section-number">16.2</span> <code>dbplyr</code>: A Database Version of <code>dplyr</code></h2>
 <p><code>dbplyr</code> is a package that will allow us to continue to write <code>dplyr</code>-style code to query databases instead of writing native <code>SQL</code>, as in the code-chunk above.</p>
 <p>We begin by loading in the package and creating a database table object with the <code>tbl()</code> function. In this case, we create a database table with the <code>tennis2019</code> data and name it <code>tennis_db</code>:</p>
 <div class="cell" data-appendix="true">
@@ -704,8 +704,8 @@ ORDER BY "nmatch" DESC</code></pre>
 </div>
 </div>
 <p>Can you match some of the <code>SQL</code> code with the corresponding <code>dplyr</code> functions used?</p>
-<section id="exercise-16-2" class="level3" data-number="17.2.1">
-<h3 data-number="17.2.1" class="anchored" data-anchor-id="exercise-16-2"><span class="header-section-number">17.2.1</span> Exercises</h3>
+<section id="exercise-16-2" class="level3" data-number="16.2.1">
+<h3 data-number="16.2.1" class="anchored" data-anchor-id="exercise-16-2"><span class="header-section-number">16.2.1</span> Exercises</h3>
 <p>Exercises marked with an * indicate that the exercise has a solution at the end of the chapter at @ref(solutions-16).</p>
 <ol type="1">
 <li><p>* Obtain the distribution of the <code>surface</code> variable by making a table of the total number of matches played on each surface in the 2019 season using <code>dplyr</code> functions on <code>tennis_db</code>. Then, use <code>show_query()</code> to show the corresponding <code>SQL</code> code.</p></li>
@@ -714,8 +714,8 @@ ORDER BY "nmatch" DESC</code></pre>
 </ol>
 </section>
 </section>
-<section id="sql" class="level2" data-number="17.3">
-<h2 data-number="17.3" class="anchored" data-anchor-id="sql"><span class="header-section-number">17.3</span> SQL</h2>
+<section id="sql" class="level2" data-number="16.3">
+<h2 data-number="16.3" class="anchored" data-anchor-id="sql"><span class="header-section-number">16.3</span> SQL</h2>
 <p>The purpose of this section is to explore <code>SQL</code> syntax a little more, focusing on its connections to <code>dplyr</code>. Knowing <code>dplyr</code> is quite helpful in learning this <code>SQL</code> syntax because, while the syntax differs, the concepts are quite similar. Much of the text in this section is paraphrased from the <em>R for Data Science textbook</em>.</p>
 <p>There are five core components of an <code>SQL</code> query. The two most basic are a <code>SELECT</code> statement (similar to <code>select()</code>, and, as discussed below, <code>mutate()</code> and <code>summarise()</code>) and a <code>FROM</code> statement (similar to the <code>data</code> argument). Using the <code>show_query()</code> function directly on <code>tennis_db</code> shows an <code>SQL</code> query that <code>SELECT</code>s all columns (denoted by the <code>*</code>), <code>FROM</code> the <code>tennis2019</code> database.</p>
 <div class="cell" data-appendix="true">
@@ -894,8 +894,8 @@ ORDER BY "winner_rank_points" DESC</code></pre>
 </div>
 </div>
 <p><code>SQL</code> also has corresponding syntax for the <code>xxxx_join()</code> family of functions, but we do not have time to discuss this in detail. Note that we have really just scratched the surface of <code>SQL</code>. There are entire courses devoted to learning <code>SQL</code> syntax and more about databases in general. If you ever do find yourself in a situation where you need to learn <code>SQL</code>, either for a course or for a job, you should have a major head-start with your <code>dplyr</code> knowledge!</p>
-<section id="exercise-16-3" class="level3" data-number="17.3.1">
-<h3 data-number="17.3.1" class="anchored" data-anchor-id="exercise-16-3"><span class="header-section-number">17.3.1</span> Exercises</h3>
+<section id="exercise-16-3" class="level3" data-number="16.3.1">
+<h3 data-number="16.3.1" class="anchored" data-anchor-id="exercise-16-3"><span class="header-section-number">16.3.1</span> Exercises</h3>
 <p>Exercises marked with an * indicate that the exercise has a solution at the end of the chapter at @ref(solutions-16).</p>
 <p>In much of this section, we have created code with <code>dplyr</code> and seen how that code translates to <code>SQL</code>. In these exercises, you will intead be given <code>SQL</code> code and asked to write <code>dplyr</code> code that achieves the same thing.</p>
 <ol type="1">
@@ -924,8 +924,8 @@ ORDER BY "winner_rank_points" DESC</code></pre>
 </div>
 </section>
 </section>
-<section id="chapexercise-16" class="level2" data-number="17.4">
-<h2 data-number="17.4" class="anchored" data-anchor-id="chapexercise-16"><span class="header-section-number">17.4</span> Chapter Exercises</h2>
+<section id="chapexercise-16" class="level2" data-number="16.4">
+<h2 data-number="16.4" class="anchored" data-anchor-id="chapexercise-16"><span class="header-section-number">16.4</span> Chapter Exercises</h2>
 <p>Exercises marked with an * indicate that the exercise has a solution at the end of the chapter at @ref(solutions-16).</p>
 <ol type="1">
 <li>Run the following code:</li>
@@ -964,17 +964,17 @@ WHERE ("winner_name" IN ('Daniil Medvedev', 'Dominic Thiem'))</code></pre>
 </div>
 </div>
 </section>
-<section id="solutions-16" class="level2" data-number="17.5">
-<h2 data-number="17.5" class="anchored" data-anchor-id="solutions-16"><span class="header-section-number">17.5</span> Exercise Solutions</h2>
-<section id="what-is-a-database-s" class="level3" data-number="17.5.1">
-<h3 data-number="17.5.1" class="anchored" data-anchor-id="what-is-a-database-s"><span class="header-section-number">17.5.1</span> What is a Database S</h3>
+<section id="solutions-16" class="level2" data-number="16.5">
+<h2 data-number="16.5" class="anchored" data-anchor-id="solutions-16"><span class="header-section-number">16.5</span> Exercise Solutions</h2>
+<section id="what-is-a-database-s" class="level3" data-number="16.5.1">
+<h3 data-number="16.5.1" class="anchored" data-anchor-id="what-is-a-database-s"><span class="header-section-number">16.5.1</span> What is a Database S</h3>
 <ol type="1">
 <li>* Though we do not know SQL code, we can probably figure out what the code above is doing. Which matches are being returned from our query?</li>
 </ol>
 <p>The code is keeping any matches that are longer than 240 minutes. It is also getting rid of all of the columns except for those specified in <code>SELECT</code>.</p>
 </section>
-<section id="dbplyr-a-database-version-of-dplyr-s" class="level3" data-number="17.5.2">
-<h3 data-number="17.5.2" class="anchored" data-anchor-id="dbplyr-a-database-version-of-dplyr-s"><span class="header-section-number">17.5.2</span> <code>dbplyr</code>: A Database Version of <code>dplyr</code> S</h3>
+<section id="dbplyr-a-database-version-of-dplyr-s" class="level3" data-number="16.5.2">
+<h3 data-number="16.5.2" class="anchored" data-anchor-id="dbplyr-a-database-version-of-dplyr-s"><span class="header-section-number">16.5.2</span> <code>dbplyr</code>: A Database Version of <code>dplyr</code> S</h3>
 <ol type="1">
 <li>* Obtain the distribution of the <code>surface</code> variable by making a table of the total number of matches played on each surface in the 2019 season using <code>dplyr</code> functions on <code>tennis_db</code>. Then, use <code>show_query()</code> to show the corresponding <code>SQL</code> code.</li>
 </ol>
@@ -999,8 +999,8 @@ GROUP BY "surface"</code></pre>
 </div>
 </div>
 </section>
-<section id="sql-s" class="level3" data-number="17.5.3">
-<h3 data-number="17.5.3" class="anchored" data-anchor-id="sql-s"><span class="header-section-number">17.5.3</span> SQL S</h3>
+<section id="sql-s" class="level3" data-number="16.5.3">
+<h3 data-number="16.5.3" class="anchored" data-anchor-id="sql-s"><span class="header-section-number">16.5.3</span> SQL S</h3>
 <ol type="1">
 <li>* Examine the <code>SQL</code> code below and write equivalent <code>dplyr</code> code.</li>
 </ol>
@@ -1047,8 +1047,8 @@ WHERE ("tourney_name" = 'Wimbledon')</code></pre>
 </div>
 </div>
 </section>
-<section id="chapexercise-16-S" class="level3" data-number="17.5.4">
-<h3 data-number="17.5.4" class="anchored" data-anchor-id="chapexercise-16-S"><span class="header-section-number">17.5.4</span> Chapter Exercises S</h3>
+<section id="chapexercise-16-S" class="level3" data-number="16.5.4">
+<h3 data-number="16.5.4" class="anchored" data-anchor-id="chapexercise-16-S"><span class="header-section-number">16.5.4</span> Chapter Exercises S</h3>
 <ol start="2" type="1">
 <li>* Try to run a function from <code>lubridate</code> or <code>forcats</code> on <code>tennis_db</code> with <code>mutate()</code>. Does the function work? Did you expect it to work?</li>
 </ol>
@@ -1086,8 +1086,8 @@ WHERE ("tourney_name" = 'Wimbledon')</code></pre>
 </div>
 </section>
 </section>
-<section id="rcode-16" class="level2" data-number="17.6">
-<h2 data-number="17.6" class="anchored" data-anchor-id="rcode-16"><span class="header-section-number">17.6</span> Non-Exercise <code>R</code> Code</h2>
+<section id="rcode-16" class="level2" data-number="16.6">
+<h2 data-number="16.6" class="anchored" data-anchor-id="rcode-16"><span class="header-section-number">16.6</span> Non-Exercise <code>R</code> Code</h2>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb77"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb77-1"><a href="#cb77-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(DBI)</span>
 <span id="cb77-2"><a href="#cb77-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(duckdb)</span>
@@ -1266,7 +1266,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
       <a href="./15-connections.html" class="pagination-link">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Connections to STAT 113, STAT 213, and CS 140</span></span>
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Connections to STAT 113, STAT 213, and CS 140</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
@@ -1275,7 +1275,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </div> <!-- /content -->
 <footer class="footer">
   <div class="nav-footer">
-    <div class="nav-footer-left">Course Materials were written by Matt Higham for STAT/DATA 234 at St.&nbsp;Lawrence University</div>   
+    <div class="nav-footer-left">Course Materials were written by Matt Higham for STAT/DATA 234 at St.&nbsp;Lawrence University.</div>   
     <div class="nav-footer-right">This book was built with <a href="https://quarto.org/">Quarto</a>.</div>
   </div>
 </footer>

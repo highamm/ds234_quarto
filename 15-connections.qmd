@@ -1,4 +1,4 @@
-# Connections to STAT 113, STAT 213, and CS 140
+# Connections to STAT 113, STAT 213, and CS 140 {#connections}
 
 ## STAT 113
 

@@ -1,4 +1,4 @@
-# Dates with `lubridate`
+# Dates with `lubridate` {#lubridate}
 
 __Goals__:
 

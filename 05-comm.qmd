@@ -1,4 +1,4 @@
-# Communication with `Quarto`
+# Communication with `Quarto` {#comm}
 
 __Special Note__: `Quarto` and `.qmd` files and `R Markdown` and `.qmd` files are extremely similar. In the previous version of this section, I used `R Markdown`. Quarto has an advantage in that `.qmd` files also work with Python and Julia, so they are generally better for an all-purpose data scientist. If you spot any references to `R Markdown` or a `.qmd` file, just mentally convert `R Markdown` to `Quarto` and `.rmd` to `qmd`.
 

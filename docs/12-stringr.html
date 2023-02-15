@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>DATA / STAT 234 - 14&nbsp; Text Data with tidytext and stringr</title>
+<title>DATA / STAT 234 - 13&nbsp; Text Data with tidytext and stringr</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -128,7 +128,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <header id="quarto-header" class="headroom fixed-top">
   <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
     <div class="container-fluid d-flex justify-content-between">
-      <h1 class="quarto-secondary-nav-title"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Text Data with <code>tidytext</code> and <code>stringr</code></span></h1>
+      <h1 class="quarto-secondary-nav-title"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Text Data with <code>tidytext</code> and <code>stringr</code></span></h1>
       <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
         <i class="bi bi-chevron-right"></i>
       </button>
@@ -151,6 +151,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       </div>
     <div class="sidebar-menu-container"> 
     <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">Syllabus and Course Information</a>
+  </div>
+</li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">The Core</a>
@@ -161,32 +166,27 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./index.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Syllabus and Course Information</span></a>
+  <a href="./01-intro.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Getting Started with <code>R</code> and <code>R Studio</code></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./01-intro.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Getting Started with <code>R</code> and <code>R Studio</code></span></a>
+  <a href="./02-ggplot2.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Plotting with <code>ggplot2</code></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./02-ggplot2.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Plotting with <code>ggplot2</code></span></a>
+  <a href="./03-dplyr.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Wrangling with <code>dplyr</code></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./03-dplyr.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Wrangling with <code>dplyr</code></span></a>
+  <a href="./05-comm.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Communication with <code>Quarto</code></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./05-comm.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Communication with <code>Quarto</code></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./14-workflow.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Workflow and Other Skills</span></a>
+  <a href="./14-workflow.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Workflow and Other Skills</span></a>
   </div>
 </li>
       </ul>
@@ -201,32 +201,32 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./04-tidyr.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Tidying with <code>tidyr</code></span></a>
+  <a href="./04-tidyr.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Tidying with <code>tidyr</code></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./06-basics.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Coding in Base <code>R</code></span></a>
+  <a href="./06-basics.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Coding in Base <code>R</code></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./07-forcats.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Factors with <code>forcats</code></span></a>
+  <a href="./07-forcats.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Factors with <code>forcats</code></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./09-ethics.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Data Ethics</span></a>
+  <a href="./09-ethics.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Data Ethics</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./08-import.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Data Import</span></a>
+  <a href="./08-import.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Data Import</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./10-merging.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Merging with <code>dplyr</code></span></a>
+  <a href="./10-merging.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Merging with <code>dplyr</code></span></a>
   </div>
 </li>
       </ul>
@@ -241,27 +241,27 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./11-lubridate.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Dates with <code>lubridate</code></span></a>
+  <a href="./11-lubridate.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Dates with <code>lubridate</code></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./12-stringr.html" class="sidebar-item-text sidebar-link active"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Text Data with <code>tidytext</code> and <code>stringr</code></span></a>
+  <a href="./12-stringr.html" class="sidebar-item-text sidebar-link active"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Text Data with <code>tidytext</code> and <code>stringr</code></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./13-knn.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Predictive Modeling with knn</span></a>
+  <a href="./13-knn.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Predictive Modeling with knn</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./15-connections.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Connections to STAT 113, STAT 213, and CS 140</span></a>
+  <a href="./15-connections.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Connections to STAT 113, STAT 213, and CS 140</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./16-sql.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Introduction to SQL with <code>dbplyr</code></span></a>
+  <a href="./16-sql.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Introduction to SQL with <code>dbplyr</code></span></a>
   </div>
 </li>
       </ul>
@@ -275,26 +275,26 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#text-analysis" id="toc-text-analysis" class="nav-link active" data-scroll-target="#text-analysis"> <span class="header-section-number">14.1</span> Text Analysis</a>
+  <li><a href="#text-analysis" id="toc-text-analysis" class="nav-link active" data-scroll-target="#text-analysis"> <span class="header-section-number">13.1</span> Text Analysis</a>
   <ul class="collapse">
-  <li><a href="#exercise-12-1" id="toc-exercise-12-1" class="nav-link" data-scroll-target="#exercise-12-1"> <span class="header-section-number">14.1.1</span> Exercises</a></li>
+  <li><a href="#exercise-12-1" id="toc-exercise-12-1" class="nav-link" data-scroll-target="#exercise-12-1"> <span class="header-section-number">13.1.1</span> Exercises</a></li>
   </ul></li>
-  <li><a href="#basic-sentiment-analysis" id="toc-basic-sentiment-analysis" class="nav-link" data-scroll-target="#basic-sentiment-analysis"> <span class="header-section-number">14.2</span> Basic Sentiment Analysis</a></li>
-  <li><a href="#introduction-to-stringr" id="toc-introduction-to-stringr" class="nav-link" data-scroll-target="#introduction-to-stringr"> <span class="header-section-number">14.3</span> Introduction to <code>stringr</code></a>
+  <li><a href="#basic-sentiment-analysis" id="toc-basic-sentiment-analysis" class="nav-link" data-scroll-target="#basic-sentiment-analysis"> <span class="header-section-number">13.2</span> Basic Sentiment Analysis</a></li>
+  <li><a href="#introduction-to-stringr" id="toc-introduction-to-stringr" class="nav-link" data-scroll-target="#introduction-to-stringr"> <span class="header-section-number">13.3</span> Introduction to <code>stringr</code></a>
   <ul class="collapse">
-  <li><a href="#regular-expressions" id="toc-regular-expressions" class="nav-link" data-scroll-target="#regular-expressions"> <span class="header-section-number">14.3.1</span> Regular Expressions</a></li>
-  <li><a href="#stringr-functions-with-dplyr" id="toc-stringr-functions-with-dplyr" class="nav-link" data-scroll-target="#stringr-functions-with-dplyr"> <span class="header-section-number">14.3.2</span> <code>stringr</code> Functions with <code>dplyr</code></a></li>
-  <li><a href="#exercise-12-1" id="toc-exercise-12-1" class="nav-link" data-scroll-target="#exercise-12-1"> <span class="header-section-number">14.3.3</span> Exercises</a></li>
+  <li><a href="#regular-expressions" id="toc-regular-expressions" class="nav-link" data-scroll-target="#regular-expressions"> <span class="header-section-number">13.3.1</span> Regular Expressions</a></li>
+  <li><a href="#stringr-functions-with-dplyr" id="toc-stringr-functions-with-dplyr" class="nav-link" data-scroll-target="#stringr-functions-with-dplyr"> <span class="header-section-number">13.3.2</span> <code>stringr</code> Functions with <code>dplyr</code></a></li>
+  <li><a href="#exercise-12-1" id="toc-exercise-12-1" class="nav-link" data-scroll-target="#exercise-12-1"> <span class="header-section-number">13.3.3</span> Exercises</a></li>
   </ul></li>
-  <li><a href="#chapexercise-12" id="toc-chapexercise-12" class="nav-link" data-scroll-target="#chapexercise-12"> <span class="header-section-number">14.4</span> Chapter Exercises</a></li>
-  <li><a href="#solutions-12" id="toc-solutions-12" class="nav-link" data-scroll-target="#solutions-12"> <span class="header-section-number">14.5</span> Exercise Solutions</a>
+  <li><a href="#chapexercise-12" id="toc-chapexercise-12" class="nav-link" data-scroll-target="#chapexercise-12"> <span class="header-section-number">13.4</span> Chapter Exercises</a></li>
+  <li><a href="#solutions-12" id="toc-solutions-12" class="nav-link" data-scroll-target="#solutions-12"> <span class="header-section-number">13.5</span> Exercise Solutions</a>
   <ul class="collapse">
-  <li><a href="#text-analysis-s" id="toc-text-analysis-s" class="nav-link" data-scroll-target="#text-analysis-s"> <span class="header-section-number">14.5.1</span> Text Analysis S</a></li>
-  <li><a href="#basic-sentiment-analysis-s" id="toc-basic-sentiment-analysis-s" class="nav-link" data-scroll-target="#basic-sentiment-analysis-s"> <span class="header-section-number">14.5.2</span> Basic Sentiment Analysis S</a></li>
-  <li><a href="#introduction-to-stringr-s" id="toc-introduction-to-stringr-s" class="nav-link" data-scroll-target="#introduction-to-stringr-s"> <span class="header-section-number">14.5.3</span> Introduction to <code>stringr</code> S</a></li>
-  <li><a href="#chapexercise-12-S" id="toc-chapexercise-12-S" class="nav-link" data-scroll-target="#chapexercise-12-S"> <span class="header-section-number">14.5.4</span> Chapter Exercises S</a></li>
+  <li><a href="#text-analysis-s" id="toc-text-analysis-s" class="nav-link" data-scroll-target="#text-analysis-s"> <span class="header-section-number">13.5.1</span> Text Analysis S</a></li>
+  <li><a href="#basic-sentiment-analysis-s" id="toc-basic-sentiment-analysis-s" class="nav-link" data-scroll-target="#basic-sentiment-analysis-s"> <span class="header-section-number">13.5.2</span> Basic Sentiment Analysis S</a></li>
+  <li><a href="#introduction-to-stringr-s" id="toc-introduction-to-stringr-s" class="nav-link" data-scroll-target="#introduction-to-stringr-s"> <span class="header-section-number">13.5.3</span> Introduction to <code>stringr</code> S</a></li>
+  <li><a href="#chapexercise-12-S" id="toc-chapexercise-12-S" class="nav-link" data-scroll-target="#chapexercise-12-S"> <span class="header-section-number">13.5.4</span> Chapter Exercises S</a></li>
   </ul></li>
-  <li><a href="#rcode-12" id="toc-rcode-12" class="nav-link" data-scroll-target="#rcode-12"> <span class="header-section-number">14.6</span> Non-Exercise <code>R</code> Code</a></li>
+  <li><a href="#rcode-12" id="toc-rcode-12" class="nav-link" data-scroll-target="#rcode-12"> <span class="header-section-number">13.6</span> Non-Exercise <code>R</code> Code</a></li>
   </ul>
 </nav>
     </div>
@@ -303,7 +303,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title d-none d-lg-block"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Text Data with <code>tidytext</code> and <code>stringr</code></span></h1>
+<h1 class="title"><span id="text" class="quarto-section-identifier d-none d-lg-block"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Text Data with <code>tidytext</code> and <code>stringr</code></span></span></h1>
 </div>
 
 
@@ -323,8 +323,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>introduce some of the issues with manipulating strings that don’t pertain to numeric or factor data.</li>
 <li>perform a basic sentiment analysis.</li>
 </ul>
-<section id="text-analysis" class="level2" data-number="14.1">
-<h2 data-number="14.1" class="anchored" data-anchor-id="text-analysis"><span class="header-section-number">14.1</span> Text Analysis</h2>
+<section id="text-analysis" class="level2" data-number="13.1">
+<h2 data-number="13.1" class="anchored" data-anchor-id="text-analysis"><span class="header-section-number">13.1</span> Text Analysis</h2>
 <p>Beyonce is a legend. For this example, we will work through a text analysis on lyrics from songs from Beyonce’s albums, utilizing functions from both <code>stringr</code> to parse strings and <code>tidytext</code> to convert text data into a tidy format. To begin, read in a data set of Beyonce’s lyrics:</p>
 <div class="cell" data-appendix="true">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
@@ -468,8 +468,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 </div>
 <p>Looking through the list, there are <strong>still</strong> some stop words in there that were not picked up on in the <code>stop_words</code> data set. We will address these, as well as make a plot, in the exercises.</p>
-<section id="exercise-12-1" class="level3" data-number="14.1.1">
-<h3 data-number="14.1.1" class="anchored" data-anchor-id="exercise-12-1"><span class="header-section-number">14.1.1</span> Exercises</h3>
+<section id="exercise-12-1" class="level3" data-number="13.1.1">
+<h3 data-number="13.1.1" class="anchored" data-anchor-id="exercise-12-1"><span class="header-section-number">13.1.1</span> Exercises</h3>
 <p>Exercises marked with an * indicate that the exercise has a solution at the end of the chapter at @ref(solutions-12).</p>
 <ol type="1">
 <li><p>Look at the remaining words. Do any of them look like stop words that were missed with the stop words from the <code>tidytext</code> package? Create a tibble with a few of the remaining stop words (like <code>ooh</code>, <code>gotta</code>, <code>ya</code>, <code>uh</code>, and <code>yeah</code>) not picked up by the <code>tidytext</code> package, and use a join function to drop these words from the data set.</p></li>
@@ -498,16 +498,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>If you were doing one of these analyses, there are lots of cool functions in <code>tidytext</code> to help you out! We will do one more example, this time looking at Donald Trump’s twitter account in 2016.</p>
 </section>
 </section>
-<section id="basic-sentiment-analysis" class="level2" data-number="14.2">
-<h2 data-number="14.2" class="anchored" data-anchor-id="basic-sentiment-analysis"><span class="header-section-number">14.2</span> Basic Sentiment Analysis</h2>
+<section id="basic-sentiment-analysis" class="level2" data-number="13.2">
+<h2 data-number="13.2" class="anchored" data-anchor-id="basic-sentiment-analysis"><span class="header-section-number">13.2</span> Basic Sentiment Analysis</h2>
 <p>We will use a provided .qmd file to replicate a sentiment analysis on Trump’s twitter account from 2016. This analysis was used in conjunction with a major news story that hypothesized that Trump himself wrote tweets from an Android device while his campaign staff wrote tweets for him from an iPhone device. We will investigate what properties of his tweets led the author to believe this.</p>
 <p>The .qmd file used for this is posted on Canvas. We will see more uses of <code>stringr</code> for this particular analysis. For this entire section, you should be able to follow along and understand what each line of code is doing. However, unlike all previous sections, you will not be expected to do a sentiment analysis on your own.</p>
 <!-- see below: sentiment analysis for the friends package -->
 <!-- https://amirdjv.netlify.app/post/rating-and-sentiment-analysis-for-friends/ -->
 <!-- additional resource: https://www.tidytextmining.com/tidytext.html -->
 </section>
-<section id="introduction-to-stringr" class="level2" data-number="14.3">
-<h2 data-number="14.3" class="anchored" data-anchor-id="introduction-to-stringr"><span class="header-section-number">14.3</span> Introduction to <code>stringr</code></h2>
+<section id="introduction-to-stringr" class="level2" data-number="13.3">
+<h2 data-number="13.3" class="anchored" data-anchor-id="introduction-to-stringr"><span class="header-section-number">13.3</span> Introduction to <code>stringr</code></h2>
 <p>In the previous examples, the string data that we had consisted primarily of <strong>words</strong>. The tools in <code>tidytext</code> make working with data consisting of words not too painful. However, some data exists as strings that are <strong>not</strong> words. For a non-trivial example, consider data sets obtained from <a href="https://github.com/JeffSackmann/tennis_MatchChartingProject" class="uri">https://github.com/JeffSackmann/tennis_MatchChartingProject</a>, a repository for professional tennis match charting put together by Jeff Sackmann. Some of the following code was modified from a project completed by James Wolpe in a data visualization course.</p>
 <p>From this repository, I have put together a data set on one particular tennis match to make it a bit easier for us to get started. The match I have chosen is the 2021 U.S. Open Final between Daniil Medvedev and Novak Djokovic. Why this match? This was arguably the most important match of Djokovic’s career: if he won, he would win all four grand slams in a calendar year. I don’t like Djokovic and he lost so looking back at the match brings me joy. Read in the data set with:</p>
 <div class="cell" data-appendix="true">
@@ -565,8 +565,8 @@ lgl  (8): TBpt, isAce, isUnret, isRallyWinner, isForced, isUnforced, isDoubl...
 <li><code>f1w@</code>: Djokovic hit a forehand to Medvedev’s forehand side, but the shot landed wide and was recorded as an unforced error.</li>
 </ul>
 <p>Clearly, there is a lot of data encoded in the <code>point</code> variable. We are going to introduce <code>stringr</code> by answering a relatively simple question: what are the serving patterns of Medvedev and Djokovic during this match?</p>
-<section id="regular-expressions" class="level3" data-number="14.3.1">
-<h3 data-number="14.3.1" class="anchored" data-anchor-id="regular-expressions"><span class="header-section-number">14.3.1</span> Regular Expressions</h3>
+<section id="regular-expressions" class="level3" data-number="13.3.1">
+<h3 data-number="13.3.1" class="anchored" data-anchor-id="regular-expressions"><span class="header-section-number">13.3.1</span> Regular Expressions</h3>
 <p>A <strong>regex</strong>, or <strong>regular expression</strong>, is a string used to identify particular patterns in string data. Regular expressions are used in <strong>many</strong> languages (so, if you google something about a regular expression, you do not need to limit yourself to just looking at resources pertaining to <code>R</code>).</p>
 <p>Regex’s can be used with the functions in the <code>stringr</code> package. The functions in the <code>stringr</code> package begin with <code>str_()</code>, much like the functions in <code>forcats</code> began with <code>fct_()</code>. We will first focus on the <code>str_detect()</code> function, which detects whether a particular regex is present in a string variable. <code>str_detect()</code> takes the name of the string as its first argument and the regex as the second argument. For example,</p>
 <div class="cell" data-appendix="true">
@@ -617,8 +617,8 @@ lgl  (8): TBpt, isAce, isUnret, isRallyWinner, isForced, isUnforced, isDoubl...
 </div>
 <p>points ended in an unforced error where the ball was hit into the net.</p>
 </section>
-<section id="stringr-functions-with-dplyr" class="level3" data-number="14.3.2">
-<h3 data-number="14.3.2" class="anchored" data-anchor-id="stringr-functions-with-dplyr"><span class="header-section-number">14.3.2</span> <code>stringr</code> Functions with <code>dplyr</code></h3>
+<section id="stringr-functions-with-dplyr" class="level3" data-number="13.3.2">
+<h3 data-number="13.3.2" class="anchored" data-anchor-id="stringr-functions-with-dplyr"><span class="header-section-number">13.3.2</span> <code>stringr</code> Functions with <code>dplyr</code></h3>
 <p>We can combine the <code>stringr</code> functions with <code>dplyr</code> functions that we already know and love. For example, if we are only interested in points the end in an unforced error (so points that have the <code>@</code> symbol in them), we can filter out the points that don’t have an <code>@</code>:</p>
 <div class="cell" data-appendix="true">
 <div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>med_djok_df <span class="sc">|&gt;</span> <span class="fu">filter</span>(<span class="fu">str_detect</span>(point, <span class="at">pattern =</span> <span class="st">"@"</span>) <span class="sc">==</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -699,8 +699,8 @@ lgl  (8): TBpt, isAce, isUnret, isRallyWinner, isForced, isUnforced, isDoubl...
 </div>
 <p>The purpose of these examples is just to show that things can get complicated with strings. For the purposes of assessment in this course, you are only responsible for the relatively simple cases discussed earlier in the section and in the exercises.</p>
 </section>
-<section id="exercise-12-1" class="level3" data-number="14.3.3">
-<h3 data-number="14.3.3" class="anchored" data-anchor-id="exercise-12-1"><span class="header-section-number">14.3.3</span> Exercises</h3>
+<section id="exercise-12-1" class="level3" data-number="13.3.3">
+<h3 data-number="13.3.3" class="anchored" data-anchor-id="exercise-12-1"><span class="header-section-number">13.3.3</span> Exercises</h3>
 <ol type="1">
 <li><p>Use <code>str_detect()</code> and <code>dplyr</code> functions to create a variable for <code>serve_location</code> that is either <code>"wide"</code> if the <code>point</code> starts with a <code>4</code>, <code>"body"</code> if the <code>point</code> starts with a <code>5</code>, and <code>"down the center"</code> if the <code>point</code> starts with a <code>6</code>.</p></li>
 <li><p>Use <code>dplyr</code> functions and the <code>Serving</code> variable to count the number of serve locations for each player. (i.e.&nbsp;for how many points did Medvedev hit a serve out wide?).</p></li>
@@ -712,32 +712,32 @@ lgl  (8): TBpt, isAce, isUnret, isRallyWinner, isForced, isUnforced, isDoubl...
 </ol>
 </section>
 </section>
-<section id="chapexercise-12" class="level2" data-number="14.4">
-<h2 data-number="14.4" class="anchored" data-anchor-id="chapexercise-12"><span class="header-section-number">14.4</span> Chapter Exercises</h2>
+<section id="chapexercise-12" class="level2" data-number="13.4">
+<h2 data-number="13.4" class="anchored" data-anchor-id="chapexercise-12"><span class="header-section-number">13.4</span> Chapter Exercises</h2>
 <p>Exercises marked with an * indicate that the exercise has a solution at the end of the chapter at @ref(solutions-12).</p>
 <p>There are no Chapter Exercises.</p>
 </section>
-<section id="solutions-12" class="level2" data-number="14.5">
-<h2 data-number="14.5" class="anchored" data-anchor-id="solutions-12"><span class="header-section-number">14.5</span> Exercise Solutions</h2>
-<section id="text-analysis-s" class="level3" data-number="14.5.1">
-<h3 data-number="14.5.1" class="anchored" data-anchor-id="text-analysis-s"><span class="header-section-number">14.5.1</span> Text Analysis S</h3>
+<section id="solutions-12" class="level2" data-number="13.5">
+<h2 data-number="13.5" class="anchored" data-anchor-id="solutions-12"><span class="header-section-number">13.5</span> Exercise Solutions</h2>
+<section id="text-analysis-s" class="level3" data-number="13.5.1">
+<h3 data-number="13.5.1" class="anchored" data-anchor-id="text-analysis-s"><span class="header-section-number">13.5.1</span> Text Analysis S</h3>
 <p>There are no solutions.</p>
 </section>
-<section id="basic-sentiment-analysis-s" class="level3" data-number="14.5.2">
-<h3 data-number="14.5.2" class="anchored" data-anchor-id="basic-sentiment-analysis-s"><span class="header-section-number">14.5.2</span> Basic Sentiment Analysis S</h3>
+<section id="basic-sentiment-analysis-s" class="level3" data-number="13.5.2">
+<h3 data-number="13.5.2" class="anchored" data-anchor-id="basic-sentiment-analysis-s"><span class="header-section-number">13.5.2</span> Basic Sentiment Analysis S</h3>
 <p>There are no solutions.</p>
 </section>
-<section id="introduction-to-stringr-s" class="level3" data-number="14.5.3">
-<h3 data-number="14.5.3" class="anchored" data-anchor-id="introduction-to-stringr-s"><span class="header-section-number">14.5.3</span> Introduction to <code>stringr</code> S</h3>
+<section id="introduction-to-stringr-s" class="level3" data-number="13.5.3">
+<h3 data-number="13.5.3" class="anchored" data-anchor-id="introduction-to-stringr-s"><span class="header-section-number">13.5.3</span> Introduction to <code>stringr</code> S</h3>
 <p>There are no solutions.</p>
 </section>
-<section id="chapexercise-12-S" class="level3" data-number="14.5.4">
-<h3 data-number="14.5.4" class="anchored" data-anchor-id="chapexercise-12-S"><span class="header-section-number">14.5.4</span> Chapter Exercises S</h3>
+<section id="chapexercise-12-S" class="level3" data-number="13.5.4">
+<h3 data-number="13.5.4" class="anchored" data-anchor-id="chapexercise-12-S"><span class="header-section-number">13.5.4</span> Chapter Exercises S</h3>
 <p>There are no solutions.</p>
 </section>
 </section>
-<section id="rcode-12" class="level2" data-number="14.6">
-<h2 data-number="14.6" class="anchored" data-anchor-id="rcode-12"><span class="header-section-number">14.6</span> Non-Exercise <code>R</code> Code</h2>
+<section id="rcode-12" class="level2" data-number="13.6">
+<h2 data-number="13.6" class="anchored" data-anchor-id="rcode-12"><span class="header-section-number">13.6</span> Non-Exercise <code>R</code> Code</h2>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb41"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
 <span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(here)</span>
@@ -890,19 +890,19 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
       <a href="./11-lubridate.html" class="pagination-link">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Dates with <code>lubridate</code></span></span>
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Dates with <code>lubridate</code></span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
       <a href="./13-knn.html" class="pagination-link">
-        <span class="nav-page-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Predictive Modeling with knn</span></span> <i class="bi bi-arrow-right-short"></i>
+        <span class="nav-page-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Predictive Modeling with knn</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
 </div> <!-- /content -->
 <footer class="footer">
   <div class="nav-footer">
-    <div class="nav-footer-left">Course Materials were written by Matt Higham for STAT/DATA 234 at St.&nbsp;Lawrence University</div>   
+    <div class="nav-footer-left">Course Materials were written by Matt Higham for STAT/DATA 234 at St.&nbsp;Lawrence University.</div>   
     <div class="nav-footer-right">This book was built with <a href="https://quarto.org/">Quarto</a>.</div>
   </div>
 </footer>

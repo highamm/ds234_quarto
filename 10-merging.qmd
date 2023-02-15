@@ -1,4 +1,4 @@
-# Merging with `dplyr`
+# Merging with `dplyr` {#mergin}
 
 __Goals:__
 

@@ -1,4 +1,4 @@
-# Data Ethics
+# Data Ethics {#ethics}
 
 <!-- add coding of race example -->
 <!-- gss change of race coding -->

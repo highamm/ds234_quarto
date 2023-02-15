@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>DATA / STAT 234 - 3&nbsp; Plotting with ggplot2</title>
+<title>DATA / STAT 234 - 2&nbsp; Plotting with ggplot2</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -128,7 +128,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <header id="quarto-header" class="headroom fixed-top">
   <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
     <div class="container-fluid d-flex justify-content-between">
-      <h1 class="quarto-secondary-nav-title"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Plotting with <code>ggplot2</code></span></h1>
+      <h1 class="quarto-secondary-nav-title"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Plotting with <code>ggplot2</code></span></h1>
       <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
         <i class="bi bi-chevron-right"></i>
       </button>
@@ -151,6 +151,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       </div>
     <div class="sidebar-menu-container"> 
     <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">Syllabus and Course Information</a>
+  </div>
+</li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">The Core</a>
@@ -161,32 +166,27 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./index.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Syllabus and Course Information</span></a>
+  <a href="./01-intro.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Getting Started with <code>R</code> and <code>R Studio</code></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./01-intro.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Getting Started with <code>R</code> and <code>R Studio</code></span></a>
+  <a href="./02-ggplot2.html" class="sidebar-item-text sidebar-link active"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Plotting with <code>ggplot2</code></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./02-ggplot2.html" class="sidebar-item-text sidebar-link active"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Plotting with <code>ggplot2</code></span></a>
+  <a href="./03-dplyr.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Wrangling with <code>dplyr</code></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./03-dplyr.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Wrangling with <code>dplyr</code></span></a>
+  <a href="./05-comm.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Communication with <code>Quarto</code></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./05-comm.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Communication with <code>Quarto</code></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./14-workflow.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Workflow and Other Skills</span></a>
+  <a href="./14-workflow.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Workflow and Other Skills</span></a>
   </div>
 </li>
       </ul>
@@ -201,32 +201,32 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./04-tidyr.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Tidying with <code>tidyr</code></span></a>
+  <a href="./04-tidyr.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Tidying with <code>tidyr</code></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./06-basics.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Coding in Base <code>R</code></span></a>
+  <a href="./06-basics.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Coding in Base <code>R</code></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./07-forcats.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Factors with <code>forcats</code></span></a>
+  <a href="./07-forcats.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Factors with <code>forcats</code></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./09-ethics.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Data Ethics</span></a>
+  <a href="./09-ethics.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Data Ethics</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./08-import.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Data Import</span></a>
+  <a href="./08-import.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Data Import</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./10-merging.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Merging with <code>dplyr</code></span></a>
+  <a href="./10-merging.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Merging with <code>dplyr</code></span></a>
   </div>
 </li>
       </ul>
@@ -241,27 +241,27 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./11-lubridate.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Dates with <code>lubridate</code></span></a>
+  <a href="./11-lubridate.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Dates with <code>lubridate</code></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./12-stringr.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Text Data with <code>tidytext</code> and <code>stringr</code></span></a>
+  <a href="./12-stringr.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Text Data with <code>tidytext</code> and <code>stringr</code></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./13-knn.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Predictive Modeling with knn</span></a>
+  <a href="./13-knn.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Predictive Modeling with knn</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./15-connections.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Connections to STAT 113, STAT 213, and CS 140</span></a>
+  <a href="./15-connections.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Connections to STAT 113, STAT 213, and CS 140</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./16-sql.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Introduction to SQL with <code>dbplyr</code></span></a>
+  <a href="./16-sql.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Introduction to SQL with <code>dbplyr</code></span></a>
   </div>
 </li>
       </ul>
@@ -275,41 +275,41 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#introduction-and-basic-terminology" id="toc-introduction-and-basic-terminology" class="nav-link active" data-scroll-target="#introduction-and-basic-terminology"> <span class="header-section-number">3.1</span> Introduction and Basic Terminology</a></li>
-  <li><a href="#basic-plot-structure" id="toc-basic-plot-structure" class="nav-link" data-scroll-target="#basic-plot-structure"> <span class="header-section-number">3.2</span> Basic Plot Structure</a></li>
-  <li><a href="#graphing-a-single-variable" id="toc-graphing-a-single-variable" class="nav-link" data-scroll-target="#graphing-a-single-variable"> <span class="header-section-number">3.3</span> Graphing a Single Variable</a>
+  <li><a href="#introduction-and-basic-terminology" id="toc-introduction-and-basic-terminology" class="nav-link active" data-scroll-target="#introduction-and-basic-terminology"> <span class="header-section-number">2.1</span> Introduction and Basic Terminology</a></li>
+  <li><a href="#basic-plot-structure" id="toc-basic-plot-structure" class="nav-link" data-scroll-target="#basic-plot-structure"> <span class="header-section-number">2.2</span> Basic Plot Structure</a></li>
+  <li><a href="#graphing-a-single-variable" id="toc-graphing-a-single-variable" class="nav-link" data-scroll-target="#graphing-a-single-variable"> <span class="header-section-number">2.3</span> Graphing a Single Variable</a>
   <ul class="collapse">
-  <li><a href="#histograms-and-frequency-plots-for-a-quantitative-variable" id="toc-histograms-and-frequency-plots-for-a-quantitative-variable" class="nav-link" data-scroll-target="#histograms-and-frequency-plots-for-a-quantitative-variable"> <span class="header-section-number">3.3.1</span> Histograms and Frequency Plots for a Quantitative Variable</a></li>
-  <li><a href="#r-code-style" id="toc-r-code-style" class="nav-link" data-scroll-target="#r-code-style"> <span class="header-section-number">3.3.2</span> <code>R</code> Code Style</a></li>
-  <li><a href="#bar-plots-for-a-categorical-variable" id="toc-bar-plots-for-a-categorical-variable" class="nav-link" data-scroll-target="#bar-plots-for-a-categorical-variable"> <span class="header-section-number">3.3.3</span> Bar Plots for a Categorical Variable</a></li>
-  <li><a href="#exercise-2-1" id="toc-exercise-2-1" class="nav-link" data-scroll-target="#exercise-2-1"> <span class="header-section-number">3.3.4</span> Exercises</a></li>
+  <li><a href="#histograms-and-frequency-plots-for-a-quantitative-variable" id="toc-histograms-and-frequency-plots-for-a-quantitative-variable" class="nav-link" data-scroll-target="#histograms-and-frequency-plots-for-a-quantitative-variable"> <span class="header-section-number">2.3.1</span> Histograms and Frequency Plots for a Quantitative Variable</a></li>
+  <li><a href="#r-code-style" id="toc-r-code-style" class="nav-link" data-scroll-target="#r-code-style"> <span class="header-section-number">2.3.2</span> <code>R</code> Code Style</a></li>
+  <li><a href="#bar-plots-for-a-categorical-variable" id="toc-bar-plots-for-a-categorical-variable" class="nav-link" data-scroll-target="#bar-plots-for-a-categorical-variable"> <span class="header-section-number">2.3.3</span> Bar Plots for a Categorical Variable</a></li>
+  <li><a href="#exercise-2-1" id="toc-exercise-2-1" class="nav-link" data-scroll-target="#exercise-2-1"> <span class="header-section-number">2.3.4</span> Exercises</a></li>
   </ul></li>
-  <li><a href="#graphing-two-quantitative-variables-faceting-and-aes-options" id="toc-graphing-two-quantitative-variables-faceting-and-aes-options" class="nav-link" data-scroll-target="#graphing-two-quantitative-variables-faceting-and-aes-options"> <span class="header-section-number">3.4</span> Graphing Two Quantitative Variables, Faceting, and <code>aes()</code> Options</a>
+  <li><a href="#graphing-two-quantitative-variables-faceting-and-aes-options" id="toc-graphing-two-quantitative-variables-faceting-and-aes-options" class="nav-link" data-scroll-target="#graphing-two-quantitative-variables-faceting-and-aes-options"> <span class="header-section-number">2.4</span> Graphing Two Quantitative Variables, Faceting, and <code>aes()</code> Options</a>
   <ul class="collapse">
-  <li><a href="#scatterplots" id="toc-scatterplots" class="nav-link" data-scroll-target="#scatterplots"> <span class="header-section-number">3.4.1</span> Scatterplots</a></li>
-  <li><a href="#aesthetics-in-aes" id="toc-aesthetics-in-aes" class="nav-link" data-scroll-target="#aesthetics-in-aes"> <span class="header-section-number">3.4.2</span> Aesthetics in <code>aes()</code></a></li>
-  <li><a href="#using-more-than-one-geom" id="toc-using-more-than-one-geom" class="nav-link" data-scroll-target="#using-more-than-one-geom"> <span class="header-section-number">3.4.3</span> Using More Than One <code>geom()</code></a></li>
-  <li><a href="#line-plots-with-geom_line" id="toc-line-plots-with-geom_line" class="nav-link" data-scroll-target="#line-plots-with-geom_line"> <span class="header-section-number">3.4.4</span> Line Plots with <code>geom_line()</code></a></li>
-  <li><a href="#faceting" id="toc-faceting" class="nav-link" data-scroll-target="#faceting"> <span class="header-section-number">3.4.5</span> Faceting</a></li>
-  <li><a href="#exercise-2-2" id="toc-exercise-2-2" class="nav-link" data-scroll-target="#exercise-2-2"> <span class="header-section-number">3.4.6</span> Exercises</a></li>
+  <li><a href="#scatterplots" id="toc-scatterplots" class="nav-link" data-scroll-target="#scatterplots"> <span class="header-section-number">2.4.1</span> Scatterplots</a></li>
+  <li><a href="#aesthetics-in-aes" id="toc-aesthetics-in-aes" class="nav-link" data-scroll-target="#aesthetics-in-aes"> <span class="header-section-number">2.4.2</span> Aesthetics in <code>aes()</code></a></li>
+  <li><a href="#using-more-than-one-geom" id="toc-using-more-than-one-geom" class="nav-link" data-scroll-target="#using-more-than-one-geom"> <span class="header-section-number">2.4.3</span> Using More Than One <code>geom()</code></a></li>
+  <li><a href="#line-plots-with-geom_line" id="toc-line-plots-with-geom_line" class="nav-link" data-scroll-target="#line-plots-with-geom_line"> <span class="header-section-number">2.4.4</span> Line Plots with <code>geom_line()</code></a></li>
+  <li><a href="#faceting" id="toc-faceting" class="nav-link" data-scroll-target="#faceting"> <span class="header-section-number">2.4.5</span> Faceting</a></li>
+  <li><a href="#exercise-2-2" id="toc-exercise-2-2" class="nav-link" data-scroll-target="#exercise-2-2"> <span class="header-section-number">2.4.6</span> Exercises</a></li>
   </ul></li>
-  <li><a href="#boxplots-stacked-barplots-and-others" id="toc-boxplots-stacked-barplots-and-others" class="nav-link" data-scroll-target="#boxplots-stacked-barplots-and-others"> <span class="header-section-number">3.5</span> Boxplots, Stacked Barplots and Others</a>
+  <li><a href="#boxplots-stacked-barplots-and-others" id="toc-boxplots-stacked-barplots-and-others" class="nav-link" data-scroll-target="#boxplots-stacked-barplots-and-others"> <span class="header-section-number">2.5</span> Boxplots, Stacked Barplots and Others</a>
   <ul class="collapse">
-  <li><a href="#graphing-a-quant.-variable-vs.-a-cat.-variable" id="toc-graphing-a-quant.-variable-vs.-a-cat.-variable" class="nav-link" data-scroll-target="#graphing-a-quant.-variable-vs.-a-cat.-variable"> <span class="header-section-number">3.5.1</span> Graphing a Quant. Variable vs.&nbsp;a Cat. Variable</a></li>
-  <li><a href="#graphing-two-categorical-variables" id="toc-graphing-two-categorical-variables" class="nav-link" data-scroll-target="#graphing-two-categorical-variables"> <span class="header-section-number">3.5.2</span> Graphing Two Categorical Variables</a></li>
-  <li><a href="#exercise-2-3" id="toc-exercise-2-3" class="nav-link" data-scroll-target="#exercise-2-3"> <span class="header-section-number">3.5.3</span> Exercises</a></li>
+  <li><a href="#graphing-a-quant.-variable-vs.-a-cat.-variable" id="toc-graphing-a-quant.-variable-vs.-a-cat.-variable" class="nav-link" data-scroll-target="#graphing-a-quant.-variable-vs.-a-cat.-variable"> <span class="header-section-number">2.5.1</span> Graphing a Quant. Variable vs.&nbsp;a Cat. Variable</a></li>
+  <li><a href="#graphing-two-categorical-variables" id="toc-graphing-two-categorical-variables" class="nav-link" data-scroll-target="#graphing-two-categorical-variables"> <span class="header-section-number">2.5.2</span> Graphing Two Categorical Variables</a></li>
+  <li><a href="#exercise-2-3" id="toc-exercise-2-3" class="nav-link" data-scroll-target="#exercise-2-3"> <span class="header-section-number">2.5.3</span> Exercises</a></li>
   </ul></li>
-  <li><a href="#chapexercise-2" id="toc-chapexercise-2" class="nav-link" data-scroll-target="#chapexercise-2"> <span class="header-section-number">3.6</span> Chapter Exercises</a></li>
-  <li><a href="#solutions-2" id="toc-solutions-2" class="nav-link" data-scroll-target="#solutions-2"> <span class="header-section-number">3.7</span> Exercise Solutions</a>
+  <li><a href="#chapexercise-2" id="toc-chapexercise-2" class="nav-link" data-scroll-target="#chapexercise-2"> <span class="header-section-number">2.6</span> Chapter Exercises</a></li>
+  <li><a href="#solutions-2" id="toc-solutions-2" class="nav-link" data-scroll-target="#solutions-2"> <span class="header-section-number">2.7</span> Exercise Solutions</a>
   <ul class="collapse">
-  <li><a href="#introduction-etc.-s" id="toc-introduction-etc.-s" class="nav-link" data-scroll-target="#introduction-etc.-s"> <span class="header-section-number">3.7.1</span> Introduction etc. S</a></li>
-  <li><a href="#basic-plot-structure-s" id="toc-basic-plot-structure-s" class="nav-link" data-scroll-target="#basic-plot-structure-s"> <span class="header-section-number">3.7.2</span> Basic Plot Structure S</a></li>
-  <li><a href="#graphing-a-single-variable-s" id="toc-graphing-a-single-variable-s" class="nav-link" data-scroll-target="#graphing-a-single-variable-s"> <span class="header-section-number">3.7.3</span> Graphing a Single Variable S</a></li>
-  <li><a href="#graphing-two-quant.-etc.-s" id="toc-graphing-two-quant.-etc.-s" class="nav-link" data-scroll-target="#graphing-two-quant.-etc.-s"> <span class="header-section-number">3.7.4</span> Graphing Two Quant. etc. S</a></li>
-  <li><a href="#boxplots-stacked-etc.-s" id="toc-boxplots-stacked-etc.-s" class="nav-link" data-scroll-target="#boxplots-stacked-etc.-s"> <span class="header-section-number">3.7.5</span> Boxplots, Stacked, etc. S</a></li>
-  <li><a href="#chapexercise-2-S" id="toc-chapexercise-2-S" class="nav-link" data-scroll-target="#chapexercise-2-S"> <span class="header-section-number">3.7.6</span> Chapter Exercises S</a></li>
+  <li><a href="#introduction-etc.-s" id="toc-introduction-etc.-s" class="nav-link" data-scroll-target="#introduction-etc.-s"> <span class="header-section-number">2.7.1</span> Introduction etc. S</a></li>
+  <li><a href="#basic-plot-structure-s" id="toc-basic-plot-structure-s" class="nav-link" data-scroll-target="#basic-plot-structure-s"> <span class="header-section-number">2.7.2</span> Basic Plot Structure S</a></li>
+  <li><a href="#graphing-a-single-variable-s" id="toc-graphing-a-single-variable-s" class="nav-link" data-scroll-target="#graphing-a-single-variable-s"> <span class="header-section-number">2.7.3</span> Graphing a Single Variable S</a></li>
+  <li><a href="#graphing-two-quant.-etc.-s" id="toc-graphing-two-quant.-etc.-s" class="nav-link" data-scroll-target="#graphing-two-quant.-etc.-s"> <span class="header-section-number">2.7.4</span> Graphing Two Quant. etc. S</a></li>
+  <li><a href="#boxplots-stacked-etc.-s" id="toc-boxplots-stacked-etc.-s" class="nav-link" data-scroll-target="#boxplots-stacked-etc.-s"> <span class="header-section-number">2.7.5</span> Boxplots, Stacked, etc. S</a></li>
+  <li><a href="#chapexercise-2-S" id="toc-chapexercise-2-S" class="nav-link" data-scroll-target="#chapexercise-2-S"> <span class="header-section-number">2.7.6</span> Chapter Exercises S</a></li>
   </ul></li>
-  <li><a href="#rcode-2" id="toc-rcode-2" class="nav-link" data-scroll-target="#rcode-2"> <span class="header-section-number">3.8</span> Non-Exercise <code>R</code> Code</a></li>
+  <li><a href="#rcode-2" id="toc-rcode-2" class="nav-link" data-scroll-target="#rcode-2"> <span class="header-section-number">2.8</span> Non-Exercise <code>R</code> Code</a></li>
   </ul>
 </nav>
     </div>
@@ -318,7 +318,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span id="ggplot2" class="quarto-section-identifier d-none d-lg-block"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Plotting with <code>ggplot2</code></span></span></h1>
+<h1 class="title"><span id="ggplot2" class="quarto-section-identifier d-none d-lg-block"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Plotting with <code>ggplot2</code></span></span></h1>
 </div>
 
 
@@ -338,8 +338,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><p>Use the plots produced to answer questions about the Presidential election data set and the Fitness data set.</p></li>
 <li><p>Further practice running code in <code>R</code>.</p></li>
 </ol>
-<section id="introduction-and-basic-terminology" class="level2" data-number="3.1">
-<h2 data-number="3.1" class="anchored" data-anchor-id="introduction-and-basic-terminology"><span class="header-section-number">3.1</span> Introduction and Basic Terminology</h2>
+<section id="introduction-and-basic-terminology" class="level2" data-number="2.1">
+<h2 data-number="2.1" class="anchored" data-anchor-id="introduction-and-basic-terminology"><span class="header-section-number">2.1</span> Introduction and Basic Terminology</h2>
 <p>We will begin our data science journey with plotting in the <code>ggplot2</code> package. We are starting with plotting for a couple of reasons:</p>
 <ol type="1">
 <li><p>Plotting is cool! We get to see an immediate result of our coding efforts in the form of a nice-to-look-at plot.</p></li>
@@ -388,8 +388,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul>
 <p>All of this will make more sense as we go through these first couple of weeks.</p>
 </section>
-<section id="basic-plot-structure" class="level2" data-number="3.2">
-<h2 data-number="3.2" class="anchored" data-anchor-id="basic-plot-structure"><span class="header-section-number">3.2</span> Basic Plot Structure</h2>
+<section id="basic-plot-structure" class="level2" data-number="2.2">
+<h2 data-number="2.2" class="anchored" data-anchor-id="basic-plot-structure"><span class="header-section-number">2.2</span> Basic Plot Structure</h2>
 <p>We will use the <code>ggplot()</code> function in the <code>ggplot2</code> package to construct visualizations of data. the <code>ggplot()</code> function has 3 basic components:</p>
 <ul>
 <li>a <code>data</code> argument, specifying the name of your data set (<code>pres_df</code> above)</li>
@@ -407,10 +407,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <p>The structure of <code>ggplot()</code> plots is based on the Grammar of Graphics <a href="https://www.springer.com/gp/book/9780387245447" target="_blank">https://www.springer.com/gp/book/9780387245447</a>. As with most new things, the components above will be easier to think about with some examples.</p>
 </section>
-<section id="graphing-a-single-variable" class="level2" data-number="3.3">
-<h2 data-number="3.3" class="anchored" data-anchor-id="graphing-a-single-variable"><span class="header-section-number">3.3</span> Graphing a Single Variable</h2>
-<section id="histograms-and-frequency-plots-for-a-quantitative-variable" class="level3" data-number="3.3.1">
-<h3 data-number="3.3.1" class="anchored" data-anchor-id="histograms-and-frequency-plots-for-a-quantitative-variable"><span class="header-section-number">3.3.1</span> Histograms and Frequency Plots for a Quantitative Variable</h3>
+<section id="graphing-a-single-variable" class="level2" data-number="2.3">
+<h2 data-number="2.3" class="anchored" data-anchor-id="graphing-a-single-variable"><span class="header-section-number">2.3</span> Graphing a Single Variable</h2>
+<section id="histograms-and-frequency-plots-for-a-quantitative-variable" class="level3" data-number="2.3.1">
+<h3 data-number="2.3.1" class="anchored" data-anchor-id="histograms-and-frequency-plots-for-a-quantitative-variable"><span class="header-section-number">2.3.1</span> Histograms and Frequency Plots for a Quantitative Variable</h3>
 <p>Let’s go ahead and begin our exploration of the data by making a histogram of the number of people who voted for <code>Gore</code> in each county. Recall that a histogram is useful if we would like a graph of a single quantitative variable. Copy the following code to an <code>R</code> chunk and run the code:</p>
 <div class="cell" data-appendix="true">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> pres_df, <span class="fu">aes</span>(<span class="at">x =</span> Gore)) <span class="sc">+</span></span>
@@ -455,8 +455,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 </div>
 </section>
-<section id="r-code-style" class="level3" data-number="3.3.2">
-<h3 data-number="3.3.2" class="anchored" data-anchor-id="r-code-style"><span class="header-section-number">3.3.2</span> <code>R</code> Code Style</h3>
+<section id="r-code-style" class="level3" data-number="2.3.2">
+<h3 data-number="2.3.2" class="anchored" data-anchor-id="r-code-style"><span class="header-section-number">2.3.2</span> <code>R</code> Code Style</h3>
 <p>We want our code to be as readable as possible. This not only benefits other people who may read your code (like me), but it also benefits you, particularly if you read your own code in the future. I try to follow the Style Guide in the Advanced <code>R</code> book: <a href="http://adv-r.had.co.nz/Style.html" target="_blank">http://adv-r.had.co.nz/Style.html</a>. Feel free to skim through that, but you don’t need to worry about it too much: you should be able to pick up on some important elements just from going through this course. You might actually end up having better code style if you <em>haven’t</em> had any previous coding experience.</p>
 <p>As a quick example of why code style can be important, consider the following two code chunks, both of which produce the same graph.</p>
 <div class="cell">
@@ -470,8 +470,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <p>Which code chunk would you want to read two years from now? Which code chunk would you want your classmate/friend/coworker to read? (assuming you like your classmate/friend/coworker….)</p>
 </section>
-<section id="bar-plots-for-a-categorical-variable" class="level3" data-number="3.3.3">
-<h3 data-number="3.3.3" class="anchored" data-anchor-id="bar-plots-for-a-categorical-variable"><span class="header-section-number">3.3.3</span> Bar Plots for a Categorical Variable</h3>
+<section id="bar-plots-for-a-categorical-variable" class="level3" data-number="2.3.3">
+<h3 data-number="2.3.3" class="anchored" data-anchor-id="bar-plots-for-a-categorical-variable"><span class="header-section-number">2.3.3</span> Bar Plots for a Categorical Variable</h3>
 <p>Recall from STAT 113 that bar plots are useful if you want to examine the distribution of one categorical variable. Side-by-side bar plots or stacked bar plots are plots that are useful for looking at the relationship between two categorical variables. There actually aren’t any categorical variables that would be interesting to plot in this data set, so we’ll make one, called <code>winner</code> using code that we don’t need to understand until next week. <code>winner</code> will be <code>"Gore"</code> if Gore won the county and <code>"Bush"</code> if Bush won the county. We’ll name this new data set <code>pres_cat</code>.</p>
 <div class="cell" data-appendix="true">
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>pres_cat <span class="ot">&lt;-</span> pres_df <span class="sc">|&gt;</span> <span class="fu">mutate</span>(<span class="at">winner =</span> <span class="fu">if_else</span>(Gore <span class="sc">&gt;</span> Bush,</span>
@@ -530,8 +530,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 </div>
 </section>
-<section id="exercise-2-1" class="level3" data-number="3.3.4">
-<h3 data-number="3.3.4" class="anchored" data-anchor-id="exercise-2-1"><span class="header-section-number">3.3.4</span> Exercises</h3>
+<section id="exercise-2-1" class="level3" data-number="2.3.4">
+<h3 data-number="2.3.4" class="anchored" data-anchor-id="exercise-2-1"><span class="header-section-number">2.3.4</span> Exercises</h3>
 <p>Exercises marked with an * indicate that the exercise has a solution at the end of the chapter at @ref(solutions-2).</p>
 <ol type="1">
 <li><p>Change the frequency plot to plot the number of votes for Bush instead of the number for Gore. Are there any obvious outliers in the Bush frequency plot?</p></li>
@@ -590,10 +590,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ol>
 </section>
 </section>
-<section id="graphing-two-quantitative-variables-faceting-and-aes-options" class="level2" data-number="3.4">
-<h2 data-number="3.4" class="anchored" data-anchor-id="graphing-two-quantitative-variables-faceting-and-aes-options"><span class="header-section-number">3.4</span> Graphing Two Quantitative Variables, Faceting, and <code>aes()</code> Options</h2>
-<section id="scatterplots" class="level3" data-number="3.4.1">
-<h3 data-number="3.4.1" class="anchored" data-anchor-id="scatterplots"><span class="header-section-number">3.4.1</span> Scatterplots</h3>
+<section id="graphing-two-quantitative-variables-faceting-and-aes-options" class="level2" data-number="2.4">
+<h2 data-number="2.4" class="anchored" data-anchor-id="graphing-two-quantitative-variables-faceting-and-aes-options"><span class="header-section-number">2.4</span> Graphing Two Quantitative Variables, Faceting, and <code>aes()</code> Options</h2>
+<section id="scatterplots" class="level3" data-number="2.4.1">
+<h3 data-number="2.4.1" class="anchored" data-anchor-id="scatterplots"><span class="header-section-number">2.4.1</span> Scatterplots</h3>
 <p>Moving back to the 2000 presidential election data set, thus far, we’ve figured out that there a couple of counties with very large numbers of votes for Gore and very large number of votes for Bush. We don’t know the reason for this (if some counties are very democratic, very republican, or if some counties are just more populous). Do the counties that have a large number of votes for Bush also tend to have a large number of votes for Gore? And what about the other candidates: do they have any interesting patterns?</p>
 <p>Let’s start by making a scatterplot of the number of votes for Gore and the number of votes for Bush. Note that the <code>geom_</code> for making a scatterplot is called <code>geom_point()</code> because we are adding a layer of points to the plot.</p>
 <div class="cell" data-appendix="true">
@@ -610,8 +610,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p><br></p>
 <p>We have used the 2000 Presidential data set to find out something really interesting! In particular, we have used <em>exploratory data analysis</em> to examine a data set, without having a specific question of interest that we want to answer. This type of exploring is often really useful, but does have some drawbacks, which we will discuss later in the semester.</p>
 </section>
-<section id="aesthetics-in-aes" class="level3" data-number="3.4.2">
-<h3 data-number="3.4.2" class="anchored" data-anchor-id="aesthetics-in-aes"><span class="header-section-number">3.4.2</span> Aesthetics in <code>aes()</code></h3>
+<section id="aesthetics-in-aes" class="level3" data-number="2.4.2">
+<h3 data-number="2.4.2" class="anchored" data-anchor-id="aesthetics-in-aes"><span class="header-section-number">2.4.2</span> Aesthetics in <code>aes()</code></h3>
 <p>For the remainder of this chapter, we will work with some fitness data collected from my Apple Watch since November 2018. The <code>higham_fitness_clean.csv</code> contains information on the following variables:</p>
 <ul>
 <li><code>Start</code>, the month, day, and year that the fitness data was recorded on</li>
@@ -718,8 +718,8 @@ date (1): Start
 </div>
 </div>
 </section>
-<section id="using-more-than-one-geom" class="level3" data-number="3.4.3">
-<h3 data-number="3.4.3" class="anchored" data-anchor-id="using-more-than-one-geom"><span class="header-section-number">3.4.3</span> Using More Than One <code>geom()</code></h3>
+<section id="using-more-than-one-geom" class="level3" data-number="2.4.3">
+<h3 data-number="2.4.3" class="anchored" data-anchor-id="using-more-than-one-geom"><span class="header-section-number">2.4.3</span> Using More Than One <code>geom()</code></h3>
 <p>We might also be interested in fitting a smooth curve to our scatterplot. When we want to put more than one “geom” on our plot, we can use multiple <code>geoms</code>. Since I want the <code>aes()</code> to apply to <strong>both</strong> <code>geom_point()</code> and <code>geom_smooth()</code>, I am going to move the <code>aes()</code> command to the overall <code>ggplot()</code> line of code:</p>
 <div class="cell" data-appendix="true">
 <div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> fitness, <span class="fu">aes</span>(<span class="at">x =</span> Start, <span class="at">y =</span> active_cals)) <span class="sc">+</span></span>
@@ -746,8 +746,8 @@ date (1): Start
 </div>
 <p>Does it look like there is an increasing overall trend? decreasing? Does it make sense to use a line to model the relationship or did you prefer the smooth curve?</p>
 </section>
-<section id="line-plots-with-geom_line" class="level3" data-number="3.4.4">
-<h3 data-number="3.4.4" class="anchored" data-anchor-id="line-plots-with-geom_line"><span class="header-section-number">3.4.4</span> Line Plots with <code>geom_line()</code></h3>
+<section id="line-plots-with-geom_line" class="level3" data-number="2.4.4">
+<h3 data-number="2.4.4" class="anchored" data-anchor-id="line-plots-with-geom_line"><span class="header-section-number">2.4.4</span> Line Plots with <code>geom_line()</code></h3>
 <p>Line plots are often useful when you have a quantitative variable that you’d like to explore over time. The y-axis is the quantitative variable while the x-axis is typically time. More generally, line plots are often used when the x-axis variable has one discrete value for each y-axis variable. For example, suppose we want to explore how my step count has changed through time over the past couple of years. Compare the standard scatterplot with the following line plot: which do you prefer?</p>
 <div class="cell" data-appendix="true">
 <div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> fitness, <span class="fu">aes</span>(<span class="at">x =</span> Start, <span class="at">y =</span> steps)) <span class="sc">+</span></span>
@@ -769,8 +769,8 @@ date (1): Start
 </div>
 <p>Can you spot the start of the pandemic in the graph? What seemed to happen with the step count?</p>
 </section>
-<section id="faceting" class="level3" data-number="3.4.5">
-<h3 data-number="3.4.5" class="anchored" data-anchor-id="faceting"><span class="header-section-number">3.4.5</span> Faceting</h3>
+<section id="faceting" class="level3" data-number="2.4.5">
+<h3 data-number="2.4.5" class="anchored" data-anchor-id="faceting"><span class="header-section-number">2.4.5</span> Faceting</h3>
 <p>Using colour to colour points of different levels of a categorical variable is generally fine when there are just a couple of levels and/or there is little overlap among the levels. But, what if there are a lot more than two categories to colour by. For example, let’s move back to the STAT 113 survey data set and investigate the relationship between <code>Pulse</code> and <code>Exercise</code> for different class <code>Year</code>’s. We might hypothesize that students who get more exercise tend to have lower pulse rates.</p>
 <div class="cell" data-appendix="true">
 <div class="sourceCode cell-code" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> stat113_df, <span class="fu">aes</span>(<span class="at">x =</span> Exercise, <span class="at">y =</span> Pulse,</span>
@@ -813,8 +813,8 @@ date (1): Start
 <p>What can you see from this plot that was harder to see from the plot with colour?</p>
 <p>Does the data seem to support the hypothesis that more exercise is associated with lower pulse rates in this sample of students?</p>
 </section>
-<section id="exercise-2-2" class="level3" data-number="3.4.6">
-<h3 data-number="3.4.6" class="anchored" data-anchor-id="exercise-2-2"><span class="header-section-number">3.4.6</span> Exercises</h3>
+<section id="exercise-2-2" class="level3" data-number="2.4.6">
+<h3 data-number="2.4.6" class="anchored" data-anchor-id="exercise-2-2"><span class="header-section-number">2.4.6</span> Exercises</h3>
 <p>Exercises marked with an * indicate that the exercise has a solution at the end of the chapter at @ref(solutions-2).</p>
 <ol type="1">
 <li><p>Fix the code chunk where we tried to specify the colour of all points to be purple to actually make all of the points “purple” by moving <code>colour = "purple"</code> outside the parentheses in <code>aes()</code> (but still inside <code>geom_point()</code>).</p></li>
@@ -826,11 +826,11 @@ date (1): Start
 <p><br></p>
 </section>
 </section>
-<section id="boxplots-stacked-barplots-and-others" class="level2" data-number="3.5">
-<h2 data-number="3.5" class="anchored" data-anchor-id="boxplots-stacked-barplots-and-others"><span class="header-section-number">3.5</span> Boxplots, Stacked Barplots and Others</h2>
+<section id="boxplots-stacked-barplots-and-others" class="level2" data-number="2.5">
+<h2 data-number="2.5" class="anchored" data-anchor-id="boxplots-stacked-barplots-and-others"><span class="header-section-number">2.5</span> Boxplots, Stacked Barplots and Others</h2>
 <p>There are a few other common geoms that will be useful throughout the semester. These only skim the surface: we’ll come back to plotting in a few weeks, after we’re able to do more with data wrangling and reshaping.</p>
-<section id="graphing-a-quant.-variable-vs.-a-cat.-variable" class="level3" data-number="3.5.1">
-<h3 data-number="3.5.1" class="anchored" data-anchor-id="graphing-a-quant.-variable-vs.-a-cat.-variable"><span class="header-section-number">3.5.1</span> Graphing a Quant. Variable vs.&nbsp;a Cat. Variable</h3>
+<section id="graphing-a-quant.-variable-vs.-a-cat.-variable" class="level3" data-number="2.5.1">
+<h3 data-number="2.5.1" class="anchored" data-anchor-id="graphing-a-quant.-variable-vs.-a-cat.-variable"><span class="header-section-number">2.5.1</span> Graphing a Quant. Variable vs.&nbsp;a Cat. Variable</h3>
 <p>Another common plot used in Intro Stat courses is a boxplot. Side-by-side boxplots are particularly useful if you want to compare a quantitative response variable across two or more levels of a categorical variable. Let’s stick with the STAT 113 survey data to examine the relationship between <code>Exercise</code> and <code>Award</code> preference.</p>
 <div class="cell" data-appendix="true">
 <div class="sourceCode cell-code" id="cb48"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> stat113_df, <span class="fu">aes</span>(<span class="at">x =</span> Award, <span class="at">y =</span> Exercise)) <span class="sc">+</span></span>
@@ -857,8 +857,8 @@ date (1): Start
 </div>
 <p>Read about Violin plots by typing <code>?geom_violin</code> into your console (bottom-left window). How are they different than boxplots?</p>
 </section>
-<section id="graphing-two-categorical-variables" class="level3" data-number="3.5.2">
-<h3 data-number="3.5.2" class="anchored" data-anchor-id="graphing-two-categorical-variables"><span class="header-section-number">3.5.2</span> Graphing Two Categorical Variables</h3>
+<section id="graphing-two-categorical-variables" class="level3" data-number="2.5.2">
+<h3 data-number="2.5.2" class="anchored" data-anchor-id="graphing-two-categorical-variables"><span class="header-section-number">2.5.2</span> Graphing Two Categorical Variables</h3>
 <p>The only combination of two variables that we have yet to explore are two variables that are both categorical. Let’s look at the relationship between <code>Year</code> and <code>SocialMedia</code> first using a stacked bar plot.</p>
 <p>To make the graph, we specify <code>position = "fill"</code> so that the bars are “filled” by <code>stepgoal</code>.</p>
 <div class="cell" data-appendix="true">
@@ -871,8 +871,8 @@ date (1): Start
 </div>
 <p>What patterns do you notice from the plot? Is there anything about the plot that could be improved?</p>
 </section>
-<section id="exercise-2-3" class="level3" data-number="3.5.3">
-<h3 data-number="3.5.3" class="anchored" data-anchor-id="exercise-2-3"><span class="header-section-number">3.5.3</span> Exercises</h3>
+<section id="exercise-2-3" class="level3" data-number="2.5.3">
+<h3 data-number="2.5.3" class="anchored" data-anchor-id="exercise-2-3"><span class="header-section-number">2.5.3</span> Exercises</h3>
 <p>Exercises marked with an * indicate that the exercise has a solution at the end of the chapter at @ref(solutions-2).</p>
 <ol type="1">
 <li><p>* Change the colour of the inside of the boxplots in the Exercise vs.&nbsp;Award graph to be <code>"blue"</code>. Do you think you’ll use <code>colour = "blue"</code> or <code>fill = "blue"</code>?</p></li>
@@ -882,8 +882,8 @@ date (1): Start
 </ol>
 </section>
 </section>
-<section id="chapexercise-2" class="level2" data-number="3.6">
-<h2 data-number="3.6" class="anchored" data-anchor-id="chapexercise-2"><span class="header-section-number">3.6</span> Chapter Exercises</h2>
+<section id="chapexercise-2" class="level2" data-number="2.6">
+<h2 data-number="2.6" class="anchored" data-anchor-id="chapexercise-2"><span class="header-section-number">2.6</span> Chapter Exercises</h2>
 <p>Exercises marked with an * indicate that the exercise has a solution at the end of the chapter at @ref(solutions-2).</p>
 <ol type="1">
 <li><p>* The default of <code>geom_smooth()</code> is to use LOESS (locally estimated scatterplot smoothing). Read about LOESS here: <a href="https://19january2017snapshot.epa.gov/sites/production/files/2016-07/documents/loess-lowess.pdf" target="_blank">here</a>. Write one or two sentences explaining what LOESS does.</p></li>
@@ -894,16 +894,16 @@ date (1): Start
 <p>Give an example of something that you know about STAT 113 and the survey data set that helped you answer or pose a question that someone from another university (and therefore unfamiliar with our intro stat course) wouldn’t know.</p>
 <p>Give an example of something that you don’t know about the fitness data set that the person who owns the fitness data would know. Why does that give an advantage to the person who is more familiar with the fitness data?</p>
 </section>
-<section id="solutions-2" class="level2" data-number="3.7">
-<h2 data-number="3.7" class="anchored" data-anchor-id="solutions-2"><span class="header-section-number">3.7</span> Exercise Solutions</h2>
-<section id="introduction-etc.-s" class="level3" data-number="3.7.1">
-<h3 data-number="3.7.1" class="anchored" data-anchor-id="introduction-etc.-s"><span class="header-section-number">3.7.1</span> Introduction etc. S</h3>
+<section id="solutions-2" class="level2" data-number="2.7">
+<h2 data-number="2.7" class="anchored" data-anchor-id="solutions-2"><span class="header-section-number">2.7</span> Exercise Solutions</h2>
+<section id="introduction-etc.-s" class="level3" data-number="2.7.1">
+<h3 data-number="2.7.1" class="anchored" data-anchor-id="introduction-etc.-s"><span class="header-section-number">2.7.1</span> Introduction etc. S</h3>
 </section>
-<section id="basic-plot-structure-s" class="level3" data-number="3.7.2">
-<h3 data-number="3.7.2" class="anchored" data-anchor-id="basic-plot-structure-s"><span class="header-section-number">3.7.2</span> Basic Plot Structure S</h3>
+<section id="basic-plot-structure-s" class="level3" data-number="2.7.2">
+<h3 data-number="2.7.2" class="anchored" data-anchor-id="basic-plot-structure-s"><span class="header-section-number">2.7.2</span> Basic Plot Structure S</h3>
 </section>
-<section id="graphing-a-single-variable-s" class="level3" data-number="3.7.3">
-<h3 data-number="3.7.3" class="anchored" data-anchor-id="graphing-a-single-variable-s"><span class="header-section-number">3.7.3</span> Graphing a Single Variable S</h3>
+<section id="graphing-a-single-variable-s" class="level3" data-number="2.7.3">
+<h3 data-number="2.7.3" class="anchored" data-anchor-id="graphing-a-single-variable-s"><span class="header-section-number">2.7.3</span> Graphing a Single Variable S</h3>
 <ol start="4" type="1">
 <li>* Create a histogram of the <code>Exercise</code> variable, change the x-axis label to be “Exercise (hours per typical week)”, change the number of <code>bins</code> to <code>14</code>, and change the <code>fill</code> of the bins to be “lightpink2” and the outline <code>colour</code> of the bins to be black.</li>
 </ol>
@@ -937,8 +937,8 @@ date (1): Start
 </div>
 </div>
 </section>
-<section id="graphing-two-quant.-etc.-s" class="level3" data-number="3.7.4">
-<h3 data-number="3.7.4" class="anchored" data-anchor-id="graphing-two-quant.-etc.-s"><span class="header-section-number">3.7.4</span> Graphing Two Quant. etc. S</h3>
+<section id="graphing-two-quant.-etc.-s" class="level3" data-number="2.7.4">
+<h3 data-number="2.7.4" class="anchored" data-anchor-id="graphing-two-quant.-etc.-s"><span class="header-section-number">2.7.4</span> Graphing Two Quant. etc. S</h3>
 <ol start="4" type="1">
 <li>* Make a scatterplot of <code>Hgt</code> on the y-axis and <code>Wgt</code> on the x-axis, colouring by <code>Sport</code>. Add a smooth fitted curve to your scatterplot. Then, move <code>colour = Sport</code> from an <code>aes()</code> in the <code>ggplot()</code> function to an <code>aes()</code> in the <code>geom_point()</code> function. What changes in the plot? Can you give an explanation as to why that change occurs?</li>
 </ol>
@@ -970,8 +970,8 @@ date (1): Start
 </div>
 </div>
 </section>
-<section id="boxplots-stacked-etc.-s" class="level3" data-number="3.7.5">
-<h3 data-number="3.7.5" class="anchored" data-anchor-id="boxplots-stacked-etc.-s"><span class="header-section-number">3.7.5</span> Boxplots, Stacked, etc. S</h3>
+<section id="boxplots-stacked-etc.-s" class="level3" data-number="2.7.5">
+<h3 data-number="2.7.5" class="anchored" data-anchor-id="boxplots-stacked-etc.-s"><span class="header-section-number">2.7.5</span> Boxplots, Stacked, etc. S</h3>
 <ol type="1">
 <li>* Change the colour of the inside of the boxplots in the Exercise vs.&nbsp;Award graph to be <code>"blue"</code>. Do you think you’ll use <code>colour = "blue"</code> or <code>fill = "blue"</code>?</li>
 </ol>
@@ -1017,8 +1017,8 @@ date (1): Start
 </div>
 <p>As we might expect, it does seem like a higher proportion of students who play a sport would prefer to win an Olympic medal, compared with students who do not play a sport.</p>
 </section>
-<section id="chapexercise-2-S" class="level3" data-number="3.7.6">
-<h3 data-number="3.7.6" class="anchored" data-anchor-id="chapexercise-2-S"><span class="header-section-number">3.7.6</span> Chapter Exercises S</h3>
+<section id="chapexercise-2-S" class="level3" data-number="2.7.6">
+<h3 data-number="2.7.6" class="anchored" data-anchor-id="chapexercise-2-S"><span class="header-section-number">2.7.6</span> Chapter Exercises S</h3>
 <ol type="1">
 <li>* The default of <code>geom_smooth()</code> is to use LOESS (locally estimated scatterplot smoothing). Read about LOESS here: <a href="https://19january2017snapshot.epa.gov/sites/production/files/2016-07/documents/loess-lowess.pdf" target="_blank">here</a>. Write one or two sentences explaining what LOESS does.</li>
 </ol>
@@ -1067,8 +1067,8 @@ date (1): Start
 </div>
 </section>
 </section>
-<section id="rcode-2" class="level2" data-number="3.8">
-<h2 data-number="3.8" class="anchored" data-anchor-id="rcode-2"><span class="header-section-number">3.8</span> Non-Exercise <code>R</code> Code</h2>
+<section id="rcode-2" class="level2" data-number="2.8">
+<h2 data-number="2.8" class="anchored" data-anchor-id="rcode-2"><span class="header-section-number">2.8</span> Non-Exercise <code>R</code> Code</h2>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb74"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb74-1"><a href="#cb74-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
 <span id="cb74-2"><a href="#cb74-2" aria-hidden="true" tabindex="-1"></a>pres_df <span class="ot">&lt;-</span> <span class="fu">read_table</span>(<span class="st">"data/PRES2000.txt"</span>) </span>
@@ -1252,19 +1252,19 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
       <a href="./01-intro.html" class="pagination-link">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Getting Started with <code>R</code> and <code>R Studio</code></span></span>
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Getting Started with <code>R</code> and <code>R Studio</code></span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
       <a href="./03-dplyr.html" class="pagination-link">
-        <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Wrangling with <code>dplyr</code></span></span> <i class="bi bi-arrow-right-short"></i>
+        <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Wrangling with <code>dplyr</code></span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
 </div> <!-- /content -->
 <footer class="footer">
   <div class="nav-footer">
-    <div class="nav-footer-left">Course Materials were written by Matt Higham for STAT/DATA 234 at St.&nbsp;Lawrence University</div>   
+    <div class="nav-footer-left">Course Materials were written by Matt Higham for STAT/DATA 234 at St.&nbsp;Lawrence University.</div>   
     <div class="nav-footer-right">This book was built with <a href="https://quarto.org/">Quarto</a>.</div>
   </div>
 </footer>

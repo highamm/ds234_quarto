@@ -1,4 +1,4 @@
-# Coding in Base `R`
+# Coding in Base `R` {#basics}
 
 __Goals__:
 

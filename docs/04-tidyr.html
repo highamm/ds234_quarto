@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>DATA / STAT 234 - 7&nbsp; Tidying with tidyr</title>
+<title>DATA / STAT 234 - 6&nbsp; Tidying with tidyr</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -128,7 +128,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <header id="quarto-header" class="headroom fixed-top">
   <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
     <div class="container-fluid d-flex justify-content-between">
-      <h1 class="quarto-secondary-nav-title"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Tidying with <code>tidyr</code></span></h1>
+      <h1 class="quarto-secondary-nav-title"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Tidying with <code>tidyr</code></span></h1>
       <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
         <i class="bi bi-chevron-right"></i>
       </button>
@@ -151,6 +151,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       </div>
     <div class="sidebar-menu-container"> 
     <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">Syllabus and Course Information</a>
+  </div>
+</li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">The Core</a>
@@ -161,32 +166,27 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./index.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Syllabus and Course Information</span></a>
+  <a href="./01-intro.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Getting Started with <code>R</code> and <code>R Studio</code></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./01-intro.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Getting Started with <code>R</code> and <code>R Studio</code></span></a>
+  <a href="./02-ggplot2.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Plotting with <code>ggplot2</code></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./02-ggplot2.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Plotting with <code>ggplot2</code></span></a>
+  <a href="./03-dplyr.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Wrangling with <code>dplyr</code></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./03-dplyr.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Wrangling with <code>dplyr</code></span></a>
+  <a href="./05-comm.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Communication with <code>Quarto</code></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./05-comm.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Communication with <code>Quarto</code></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./14-workflow.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Workflow and Other Skills</span></a>
+  <a href="./14-workflow.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Workflow and Other Skills</span></a>
   </div>
 </li>
       </ul>
@@ -201,32 +201,32 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./04-tidyr.html" class="sidebar-item-text sidebar-link active"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Tidying with <code>tidyr</code></span></a>
+  <a href="./04-tidyr.html" class="sidebar-item-text sidebar-link active"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Tidying with <code>tidyr</code></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./06-basics.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Coding in Base <code>R</code></span></a>
+  <a href="./06-basics.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Coding in Base <code>R</code></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./07-forcats.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Factors with <code>forcats</code></span></a>
+  <a href="./07-forcats.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Factors with <code>forcats</code></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./09-ethics.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Data Ethics</span></a>
+  <a href="./09-ethics.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Data Ethics</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./08-import.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Data Import</span></a>
+  <a href="./08-import.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Data Import</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./10-merging.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Merging with <code>dplyr</code></span></a>
+  <a href="./10-merging.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Merging with <code>dplyr</code></span></a>
   </div>
 </li>
       </ul>
@@ -241,27 +241,27 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./11-lubridate.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Dates with <code>lubridate</code></span></a>
+  <a href="./11-lubridate.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Dates with <code>lubridate</code></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./12-stringr.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Text Data with <code>tidytext</code> and <code>stringr</code></span></a>
+  <a href="./12-stringr.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Text Data with <code>tidytext</code> and <code>stringr</code></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./13-knn.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Predictive Modeling with knn</span></a>
+  <a href="./13-knn.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Predictive Modeling with knn</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./15-connections.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Connections to STAT 113, STAT 213, and CS 140</span></a>
+  <a href="./15-connections.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Connections to STAT 113, STAT 213, and CS 140</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./16-sql.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Introduction to SQL with <code>dbplyr</code></span></a>
+  <a href="./16-sql.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Introduction to SQL with <code>dbplyr</code></span></a>
   </div>
 </li>
       </ul>
@@ -275,29 +275,29 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#what-is-tidy-data" id="toc-what-is-tidy-data" class="nav-link active" data-scroll-target="#what-is-tidy-data"> <span class="header-section-number">7.1</span> What is Tidy Data?</a></li>
-  <li><a href="#separate-and-unite-columns" id="toc-separate-and-unite-columns" class="nav-link" data-scroll-target="#separate-and-unite-columns"> <span class="header-section-number">7.2</span> <code>separate()</code> and <code>unite()</code> Columns</a>
+  <li><a href="#what-is-tidy-data" id="toc-what-is-tidy-data" class="nav-link active" data-scroll-target="#what-is-tidy-data"> <span class="header-section-number">6.1</span> What is Tidy Data?</a></li>
+  <li><a href="#separate-and-unite-columns" id="toc-separate-and-unite-columns" class="nav-link" data-scroll-target="#separate-and-unite-columns"> <span class="header-section-number">6.2</span> <code>separate()</code> and <code>unite()</code> Columns</a>
   <ul class="collapse">
-  <li><a href="#separate-a-column" id="toc-separate-a-column" class="nav-link" data-scroll-target="#separate-a-column"> <span class="header-section-number">7.2.1</span> <code>separate()</code> a Column</a></li>
-  <li><a href="#unite-columns" id="toc-unite-columns" class="nav-link" data-scroll-target="#unite-columns"> <span class="header-section-number">7.2.2</span> <code>unite()</code> Columns</a></li>
-  <li><a href="#column-names-and-rename" id="toc-column-names-and-rename" class="nav-link" data-scroll-target="#column-names-and-rename"> <span class="header-section-number">7.2.3</span> Column Names and <code>rename()</code></a></li>
-  <li><a href="#exercise-4-1" id="toc-exercise-4-1" class="nav-link" data-scroll-target="#exercise-4-1"> <span class="header-section-number">7.2.4</span> Exercises</a></li>
+  <li><a href="#separate-a-column" id="toc-separate-a-column" class="nav-link" data-scroll-target="#separate-a-column"> <span class="header-section-number">6.2.1</span> <code>separate()</code> a Column</a></li>
+  <li><a href="#unite-columns" id="toc-unite-columns" class="nav-link" data-scroll-target="#unite-columns"> <span class="header-section-number">6.2.2</span> <code>unite()</code> Columns</a></li>
+  <li><a href="#column-names-and-rename" id="toc-column-names-and-rename" class="nav-link" data-scroll-target="#column-names-and-rename"> <span class="header-section-number">6.2.3</span> Column Names and <code>rename()</code></a></li>
+  <li><a href="#exercise-4-1" id="toc-exercise-4-1" class="nav-link" data-scroll-target="#exercise-4-1"> <span class="header-section-number">6.2.4</span> Exercises</a></li>
   </ul></li>
-  <li><a href="#reshaping-with-pivot_" id="toc-reshaping-with-pivot_" class="nav-link" data-scroll-target="#reshaping-with-pivot_"> <span class="header-section-number">7.3</span> Reshaping with <code>pivot_()</code></a>
+  <li><a href="#reshaping-with-pivot_" id="toc-reshaping-with-pivot_" class="nav-link" data-scroll-target="#reshaping-with-pivot_"> <span class="header-section-number">6.3</span> Reshaping with <code>pivot_()</code></a>
   <ul class="collapse">
-  <li><a href="#pivot_longer-to-gather-columns" id="toc-pivot_longer-to-gather-columns" class="nav-link" data-scroll-target="#pivot_longer-to-gather-columns"> <span class="header-section-number">7.3.1</span> <code>pivot_longer()</code> to Gather Columns</a></li>
-  <li><a href="#pivot_wider-to-spread-to-multiple-columns" id="toc-pivot_wider-to-spread-to-multiple-columns" class="nav-link" data-scroll-target="#pivot_wider-to-spread-to-multiple-columns"> <span class="header-section-number">7.3.2</span> <code>pivot_wider()</code> to Spread to Multiple Columns</a></li>
-  <li><a href="#exercise-4-2" id="toc-exercise-4-2" class="nav-link" data-scroll-target="#exercise-4-2"> <span class="header-section-number">7.3.3</span> Exercises</a></li>
+  <li><a href="#pivot_longer-to-gather-columns" id="toc-pivot_longer-to-gather-columns" class="nav-link" data-scroll-target="#pivot_longer-to-gather-columns"> <span class="header-section-number">6.3.1</span> <code>pivot_longer()</code> to Gather Columns</a></li>
+  <li><a href="#pivot_wider-to-spread-to-multiple-columns" id="toc-pivot_wider-to-spread-to-multiple-columns" class="nav-link" data-scroll-target="#pivot_wider-to-spread-to-multiple-columns"> <span class="header-section-number">6.3.2</span> <code>pivot_wider()</code> to Spread to Multiple Columns</a></li>
+  <li><a href="#exercise-4-2" id="toc-exercise-4-2" class="nav-link" data-scroll-target="#exercise-4-2"> <span class="header-section-number">6.3.3</span> Exercises</a></li>
   </ul></li>
-  <li><a href="#chapexercise-4" id="toc-chapexercise-4" class="nav-link" data-scroll-target="#chapexercise-4"> <span class="header-section-number">7.4</span> Chapter Exercises</a></li>
-  <li><a href="#solutions-4" id="toc-solutions-4" class="nav-link" data-scroll-target="#solutions-4"> <span class="header-section-number">7.5</span> Exercise Solutions</a>
+  <li><a href="#chapexercise-4" id="toc-chapexercise-4" class="nav-link" data-scroll-target="#chapexercise-4"> <span class="header-section-number">6.4</span> Chapter Exercises</a></li>
+  <li><a href="#solutions-4" id="toc-solutions-4" class="nav-link" data-scroll-target="#solutions-4"> <span class="header-section-number">6.5</span> Exercise Solutions</a>
   <ul class="collapse">
-  <li><a href="#what-is-tidy-data-s" id="toc-what-is-tidy-data-s" class="nav-link" data-scroll-target="#what-is-tidy-data-s"> <span class="header-section-number">7.5.1</span> What is Tidy Data? S</a></li>
-  <li><a href="#separate-and-unite-s" id="toc-separate-and-unite-s" class="nav-link" data-scroll-target="#separate-and-unite-s"> <span class="header-section-number">7.5.2</span> <code>separate()</code> and <code>unite()</code> S</a></li>
-  <li><a href="#pivot_-s" id="toc-pivot_-s" class="nav-link" data-scroll-target="#pivot_-s"> <span class="header-section-number">7.5.3</span> <code>pivot_()</code> S</a></li>
-  <li><a href="#chapexercise-4-S" id="toc-chapexercise-4-S" class="nav-link" data-scroll-target="#chapexercise-4-S"> <span class="header-section-number">7.5.4</span> Chapter Exercises S</a></li>
+  <li><a href="#what-is-tidy-data-s" id="toc-what-is-tidy-data-s" class="nav-link" data-scroll-target="#what-is-tidy-data-s"> <span class="header-section-number">6.5.1</span> What is Tidy Data? S</a></li>
+  <li><a href="#separate-and-unite-s" id="toc-separate-and-unite-s" class="nav-link" data-scroll-target="#separate-and-unite-s"> <span class="header-section-number">6.5.2</span> <code>separate()</code> and <code>unite()</code> S</a></li>
+  <li><a href="#pivot_-s" id="toc-pivot_-s" class="nav-link" data-scroll-target="#pivot_-s"> <span class="header-section-number">6.5.3</span> <code>pivot_()</code> S</a></li>
+  <li><a href="#chapexercise-4-S" id="toc-chapexercise-4-S" class="nav-link" data-scroll-target="#chapexercise-4-S"> <span class="header-section-number">6.5.4</span> Chapter Exercises S</a></li>
   </ul></li>
-  <li><a href="#rcode-4" id="toc-rcode-4" class="nav-link" data-scroll-target="#rcode-4"> <span class="header-section-number">7.6</span> Non-Exercise <code>R</code> Code</a></li>
+  <li><a href="#rcode-4" id="toc-rcode-4" class="nav-link" data-scroll-target="#rcode-4"> <span class="header-section-number">6.6</span> Non-Exercise <code>R</code> Code</a></li>
   </ul>
 </nav>
     </div>
@@ -306,7 +306,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title d-none d-lg-block"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Tidying with <code>tidyr</code></span></h1>
+<h1 class="title"><span id="tidyr" class="quarto-section-identifier d-none d-lg-block"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Tidying with <code>tidyr</code></span></span></h1>
 </div>
 
 
@@ -340,8 +340,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><code>Johnson (L)</code>, the percentage of people in the poll voting for Johnson</li>
 <li><code>Steing (G)</code>, the percentage of people in the poll voting for Stein</li>
 </ul>
-<section id="what-is-tidy-data" class="level2" data-number="7.1">
-<h2 data-number="7.1" class="anchored" data-anchor-id="what-is-tidy-data"><span class="header-section-number">7.1</span> What is Tidy Data?</h2>
+<section id="what-is-tidy-data" class="level2" data-number="6.1">
+<h2 data-number="6.1" class="anchored" data-anchor-id="what-is-tidy-data"><span class="header-section-number">6.1</span> What is Tidy Data?</h2>
 <p><code>R</code> usually (but not always) works best when your data is in tidy form. A tidy data set has a few characteristics. Note that you should already be quite familiar with tidy data because, up to this point, all of the data sets we have used in this class (and probably most of the data sets that you see in STAT 113 an all of the data sets that you may have seen in STAT 213) are tidy. This definition of tidy data is taken from <code>R for Data Science</code>:</p>
 <ol type="1">
 <li>every variable in the data set is stored in its own column</li>
@@ -352,8 +352,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ol>
 <p>We will begin by focusing on the first characteristic: every variable in a the data set should be stored in its own column (and correspondingly, number 3: each value of a variable should be stored in one cell).</p>
 </section>
-<section id="separate-and-unite-columns" class="level2" data-number="7.2">
-<h2 data-number="7.2" class="anchored" data-anchor-id="separate-and-unite-columns"><span class="header-section-number">7.2</span> <code>separate()</code> and <code>unite()</code> Columns</h2>
+<section id="separate-and-unite-columns" class="level2" data-number="6.2">
+<h2 data-number="6.2" class="anchored" data-anchor-id="separate-and-unite-columns"><span class="header-section-number">6.2</span> <code>separate()</code> and <code>unite()</code> Columns</h2>
 <p>In a fresh .qmd file (File -&gt; New File -&gt; Quarto) that is in your Notes project, copy and paste the following code into an <code>R</code> chunk:</p>
 <div class="cell" data-appendix="true">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
@@ -381,8 +381,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <p>What warning do you get? Why?</p>
 <p>You would get a similar warning (or sometimes an error) any time that you want to try to use <code>Sample</code> size in plotting or summaries. The issue is that the <code>Sample</code> column actually contains two variables so the data set is not tidy.</p>
-<section id="separate-a-column" class="level3" data-number="7.2.1">
-<h3 data-number="7.2.1" class="anchored" data-anchor-id="separate-a-column"><span class="header-section-number">7.2.1</span> <code>separate()</code> a Column</h3>
+<section id="separate-a-column" class="level3" data-number="6.2.1">
+<h3 data-number="6.2.1" class="anchored" data-anchor-id="separate-a-column"><span class="header-section-number">6.2.1</span> <code>separate()</code> a Column</h3>
 <p>Let’s <code>separate()</code> the two variables into <code>Sample_size</code> and <code>Sample_type</code>:</p>
 <div class="cell" data-appendix="true">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>polls <span class="sc">|&gt;</span></span>
@@ -424,8 +424,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Why should you use <code>" - "</code> as the separator instead of <code>"-"</code>? Try using <code>"-"</code> if you aren’t sure: you shouldn’t get an error but something should look off.</p>
 <p>What happened to <code>Sample</code>? Why is it back to its un-separated form?</p>
 </section>
-<section id="unite-columns" class="level3" data-number="7.2.2">
-<h3 data-number="7.2.2" class="anchored" data-anchor-id="unite-columns"><span class="header-section-number">7.2.2</span> <code>unite()</code> Columns</h3>
+<section id="unite-columns" class="level3" data-number="6.2.2">
+<h3 data-number="6.2.2" class="anchored" data-anchor-id="unite-columns"><span class="header-section-number">6.2.2</span> <code>unite()</code> Columns</h3>
 <p><code>unite()</code> is the “opposite” of <code>separate()</code>: use it when one variable is stored across multiple columns, but each row still represents a single case. The need to use <code>unite()</code> is less common than <code>separate()</code>. In our current data set, there is no need to use it at all. But, for the sake of seeing an example, let’s separate the <code>Start</code> date into <code>month</code> and <code>day</code> and then use <code>unite()</code> to re-unite those columns:</p>
 <div class="cell" data-appendix="true">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>polls_sillytest <span class="ot">&lt;-</span> polls_sep <span class="sc">|&gt;</span></span>
@@ -481,8 +481,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <p>This is useful if a function argument expects two or more “things”: for example, in <code>separate()</code>, the <code>into</code> argument requires two column names for this example. Those column names must be specified by combining the names together with <code>c()</code>.</p>
 </section>
-<section id="column-names-and-rename" class="level3" data-number="7.2.3">
-<h3 data-number="7.2.3" class="anchored" data-anchor-id="column-names-and-rename"><span class="header-section-number">7.2.3</span> Column Names and <code>rename()</code></h3>
+<section id="column-names-and-rename" class="level3" data-number="6.2.3">
+<h3 data-number="6.2.3" class="anchored" data-anchor-id="column-names-and-rename"><span class="header-section-number">6.2.3</span> Column Names and <code>rename()</code></h3>
 <p>You might have noticed that the columns with percentage of votes for Clinton, Trump, etc. are surrounded by backticks ` ` when you print <code>polls</code> or <code>polls_sep</code>:</p>
 <div class="cell" data-appendix="true">
 <div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>polls_sep</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -530,8 +530,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <p><code>rename()</code> can also be very useful if you have variable names that are very long to type out. <code>rename()</code> is actually from <code>dplyr</code>, not <code>tidyr</code>, but we didn’t have a need for it with any of the <code>dplyr</code> data sets.</p>
 </section>
-<section id="exercise-4-1" class="level3" data-number="7.2.4">
-<h3 data-number="7.2.4" class="anchored" data-anchor-id="exercise-4-1"><span class="header-section-number">7.2.4</span> Exercises</h3>
+<section id="exercise-4-1" class="level3" data-number="6.2.4">
+<h3 data-number="6.2.4" class="anchored" data-anchor-id="exercise-4-1"><span class="header-section-number">6.2.4</span> Exercises</h3>
 <p>Exercises marked with an * indicate that the exercise has a solution at the end of the chapter at @ref(solutions-4).</p>
 <p>The MLB salary data set contains salaries on all 862 players in Major League Baseball in 2016. The data set was obtained from <a href="http://www.usatoday.com/sports/mlb/salaries/2016/player/all/" target="_blank">http://www.usatoday.com/sports/mlb/salaries/2016/player/all/</a></p>
 <ol type="1">
@@ -593,8 +593,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ol>
 </section>
 </section>
-<section id="reshaping-with-pivot_" class="level2" data-number="7.3">
-<h2 data-number="7.3" class="anchored" data-anchor-id="reshaping-with-pivot_"><span class="header-section-number">7.3</span> Reshaping with <code>pivot_()</code></h2>
+<section id="reshaping-with-pivot_" class="level2" data-number="6.3">
+<h2 data-number="6.3" class="anchored" data-anchor-id="reshaping-with-pivot_"><span class="header-section-number">6.3</span> Reshaping with <code>pivot_()</code></h2>
 <p>We will continue to use the polling data set to introduce the pivoting functions and data reshaping. To make sure that we are all working with the same data set, run the following line of code:</p>
 <div class="cell" data-appendix="true">
 <div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>polls_clean <span class="ot">&lt;-</span> polls <span class="sc">|&gt;</span></span>
@@ -631,8 +631,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <p>And we’re stuck. It’s certainly not impossible to make the graph with the data in its current form (keep adding <code>geom_point()</code> and re-specifying the aesthetics, then manually specify colours, then manually specify a legend), but it’s definitely a huge pain.</p>
 <p>This is where <code>pivot_longer()</code> can help! <a href="https://www.youtube.com/watch?v=8w3wmQAMoxQ" target="_blank">https://www.youtube.com/watch?v=8w3wmQAMoxQ</a></p>
-<section id="pivot_longer-to-gather-columns" class="level3" data-number="7.3.1">
-<h3 data-number="7.3.1" class="anchored" data-anchor-id="pivot_longer-to-gather-columns"><span class="header-section-number">7.3.1</span> <code>pivot_longer()</code> to Gather Columns</h3>
+<section id="pivot_longer-to-gather-columns" class="level3" data-number="6.3.1">
+<h3 data-number="6.3.1" class="anchored" data-anchor-id="pivot_longer-to-gather-columns"><span class="header-section-number">6.3.1</span> <code>pivot_longer()</code> to Gather Columns</h3>
 <p><code>pivot_longer()</code> “pivots” the data set so that is has more rows (hence the “longer”) by collapsing multiple columns into two columns. One new column is a “key” column, which is the new variable containing the old data set’s column names. The second new column is a “value” column, which is the new variable containing the old data set’s values for each of the old data set’s column names. It’s easier to see this with an example. We know from our plotting exercise above that we’d really like a <code>candidate</code> variable to colour by and a <code>poll_percent</code> variable for the y-axis of our plot. So, we can use <code>pivot_longer()</code> to make these two columns:</p>
 <div class="cell" data-appendix="true">
 <div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>polls_clean <span class="sc">|&gt;</span></span>
@@ -678,8 +678,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 </div>
 </section>
-<section id="pivot_wider-to-spread-to-multiple-columns" class="level3" data-number="7.3.2">
-<h3 data-number="7.3.2" class="anchored" data-anchor-id="pivot_wider-to-spread-to-multiple-columns"><span class="header-section-number">7.3.2</span> <code>pivot_wider()</code> to Spread to Multiple Columns</h3>
+<section id="pivot_wider-to-spread-to-multiple-columns" class="level3" data-number="6.3.2">
+<h3 data-number="6.3.2" class="anchored" data-anchor-id="pivot_wider-to-spread-to-multiple-columns"><span class="header-section-number">6.3.2</span> <code>pivot_wider()</code> to Spread to Multiple Columns</h3>
 <p>The “opposite” of <code>pivot_longer()</code> is <code>pivot_wider()</code>. We need to use <code>pivot_wider()</code> when one case is actually spread across multiple rows. Again, I typically will realize there is an issue with untidy data when I go to do something that should be simple and it’s not.</p>
 <p>Let’s examine some airline safety data that fivethirtyeight used in their Should Travelers Avoid Flying Airlines that Have Had Crashes in the Past? story: <a href="https://fivethirtyeight.com/features/should-travelers-avoid-flying-airlines-that-have-had-crashes-in-the-past/" target="_blank">https://fivethirtyeight.com/features/should-travelers-avoid-flying-airlines-that-have-had-crashes-in-the-past/</a> . The raw data can be found <a href="https://github.com/fivethirtyeight/data/tree/master/airline-safety" target="_blank">here</a>.</p>
 <div class="cell" data-appendix="true">
@@ -835,8 +835,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>We will see more examples of <code>pivot_wider()</code> and <code>pivot_longer()</code> in the Exercises. Note that tidy data isn’t necessarily always better: you might find cases where you need to “untidy” the data by using <code>pivot_longer()</code> or <code>pivot_wider()</code>. However, most functions in <code>R</code> (and in other languages) work best with tidy data.</p>
 <p>There are a few more topics to discuss in tidying data. We have not yet discussed the 4th or 5th characteristics of tidy data (cells should not contain units and there should be no headers or footers), but these are usually dealt with when we read in the data. Therefore, these issues will be covered when we discuss <code>readr</code>.</p>
 </section>
-<section id="exercise-4-2" class="level3" data-number="7.3.3">
-<h3 data-number="7.3.3" class="anchored" data-anchor-id="exercise-4-2"><span class="header-section-number">7.3.3</span> Exercises</h3>
+<section id="exercise-4-2" class="level3" data-number="6.3.3">
+<h3 data-number="6.3.3" class="anchored" data-anchor-id="exercise-4-2"><span class="header-section-number">6.3.3</span> Exercises</h3>
 <p>Exercises marked with an * indicate that the exercise has a solution at the end of the chapter at @ref(solutions-4).</p>
 <ol type="1">
 <li>Once you have a handle on data science terminology, it’s not too difficult to transfer what you’ve learned to a different language. For example, students in computer science might be more familiar with Python. Google something like “pivot from wide to long in python” to find help on achieving the equivalent of <code>pivot_longer()</code> in Python.</li>
@@ -913,8 +913,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>In the second paragraph, discuss (a) Any code that you see that we have explicitly seen in class, (b) Any code that you see that we have not explicitly seen in class, and (c) anything else you find interesting about your article. Then, copy and paste the URL.</p>
 </section>
 </section>
-<section id="chapexercise-4" class="level2" data-number="7.4">
-<h2 data-number="7.4" class="anchored" data-anchor-id="chapexercise-4"><span class="header-section-number">7.4</span> Chapter Exercises</h2>
+<section id="chapexercise-4" class="level2" data-number="6.4">
+<h2 data-number="6.4" class="anchored" data-anchor-id="chapexercise-4"><span class="header-section-number">6.4</span> Chapter Exercises</h2>
 <p>Exercises marked with an * indicate that the exercise has a solution at the end of the chapter at @ref(solutions-4).</p>
 <p>We will use nfl salary data obtained from FiveThirtyEight that were originally obtained from <a href="https://github.com/rfordatascience/tidytuesday/tree/master/data/2018/2018-04-09" target="_blank">Spotrac.com</a>.</p>
 <p>The data set has the top 100 paid players for each year for each position from 2011 through 2018, broken down by player position. For those unfamiliar with American football, the positions in the data set are Quarterback, Running Back, Wide Receiver, Tight End, and Offensive Lineman for offense, Cornerback, Defensive Lineman, Linebacker, and Safety for Defense, and a separate category for Special Teams players that includes punters and kickers. You can review a summary of player positions <a href="https://i.pinimg.com/originals/56/32/87/56328741cb64cd59dafd200c9d06a301.png" target="_blank"> here</a>.</p>
@@ -947,13 +947,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 </div>
 </section>
-<section id="solutions-4" class="level2" data-number="7.5">
-<h2 data-number="7.5" class="anchored" data-anchor-id="solutions-4"><span class="header-section-number">7.5</span> Exercise Solutions</h2>
-<section id="what-is-tidy-data-s" class="level3" data-number="7.5.1">
-<h3 data-number="7.5.1" class="anchored" data-anchor-id="what-is-tidy-data-s"><span class="header-section-number">7.5.1</span> What is Tidy Data? S</h3>
+<section id="solutions-4" class="level2" data-number="6.5">
+<h2 data-number="6.5" class="anchored" data-anchor-id="solutions-4"><span class="header-section-number">6.5</span> Exercise Solutions</h2>
+<section id="what-is-tidy-data-s" class="level3" data-number="6.5.1">
+<h3 data-number="6.5.1" class="anchored" data-anchor-id="what-is-tidy-data-s"><span class="header-section-number">6.5.1</span> What is Tidy Data? S</h3>
 </section>
-<section id="separate-and-unite-s" class="level3" data-number="7.5.2">
-<h3 data-number="7.5.2" class="anchored" data-anchor-id="separate-and-unite-s"><span class="header-section-number">7.5.2</span> <code>separate()</code> and <code>unite()</code> S</h3>
+<section id="separate-and-unite-s" class="level3" data-number="6.5.2">
+<h3 data-number="6.5.2" class="anchored" data-anchor-id="separate-and-unite-s"><span class="header-section-number">6.5.2</span> <code>separate()</code> and <code>unite()</code> S</h3>
 <ol start="2" type="1">
 <li>* Tidy the data set just so that</li>
 </ol>
@@ -987,8 +987,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ol>
 <p>The <code>Salary</code> variable had a dollar sign in it so <code>ggplot</code> would not have known how to plot it.</p>
 </section>
-<section id="pivot_-s" class="level3" data-number="7.5.3">
-<h3 data-number="7.5.3" class="anchored" data-anchor-id="pivot_-s"><span class="header-section-number">7.5.3</span> <code>pivot_()</code> S</h3>
+<section id="pivot_-s" class="level3" data-number="6.5.3">
+<h3 data-number="6.5.3" class="anchored" data-anchor-id="pivot_-s"><span class="header-section-number">6.5.3</span> <code>pivot_()</code> S</h3>
 <ol start="2" type="1">
 <li>* Convert the data set to a tidier form so that there is a <code>year</code> variable and a <code>commodity</code> variable that has 3 values: <code>"bigmac"</code>, <code>"bread"</code>, and <code>"rice"</code></li>
 </ol>
@@ -1043,8 +1043,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <p>You’ll need to add something to your <code>pivot_longer()</code> function to convert the variable <code>Year</code> to numeric. We haven’t talked too much about variable types yet so, after your <code>values_to = "Mortality"</code> statement, add <code>, names_transform = list(Year = as.numeric)</code>, making sure you have a second <code>)</code> to close the <code>pivot_longer()</code> function.</p>
 </section>
-<section id="chapexercise-4-S" class="level3" data-number="7.5.4">
-<h3 data-number="7.5.4" class="anchored" data-anchor-id="chapexercise-4-S"><span class="header-section-number">7.5.4</span> Chapter Exercises S</h3>
+<section id="chapexercise-4-S" class="level3" data-number="6.5.4">
+<h3 data-number="6.5.4" class="anchored" data-anchor-id="chapexercise-4-S"><span class="header-section-number">6.5.4</span> Chapter Exercises S</h3>
 <ol start="2" type="1">
 <li>* Use a function in <code>tidyr</code> to make the data tidy, and give your tidy data set a new name.</li>
 </ol>
@@ -1154,8 +1154,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>All positions have higher salaries, even after adjusting for inflation, except perhaps running backs (it’s too hard to tell from the graph).</p>
 </section>
 </section>
-<section id="rcode-4" class="level2" data-number="7.6">
-<h2 data-number="7.6" class="anchored" data-anchor-id="rcode-4"><span class="header-section-number">7.6</span> Non-Exercise <code>R</code> Code</h2>
+<section id="rcode-4" class="level2" data-number="6.6">
+<h2 data-number="6.6" class="anchored" data-anchor-id="rcode-4"><span class="header-section-number">6.6</span> Non-Exercise <code>R</code> Code</h2>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb65"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb65-1"><a href="#cb65-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
 <span id="cb65-2"><a href="#cb65-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(here)</span>
@@ -1327,19 +1327,19 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
       <a href="./14-workflow.html" class="pagination-link">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Workflow and Other Skills</span></span>
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Workflow and Other Skills</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
       <a href="./06-basics.html" class="pagination-link">
-        <span class="nav-page-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Coding in Base <code>R</code></span></span> <i class="bi bi-arrow-right-short"></i>
+        <span class="nav-page-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Coding in Base <code>R</code></span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
 </div> <!-- /content -->
 <footer class="footer">
   <div class="nav-footer">
-    <div class="nav-footer-left">Course Materials were written by Matt Higham for STAT/DATA 234 at St.&nbsp;Lawrence University</div>   
+    <div class="nav-footer-left">Course Materials were written by Matt Higham for STAT/DATA 234 at St.&nbsp;Lawrence University.</div>   
     <div class="nav-footer-right">This book was built with <a href="https://quarto.org/">Quarto</a>.</div>
   </div>
 </footer>

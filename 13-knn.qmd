@@ -1,4 +1,4 @@
-# Predictive Modeling with knn
+# Predictive Modeling with knn {#knn}
 
 __Goals__
 

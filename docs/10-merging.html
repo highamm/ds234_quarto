@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>DATA / STAT 234 - 12&nbsp; Merging with dplyr</title>
+<title>DATA / STAT 234 - 11&nbsp; Merging with dplyr</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -128,7 +128,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <header id="quarto-header" class="headroom fixed-top">
   <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
     <div class="container-fluid d-flex justify-content-between">
-      <h1 class="quarto-secondary-nav-title"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Merging with <code>dplyr</code></span></h1>
+      <h1 class="quarto-secondary-nav-title"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Merging with <code>dplyr</code></span></h1>
       <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
         <i class="bi bi-chevron-right"></i>
       </button>
@@ -151,6 +151,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       </div>
     <div class="sidebar-menu-container"> 
     <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">Syllabus and Course Information</a>
+  </div>
+</li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">The Core</a>
@@ -161,32 +166,27 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./index.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Syllabus and Course Information</span></a>
+  <a href="./01-intro.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Getting Started with <code>R</code> and <code>R Studio</code></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./01-intro.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Getting Started with <code>R</code> and <code>R Studio</code></span></a>
+  <a href="./02-ggplot2.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Plotting with <code>ggplot2</code></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./02-ggplot2.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Plotting with <code>ggplot2</code></span></a>
+  <a href="./03-dplyr.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Wrangling with <code>dplyr</code></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./03-dplyr.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Wrangling with <code>dplyr</code></span></a>
+  <a href="./05-comm.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Communication with <code>Quarto</code></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./05-comm.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Communication with <code>Quarto</code></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./14-workflow.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Workflow and Other Skills</span></a>
+  <a href="./14-workflow.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Workflow and Other Skills</span></a>
   </div>
 </li>
       </ul>
@@ -201,32 +201,32 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./04-tidyr.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Tidying with <code>tidyr</code></span></a>
+  <a href="./04-tidyr.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Tidying with <code>tidyr</code></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./06-basics.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Coding in Base <code>R</code></span></a>
+  <a href="./06-basics.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Coding in Base <code>R</code></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./07-forcats.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Factors with <code>forcats</code></span></a>
+  <a href="./07-forcats.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Factors with <code>forcats</code></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./09-ethics.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Data Ethics</span></a>
+  <a href="./09-ethics.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Data Ethics</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./08-import.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Data Import</span></a>
+  <a href="./08-import.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Data Import</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./10-merging.html" class="sidebar-item-text sidebar-link active"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Merging with <code>dplyr</code></span></a>
+  <a href="./10-merging.html" class="sidebar-item-text sidebar-link active"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Merging with <code>dplyr</code></span></a>
   </div>
 </li>
       </ul>
@@ -241,27 +241,27 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./11-lubridate.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Dates with <code>lubridate</code></span></a>
+  <a href="./11-lubridate.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Dates with <code>lubridate</code></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./12-stringr.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Text Data with <code>tidytext</code> and <code>stringr</code></span></a>
+  <a href="./12-stringr.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Text Data with <code>tidytext</code> and <code>stringr</code></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./13-knn.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Predictive Modeling with knn</span></a>
+  <a href="./13-knn.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Predictive Modeling with knn</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./15-connections.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Connections to STAT 113, STAT 213, and CS 140</span></a>
+  <a href="./15-connections.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Connections to STAT 113, STAT 213, and CS 140</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./16-sql.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Introduction to SQL with <code>dbplyr</code></span></a>
+  <a href="./16-sql.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Introduction to SQL with <code>dbplyr</code></span></a>
   </div>
 </li>
       </ul>
@@ -275,37 +275,37 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#stacking-rows-and-appending-columns" id="toc-stacking-rows-and-appending-columns" class="nav-link active" data-scroll-target="#stacking-rows-and-appending-columns"> <span class="header-section-number">12.1</span> Stacking Rows and Appending Columns</a>
+  <li><a href="#stacking-rows-and-appending-columns" id="toc-stacking-rows-and-appending-columns" class="nav-link active" data-scroll-target="#stacking-rows-and-appending-columns"> <span class="header-section-number">11.1</span> Stacking Rows and Appending Columns</a>
   <ul class="collapse">
-  <li><a href="#stacking-with-bind_rows" id="toc-stacking-with-bind_rows" class="nav-link" data-scroll-target="#stacking-with-bind_rows"> <span class="header-section-number">12.1.1</span> Stacking with <code>bind_rows()</code></a></li>
-  <li><a href="#binding-columns-with-bind_cols" id="toc-binding-columns-with-bind_cols" class="nav-link" data-scroll-target="#binding-columns-with-bind_cols"> <span class="header-section-number">12.1.2</span> Binding Columns with <code>bind_cols()</code></a></li>
-  <li><a href="#exercise-10-1" id="toc-exercise-10-1" class="nav-link" data-scroll-target="#exercise-10-1"> <span class="header-section-number">12.1.3</span> Exercises</a></li>
+  <li><a href="#stacking-with-bind_rows" id="toc-stacking-with-bind_rows" class="nav-link" data-scroll-target="#stacking-with-bind_rows"> <span class="header-section-number">11.1.1</span> Stacking with <code>bind_rows()</code></a></li>
+  <li><a href="#binding-columns-with-bind_cols" id="toc-binding-columns-with-bind_cols" class="nav-link" data-scroll-target="#binding-columns-with-bind_cols"> <span class="header-section-number">11.1.2</span> Binding Columns with <code>bind_cols()</code></a></li>
+  <li><a href="#exercise-10-1" id="toc-exercise-10-1" class="nav-link" data-scroll-target="#exercise-10-1"> <span class="header-section-number">11.1.3</span> Exercises</a></li>
   </ul></li>
-  <li><a href="#mutating-joins" id="toc-mutating-joins" class="nav-link" data-scroll-target="#mutating-joins"> <span class="header-section-number">12.2</span> Mutating Joins</a>
+  <li><a href="#mutating-joins" id="toc-mutating-joins" class="nav-link" data-scroll-target="#mutating-joins"> <span class="header-section-number">11.2</span> Mutating Joins</a>
   <ul class="collapse">
-  <li><a href="#keep-all-rows-of-data-set-1-with-left_join" id="toc-keep-all-rows-of-data-set-1-with-left_join" class="nav-link" data-scroll-target="#keep-all-rows-of-data-set-1-with-left_join"> <span class="header-section-number">12.2.1</span> Keep All Rows of Data Set 1 with <code>left_join()</code></a></li>
-  <li><a href="#keep-all-rows-of-data-set-2-with-right_join" id="toc-keep-all-rows-of-data-set-2-with-right_join" class="nav-link" data-scroll-target="#keep-all-rows-of-data-set-2-with-right_join"> <span class="header-section-number">12.2.2</span> Keep All Rows of Data Set 2 with <code>right_join()</code></a></li>
-  <li><a href="#keep-all-rows-of-both-data-sets-with-full_join" id="toc-keep-all-rows-of-both-data-sets-with-full_join" class="nav-link" data-scroll-target="#keep-all-rows-of-both-data-sets-with-full_join"> <span class="header-section-number">12.2.3</span> Keep All Rows of Both Data Sets with <code>full_join()</code></a></li>
-  <li><a href="#keep-only-rows-with-matching-keys-with-inner_join" id="toc-keep-only-rows-with-matching-keys-with-inner_join" class="nav-link" data-scroll-target="#keep-only-rows-with-matching-keys-with-inner_join"> <span class="header-section-number">12.2.4</span> Keep Only Rows with Matching Keys with <code>inner_join()</code></a></li>
-  <li><a href="#which-xxxx_join" id="toc-which-xxxx_join" class="nav-link" data-scroll-target="#which-xxxx_join"> <span class="header-section-number">12.2.5</span> Which <code>xxxx_join()</code>?</a></li>
-  <li><a href="#the-importance-of-a-good-key" id="toc-the-importance-of-a-good-key" class="nav-link" data-scroll-target="#the-importance-of-a-good-key"> <span class="header-section-number">12.2.6</span> The Importance of a Good Key</a></li>
-  <li><a href="#exercise-10-2" id="toc-exercise-10-2" class="nav-link" data-scroll-target="#exercise-10-2"> <span class="header-section-number">12.2.7</span> Exercises</a></li>
+  <li><a href="#keep-all-rows-of-data-set-1-with-left_join" id="toc-keep-all-rows-of-data-set-1-with-left_join" class="nav-link" data-scroll-target="#keep-all-rows-of-data-set-1-with-left_join"> <span class="header-section-number">11.2.1</span> Keep All Rows of Data Set 1 with <code>left_join()</code></a></li>
+  <li><a href="#keep-all-rows-of-data-set-2-with-right_join" id="toc-keep-all-rows-of-data-set-2-with-right_join" class="nav-link" data-scroll-target="#keep-all-rows-of-data-set-2-with-right_join"> <span class="header-section-number">11.2.2</span> Keep All Rows of Data Set 2 with <code>right_join()</code></a></li>
+  <li><a href="#keep-all-rows-of-both-data-sets-with-full_join" id="toc-keep-all-rows-of-both-data-sets-with-full_join" class="nav-link" data-scroll-target="#keep-all-rows-of-both-data-sets-with-full_join"> <span class="header-section-number">11.2.3</span> Keep All Rows of Both Data Sets with <code>full_join()</code></a></li>
+  <li><a href="#keep-only-rows-with-matching-keys-with-inner_join" id="toc-keep-only-rows-with-matching-keys-with-inner_join" class="nav-link" data-scroll-target="#keep-only-rows-with-matching-keys-with-inner_join"> <span class="header-section-number">11.2.4</span> Keep Only Rows with Matching Keys with <code>inner_join()</code></a></li>
+  <li><a href="#which-xxxx_join" id="toc-which-xxxx_join" class="nav-link" data-scroll-target="#which-xxxx_join"> <span class="header-section-number">11.2.5</span> Which <code>xxxx_join()</code>?</a></li>
+  <li><a href="#the-importance-of-a-good-key" id="toc-the-importance-of-a-good-key" class="nav-link" data-scroll-target="#the-importance-of-a-good-key"> <span class="header-section-number">11.2.6</span> The Importance of a Good Key</a></li>
+  <li><a href="#exercise-10-2" id="toc-exercise-10-2" class="nav-link" data-scroll-target="#exercise-10-2"> <span class="header-section-number">11.2.7</span> Exercises</a></li>
   </ul></li>
-  <li><a href="#filtering-joins" id="toc-filtering-joins" class="nav-link" data-scroll-target="#filtering-joins"> <span class="header-section-number">12.3</span> Filtering Joins</a>
+  <li><a href="#filtering-joins" id="toc-filtering-joins" class="nav-link" data-scroll-target="#filtering-joins"> <span class="header-section-number">11.3</span> Filtering Joins</a>
   <ul class="collapse">
-  <li><a href="#filtering-with-semi_join" id="toc-filtering-with-semi_join" class="nav-link" data-scroll-target="#filtering-with-semi_join"> <span class="header-section-number">12.3.1</span> Filtering with <code>semi_join()</code></a></li>
-  <li><a href="#filtering-with-anti_join" id="toc-filtering-with-anti_join" class="nav-link" data-scroll-target="#filtering-with-anti_join"> <span class="header-section-number">12.3.2</span> Filtering with <code>anti_join()</code></a></li>
-  <li><a href="#exercise-10-3" id="toc-exercise-10-3" class="nav-link" data-scroll-target="#exercise-10-3"> <span class="header-section-number">12.3.3</span> Exercises</a></li>
+  <li><a href="#filtering-with-semi_join" id="toc-filtering-with-semi_join" class="nav-link" data-scroll-target="#filtering-with-semi_join"> <span class="header-section-number">11.3.1</span> Filtering with <code>semi_join()</code></a></li>
+  <li><a href="#filtering-with-anti_join" id="toc-filtering-with-anti_join" class="nav-link" data-scroll-target="#filtering-with-anti_join"> <span class="header-section-number">11.3.2</span> Filtering with <code>anti_join()</code></a></li>
+  <li><a href="#exercise-10-3" id="toc-exercise-10-3" class="nav-link" data-scroll-target="#exercise-10-3"> <span class="header-section-number">11.3.3</span> Exercises</a></li>
   </ul></li>
-  <li><a href="#chapexercise-10" id="toc-chapexercise-10" class="nav-link" data-scroll-target="#chapexercise-10"> <span class="header-section-number">12.4</span> Chapter Exercises</a></li>
-  <li><a href="#solutions-10" id="toc-solutions-10" class="nav-link" data-scroll-target="#solutions-10"> <span class="header-section-number">12.5</span> Exercise Solutions</a>
+  <li><a href="#chapexercise-10" id="toc-chapexercise-10" class="nav-link" data-scroll-target="#chapexercise-10"> <span class="header-section-number">11.4</span> Chapter Exercises</a></li>
+  <li><a href="#solutions-10" id="toc-solutions-10" class="nav-link" data-scroll-target="#solutions-10"> <span class="header-section-number">11.5</span> Exercise Solutions</a>
   <ul class="collapse">
-  <li><a href="#bind_rows-and-bind_cols-s" id="toc-bind_rows-and-bind_cols-s" class="nav-link" data-scroll-target="#bind_rows-and-bind_cols-s"> <span class="header-section-number">12.5.1</span> <code>bind_rows()</code> and <code>bind_cols()</code> S</a></li>
-  <li><a href="#mutating-joins-s" id="toc-mutating-joins-s" class="nav-link" data-scroll-target="#mutating-joins-s"> <span class="header-section-number">12.5.2</span> Mutating Joins S</a></li>
-  <li><a href="#filtering-joins-s" id="toc-filtering-joins-s" class="nav-link" data-scroll-target="#filtering-joins-s"> <span class="header-section-number">12.5.3</span> Filtering Joins S</a></li>
-  <li><a href="#chapexercise-10-S" id="toc-chapexercise-10-S" class="nav-link" data-scroll-target="#chapexercise-10-S"> <span class="header-section-number">12.5.4</span> Chapter Exercises S</a></li>
+  <li><a href="#bind_rows-and-bind_cols-s" id="toc-bind_rows-and-bind_cols-s" class="nav-link" data-scroll-target="#bind_rows-and-bind_cols-s"> <span class="header-section-number">11.5.1</span> <code>bind_rows()</code> and <code>bind_cols()</code> S</a></li>
+  <li><a href="#mutating-joins-s" id="toc-mutating-joins-s" class="nav-link" data-scroll-target="#mutating-joins-s"> <span class="header-section-number">11.5.2</span> Mutating Joins S</a></li>
+  <li><a href="#filtering-joins-s" id="toc-filtering-joins-s" class="nav-link" data-scroll-target="#filtering-joins-s"> <span class="header-section-number">11.5.3</span> Filtering Joins S</a></li>
+  <li><a href="#chapexercise-10-S" id="toc-chapexercise-10-S" class="nav-link" data-scroll-target="#chapexercise-10-S"> <span class="header-section-number">11.5.4</span> Chapter Exercises S</a></li>
   </ul></li>
-  <li><a href="#rcode-10" id="toc-rcode-10" class="nav-link" data-scroll-target="#rcode-10"> <span class="header-section-number">12.6</span> Non-Exercise <code>R</code> Code</a></li>
+  <li><a href="#rcode-10" id="toc-rcode-10" class="nav-link" data-scroll-target="#rcode-10"> <span class="header-section-number">11.6</span> Non-Exercise <code>R</code> Code</a></li>
   </ul>
 </nav>
     </div>
@@ -314,7 +314,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title d-none d-lg-block"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Merging with <code>dplyr</code></span></h1>
+<h1 class="title"><span id="mergin" class="quarto-section-identifier d-none d-lg-block"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Merging with <code>dplyr</code></span></span></h1>
 </div>
 
 
@@ -336,10 +336,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><p>use the filtering join functions in <code>dplyr</code> to filter one data set by values in another data set.</p></li>
 <li><p>apply the appropriate <code>join()</code> function for a given problem and context.</p></li>
 </ul>
-<section id="stacking-rows-and-appending-columns" class="level2" data-number="12.1">
-<h2 data-number="12.1" class="anchored" data-anchor-id="stacking-rows-and-appending-columns"><span class="header-section-number">12.1</span> Stacking Rows and Appending Columns</h2>
-<section id="stacking-with-bind_rows" class="level3" data-number="12.1.1">
-<h3 data-number="12.1.1" class="anchored" data-anchor-id="stacking-with-bind_rows"><span class="header-section-number">12.1.1</span> Stacking with <code>bind_rows()</code></h3>
+<section id="stacking-rows-and-appending-columns" class="level2" data-number="11.1">
+<h2 data-number="11.1" class="anchored" data-anchor-id="stacking-rows-and-appending-columns"><span class="header-section-number">11.1</span> Stacking Rows and Appending Columns</h2>
+<section id="stacking-with-bind_rows" class="level3" data-number="11.1.1">
+<h3 data-number="11.1.1" class="anchored" data-anchor-id="stacking-with-bind_rows"><span class="header-section-number">11.1.1</span> Stacking with <code>bind_rows()</code></h3>
 <p>First, we will talk about combining two data sets by “stacking” them on top of each other to form one new data set. The <code>bind_rows()</code> function can be used for this purpose <strong>if</strong> the two data sets have identical column names.</p>
 <p>A common instance where this is useful is if two data sets come from the same source and have different locations or years, but the same exact column names.</p>
 <p>For example, examine the following website and notice how there are .csv files given for each year of matches in the ATP (Association of (men’s) Tennis Professionals). <a href="https://github.com/JeffSackmann/tennis_atp" target="_blank">https://github.com/JeffSackmann/tennis_atp</a>.</p>
@@ -395,8 +395,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Is this the behavior you would expect?</p>
 <p><br></p>
 </section>
-<section id="binding-columns-with-bind_cols" class="level3" data-number="12.1.2">
-<h3 data-number="12.1.2" class="anchored" data-anchor-id="binding-columns-with-bind_cols"><span class="header-section-number">12.1.2</span> Binding Columns with <code>bind_cols()</code></h3>
+<section id="binding-columns-with-bind_cols" class="level3" data-number="11.1.2">
+<h3 data-number="11.1.2" class="anchored" data-anchor-id="binding-columns-with-bind_cols"><span class="header-section-number">11.1.2</span> Binding Columns with <code>bind_cols()</code></h3>
 <p>We won’t spend much time talking about how to bind together columns because it’s generally a little dangerous.</p>
 <p>We will use a couple of test data sets, <code>df_test1a</code> and <code>df_test1b</code>, to see it in action:</p>
 <div class="cell" data-appendix="true">
@@ -413,8 +413,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <p>For a larger data set, why might this be a dangerous way to combine data? What must you be sure of about the way the data was collected in order to combine data in this way?</p>
 </section>
-<section id="exercise-10-1" class="level3" data-number="12.1.3">
-<h3 data-number="12.1.3" class="anchored" data-anchor-id="exercise-10-1"><span class="header-section-number">12.1.3</span> Exercises</h3>
+<section id="exercise-10-1" class="level3" data-number="11.1.3">
+<h3 data-number="11.1.3" class="anchored" data-anchor-id="exercise-10-1"><span class="header-section-number">11.1.3</span> Exercises</h3>
 <p>Exercises marked with an * indicate that the exercise has a solution at the end of the chapter at @ref(solutions-10).</p>
 <ol type="1">
 <li>* Run the following and explain why <code>R</code> does not simply stack the rows. Then, fix the issue with the <code>rename()</code> function.</li>
@@ -435,8 +435,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 </section>
 </section>
-<section id="mutating-joins" class="level2" data-number="12.2">
-<h2 data-number="12.2" class="anchored" data-anchor-id="mutating-joins"><span class="header-section-number">12.2</span> Mutating Joins</h2>
+<section id="mutating-joins" class="level2" data-number="11.2">
+<h2 data-number="11.2" class="anchored" data-anchor-id="mutating-joins"><span class="header-section-number">11.2</span> Mutating Joins</h2>
 <p>If the goal is to combine two data sets using some common variable(s) that both data sets have, we need different tools than simply stacking rows or appending columns. When merging together two or more data sets, we need to have a matching identification variable in each data set. This variable is commonly called a <strong>key</strong>. A key can be an identification number, a name, a date, etc, but must be present in both data sets.</p>
 <p>As a simple first example, consider</p>
 <div class="cell" data-appendix="true">
@@ -447,8 +447,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <p>Our goal is to combine the two data sets so that the people’s favorite sports and favorite colours are in one data set.</p>
 <p>Identify the <code>key</code> in the example above. Why can we no longer use <code>bind_cols()</code> here?</p>
-<section id="keep-all-rows-of-data-set-1-with-left_join" class="level3" data-number="12.2.1">
-<h3 data-number="12.2.1" class="anchored" data-anchor-id="keep-all-rows-of-data-set-1-with-left_join"><span class="header-section-number">12.2.1</span> Keep All Rows of Data Set 1 with <code>left_join()</code></h3>
+<section id="keep-all-rows-of-data-set-1-with-left_join" class="level3" data-number="11.2.1">
+<h3 data-number="11.2.1" class="anchored" data-anchor-id="keep-all-rows-of-data-set-1-with-left_join"><span class="header-section-number">11.2.1</span> Keep All Rows of Data Set 1 with <code>left_join()</code></h3>
 <p>Consider the <code>babynames</code> <code>R</code> package, which has the following data sets:</p>
 <ul>
 <li><code>lifetables</code>: cohort life tables for different <code>sex</code> and different <code>year</code> variables, starting at the year 1900.</li>
@@ -496,8 +496,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <p>Why are <code>births</code> missing in <code>head(combined_left)</code> but not in <code>tail(combined_left)</code>?</p>
 </section>
-<section id="keep-all-rows-of-data-set-2-with-right_join" class="level3" data-number="12.2.2">
-<h3 data-number="12.2.2" class="anchored" data-anchor-id="keep-all-rows-of-data-set-2-with-right_join"><span class="header-section-number">12.2.2</span> Keep All Rows of Data Set 2 with <code>right_join()</code></h3>
+<section id="keep-all-rows-of-data-set-2-with-right_join" class="level3" data-number="11.2.2">
+<h3 data-number="11.2.2" class="anchored" data-anchor-id="keep-all-rows-of-data-set-2-with-right_join"><span class="header-section-number">11.2.2</span> Keep All Rows of Data Set 2 with <code>right_join()</code></h3>
 <p>Recall from the accompanying handout that there is no need to ever use <code>right_join()</code> because it is the same as using a <code>left_join()</code> with the first two data set arguments switched:</p>
 <div class="cell" data-appendix="true">
 <div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="do">## these will always do the same exact thing</span></span>
@@ -538,15 +538,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <p>Therefore, it’s usually easier to just always use <code>left_join()</code> and ignore <code>right_join()</code> completely.</p>
 </section>
-<section id="keep-all-rows-of-both-data-sets-with-full_join" class="level3" data-number="12.2.3">
-<h3 data-number="12.2.3" class="anchored" data-anchor-id="keep-all-rows-of-both-data-sets-with-full_join"><span class="header-section-number">12.2.3</span> Keep All Rows of Both Data Sets with <code>full_join()</code></h3>
+<section id="keep-all-rows-of-both-data-sets-with-full_join" class="level3" data-number="11.2.3">
+<h3 data-number="11.2.3" class="anchored" data-anchor-id="keep-all-rows-of-both-data-sets-with-full_join"><span class="header-section-number">11.2.3</span> Keep All Rows of Both Data Sets with <code>full_join()</code></h3>
 <p>In addition to keeping any rows with a matching key in the other data frame, a <code>full_join()</code> will keep all rows in data set 1 that don’t have a matching key in data set 2, and will also keep all rows in data set 2 that don’t have a matching key in data set 1, filling in <code>NA</code> for missing values when necessary. For our example of merging <code>babynames_df</code> with <code>birth_df</code>,</p>
 <div class="cell" data-appendix="true">
 <div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="fu">full_join</span>(babynames_df, birth_df, <span class="at">by =</span> <span class="fu">c</span>(<span class="st">"year"</span> <span class="ot">=</span> <span class="st">"year"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="keep-only-rows-with-matching-keys-with-inner_join" class="level3" data-number="12.2.4">
-<h3 data-number="12.2.4" class="anchored" data-anchor-id="keep-only-rows-with-matching-keys-with-inner_join"><span class="header-section-number">12.2.4</span> Keep Only Rows with Matching Keys with <code>inner_join()</code></h3>
+<section id="keep-only-rows-with-matching-keys-with-inner_join" class="level3" data-number="11.2.4">
+<h3 data-number="11.2.4" class="anchored" data-anchor-id="keep-only-rows-with-matching-keys-with-inner_join"><span class="header-section-number">11.2.4</span> Keep Only Rows with Matching Keys with <code>inner_join()</code></h3>
 <p>We can also keep only rows with matching keys with <code>inner_join()</code>. For this join, any row in data set 1 without a matching key in data set 2 is dropped, and any row in data set 2 without a matching key in data set 1 is also dropped.</p>
 <div class="cell" data-appendix="true">
 <div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="fu">inner_join</span>(babynames_df, birth_df, <span class="at">by =</span> <span class="fu">c</span>(<span class="st">"year"</span> <span class="ot">=</span> <span class="st">"year"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -569,12 +569,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <p><br></p>
 </section>
-<section id="which-xxxx_join" class="level3" data-number="12.2.5">
-<h3 data-number="12.2.5" class="anchored" data-anchor-id="which-xxxx_join"><span class="header-section-number">12.2.5</span> Which <code>xxxx_join()</code>?</h3>
+<section id="which-xxxx_join" class="level3" data-number="11.2.5">
+<h3 data-number="11.2.5" class="anchored" data-anchor-id="which-xxxx_join"><span class="header-section-number">11.2.5</span> Which <code>xxxx_join()</code>?</h3>
 <p>Which join function we use will depend on the context of the data and what questions you will be answering in your analysis. Most importantly, if you’re using a <code>left_join()</code>, <code>right_join()</code> or <code>inner_join()</code>, you’re potentially cutting out some data. It’s important to be aware of what data you’re omitting. For example, with the <code>babynames</code> and <code>births</code> data, we would want to keep a note that a <code>left_join()</code> removed all observations before 1909 from joined data set.</p>
 </section>
-<section id="the-importance-of-a-good-key" class="level3" data-number="12.2.6">
-<h3 data-number="12.2.6" class="anchored" data-anchor-id="the-importance-of-a-good-key"><span class="header-section-number">12.2.6</span> The Importance of a Good Key</h3>
+<section id="the-importance-of-a-good-key" class="level3" data-number="11.2.6">
+<h3 data-number="11.2.6" class="anchored" data-anchor-id="the-importance-of-a-good-key"><span class="header-section-number">11.2.6</span> The Importance of a Good Key</h3>
 <p>The key variable is very important for joining and is not always available in a “perfect” form. Recall the college majors data sets we have, called <code>slumajors_df</code>, which information on majors at SLU. Another data set, <code>collegemajors_df</code>, has different statistics on college majors nationwide. There’s lots of interesting variables in these data sets, but we’ll focus on the <code>Major</code> variable here. Read in and examine the two data sets with:</p>
 <div class="cell" data-appendix="true">
 <div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>slumajors_df <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="fu">here</span>(<span class="st">"data/SLU_Majors_15_19.csv"</span>))</span>
@@ -658,8 +658,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <p>As we can see, this solves the issue for some majors but others still have different naming conventions in the two data sets.</p>
 </section>
-<section id="exercise-10-2" class="level3" data-number="12.2.7">
-<h3 data-number="12.2.7" class="anchored" data-anchor-id="exercise-10-2"><span class="header-section-number">12.2.7</span> Exercises</h3>
+<section id="exercise-10-2" class="level3" data-number="11.2.7">
+<h3 data-number="11.2.7" class="anchored" data-anchor-id="exercise-10-2"><span class="header-section-number">11.2.7</span> Exercises</h3>
 <p>Exercises marked with an * indicate that the exercise has a solution at the end of the chapter at @ref(solutions-10).</p>
 <ol type="1">
 <li>Examine the following two joins that we’ve done, and explain why one resulting data set has fewer observations (rows) than the other.</li>
@@ -707,8 +707,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ol>
 </section>
 </section>
-<section id="filtering-joins" class="level2" data-number="12.3">
-<h2 data-number="12.3" class="anchored" data-anchor-id="filtering-joins"><span class="header-section-number">12.3</span> Filtering Joins</h2>
+<section id="filtering-joins" class="level2" data-number="11.3">
+<h2 data-number="11.3" class="anchored" data-anchor-id="filtering-joins"><span class="header-section-number">11.3</span> Filtering Joins</h2>
 <p>Filtering joins (<code>semi_join()</code> and <code>anti_join()</code>) are useful if you would only like to keep the variables in one data set, but you want to filter out observations by a variable in the second data set.</p>
 <p>Consider again the two data sets on men’s tennis matches in 2018 and in 2019.</p>
 <div class="cell" data-appendix="true">
@@ -761,8 +761,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 #   w_2ndWon &lt;dbl&gt;, w_SvGms &lt;dbl&gt;, w_bpSaved &lt;dbl&gt;, w_bpFaced &lt;dbl&gt;, …</code></pre>
 </div>
 </div>
-<section id="filtering-with-semi_join" class="level3" data-number="12.3.1">
-<h3 data-number="12.3.1" class="anchored" data-anchor-id="filtering-with-semi_join"><span class="header-section-number">12.3.1</span> Filtering with <code>semi_join()</code></h3>
+<section id="filtering-with-semi_join" class="level3" data-number="11.3.1">
+<h3 data-number="11.3.1" class="anchored" data-anchor-id="filtering-with-semi_join"><span class="header-section-number">11.3.1</span> Filtering with <code>semi_join()</code></h3>
 <p>Suppose that we only want to keep matches in 2019 where the winning player had 10 or more wins in 2018. This might be useful if we want to not consider players in 2018 that only played in a couple of matches, perhaps because they got injured or perhaps because they received a special wildcard into the draw of only one event.</p>
 <p>To accomplish this, we can first create a data set that has the names of all of the players that won 10 or more matches in 2018, using functions that we learned from <code>dplyr</code> earlier in the semester:</p>
 <div class="cell" data-appendix="true">
@@ -795,8 +795,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <p>Note that this only keeps the matches in 2019 where the <strong>winner</strong> had 10 or more match wins in 2018. It drops any matches where the <strong>loser</strong> lost against someone who did not have 10 or more match wins in 2018. So this isn’t yet perfect and would take a little more thought into which matches we actually want to keep for a particular analysis.</p>
 </section>
-<section id="filtering-with-anti_join" class="level3" data-number="12.3.2">
-<h3 data-number="12.3.2" class="anchored" data-anchor-id="filtering-with-anti_join"><span class="header-section-number">12.3.2</span> Filtering with <code>anti_join()</code></h3>
+<section id="filtering-with-anti_join" class="level3" data-number="11.3.2">
+<h3 data-number="11.3.2" class="anchored" data-anchor-id="filtering-with-anti_join"><span class="header-section-number">11.3.2</span> Filtering with <code>anti_join()</code></h3>
 <p>Now suppose that we want to only keep the matches in 2019 where the winning player did not have <strong>any</strong> wins in 2018. We might think of these players as “emerging players” in 2019, players who are coming back from an injury, etc.. To do this, we can use <code>anti_join()</code>, which only keeps the rows in the first data set that do <strong>not</strong> have a match in the second data set.</p>
 <div class="cell" data-appendix="true">
 <div class="sourceCode cell-code" id="cb46"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a>new_winners <span class="ot">&lt;-</span> <span class="fu">anti_join</span>(atp_2019, atp_2018,</span>
@@ -827,8 +827,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <p>The filtering join functions are useful if you want to filter out observations by some criterion in a different data set.</p>
 </section>
-<section id="exercise-10-3" class="level3" data-number="12.3.3">
-<h3 data-number="12.3.3" class="anchored" data-anchor-id="exercise-10-3"><span class="header-section-number">12.3.3</span> Exercises</h3>
+<section id="exercise-10-3" class="level3" data-number="11.3.3">
+<h3 data-number="11.3.3" class="anchored" data-anchor-id="exercise-10-3"><span class="header-section-number">11.3.3</span> Exercises</h3>
 <ol type="1">
 <li>Examine the following data sets (the first is <code>df1</code> and the second is <code>df2</code>) and then, without running any code, answer the following questions.</li>
 </ol>
@@ -1041,8 +1041,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ol>
 </section>
 </section>
-<section id="chapexercise-10" class="level2" data-number="12.4">
-<h2 data-number="12.4" class="anchored" data-anchor-id="chapexercise-10"><span class="header-section-number">12.4</span> Chapter Exercises</h2>
+<section id="chapexercise-10" class="level2" data-number="11.4">
+<h2 data-number="11.4" class="anchored" data-anchor-id="chapexercise-10"><span class="header-section-number">11.4</span> Chapter Exercises</h2>
 <p>Exercises marked with an * indicate that the exercise has a solution at the end of the chapter at @ref(solutions-10).</p>
 <ol type="1">
 <li>* Read in the gun violence data set, and suppose that you want to add a row to this data set that has the statistics on gun ownership and mortality rate in the District of Columbia (Washington D.C., which is in the NE region, has 16.7 deaths per 100,000 people, and a gun ownership rate of 8.7%). To do so, create a <code>tibble()</code> that has a single row representing D.C. and then combine your new <code>tibble</code> with the overall gun violence data set. Name this new data set <code>all_df</code>.</li>
@@ -1156,10 +1156,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <p><br></p>
 </section>
-<section id="solutions-10" class="level2" data-number="12.5">
-<h2 data-number="12.5" class="anchored" data-anchor-id="solutions-10"><span class="header-section-number">12.5</span> Exercise Solutions</h2>
-<section id="bind_rows-and-bind_cols-s" class="level3" data-number="12.5.1">
-<h3 data-number="12.5.1" class="anchored" data-anchor-id="bind_rows-and-bind_cols-s"><span class="header-section-number">12.5.1</span> <code>bind_rows()</code> and <code>bind_cols()</code> S</h3>
+<section id="solutions-10" class="level2" data-number="11.5">
+<h2 data-number="11.5" class="anchored" data-anchor-id="solutions-10"><span class="header-section-number">11.5</span> Exercise Solutions</h2>
+<section id="bind_rows-and-bind_cols-s" class="level3" data-number="11.5.1">
+<h3 data-number="11.5.1" class="anchored" data-anchor-id="bind_rows-and-bind_cols-s"><span class="header-section-number">11.5.1</span> <code>bind_rows()</code> and <code>bind_cols()</code> S</h3>
 <ol type="1">
 <li>* Run the following and explain why <code>R</code> does not simply stack the rows. Then, fix the issue with the <code>rename()</code> function.</li>
 </ol>
@@ -1196,14 +1196,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 </div>
 </section>
-<section id="mutating-joins-s" class="level3" data-number="12.5.2">
-<h3 data-number="12.5.2" class="anchored" data-anchor-id="mutating-joins-s"><span class="header-section-number">12.5.2</span> Mutating Joins S</h3>
+<section id="mutating-joins-s" class="level3" data-number="11.5.2">
+<h3 data-number="11.5.2" class="anchored" data-anchor-id="mutating-joins-s"><span class="header-section-number">11.5.2</span> Mutating Joins S</h3>
 </section>
-<section id="filtering-joins-s" class="level3" data-number="12.5.3">
-<h3 data-number="12.5.3" class="anchored" data-anchor-id="filtering-joins-s"><span class="header-section-number">12.5.3</span> Filtering Joins S</h3>
+<section id="filtering-joins-s" class="level3" data-number="11.5.3">
+<h3 data-number="11.5.3" class="anchored" data-anchor-id="filtering-joins-s"><span class="header-section-number">11.5.3</span> Filtering Joins S</h3>
 </section>
-<section id="chapexercise-10-S" class="level3" data-number="12.5.4">
-<h3 data-number="12.5.4" class="anchored" data-anchor-id="chapexercise-10-S"><span class="header-section-number">12.5.4</span> Chapter Exercises S</h3>
+<section id="chapexercise-10-S" class="level3" data-number="11.5.4">
+<h3 data-number="11.5.4" class="anchored" data-anchor-id="chapexercise-10-S"><span class="header-section-number">11.5.4</span> Chapter Exercises S</h3>
 <ol type="1">
 <li>* Read in the gun violence data set, and suppose that you want to add a row to this data set that has the statistics on gun ownership and mortality rate in the District of Columbia (Washington D.C., which is in the NE region, has 16.7 deaths per 100,000 people, and a gun ownership rate of 8.7%). To do so, create a <code>tibble()</code> that has a single row representing D.C. and then combine your new <code>tibble</code> with the overall gun violence data set. Name this new data set <code>all_df</code>.</li>
 </ol>
@@ -1366,8 +1366,8 @@ dbl (2): mortality_rate, ownership_rate
 </div>
 </section>
 </section>
-<section id="rcode-10" class="level2" data-number="12.6">
-<h2 data-number="12.6" class="anchored" data-anchor-id="rcode-10"><span class="header-section-number">12.6</span> Non-Exercise <code>R</code> Code</h2>
+<section id="rcode-10" class="level2" data-number="11.6">
+<h2 data-number="11.6" class="anchored" data-anchor-id="rcode-10"><span class="header-section-number">11.6</span> Non-Exercise <code>R</code> Code</h2>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb80"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb80-1"><a href="#cb80-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
 <span id="cb80-2"><a href="#cb80-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(here)</span>
@@ -1538,19 +1538,19 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
       <a href="./08-import.html" class="pagination-link">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Data Import</span></span>
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Data Import</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
       <a href="./11-lubridate.html" class="pagination-link">
-        <span class="nav-page-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Dates with <code>lubridate</code></span></span> <i class="bi bi-arrow-right-short"></i>
+        <span class="nav-page-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Dates with <code>lubridate</code></span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
 </div> <!-- /content -->
 <footer class="footer">
   <div class="nav-footer">
-    <div class="nav-footer-left">Course Materials were written by Matt Higham for STAT/DATA 234 at St.&nbsp;Lawrence University</div>   
+    <div class="nav-footer-left">Course Materials were written by Matt Higham for STAT/DATA 234 at St.&nbsp;Lawrence University.</div>   
     <div class="nav-footer-right">This book was built with <a href="https://quarto.org/">Quarto</a>.</div>
   </div>
 </footer>

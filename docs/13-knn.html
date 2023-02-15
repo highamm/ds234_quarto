@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>DATA / STAT 234 - 15&nbsp; Predictive Modeling with knn</title>
+<title>DATA / STAT 234 - 14&nbsp; Predictive Modeling with knn</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -129,7 +129,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <header id="quarto-header" class="headroom fixed-top">
   <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
     <div class="container-fluid d-flex justify-content-between">
-      <h1 class="quarto-secondary-nav-title"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Predictive Modeling with knn</span></h1>
+      <h1 class="quarto-secondary-nav-title"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Predictive Modeling with knn</span></h1>
       <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
         <i class="bi bi-chevron-right"></i>
       </button>
@@ -152,6 +152,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       </div>
     <div class="sidebar-menu-container"> 
     <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">Syllabus and Course Information</a>
+  </div>
+</li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">The Core</a>
@@ -162,32 +167,27 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./index.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Syllabus and Course Information</span></a>
+  <a href="./01-intro.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Getting Started with <code>R</code> and <code>R Studio</code></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./01-intro.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Getting Started with <code>R</code> and <code>R Studio</code></span></a>
+  <a href="./02-ggplot2.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Plotting with <code>ggplot2</code></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./02-ggplot2.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Plotting with <code>ggplot2</code></span></a>
+  <a href="./03-dplyr.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Wrangling with <code>dplyr</code></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./03-dplyr.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Wrangling with <code>dplyr</code></span></a>
+  <a href="./05-comm.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Communication with <code>Quarto</code></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./05-comm.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Communication with <code>Quarto</code></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./14-workflow.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Workflow and Other Skills</span></a>
+  <a href="./14-workflow.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Workflow and Other Skills</span></a>
   </div>
 </li>
       </ul>
@@ -202,32 +202,32 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./04-tidyr.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Tidying with <code>tidyr</code></span></a>
+  <a href="./04-tidyr.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Tidying with <code>tidyr</code></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./06-basics.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Coding in Base <code>R</code></span></a>
+  <a href="./06-basics.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Coding in Base <code>R</code></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./07-forcats.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Factors with <code>forcats</code></span></a>
+  <a href="./07-forcats.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Factors with <code>forcats</code></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./09-ethics.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Data Ethics</span></a>
+  <a href="./09-ethics.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Data Ethics</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./08-import.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Data Import</span></a>
+  <a href="./08-import.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Data Import</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./10-merging.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Merging with <code>dplyr</code></span></a>
+  <a href="./10-merging.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Merging with <code>dplyr</code></span></a>
   </div>
 </li>
       </ul>
@@ -242,27 +242,27 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./11-lubridate.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Dates with <code>lubridate</code></span></a>
+  <a href="./11-lubridate.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Dates with <code>lubridate</code></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./12-stringr.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Text Data with <code>tidytext</code> and <code>stringr</code></span></a>
+  <a href="./12-stringr.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Text Data with <code>tidytext</code> and <code>stringr</code></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./13-knn.html" class="sidebar-item-text sidebar-link active"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Predictive Modeling with knn</span></a>
+  <a href="./13-knn.html" class="sidebar-item-text sidebar-link active"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Predictive Modeling with knn</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./15-connections.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Connections to STAT 113, STAT 213, and CS 140</span></a>
+  <a href="./15-connections.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Connections to STAT 113, STAT 213, and CS 140</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./16-sql.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Introduction to SQL with <code>dbplyr</code></span></a>
+  <a href="./16-sql.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Introduction to SQL with <code>dbplyr</code></span></a>
   </div>
 </li>
       </ul>
@@ -276,33 +276,33 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#introduction-to-classification" id="toc-introduction-to-classification" class="nav-link active" data-scroll-target="#introduction-to-classification"> <span class="header-section-number">15.1</span> Introduction to Classification</a>
+  <li><a href="#introduction-to-classification" id="toc-introduction-to-classification" class="nav-link active" data-scroll-target="#introduction-to-classification"> <span class="header-section-number">14.1</span> Introduction to Classification</a>
   <ul class="collapse">
-  <li><a href="#training-and-test-data" id="toc-training-and-test-data" class="nav-link" data-scroll-target="#training-and-test-data"> <span class="header-section-number">15.1.1</span> Training and Test Data</a></li>
-  <li><a href="#exercise-13-1" id="toc-exercise-13-1" class="nav-link" data-scroll-target="#exercise-13-1"> <span class="header-section-number">15.1.2</span> Exercises</a></li>
+  <li><a href="#training-and-test-data" id="toc-training-and-test-data" class="nav-link" data-scroll-target="#training-and-test-data"> <span class="header-section-number">14.1.1</span> Training and Test Data</a></li>
+  <li><a href="#exercise-13-1" id="toc-exercise-13-1" class="nav-link" data-scroll-target="#exercise-13-1"> <span class="header-section-number">14.1.2</span> Exercises</a></li>
   </ul></li>
-  <li><a href="#knn-introduction" id="toc-knn-introduction" class="nav-link" data-scroll-target="#knn-introduction"> <span class="header-section-number">15.2</span> knn Introduction</a>
+  <li><a href="#knn-introduction" id="toc-knn-introduction" class="nav-link" data-scroll-target="#knn-introduction"> <span class="header-section-number">14.2</span> knn Introduction</a>
   <ul class="collapse">
-  <li><a href="#knn-with-k-1-and-1-predictor" id="toc-knn-with-k-1-and-1-predictor" class="nav-link" data-scroll-target="#knn-with-k-1-and-1-predictor"> <span class="header-section-number">15.2.1</span> knn with k = 1 and 1 Predictor</a></li>
-  <li><a href="#knn-with-k-1-and-one-predictor" id="toc-knn-with-k-1-and-one-predictor" class="nav-link" data-scroll-target="#knn-with-k-1-and-one-predictor"> <span class="header-section-number">15.2.2</span> knn with k &gt; 1 and One Predictor</a></li>
-  <li><a href="#knn-with-k-1-and-more-than-one-predictor" id="toc-knn-with-k-1-and-more-than-one-predictor" class="nav-link" data-scroll-target="#knn-with-k-1-and-more-than-one-predictor"> <span class="header-section-number">15.2.3</span> knn with k &gt; 1 and More Than One Predictor</a></li>
-  <li><a href="#scaling-predictor-variables-before-using-knn" id="toc-scaling-predictor-variables-before-using-knn" class="nav-link" data-scroll-target="#scaling-predictor-variables-before-using-knn"> <span class="header-section-number">15.2.4</span> Scaling Predictor Variables before Using knn</a></li>
-  <li><a href="#exercise-13-2" id="toc-exercise-13-2" class="nav-link" data-scroll-target="#exercise-13-2"> <span class="header-section-number">15.2.5</span> Exercises</a></li>
+  <li><a href="#knn-with-k-1-and-1-predictor" id="toc-knn-with-k-1-and-1-predictor" class="nav-link" data-scroll-target="#knn-with-k-1-and-1-predictor"> <span class="header-section-number">14.2.1</span> knn with k = 1 and 1 Predictor</a></li>
+  <li><a href="#knn-with-k-1-and-one-predictor" id="toc-knn-with-k-1-and-one-predictor" class="nav-link" data-scroll-target="#knn-with-k-1-and-one-predictor"> <span class="header-section-number">14.2.2</span> knn with k &gt; 1 and One Predictor</a></li>
+  <li><a href="#knn-with-k-1-and-more-than-one-predictor" id="toc-knn-with-k-1-and-more-than-one-predictor" class="nav-link" data-scroll-target="#knn-with-k-1-and-more-than-one-predictor"> <span class="header-section-number">14.2.3</span> knn with k &gt; 1 and More Than One Predictor</a></li>
+  <li><a href="#scaling-predictor-variables-before-using-knn" id="toc-scaling-predictor-variables-before-using-knn" class="nav-link" data-scroll-target="#scaling-predictor-variables-before-using-knn"> <span class="header-section-number">14.2.4</span> Scaling Predictor Variables before Using knn</a></li>
+  <li><a href="#exercise-13-2" id="toc-exercise-13-2" class="nav-link" data-scroll-target="#exercise-13-2"> <span class="header-section-number">14.2.5</span> Exercises</a></li>
   </ul></li>
-  <li><a href="#choosing-predictors-and-k" id="toc-choosing-predictors-and-k" class="nav-link" data-scroll-target="#choosing-predictors-and-k"> <span class="header-section-number">15.3</span> Choosing Predictors and k</a>
+  <li><a href="#choosing-predictors-and-k" id="toc-choosing-predictors-and-k" class="nav-link" data-scroll-target="#choosing-predictors-and-k"> <span class="header-section-number">14.3</span> Choosing Predictors and k</a>
   <ul class="collapse">
-  <li><a href="#the-confusion-matrix" id="toc-the-confusion-matrix" class="nav-link" data-scroll-target="#the-confusion-matrix"> <span class="header-section-number">15.3.1</span> The Confusion Matrix</a></li>
-  <li><a href="#using-knn-in-r" id="toc-using-knn-in-r" class="nav-link" data-scroll-target="#using-knn-in-r"> <span class="header-section-number">15.3.2</span> Using knn in <code>R</code></a></li>
-  <li><a href="#exercise-13-3" id="toc-exercise-13-3" class="nav-link" data-scroll-target="#exercise-13-3"> <span class="header-section-number">15.3.3</span> Exercises</a></li>
+  <li><a href="#the-confusion-matrix" id="toc-the-confusion-matrix" class="nav-link" data-scroll-target="#the-confusion-matrix"> <span class="header-section-number">14.3.1</span> The Confusion Matrix</a></li>
+  <li><a href="#using-knn-in-r" id="toc-using-knn-in-r" class="nav-link" data-scroll-target="#using-knn-in-r"> <span class="header-section-number">14.3.2</span> Using knn in <code>R</code></a></li>
+  <li><a href="#exercise-13-3" id="toc-exercise-13-3" class="nav-link" data-scroll-target="#exercise-13-3"> <span class="header-section-number">14.3.3</span> Exercises</a></li>
   </ul></li>
-  <li><a href="#chapexercise-13" id="toc-chapexercise-13" class="nav-link" data-scroll-target="#chapexercise-13"> <span class="header-section-number">15.4</span> Chapter Exercises</a></li>
-  <li><a href="#solutions-13" id="toc-solutions-13" class="nav-link" data-scroll-target="#solutions-13"> <span class="header-section-number">15.5</span> Exercise Solutions</a>
+  <li><a href="#chapexercise-13" id="toc-chapexercise-13" class="nav-link" data-scroll-target="#chapexercise-13"> <span class="header-section-number">14.4</span> Chapter Exercises</a></li>
+  <li><a href="#solutions-13" id="toc-solutions-13" class="nav-link" data-scroll-target="#solutions-13"> <span class="header-section-number">14.5</span> Exercise Solutions</a>
   <ul class="collapse">
-  <li><a href="#introduction-to-classification-s" id="toc-introduction-to-classification-s" class="nav-link" data-scroll-target="#introduction-to-classification-s"> <span class="header-section-number">15.5.1</span> Introduction to Classification S</a></li>
-  <li><a href="#knn-introduction-s" id="toc-knn-introduction-s" class="nav-link" data-scroll-target="#knn-introduction-s"> <span class="header-section-number">15.5.2</span> knn Introduction S</a></li>
-  <li><a href="#choosing-predictors-and-k-s" id="toc-choosing-predictors-and-k-s" class="nav-link" data-scroll-target="#choosing-predictors-and-k-s"> <span class="header-section-number">15.5.3</span> Choosing Predictors and k S</a></li>
+  <li><a href="#introduction-to-classification-s" id="toc-introduction-to-classification-s" class="nav-link" data-scroll-target="#introduction-to-classification-s"> <span class="header-section-number">14.5.1</span> Introduction to Classification S</a></li>
+  <li><a href="#knn-introduction-s" id="toc-knn-introduction-s" class="nav-link" data-scroll-target="#knn-introduction-s"> <span class="header-section-number">14.5.2</span> knn Introduction S</a></li>
+  <li><a href="#choosing-predictors-and-k-s" id="toc-choosing-predictors-and-k-s" class="nav-link" data-scroll-target="#choosing-predictors-and-k-s"> <span class="header-section-number">14.5.3</span> Choosing Predictors and k S</a></li>
   </ul></li>
-  <li><a href="#rcode-13" id="toc-rcode-13" class="nav-link" data-scroll-target="#rcode-13"> <span class="header-section-number">15.6</span> Non-Exercise <code>R</code> Code</a></li>
+  <li><a href="#rcode-13" id="toc-rcode-13" class="nav-link" data-scroll-target="#rcode-13"> <span class="header-section-number">14.6</span> Non-Exercise <code>R</code> Code</a></li>
   </ul>
 </nav>
     </div>
@@ -311,7 +311,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title d-none d-lg-block"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Predictive Modeling with knn</span></h1>
+<h1 class="title"><span id="knn" class="quarto-section-identifier d-none d-lg-block"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Predictive Modeling with knn</span></span></h1>
 </div>
 
 
@@ -332,8 +332,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>interpret a <em>confusion matrix</em>.</li>
 <li>use knn to predict a the level of a categorical response variable.</li>
 </ul>
-<section id="introduction-to-classification" class="level2" data-number="15.1">
-<h2 data-number="15.1" class="anchored" data-anchor-id="introduction-to-classification"><span class="header-section-number">15.1</span> Introduction to Classification</h2>
+<section id="introduction-to-classification" class="level2" data-number="14.1">
+<h2 data-number="14.1" class="anchored" data-anchor-id="introduction-to-classification"><span class="header-section-number">14.1</span> Introduction to Classification</h2>
 <p><strong>k-nearest neighbors</strong> (or <strong>knn</strong>) is an introductory supervised machine learning algorithm, most commonly used as a classification algorithm. Classification refers to prediction of a categorical response variable with two or more categories. For example, for a data set with SLU students, we might be interested in predicting whether or not each student graduates in four years (so the response has two categories: graduates in 4 years or doesn’t). We might want to classify this response based on various student characteristics like anticipated major, GPA, standardized test scores, etc. knn can also be used to predict a quantitative response, but we’ll focus on categorical responses throughout this section.</p>
 <p>If you’ve had STAT 213, you might try to draw some parallels to knn and classification using logistic regression. Note, however, that logistic regression required the response to have <strong>two</strong> levels while knn can classify a response variable that has <strong>two or more</strong> levels.</p>
 <p>To introduce this, we will be using <code>pokemon_full.csv</code> data. Pokemon have different Types: we will use <code>Type</code> as a categorical response that we are interested in predicting. For simplicity, we will only use Pokemon’s primary type and we will only use <strong>4</strong> different types:</p>
@@ -345,8 +345,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(Type <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"Steel"</span>, <span class="st">"Dark"</span>, <span class="st">"Fire"</span>, <span class="st">"Ice"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Our goal is to develop a k-nearest-neighbors model that is able to classify/predict Pokemon <code>Type</code> from a set of predictors, like Pokemon <code>HP</code>, <code>Attack</code>, <code>Defense</code>, etc.</p>
-<section id="training-and-test-data" class="level3" data-number="15.1.1">
-<h3 data-number="15.1.1" class="anchored" data-anchor-id="training-and-test-data"><span class="header-section-number">15.1.1</span> Training and Test Data</h3>
+<section id="training-and-test-data" class="level3" data-number="14.1.1">
+<h3 data-number="14.1.1" class="anchored" data-anchor-id="training-and-test-data"><span class="header-section-number">14.1.1</span> Training and Test Data</h3>
 <p>In order to develop our knn model (note that we still haven’t discussed what knn actually is yet!), we first need to discuss terms that applies to almost <strong>all</strong> predictive/classification modeling: training and test data. A <strong>training</strong> data set is a subset of the full data set used to fit various models. For the example below, the training data set will be just 15 observations for pedagogical purposes. More commonly, the training data set will contain 50%-80% of the observations in the full data set.</p>
 <p>A <strong>test</strong> data set consists of the remaining 20%-50% of the observations not in the training data set. A test data set is used to assess different the performances of various models that were fit using the training data set. Why do we need to do this division? Using the full data set for both training a model and testing that model is “cheating:” the model will perform better than it should because we are using each observation twice: once for fitting and once for testing. Having a separate test data set that wasn’t used to fit the model gives the model a more “fair” test, as these observations are supposed to be new data that the model hasn’t yet seen.</p>
 <p>The following code uses that <code>slice_sample()</code> function to randomly select 15 observations to be in the training data set. <code>anti_join()</code> then makes a test data set without the 15 pokemon in the training data set.</p>
@@ -386,18 +386,18 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <p>The ideas of a training data set and test data set are pervasive in predictive and classification models, including models not related to knn. Note that we are going to do this method because it’s the simplest: if you wanted to take this a step further, you’d repeat the training and test process 5 or 10 times, using what’s known as <strong>k-fold cross-validation.</strong></p>
 </section>
-<section id="exercise-13-1" class="level3" data-number="15.1.2">
-<h3 data-number="15.1.2" class="anchored" data-anchor-id="exercise-13-1"><span class="header-section-number">15.1.2</span> Exercises</h3>
+<section id="exercise-13-1" class="level3" data-number="14.1.2">
+<h3 data-number="14.1.2" class="anchored" data-anchor-id="exercise-13-1"><span class="header-section-number">14.1.2</span> Exercises</h3>
 <p>Exercises marked with an * indicate that the exercise has a solution at the end of the chapter at @ref(solutions-13).</p>
 <ol type="1">
 <li>Explain what <code>anti_join()</code> joins on when <code>by</code> isn’t specified and why not specifying a <code>by</code> argument works for this example.</li>
 </ol>
 </section>
 </section>
-<section id="knn-introduction" class="level2" data-number="15.2">
-<h2 data-number="15.2" class="anchored" data-anchor-id="knn-introduction"><span class="header-section-number">15.2</span> knn Introduction</h2>
-<section id="knn-with-k-1-and-1-predictor" class="level3" data-number="15.2.1">
-<h3 data-number="15.2.1" class="anchored" data-anchor-id="knn-with-k-1-and-1-predictor"><span class="header-section-number">15.2.1</span> knn with k = 1 and 1 Predictor</h3>
+<section id="knn-introduction" class="level2" data-number="14.2">
+<h2 data-number="14.2" class="anchored" data-anchor-id="knn-introduction"><span class="header-section-number">14.2</span> knn Introduction</h2>
+<section id="knn-with-k-1-and-1-predictor" class="level3" data-number="14.2.1">
+<h3 data-number="14.2.1" class="anchored" data-anchor-id="knn-with-k-1-and-1-predictor"><span class="header-section-number">14.2.1</span> knn with k = 1 and 1 Predictor</h3>
 <p>Suppose that we have just those <strong>15</strong> pokemon in our training data set. We want to predict <code>Type</code> from just one predictor, <code>Defense</code>. Below is a plot that shows the defenses of the 15 pokemon in our training data set, and has points coloured by Type and with different shapes for Type.</p>
 <div class="cell" data-appendix="true">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> train_sample, <span class="fu">aes</span>(<span class="at">x =</span> Defense, <span class="at">y =</span> <span class="dv">1</span>, <span class="at">colour =</span> Type, <span class="at">shape =</span> Type)) <span class="sc">+</span></span>
@@ -422,13 +422,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <p>What would your prediction for <code>Dialga</code> be? Why? According to knn with <code>k = 1</code>, we would predict <code>Dialga</code> to be <code>Fire</code> type. <code>k = 1</code> means that we are using the <strong>1st</strong> nearest neighbor: in this case the point that is closest to <code>Dialga</code> is a green triangle, corresponding to a <code>Fire</code> type Pokemon.</p>
 </section>
-<section id="knn-with-k-1-and-one-predictor" class="level3" data-number="15.2.2">
-<h3 data-number="15.2.2" class="anchored" data-anchor-id="knn-with-k-1-and-one-predictor"><span class="header-section-number">15.2.2</span> knn with k &gt; 1 and One Predictor</h3>
+<section id="knn-with-k-1-and-one-predictor" class="level3" data-number="14.2.2">
+<h3 data-number="14.2.2" class="anchored" data-anchor-id="knn-with-k-1-and-one-predictor"><span class="header-section-number">14.2.2</span> knn with k &gt; 1 and One Predictor</h3>
 <p>But, we might not necessarily want to predict the response value based on the single nearest neighbor. <code>Dialga</code> is also near many purple plus signs: should those factor in at all? We can extend <code>knn</code> to different values for k. For example, <span class="math inline">\(k = 3\)</span> looks at the 3 nearest neighbors, and assigns a prediction as the category that appears the <strong>most</strong> among those 3 nearest neighbors.</p>
 <p>Using <code>k = 3</code>, what would the prediction for Dialga be? Why?</p>
 </section>
-<section id="knn-with-k-1-and-more-than-one-predictor" class="level3" data-number="15.2.3">
-<h3 data-number="15.2.3" class="anchored" data-anchor-id="knn-with-k-1-and-more-than-one-predictor"><span class="header-section-number">15.2.3</span> knn with k &gt; 1 and More Than One Predictor</h3>
+<section id="knn-with-k-1-and-more-than-one-predictor" class="level3" data-number="14.2.3">
+<h3 data-number="14.2.3" class="anchored" data-anchor-id="knn-with-k-1-and-more-than-one-predictor"><span class="header-section-number">14.2.3</span> knn with k &gt; 1 and More Than One Predictor</h3>
 <p>We can increase the number of predictors in our <code>knn</code> model as well. We can generally include as many predictors as we would like, but visualizing becomes challenging with more than 2 predictors and nearly impossible with more than 3 predictors. For the case of two predictors, suppose that we want to use Defense and Speed as our predictors for Type. <code>Dialga</code>, the Pokemon we want to predict for, is again marked with a large black X.</p>
 <div class="cell" data-appendix="true">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> train_sample, <span class="fu">aes</span>(<span class="at">x =</span> Defense, <span class="at">y =</span> Speed, <span class="at">colour =</span> Type, <span class="at">shape =</span> Type)) <span class="sc">+</span></span>
@@ -440,8 +440,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <p>For <span class="math inline">\(k = 1\)</span>, we would predict the <code>Dialga</code> is Steel, as the closest point is the purple <code>+</code> sign in the top-left corner of the graph. For <span class="math inline">\(k = 3\)</span>, what <code>Type</code> would you predict for Dialga? For this question, it’s a little hard to tell which three points are closest to <code>Dialga</code> without computing the distances numerically, which is something we will let <code>R</code> do with the <code>knn()</code> function.</p>
 </section>
-<section id="scaling-predictor-variables-before-using-knn" class="level3" data-number="15.2.4">
-<h3 data-number="15.2.4" class="anchored" data-anchor-id="scaling-predictor-variables-before-using-knn"><span class="header-section-number">15.2.4</span> Scaling Predictor Variables before Using knn</h3>
+<section id="scaling-predictor-variables-before-using-knn" class="level3" data-number="14.2.4">
+<h3 data-number="14.2.4" class="anchored" data-anchor-id="scaling-predictor-variables-before-using-knn"><span class="header-section-number">14.2.4</span> Scaling Predictor Variables before Using knn</h3>
 <p>In general, we want to scale any quantitative predictors when using knn because it relies on distances between points in its predictions. This is easiest to see with an example. Suppose, in our Pokemon example, that we want to use <code>height</code> and <code>weight</code> as our predictors in the <code>knn</code> model. We just have 2 observations in our training data set: a Dark Type pokemon with a height of 15 centimeters and a weight of 505 pounds, and a Fire Type Pokemon with a height of 9 centimeters and a weight of 250 pounds.</p>
 <div class="cell" data-appendix="true">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>train_tiny <span class="ot">&lt;-</span> train_sample <span class="sc">|&gt;</span> <span class="fu">slice</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>)</span>
@@ -513,8 +513,8 @@ scaled_x = \frac{x - min(x)}{max(x) - min(x)}
 </div>
 </div>
 </section>
-<section id="exercise-13-2" class="level3" data-number="15.2.5">
-<h3 data-number="15.2.5" class="anchored" data-anchor-id="exercise-13-2"><span class="header-section-number">15.2.5</span> Exercises</h3>
+<section id="exercise-13-2" class="level3" data-number="14.2.5">
+<h3 data-number="14.2.5" class="anchored" data-anchor-id="exercise-13-2"><span class="header-section-number">14.2.5</span> Exercises</h3>
 <p>Exercises marked with an * indicate that the exercise has a solution at the end of the chapter at @ref(solutions-13).</p>
 <ol type="1">
 <li>* Consider again the toy example with just two observations in the training data set and unscaled weight and height as predictors.</li>
@@ -562,8 +562,8 @@ scaled_x = \frac{x - min(x)}{max(x) - min(x)}
 </ol>
 </section>
 </section>
-<section id="choosing-predictors-and-k" class="level2" data-number="15.3">
-<h2 data-number="15.3" class="anchored" data-anchor-id="choosing-predictors-and-k"><span class="header-section-number">15.3</span> Choosing Predictors and k</h2>
+<section id="choosing-predictors-and-k" class="level2" data-number="14.3">
+<h2 data-number="14.3" class="anchored" data-anchor-id="choosing-predictors-and-k"><span class="header-section-number">14.3</span> Choosing Predictors and k</h2>
 <p>We now know how knn classifies observations in the test data set, but how do we choose which predictors should be used by the knn algorithm? And how do we choose the number of neighbors, k? We want to measure how “good” models with different predictors and different k’s do, but we first need to define what “good” means.</p>
 <p>Much of the “choosing predictors” part will be trial and error by evaluating different models with a criterion that we will talk about in the next section. However, it is always helpful to explore the data set with graphics to get us to a good starting point. A <strong>scatterplot matrix</strong> is a useful exploratory tool. The following is a scatterplot matrix with the response variable, <code>Type</code>, and just three candidate predictors, <code>HP</code>, <code>Attack</code>, and <code>Defense</code>, created with the <code>GGally</code> (“g-g-ally”) package.</p>
 <div class="cell" data-appendix="true">
@@ -592,14 +592,14 @@ Attaching package: 'GGally'</code></pre>
 <p>The <code>lower</code> argument changes the number of bins in the faceted histograms in the bottom row. You can mostly ignore this.</p>
 <p>The <code>columns</code> argument <strong>is</strong> important: it allows you to specify which columns you want to look at. I prefer putting the response, <code>Type</code> (column <code>3</code>) in the last slot.</p>
 <p>We can examine this to see which variables seem to have a relationship with <code>Type</code>. Where would we want to look for this?</p>
-<section id="the-confusion-matrix" class="level3" data-number="15.3.1">
-<h3 data-number="15.3.1" class="anchored" data-anchor-id="the-confusion-matrix"><span class="header-section-number">15.3.1</span> The Confusion Matrix</h3>
+<section id="the-confusion-matrix" class="level3" data-number="14.3.1">
+<h3 data-number="14.3.1" class="anchored" data-anchor-id="the-confusion-matrix"><span class="header-section-number">14.3.1</span> The Confusion Matrix</h3>
 <p>But, we still need a metric to evaluate models with different predictors. One definition of a “good” model in the classification context is a model that has a high proportion of correct predictions in the test data set. This should make some intuitive sense, as we would hope that a “good” model correctly classifies most <code>Dark</code> pokemon as <code>Dark</code>, most <code>Fire</code> pokemon as <code>Fire</code>, etc.</p>
 <p>In order to examine the performance of a particular model, we’ll create a <strong>confusion matrix</strong> that shows the results of the model’s classification on observations in the test data set. Note that in STAT 213, we didn’t call this a confusion matrix; we instead called this a classification table.</p>
 <p>The following video explains confusion matrices in more detail and should also cement the ideas of training and test data. <a href="https://www.youtube.com/watch?v=Kdsp6soqA7o" target="_blank">https://www.youtube.com/watch?v=Kdsp6soqA7o</a>.</p>
 </section>
-<section id="using-knn-in-r" class="level3" data-number="15.3.2">
-<h3 data-number="15.3.2" class="anchored" data-anchor-id="using-knn-in-r"><span class="header-section-number">15.3.2</span> Using knn in <code>R</code></h3>
+<section id="using-knn-in-r" class="level3" data-number="14.3.2">
+<h3 data-number="14.3.2" class="anchored" data-anchor-id="using-knn-in-r"><span class="header-section-number">14.3.2</span> Using knn in <code>R</code></h3>
 <p>To make a confusion matrix for a model using the pokemon data set, we first need to obtain predictions from a model. We’ll use the <code>class</code> library to fit a knn model to the pokemon data. Note that, instead of having 15 Pokemon in our training data set, we now have <strong>70</strong> pokemon to give a more reasonable number. The test set has the remaining <strong>50</strong> pokemon.</p>
 <p>The following code chunk sets a seed so that we all get the same training and test samples, scales all numeric variables in the pokemon data set, and then randomly selects 70 pokemon to be in the training sample.</p>
 <div class="cell" data-appendix="true">
@@ -686,25 +686,25 @@ knn_mod Dark Fire Ice Steel
 </div>
 <p>What does <code>diag()</code> seem to do in the code above?</p>
 </section>
-<section id="exercise-13-3" class="level3" data-number="15.3.3">
-<h3 data-number="15.3.3" class="anchored" data-anchor-id="exercise-13-3"><span class="header-section-number">15.3.3</span> Exercises</h3>
+<section id="exercise-13-3" class="level3" data-number="14.3.3">
+<h3 data-number="14.3.3" class="anchored" data-anchor-id="exercise-13-3"><span class="header-section-number">14.3.3</span> Exercises</h3>
 <p>Exercises marked with an * indicate that the exercise has a solution at the end of the chapter at @ref(solutions-13).</p>
 <ol type="1">
 <li>Change the predictors used or change k to improve the classification rate of the model with <code>k = 9</code> and <code>Attack</code>, <code>Defense</code>, <code>HP</code>, and <code>Speed</code> as predictors.</li>
 </ol>
 </section>
 </section>
-<section id="chapexercise-13" class="level2" data-number="15.4">
-<h2 data-number="15.4" class="anchored" data-anchor-id="chapexercise-13"><span class="header-section-number">15.4</span> Chapter Exercises</h2>
+<section id="chapexercise-13" class="level2" data-number="14.4">
+<h2 data-number="14.4" class="anchored" data-anchor-id="chapexercise-13"><span class="header-section-number">14.4</span> Chapter Exercises</h2>
 <p>There will be no chapter exercises for this section. Instead, we’ll devote some in-class time for you to begin work on your final project.</p>
 </section>
-<section id="solutions-13" class="level2" data-number="15.5">
-<h2 data-number="15.5" class="anchored" data-anchor-id="solutions-13"><span class="header-section-number">15.5</span> Exercise Solutions</h2>
-<section id="introduction-to-classification-s" class="level3" data-number="15.5.1">
-<h3 data-number="15.5.1" class="anchored" data-anchor-id="introduction-to-classification-s"><span class="header-section-number">15.5.1</span> Introduction to Classification S</h3>
+<section id="solutions-13" class="level2" data-number="14.5">
+<h2 data-number="14.5" class="anchored" data-anchor-id="solutions-13"><span class="header-section-number">14.5</span> Exercise Solutions</h2>
+<section id="introduction-to-classification-s" class="level3" data-number="14.5.1">
+<h3 data-number="14.5.1" class="anchored" data-anchor-id="introduction-to-classification-s"><span class="header-section-number">14.5.1</span> Introduction to Classification S</h3>
 </section>
-<section id="knn-introduction-s" class="level3" data-number="15.5.2">
-<h3 data-number="15.5.2" class="anchored" data-anchor-id="knn-introduction-s"><span class="header-section-number">15.5.2</span> knn Introduction S</h3>
+<section id="knn-introduction-s" class="level3" data-number="14.5.2">
+<h3 data-number="14.5.2" class="anchored" data-anchor-id="knn-introduction-s"><span class="header-section-number">14.5.2</span> knn Introduction S</h3>
 <ol type="1">
 <li>* Consider again the toy example with just two observations in the training data set and unscaled weight and height as predictors.</li>
 </ol>
@@ -728,12 +728,12 @@ knn_mod Dark Fire Ice Steel
 
 </div>
 </section>
-<section id="choosing-predictors-and-k-s" class="level3" data-number="15.5.3">
-<h3 data-number="15.5.3" class="anchored" data-anchor-id="choosing-predictors-and-k-s"><span class="header-section-number">15.5.3</span> Choosing Predictors and k S</h3>
+<section id="choosing-predictors-and-k-s" class="level3" data-number="14.5.3">
+<h3 data-number="14.5.3" class="anchored" data-anchor-id="choosing-predictors-and-k-s"><span class="header-section-number">14.5.3</span> Choosing Predictors and k S</h3>
 </section>
 </section>
-<section id="rcode-13" class="level2" data-number="15.6">
-<h2 data-number="15.6" class="anchored" data-anchor-id="rcode-13"><span class="header-section-number">15.6</span> Non-Exercise <code>R</code> Code</h2>
+<section id="rcode-13" class="level2" data-number="14.6">
+<h2 data-number="14.6" class="anchored" data-anchor-id="rcode-13"><span class="header-section-number">14.6</span> Non-Exercise <code>R</code> Code</h2>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1119</span>)</span>
 <span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
@@ -916,19 +916,19 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
       <a href="./12-stringr.html" class="pagination-link">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Text Data with <code>tidytext</code> and <code>stringr</code></span></span>
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Text Data with <code>tidytext</code> and <code>stringr</code></span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
       <a href="./15-connections.html" class="pagination-link">
-        <span class="nav-page-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Connections to STAT 113, STAT 213, and CS 140</span></span> <i class="bi bi-arrow-right-short"></i>
+        <span class="nav-page-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Connections to STAT 113, STAT 213, and CS 140</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
 </div> <!-- /content -->
 <footer class="footer">
   <div class="nav-footer">
-    <div class="nav-footer-left">Course Materials were written by Matt Higham for STAT/DATA 234 at St.&nbsp;Lawrence University</div>   
+    <div class="nav-footer-left">Course Materials were written by Matt Higham for STAT/DATA 234 at St.&nbsp;Lawrence University.</div>   
     <div class="nav-footer-right">This book was built with <a href="https://quarto.org/">Quarto</a>.</div>
   </div>
 </footer>
