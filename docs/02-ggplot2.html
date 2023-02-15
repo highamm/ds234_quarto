@@ -492,8 +492,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
  8  29645  35426      182  1462   181 CHARLOTTE Bush  
  9  25525  29765      270  1379   261 CITRUS    Bush  
 10  14632  41736      186   562   237 CLAY      Bush  
-# … with 57 more rows
-# ℹ Use `print(n = ...)` to see more rows</code></pre>
+# … with 57 more rows</code></pre>
 </div>
 </div>
 <p>Using this data set, we can make a bar plot with <code>geom_bar()</code>. The beauty of <code>ggplot()</code> is that the code is super-similar to what we used for histograms and frequency plots!</p>
@@ -727,7 +726,7 @@ date (1): Start
 <span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
 <span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">span =</span> <span class="fl">0.3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
-<pre><code>`geom_smooth()` using method = 'loess' and formula 'y ~ x'</code></pre>
+<pre><code>`geom_smooth()` using method = 'loess' and formula = 'y ~ x'</code></pre>
 </div>
 <div class="cell-output-display">
 <p><img src="02-ggplot2_files/figure-html/unnamed-chunk-26-1.png" class="img-fluid" width="672"></p>
@@ -739,7 +738,7 @@ date (1): Start
 <span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
 <span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">se =</span> <span class="cn">FALSE</span>, <span class="at">method =</span> <span class="st">"lm"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
-<pre><code>`geom_smooth()` using formula 'y ~ x'</code></pre>
+<pre><code>`geom_smooth()` using formula = 'y ~ x'</code></pre>
 </div>
 <div class="cell-output-display">
 <p><img src="02-ggplot2_files/figure-html/unnamed-chunk-27-1.png" class="img-fluid" width="672"></p>
@@ -754,7 +753,7 @@ date (1): Start
 <div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> fitness, <span class="fu">aes</span>(<span class="at">x =</span> Start, <span class="at">y =</span> steps)) <span class="sc">+</span></span>
 <span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span> <span class="fu">geom_smooth</span>() <span class="sc">+</span> <span class="fu">xlab</span>(<span class="st">"Date"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
-<pre><code>`geom_smooth()` using method = 'loess' and formula 'y ~ x'</code></pre>
+<pre><code>`geom_smooth()` using method = 'loess' and formula = 'y ~ x'</code></pre>
 </div>
 <div class="cell-output-display">
 <p><img src="02-ggplot2_files/figure-html/unnamed-chunk-28-1.png" class="img-fluid" width="672"></p>
@@ -762,7 +761,7 @@ date (1): Start
 <div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> fitness, <span class="fu">aes</span>(<span class="at">x =</span> Start, <span class="at">y =</span> steps)) <span class="sc">+</span></span>
 <span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>() <span class="sc">+</span> <span class="fu">geom_smooth</span>() <span class="sc">+</span> <span class="fu">xlab</span>(<span class="st">"Date"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
-<pre><code>`geom_smooth()` using method = 'loess' and formula 'y ~ x'</code></pre>
+<pre><code>`geom_smooth()` using method = 'loess' and formula = 'y ~ x'</code></pre>
 </div>
 <div class="cell-output-display">
 <p><img src="02-ggplot2_files/figure-html/unnamed-chunk-28-2.png" class="img-fluid" width="672"></p>
@@ -779,13 +778,13 @@ date (1): Start
 <span id="cb40-3"><a href="#cb40-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
 <span id="cb40-4"><a href="#cb40-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">se =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
-<pre><code>`geom_smooth()` using method = 'loess' and formula 'y ~ x'</code></pre>
+<pre><code>`geom_smooth()` using method = 'loess' and formula = 'y ~ x'</code></pre>
 </div>
 <div class="cell-output cell-output-stderr">
-<pre><code>Warning: Removed 40 rows containing non-finite values (stat_smooth).</code></pre>
+<pre><code>Warning: Removed 40 rows containing non-finite values (`stat_smooth()`).</code></pre>
 </div>
 <div class="cell-output cell-output-stderr">
-<pre><code>Warning: Removed 40 rows containing missing values (geom_point).</code></pre>
+<pre><code>Warning: Removed 40 rows containing missing values (`geom_point()`).</code></pre>
 </div>
 <div class="cell-output-display">
 <p><img src="02-ggplot2_files/figure-html/unnamed-chunk-29-1.png" class="img-fluid" width="672"></p>
@@ -798,13 +797,13 @@ date (1): Start
 <span id="cb44-3"><a href="#cb44-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">se =</span> <span class="cn">TRUE</span>) <span class="sc">+</span></span>
 <span id="cb44-4"><a href="#cb44-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span> Year)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
-<pre><code>`geom_smooth()` using method = 'loess' and formula 'y ~ x'</code></pre>
+<pre><code>`geom_smooth()` using method = 'loess' and formula = 'y ~ x'</code></pre>
 </div>
 <div class="cell-output cell-output-stderr">
-<pre><code>Warning: Removed 40 rows containing non-finite values (stat_smooth).</code></pre>
+<pre><code>Warning: Removed 40 rows containing non-finite values (`stat_smooth()`).</code></pre>
 </div>
 <div class="cell-output cell-output-stderr">
-<pre><code>Warning: Removed 40 rows containing missing values (geom_point).</code></pre>
+<pre><code>Warning: Removed 40 rows containing missing values (`geom_point()`).</code></pre>
 </div>
 <div class="cell-output-display">
 <p><img src="02-ggplot2_files/figure-html/unnamed-chunk-30-1.png" class="img-fluid" width="672"></p>
@@ -837,7 +836,7 @@ date (1): Start
 <div class="sourceCode cell-code" id="cb48"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> stat113_df, <span class="fu">aes</span>(<span class="at">x =</span> Award, <span class="at">y =</span> Exercise)) <span class="sc">+</span></span>
 <span id="cb48-2"><a href="#cb48-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
-<pre><code>Warning: Removed 7 rows containing non-finite values (stat_boxplot).</code></pre>
+<pre><code>Warning: Removed 7 rows containing non-finite values (`stat_boxplot()`).</code></pre>
 </div>
 <div class="cell-output-display">
 <p><img src="02-ggplot2_files/figure-html/unnamed-chunk-31-1.png" class="img-fluid" width="672"></p>
@@ -850,7 +849,7 @@ date (1): Start
 <div class="sourceCode cell-code" id="cb50"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> stat113_df, <span class="fu">aes</span>(<span class="at">x =</span> Award, <span class="at">y =</span> Exercise)) <span class="sc">+</span></span>
 <span id="cb50-2"><a href="#cb50-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_violin</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
-<pre><code>Warning: Removed 7 rows containing non-finite values (stat_ydensity).</code></pre>
+<pre><code>Warning: Removed 7 rows containing non-finite values (`stat_ydensity()`).</code></pre>
 </div>
 <div class="cell-output-display">
 <p><img src="02-ggplot2_files/figure-html/unnamed-chunk-32-1.png" class="img-fluid" width="672"></p>
@@ -913,7 +912,7 @@ date (1): Start
 <span id="cb53-2"><a href="#cb53-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">bins =</span> <span class="dv">14</span>, <span class="at">fill =</span> <span class="st">"lightpink2"</span>, <span class="at">colour =</span> <span class="st">"black"</span>) <span class="sc">+</span></span>
 <span id="cb53-3"><a href="#cb53-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">"Exercise (hours per typical week)"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
-<pre><code>Warning: Removed 7 rows containing non-finite values (stat_bin).</code></pre>
+<pre><code>Warning: Removed 7 rows containing non-finite values (`stat_bin()`).</code></pre>
 </div>
 <div class="cell-output-display">
 <p><img src="02-ggplot2_files/figure-html/unnamed-chunk-34-1.png" class="img-fluid" width="672"></p>
@@ -927,7 +926,11 @@ date (1): Start
 <span id="cb55-2"><a href="#cb55-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">bins =</span> <span class="dv">14</span>, <span class="at">fill =</span> <span class="st">"lightpink2"</span>, <span class="at">colour =</span> <span class="st">"black"</span>) <span class="sc">+</span></span>
 <span id="cb55-3"><a href="#cb55-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">"Exercise (hours per typical week)"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
-<pre><code>Warning: Removed 7 rows containing non-finite values (stat_bin).</code></pre>
+<pre><code>Warning: The dot-dot notation (`..density..`) was deprecated in ggplot2 3.4.0.
+ℹ Please use `after_stat(density)` instead.</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Removed 7 rows containing non-finite values (`stat_bin()`).</code></pre>
 </div>
 <div class="cell-output-display">
 <p><img src="02-ggplot2_files/figure-html/unnamed-chunk-35-1.png" class="img-fluid" width="672"></p>
@@ -940,15 +943,15 @@ date (1): Start
 <li>* Make a scatterplot of <code>Hgt</code> on the y-axis and <code>Wgt</code> on the x-axis, colouring by <code>Sport</code>. Add a smooth fitted curve to your scatterplot. Then, move <code>colour = Sport</code> from an <code>aes()</code> in the <code>ggplot()</code> function to an <code>aes()</code> in the <code>geom_point()</code> function. What changes in the plot? Can you give an explanation as to why that change occurs?</li>
 </ol>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb57"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb57-1"><a href="#cb57-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> stat113_df, <span class="fu">aes</span>(<span class="at">x =</span> Wgt, <span class="at">y =</span> Hgt, <span class="at">colour =</span> Sport)) <span class="sc">+</span></span>
-<span id="cb57-2"><a href="#cb57-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
-<span id="cb57-3"><a href="#cb57-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb58"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb58-1"><a href="#cb58-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> stat113_df, <span class="fu">aes</span>(<span class="at">x =</span> Wgt, <span class="at">y =</span> Hgt, <span class="at">colour =</span> Sport)) <span class="sc">+</span></span>
+<span id="cb58-2"><a href="#cb58-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb58-3"><a href="#cb58-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <p><img src="02-ggplot2_files/figure-html/unnamed-chunk-36-1.png" class="img-fluid" width="672"></p>
 </div>
-<div class="sourceCode cell-code" id="cb58"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb58-1"><a href="#cb58-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> stat113_df, <span class="fu">aes</span>(<span class="at">x =</span> Wgt, <span class="at">y =</span> Hgt)) <span class="sc">+</span></span>
-<span id="cb58-2"><a href="#cb58-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">colour =</span> Sport)) <span class="sc">+</span></span>
-<span id="cb58-3"><a href="#cb58-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb59"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb59-1"><a href="#cb59-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> stat113_df, <span class="fu">aes</span>(<span class="at">x =</span> Wgt, <span class="at">y =</span> Hgt)) <span class="sc">+</span></span>
+<span id="cb59-2"><a href="#cb59-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">colour =</span> Sport)) <span class="sc">+</span></span>
+<span id="cb59-3"><a href="#cb59-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <p><img src="02-ggplot2_files/figure-html/unnamed-chunk-36-2.png" class="img-fluid" width="672"></p>
 </div>
@@ -959,9 +962,9 @@ date (1): Start
 </ol>
 <p>Answers will vary:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb59"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb59-1"><a href="#cb59-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> stat113_df, <span class="fu">aes</span>(<span class="at">x =</span> GPA)) <span class="sc">+</span> </span>
-<span id="cb59-2"><a href="#cb59-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">bins =</span> <span class="dv">15</span>) <span class="sc">+</span></span>
-<span id="cb59-3"><a href="#cb59-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>( <span class="sc">~</span> Sport)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb60"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb60-1"><a href="#cb60-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> stat113_df, <span class="fu">aes</span>(<span class="at">x =</span> GPA)) <span class="sc">+</span> </span>
+<span id="cb60-2"><a href="#cb60-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">bins =</span> <span class="dv">15</span>) <span class="sc">+</span></span>
+<span id="cb60-3"><a href="#cb60-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>( <span class="sc">~</span> Sport)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <p><img src="02-ggplot2_files/figure-html/unnamed-chunk-37-1.png" class="img-fluid" width="672"></p>
 </div>
@@ -973,10 +976,10 @@ date (1): Start
 <li>* Change the colour of the inside of the boxplots in the Exercise vs.&nbsp;Award graph to be <code>"blue"</code>. Do you think you’ll use <code>colour = "blue"</code> or <code>fill = "blue"</code>?</li>
 </ol>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb60"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb60-1"><a href="#cb60-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> stat113_df, <span class="fu">aes</span>(<span class="at">x =</span> Award, <span class="at">y =</span> Exercise)) <span class="sc">+</span></span>
-<span id="cb60-2"><a href="#cb60-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="at">fill =</span> <span class="st">"blue"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb61"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb61-1"><a href="#cb61-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> stat113_df, <span class="fu">aes</span>(<span class="at">x =</span> Award, <span class="at">y =</span> Exercise)) <span class="sc">+</span></span>
+<span id="cb61-2"><a href="#cb61-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="at">fill =</span> <span class="st">"blue"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
-<pre><code>Warning: Removed 7 rows containing non-finite values (stat_boxplot).</code></pre>
+<pre><code>Warning: Removed 7 rows containing non-finite values (`stat_boxplot()`).</code></pre>
 </div>
 <div class="cell-output-display">
 <p><img src="02-ggplot2_files/figure-html/unnamed-chunk-38-1.png" class="img-fluid" width="672"></p>
@@ -987,10 +990,10 @@ date (1): Start
 <li>* Create a side-by-side boxplot that compares the <code>GPA</code>s of students who prefer different <code>Award</code>s. Then change the fill of the boxplot to be a colour of your choice. What do you notice in the plot?</li>
 </ol>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb62"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb62-1"><a href="#cb62-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> stat113_df, <span class="fu">aes</span>(<span class="at">x =</span> Award, <span class="at">y =</span> GPA)) <span class="sc">+</span></span>
-<span id="cb62-2"><a href="#cb62-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="at">fill =</span> <span class="st">"lightpink1"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb63"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb63-1"><a href="#cb63-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> stat113_df, <span class="fu">aes</span>(<span class="at">x =</span> Award, <span class="at">y =</span> GPA)) <span class="sc">+</span></span>
+<span id="cb63-2"><a href="#cb63-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="at">fill =</span> <span class="st">"lightpink1"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
-<pre><code>Warning: Removed 70 rows containing non-finite values (stat_boxplot).</code></pre>
+<pre><code>Warning: Removed 70 rows containing non-finite values (`stat_boxplot()`).</code></pre>
 </div>
 <div class="cell-output-display">
 <p><img src="02-ggplot2_files/figure-html/unnamed-chunk-39-1.png" class="img-fluid" width="672"></p>
@@ -1006,8 +1009,8 @@ date (1): Start
 </ol>
 <p>Answers will vary.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb64"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb64-1"><a href="#cb64-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> stat113_df, <span class="fu">aes</span>(<span class="at">x =</span> Sport, <span class="at">fill =</span> Award)) <span class="sc">+</span></span>
-<span id="cb64-2"><a href="#cb64-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">position =</span> <span class="st">"fill"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb65"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb65-1"><a href="#cb65-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> stat113_df, <span class="fu">aes</span>(<span class="at">x =</span> Sport, <span class="at">fill =</span> Award)) <span class="sc">+</span></span>
+<span id="cb65-2"><a href="#cb65-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">position =</span> <span class="st">"fill"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <p><img src="02-ggplot2_files/figure-html/unnamed-chunk-40-1.png" class="img-fluid" width="672"></p>
 </div>
@@ -1024,18 +1027,18 @@ date (1): Start
 <li>* Thus far, we have only faceted by a single variable. Use Google to figure out how to facet by two variables to make a plot that shows the relationship between GPA (y-axis) and Exercise (x-axis) with four facets: one for male students who play a sport, one for female students who play a sport, one for male students who do not play a sport, and one for female students who do not play a sport.</li>
 </ol>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb65"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb65-1"><a href="#cb65-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> stat113_df <span class="sc">|&gt;</span> <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(Sport) <span class="sc">&amp;</span> <span class="sc">!</span><span class="fu">is.na</span>(Sex)),</span>
-<span id="cb65-2"><a href="#cb65-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">aes</span>(<span class="at">x =</span> Exercise, <span class="at">y =</span> GPA)) <span class="sc">+</span> </span>
-<span id="cb65-3"><a href="#cb65-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span> <span class="fu">geom_smooth</span>() <span class="sc">+</span></span>
-<span id="cb65-4"><a href="#cb65-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_grid</span>(Sex <span class="sc">~</span> Sport)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb66"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb66-1"><a href="#cb66-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> stat113_df <span class="sc">|&gt;</span> <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(Sport) <span class="sc">&amp;</span> <span class="sc">!</span><span class="fu">is.na</span>(Sex)),</span>
+<span id="cb66-2"><a href="#cb66-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">aes</span>(<span class="at">x =</span> Exercise, <span class="at">y =</span> GPA)) <span class="sc">+</span> </span>
+<span id="cb66-3"><a href="#cb66-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span> <span class="fu">geom_smooth</span>() <span class="sc">+</span></span>
+<span id="cb66-4"><a href="#cb66-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_grid</span>(Sex <span class="sc">~</span> Sport)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
-<pre><code>`geom_smooth()` using method = 'loess' and formula 'y ~ x'</code></pre>
+<pre><code>`geom_smooth()` using method = 'loess' and formula = 'y ~ x'</code></pre>
 </div>
 <div class="cell-output cell-output-stderr">
-<pre><code>Warning: Removed 71 rows containing non-finite values (stat_smooth).</code></pre>
+<pre><code>Warning: Removed 71 rows containing non-finite values (`stat_smooth()`).</code></pre>
 </div>
 <div class="cell-output cell-output-stderr">
-<pre><code>Warning: Removed 71 rows containing missing values (geom_point).</code></pre>
+<pre><code>Warning: Removed 71 rows containing missing values (`geom_point()`).</code></pre>
 </div>
 <div class="cell-output-display">
 <p><img src="02-ggplot2_files/figure-html/unnamed-chunk-41-1.png" class="img-fluid" width="672"></p>
@@ -1046,17 +1049,17 @@ date (1): Start
 </ol>
 <p>Then, using Google, figure out how to add the mean to each boxplot as a “darkgreen” diamond-shaped symbol with <code>stat_summary()</code>.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb69"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb69-1"><a href="#cb69-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> stat113_df, <span class="fu">aes</span>(<span class="at">x =</span> Sex, <span class="at">y =</span> GPA)) <span class="sc">+</span></span>
-<span id="cb69-2"><a href="#cb69-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="at">fill =</span> <span class="st">"lightpink1"</span>, <span class="at">outlier.shape =</span> <span class="dv">8</span>) <span class="sc">+</span></span>
-<span id="cb69-3"><a href="#cb69-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stat_summary</span>(<span class="at">fun =</span> mean, <span class="at">shape =</span> <span class="dv">18</span>, <span class="at">colour =</span> <span class="st">"darkgreen"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb70"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb70-1"><a href="#cb70-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> stat113_df, <span class="fu">aes</span>(<span class="at">x =</span> Sex, <span class="at">y =</span> GPA)) <span class="sc">+</span></span>
+<span id="cb70-2"><a href="#cb70-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="at">fill =</span> <span class="st">"lightpink1"</span>, <span class="at">outlier.shape =</span> <span class="dv">8</span>) <span class="sc">+</span></span>
+<span id="cb70-3"><a href="#cb70-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stat_summary</span>(<span class="at">fun =</span> mean, <span class="at">shape =</span> <span class="dv">18</span>, <span class="at">colour =</span> <span class="st">"darkgreen"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
-<pre><code>Warning: Removed 70 rows containing non-finite values (stat_boxplot).</code></pre>
+<pre><code>Warning: Removed 70 rows containing non-finite values (`stat_boxplot()`).</code></pre>
 </div>
 <div class="cell-output cell-output-stderr">
-<pre><code>Warning: Removed 70 rows containing non-finite values (stat_summary).</code></pre>
+<pre><code>Warning: Removed 70 rows containing non-finite values (`stat_summary()`).</code></pre>
 </div>
 <div class="cell-output cell-output-stderr">
-<pre><code>Warning: Removed 3 rows containing missing values (geom_segment).</code></pre>
+<pre><code>Warning: Removed 3 rows containing missing values (`geom_segment()`).</code></pre>
 </div>
 <div class="cell-output-display">
 <p><img src="02-ggplot2_files/figure-html/unnamed-chunk-42-1.png" class="img-fluid" width="672"></p>
@@ -1067,82 +1070,82 @@ date (1): Start
 <section id="rcode-2" class="level2" data-number="3.8">
 <h2 data-number="3.8" class="anchored" data-anchor-id="rcode-2"><span class="header-section-number">3.8</span> Non-Exercise <code>R</code> Code</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb73"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb73-1"><a href="#cb73-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb73-2"><a href="#cb73-2" aria-hidden="true" tabindex="-1"></a>pres_df <span class="ot">&lt;-</span> <span class="fu">read_table</span>(<span class="st">"data/PRES2000.txt"</span>) </span>
-<span id="cb73-3"><a href="#cb73-3" aria-hidden="true" tabindex="-1"></a><span class="do">## don't worry about the `read_table` function....yet</span></span>
-<span id="cb73-4"><a href="#cb73-4" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(pres_df)</span>
-<span id="cb73-5"><a href="#cb73-5" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> pres_df, <span class="fu">aes</span>(<span class="at">x =</span> Gore)) <span class="sc">+</span></span>
-<span id="cb73-6"><a href="#cb73-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">colour =</span> <span class="st">"black"</span>, <span class="at">fill =</span> <span class="st">"white"</span>) <span class="sc">+</span></span>
-<span id="cb73-7"><a href="#cb73-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">"Votes for Gore in Florida"</span>)</span>
-<span id="cb73-8"><a href="#cb73-8" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> pres_df, <span class="fu">aes</span>(<span class="at">x =</span> Gore)) <span class="sc">+</span></span>
-<span id="cb73-9"><a href="#cb73-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_freqpoly</span>(<span class="at">colour =</span> <span class="st">"black"</span>) <span class="sc">+</span></span>
-<span id="cb73-10"><a href="#cb73-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">"Votes for Gore in Florida"</span>) </span>
-<span id="cb73-11"><a href="#cb73-11" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> pres_df, <span class="fu">aes</span>(<span class="at">x =</span> Gore)) <span class="sc">+</span></span>
-<span id="cb73-12"><a href="#cb73-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_freqpoly</span>(<span class="at">colour =</span> <span class="st">"black"</span>) <span class="sc">+</span></span>
-<span id="cb73-13"><a href="#cb73-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">"Votes for Gore in Florida"</span>) <span class="sc">+</span></span>
-<span id="cb73-14"><a href="#cb73-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>() </span>
-<span id="cb73-15"><a href="#cb73-15" aria-hidden="true" tabindex="-1"></a>pres_cat <span class="ot">&lt;-</span> pres_df <span class="sc">|&gt;</span> <span class="fu">mutate</span>(<span class="at">winner =</span> <span class="fu">if_else</span>(Gore <span class="sc">&gt;</span> Bush,</span>
-<span id="cb73-16"><a href="#cb73-16" aria-hidden="true" tabindex="-1"></a>                                                <span class="at">true =</span> <span class="st">"Gore"</span>,</span>
-<span id="cb73-17"><a href="#cb73-17" aria-hidden="true" tabindex="-1"></a>                                                <span class="at">false =</span> <span class="st">"Bush"</span>))</span>
-<span id="cb73-18"><a href="#cb73-18" aria-hidden="true" tabindex="-1"></a>pres_cat</span>
-<span id="cb73-19"><a href="#cb73-19" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> pres_cat, <span class="fu">aes</span>(<span class="at">x =</span> winner)) <span class="sc">+</span></span>
-<span id="cb73-20"><a href="#cb73-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>()</span>
-<span id="cb73-21"><a href="#cb73-21" aria-hidden="true" tabindex="-1"></a>pres_cat2 <span class="ot">&lt;-</span> pres_cat <span class="sc">|&gt;</span> <span class="fu">group_by</span>(winner) <span class="sc">|&gt;</span></span>
-<span id="cb73-22"><a href="#cb73-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">nwins =</span> <span class="fu">n</span>())</span>
-<span id="cb73-23"><a href="#cb73-23" aria-hidden="true" tabindex="-1"></a>pres_cat2</span>
-<span id="cb73-24"><a href="#cb73-24" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(pres_cat2, <span class="fu">aes</span>(<span class="at">x =</span> winner)) <span class="sc">+</span></span>
-<span id="cb73-25"><a href="#cb73-25" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>()</span>
-<span id="cb73-26"><a href="#cb73-26" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(pres_cat2, <span class="fu">aes</span>(<span class="at">x =</span> winner, <span class="at">y =</span> nwins)) <span class="sc">+</span></span>
-<span id="cb73-27"><a href="#cb73-27" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>()</span>
-<span id="cb73-28"><a href="#cb73-28" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> pres_df, <span class="fu">aes</span>(<span class="at">x =</span> Gore, <span class="at">y =</span> Bush)) <span class="sc">+</span></span>
-<span id="cb73-29"><a href="#cb73-29" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()</span>
-<span id="cb73-30"><a href="#cb73-30" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb73-31"><a href="#cb73-31" aria-hidden="true" tabindex="-1"></a>fitness_full <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"data/higham_fitness_clean.csv"</span>) <span class="sc">|&gt;</span> <span class="fu">mutate</span>(<span class="at">weekend_ind =</span> <span class="fu">case_when</span>(weekday <span class="sc">==</span> <span class="st">"Sat"</span> <span class="sc">|</span> weekday <span class="sc">==</span> <span class="st">"Sun"</span> <span class="sc">~</span> <span class="st">"weekend"</span>,</span>
-<span id="cb73-32"><a href="#cb73-32" aria-hidden="true" tabindex="-1"></a>  <span class="cn">TRUE</span> <span class="sc">~</span> <span class="st">"weekday"</span>))</span>
-<span id="cb73-33"><a href="#cb73-33" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> fitness_full, <span class="fu">aes</span>(<span class="at">x =</span> distance, <span class="at">y =</span> active_cals)) <span class="sc">+</span></span>
-<span id="cb73-34"><a href="#cb73-34" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()</span>
-<span id="cb73-35"><a href="#cb73-35" aria-hidden="true" tabindex="-1"></a><span class="do">## drop observations that have active calories &lt; 50. </span></span>
-<span id="cb73-36"><a href="#cb73-36" aria-hidden="true" tabindex="-1"></a><span class="do">## assuming that these are data errors or </span></span>
-<span id="cb73-37"><a href="#cb73-37" aria-hidden="true" tabindex="-1"></a><span class="do">## days where the Apple Watch wasn't worn.</span></span>
-<span id="cb73-38"><a href="#cb73-38" aria-hidden="true" tabindex="-1"></a>fitness <span class="ot">&lt;-</span> fitness_full <span class="sc">|&gt;</span></span>
-<span id="cb73-39"><a href="#cb73-39" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(active_cals <span class="sc">&gt;</span> <span class="dv">50</span>)</span>
-<span id="cb73-40"><a href="#cb73-40" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> fitness) <span class="sc">+</span></span>
-<span id="cb73-41"><a href="#cb73-41" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">x =</span> distance, <span class="at">y =</span> active_cals))</span>
-<span id="cb73-42"><a href="#cb73-42" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> fitness) <span class="sc">+</span></span>
-<span id="cb73-43"><a href="#cb73-43" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">x =</span> Start, <span class="at">y =</span> active_cals, <span class="at">colour =</span> weekend_ind))</span>
-<span id="cb73-44"><a href="#cb73-44" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> fitness) <span class="sc">+</span></span>
-<span id="cb73-45"><a href="#cb73-45" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">x =</span> Start, <span class="at">y =</span> active_cals, <span class="at">shape =</span> weekend_ind))</span>
-<span id="cb73-46"><a href="#cb73-46" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> fitness) <span class="sc">+</span></span>
-<span id="cb73-47"><a href="#cb73-47" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">x =</span> Start, <span class="at">y =</span> active_cals, <span class="at">size =</span> flights))</span>
-<span id="cb73-48"><a href="#cb73-48" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> fitness) <span class="sc">+</span></span>
-<span id="cb73-49"><a href="#cb73-49" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">x =</span> Start, <span class="at">y =</span> active_cals, <span class="at">colour =</span> <span class="st">"purple"</span>))</span>
-<span id="cb73-50"><a href="#cb73-50" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> fitness) <span class="sc">+</span></span>
-<span id="cb73-51"><a href="#cb73-51" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">x =</span> Start, <span class="at">y =</span> active_cals), <span class="at">size =</span> <span class="fl">1.5</span>, <span class="at">shape =</span> <span class="dv">19</span>)</span>
-<span id="cb73-52"><a href="#cb73-52" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> fitness, <span class="fu">aes</span>(<span class="at">x =</span> Start, <span class="at">y =</span> active_cals)) <span class="sc">+</span></span>
-<span id="cb73-53"><a href="#cb73-53" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
-<span id="cb73-54"><a href="#cb73-54" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">span =</span> <span class="fl">0.3</span>)</span>
-<span id="cb73-55"><a href="#cb73-55" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> fitness, <span class="fu">aes</span>(<span class="at">x =</span> Start, <span class="at">y =</span> active_cals)) <span class="sc">+</span></span>
-<span id="cb73-56"><a href="#cb73-56" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
-<span id="cb73-57"><a href="#cb73-57" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">se =</span> <span class="cn">FALSE</span>, <span class="at">method =</span> <span class="st">"lm"</span>)</span>
-<span id="cb73-58"><a href="#cb73-58" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> fitness, <span class="fu">aes</span>(<span class="at">x =</span> Start, <span class="at">y =</span> steps)) <span class="sc">+</span></span>
-<span id="cb73-59"><a href="#cb73-59" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span> <span class="fu">geom_smooth</span>() <span class="sc">+</span> <span class="fu">xlab</span>(<span class="st">"Date"</span>)</span>
-<span id="cb73-60"><a href="#cb73-60" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> fitness, <span class="fu">aes</span>(<span class="at">x =</span> Start, <span class="at">y =</span> steps)) <span class="sc">+</span></span>
-<span id="cb73-61"><a href="#cb73-61" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>() <span class="sc">+</span> <span class="fu">geom_smooth</span>() <span class="sc">+</span> <span class="fu">xlab</span>(<span class="st">"Date"</span>)</span>
-<span id="cb73-62"><a href="#cb73-62" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> stat113_df, <span class="fu">aes</span>(<span class="at">x =</span> Exercise, <span class="at">y =</span> Pulse,</span>
-<span id="cb73-63"><a href="#cb73-63" aria-hidden="true" tabindex="-1"></a>                           <span class="at">colour =</span> Year)) <span class="sc">+</span></span>
-<span id="cb73-64"><a href="#cb73-64" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
-<span id="cb73-65"><a href="#cb73-65" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">se =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb73-66"><a href="#cb73-66" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> stat113_df, <span class="fu">aes</span>(<span class="at">x =</span> Exercise, <span class="at">y =</span> Pulse)) <span class="sc">+</span></span>
-<span id="cb73-67"><a href="#cb73-67" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
-<span id="cb73-68"><a href="#cb73-68" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">se =</span> <span class="cn">TRUE</span>) <span class="sc">+</span></span>
-<span id="cb73-69"><a href="#cb73-69" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span> Year)</span>
-<span id="cb73-70"><a href="#cb73-70" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> stat113_df, <span class="fu">aes</span>(<span class="at">x =</span> Award, <span class="at">y =</span> Exercise)) <span class="sc">+</span></span>
-<span id="cb73-71"><a href="#cb73-71" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>()</span>
-<span id="cb73-72"><a href="#cb73-72" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> stat113_df, <span class="fu">aes</span>(<span class="at">x =</span> Award, <span class="at">y =</span> Exercise)) <span class="sc">+</span></span>
-<span id="cb73-73"><a href="#cb73-73" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_violin</span>()</span>
-<span id="cb73-74"><a href="#cb73-74" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> stat113_df, <span class="fu">aes</span>(<span class="at">x =</span> Year, <span class="at">fill =</span> SocialMedia)) <span class="sc">+</span></span>
-<span id="cb73-75"><a href="#cb73-75" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">position =</span> <span class="st">"fill"</span>) <span class="sc">+</span></span>
-<span id="cb73-76"><a href="#cb73-76" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">"Proportion"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb74"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb74-1"><a href="#cb74-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb74-2"><a href="#cb74-2" aria-hidden="true" tabindex="-1"></a>pres_df <span class="ot">&lt;-</span> <span class="fu">read_table</span>(<span class="st">"data/PRES2000.txt"</span>) </span>
+<span id="cb74-3"><a href="#cb74-3" aria-hidden="true" tabindex="-1"></a><span class="do">## don't worry about the `read_table` function....yet</span></span>
+<span id="cb74-4"><a href="#cb74-4" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(pres_df)</span>
+<span id="cb74-5"><a href="#cb74-5" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> pres_df, <span class="fu">aes</span>(<span class="at">x =</span> Gore)) <span class="sc">+</span></span>
+<span id="cb74-6"><a href="#cb74-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">colour =</span> <span class="st">"black"</span>, <span class="at">fill =</span> <span class="st">"white"</span>) <span class="sc">+</span></span>
+<span id="cb74-7"><a href="#cb74-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">"Votes for Gore in Florida"</span>)</span>
+<span id="cb74-8"><a href="#cb74-8" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> pres_df, <span class="fu">aes</span>(<span class="at">x =</span> Gore)) <span class="sc">+</span></span>
+<span id="cb74-9"><a href="#cb74-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_freqpoly</span>(<span class="at">colour =</span> <span class="st">"black"</span>) <span class="sc">+</span></span>
+<span id="cb74-10"><a href="#cb74-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">"Votes for Gore in Florida"</span>) </span>
+<span id="cb74-11"><a href="#cb74-11" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> pres_df, <span class="fu">aes</span>(<span class="at">x =</span> Gore)) <span class="sc">+</span></span>
+<span id="cb74-12"><a href="#cb74-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_freqpoly</span>(<span class="at">colour =</span> <span class="st">"black"</span>) <span class="sc">+</span></span>
+<span id="cb74-13"><a href="#cb74-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">"Votes for Gore in Florida"</span>) <span class="sc">+</span></span>
+<span id="cb74-14"><a href="#cb74-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>() </span>
+<span id="cb74-15"><a href="#cb74-15" aria-hidden="true" tabindex="-1"></a>pres_cat <span class="ot">&lt;-</span> pres_df <span class="sc">|&gt;</span> <span class="fu">mutate</span>(<span class="at">winner =</span> <span class="fu">if_else</span>(Gore <span class="sc">&gt;</span> Bush,</span>
+<span id="cb74-16"><a href="#cb74-16" aria-hidden="true" tabindex="-1"></a>                                                <span class="at">true =</span> <span class="st">"Gore"</span>,</span>
+<span id="cb74-17"><a href="#cb74-17" aria-hidden="true" tabindex="-1"></a>                                                <span class="at">false =</span> <span class="st">"Bush"</span>))</span>
+<span id="cb74-18"><a href="#cb74-18" aria-hidden="true" tabindex="-1"></a>pres_cat</span>
+<span id="cb74-19"><a href="#cb74-19" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> pres_cat, <span class="fu">aes</span>(<span class="at">x =</span> winner)) <span class="sc">+</span></span>
+<span id="cb74-20"><a href="#cb74-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>()</span>
+<span id="cb74-21"><a href="#cb74-21" aria-hidden="true" tabindex="-1"></a>pres_cat2 <span class="ot">&lt;-</span> pres_cat <span class="sc">|&gt;</span> <span class="fu">group_by</span>(winner) <span class="sc">|&gt;</span></span>
+<span id="cb74-22"><a href="#cb74-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">nwins =</span> <span class="fu">n</span>())</span>
+<span id="cb74-23"><a href="#cb74-23" aria-hidden="true" tabindex="-1"></a>pres_cat2</span>
+<span id="cb74-24"><a href="#cb74-24" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(pres_cat2, <span class="fu">aes</span>(<span class="at">x =</span> winner)) <span class="sc">+</span></span>
+<span id="cb74-25"><a href="#cb74-25" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>()</span>
+<span id="cb74-26"><a href="#cb74-26" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(pres_cat2, <span class="fu">aes</span>(<span class="at">x =</span> winner, <span class="at">y =</span> nwins)) <span class="sc">+</span></span>
+<span id="cb74-27"><a href="#cb74-27" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>()</span>
+<span id="cb74-28"><a href="#cb74-28" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> pres_df, <span class="fu">aes</span>(<span class="at">x =</span> Gore, <span class="at">y =</span> Bush)) <span class="sc">+</span></span>
+<span id="cb74-29"><a href="#cb74-29" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()</span>
+<span id="cb74-30"><a href="#cb74-30" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb74-31"><a href="#cb74-31" aria-hidden="true" tabindex="-1"></a>fitness_full <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"data/higham_fitness_clean.csv"</span>) <span class="sc">|&gt;</span> <span class="fu">mutate</span>(<span class="at">weekend_ind =</span> <span class="fu">case_when</span>(weekday <span class="sc">==</span> <span class="st">"Sat"</span> <span class="sc">|</span> weekday <span class="sc">==</span> <span class="st">"Sun"</span> <span class="sc">~</span> <span class="st">"weekend"</span>,</span>
+<span id="cb74-32"><a href="#cb74-32" aria-hidden="true" tabindex="-1"></a>  <span class="cn">TRUE</span> <span class="sc">~</span> <span class="st">"weekday"</span>))</span>
+<span id="cb74-33"><a href="#cb74-33" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> fitness_full, <span class="fu">aes</span>(<span class="at">x =</span> distance, <span class="at">y =</span> active_cals)) <span class="sc">+</span></span>
+<span id="cb74-34"><a href="#cb74-34" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()</span>
+<span id="cb74-35"><a href="#cb74-35" aria-hidden="true" tabindex="-1"></a><span class="do">## drop observations that have active calories &lt; 50. </span></span>
+<span id="cb74-36"><a href="#cb74-36" aria-hidden="true" tabindex="-1"></a><span class="do">## assuming that these are data errors or </span></span>
+<span id="cb74-37"><a href="#cb74-37" aria-hidden="true" tabindex="-1"></a><span class="do">## days where the Apple Watch wasn't worn.</span></span>
+<span id="cb74-38"><a href="#cb74-38" aria-hidden="true" tabindex="-1"></a>fitness <span class="ot">&lt;-</span> fitness_full <span class="sc">|&gt;</span></span>
+<span id="cb74-39"><a href="#cb74-39" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(active_cals <span class="sc">&gt;</span> <span class="dv">50</span>)</span>
+<span id="cb74-40"><a href="#cb74-40" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> fitness) <span class="sc">+</span></span>
+<span id="cb74-41"><a href="#cb74-41" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">x =</span> distance, <span class="at">y =</span> active_cals))</span>
+<span id="cb74-42"><a href="#cb74-42" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> fitness) <span class="sc">+</span></span>
+<span id="cb74-43"><a href="#cb74-43" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">x =</span> Start, <span class="at">y =</span> active_cals, <span class="at">colour =</span> weekend_ind))</span>
+<span id="cb74-44"><a href="#cb74-44" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> fitness) <span class="sc">+</span></span>
+<span id="cb74-45"><a href="#cb74-45" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">x =</span> Start, <span class="at">y =</span> active_cals, <span class="at">shape =</span> weekend_ind))</span>
+<span id="cb74-46"><a href="#cb74-46" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> fitness) <span class="sc">+</span></span>
+<span id="cb74-47"><a href="#cb74-47" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">x =</span> Start, <span class="at">y =</span> active_cals, <span class="at">size =</span> flights))</span>
+<span id="cb74-48"><a href="#cb74-48" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> fitness) <span class="sc">+</span></span>
+<span id="cb74-49"><a href="#cb74-49" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">x =</span> Start, <span class="at">y =</span> active_cals, <span class="at">colour =</span> <span class="st">"purple"</span>))</span>
+<span id="cb74-50"><a href="#cb74-50" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> fitness) <span class="sc">+</span></span>
+<span id="cb74-51"><a href="#cb74-51" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">x =</span> Start, <span class="at">y =</span> active_cals), <span class="at">size =</span> <span class="fl">1.5</span>, <span class="at">shape =</span> <span class="dv">19</span>)</span>
+<span id="cb74-52"><a href="#cb74-52" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> fitness, <span class="fu">aes</span>(<span class="at">x =</span> Start, <span class="at">y =</span> active_cals)) <span class="sc">+</span></span>
+<span id="cb74-53"><a href="#cb74-53" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb74-54"><a href="#cb74-54" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">span =</span> <span class="fl">0.3</span>)</span>
+<span id="cb74-55"><a href="#cb74-55" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> fitness, <span class="fu">aes</span>(<span class="at">x =</span> Start, <span class="at">y =</span> active_cals)) <span class="sc">+</span></span>
+<span id="cb74-56"><a href="#cb74-56" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb74-57"><a href="#cb74-57" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">se =</span> <span class="cn">FALSE</span>, <span class="at">method =</span> <span class="st">"lm"</span>)</span>
+<span id="cb74-58"><a href="#cb74-58" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> fitness, <span class="fu">aes</span>(<span class="at">x =</span> Start, <span class="at">y =</span> steps)) <span class="sc">+</span></span>
+<span id="cb74-59"><a href="#cb74-59" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span> <span class="fu">geom_smooth</span>() <span class="sc">+</span> <span class="fu">xlab</span>(<span class="st">"Date"</span>)</span>
+<span id="cb74-60"><a href="#cb74-60" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> fitness, <span class="fu">aes</span>(<span class="at">x =</span> Start, <span class="at">y =</span> steps)) <span class="sc">+</span></span>
+<span id="cb74-61"><a href="#cb74-61" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>() <span class="sc">+</span> <span class="fu">geom_smooth</span>() <span class="sc">+</span> <span class="fu">xlab</span>(<span class="st">"Date"</span>)</span>
+<span id="cb74-62"><a href="#cb74-62" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> stat113_df, <span class="fu">aes</span>(<span class="at">x =</span> Exercise, <span class="at">y =</span> Pulse,</span>
+<span id="cb74-63"><a href="#cb74-63" aria-hidden="true" tabindex="-1"></a>                           <span class="at">colour =</span> Year)) <span class="sc">+</span></span>
+<span id="cb74-64"><a href="#cb74-64" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb74-65"><a href="#cb74-65" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">se =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb74-66"><a href="#cb74-66" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> stat113_df, <span class="fu">aes</span>(<span class="at">x =</span> Exercise, <span class="at">y =</span> Pulse)) <span class="sc">+</span></span>
+<span id="cb74-67"><a href="#cb74-67" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb74-68"><a href="#cb74-68" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">se =</span> <span class="cn">TRUE</span>) <span class="sc">+</span></span>
+<span id="cb74-69"><a href="#cb74-69" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span> Year)</span>
+<span id="cb74-70"><a href="#cb74-70" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> stat113_df, <span class="fu">aes</span>(<span class="at">x =</span> Award, <span class="at">y =</span> Exercise)) <span class="sc">+</span></span>
+<span id="cb74-71"><a href="#cb74-71" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>()</span>
+<span id="cb74-72"><a href="#cb74-72" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> stat113_df, <span class="fu">aes</span>(<span class="at">x =</span> Award, <span class="at">y =</span> Exercise)) <span class="sc">+</span></span>
+<span id="cb74-73"><a href="#cb74-73" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_violin</span>()</span>
+<span id="cb74-74"><a href="#cb74-74" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> stat113_df, <span class="fu">aes</span>(<span class="at">x =</span> Year, <span class="at">fill =</span> SocialMedia)) <span class="sc">+</span></span>
+<span id="cb74-75"><a href="#cb74-75" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">position =</span> <span class="st">"fill"</span>) <span class="sc">+</span></span>
+<span id="cb74-76"><a href="#cb74-76" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">"Proportion"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 
 
