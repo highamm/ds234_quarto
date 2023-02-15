@@ -5,7 +5,7 @@ date: "`r Sys.Date()`"
 site: bookdown::bookdown_site
 documentclass: book
 bibliography: [book.bib, packages.bib]
-url: https://highamm.github.io/datascience234/
+url: https://highamm.github.io/ds234_quarto/
 # cover-image: path to the social sharing image like images/cover.jpg
 description: "This book contains course materials for St. Lawrence University's DATA / STAT 234 course."
 biblio-style: apalike
