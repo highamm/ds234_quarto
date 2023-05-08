@@ -1,4 +1,6 @@
 .Rproj.user
 data/
+solutions/
+other/
 render_file.R
 /.quarto/
