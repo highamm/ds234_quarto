@@ -1,5 +1,10 @@
 # Coding in Base `R` {#basics}
 
+```{r}
+#| echo: false
+source("_common.R")
+```
+
 __Goals__:
 
 * describe common classes for variables in a data set.
@@ -12,7 +17,7 @@ __Motivation__
 
 First, it's not the most inherently interesting thing to look at. It's a lot more fun to make plots and wrangle data. As long as someone makes sure that the variables are already of the "correct" class, then there's no need to talk about this.
 
-Second, much of what we discuss here will make more sense, having the previous four chapters under our belt. We'll be able to see how misspecified variable classes cause issues in certain summaries and plots _and we already know how to make those plots and get those summaries_.
+Second, much of what we discuss here will make more sense, having the previous four chapters under our belt. We'll be able to see how mis-specified variable classes cause issues in certain summaries and plots _and we already know how to make those plots and get those summaries_.
 
 ## Variable Classes in `R`
 
@@ -61,15 +66,20 @@ In the second plot, we would expect to get a plot with 3 different colours, one 
 
 Both plots are not rendered correctly because the variable classes are not correct in the underlying data set. Up until this point, the data that has been provided has almost always had the correct variable classes, by default, but that won't always be the case!
 
-We've actually seen both of these issues before as well (the Date issue in the exercise data and the continuous colour scale in the cars data), but, in both of these instances, code was provided to "fix" the problem. After this section, you'll have the tools to fix many `class` issues on your own!
 
-If you examine the output of the following line of code
+::: {.callout-note}
+## Note
+
+We've actually seen both of these issues before as well (the Date issue in the exercise data and the continuous colour scale in the cars data), but, in both of these instances, code was provided to "fix" the problem. After this section, you'll have the tools to fix many `class` issues on your own!
+:::
+
+If we examine the output of the following line of code
 
 ```{r, appendix = TRUE}
 head(videogame_df)
 ```
 
-you'll see that, at the very top of the output, right below the variable names, `R` provides you with the classes of variables in the `tibble`. 
+we'll see that, at the very top of the output, right below the variable names, `R` provides you with the classes of variables in the `tibble`. 
 
 * `<chr>` is character, used for strings or text.
 * `<fct>` is used for variables that are factors, typically used for character variables with a finite number of possible values the variable can take on.
@@ -92,7 +102,7 @@ prints the first thousand entries of the variable `game`. There are a few ways t
 str(videogame_df$game)
 ```
 
-You can also get a variable's class more directly with `class()`
+We can also get a variable's class more directly with `class()`
 
 ```{r, appendix = TRUE}
 class(videogame_df$game)
@@ -111,7 +121,7 @@ mean(videogame_df$game)
 videogame_df |> summarise(maxgame = max(game))
 ```
 
-You also can't convert a character class to numeric. You can, however, convert a character class to a `<fct>` class, using `as.factor()`. The `<fct>` class will be useful when we discuss the `forcats` package, but isn't particularly useful now.
+We also can't convert a character class to numeric. We can, however, convert a character class to a `<fct>` class, using `as.factor()`. The `<fct>` class will be useful when we discuss the `forcats` package, but isn't particularly useful now.
 
 ```{r, appendix = TRUE}
 class(videogame_df$meta_cat)
@@ -126,7 +136,7 @@ videogame_df <- videogame_df |>
 str(videogame_df$meta_cat_factor)
 ```
 
-For most `R` functions, it won't matter whether your variable is in class character or class factor. In general, though, character classes are for variables that have a ton of different levels, like the name of the videogame, whereas factors are reserved for categorical variables with a finite number of levels.
+For most `R` functions, it won't matter whether our variable is in class character or class factor. In general, though, character classes are for variables that have a ton of different levels, like the name of the videogame, whereas factors are reserved for categorical variables with a smaller finite number of levels.
 
 ### `<date>` Class
 
@@ -137,7 +147,7 @@ str(videogame_df$release_date)
 str(videogame_df$release_date2)
 ```
 
-`release_date` is class character, which is why we had the issue with the odd ordering of the dates earlier. You can try converting it using `as.Date`, but this function doesn't always work:
+`release_date` is class character, which is why we had the issue with the odd ordering of the dates earlier. We can try converting it using `as.Date`, but this function doesn't always work:
 
 ```{r, error = TRUE}
 as.Date(videogame_df$release_date)
@@ -156,7 +166,7 @@ What do you think taking the median or taking the mean of a date class means?
 
 ### `<dbl>` and `<int>` Class
 
-Class `<dbl>` and `<int>` are probably the most self-explanatory classes. `<dbl>`, the `numeric` class, are just variables that have only numbers in them while `<int>` only have integers (..., -2, -1, 0, 1, 2, ....). You can do numerical operations on either of these classes (and we've been doing them throughout the semester). For our purposes, these two classes are interchangeable.
+Class `<dbl>` and `<int>` are probably the most self-explanatory classes. `<dbl>`, the `numeric` class, are just variables that have only numbers in them while `<int>` only have integers (..., -2, -1, 0, 1, 2, ....). We can do numerical operations on either of these classes (and we've been doing them throughout the semester). For our purposes, these two classes are interchangeable.
 
 ```{r, appendix = TRUE}
 str(videogame_df$price)
@@ -204,10 +214,6 @@ We've actually used the ideas of logical variables for quite some time now, part
 
 The primary purpose of this section is to be able to identify variable classes and be able to convert between the different variable types with `mutate()` to "fix" variables with the incorrect class.
 
-### Exercises {#exercise-6-2}
-
-Exercises marked with an \* indicate that the exercise has a solution at the end of the chapter at \@ref(solutions-6).
-
 We will use the fitness data set again for this set of exercises, as the data set has some of the issues with variable class that we have discussed. However, in week 1, some of the work of the work to fix those issues was already done before you saw the data. Now, you'll get to fix a couple of those issues! Read in the data set with:
 
 ```{r, message = FALSE}
@@ -215,16 +221,17 @@ library(tidyverse)
 fitness_df <- read_csv(here("data/higham_fitness_notclean.csv"))
 ```
 
-1. \* What is the issue with the following plot? After you figure out the issue, use `mutate()` to create a new variable that fixes the issue and then reconstruct the graph.
+__Exercise 1__. What is the issue with the following plot? After you figure out the issue, use `mutate()` and `as.factor()` to create a new variable that fixes the issue and then reconstruct the graph.
 
 ```{r, echo = TRUE}
 ggplot(data = fitness_df, aes(x = active_cals)) +
-  geom_freqpoly(aes(group = weekday, colour = weekday))
+  geom_freqpoly(aes(group = weekday, colour = weekday)) +
+  theme_minimal()
 ```
 
-2. \* What is another variable in the data set that has an incorrect `class`?
+__Exercise 2__. Currently `stepgoal` (whether or not 10000 steps were cleared that day) is `<dbl>`. What is another class that `stepgoal` could be? 
 
-3. Create a new variable, called `step_goal` that is `1` or `TRUE` if at least 10000 steps were walked and `0` or `FALSE` if fewer than 10000 steps were walked. Using this variable, find the total number of days where the goal was met and the proportion of the days where the goal was met.
+__Exercise 3__. Convert `stepgoal` to the class that is the answer to the previous exercise. Using this new variable, calculate the total number of days where the goal was met and the proportion of the days where the goal was met.
 
 ## Object Types and Subsetting
 
@@ -236,13 +243,20 @@ Variables of these different classes can be stored in a variety of different obj
 
 ### `tibble` and `data.frame`
 
-The `tibble` object is very similar to the `data.frame` object. You can also check what type of object you're working with using the `str()` command:
+The `tibble` object is very similar to the `data.frame` object. We can also check what type of object you're working with using the `str()` command:
 
 ```{r, results = "hide", appendix = TRUE}
 str(videogame_df) ## look at the beginning to see "tibble"
 ```
 
-We will have a small section on `tibble`s in the coming weeks so we won't focus on them here. But, we should take note that, to reference a specific element in a `tibble`, called _indexing_, you can use `[# , #]`. So, for example, `videogame_df[5, 3]` grabs the value in the fifth row and the third column:
+::: {.callout-note}
+## Note
+
+We mostly use `tibble` and data frame interchangeably: the main difference between the two is that a `tibble` prints in a more reader friendly way. Nearly all of the data sets we have worked with over the semester have been `tibble`s.
+:::
+
+
+We will have a small section on `tibble`s in the coming weeks so we won't focus on them here. But, we should take note that, to reference a specific element in a `tibble`, called _indexing_, we can use `[# , #]`. So, for example, `videogame_df[5, 3]` grabs the value in the fifth row and the third column:
 
 ```{r, appendix = TRUE}
 videogame_df[5, 3]
@@ -259,8 +273,6 @@ videogame_df[5, ] ## grab the fifth row
 We can also grab a range of columns or rows using the `:` operator:
 
 ```{r, results = "hide", appendix = TRUE}
-3:7
-
 videogame_df[ ,3:7] ## grab columns 3 through 7
 
 videogame_df[3:7, ] ## grab rows 3 through 7
@@ -289,30 +301,26 @@ str(vec1); str(vec2); str(vec3)
 
 Notice that `vec2` is a character class. `R` requires all elements in a vector to be of one class; since `R` knows `b` can't be numeric, it makes all of the numbers characters as well.
 
-Using the `dataset$variable` draws out a vector from a `tibble` or `data.frame`:
+Using `dataset$variable` draws out a vector from a `tibble` or `data.frame`:
 
 ```{r, results = "hide", appendix = TRUE}
 videogame_df$metascore
 ```
 
-If you wanted to make the above vector "by hand", you'd need to have a lot of patience: `c(96, 88, 65, NA, NA, NA, 93, .........)`
+If we wanted to make the above vector "by hand", we'd need to have a lot of patience: `c(96, 88, 65, NA, NA, NA, 93, .........)`
 
-Just like tibbles, you can save vectors as something for later use:
+Just like tibbles, we can save vectors as something for later use:
 
 ```{r, appendix = TRUE}
 metavec <- videogame_df$metascore
 mean(metavec, na.rm = TRUE)
 ```
 
-How would you get the mean `metascore` using `dplyr` functions?
-
 Vectors are one-dimensional: if we want to grab the 100th element of a vector we just use `name_of_vector[100]`:
 
 ```{r, appendix = TRUE}
 metavec[100] ## 100th element is missing
 ```
-
-Be aware that, if you're coming from a math perspective, a "vector" in `R` doesn't correspond to a "vector" in mathematics or physics.
 
 ### Lists
 
@@ -326,32 +334,16 @@ testlist
 
 `testlist` has four elements: a single character `"a"`, a single number `4`, a vector of `1, 4, 2, 6`, and a `tibble` with a couple of variables. Lists can therefore be used to store complex information that wouldn't be as easily stored in a `vector` or `tibble`.
 
-### Exercises {#exercise-6-3}
+__Exercise 4__. Suppose you subset a data frame `df` with `df[1:5, 2:4]`. What are the two `dplyr` functions that you can use to perform this same operation (subsetting to get the first five rows and the second through fourth columns).
 
-Exercises marked with an \* indicate that the exercise has a solution at the end of the chapter at \@ref(solutions-6).
+__Exercise 5__. From `videogame_df`, create a `tibble` called `first100` that only has the first 100 days in the data set using both (1) indexing with `[ , ]` and (2) a `dplyr` function.
 
-1. \* Look at the subsetting commands with `[ , ]`. What `dplyr` functions can you use to do the same thing?
+__Exercise 6__. From `videogame_df`, create a tibble that doesn't have the `owners` variable using both (1) indexing with `[ , ]` and (2) a `dplyr` function. 
 
-2. Create a `tibble` called `last100` that only has the last 100 days in the data set using both (1) indexing with `[ , ]` and (2) a `dplyr` function.
-
-3. Create a tibble that doesn't have the `flights` variable using both (1) indexing with `[ , ]` and (2) a `dplyr` function. 
-
-4. \* Use the following steps to create a new variable `weekend_ind`, which will be "weekend" if the day of the week is Saturday or Sunday and "weekday" if the day of the week is any other day. The current `weekday` variable is coded so that `1` represents Sunday, `2` represents Monday, ...., and `7` represents Saturday. 
-
-a. Create a vector that has the numbers corresponding to the two weekend days. Name the vector and then create a second vector that has the numbers corresponding to the five weekday days.
-
-b. Use `dplyr` functions and the `%in%` operator to create the new `weekend_ind` variable. You can use the following code chunk to help with what `%in%` does:
-
-```{r, echo = TRUE, results = "hide"}
-1 %in% c(1, 2, 3, 4)
-2 %in% c(1, 2, 3, 4)
-
-2 %in% c(3, 4, 5, 6)
-```
 
 ## Other Useful Base `R` Functions
 
-In addition to functions like `%in%` in the previous exercise, there are many other useful base `R` functions. The following give some of the functions that I think are most useful for data science. 
+In addition to the base `R` functions we have discussed so far, there are many other useful base `R` functions. The following give some of the functions that I think are most useful for data science. 
 
 __Generating Data__: `rnorm()`, `sample()`, and `set.seed()`
 
@@ -401,11 +393,19 @@ toy_df |>
 
 We will stop here, but will surely encounter more base `R` functions as we run into different types of problems.
 
-### Exercises {#exercise-6-4}
+__Exercise 7__. Use the `summary()` function on the `metascore` variable in `videogame_df`.
 
-Exercises marked with an \* indicate that the exercise has a solution at the end of the chapter at \@ref(solutions-6).
+## Practice
 
-1. Use `dplyr` and `tidyr` functions to re-create the tables generated from
+### Class Exercises
+
+__Class Exercise 1__. Use the following steps to create a new variable `weekend_ind`, which will be "weekend" if the day of the week is Saturday or Sunday and "weekday" if the day of the week is any other day. The current `weekday` variable is coded so that `1` represents Sunday, `2` represents Monday, ...., and `7` represents Saturday. 
+
+a. Create a vector that has the numbers corresponding to the two weekend days. Name the vector and then create a second vector that has the numbers corresponding to the five weekday days.
+
+b. Use `dplyr` functions and the `%in%` operator to create the new `weekend_ind` variable. 
+
+__Class Exercise 2__. Use `dplyr` and `tidyr` functions to re-create the tables generated from
 
 ```{r}
 table(toy_df$group1)
@@ -413,159 +413,38 @@ table(toy_df$group1)
 table(toy_df$group1, toy_df$group2)
 ```
 
-## Chapter Exercises {#chapexercise-6}
+### Your Turn
 
-Exercises marked with an \* indicate that the exercise has a solution at the end of the chapter at \@ref(solutions-6).
+__Your Turn 1__. Read in the data set and use `filter()` to remove any rows with missing metascores, missing median playtime, or have a median playtime of 0 hours.
 
-Work through the following exercises pertaining to the video game data set.
+::: {.callout-note}
+## Note
 
-1. \* Read in the data set and use `filter()` to remove any rows with missing metascores, missing median playtime, or have a median playtime of 0 hours.
-
-__Note__: We usually don't want to remove missing values without a valid reason. In this case, a missing metascore means that the game wasn't "major" enough to get enough critic reviews, and a missing or 0 hour median playtime means that there weren't enough users who uploaded their playtime to the database. Therefore, any further analyses are constructed to games that are popular enough to both get enough reviews on metacritic and have enough users upload their median playtimes.
+We usually don't want to remove missing values without a valid reason. In this case, a missing metascore means that the game wasn't "major" enough to get enough critic reviews, and a missing or 0 hour median playtime means that there weren't enough users who uploaded their playtime to the database. Therefore, any further analyses are constructed to games that are popular enough to both get enough reviews on metacritic and have enough users upload their median playtimes.
+:::
 
 ```{r, message = FALSE}
 videogame_df <- read_csv(here("data/videogame_clean.csv"))
 ```
 
-2. \* Make a scatterplot with `median_playtime` on the y-axis and `metascore` on the x-axis with the filtered data set. 
+__Your Turn 2__. Make a scatterplot with `median_playtime` on the y-axis and `metascore` (the aggregate review score) on the x-axis with the filtered data set. 
 
-3. \* Something you may notice is that many of the points directly overlap one another. This is common when at least one of the variables on a scatterplot is _discrete_: `metascore` can only take on integer values in this case. Change `geom_point()` in your previous plot to `geom_jitter()`. Then, use the help to write a sentence about what `geom_jitter()` does.
+__Your Turn 3__. Something you may notice is that many of the points directly overlap one another. This is common when at least one of the variables on a scatterplot is _discrete_: `metascore` can only take on integer values in this case. Change `geom_point()` in your previous plot to `geom_jitter()`. Then, use the help to write a sentence about what `geom_jitter()` does.
 
-4. \* Another option is to control point transparency with `alpha`. In your `geom_jitter()` statement, change `alpha` so that you can still see all of the points, but so that you can tell in the plot where a lot of points are overlapping.
+__Your Turn 4__. Another option is to control point transparency with `alpha`. In your `geom_jitter()` statement, change `alpha` so that you can still see all of the points, but so that you can tell in the plot where a lot of points are overlapping.
 
-5. \* Label the points that have median playtimes above 1500 hours. You may want to use the `ggrepel` package so that the labels don't overlap.
+__Your Turn 5__. Label the points that have median playtimes above 1500 hours. You may want to use the `ggrepel` package so that the labels don't overlap.
 
-6. Choose one of the games that got labeled and Google that game's median, or possibly average, play time. Is it in the vicinity as the `median_playtime` recorded in our data set? 
+__Your Turn 6__. Choose one of the games that got labeled and Google that game's median, or possibly average, play time. Is it in the vicinity as the `median_playtime` recorded in our data set? 
 
 ```{r, echo = FALSE}
 ## for every game, I Googled, the answer is "no". The median or average
 ## play time is much less than what's given in our data set
 ```
 
-7. What should be done about the outliers? We will discuss and investigate this issue as a class.
+__Your Turn 7__. What should be done about the outliers? Discuss with your group advantages and disadvantages of keeping the outliers on the plot.
 
 ```{r, echo = FALSE}
 ## main points: what's a reasonable median playtime? You don't want to throw away a point that's not a data entry error: that point could be interesting! But you don't want to keep a point that's obviously an error. Transparency is __key__. 
 ```
 
-## Exercise Solutions {#solutions-6}
-
-### Variable Classes S
-
-### Classes in Detail S
-
-1. \* What is the issue with the following plot? After you figure out the issue, use `mutate()` to create a new variable that fixes the issue and then reconstruct the graph.
-
-```{r, fig.keep = "last"}
-ggplot(data = fitness_df, aes(x = active_cals)) +
-  geom_freqpoly(aes(group = weekday, colour = weekday))
-```
-
-The issue is that weekday should be a factor, not numeric.
-
-```{r}
-fitness_df <- fitness_df |> mutate(weekday_cat = as.factor(weekday))
-ggplot(data = fitness_df, aes(x = active_cals)) +
-  geom_freqpoly(aes(group = weekday_cat, colour = weekday_cat)) +
-  scale_colour_viridis_d()
-```
-
-2. \* What is another variable in the data set that has an incorrect `class`?
-
-Month should be an ordered factor, not numeric.
-
-### Object Types S
-
-1. \* Look at the subsetting commands with `[ , ]`. What `dplyr` functions can you use to do the same thing?
-
-`slice()` can be used for the row indexing while `select()` can be used for the column indexing.
-
-4. \* Use the following steps to create a new variable `weekend_ind`, which will be "weekend" if the day of the week is Saturday or Sunday and "weekday" if the day of the week is any other day. The current `weekday` variable is coded so that `1` represents Sunday, `2` represents Monday, ...., and `7` represents Saturday. 
-
-a. Create a vector that has the numbers corresponding to the two weekend days. Name the vector and then create a second vector that has the numbers corresponding to the five weekday days.
-
-```{r}
-vecweekend <- c(1, 7)
-vecweekday <- 2:6 ## or c(2, 3, 4, 5, 6)
-```
-
-b. Use `dplyr` functions and the `%in%` operator to create the new `weekend_ind` variable. You can use the following code chunk to help with what `%in%` does:
-
-```{r, echo = TRUE}
-1 %in% c(1, 2, 3, 4)
-2 %in% c(1, 2, 3, 4)
-
-2 %in% c(3, 4, 5, 6)
-```
-
-```{r}
-fitness_df |>
-  mutate(weekend_ind = case_when(weekday %in% vecweekend ~ "weekend",
-                                 weekday %in% vecweekday ~ "weekday")) |>
-  select(weekend_ind, everything())
-
-## can also use if_else, which is actually a little simpler in this case:
-fitness_df |> mutate(weekend_ind = if_else(weekday %in% vecweekend,
-  true = "weekend", false = "weekday")) |>
-  select(weekend_ind, everything())
-```
-
-### Chapter Exercises S {#chapexercise-6-S}
-
-1. \* Read in the data set and use `filter()` to remove any rows with missing metascores, missing median playtime, or have a median playtime of 0 hours.
-
-__Note__: We usually don't want to remove missing values without a valid reason. In this case, a missing metascore means that the game wasn't "major" enough to get enough critic reviews, and a missing or 0 hour median playtime means that there weren't enough users who uploaded their playtime to the database. Therefore, any further analyses are constructed to games that are popular enough to both get enough reviews on metacritic and have enough users upload their median playtimes.
-
-```{r, message = FALSE}
-videogame_df <- read_csv(here("data/videogame_clean.csv"))
-```
-
-```{r}
-videogame_nomiss <- videogame_df |>
-  filter(!is.na(median_playtime) &
-           !is.na(metascore) &
-           median_playtime != 0)
-```
-
-2. \* Make a scatterplot with `median_playtime` on the y-axis and `metascore` on the x-axis with the filtered data set. 
-
-```{r}
-ggplot(data = videogame_nomiss, aes(x = metascore,
-                                    y = median_playtime)) + 
-  geom_point()
-```
-
-3. \* Something you may notice is that many of the points directly overlap one another. This is common when at least one of the variables on a scatterplot is _discrete_: `metascore` can only take on integer values in this case. Change `geom_point()` in your previous plot to `geom_jitter()`. Then, use the help to write a sentence about what `geom_jitter()` does.
-
-```{r}
-ggplot(data = videogame_nomiss, aes(x = metascore,
-                                    y = median_playtime)) + 
-  geom_jitter()
-```
-
-`geom_jitter()` adds a small amount of "noise" to each data point so that points don't overlap quite as much.
-
-4. \* Another option is to control point transparency with `alpha`. In your `geom_jitter()` statement, change `alpha` so that you can still see all of the points, but so that you can tell in the plot where a lot of points are overlapping.
-
-```{r}
-ggplot(data = videogame_nomiss, aes(x = metascore,
-                                    y = median_playtime)) + 
-  geom_jitter(alpha = 0.4)
-## can see a lot of ponits have median playtimes close to 0
-```
-
-5. \* Label the points that have median playtimes above 1500 hours. You may want to use the `ggrepel` package so that the labels don't overlap.
-
-```{r}
-library(ggrepel)
-videogame_long <- videogame_nomiss |> filter(median_playtime > 1500)
-ggplot(data = videogame_nomiss,
-       aes(x = metascore, y = median_playtime)) + 
-  geom_jitter(alpha = 0.4) +
-  geom_label_repel(data = videogame_long, aes(label = game))
-```
-
-## Non-Exercise `R` Code {#rcode-6}
-
-```{r ref.label=knitr::all_labels(appendix == TRUE), echo=TRUE, eval=FALSE}
-```

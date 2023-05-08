@@ -1,0 +1,74 @@
+---
+title:  "Communication Solutions"
+format: 
+  html:
+    self-contained: true
+execute:
+  echo: true
+  warning: false
+  fig-height: 3
+---
+
+__Exercise 1__. What's the difference between `R` and `Quarto`?
+
+R only allows you to input code and comments while Quarto integrates
+code, text, and output in one document.
+
+__Exercise 2__. Answers will vary.
+
+When using Quarto, all code must run for the document to render. Therefore, someone else can (usually) run your code. Anyone can see exactly what was done in your analysis (if there were outliers removed, what data wrangling steps took place, etc.). This is not necessarily the case with R scripts and Word.
+
+__Exercise 3__. 
+
+```{r}
+library(knitr)
+library(pander)
+library(tidyverse)
+mpg_df <- mtcars |> group_by(cyl) |>
+  summarise(meanmpg = mean(mpg))
+mpg_df |> kable()
+mpg_df |> pander()
+```
+
+__Exercise 4__.
+
+```{r}
+mpg_df |> kable(digits = 1, caption = "My First Table Caption!!")
+```
+
+__Exercise 5__. 
+
+To set a global option, add 
+
+```
+execute:
+  fig-height: 3
+```
+
+to the YAML header.
+
+For the local options, add
+
+```
+#| echo: true
+#| results: false
+```
+
+to the beginning of the code chunk.
+
+__Exercise 6__.
+
+```{r}
+library(palmerpenguins) 
+ggplot(data = penguins, aes(x = bill_length_mm, y = bill_depth_mm,
+                            colour = species)) +
+  geom_point() +
+  geom_smooth(se = FALSE) +
+  labs(x = "Bill Length (mm)", ## part a
+       y = "Bill Depth (mm)",
+       colour = "Species",
+       title = "Plot of Penguins Data") + ## part d
+  scale_colour_viridis_d() + ## part b
+  theme_minimal() ## part c: so clean!
+```
+

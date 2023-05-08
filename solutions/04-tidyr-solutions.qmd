@@ -1,0 +1,68 @@
+---
+title: "`tidyr` Solutions"
+format: 
+  html:
+    self-contained: true
+execute:
+  echo: true
+  warning: false
+  fig-height: 3
+---
+
+```{r}
+library(tidyverse)
+toy_df <- tibble::tibble(show = c("Bojack Horseman: Netflix",
+                                  "VEEP: HBO",
+                                  "American Vandal: Netflix",
+                                  "Community: Peacock"),
+                         seasons = c("1-6", "1-7", "1-2", "1-6"),
+                         main_first = c("Bojack", "Selina", "Peter", "Jeff"),
+                         main_last = c("Horseman", "Meyer", "Molganado", "Winger"))
+```
+
+__Exercise 1__. 
+
+```{r}
+toy_df |> separate(show, into = c("show_name", "network"), sep = ": ")
+```
+
+__Exercise 2__. 
+
+```{r}
+toy_df |> separate(seasons,
+                   into = c("start_season", "end_season"), sep = "-")
+```
+
+__Exercise 3__. 
+
+```{r}
+toy_df |> unite("full_name", c(main_first, main_last), sep = " ")
+```
+
+__Exercise 4__. 
+
+```{r}
+stat113_df <- read_csv(here::here("data/stat113.csv"))
+```
+
+```{r}
+stat113_df |> filter(!is.na(Sex) & !is.na(Sport)) |>
+  group_by(Sex, Sport) |>
+  summarise(mean_GPA = mean(GPA, na.rm = TRUE)) |>
+  pivot_wider(names_from = Sport, values_from = mean_GPA)
+```
+
+__Exercise 5__.
+
+```{r}
+disease_df <- tibble::tibble(location = c("A", "B", "C", "D", "E"),
+                             year1 = c(5, 1, 10, 400, 31),
+                             year2 = c(10, 80, 99, 100, 1),
+                             year3 = c(0, 0, 20, 0, 40))
+```
+
+```{r}
+disease_df |> pivot_longer(c(year1, year2, year3),
+                           names_to = "year", values_to = "deaths")
+```
+

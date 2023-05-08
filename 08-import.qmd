@@ -1,5 +1,10 @@
 # Data Import {#import}
 
+```{r}
+#| echo: false
+source("_common.R")
+```
+
 __Goals:__
 
 * Use `readr` to read in data to `R` from .csv, .txt, and .tsv files.
@@ -37,7 +42,7 @@ head(cars_df)
 
 That looks better, but there are still a couple of problems. What do you notice?
 
-Go the help and read about the `na` argument. Let's add that as an option to fix the missing value issue.
+Go to the help and read about the `na` argument. Let's add that as an option to fix the missing value issue.
 
 ```{r, message = FALSE, warning = FALSE, appendix = TRUE}
 cars_df <- read_csv(here("data/mtcarsex.csv"), na = c("NA", "-999"), skip = 2)
@@ -52,7 +57,6 @@ We've talked about how to re-specify classes of variables using `mutate()` and t
 read_csv(here("data/mtcarsex.csv"), na = c("NA", "-999"), skip = 2) |>
   spec()
 ```
-
 
 For example, notice how `cyl = col_double()` is changed to `cyl = col_factor()` in the code chunk below:
 
@@ -101,7 +105,11 @@ oscars_df <- read_tsv(here("data/oscars.tsv"))
 head(oscars_df)
 ```
 
-You'll be able to work with .txt files and Excel files in the Exercises. Check out <a href="https://rawgit.com/rstudio/cheatsheets/master/data-import.pdf" target="_blank">https://rawgit.com/rstudio/cheatsheets/master/data-import.pdf</a> for a data import cheatsheet. 
+::: {.callout-note}
+## Note
+
+We'll be able to work with .txt files and Excel files in the Exercises. Check out <a href="https://rawgit.com/rstudio/cheatsheets/master/data-import.pdf" target="_blank">https://rawgit.com/rstudio/cheatsheets/master/data-import.pdf</a> for a data import cheatsheet. 
+:::
 
 The final issue that we will discuss in this section occurs when a data set has units within its cells. Consider the earlier example that we used in the reprex section:
 
@@ -110,41 +118,25 @@ test_df <- read_csv(here("data/parsedf.csv"))
 head(test_df)
 ```
 
-The `parse_number()` function is really useful if you just want the number (no commas, no units, etc.). The function is often paired with `mutate()` since we are creating a new variable:
+The `parse_number()` function is really useful if we just want the number (no commas, no units, etc.). The function is often paired with `mutate()` since we are creating a new variable:
 
 ```{r, appendix = TRUE}
 test_df |> mutate(x2 = parse_number(x))
 ```
 
-### Exercises {#exercise-8-2}
+__Exercise 1__. Recall the fitness data set.
 
-Exercises marked with an \* indicate that the exercise has a solution at the end of the chapter at \@ref(solutions-8).
-
-1. \* The `birthdays.txt` file has information on the birthdays of various animals on my Animal Crossing island. There are also columns for the Animal's Name, Animal Type, and how long the animal has lived on the island (in weeks). Click on the file to open it to look at the format of the data.
-
-Start with the following code chunk and use the options of `read_delim()` to read in the data (`?read_delim`). The `delim` argument that's already provided specifies that the delimiter (separator) that you'll use is a `-`, as opposed to, for example, a `,` in a .csv file. Arguments that you may need to change include 
-
-* `skip`
-* `col_names`
-* `na`
-* `trim_ws`
-* `col_types`
-
-```{r, results = "hide", warning = FALSE, message = FALSE}
-library(tidyverse)
-df <- read_delim(here("data/birthdays.txt"), delim = " - ")
-head(df)
+```{r}
+fitness_df <- read_csv(here::here("data/higham_fitness_notclean.csv"))
 ```
 
-2. \* Another common format for data to be stored in is an Excel file. Often, it's easiest just to save the Excel file as a .csv file and read it in using `read_csv()`. But, sometimes this route can be difficult (for example, if your Excel file has thousands of sheets). To read in directly from Excel, you'll need to install the `readxl` with `install.packages("readxl")`. Once installed, load the package with `library(readxl)`, and read in the first sheet `evals_prof.xlsx` data set, a similar data set as the one that will be used for Project 2, with the `read_excel()` function.
-
-3. \* Now, read in the second sheet in the Excel file, using the help file for `?read_excel` to change one of the arguments.
+Use the `col_types` argument in `read_csv()` so that `stepgoal` is read in as a logical variable with `col_logical()` and so that `month` and `weekday` are both read in as factors.
 
 ## Data Scraping with `rvest`
 
-Sometimes, you might want data from a public website that __isn't__ provided in a file format. To obtain this data, you'll need to use web scraping, a term which just means "getting data from a website." The easiest way to do this in `R` is with the `rvest` package. Note that we could spend an entire semester talking about web scraping, but we will focus only on websites where the scraping of data is "easy" and won't give us any major errors.
+Sometimes, we might want data from a public website that __isn't__ provided in a file format. To obtain this data, we'll need to use web scraping, a term which just means "getting data from a website." The easiest way to do this in `R` is with the `rvest` package. Note that we could spend an entire semester talking about web scraping, but we will focus only on websites where the scraping of data is "easy" and won't give us any major errors.
 
-Go to the following website and suppose that you wanted the table of gun violence statistics in `R`: <a href="https://en.wikipedia.org/wiki/Gun_violence_in_the_United_States_by_state" target="_blank">https://en.wikipedia.org/wiki/Gun_violence_in_the_United_States_by_state</a>. You could try copy-pasting the table into Excel and reading the data set in with `read_excel()`. Depending on the format of the table, that strategy may work but it may not. Another way is to scrape it directly with `rvest`. Additionally, if the website continually updates (standings for a sports league, enrollment data for a school, best-selling products for a company, etc.), then scraping is much more convenient, as you don't need to continually copy-paste for updated data. 
+Go to the following website and suppose that you wanted the table of gun violence statistics in `R`: <a href="https://en.wikipedia.org/wiki/Gun_violence_in_the_United_States_by_state" target="_blank">https://en.wikipedia.org/wiki/Gun_violence_in_the_United_States_by_state</a>. We could try copy-pasting the table into Excel and reading the data set in with `read_excel()`. Depending on the format of the table, that strategy may work but it may not. Another way is to scrape it directly with `rvest`. Additionally, if the website continually updates (standings for a sports league, enrollment data for a school, best-selling products for a company, etc.), then scraping is much more convenient, as we don't need to continually copy-paste for updated data. 
 
 In the following code chunk, `read_html()` reads in the entire html file from the url provided while `html_nodes()` extracts only the tables on the website.
 
@@ -162,7 +154,13 @@ h <- read_html(url)
 tab <- h |> html_nodes("table")
 ```
 
-You'll see that, for this example, there are 3 tables provided. The tables are stored in a `list` and we can reference the first table using `[[1]]`, the second table using `[[2]]`, etc. For the purposes of this class, we will figure out which of the 3 tables is the one we actually want using trial and error.
+We see that, for this example, there are 3 tables provided. The tables are stored in a `list` and we can reference the first table using `[[1]]`, the second table using `[[2]]`, etc. 
+
+::: {.callout-important}
+## Important
+
+For the purposes of this class, we will figure out which of the 3 tables is the one we actually want using trial and error.
+:::
 
 The `html_table()` function converts the table into a `data.frame` object.
 
@@ -191,23 +189,13 @@ tab <- h |> html_nodes("table")
 tab
 obj <- tab[[1]] |> html_table(fill = TRUE)
 head(obj)
-tail(obj)
 obj2 <- tab[[2]] |> html_table(fill = TRUE)
 head(obj2)
-tail(obj2)
 ```
 
 There's now 72 different tables! See if you can figure out where the first few tables are coming from on the website.
 
-### Exercises {#exercise-8-3}
-
-Exercises marked with an \* indicate that the exercise has a solution at the end of the chapter at \@ref(solutions-8).
-
-1. Choose a topic/person/place/etc. that interests you that has tables on Wikipedia and scrape the table that is related to that topic.
-
-2. \* SLU keeps track of diversity of faculty through time and makes this data public on the following website: <a href="https://www.stlawu.edu/offices/institutional-research/faculty-diversity" target="_blank">https://www.stlawu.edu/offices/institutional-research/faculty-diversity</a>. Use `rvest` to scrape the data tables into `R`. 
-
-__Hint__: You may need to use an extra argument in `html_table()` like `fill`.
+__Exercise 2__. SLU keeps track of diversity of students and makes this data public on the following website: <a href="https://www.stlawu.edu/offices/institutional-research/student-diversity-2021" target="_blank">https://www.stlawu.edu/offices/institutional-research/student-diversity-2021</a>. Use `rvest` to scrape one of the data tables into `R`. 
 
 ## JSON Files with `jsonlite`
 
@@ -222,8 +210,6 @@ First, consider data from the mobile game Clash Royale. Install the `jsonlite` p
 library(jsonlite)
 cr_cards <- fromJSON(here("data/clash_royale_card_info.json"))
 ```
-
-You should get a warning message, which we will investigate in class.
 
 Next, type `View(cr_cards)` in your console (bottom-left) window to look at the data. See if you can pull out the data set by clicking on some things in the `View()` window.
 
@@ -262,74 +248,13 @@ Things are now....more complicated. This example is just to show that it's not a
 
 There's also the added problem of reading in the `.json` files from all villagers at the same time We could do this with a for loop or a mapping function from `purrr` to download and read in the JSON files for all villagers. We won't delve any more deeply into this, but there's a lot more to all of the file formats that we've discussed this week, particularly web scraping and .json files.
 
-### Exercises {#exercise-8-4}
+## Practice
 
-Exercises marked with an \* indicate that the exercise has a solution at the end of the chapter at \@ref(solutions-8).
+### Class Exercises
 
-1. \* Read in the `pokedex.json` file, a data set that has information on the 151 original Pokemon. Then, use the `flatten()` function from `purrr` to flatten the list.
+__Class Exercise 1__. The `birthdays.txt` file has information on the birthdays of various animals on my Animal Crossing island. There are also columns for the Animal's Name, Animal Type, and how long the animal has lived on the island (in weeks). Click on the file to open it to look at the format of the data.
 
-2. \* Use `as_tibble()` to convert your flattened list to a `tibble`.
-
-3. \* Use `parse_number()` with `mutate()` to tidy two of the variables in the data set.
-
-4. \* Look at the `type` variable. What looks odd about it? What happens when you try to use it, either in a plot, or using a `dplyr` function?
-
-You can `unnest()` the `Type` variable with the `unnest()` function from `tidyr`. We didn't discuss this function but feel free to read about it with `?unnest`
-
-```{r, echo = FALSE, message = FALSE, warning = FALSE}
-library(jsonlite)
-pokedex <- fromJSON(here("data/pokedex.json"))
-df <- purrr::flatten(pokedex)
-pokemon_df <- as_tibble(df)
-```
-
-```{r}
-pokemon_unnest <- unnest(pokemon_df, cols = c(type))
-```
-
-5. There are 6 pokemon with a `spawn_chance` of 0. Figure out what these 6 pokemon are.
-
-```{r, echo = FALSE, results = "hide"}
-pokemon_df |> arrange(spawn_chance) |>
-  filter(spawn_chance == 0) |>
-  select(spawn_chance, everything()) 
-```
-
-6. Figure out what the 5 most common Pokemon types are in the first generation (you'll need to use the `unnest()`-ed data set for this: why?). 
-
-```{r, echo = FALSE, results = "hide"}
-pokemon_unnest |> group_by(type) |>
-  summarise(total_type = n()) |>
-  arrange(desc(total_type))
-
-## 5 most common
-pokemon_unnest |> group_by(type) |>
-  summarise(total_type = n()) |>
-  arrange(desc(total_type)) |>
-  slice(1:5)
-```
-
-## Chapter Exercises {#chapexercise-8}
-
-Exercises marked with an \* indicate that the exercise has a solution at the end of the chapter at \@ref(solutions-8).
-
-1. Choose a sports team at SLU, and go to that team's website (by simply googling SLU name_of_sport). Scrape the data tables from the "Results" or "Statistics" section of this sport. After you scrape the data, tidy the data set. Then, choose one of the following options (different options might make more/less sense for different sports)
-
-(a). Summarise different __team__ statistics, either numerically or graphically. Perhaps make some graphs showing different statistics through time. 
-
-(b). Summarise different __individual__ statistics, either numerically or graphically.
-
-(c). Ask and answer any other questions that make sense for the particular sport that you are looking at!
-
-__Note__: A few sports (men's and women's golf, for example), give results in PDF format. PDF format is generally a horrible way to record and share data, as it's very difficult to read in to almost any program. Therefore, avoid sports with PDF results for the purposes of this exercise.
-
-## Exercise Solutions {#solutions-8}
-
-### `readr` S
-
-1. \* The `birthdays.txt` file has information on the birthdays of various animals on my Animal Crossing island. There are also columns for the Animal's Name, Animal Type, and how long the animal has lived on the island (in weeks). Click on the file to open it to look at the format of the data.
-
-Start with the following code chunk and use the options of `read_delim()` to read in the data (`?read_delim`). The `delim` argument that's already provided specifies that the delimiter (separator) that you'll use is a `-`, as opposed to, for example, a `,` in a .csv file. Arguments that you may to change include 
+Start with the following code chunk and use the options of `read_delim()` to read in the data (`?read_delim`). The `delim` argument that's already provided specifies that the delimiter (separator) that you'll use is a `-`, as opposed to, for example, a `,` in a .csv file. Arguments that you may need to change include 
 
 * `skip`
 * `col_names`
@@ -337,13 +262,13 @@ Start with the following code chunk and use the options of `read_delim()` to rea
 * `trim_ws`
 * `col_types`
 
-```{r, results = "hide", message = FALSE, warning = FALSE}
+```{r, results = "hide", warning = FALSE, message = FALSE}
 library(tidyverse)
 df <- read_delim(here("data/birthdays.txt"), delim = " - ")
 head(df)
 ```
 
-```{r, results = "hide", message = FALSE, warning = FALSE}
+```{r, results = "hide", message = FALSE, warning = FALSE, echo = FALSE}
 read_delim(here("data/birthdays.txt"), delim = "-", skip = 4,
   col_names = c("Birthday", "Name",
     "Animal", "Island"),
@@ -353,58 +278,109 @@ read_delim(here("data/birthdays.txt"), delim = "-", skip = 4,
   ), na = c("N/A", "?"))
 ```
 
-2. \* Another common format for data to be stored in is an Excel file. Often, it's easiest just to save the Excel file as a .csv file and read it in using `read_csv()`. But, sometimes this route can be difficult (for example, if your Excel file has thousands of sheets). To read in directly from Excel, you'll need to install the `readxl` with `install.packages("readxl")`. Once installed, load the package with `library(readxl)`, and read in the first sheet `evals_prof.xlsx` data set with the `read_excel()` function.
+__Class Exercise 2__. Another common format for data to be stored in is an Excel file. Often, it's easiest just to save the Excel file as a .csv file and read it in using `read_csv()`. But, sometimes this route can be difficult (for example, if your Excel file has thousands of sheets). To read in directly from Excel, you'll need to install the `readxl` with `install.packages("readxl")`. Once installed, load the package with `library(readxl)`, and read in the first sheet `evals_prof.xlsx` data set, a similar data set as the one that will be used for Project 2, with the `read_excel()` function.
 
-```{r, results = "hide", message = FALSE}
-## install.packages("readxl")
-library(readxl)
-read_excel(here("data/evals_prof.xlsx"))
-```
+__Class Exercise 3__. Now, read in the second sheet in the Excel file, using the help file for `?read_excel` to change one of the arguments.
 
-3. \* Now, read in the second sheet, using the help file for `?read_excel` to change one of the arguments.
+### Your Turn
 
-```{r, results = "hide", message = FALSE}
-read_excel(here("data/evals_prof.xlsx"), sheet = 2)
-```
+__Your Turn 1__. Choose a topic/person/place/etc. that interests you that has tables on Wikipedia and scrape the table that is related to that topic.
 
-### `rvest` and Data Scraping S
+__Your Turn 2__. Choose a sports team at SLU, and go to that team's website (by simply googling SLU name_of_sport). Scrape the data tables from the "Results" or "Statistics" section of this sport. After you scrape the data, tidy the data set. Then, choose one of the following options (different options might make more/less sense for different sports)
 
-2. \* SLU keeps track of diversity of faculty through time and makes this data public on the following website: <a href="https://www.stlawu.edu/ir/diversity/faculty" target="_blank">https://www.stlawu.edu/ir/diversity/faculty</a>. Use `rvest` to scrape the data tables into `R`.
+a. Summarise different __team__ statistics, either numerically or graphically. Perhaps make some graphs showing different statistics through time. 
 
-```{r, results = "hide"}
-url <- "https://www.stlawu.edu/ir/diversity/faculty"
-h <- read_html(url)
-tab <- h |> html_nodes("table")
-obj <- tab[[1]] |> html_table(fill = TRUE)
-obj
-```
+b. Summarise different __individual__ statistics, either numerically or graphically.
 
-### JSON with `jsonlite` S
+::: {.callout-note}
+## Note
 
-1. \* Read in the `pokedex.json` file, a data set that has information on the 151 original Pokemon. Then, use the `flatten()` function from `purrr` to flatten the list.
+ A few sports (men's and women's golf, for example), give results in PDF format. PDF format is generally a horrible way to record and share data, as it's very difficult to read in to almost any program. Therefore, avoid sports with PDF results for the purposes of this exercise.
+:::
+
+__Your Turn 3__. For either your topic of choice data set or your sports team data set, ask and answer any other questions that make sense for the particular topic or sport that you are looking at!
+
+
+<!-- ### Exercises {#exercise-8-4} -->
+
+<!-- Exercises marked with an \* indicate that the exercise has a solution at the end of the chapter at \@ref(solutions-8). -->
+
+<!-- 1. \* Read in the `pokedex.json` file, a data set that has information on the 151 original Pokemon. Then, use the `flatten()` function from `purrr` to flatten the list. -->
+
+<!-- 2. \* Use `as_tibble()` to convert your flattened list to a `tibble`. -->
+
+<!-- 3. \* Use `parse_number()` with `mutate()` to tidy two of the variables in the data set. -->
+
+<!-- 4. \* Look at the `type` variable. What looks odd about it? What happens when you try to use it, either in a plot, or using a `dplyr` function? -->
+
+<!-- You can `unnest()` the `Type` variable with the `unnest()` function from `tidyr`. We didn't discuss this function but feel free to read about it with `?unnest` -->
+
+<!-- ```{r, echo = FALSE, message = FALSE, warning = FALSE} -->
+<!-- library(jsonlite) -->
+<!-- pokedex <- fromJSON(here("data/pokedex.json")) -->
+<!-- df <- purrr::flatten(pokedex) -->
+<!-- pokemon_df <- as_tibble(df) -->
+<!-- ``` -->
+
+<!-- ```{r} -->
+<!-- pokemon_unnest <- unnest(pokemon_df, cols = c(type)) -->
+<!-- ``` -->
+
+<!-- 5. There are 6 pokemon with a `spawn_chance` of 0. Figure out what these 6 pokemon are. -->
+
+<!-- ```{r, echo = FALSE, results = "hide"} -->
+<!-- pokemon_df |> arrange(spawn_chance) |> -->
+<!--   filter(spawn_chance == 0) |> -->
+<!--   select(spawn_chance, everything())  -->
+<!-- ``` -->
+
+<!-- 6. Figure out what the 5 most common Pokemon types are in the first generation (you'll need to use the `unnest()`-ed data set for this: why?).  -->
+
+<!-- ```{r, echo = FALSE, results = "hide"} -->
+<!-- pokemon_unnest |> group_by(type) |> -->
+<!--   summarise(total_type = n()) |> -->
+<!--   arrange(desc(total_type)) -->
+
+<!-- ## 5 most common -->
+<!-- pokemon_unnest |> group_by(type) |> -->
+<!--   summarise(total_type = n()) |> -->
+<!--   arrange(desc(total_type)) |> -->
+<!--   slice(1:5) -->
+<!-- ``` -->
+
+
+<!-- 1. \* Read in the `pokedex.json` file, a data set that has information on the 151 original Pokemon. Then, use the `flatten()` function from `purrr` to flatten the list. -->
 
 ```{r}
+#| eval: false
+#| echo: false
 library(jsonlite)
 pokedex <- fromJSON(here("data/pokedex.json"))
 df <- purrr::flatten(pokedex)
 ```
 
-2. \* Use `as_tibble()` to convert your flattened list to a `tibble`.
+<!-- 2. \* Use `as_tibble()` to convert your flattened list to a `tibble`. -->
 
 ```{r}
+#| eval: false
+#| echo: false
 pokemon_df <- as_tibble(df)
 ```
 
-3. \* Use `parse_number()` with `mutate()` to tidy two of the variables in the data set.
+<!-- 3. \* Use `parse_number()` with `mutate()` to tidy two of the variables in the data set. -->
 
 ```{r}
+#| eval: false
+#| echo: false
 pokemon_df <- pokemon_df |> mutate(height = parse_number(height),
                                     weight = parse_number(weight))
 ```
 
-4. \* Look at the `type` variable. What looks odd about it? What happens when you try to use it, either in a plot, or using a `dplyr` function?
+<!-- 4. \* Look at the `type` variable. What looks odd about it? What happens when you try to use it, either in a plot, or using a `dplyr` function? -->
 
 ```{r}
+#| eval: false
+#| echo: false
 ## it's a variable of lists....this is happening because some 
 ## pokemon have more than one type.
 
@@ -412,45 +388,11 @@ pokemon_df <- pokemon_df |> mutate(height = parse_number(height),
 ## won't work as you'd expect
 ```
 
-You can `unnest()` the `Type` variable with the `unnest()` function from `tidyr`. We didn't discuss this function but feel free to read about it with `?unnest`
+<!-- You can `unnest()` the `Type` variable with the `unnest()` function from `tidyr`. We didn't discuss this function but feel free to read about it with `?unnest` -->
 
 ```{r}
+#| eval: false
+#| echo: false
 pokemon_unnest <- unnest(pokemon_df, cols = c(type))
-```
-
-### Chapter Exercises S {#chapexercise-8-S}
-
-```{r, echo = FALSE, eval = FALSE}
-url <- paste0("https://saintsathletics.com/sports/mens-ice-hockey/stats/2019-20")
-h <- read_html(url)
-tab <- h |> html_nodes("table")
-obj <- tab[[2]] |> html_table(fill = TRUE)
-obj2 <- tab[[3]] |> html_table(fill = TRUE)
-obj2
-
-url <- "https://saintsathletics.com/sports/womens-lacrosse/stats/2019"
-h <- read_html(url)
-tab <- h |> html_nodes("table")
-obj <- tab[[2]] |> html_table(fill = TRUE)
-obj
-obj2 <- tab[[1]] |> html_table(fill = TRUE)
-obj2
-
-url <- "https://saintsathletics.com/sports/2019/11/5/2019-20-regional-standings.aspx"
-h <- read_html(url)
-tab <- h |> html_nodes("table")
-obj <- tab[[1]] |> html_table(fill = TRUE, header = TRUE)
-obj
-
-url <- "https://saintsathletics.com/sports/mens-soccer/stats"
-h <- read_html(url)
-tab <- h |> html_nodes("table")
-obj <- tab[[2]] |> html_table(fill = TRUE, header = TRUE)
-obj
-```
-
-## Non-Exercise `R` Code {#rcode-8}
-
-```{r ref.label=knitr::all_labels(appendix == TRUE), echo=TRUE, eval=FALSE}
 ```
 

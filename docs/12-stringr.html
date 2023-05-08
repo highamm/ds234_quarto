@@ -1,12 +1,9 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
-
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
 <meta name="generator" content="quarto-1.0.36">
-
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-
-
 <title>DATA / STAT 234 - 13&nbsp; Text Data with tidytext and stringr</title>
 <style>
 code{white-space: pre-wrap;}
@@ -80,7 +77,6 @@ code span.vs { color: #4070a0; } /* VerbatimString */
 code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
-
 <script src="site_libs/quarto-nav/quarto-nav.js"></script>
 <script src="site_libs/quarto-nav/headroom.min.js"></script>
 <script src="site_libs/clipboard/clipboard.min.js"></script>
@@ -98,8 +94,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
-<script id="quarto-search-options" type="application/json">{
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light"><script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
   "collapse-after": 3,
@@ -118,28 +113,19 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     "search-submit-button-title": "Submit"
   }
 }</script>
-
-
 </head>
-
 <body class="nav-sidebar floating">
 
 <div id="quarto-search-results"></div>
-  <header id="quarto-header" class="headroom fixed-top">
-  <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
-    <div class="container-fluid d-flex justify-content-between">
+  <header id="quarto-header" class="headroom fixed-top"><nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }"><div class="container-fluid d-flex justify-content-between">
       <h1 class="quarto-secondary-nav-title"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Text Data with <code>tidytext</code> and <code>stringr</code></span></h1>
       <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
         <i class="bi bi-chevron-right"></i>
       </button>
     </div>
-  </nav>
-</header>
-<!-- content -->
-<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+  </nav></header><!-- content --><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation floating overflow-auto">
-    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation floating overflow-auto"><div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
       <a href="./">DATA / STAT 234</a> 
         <div class="sidebar-tools-main">
@@ -158,7 +144,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       </div>
     <div class="sidebar-menu-container"> 
     <ul class="list-unstyled mt-1">
-        <li class="sidebar-item">
+<li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./index.html" class="sidebar-item-text sidebar-link">Syllabus and Course Information</a>
   </div>
@@ -170,10 +156,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
-          <li class="sidebar-item">
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">
+<li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./01-intro.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Getting Started with <code>R</code> and <code>R Studio</code></span></a>
+  <a href="./01-intro.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Getting Started</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -197,7 +183,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   </div>
 </li>
       </ul>
-  </li>
+</li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">Data Wrangling</a>
@@ -205,8 +191,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
-          <li class="sidebar-item">
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">
+<li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./04-tidyr.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Tidying with <code>tidyr</code></span></a>
   </div>
@@ -237,7 +223,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   </div>
 </li>
       </ul>
-  </li>
+</li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">Special Topics</a>
@@ -245,8 +231,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
-          <li class="sidebar-item">
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">
+<li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./11-lubridate.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Dates with <code>lubridate</code></span></a>
   </div>
@@ -272,44 +258,32 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   </div>
 </li>
       </ul>
-  </li>
+</li>
     </ul>
-    </div>
-</nav>
-<!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc">
-    <h2 id="toc-title">Table of contents</h2>
+</div>
+</nav><!-- margin-sidebar --><div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc"><h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#text-analysis" id="toc-text-analysis" class="nav-link active" data-scroll-target="#text-analysis"> <span class="header-section-number">13.1</span> Text Analysis</a>
+<li><a href="#text-analysis" id="toc-text-analysis" class="nav-link active" data-scroll-target="#text-analysis"> <span class="header-section-number">13.1</span> Text Analysis</a></li>
+  <li>
+<a href="#introduction-to-stringr" id="toc-introduction-to-stringr" class="nav-link" data-scroll-target="#introduction-to-stringr"> <span class="header-section-number">13.2</span> Introduction to <code>stringr</code></a>
   <ul class="collapse">
-  <li><a href="#exercise-12-1" id="toc-exercise-12-1" class="nav-link" data-scroll-target="#exercise-12-1"> <span class="header-section-number">13.1.1</span> Exercises</a></li>
-  </ul></li>
-  <li><a href="#basic-sentiment-analysis" id="toc-basic-sentiment-analysis" class="nav-link" data-scroll-target="#basic-sentiment-analysis"> <span class="header-section-number">13.2</span> Basic Sentiment Analysis</a></li>
-  <li><a href="#introduction-to-stringr" id="toc-introduction-to-stringr" class="nav-link" data-scroll-target="#introduction-to-stringr"> <span class="header-section-number">13.3</span> Introduction to <code>stringr</code></a>
-  <ul class="collapse">
-  <li><a href="#regular-expressions" id="toc-regular-expressions" class="nav-link" data-scroll-target="#regular-expressions"> <span class="header-section-number">13.3.1</span> Regular Expressions</a></li>
-  <li><a href="#stringr-functions-with-dplyr" id="toc-stringr-functions-with-dplyr" class="nav-link" data-scroll-target="#stringr-functions-with-dplyr"> <span class="header-section-number">13.3.2</span> <code>stringr</code> Functions with <code>dplyr</code></a></li>
-  <li><a href="#exercise-12-1" id="toc-exercise-12-1" class="nav-link" data-scroll-target="#exercise-12-1"> <span class="header-section-number">13.3.3</span> Exercises</a></li>
-  </ul></li>
-  <li><a href="#chapexercise-12" id="toc-chapexercise-12" class="nav-link" data-scroll-target="#chapexercise-12"> <span class="header-section-number">13.4</span> Chapter Exercises</a></li>
-  <li><a href="#solutions-12" id="toc-solutions-12" class="nav-link" data-scroll-target="#solutions-12"> <span class="header-section-number">13.5</span> Exercise Solutions</a>
-  <ul class="collapse">
-  <li><a href="#text-analysis-s" id="toc-text-analysis-s" class="nav-link" data-scroll-target="#text-analysis-s"> <span class="header-section-number">13.5.1</span> Text Analysis S</a></li>
-  <li><a href="#basic-sentiment-analysis-s" id="toc-basic-sentiment-analysis-s" class="nav-link" data-scroll-target="#basic-sentiment-analysis-s"> <span class="header-section-number">13.5.2</span> Basic Sentiment Analysis S</a></li>
-  <li><a href="#introduction-to-stringr-s" id="toc-introduction-to-stringr-s" class="nav-link" data-scroll-target="#introduction-to-stringr-s"> <span class="header-section-number">13.5.3</span> Introduction to <code>stringr</code> S</a></li>
-  <li><a href="#chapexercise-12-S" id="toc-chapexercise-12-S" class="nav-link" data-scroll-target="#chapexercise-12-S"> <span class="header-section-number">13.5.4</span> Chapter Exercises S</a></li>
-  </ul></li>
-  <li><a href="#rcode-12" id="toc-rcode-12" class="nav-link" data-scroll-target="#rcode-12"> <span class="header-section-number">13.6</span> Non-Exercise <code>R</code> Code</a></li>
+<li><a href="#regular-expressions" id="toc-regular-expressions" class="nav-link" data-scroll-target="#regular-expressions"> <span class="header-section-number">13.2.1</span> Regular Expressions</a></li>
+  <li><a href="#stringr-functions-with-dplyr" id="toc-stringr-functions-with-dplyr" class="nav-link" data-scroll-target="#stringr-functions-with-dplyr"> <span class="header-section-number">13.2.2</span> <code>stringr</code> Functions with <code>dplyr</code></a></li>
   </ul>
-</nav>
+</li>
+  <li>
+<a href="#practice" id="toc-practice" class="nav-link" data-scroll-target="#practice"> <span class="header-section-number">13.3</span> Practice</a>
+  <ul class="collapse">
+<li><a href="#class-exercises" id="toc-class-exercises" class="nav-link" data-scroll-target="#class-exercises"> <span class="header-section-number">13.3.1</span> Class Exercises</a></li>
+  <li><a href="#your-turn" id="toc-your-turn" class="nav-link" data-scroll-target="#your-turn"> <span class="header-section-number">13.3.2</span> Your Turn</a></li>
+  </ul>
+</li>
+  </ul></nav>
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content">
-
-<header id="title-block-header" class="quarto-title-block default">
-<div class="quarto-title">
+<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><div class="quarto-title">
 <h1 class="title"><span id="text" class="quarto-section-identifier d-none d-lg-block"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Text Data with <code>tidytext</code> and <code>stringr</code></span></span></h1>
 </div>
 
@@ -322,361 +296,359 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   </div>
   
 
-</header>
+</header><div class="cell">
 
+</div>
 <p><strong>Goals</strong>:</p>
 <ul>
 <li>use functions in the <code>stringr</code> package and in the <code>tidytext</code> package to analyze text data.</li>
 <li>introduce some of the issues with manipulating strings that don’t pertain to numeric or factor data.</li>
 <li>perform a basic sentiment analysis.</li>
 </ul>
-<section id="text-analysis" class="level2" data-number="13.1">
-<h2 data-number="13.1" class="anchored" data-anchor-id="text-analysis"><span class="header-section-number">13.1</span> Text Analysis</h2>
+<section id="text-analysis" class="level2" data-number="13.1"><h2 data-number="13.1" class="anchored" data-anchor-id="text-analysis">
+<span class="header-section-number">13.1</span> Text Analysis</h2>
 <p>Beyonce is a legend. For this example, we will work through a text analysis on lyrics from songs from Beyonce’s albums, utilizing functions from both <code>stringr</code> to parse strings and <code>tidytext</code> to convert text data into a tidy format. To begin, read in a data set of Beyonce’s lyrics:</p>
 <div class="cell" data-appendix="true">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(here)</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>beyonce <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="fu">here</span>(<span class="st">"data/beyonce_lyrics.csv"</span>))</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(beyonce)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://here.r-lib.org/">here</a></span><span class="op">)</span></span>
+<span><span class="va">beyonce</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv</a></span><span class="op">(</span><span class="fu"><a href="https://here.r-lib.org//reference/here.html">here</a></span><span class="op">(</span><span class="st">"data/beyonce_lyrics.csv"</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">beyonce</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>We will be most focused on the <code>line</code> variable, as each value for this variable contains a line from a Beyonce song. There’s other variables present as well, such as the <code>song_name</code> and the <code>artist_name</code> (the data set originally came from a data set with artists other than Beyonce).</p>
 <p>You can look at the first 4 values of <code>line</code> with</p>
 <div class="cell" data-appendix="true">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>beyonce<span class="sc">$</span>line[<span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] "If I ain't got nothing, I got you"                       
-[2] "If I ain't got something, I don't give a damn"           
-[3] "'Cause I got it with you"                                
-[4] "I don't know much about algebra, but I know 1+1 equals 2"</code></pre>
-</div>
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">beyonce</span><span class="op">$</span><span class="va">line</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">4</span><span class="op">]</span></span>
+<span><span class="co">#&gt; [1] "If I ain't got nothing, I got you"                       </span></span>
+<span><span class="co">#&gt; [2] "If I ain't got something, I don't give a damn"           </span></span>
+<span><span class="co">#&gt; [3] "'Cause I got it with you"                                </span></span>
+<span><span class="co">#&gt; [4] "I don't know much about algebra, but I know 1+1 equals 2"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Our end goal is to construct a plot that shows the most popular words in Beyonce’s albums. This is much more challenging than it sounds because we will have to deal with the nuances of working with text data.</p>
-<p>The <code>tidytext</code> package makes it a lot easier to work with text data in many regards. Let’s use the <code>unnest_tokens()</code> functions from <code>tidytext</code> to separate the lines into individual words. We’ll name this new data set <code>beyonce_unnest</code>:</p>
+<p>The <code>tidytext</code> package makes it a lot easier to work with text data in many regards. Let’s use the <code><a href="https://rdrr.io/pkg/tidytext/man/unnest_tokens.html">unnest_tokens()</a></code> functions from <code>tidytext</code> to separate the lines into individual words. We’ll name this new data set <code>beyonce_unnest</code>:</p>
 <div class="cell" data-appendix="true">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidytext)</span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>beyonce_unnest <span class="ot">&lt;-</span> beyonce <span class="sc">|&gt;</span> <span class="fu">unnest_tokens</span>(<span class="at">output =</span> <span class="st">"word"</span>, <span class="at">input =</span> <span class="st">"line"</span>)</span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>beyonce_unnest</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 164,740 × 6
-   song_id song_name artist_id artist_name song_line word   
-     &lt;dbl&gt; &lt;chr&gt;         &lt;dbl&gt; &lt;chr&gt;           &lt;dbl&gt; &lt;chr&gt;  
- 1   50396 1+1             498 Beyoncé             1 if     
- 2   50396 1+1             498 Beyoncé             1 i      
- 3   50396 1+1             498 Beyoncé             1 ain't  
- 4   50396 1+1             498 Beyoncé             1 got    
- 5   50396 1+1             498 Beyoncé             1 nothing
- 6   50396 1+1             498 Beyoncé             1 i      
- 7   50396 1+1             498 Beyoncé             1 got    
- 8   50396 1+1             498 Beyoncé             1 you    
- 9   50396 1+1             498 Beyoncé             2 if     
-10   50396 1+1             498 Beyoncé             2 i      
-# … with 164,730 more rows</code></pre>
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/juliasilge/tidytext">tidytext</a></span><span class="op">)</span></span>
+<span><span class="va">beyonce_unnest</span> <span class="op">&lt;-</span> <span class="va">beyonce</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/pkg/tidytext/man/unnest_tokens.html">unnest_tokens</a></span><span class="op">(</span>output <span class="op">=</span> <span class="st">"word"</span>, input <span class="op">=</span> <span class="st">"line"</span><span class="op">)</span></span>
+<span><span class="va">beyonce_unnest</span></span>
+<span><span class="co">#&gt; # A tibble: 164,740 × 6</span></span>
+<span><span class="co">#&gt;   song_id song_name artist_id artist_name song_line word   </span></span>
+<span><span class="co">#&gt;     &lt;dbl&gt; &lt;chr&gt;         &lt;dbl&gt; &lt;chr&gt;           &lt;dbl&gt; &lt;chr&gt;  </span></span>
+<span><span class="co">#&gt; 1   50396 1+1             498 Beyoncé             1 if     </span></span>
+<span><span class="co">#&gt; 2   50396 1+1             498 Beyoncé             1 i      </span></span>
+<span><span class="co">#&gt; 3   50396 1+1             498 Beyoncé             1 ain't  </span></span>
+<span><span class="co">#&gt; 4   50396 1+1             498 Beyoncé             1 got    </span></span>
+<span><span class="co">#&gt; 5   50396 1+1             498 Beyoncé             1 nothing</span></span>
+<span><span class="co">#&gt; 6   50396 1+1             498 Beyoncé             1 i      </span></span>
+<span><span class="co">#&gt; # … with 164,734 more rows</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</div>
-<p>We’ll want to make sure that either all words are capitalized or no words are capitalized, for consistency (remember that <code>R</code> is case-sensitive). To that end, we’ll modify the <code>word</code> variable and use <code>stringr</code>’s <code>str_to_lower()</code> to change all letters to lower-case:</p>
+<p>We’ll want to make sure that either all words are capitalized or no words are capitalized, for consistency (remember that <code>R</code> is case-sensitive). To that end, we’ll modify the <code>word</code> variable and use <code>stringr</code>’s <code><a href="https://stringr.tidyverse.org/reference/case.html">str_to_lower()</a></code> to change all letters to lower-case:</p>
 <div class="cell" data-appendix="true">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>beyonce_unnest <span class="ot">&lt;-</span> beyonce_unnest <span class="sc">|&gt;</span> <span class="fu">mutate</span>(<span class="at">word =</span> <span class="fu">str_to_lower</span>(word))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">beyonce_unnest</span> <span class="op">&lt;-</span> <span class="va">beyonce_unnest</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>word <span class="op">=</span> <span class="fu"><a href="https://stringr.tidyverse.org/reference/case.html">str_to_lower</a></span><span class="op">(</span><span class="va">word</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Let’s try counting up Beyonce’s most popular words from the data set we just made:</p>
 <div class="cell" data-appendix="true">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>beyonce_unnest <span class="sc">|&gt;</span> <span class="fu">group_by</span>(word) <span class="sc">|&gt;</span></span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">n =</span> <span class="fu">n</span>()) <span class="sc">|&gt;</span></span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(n))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 6,469 × 2
-   word      n
-   &lt;chr&gt; &lt;int&gt;
- 1 you    7693
- 2 i      6669
- 3 the    4719
- 4 me     3774
- 5 to     3070
- 6 it     2999
- 7 a      2798
- 8 my     2676
- 9 and    2385
-10 on     2344
-# … with 6,459 more rows</code></pre>
-</div>
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">beyonce_unnest</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">word</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise</a></span><span class="op">(</span>n <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/context.html">n</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/arrange.html">arrange</a></span><span class="op">(</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/desc.html">desc</a></span><span class="op">(</span><span class="va">n</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="co">#&gt; # A tibble: 6,469 × 2</span></span>
+<span><span class="co">#&gt;   word      n</span></span>
+<span><span class="co">#&gt;   &lt;chr&gt; &lt;int&gt;</span></span>
+<span><span class="co">#&gt; 1 you    7693</span></span>
+<span><span class="co">#&gt; 2 i      6669</span></span>
+<span><span class="co">#&gt; 3 the    4719</span></span>
+<span><span class="co">#&gt; 4 me     3774</span></span>
+<span><span class="co">#&gt; 5 to     3070</span></span>
+<span><span class="co">#&gt; 6 it     2999</span></span>
+<span><span class="co">#&gt; # … with 6,463 more rows</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>What’s the issue here?</p>
 <p>To remedy this, we can use what are called <strong>stop words</strong>: words that are very common and carry little to no meaningful information. For example <em>the</em>, <em>it</em>, <em>are</em>, etc. are all <strong>stop words</strong>. We need to eliminate these from the data set before we continue on. Luckily, the <code>tidytext</code> package also provides a data set of common stop words in a data set named <code>stop_words</code>:</p>
 <div class="cell" data-appendix="true">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(stop_words)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 6 × 2
-  word      lexicon
-  &lt;chr&gt;     &lt;chr&gt;  
-1 a         SMART  
-2 a's       SMART  
-3 able      SMART  
-4 about     SMART  
-5 above     SMART  
-6 according SMART  </code></pre>
-</div>
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">stop_words</span><span class="op">)</span></span>
+<span><span class="co">#&gt; # A tibble: 6 × 2</span></span>
+<span><span class="co">#&gt;   word      lexicon</span></span>
+<span><span class="co">#&gt;   &lt;chr&gt;     &lt;chr&gt;  </span></span>
+<span><span class="co">#&gt; 1 a         SMART  </span></span>
+<span><span class="co">#&gt; 2 a's       SMART  </span></span>
+<span><span class="co">#&gt; 3 able      SMART  </span></span>
+<span><span class="co">#&gt; 4 about     SMART  </span></span>
+<span><span class="co">#&gt; 5 above     SMART  </span></span>
+<span><span class="co">#&gt; 6 according SMART</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Let’s join the Beyonce lyrics data set to the stop words data set and elminate any stop words:</p>
 <div class="cell" data-appendix="true">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>beyonce_stop <span class="ot">&lt;-</span> <span class="fu">anti_join</span>(beyonce_unnest, stop_words, <span class="at">by =</span> <span class="fu">c</span>(<span class="st">"word"</span> <span class="ot">=</span> <span class="st">"word"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">beyonce_stop</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter-joins.html">anti_join</a></span><span class="op">(</span><span class="va">beyonce_unnest</span>, <span class="va">stop_words</span>, by <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"word"</span> <span class="op">=</span> <span class="st">"word"</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Then, we can re-make the table with the stop words removed:</p>
 <div class="cell" data-appendix="true">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>beyonce_sum <span class="ot">&lt;-</span> beyonce_stop <span class="sc">|&gt;</span> <span class="fu">group_by</span>(word) <span class="sc">|&gt;</span></span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">n =</span> <span class="fu">n</span>()) <span class="sc">|&gt;</span></span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(n)) <span class="sc">|&gt;</span></span>
-<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(<span class="at">n =</span> <span class="dv">25</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 5,937 × 2
-   word        n
-   &lt;chr&gt;   &lt;int&gt;
- 1 love     1362
- 2 baby     1024
- 3 girl      592
- 4 wanna     564
- 5 hey       499
- 6 boy       494
- 7 yeah      491
- 8 feel      488
- 9 time      452
-10 uh        408
-11 halo      383
-12 check     366
-13 tonight   342
-14 girls     341
-15 ya        327
-16 run       325
-17 crazy     308
-18 world     301
-19 body      287
-20 ooh       281
-21 ladies    269
-22 top       241
-23 gotta     240
-24 beyoncé   238
-25 night     213
-# … with 5,912 more rows</code></pre>
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">beyonce_sum</span> <span class="op">&lt;-</span> <span class="va">beyonce_stop</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">word</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise</a></span><span class="op">(</span>n <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/context.html">n</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/arrange.html">arrange</a></span><span class="op">(</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/desc.html">desc</a></span><span class="op">(</span><span class="va">n</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span>n <span class="op">=</span> <span class="fl">25</span><span class="op">)</span></span>
+<span><span class="co">#&gt; # A tibble: 5,937 × 2</span></span>
+<span><span class="co">#&gt;    word        n</span></span>
+<span><span class="co">#&gt;    &lt;chr&gt;   &lt;int&gt;</span></span>
+<span><span class="co">#&gt;  1 love     1362</span></span>
+<span><span class="co">#&gt;  2 baby     1024</span></span>
+<span><span class="co">#&gt;  3 girl      592</span></span>
+<span><span class="co">#&gt;  4 wanna     564</span></span>
+<span><span class="co">#&gt;  5 hey       499</span></span>
+<span><span class="co">#&gt;  6 boy       494</span></span>
+<span><span class="co">#&gt;  7 yeah      491</span></span>
+<span><span class="co">#&gt;  8 feel      488</span></span>
+<span><span class="co">#&gt;  9 time      452</span></span>
+<span><span class="co">#&gt; 10 uh        408</span></span>
+<span><span class="co">#&gt; 11 halo      383</span></span>
+<span><span class="co">#&gt; 12 check     366</span></span>
+<span><span class="co">#&gt; 13 tonight   342</span></span>
+<span><span class="co">#&gt; 14 girls     341</span></span>
+<span><span class="co">#&gt; 15 ya        327</span></span>
+<span><span class="co">#&gt; 16 run       325</span></span>
+<span><span class="co">#&gt; 17 crazy     308</span></span>
+<span><span class="co">#&gt; 18 world     301</span></span>
+<span><span class="co">#&gt; 19 body      287</span></span>
+<span><span class="co">#&gt; 20 ooh       281</span></span>
+<span><span class="co">#&gt; 21 ladies    269</span></span>
+<span><span class="co">#&gt; 22 top       241</span></span>
+<span><span class="co">#&gt; 23 gotta     240</span></span>
+<span><span class="co">#&gt; 24 beyoncé   238</span></span>
+<span><span class="co">#&gt; 25 night     213</span></span>
+<span><span class="co">#&gt; # … with 5,912 more rows</span></span>
+<span><span class="va">beyonce_sum</span></span>
+<span><span class="co">#&gt; # A tibble: 5,937 × 2</span></span>
+<span><span class="co">#&gt;   word      n</span></span>
+<span><span class="co">#&gt;   &lt;chr&gt; &lt;int&gt;</span></span>
+<span><span class="co">#&gt; 1 love   1362</span></span>
+<span><span class="co">#&gt; 2 baby   1024</span></span>
+<span><span class="co">#&gt; 3 girl    592</span></span>
+<span><span class="co">#&gt; 4 wanna   564</span></span>
+<span><span class="co">#&gt; 5 hey     499</span></span>
+<span><span class="co">#&gt; 6 boy     494</span></span>
+<span><span class="co">#&gt; # … with 5,931 more rows</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>beyonce_sum</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 5,937 × 2
-   word      n
-   &lt;chr&gt; &lt;int&gt;
- 1 love   1362
- 2 baby   1024
- 3 girl    592
- 4 wanna   564
- 5 hey     499
- 6 boy     494
- 7 yeah    491
- 8 feel    488
- 9 time    452
-10 uh      408
-# … with 5,927 more rows</code></pre>
+<p>Looking through the list, there are <strong>still</strong> some stop words in there that were not picked up on in the <code>stop_words</code> data set.</p>
+<p><strong>Exercise 1</strong>. Look at the remaining words. Do any of them look like stop words that were missed with the stop words from the <code>tidytext</code> package? Create a tibble with a few of the remaining stop words (like <code>ooh</code>, <code>gotta</code>, <code>ya</code>, <code>uh</code>, and <code>yeah</code>) not picked up by the <code>tidytext</code> package, and use a join function to drop these words from the data set.</p>
+<div class="callout-tip callout callout-style-simple callout-captioned">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+Hint (only if you get stuck)
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-1" class="callout-1-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>The join function you will need to use here is <code><a href="https://dplyr.tidyverse.org/reference/filter-joins.html">anti_join()</a></code>.</p>
 </div>
 </div>
-<p>Looking through the list, there are <strong>still</strong> some stop words in there that were not picked up on in the <code>stop_words</code> data set. We will address these, as well as make a plot, in the exercises.</p>
-<section id="exercise-12-1" class="level3" data-number="13.1.1">
-<h3 data-number="13.1.1" class="anchored" data-anchor-id="exercise-12-1"><span class="header-section-number">13.1.1</span> Exercises</h3>
-<p>Exercises marked with an * indicate that the exercise has a solution at the end of the chapter at @ref(solutions-12).</p>
-<ol type="1">
-<li><p>Look at the remaining words. Do any of them look like stop words that were missed with the stop words from the <code>tidytext</code> package? Create a tibble with a few of the remaining stop words (like <code>ooh</code>, <code>gotta</code>, <code>ya</code>, <code>uh</code>, and <code>yeah</code>) not picked up by the <code>tidytext</code> package, and use a join function to drop these words from the data set.</p></li>
-<li><p>With the new data set, construct a lollipop plot or a bar plot that shows the 20 most common words Beyonce uses, as well as the number of times each word is used.</p></li>
-<li><p>Use the <code>wordcloud()</code> function in the <code>wordcloud</code> library and the code below to make a wordcloud of Beyonce’s words.</p></li>
-</ol>
+</div>
+<p><strong>Exercise 2</strong>. With the new data set, construct a lollipop plot or a bar plot that shows the 20 most common words Beyonce uses, as well as the number of times each word is used.</p>
+<p><strong>Exercise 3</strong>. Use the <code><a href="https://rdrr.io/pkg/wordcloud/man/wordcloud.html">wordcloud()</a></code> function in the <code>wordcloud</code> library and the code below to make a wordcloud of Beyonce’s words.</p>
 <div class="cell" data-appendix="true">
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="do">## install.packages("wordcloud")</span></span>
-<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(wordcloud)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Loading required package: RColorBrewer</code></pre>
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co">## install.packages("wordcloud")</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="http://blog.fellstat.com/?cat=11">wordcloud</a></span><span class="op">)</span></span>
+<span><span class="va">beyonce_small</span> <span class="op">&lt;-</span> <span class="va">beyonce_sum</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">n</span> <span class="op">&gt;</span> <span class="fl">50</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/pkg/wordcloud/man/wordcloud.html">wordcloud</a></span><span class="op">(</span><span class="va">beyonce_small</span><span class="op">$</span><span class="va">word</span>, <span class="va">beyonce_small</span><span class="op">$</span><span class="va">n</span>, </span>
+<span>          colors <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/RColorBrewer/man/ColorBrewer.html">brewer.pal</a></span><span class="op">(</span><span class="fl">8</span>, <span class="st">"Dark2"</span><span class="op">)</span>, scale <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">5</span>, <span class="fl">.2</span><span class="op">)</span>,</span>
+<span>          random.order <span class="op">=</span> <span class="cn">FALSE</span>, random.color <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>beyonce_small <span class="ot">&lt;-</span> beyonce_sum <span class="sc">|&gt;</span> <span class="fu">filter</span>(n <span class="sc">&gt;</span> <span class="dv">50</span>)</span>
-<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="fu">wordcloud</span>(beyonce_small<span class="sc">$</span>word, beyonce_small<span class="sc">$</span>n, </span>
-<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>          <span class="at">colors =</span> <span class="fu">brewer.pal</span>(<span class="dv">8</span>, <span class="st">"Dark2"</span>), <span class="at">scale =</span> <span class="fu">c</span>(<span class="dv">5</span>, .<span class="dv">2</span>),</span>
-<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>          <span class="at">random.order =</span> <span class="cn">FALSE</span>, <span class="at">random.color =</span> <span class="cn">FALSE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>There is not anything else you need to do for this exercise: just make the word cloud!</p>
+<div class="callout-note callout callout-style-simple callout-captioned">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
 </div>
-<p>Then, use <code>?wordcloud</code> to read about what the various arguments like <code>random.order</code>, <code>scale</code>, and <code>random.color</code> do.</p>
+<div class="callout-caption-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
 <p>If you want to delve into text data more, you’ll need to learn about <em>regular expressions</em> , or <em>regexes</em>. If interested, you can read more in the <a href="https://r4ds.had.co.nz/strings.html#matching-patterns-with-regular-expressions" target="_blank">R4DS textbook</a>. Starting out is not too bad, but learning about escaping special characters in <code>R</code> can be much more challenging!</p>
+</div>
+</div>
 <p>We analyzed a short text data set, but, you can imagine extending this type of analysis to things like:</p>
 <ul>
-<li>song lyrics, if you have the lyrics to all of the songs from an artist <a href="https://rpubs.com/RosieB/taylorswiftlyricanalysis" class="uri">https://rpubs.com/RosieB/taylorswiftlyricanalysis</a></li>
+<li>song lyrics, if you have the lyrics to all of the songs from an artist <a href="https://rpubs.com/RosieB/taylorswiftlyricanalysis" class="uri">https://rpubs.com/RosieB/taylorswiftlyricanalysis</a>
+</li>
 <li>book analysis, if you have the text of an entire book or series of books</li>
 <li>tv analysis, if you have the scripts to all episodes of a tv show</li>
 </ul>
 <p>If you were doing one of these analyses, there are lots of cool functions in <code>tidytext</code> to help you out! We will do one more example, this time looking at Donald Trump’s twitter account in 2016.</p>
-</section>
-</section>
-<section id="basic-sentiment-analysis" class="level2" data-number="13.2">
-<h2 data-number="13.2" class="anchored" data-anchor-id="basic-sentiment-analysis"><span class="header-section-number">13.2</span> Basic Sentiment Analysis</h2>
-<p>We will use a provided .qmd file to replicate a sentiment analysis on Trump’s twitter account from 2016. This analysis was used in conjunction with a major news story that hypothesized that Trump himself wrote tweets from an Android device while his campaign staff wrote tweets for him from an iPhone device. We will investigate what properties of his tweets led the author to believe this.</p>
-<p>The .qmd file used for this is posted on Canvas. We will see more uses of <code>stringr</code> for this particular analysis. For this entire section, you should be able to follow along and understand what each line of code is doing. However, unlike all previous sections, you will not be expected to do a sentiment analysis on your own.</p>
 <!-- see below: sentiment analysis for the friends package -->
 <!-- https://amirdjv.netlify.app/post/rating-and-sentiment-analysis-for-friends/ -->
 <!-- additional resource: https://www.tidytextmining.com/tidytext.html -->
-</section>
-<section id="introduction-to-stringr" class="level2" data-number="13.3">
-<h2 data-number="13.3" class="anchored" data-anchor-id="introduction-to-stringr"><span class="header-section-number">13.3</span> Introduction to <code>stringr</code></h2>
+</section><section id="introduction-to-stringr" class="level2" data-number="13.2"><h2 data-number="13.2" class="anchored" data-anchor-id="introduction-to-stringr">
+<span class="header-section-number">13.2</span> Introduction to <code>stringr</code>
+</h2>
 <p>In the previous examples, the string data that we had consisted primarily of <strong>words</strong>. The tools in <code>tidytext</code> make working with data consisting of words not too painful. However, some data exists as strings that are <strong>not</strong> words. For a non-trivial example, consider data sets obtained from <a href="https://github.com/JeffSackmann/tennis_MatchChartingProject" class="uri">https://github.com/JeffSackmann/tennis_MatchChartingProject</a>, a repository for professional tennis match charting put together by Jeff Sackmann. Some of the following code was modified from a project completed by James Wolpe in a data visualization course.</p>
 <p>From this repository, I have put together a data set on one particular tennis match to make it a bit easier for us to get started. The match I have chosen is the 2021 U.S. Open Final between Daniil Medvedev and Novak Djokovic. Why this match? This was arguably the most important match of Djokovic’s career: if he won, he would win all four grand slams in a calendar year. I don’t like Djokovic and he lost so looking back at the match brings me joy. Read in the data set with:</p>
 <div class="cell" data-appendix="true">
-<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(here)</span>
-<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>med_djok_df <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="fu">here</span>(<span class="st">"data/med_djok.csv"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Rows: 182 Columns: 46
-── Column specification ────────────────────────────────────────────────────────
-Delimiter: ","
-chr (19): point, Serving, match_id, Pts, Gm#, 1st, 2nd, Notes, Player 1, Pla...
-dbl (19): Pt, Set1, Set2, Gm1, Gm2, TbSet, TB?, Svr, Ret, 1stSV, 2ndSV, 1stI...
-lgl  (8): TBpt, isAce, isUnret, isRallyWinner, isForced, isUnforced, isDoubl...
-
-ℹ Use `spec()` to retrieve the full column specification for this data.
-ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(med_djok_df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 6 × 46
-  point    Serving match…¹    Pt  Set1  Set2   Gm1   Gm2 Pts   `Gm#` TbSet `TB?`
-  &lt;chr&gt;    &lt;chr&gt;   &lt;chr&gt;   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt; &lt;dbl&gt; &lt;dbl&gt;
-1 4f2d@    ND      202109…     1     0     0     0     0 0-0   1 (1)     1     0
-2 6d       ND      202109…     2     0     0     0     0 15-0  1 (2)     1     0
-3 6b29f3b… ND      202109…     3     0     0     0     0 15-15 1 (3)     1     0
-4 4b28f1f… ND      202109…     4     0     0     0     0 30-15 1 (4)     1     0
-5 5b37b3b… ND      202109…     5     0     0     0     0 40-15 1 (5)     1     0
-6 6f28f1f… ND      202109…     6     0     0     0     0 40-30 1 (6)     1     0
-# … with 34 more variables: TBpt &lt;lgl&gt;, Svr &lt;dbl&gt;, Ret &lt;dbl&gt;, `1st` &lt;chr&gt;,
-#   `2nd` &lt;chr&gt;, Notes &lt;chr&gt;, `1stSV` &lt;dbl&gt;, `2ndSV` &lt;dbl&gt;, `1stIn` &lt;dbl&gt;,
-#   `2ndIn` &lt;dbl&gt;, isAce &lt;lgl&gt;, isUnret &lt;lgl&gt;, isRallyWinner &lt;lgl&gt;,
-#   isForced &lt;lgl&gt;, isUnforced &lt;lgl&gt;, isDouble &lt;lgl&gt;, PtWinner &lt;dbl&gt;,
-#   isSvrWinner &lt;dbl&gt;, rallyCount &lt;dbl&gt;, `Player 1` &lt;chr&gt;, `Player 2` &lt;chr&gt;,
-#   `Pl 1 hand` &lt;chr&gt;, `Pl 2 hand` &lt;chr&gt;, Gender &lt;chr&gt;, Date &lt;dbl&gt;,
-#   Tournament &lt;chr&gt;, Round &lt;lgl&gt;, Time &lt;chr&gt;, Court &lt;chr&gt;, Surface &lt;chr&gt;, …</code></pre>
-</div>
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://here.r-lib.org/">here</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span></span>
+<span><span class="va">med_djok_df</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv</a></span><span class="op">(</span><span class="fu"><a href="https://here.r-lib.org//reference/here.html">here</a></span><span class="op">(</span><span class="st">"data/med_djok.csv"</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">med_djok_df</span><span class="op">)</span></span>
+<span><span class="co">#&gt; # A tibble: 6 × 46</span></span>
+<span><span class="co">#&gt;   point Serving match…¹    Pt  Set1  Set2   Gm1   Gm2 Pts   `Gm#` TbSet `TB?`</span></span>
+<span><span class="co">#&gt;   &lt;chr&gt; &lt;chr&gt;   &lt;chr&gt;   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt; &lt;dbl&gt; &lt;dbl&gt;</span></span>
+<span><span class="co">#&gt; 1 4f2d@ ND      202109…     1     0     0     0     0 0-0   1 (1)     1     0</span></span>
+<span><span class="co">#&gt; 2 6d    ND      202109…     2     0     0     0     0 15-0  1 (2)     1     0</span></span>
+<span><span class="co">#&gt; 3 6b29… ND      202109…     3     0     0     0     0 15-15 1 (3)     1     0</span></span>
+<span><span class="co">#&gt; 4 4b28… ND      202109…     4     0     0     0     0 30-15 1 (4)     1     0</span></span>
+<span><span class="co">#&gt; 5 5b37… ND      202109…     5     0     0     0     0 40-15 1 (5)     1     0</span></span>
+<span><span class="co">#&gt; 6 6f28… ND      202109…     6     0     0     0     0 40-30 1 (6)     1     0</span></span>
+<span><span class="co">#&gt; # … with 34 more variables: TBpt &lt;lgl&gt;, Svr &lt;dbl&gt;, Ret &lt;dbl&gt;, `1st` &lt;chr&gt;,</span></span>
+<span><span class="co">#&gt; #   `2nd` &lt;chr&gt;, Notes &lt;chr&gt;, `1stSV` &lt;dbl&gt;, `2ndSV` &lt;dbl&gt;, `1stIn` &lt;dbl&gt;,</span></span>
+<span><span class="co">#&gt; #   `2ndIn` &lt;dbl&gt;, isAce &lt;lgl&gt;, isUnret &lt;lgl&gt;, isRallyWinner &lt;lgl&gt;,</span></span>
+<span><span class="co">#&gt; #   isForced &lt;lgl&gt;, isUnforced &lt;lgl&gt;, isDouble &lt;lgl&gt;, PtWinner &lt;dbl&gt;,</span></span>
+<span><span class="co">#&gt; #   isSvrWinner &lt;dbl&gt;, rallyCount &lt;dbl&gt;, `Player 1` &lt;chr&gt;, `Player 2` &lt;chr&gt;,</span></span>
+<span><span class="co">#&gt; #   `Pl 1 hand` &lt;chr&gt;, `Pl 2 hand` &lt;chr&gt;, Gender &lt;chr&gt;, Date &lt;dbl&gt;,</span></span>
+<span><span class="co">#&gt; #   Tournament &lt;chr&gt;, Round &lt;lgl&gt;, Time &lt;chr&gt;, Court &lt;chr&gt;, Surface &lt;chr&gt;, …</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>The observations of the data set correspond to points played (so there is one row per point). There are a ton of variables in this data set, but the most important variable is the first variable, <code>point</code>, which contains a string with information about the types of shots that were played during the point. The coding of the <code>point</code> variable includes:</p>
 <ul>
-<li><code>4</code> for serve out wide, <code>5</code> for serve into the body, and <code>6</code> for a serve “down the t (center)”.</li>
-<li><code>f</code> for forehand stroke, <code>b</code> for backhand stroke.</li>
-<li><code>1</code> to a right-hander’s forehand side, <code>2</code> for down the middle of the court, and <code>3</code> to a right-hander’s backhand side.</li>
-<li><code>d</code> for a ball hit deep, <code>w</code> for a ball hit wide, and <code>n</code> for a ball hit into the net</li>
-<li><code>@</code> symbol at the end if the point ended in an unforced error</li>
+<li>
+<code>4</code> for serve out wide, <code>5</code> for serve into the body, and <code>6</code> for a serve “down the t (center)”.</li>
+<li>
+<code>f</code> for forehand stroke, <code>b</code> for backhand stroke.</li>
+<li>
+<code>1</code> to a right-hander’s forehand side, <code>2</code> for down the middle of the court, and <code>3</code> to a right-hander’s backhand side.</li>
+<li>
+<code>d</code> for a ball hit deep, <code>w</code> for a ball hit wide, and <code>n</code> for a ball hit into the net</li>
+<li>
+<code>@</code> symbol at the end if the point ended in an unforced error</li>
 <li>and there’s lots of other numbers and symbols that correspond to other things (volleys, return depths, hitting the top of the net, etc.)</li>
 </ul>
 <p>For example, Djokovic served the 7th point of the match, which has a <code>point</code> value of <code>4f18f1f2b3b2f1w@</code>. This reads that</p>
 <ul>
-<li><code>4</code>: Djokovic served out wide,</li>
-<li><code>f18</code>: Medvedev hit a forehand cross-court to Djokovic’s forehand side</li>
-<li><code>f1</code>: Djokovic hit a forehand cross-court to Medvedev’s forehand side</li>
-<li><code>f2</code>: Medvedev hit a forehand to the center of the court</li>
-<li><code>b3</code>: Djokovic hit a backhand to Medvedev’s backhand side</li>
-<li><code>b2</code>: Medvedev hit a backhand to the center of the court</li>
-<li><code>f1w@</code>: Djokovic hit a forehand to Medvedev’s forehand side, but the shot landed wide and was recorded as an unforced error.</li>
+<li>
+<code>4</code>: Djokovic served out wide,</li>
+<li>
+<code>f18</code>: Medvedev hit a forehand cross-court to Djokovic’s forehand side</li>
+<li>
+<code>f1</code>: Djokovic hit a forehand cross-court to Medvedev’s forehand side</li>
+<li>
+<code>f2</code>: Medvedev hit a forehand to the center of the court</li>
+<li>
+<code>b3</code>: Djokovic hit a backhand to Medvedev’s backhand side</li>
+<li>
+<code>b2</code>: Medvedev hit a backhand to the center of the court</li>
+<li>
+<code>f1w@</code>: Djokovic hit a forehand to Medvedev’s forehand side, but the shot landed wide and was recorded as an unforced error.</li>
 </ul>
 <p>Clearly, there is a lot of data encoded in the <code>point</code> variable. We are going to introduce <code>stringr</code> by answering a relatively simple question: what are the serving patterns of Medvedev and Djokovic during this match?</p>
-<section id="regular-expressions" class="level3" data-number="13.3.1">
-<h3 data-number="13.3.1" class="anchored" data-anchor-id="regular-expressions"><span class="header-section-number">13.3.1</span> Regular Expressions</h3>
-<p>A <strong>regex</strong>, or <strong>regular expression</strong>, is a string used to identify particular patterns in string data. Regular expressions are used in <strong>many</strong> languages (so, if you google something about a regular expression, you do not need to limit yourself to just looking at resources pertaining to <code>R</code>).</p>
-<p>Regex’s can be used with the functions in the <code>stringr</code> package. The functions in the <code>stringr</code> package begin with <code>str_()</code>, much like the functions in <code>forcats</code> began with <code>fct_()</code>. We will first focus on the <code>str_detect()</code> function, which detects whether a particular regex is present in a string variable. <code>str_detect()</code> takes the name of the string as its first argument and the regex as the second argument. For example,</p>
-<div class="cell" data-appendix="true">
-<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str_detect</span>(med_djok_df<span class="sc">$</span>point, <span class="at">pattern =</span> <span class="st">"f"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>  [1]  TRUE FALSE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE FALSE FALSE FALSE
- [13]  TRUE FALSE FALSE  TRUE  TRUE  TRUE  TRUE FALSE FALSE FALSE FALSE FALSE
- [25]  TRUE FALSE FALSE FALSE FALSE  TRUE FALSE FALSE  TRUE  TRUE  TRUE FALSE
- [37]  TRUE  TRUE FALSE  TRUE FALSE  TRUE FALSE  TRUE FALSE  TRUE FALSE  TRUE
- [49] FALSE  TRUE FALSE FALSE FALSE FALSE  TRUE  TRUE FALSE FALSE  TRUE FALSE
- [61]  TRUE  TRUE FALSE  TRUE FALSE FALSE  TRUE  TRUE  TRUE  TRUE  TRUE FALSE
- [73] FALSE  TRUE  TRUE FALSE  TRUE  TRUE  TRUE FALSE  TRUE  TRUE  TRUE  TRUE
- [85]  TRUE FALSE  TRUE FALSE FALSE  TRUE  TRUE  TRUE  TRUE  TRUE FALSE  TRUE
- [97]  TRUE  TRUE FALSE  TRUE  TRUE  TRUE FALSE  TRUE  TRUE  TRUE  TRUE  TRUE
-[109] FALSE  TRUE FALSE  TRUE FALSE  TRUE FALSE FALSE  TRUE FALSE  TRUE  TRUE
-[121]  TRUE  TRUE  TRUE  TRUE FALSE  TRUE  TRUE FALSE FALSE  TRUE  TRUE  TRUE
-[133]  TRUE  TRUE FALSE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE FALSE  TRUE FALSE
-[145] FALSE  TRUE FALSE FALSE  TRUE  TRUE FALSE  TRUE FALSE FALSE  TRUE  TRUE
-[157]  TRUE FALSE  TRUE FALSE  TRUE FALSE FALSE  TRUE FALSE FALSE FALSE  TRUE
-[169] FALSE FALSE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE
-[181] FALSE FALSE</code></pre>
+<section id="regular-expressions" class="level3" data-number="13.2.1"><h3 data-number="13.2.1" class="anchored" data-anchor-id="regular-expressions">
+<span class="header-section-number">13.2.1</span> Regular Expressions</h3>
+<p>A <strong>regex</strong>, or <strong>regular expression</strong>, is a string used to identify particular patterns in string data.</p>
+<div class="callout-note callout callout-style-simple callout-captioned">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+Note
 </div>
 </div>
-<p>returns a <code>TRUE</code> if the letter <code>f</code> appears anywhere in the string and a <code>FALSE</code> if it does not. So, we can examine how many points a forehand was hit in the Medvedev Djokovic match. As a second example,</p>
+<div class="callout-body-container callout-body">
+<p>Regular expressions are used in <strong>many</strong> languages (so, if you google something about a regular expression, you do not need to limit yourself to just looking at resources pertaining to <code>R</code>).</p>
+</div>
+</div>
+<p>Regex’s can be used with the functions in the <code>stringr</code> package.</p>
+<div class="callout-note callout callout-style-simple callout-captioned">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The functions in the <code>stringr</code> package begin with <code>str_()</code>, much like the functions in <code>forcats</code> began with <code>fct_()</code>.</p>
+</div>
+</div>
+<p>We will first focus on the <code><a href="https://stringr.tidyverse.org/reference/str_detect.html">str_detect()</a></code> function, which detects whether a particular regex is present in a string variable. <code><a href="https://stringr.tidyverse.org/reference/str_detect.html">str_detect()</a></code> takes the name of the string as its first argument and the regex as the second argument. For example,</p>
 <div class="cell" data-appendix="true">
-<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str_detect</span>(med_djok_df<span class="sc">$</span>point, <span class="at">pattern =</span> <span class="st">"d@"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://stringr.tidyverse.org/reference/str_detect.html">str_detect</a></span><span class="op">(</span><span class="va">med_djok_df</span><span class="op">$</span><span class="va">point</span>, pattern <span class="op">=</span> <span class="st">"f"</span><span class="op">)</span></span>
+<span><span class="co">#&gt;   [1]  TRUE FALSE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE FALSE FALSE FALSE</span></span>
+<span><span class="co">#&gt;  [13]  TRUE FALSE FALSE  TRUE  TRUE  TRUE  TRUE FALSE FALSE FALSE FALSE FALSE</span></span>
+<span><span class="co">#&gt;  [25]  TRUE FALSE FALSE FALSE FALSE  TRUE FALSE FALSE  TRUE  TRUE  TRUE FALSE</span></span>
+<span><span class="co">#&gt;  [37]  TRUE  TRUE FALSE  TRUE FALSE  TRUE FALSE  TRUE FALSE  TRUE FALSE  TRUE</span></span>
+<span><span class="co">#&gt;  [49] FALSE  TRUE FALSE FALSE FALSE FALSE  TRUE  TRUE FALSE FALSE  TRUE FALSE</span></span>
+<span><span class="co">#&gt;  [61]  TRUE  TRUE FALSE  TRUE FALSE FALSE  TRUE  TRUE  TRUE  TRUE  TRUE FALSE</span></span>
+<span><span class="co">#&gt;  [73] FALSE  TRUE  TRUE FALSE  TRUE  TRUE  TRUE FALSE  TRUE  TRUE  TRUE  TRUE</span></span>
+<span><span class="co">#&gt;  [85]  TRUE FALSE  TRUE FALSE FALSE  TRUE  TRUE  TRUE  TRUE  TRUE FALSE  TRUE</span></span>
+<span><span class="co">#&gt;  [97]  TRUE  TRUE FALSE  TRUE  TRUE  TRUE FALSE  TRUE  TRUE  TRUE  TRUE  TRUE</span></span>
+<span><span class="co">#&gt; [109] FALSE  TRUE FALSE  TRUE FALSE  TRUE FALSE FALSE  TRUE FALSE  TRUE  TRUE</span></span>
+<span><span class="co">#&gt; [121]  TRUE  TRUE  TRUE  TRUE FALSE  TRUE  TRUE FALSE FALSE  TRUE  TRUE  TRUE</span></span>
+<span><span class="co">#&gt; [133]  TRUE  TRUE FALSE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE FALSE  TRUE FALSE</span></span>
+<span><span class="co">#&gt; [145] FALSE  TRUE FALSE FALSE  TRUE  TRUE FALSE  TRUE FALSE FALSE  TRUE  TRUE</span></span>
+<span><span class="co">#&gt; [157]  TRUE FALSE  TRUE FALSE  TRUE FALSE FALSE  TRUE FALSE FALSE FALSE  TRUE</span></span>
+<span><span class="co">#&gt; [169] FALSE FALSE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE</span></span>
+<span><span class="co">#&gt; [181] FALSE FALSE</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>returns a <code>TRUE</code> if the letter <code>f</code> appears anywhere in the string and a <code>FALSE</code> if it does not. So, we can examine how many points a forehand was hit in the Medvedev-Djokovic match. As a second example,</p>
+<div class="cell" data-appendix="true">
+<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://stringr.tidyverse.org/reference/str_detect.html">str_detect</a></span><span class="op">(</span><span class="va">med_djok_df</span><span class="op">$</span><span class="va">point</span>, pattern <span class="op">=</span> <span class="st">"d@"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>returns <code>TRUE</code> if <code>d@</code> appears in a string and <code>FALSE</code> if not. Note that <code>d@</code> must appear <strong>together</strong> and <strong>in that order</strong> to return a <code>TRUE</code>. This lets us examine how many points a ball is hit deep and is recorded an unforced error. It looks like</p>
 <div class="cell" data-appendix="true">
-<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(<span class="fu">str_detect</span>(med_djok_df<span class="sc">$</span>point, <span class="at">pattern =</span> <span class="st">"d@"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 21</code></pre>
-</div>
+<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="fu"><a href="https://stringr.tidyverse.org/reference/str_detect.html">str_detect</a></span><span class="op">(</span><span class="va">med_djok_df</span><span class="op">$</span><span class="va">point</span>, pattern <span class="op">=</span> <span class="st">"d@"</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="co">#&gt; [1] 21</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>points ended in an unforced error where the ball was hit deep,</p>
 <div class="cell" data-appendix="true">
-<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(<span class="fu">str_detect</span>(med_djok_df<span class="sc">$</span>point, <span class="at">pattern =</span> <span class="st">"w@"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 19</code></pre>
-</div>
+<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="fu"><a href="https://stringr.tidyverse.org/reference/str_detect.html">str_detect</a></span><span class="op">(</span><span class="va">med_djok_df</span><span class="op">$</span><span class="va">point</span>, pattern <span class="op">=</span> <span class="st">"w@"</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="co">#&gt; [1] 19</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>points ended in an unforced error where the ball was hit wide, and</p>
 <div class="cell" data-appendix="true">
-<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(<span class="fu">str_detect</span>(med_djok_df<span class="sc">$</span>point, <span class="at">pattern =</span> <span class="st">"n@"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 22</code></pre>
-</div>
+<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="fu"><a href="https://stringr.tidyverse.org/reference/str_detect.html">str_detect</a></span><span class="op">(</span><span class="va">med_djok_df</span><span class="op">$</span><span class="va">point</span>, pattern <span class="op">=</span> <span class="st">"n@"</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="co">#&gt; [1] 22</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>points ended in an unforced error where the ball was hit into the net.</p>
-</section>
-<section id="stringr-functions-with-dplyr" class="level3" data-number="13.3.2">
-<h3 data-number="13.3.2" class="anchored" data-anchor-id="stringr-functions-with-dplyr"><span class="header-section-number">13.3.2</span> <code>stringr</code> Functions with <code>dplyr</code></h3>
+</section><section id="stringr-functions-with-dplyr" class="level3" data-number="13.2.2"><h3 data-number="13.2.2" class="anchored" data-anchor-id="stringr-functions-with-dplyr">
+<span class="header-section-number">13.2.2</span> <code>stringr</code> Functions with <code>dplyr</code>
+</h3>
 <p>We can combine the <code>stringr</code> functions with <code>dplyr</code> functions that we already know and love. For example, if we are only interested in points the end in an unforced error (so points that have the <code>@</code> symbol in them), we can filter out the points that don’t have an <code>@</code>:</p>
 <div class="cell" data-appendix="true">
-<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>med_djok_df <span class="sc">|&gt;</span> <span class="fu">filter</span>(<span class="fu">str_detect</span>(point, <span class="at">pattern =</span> <span class="st">"@"</span>) <span class="sc">==</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 63 × 46
-   point   Serving match…¹    Pt  Set1  Set2   Gm1   Gm2 Pts   `Gm#` TbSet `TB?`
-   &lt;chr&gt;   &lt;chr&gt;   &lt;chr&gt;   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt; &lt;dbl&gt; &lt;dbl&gt;
- 1 4f2d@   ND      202109…     1     0     0     0     0 0-0   1 (1)     1     0
- 2 6b29f3… ND      202109…     3     0     0     0     0 15-15 1 (3)     1     0
- 3 5b37b3… ND      202109…     5     0     0     0     0 40-15 1 (5)     1     0
- 4 4f18f1… ND      202109…     7     0     0     0     0 40-40 1 (7)     1     0
- 5 5b28f1… ND      202109…     8     0     0     0     0 40-AD 1 (8)     1     0
- 6 6b27f2… DM      202109…    13     0     0     0     1 40-15 2 (5)     1     0
- 7 6b38y1… ND      202109…    14     0     0     0     2 0-0   3 (1)     1     0
- 8 5b28f1… ND      202109…    16     0     0     0     2 0-30  3 (3)     1     0
- 9 6f38b3… ND      202109…    17     0     0     0     2 15-30 3 (4)     1     0
-10 5b1w@   ND      202109…    28     0     0     1     3 30-0  5 (3)     1     0
-# … with 53 more rows, 34 more variables: TBpt &lt;lgl&gt;, Svr &lt;dbl&gt;, Ret &lt;dbl&gt;,
-#   `1st` &lt;chr&gt;, `2nd` &lt;chr&gt;, Notes &lt;chr&gt;, `1stSV` &lt;dbl&gt;, `2ndSV` &lt;dbl&gt;,
-#   `1stIn` &lt;dbl&gt;, `2ndIn` &lt;dbl&gt;, isAce &lt;lgl&gt;, isUnret &lt;lgl&gt;,
-#   isRallyWinner &lt;lgl&gt;, isForced &lt;lgl&gt;, isUnforced &lt;lgl&gt;, isDouble &lt;lgl&gt;,
-#   PtWinner &lt;dbl&gt;, isSvrWinner &lt;dbl&gt;, rallyCount &lt;dbl&gt;, `Player 1` &lt;chr&gt;,
-#   `Player 2` &lt;chr&gt;, `Pl 1 hand` &lt;chr&gt;, `Pl 2 hand` &lt;chr&gt;, Gender &lt;chr&gt;,
-#   Date &lt;dbl&gt;, Tournament &lt;chr&gt;, Round &lt;lgl&gt;, Time &lt;chr&gt;, Court &lt;chr&gt;, …</code></pre>
+<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">med_djok_df</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="fu"><a href="https://stringr.tidyverse.org/reference/str_detect.html">str_detect</a></span><span class="op">(</span><span class="va">point</span>, pattern <span class="op">=</span> <span class="st">"@"</span><span class="op">)</span> <span class="op">==</span> <span class="cn">TRUE</span><span class="op">)</span></span>
+<span><span class="co">#&gt; # A tibble: 63 × 46</span></span>
+<span><span class="co">#&gt;   point Serving match…¹    Pt  Set1  Set2   Gm1   Gm2 Pts   `Gm#` TbSet `TB?`</span></span>
+<span><span class="co">#&gt;   &lt;chr&gt; &lt;chr&gt;   &lt;chr&gt;   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt; &lt;dbl&gt; &lt;dbl&gt;</span></span>
+<span><span class="co">#&gt; 1 4f2d@ ND      202109…     1     0     0     0     0 0-0   1 (1)     1     0</span></span>
+<span><span class="co">#&gt; 2 6b29… ND      202109…     3     0     0     0     0 15-15 1 (3)     1     0</span></span>
+<span><span class="co">#&gt; 3 5b37… ND      202109…     5     0     0     0     0 40-15 1 (5)     1     0</span></span>
+<span><span class="co">#&gt; 4 4f18… ND      202109…     7     0     0     0     0 40-40 1 (7)     1     0</span></span>
+<span><span class="co">#&gt; 5 5b28… ND      202109…     8     0     0     0     0 40-AD 1 (8)     1     0</span></span>
+<span><span class="co">#&gt; 6 6b27… DM      202109…    13     0     0     0     1 40-15 2 (5)     1     0</span></span>
+<span><span class="co">#&gt; # … with 57 more rows, 34 more variables: TBpt &lt;lgl&gt;, Svr &lt;dbl&gt;, Ret &lt;dbl&gt;,</span></span>
+<span><span class="co">#&gt; #   `1st` &lt;chr&gt;, `2nd` &lt;chr&gt;, Notes &lt;chr&gt;, `1stSV` &lt;dbl&gt;, `2ndSV` &lt;dbl&gt;,</span></span>
+<span><span class="co">#&gt; #   `1stIn` &lt;dbl&gt;, `2ndIn` &lt;dbl&gt;, isAce &lt;lgl&gt;, isUnret &lt;lgl&gt;,</span></span>
+<span><span class="co">#&gt; #   isRallyWinner &lt;lgl&gt;, isForced &lt;lgl&gt;, isUnforced &lt;lgl&gt;, isDouble &lt;lgl&gt;,</span></span>
+<span><span class="co">#&gt; #   PtWinner &lt;dbl&gt;, isSvrWinner &lt;dbl&gt;, rallyCount &lt;dbl&gt;, `Player 1` &lt;chr&gt;,</span></span>
+<span><span class="co">#&gt; #   `Player 2` &lt;chr&gt;, `Pl 1 hand` &lt;chr&gt;, `Pl 2 hand` &lt;chr&gt;, Gender &lt;chr&gt;,</span></span>
+<span><span class="co">#&gt; #   Date &lt;dbl&gt;, Tournament &lt;chr&gt;, Round &lt;lgl&gt;, Time &lt;chr&gt;, Court &lt;chr&gt;, …</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</div>
-<p>We can then use <code>mutate()</code> with <code>case_when()</code> to create a variable corresponding to error type and then <code>summarise()</code> the error types made from the two players.</p>
+<p>We can then use <code><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate()</a></code> with <code><a href="https://dplyr.tidyverse.org/reference/case_when.html">case_when()</a></code> to create a variable corresponding to error type and then <code><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise()</a></code> the error types made from the two players.</p>
 <div class="cell" data-appendix="true">
-<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>med_djok_df <span class="sc">|&gt;</span> <span class="fu">filter</span>(<span class="fu">str_detect</span>(point, <span class="at">pattern =</span> <span class="st">"@"</span>) <span class="sc">==</span> <span class="cn">TRUE</span>) <span class="sc">|&gt;</span></span>
-<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">error_type =</span> <span class="fu">case_when</span>(<span class="fu">str_detect</span>(point, <span class="at">pattern =</span> <span class="st">"d@"</span>) <span class="sc">~</span> <span class="st">"deep error"</span>,</span>
-<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a>                                   <span class="fu">str_detect</span>(point, <span class="at">pattern =</span> <span class="st">"w@"</span>) <span class="sc">~</span> <span class="st">"wide error"</span>,</span>
-<span id="cb34-4"><a href="#cb34-4" aria-hidden="true" tabindex="-1"></a>            <span class="fu">str_detect</span>(point, <span class="at">pattern =</span> <span class="st">"n@"</span>) <span class="sc">~</span> <span class="st">"net error"</span>)) <span class="sc">|&gt;</span></span>
-<span id="cb34-5"><a href="#cb34-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(PtWinner, error_type) <span class="sc">|&gt;</span></span>
-<span id="cb34-6"><a href="#cb34-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">n_errors =</span> <span class="fu">n</span>())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>`summarise()` has grouped output by 'PtWinner'. You can override using the
-`.groups` argument.</code></pre>
-</div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 7 × 3
-# Groups:   PtWinner [2]
-  PtWinner error_type n_errors
-     &lt;dbl&gt; &lt;chr&gt;         &lt;int&gt;
-1        1 deep error        9
-2        1 net error         6
-3        1 wide error       10
-4        2 deep error       12
-5        2 net error        16
-6        2 wide error        9
-7        2 &lt;NA&gt;              1</code></pre>
-</div>
+<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">med_djok_df</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="fu"><a href="https://stringr.tidyverse.org/reference/str_detect.html">str_detect</a></span><span class="op">(</span><span class="va">point</span>, pattern <span class="op">=</span> <span class="st">"@"</span><span class="op">)</span> <span class="op">==</span> <span class="cn">TRUE</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>error_type <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/case_when.html">case_when</a></span><span class="op">(</span><span class="fu"><a href="https://stringr.tidyverse.org/reference/str_detect.html">str_detect</a></span><span class="op">(</span><span class="va">point</span>, pattern <span class="op">=</span> <span class="st">"d@"</span><span class="op">)</span> <span class="op">~</span> <span class="st">"deep error"</span>,</span>
+<span>                                   <span class="fu"><a href="https://stringr.tidyverse.org/reference/str_detect.html">str_detect</a></span><span class="op">(</span><span class="va">point</span>, pattern <span class="op">=</span> <span class="st">"w@"</span><span class="op">)</span> <span class="op">~</span> <span class="st">"wide error"</span>,</span>
+<span>            <span class="fu"><a href="https://stringr.tidyverse.org/reference/str_detect.html">str_detect</a></span><span class="op">(</span><span class="va">point</span>, pattern <span class="op">=</span> <span class="st">"n@"</span><span class="op">)</span> <span class="op">~</span> <span class="st">"net error"</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">PtWinner</span>, <span class="va">error_type</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise</a></span><span class="op">(</span>n_errors <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/context.html">n</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="co">#&gt; # A tibble: 7 × 3</span></span>
+<span><span class="co">#&gt; # Groups:   PtWinner [2]</span></span>
+<span><span class="co">#&gt;   PtWinner error_type n_errors</span></span>
+<span><span class="co">#&gt;      &lt;dbl&gt; &lt;chr&gt;         &lt;int&gt;</span></span>
+<span><span class="co">#&gt; 1        1 deep error        9</span></span>
+<span><span class="co">#&gt; 2        1 net error         6</span></span>
+<span><span class="co">#&gt; 3        1 wide error       10</span></span>
+<span><span class="co">#&gt; 4        2 deep error       12</span></span>
+<span><span class="co">#&gt; 5        2 net error        16</span></span>
+<span><span class="co">#&gt; 6        2 wide error        9</span></span>
+<span><span class="co">#&gt; # … with 1 more row</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>In the output above, a <code>PtWinner</code> of <code>1</code> corresponds to points that Djokovic won (and therefore points where Medvedev made the unforced error) while a <code>PtWinner</code> of <code>2</code> corresponds to points that Medvedev won (and therefore points where Djokovic made the unforced error). So we see that, in this match, Djokovic had more unforced errors overall. Medvedev’s unforced errors tended to be deep or wide while the highest proportion of Djokovic’s unforced errors were balls that went into the net.</p>
 <p>We will explore our original “service patterns” question in the exercises. To close out this section, we will just emphasize that we have done a <strong>very</strong> simple introduction into regexes. These can get very cumbersome, especially as the patterns you want to extract get more complicated. Consider the examples below.</p>
@@ -684,120 +656,58 @@ lgl  (8): TBpt, isAce, isUnret, isRallyWinner, isForced, isUnforced, isDoubl...
 <li>Detect which points are aces, which are coded in the variable as <code>*</code>. Regexes have “special characters, like <code>\</code>, <code>*</code>, <code>.</code>, which, if present in the variable need to be”escaped” with a backslash. But, the backslash is a special character, so it needs to be escaped too: so we need two <code>\\</code> in front of <code>*</code> to pull the points with a <code>*</code>.</li>
 </ul>
 <div class="cell" data-appendix="true">
-<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str_detect</span>(med_djok_df<span class="sc">$</span>point, <span class="at">pattern =</span> <span class="st">"</span><span class="sc">\\</span><span class="st">*"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb18"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://stringr.tidyverse.org/reference/str_detect.html">str_detect</a></span><span class="op">(</span><span class="va">med_djok_df</span><span class="op">$</span><span class="va">point</span>, pattern <span class="op">=</span> <span class="st">"\\*"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p><br></p>
 <ul>
 <li>Detect which points start with a <code>4</code> using <code>^</code> to denote “at the beginning”:</li>
 </ul>
 <div class="cell" data-appendix="true">
-<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str_detect</span>(med_djok_df<span class="sc">$</span>point, <span class="at">pattern =</span> <span class="st">"^4"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb19"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://stringr.tidyverse.org/reference/str_detect.html">str_detect</a></span><span class="op">(</span><span class="va">med_djok_df</span><span class="op">$</span><span class="va">point</span>, pattern <span class="op">=</span> <span class="st">"^4"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p><br></p>
 <ul>
 <li>Detect which points end with an <code>@</code> using <code>$</code> to denote “at the end” (this is safer than what we did in the code above, where we just assumed that <code>@</code> did not appear anywhere else in the string except at the end).</li>
 </ul>
 <div class="cell" data-appendix="true">
-<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str_detect</span>(med_djok_df<span class="sc">$</span>point, <span class="at">pattern =</span> <span class="st">"@$"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb20"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://stringr.tidyverse.org/reference/str_detect.html">str_detect</a></span><span class="op">(</span><span class="va">med_djok_df</span><span class="op">$</span><span class="va">point</span>, pattern <span class="op">=</span> <span class="st">"@$"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p><br> * Extract all of the forehand shots that were hit with <code>str_extract_all()</code>. The regex here says to extract anything with an f followed by any number of digits before another non-digit symbol.</p>
+<p><br></p>
+<ul>
+<li>Extract all of the forehand shots that were hit with <code><a href="https://stringr.tidyverse.org/reference/str_extract.html">str_extract_all()</a></code>. The regex here says to extract anything with an f followed by any number of digits before another non-digit symbol.</li>
+</ul>
 <div class="cell" data-appendix="true">
-<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str_extract_all</span>(med_djok_df<span class="sc">$</span>point, <span class="at">pattern =</span> <span class="st">"f[:digit:]+"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb21"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://stringr.tidyverse.org/reference/str_extract.html">str_extract_all</a></span><span class="op">(</span><span class="va">med_djok_df</span><span class="op">$</span><span class="va">point</span>, pattern <span class="op">=</span> <span class="st">"f[:digit:]+"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>The purpose of these examples is just to show that things can get complicated with strings. For the purposes of assessment in this course, you are only responsible for the relatively simple cases discussed earlier in the section and in the exercises.</p>
-</section>
-<section id="exercise-12-1" class="level3" data-number="13.3.3">
-<h3 data-number="13.3.3" class="anchored" data-anchor-id="exercise-12-1"><span class="header-section-number">13.3.3</span> Exercises</h3>
-<ol type="1">
-<li><p>Use <code>str_detect()</code> and <code>dplyr</code> functions to create a variable for <code>serve_location</code> that is either <code>"wide"</code> if the <code>point</code> starts with a <code>4</code>, <code>"body"</code> if the <code>point</code> starts with a <code>5</code>, and <code>"down the center"</code> if the <code>point</code> starts with a <code>6</code>.</p></li>
-<li><p>Use <code>dplyr</code> functions and the <code>Serving</code> variable to count the number of serve locations for each player. (i.e.&nbsp;for how many points did Medvedev hit a serve out wide?).</p></li>
-<li><p>Use <code>dplyr</code> functions, the <code>Serving</code> variable, and the <code>isSrvWinner</code> variable to find the proportion of points each player won for each of their serving locations (i.e.&nbsp;if Medvedev won 5 points while serving out wide and lost 3 points, the proportion would be 5 / 8 = <code>0.625</code>).</p></li>
-</ol>
-<p>Note that the <code>isSrvWinner</code> variable is coded as a <code>1</code> if the serving player won the point and <code>0</code> if the serving player lost the point.</p>
-<ol start="4" type="1">
-<li>The letters <code>v</code>, <code>z</code>, <code>i</code>, and <code>k</code> denote volleys (of different types). Use <code>str_detect()</code> and <code>dplyr</code> functions to figure out the proportion of points where a volley was hit.</li>
-</ol>
-</section>
-</section>
-<section id="chapexercise-12" class="level2" data-number="13.4">
-<h2 data-number="13.4" class="anchored" data-anchor-id="chapexercise-12"><span class="header-section-number">13.4</span> Chapter Exercises</h2>
-<p>Exercises marked with an * indicate that the exercise has a solution at the end of the chapter at @ref(solutions-12).</p>
-<p>There are no Chapter Exercises.</p>
-</section>
-<section id="solutions-12" class="level2" data-number="13.5">
-<h2 data-number="13.5" class="anchored" data-anchor-id="solutions-12"><span class="header-section-number">13.5</span> Exercise Solutions</h2>
-<section id="text-analysis-s" class="level3" data-number="13.5.1">
-<h3 data-number="13.5.1" class="anchored" data-anchor-id="text-analysis-s"><span class="header-section-number">13.5.1</span> Text Analysis S</h3>
-<p>There are no solutions.</p>
-</section>
-<section id="basic-sentiment-analysis-s" class="level3" data-number="13.5.2">
-<h3 data-number="13.5.2" class="anchored" data-anchor-id="basic-sentiment-analysis-s"><span class="header-section-number">13.5.2</span> Basic Sentiment Analysis S</h3>
-<p>There are no solutions.</p>
-</section>
-<section id="introduction-to-stringr-s" class="level3" data-number="13.5.3">
-<h3 data-number="13.5.3" class="anchored" data-anchor-id="introduction-to-stringr-s"><span class="header-section-number">13.5.3</span> Introduction to <code>stringr</code> S</h3>
-<p>There are no solutions.</p>
-</section>
-<section id="chapexercise-12-S" class="level3" data-number="13.5.4">
-<h3 data-number="13.5.4" class="anchored" data-anchor-id="chapexercise-12-S"><span class="header-section-number">13.5.4</span> Chapter Exercises S</h3>
-<p>There are no solutions.</p>
-</section>
-</section>
-<section id="rcode-12" class="level2" data-number="13.6">
-<h2 data-number="13.6" class="anchored" data-anchor-id="rcode-12"><span class="header-section-number">13.6</span> Non-Exercise <code>R</code> Code</h2>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(here)</span>
-<span id="cb41-3"><a href="#cb41-3" aria-hidden="true" tabindex="-1"></a>beyonce <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="fu">here</span>(<span class="st">"data/beyonce_lyrics.csv"</span>))</span>
-<span id="cb41-4"><a href="#cb41-4" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(beyonce)</span>
-<span id="cb41-5"><a href="#cb41-5" aria-hidden="true" tabindex="-1"></a>beyonce<span class="sc">$</span>line[<span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>]</span>
-<span id="cb41-6"><a href="#cb41-6" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidytext)</span>
-<span id="cb41-7"><a href="#cb41-7" aria-hidden="true" tabindex="-1"></a>beyonce_unnest <span class="ot">&lt;-</span> beyonce <span class="sc">|&gt;</span> <span class="fu">unnest_tokens</span>(<span class="at">output =</span> <span class="st">"word"</span>, <span class="at">input =</span> <span class="st">"line"</span>)</span>
-<span id="cb41-8"><a href="#cb41-8" aria-hidden="true" tabindex="-1"></a>beyonce_unnest</span>
-<span id="cb41-9"><a href="#cb41-9" aria-hidden="true" tabindex="-1"></a>beyonce_unnest <span class="ot">&lt;-</span> beyonce_unnest <span class="sc">|&gt;</span> <span class="fu">mutate</span>(<span class="at">word =</span> <span class="fu">str_to_lower</span>(word))</span>
-<span id="cb41-10"><a href="#cb41-10" aria-hidden="true" tabindex="-1"></a>beyonce_unnest <span class="sc">|&gt;</span> <span class="fu">group_by</span>(word) <span class="sc">|&gt;</span></span>
-<span id="cb41-11"><a href="#cb41-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">n =</span> <span class="fu">n</span>()) <span class="sc">|&gt;</span></span>
-<span id="cb41-12"><a href="#cb41-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(n))</span>
-<span id="cb41-13"><a href="#cb41-13" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(stop_words)</span>
-<span id="cb41-14"><a href="#cb41-14" aria-hidden="true" tabindex="-1"></a>beyonce_stop <span class="ot">&lt;-</span> <span class="fu">anti_join</span>(beyonce_unnest, stop_words, <span class="at">by =</span> <span class="fu">c</span>(<span class="st">"word"</span> <span class="ot">=</span> <span class="st">"word"</span>))</span>
-<span id="cb41-15"><a href="#cb41-15" aria-hidden="true" tabindex="-1"></a>beyonce_sum <span class="ot">&lt;-</span> beyonce_stop <span class="sc">|&gt;</span> <span class="fu">group_by</span>(word) <span class="sc">|&gt;</span></span>
-<span id="cb41-16"><a href="#cb41-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">n =</span> <span class="fu">n</span>()) <span class="sc">|&gt;</span></span>
-<span id="cb41-17"><a href="#cb41-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(n)) <span class="sc">|&gt;</span></span>
-<span id="cb41-18"><a href="#cb41-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(<span class="at">n =</span> <span class="dv">25</span>)</span>
-<span id="cb41-19"><a href="#cb41-19" aria-hidden="true" tabindex="-1"></a>beyonce_sum</span>
-<span id="cb41-20"><a href="#cb41-20" aria-hidden="true" tabindex="-1"></a><span class="do">## install.packages("wordcloud")</span></span>
-<span id="cb41-21"><a href="#cb41-21" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(wordcloud)</span>
-<span id="cb41-22"><a href="#cb41-22" aria-hidden="true" tabindex="-1"></a>beyonce_small <span class="ot">&lt;-</span> beyonce_sum <span class="sc">|&gt;</span> <span class="fu">filter</span>(n <span class="sc">&gt;</span> <span class="dv">50</span>)</span>
-<span id="cb41-23"><a href="#cb41-23" aria-hidden="true" tabindex="-1"></a><span class="fu">wordcloud</span>(beyonce_small<span class="sc">$</span>word, beyonce_small<span class="sc">$</span>n, </span>
-<span id="cb41-24"><a href="#cb41-24" aria-hidden="true" tabindex="-1"></a>          <span class="at">colors =</span> <span class="fu">brewer.pal</span>(<span class="dv">8</span>, <span class="st">"Dark2"</span>), <span class="at">scale =</span> <span class="fu">c</span>(<span class="dv">5</span>, .<span class="dv">2</span>),</span>
-<span id="cb41-25"><a href="#cb41-25" aria-hidden="true" tabindex="-1"></a>          <span class="at">random.order =</span> <span class="cn">FALSE</span>, <span class="at">random.color =</span> <span class="cn">FALSE</span>)</span>
-<span id="cb41-26"><a href="#cb41-26" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(here)</span>
-<span id="cb41-27"><a href="#cb41-27" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb41-28"><a href="#cb41-28" aria-hidden="true" tabindex="-1"></a>med_djok_df <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="fu">here</span>(<span class="st">"data/med_djok.csv"</span>))</span>
-<span id="cb41-29"><a href="#cb41-29" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(med_djok_df)</span>
-<span id="cb41-30"><a href="#cb41-30" aria-hidden="true" tabindex="-1"></a><span class="fu">str_detect</span>(med_djok_df<span class="sc">$</span>point, <span class="at">pattern =</span> <span class="st">"f"</span>)</span>
-<span id="cb41-31"><a href="#cb41-31" aria-hidden="true" tabindex="-1"></a><span class="fu">str_detect</span>(med_djok_df<span class="sc">$</span>point, <span class="at">pattern =</span> <span class="st">"d@"</span>)</span>
-<span id="cb41-32"><a href="#cb41-32" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(<span class="fu">str_detect</span>(med_djok_df<span class="sc">$</span>point, <span class="at">pattern =</span> <span class="st">"d@"</span>))</span>
-<span id="cb41-33"><a href="#cb41-33" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(<span class="fu">str_detect</span>(med_djok_df<span class="sc">$</span>point, <span class="at">pattern =</span> <span class="st">"w@"</span>))</span>
-<span id="cb41-34"><a href="#cb41-34" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(<span class="fu">str_detect</span>(med_djok_df<span class="sc">$</span>point, <span class="at">pattern =</span> <span class="st">"n@"</span>))</span>
-<span id="cb41-35"><a href="#cb41-35" aria-hidden="true" tabindex="-1"></a>med_djok_df <span class="sc">|&gt;</span> <span class="fu">filter</span>(<span class="fu">str_detect</span>(point, <span class="at">pattern =</span> <span class="st">"@"</span>) <span class="sc">==</span> <span class="cn">TRUE</span>)</span>
-<span id="cb41-36"><a href="#cb41-36" aria-hidden="true" tabindex="-1"></a>med_djok_df <span class="sc">|&gt;</span> <span class="fu">filter</span>(<span class="fu">str_detect</span>(point, <span class="at">pattern =</span> <span class="st">"@"</span>) <span class="sc">==</span> <span class="cn">TRUE</span>) <span class="sc">|&gt;</span></span>
-<span id="cb41-37"><a href="#cb41-37" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">error_type =</span> <span class="fu">case_when</span>(<span class="fu">str_detect</span>(point, <span class="at">pattern =</span> <span class="st">"d@"</span>) <span class="sc">~</span> <span class="st">"deep error"</span>,</span>
-<span id="cb41-38"><a href="#cb41-38" aria-hidden="true" tabindex="-1"></a>                                   <span class="fu">str_detect</span>(point, <span class="at">pattern =</span> <span class="st">"w@"</span>) <span class="sc">~</span> <span class="st">"wide error"</span>,</span>
-<span id="cb41-39"><a href="#cb41-39" aria-hidden="true" tabindex="-1"></a>            <span class="fu">str_detect</span>(point, <span class="at">pattern =</span> <span class="st">"n@"</span>) <span class="sc">~</span> <span class="st">"net error"</span>)) <span class="sc">|&gt;</span></span>
-<span id="cb41-40"><a href="#cb41-40" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(PtWinner, error_type) <span class="sc">|&gt;</span></span>
-<span id="cb41-41"><a href="#cb41-41" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">n_errors =</span> <span class="fu">n</span>())</span>
-<span id="cb41-42"><a href="#cb41-42" aria-hidden="true" tabindex="-1"></a><span class="fu">str_detect</span>(med_djok_df<span class="sc">$</span>point, <span class="at">pattern =</span> <span class="st">"</span><span class="sc">\\</span><span class="st">*"</span>)</span>
-<span id="cb41-43"><a href="#cb41-43" aria-hidden="true" tabindex="-1"></a><span class="fu">str_detect</span>(med_djok_df<span class="sc">$</span>point, <span class="at">pattern =</span> <span class="st">"^4"</span>)</span>
-<span id="cb41-44"><a href="#cb41-44" aria-hidden="true" tabindex="-1"></a><span class="fu">str_detect</span>(med_djok_df<span class="sc">$</span>point, <span class="at">pattern =</span> <span class="st">"@$"</span>)</span>
-<span id="cb41-45"><a href="#cb41-45" aria-hidden="true" tabindex="-1"></a><span class="fu">str_extract_all</span>(med_djok_df<span class="sc">$</span>point, <span class="at">pattern =</span> <span class="st">"f[:digit:]+"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>The purpose of these examples is just to show that things can get more complicated with strings.</p>
+<p><strong>Exercise 4</strong>. Use <code><a href="https://stringr.tidyverse.org/reference/str_detect.html">str_detect()</a></code> and the <code>dplyr</code> functions <code><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate()</a></code> and <code><a href="https://dplyr.tidyverse.org/reference/case_when.html">case_when()</a></code> to create a variable for <code>serve_location</code> that is either <code>"wide"</code> if the <code>point</code> starts with a <code>4</code>, <code>"body"</code> if the <code>point</code> starts with a <code>5</code>, and <code>"down the center"</code> if the <code>point</code> starts with a <code>6</code>.</p>
+</section></section><section id="practice" class="level2" data-number="13.3"><h2 data-number="13.3" class="anchored" data-anchor-id="practice">
+<span class="header-section-number">13.3</span> Practice</h2>
+<section id="class-exercises" class="level3" data-number="13.3.1"><h3 data-number="13.3.1" class="anchored" data-anchor-id="class-exercises">
+<span class="header-section-number">13.3.1</span> Class Exercises</h3>
+<p><strong>Class Exercise 1</strong>. We will use a provided .qmd file to replicate what is called a <strong>sentiment analysis</strong> on Trump’s twitter account from 2016. This analysis was used in conjunction with a major news story that hypothesized that Trump himself wrote tweets from an Android device while his campaign staff wrote tweets for him from an iPhone device. We will investigate what properties of his tweets led the author to believe this.</p>
+<p>The <code>.qmd</code> file used for this is posted on Canvas. We will see more uses of <code>stringr</code> for this particular analysis. For this entire section, you should be able to follow along and understand what each line of code is doing. However, unlike other topics, you will not be expected to do a sentiment analysis on your own.</p>
+</section><section id="your-turn" class="level3" data-number="13.3.2"><h3 data-number="13.3.2" class="anchored" data-anchor-id="your-turn">
+<span class="header-section-number">13.3.2</span> Your Turn</h3>
+<p><strong>Your Turn 1</strong>. Use <code>dplyr</code> functions and the <code>Serving</code> variable to count the number of serve locations for each player. (i.e.&nbsp;for how many points did Medvedev hit a serve out wide?).</p>
+<p><strong>Your Turn 2</strong>. Use <code>dplyr</code> functions, the <code>Serving</code> variable, and the <code>isSrvWinner</code> variable to find the proportion of points each player won for each of their serving locations (i.e.&nbsp;if Medvedev won 5 points while serving out wide and lost 3 points, the proportion would be 5 / 8 = <code>0.625</code>).</p>
+<div class="callout-note callout callout-style-simple callout-captioned">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
 </div>
+<div class="callout-caption-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The <code>isSrvWinner</code> variable is coded as a <code>1</code> if the serving player won the point and <code>0</code> if the serving player lost the point.</p>
+</div>
+</div>
+<p><strong>Your Turn 3</strong>. The letters <code>v</code>, <code>z</code>, <code>i</code>, and <code>k</code> denote volleys (of different types). Use <code><a href="https://stringr.tidyverse.org/reference/str_detect.html">str_detect()</a></code> and <code>dplyr</code> functions to figure out the proportion of points where a volley was hit.</p>
 
 
-</section>
-
-</main> <!-- /main -->
-<script id="quarto-html-after-body" type="application/javascript">
+</section></section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
     const mode = bsSheetEl.getAttribute("data-mode");
@@ -893,9 +803,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     });
   }
 });
-</script>
-<nav class="page-navigation">
-  <div class="nav-page nav-page-previous">
+</script><nav class="page-navigation"><div class="nav-page nav-page-previous">
       <a href="./11-lubridate.html" class="pagination-link">
         <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Dates with <code>lubridate</code></span></span>
       </a>          
@@ -907,13 +815,11 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   </div>
 </nav>
 </div> <!-- /content -->
-<footer class="footer">
-  <div class="nav-footer">
+<footer class="footer"><div class="nav-footer">
     <div class="nav-footer-left">Course Materials were written by Matt Higham for STAT/DATA 234 at St.&nbsp;Lawrence University.</div>   
     <div class="nav-footer-right">This book was built with <a href="https://quarto.org/">Quarto</a>.</div>
   </div>
 </footer>
-
 
 
 </body></html>

@@ -1,0 +1,56 @@
+---
+title: "Student Advice (Fall 2022)"
+format: 
+  html:
+    self-contained: true
+---
+
+The following pieces of advice were submitted at the end of the semester by students taking this class in the Fall of 2022. The prompt for students was "What advice would you give someone taking this course next fall?" The advice given was not anonymous to me (this was part of a small graded assignment), but I have not edited any of their responses.
+
+* Some advice I’d give is to not be afraid to ask for help! There are so many awesome resources on campus including the PQRC. Even though it seems kind of intimidating, they are very nice and very helpful there.
+
+* I would tell someone taking this course next year to stay on top of all the work and start it way ahead of when it is due. It is really easy to get behind and since the quizzes and projects are very details oriented they are not things that you can do last minute scrambling.
+
+* My advice would be to explore what functions are available in each of the packages we use outside of what we go over in class!
+
+* I would tell someone taking this course to draw out what they want. When you see something on paper it is a lot easier to try and figure out what to type out. I would also say to read over the materials bundle before quizzes so you know where to look during the quizzes.
+
+* I would tell future students to be organized with all the files 
+and handouts and go to office hours if confused. 
+
+* My advice to someone planning on taking this course (with this professor) in the future, is to absolutely do it and that learning coding is all about indexing.
+
+* Like I was told at the beginning of the semester, it gets much easier. After learning dplyr and tidyr, which I thought were the hardest, the rest of the concepts are easier/have less material. I came into the class with a solid base of R because I took 213. R is definitely intimidating at first but once you learn it, it is fine and actually implemented nicely.
+
+* Do not get distracted by whatever else is on your computer. You will fall behind so fast.
+
+* For students in future semesters I would recommend that they work very hard to stay on top of the material for the first few weeks. Obviously all material throughout the semester is important, though getting a grip on the material from the first couple units will be vital for the rest of the course.
+
+* For someone taking this course in the future, I would advise them to take their time on the take home quizzes. I found that the take home quizzes not only forced me to work to understand topics I was previously confused on, but also set me up for better results on the in class quizzes.
+
+* I’d say the most important thing is to stay on top of the coursework and to get stuff done earlier rather than later. Also, make sure you ask questions if you are struggling at all because you need to be efficient if you want to score well on the in-class quizzes.
+
+* Go to class everyday. Being in class and paying attention to every lesson makes this class so much easier and makes doing the assignments so much easier and quicker. It also ensures you are understanding all the material in class and provides time to get all your questions answered.
+
+* Really read the materials bundle as it holds almost all the info you need. Pay attention in class and take good notes.
+
+* My advice would be do not wait to do assignments the night before because you might need help on something. Just try and get everything done well before the due date to give yourself time to review and correct things if need be.
+
+* I would tell them to get head starts on the projects. It is easier to complete them early so that you have time to clean up your code and document so it can have a good finished product.
+
+* Do not underestimate the in-class quizzes, for some people you will have to prepare more diligently than simply completing the take home portion. Make sure you are comfortable with the new material and all of the previous material because you never know what is going to show up.
+
+* My advice would be to try and stay ahead on the work, try and complete assignments a day or two in advance not the day that it is due.  Completing and understanding the take home quizzes will help a ton when doing the in class quizzes.
+
+* The advice I would give to someone in the future is to not give up when things get hard and that the class does get better and easier once you understand the fundamentals of R studio.
+
+* To someone taking the class in the future, I would say that each section 
+has applications to future sections we will talk about. This means that if you have a good understanding of the previous section before you move on, you will likely find the new topics super easy and understand them well. If you are struggling with any sections before moving on to the next it will make each future section more difficult than it needs to be. Focus on getting each take home quiz right and make sure you have your dplyr functions down, and you should do very well in the class.
+
+* I would tell them to be prepared to memorise a lot of things even though there are cheatsheets. And also to take notes if you see codes that you don’t understand well and always look up on google or ask professors/ friends if you are stuck. You’re not the only one struggling!
+
+* I would reccomend staying organized and knowing when assignments are due.
+
+* I would say to definitely reread sections of the Course Materials Bundle in addition to reviewing your class notes code on the Take Home and before In Class quizzes. The bundle was extremely useful in terms of going over again what we went over in class and really getting what different functions do down in your head.
+
+

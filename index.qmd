@@ -9,9 +9,9 @@ Welcome! This is the course materials website for DATA / STAT 234. Though we wil
 -   Professor: Matt Higham
 -   Office: Bewkes 123
 -   Email: [mhigham\@stlawu.edu](mailto:mhigham@stlawu.edu){.email}
--   Semester: Fall 2022
+-   Semester: Fall 2023
 -   Sections:
-    -   MW 2:30 - 4:00
+    -   MW 12:50 - 2:20
 -   Office Hours: 15 minute slots bookable at <a href="https://calendly.com/mhigham/prof-higham-office-hours" target="_blank">my calendly page</a>.
     -   Note that you must book a time for office hours at least 12 hours in advance to guarantee that I am present and available at that time.
 
@@ -75,21 +75,23 @@ The components to your grade are described below:
 
 -   Modules
 
-Each week, you will submit a 60-point Module, consisting of the following:
+Aside from the first module (which has a unique structure), the modules in the course will be composed of either:
 
--   an **Exercise Set** (10 points): Due Mondays and usually from our <a href="https://highamm.github.io/datascience234/" target="_blank">STAT 234 Materials Bundle</a>. Exercises are graded for completion only and solutions are typically provided after you submit to Canvas. Collaboration is allowed.
--   a **Take-Home Quiz** (20 points): Due Wednesdays. Take-Home quizzes are graded for correctness. Collaboration is allowed.
--   an **In-Class Quiz** (30 points): Given on Wednesdays at the start of class. In-Class quizzes are graded for correctness. Collaboration is not allowed. Some questions on the in-class quiz will be based on exercises we complete in class, the exercise sets you complete, and the take-home quiz questions.
+1. An exercise set due on Monday (worth __10__ points), a take-home quiz due on Wednesday (worth __15__ points), and a handwritten in-class quiz on Wednesday (worth __50__ points). We should have 4 total modules follow this structure.
 
-There are 13 modules in total. In three modules, you will complete a 50-point Project instead of the two quizzes. The Project which will have some tasks for you to complete for a particular data set. The lowest module will be dropped from your grade so the total number of points available is `12 * 60 = 720` points.
+2. An exercise set due on Monday (worth __10__ points) and an in-class quiz taken on a computer on Wednesday (worth __65__ points). We should have 4 total modules follow this structure.
 
-Additionally, for one module, you are permitted to take the in-class quiz as a take-home and turn it in the following Monday. For this quiz, you must let me know that you are doing this before grades are posted, and you are not permitted to collaborate with anyone.
+3. An exercise set due on Monday (worth __10__ points) and a Project due Wednesday (worth __65__ points). We should have 3 total modules follow this structure.
+
+The lowest module will be dropped from your grade so the total number of points available from all modules is `11 * 75 = 825` points.
+
+Additionally, for __one__ module, you are permitted to complete whatever is due for that module late and turn it in by the following Monday. If there is an in-class quiz as part of the module, you should contact me via email to schedule a make-up time to take the quiz (again, this time should be scheduled before class on the following Monday). 
 
 Finally, if you choose to take the (optional) in-person final exam (described below), the score that you earn on that final will replace your second and third-lowest module scores.
 
--   Class
+-   Class Participation
 
-Class participation will be assessed three times throughout the semester in a 20 point rubric for a total of 60 points. The rubric used will be shared on the first day of class.
+Class participation will be assessed three times throughout the semester in a 25 point rubric for a total of 75 points. The rubric used will be shared on the first day of class.
 
 -   Final Project
 
@@ -97,20 +99,17 @@ There is one final project, worth 100 points. The primary purpose of the final p
 
 -   Final Exam
 
-There is an optional Final Exam, worth 120 points total. You **must** be on campus for our final exam time to take the final exam.
+There is an optional Final Exam. You **must** be on campus for our final exam time if you would like to take the optional final exam.
 
-There are two options for the final exam:
+If you take the final exam and if your final exam score percentage is better than your 2nd and 3rd lowest module grades, then they will be replaced with your final exam score. For example, suppose your 12 module scores are: `75, 75, 73, 73, 70, 70, 69, 68, 50, 44, 20, 0`. You take the final exam and score a `80% = 60 / 75`. Then, your new module scores would be: `75, 75, 73, 73, 70, 70, 69, 68, 50, 60, 60, 0`. The `0` would still be dropped as your lowest module score.
 
--   Option 1: Skip the final exam and assign the average percentage of your 12 highest modules to be your percentage score for the 120 point final. For example, suppose your 13 module scores are: `60, 60, 59, 58, 57, 53, 53, 53, 53, 45, 43, 30, 0`. Then, you would drop your lowest score (the `0`) and your score for the final would be: `(60 + 60 + 59 + 58 + 57 + 53 + 53 + 53 + 53 + 45 + 43 + 30 + 30) / 720 * 120` = `109 / 120` points.
-
--   Option 2: Take the final exam. Your score will be used for the 120 points devoted to the final exam. Additionally, if your final exam score is better than your 2nd and 3rd lowest module grades, the will be replaced with your final exam score. For example, suppose your 13 module scores are: `60, 60, 59, 58, 57, 53, 53, 53, 53, 45, 43, 30, 0`. You take the final exam and score a `110 / 120`. Then, your score for the final is `110 / 120` points and your new module scores would be: `60, 60, 59, 58, 57, 53, 53, 53, 53, 45, 55, 55, 0`. The `0` would still be dropped as your lowest module score.
+If you take the final exam and score worse than your 2nd and 3rd lowest module scores, then those scores will not be replaced.
 
 ### Breakdown
 
--   720 points for Modules
--   60 points for Class Participation
+-   825 points for Modules
+-   75 points for Class Participation
 -   100 points for the Final Project
--   120 points for the (optional) in-person Final Exam
 
 Points add up to 1000 so your grade at the end of the semester will be the number of points you've earned across all categories divided by 1000.
 
@@ -135,7 +134,8 @@ Collaboration with your classmates on exercises, take-home quizzes, and projects
 -   you must state the name(s) of who you collaborated with at the top of each assessment.
 -   all work must be your own. This means that you should **never** send someone your code via email or let someone directly type code off of your screen. Instead, you can talk about strategies for solving problems and help or ask someone about a coding error.
 -   you may use the Internet and StackExchange, but you also should not copy paste code directly from the website, without citing that you did so.
--   this isn't a rule, but keep in mind that collaboration is not permitted on quizzes, exams, and very limited collaboration will be permitted on the final project. Therefore, when working with someone, make sure that you are both really learning so that you both can have success on the non-collaborative assessments.
+-   for exercises and take-home quizzes, you may use ChatGPT (or other AI) to help with parts of problems, but you __must__ clearly state any queries you made to ChatGPT within your exercise set, project, or take-home quiz. Using ChatGPT (or other AI) without explicitly citing you did so is academic dishonesty.
+-   this isn't a rule, but keep in mind that collaboration and use of ChatGPT/AI is not permitted on in-class quizzes. Therefore, when working with someone, make sure that you are both really learning so that you both can have success on the non-collaborative assessments.
 
 ------------------------------------------------------------------------
 
@@ -196,23 +196,20 @@ It is important to work in a way that maximizes your learning. Be aware that stu
 
 | Week | Date    | Topics                                                      |
 |--------------|--------------|-------------------------------------------------|
-| 0    | 8/24    | Introduction to `R`, `R Studio`                             |
-| 1    | 8/29    | Graphics with `ggplot2`                                     |
-| 2    | 9/5     | Data Wrangling and Transformation with `dplyr`              |
-| 3    | 9/12    | Communication with `Quarto` and `ggplot2`                   |
-| 4    | 9/19    | Soft Skills and Workflow                                    |
-| 5    | 9/26\*  | Data Tidying with `tidyr`                                   |
-| 6    | 10/3    | Base `R`                                                    |
-|      |         |                                                             |
-| 7    | 10/10   | Factors with `forcats` and Data Ethics                      |
-| 8    | 10/17\* | Data Import with `readr`, `jsonlite`, `rvest`, and `tibble` |
-| 9    | 10/24   | Data Merging with `dplyr`                                   |
-| 10   | 10/31\* | Dates and Times with `lubridate`                            |
-| 11   | 11/7    | Text Data with `tidytext` and `stringr`                     |
-| 12   | 11/14   | Intro to Statistical/Machine Learning with knn              |
-|      |         |                                                             |
-| 13   | 11/21   | Thanksgiving Break                                          |
-| 14   | 11/28   | Connections to STAT and CS                                  |
-| 14   | 12/5    | Databases and SQL with `dbplyr`                             |
-
--   The three projects are tentatively scheduled to be due on September 28, October 19, and November 2, though these are subject to change.
+| 0    | 8/23    | Introduction to `R`, `R Studio`                             |
+| 1    | 8/28    | Graphics with `ggplot2`                                     |
+| 2    | 9/4     | Data Wrangling  with `dplyr`    
+   |
+| 3    | 9/11    | Communication with `Quarto` and `ggplot2`                   |
+| 4    | 9/18    | Soft Skills and Workflow                                    |
+| 5    | 9/25  | Data Tidying with `tidyr`                                   |
+| 6    | 10/2    | Base `R`                                                    |
+| 7    | 10/9   | Factors with `forcats` and Data Ethics                      |
+| 8    | 10/16 | Data Import with `readr`, `jsonlite`, `rvest`, and `tibble` |
+| 9    | 10/23   | Data Merging with `dplyr`                                   |
+| 10   | 10/30 | Dates and Times with `lubridate`                            |
+| 11   | 11/6    | Text Data with `tidytext` and `stringr`                     |
+| 12   | 11/13   | Intro to Statistical/Machine Learning with knn              |
+|     | 11/20   | Thanksgiving Break                                          |
+| 13   | 11/27   | Connections to STAT and CS                                  |
+| 14   | 12/4    | Databases and SQL with `dbplyr`                             |

@@ -1,0 +1,81 @@
+---
+title:  "`dplyr` Solutions (Second Part)"
+format: 
+  html:
+    self-contained: true
+execute:
+  echo: true
+  warning: false
+  fig-height: 3
+---
+
+```{r}
+library(tidyverse)
+slumajors_df <- read_csv(here::here("data/SLU_Majors_15_19.csv"))
+
+slumajors_df <- slumajors_df |>
+  mutate(ntotal = nfemales + nmales) |>
+  mutate(percfemale = 100 * nfemales / (nfemales + nmales))
+```
+
+__Exercise 1__. 
+
+```{r}
+slumajors_df |> 
+  mutate(major_size = if_else(ntotal >= 100,
+                              true = "large",
+                              false = "small"))
+```
+
+
+__Exercise 2__. Use `mutate()` with `case_when()` to create a new variable that is called `major_size2` and is `"large"` when the total number of majors is 150 or more, `"medium"` when the total number of majors is between 41 and 149 (inclusive), and `"small"` when the total number of majors is 40 or fewer.
+
+```{r}
+slumajors_df |> mutate(major_size2 = case_when(ntotal >= 150 ~ "large",
+                                               ntotal <= 149 & ntotal >= 41 ~ "medium",
+                                               ntotal <= 40 ~ "small"))
+```
+
+__Exercise 3__. 
+
+```{r}
+slumajors_df |> mutate(f_m_ratio = nfemales / nmales)
+```
+
+__Exercise 4__. Find the total number of females (`nfemales`) in the data set and the total number of males (`nmales`) in the data set.
+
+```{r}
+slumajors_df |> summarise(total_females = sum(nfemales),
+                          total_males = sum(nmales))
+```
+
+__Exercise 5__. 
+
+```{r}
+library(babynames)
+babynames |> group_by(name) |>
+  summarise(total_births = sum(n))
+```
+
+__Exercise 6__. With the `babynames` data set, use `group_by()` and `summarise()` (along with the counting function `n()`) to create a data set that has how many times each `name` appears in `babynames`.
+
+```{r}
+babynames |> group_by(name) |>
+  summarise(n_appear = n())
+```
+
+__Exercise 7__. `filter()` `toy_df` to keep only the rows where `z` is not missing.
+
+```{r}
+toy_df <- tibble(x = c(NA, 3, 4, 7),
+                 y = c(1, 4, 3, 2),
+                 z = c("A", "A", "B", NA))
+```
+
+```{r}
+toy_df |> filter(!is.na(z))
+```
+
+
+
+

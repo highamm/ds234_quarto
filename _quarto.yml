@@ -46,4 +46,8 @@ format:
     theme:
       - cosmo
       - ds234.scss
+    code-link: true
+    callout-appearance: simple
+
+
 

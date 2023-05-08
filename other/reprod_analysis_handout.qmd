@@ -1,0 +1,102 @@
+---
+title: "Section 5a: Introduction to Modeling"
+execute:
+  echo: false
+  warning: false
+output: 
+  html_document:
+    fig-height: 3
+---
+
+We will use the data from the STAT 113 survey at the beginning of the semester for this handout. In particular, we will model GPA at SLU (not necessarily first-year GPA) with no predictors.
+
+1. Write the population (unknown) model in terms of a response variable, the mean $\mu$, and the error $\epsilon$.
+
+<br>
+
+<br>
+
+<br>
+
+2. 
+
+```{r}
+library(tidyverse)
+library(pander)
+library(here)
+survey_df <- read_csv(here("data/survey_reprod_fall2021.csv"))
+ggplot(data = survey_df, aes(x = GPA)) +
+  geom_histogram(bins = 20, colour = "black", fill = "white") +
+  theme_bw()
+```
+
+```{r}
+summary_tab <- survey_df |>
+  summarise(mean = mean(GPA, na.rm = TRUE),
+            sd = sd(GPA, na.rm = TRUE),
+            n = sum(!is.na(GPA)))
+
+names(summary_tab) <- c("$\\hat{\\mu}$", "s", "n")
+pander(summary_tab)
+```
+
+Above is a table of some summary output for the variable GPA in the student survey as well as a histogram of the data. Using the table, write the fitted model for GPA with no predictors.
+
+<br>
+
+<br>
+
+<br>
+
+<br>
+
+<br>
+
+<br>
+
+3. Predict the GPA of a male student who plays a varsity sport on campus, owns a Mac, is a Sophomore, and has 3 siblings.
+
+<br>
+
+<br>
+
+<br>
+
+4. Predict the GPA of a male student who does not play a varsity sport on campus, owns a PC, is a Sophomore, and has 1 sibling.
+
+<br>
+
+<br>
+
+<br>
+
+5. Suppose that the student in (3) has a GPA of 2.5 (making this value up to have complete anonymity in the survey). Find the residual for this student. Based on the sign of the residual, is the model underpredicting or overpredicting the GPA for this student?
+
+<br>
+
+<br>
+
+<br>
+
+<br>
+
+<br>
+
+6. Suppose that the student in (4) has a GPA of 3.75 (making this value up to have complete anonymity in the survey). Find the residual for this student. Based on the sign of the residual, is the model underpredicting or overpredicting the GPA for this student?
+
+<br>
+
+<br>
+
+<br>
+
+<br>
+
+<br>
+
+7. The sample size is only `r summary_tab$n` students, but, there are a total of `r nrow(survey_df)` students who filled out the survey this semester. Therefore, many of the GPA values are missing data. Provide one possible reason for why there are so many missing values.
+
+<br>
+
+<br>
+

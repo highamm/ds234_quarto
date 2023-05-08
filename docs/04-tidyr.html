@@ -1,12 +1,9 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
-
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
 <meta name="generator" content="quarto-1.0.36">
-
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-
-
 <title>DATA / STAT 234 - 6&nbsp; Tidying with tidyr</title>
 <style>
 code{white-space: pre-wrap;}
@@ -80,7 +77,6 @@ code span.vs { color: #4070a0; } /* VerbatimString */
 code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
-
 <script src="site_libs/quarto-nav/quarto-nav.js"></script>
 <script src="site_libs/quarto-nav/headroom.min.js"></script>
 <script src="site_libs/clipboard/clipboard.min.js"></script>
@@ -98,8 +94,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
-<script id="quarto-search-options" type="application/json">{
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light"><script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
   "collapse-after": 3,
@@ -118,28 +113,19 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     "search-submit-button-title": "Submit"
   }
 }</script>
-
-
 </head>
-
 <body class="nav-sidebar floating">
 
 <div id="quarto-search-results"></div>
-  <header id="quarto-header" class="headroom fixed-top">
-  <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
-    <div class="container-fluid d-flex justify-content-between">
+  <header id="quarto-header" class="headroom fixed-top"><nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }"><div class="container-fluid d-flex justify-content-between">
       <h1 class="quarto-secondary-nav-title"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Tidying with <code>tidyr</code></span></h1>
       <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
         <i class="bi bi-chevron-right"></i>
       </button>
     </div>
-  </nav>
-</header>
-<!-- content -->
-<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+  </nav></header><!-- content --><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation floating overflow-auto">
-    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation floating overflow-auto"><div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
       <a href="./">DATA / STAT 234</a> 
         <div class="sidebar-tools-main">
@@ -158,7 +144,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       </div>
     <div class="sidebar-menu-container"> 
     <ul class="list-unstyled mt-1">
-        <li class="sidebar-item">
+<li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./index.html" class="sidebar-item-text sidebar-link">Syllabus and Course Information</a>
   </div>
@@ -170,10 +156,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
-          <li class="sidebar-item">
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">
+<li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./01-intro.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Getting Started with <code>R</code> and <code>R Studio</code></span></a>
+  <a href="./01-intro.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Getting Started</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -197,7 +183,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   </div>
 </li>
       </ul>
-  </li>
+</li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">Data Wrangling</a>
@@ -205,8 +191,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
-          <li class="sidebar-item">
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">
+<li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./04-tidyr.html" class="sidebar-item-text sidebar-link active"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Tidying with <code>tidyr</code></span></a>
   </div>
@@ -237,7 +223,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   </div>
 </li>
       </ul>
-  </li>
+</li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">Special Topics</a>
@@ -245,8 +231,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
-          <li class="sidebar-item">
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">
+<li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./11-lubridate.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Dates with <code>lubridate</code></span></a>
   </div>
@@ -272,47 +258,40 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   </div>
 </li>
       </ul>
-  </li>
+</li>
     </ul>
-    </div>
-</nav>
-<!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc">
-    <h2 id="toc-title">Table of contents</h2>
+</div>
+</nav><!-- margin-sidebar --><div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc"><h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#what-is-tidy-data" id="toc-what-is-tidy-data" class="nav-link active" data-scroll-target="#what-is-tidy-data"> <span class="header-section-number">6.1</span> What is Tidy Data?</a></li>
-  <li><a href="#separate-and-unite-columns" id="toc-separate-and-unite-columns" class="nav-link" data-scroll-target="#separate-and-unite-columns"> <span class="header-section-number">6.2</span> <code>separate()</code> and <code>unite()</code> Columns</a>
+<li><a href="#what-is-tidy-data" id="toc-what-is-tidy-data" class="nav-link active" data-scroll-target="#what-is-tidy-data"> <span class="header-section-number">6.1</span> What is Tidy Data?</a></li>
+  <li>
+<a href="#separate-and-unite-columns" id="toc-separate-and-unite-columns" class="nav-link" data-scroll-target="#separate-and-unite-columns"> <span class="header-section-number">6.2</span> <code>separate()</code> and <code>unite()</code> Columns</a>
   <ul class="collapse">
-  <li><a href="#separate-a-column" id="toc-separate-a-column" class="nav-link" data-scroll-target="#separate-a-column"> <span class="header-section-number">6.2.1</span> <code>separate()</code> a Column</a></li>
+<li><a href="#separate-a-column" id="toc-separate-a-column" class="nav-link" data-scroll-target="#separate-a-column"> <span class="header-section-number">6.2.1</span> <code>separate()</code> a Column</a></li>
   <li><a href="#unite-columns" id="toc-unite-columns" class="nav-link" data-scroll-target="#unite-columns"> <span class="header-section-number">6.2.2</span> <code>unite()</code> Columns</a></li>
   <li><a href="#column-names-and-rename" id="toc-column-names-and-rename" class="nav-link" data-scroll-target="#column-names-and-rename"> <span class="header-section-number">6.2.3</span> Column Names and <code>rename()</code></a></li>
-  <li><a href="#exercise-4-1" id="toc-exercise-4-1" class="nav-link" data-scroll-target="#exercise-4-1"> <span class="header-section-number">6.2.4</span> Exercises</a></li>
-  </ul></li>
-  <li><a href="#reshaping-with-pivot_" id="toc-reshaping-with-pivot_" class="nav-link" data-scroll-target="#reshaping-with-pivot_"> <span class="header-section-number">6.3</span> Reshaping with <code>pivot_()</code></a>
-  <ul class="collapse">
-  <li><a href="#pivot_longer-to-gather-columns" id="toc-pivot_longer-to-gather-columns" class="nav-link" data-scroll-target="#pivot_longer-to-gather-columns"> <span class="header-section-number">6.3.1</span> <code>pivot_longer()</code> to Gather Columns</a></li>
-  <li><a href="#pivot_wider-to-spread-to-multiple-columns" id="toc-pivot_wider-to-spread-to-multiple-columns" class="nav-link" data-scroll-target="#pivot_wider-to-spread-to-multiple-columns"> <span class="header-section-number">6.3.2</span> <code>pivot_wider()</code> to Spread to Multiple Columns</a></li>
-  <li><a href="#exercise-4-2" id="toc-exercise-4-2" class="nav-link" data-scroll-target="#exercise-4-2"> <span class="header-section-number">6.3.3</span> Exercises</a></li>
-  </ul></li>
-  <li><a href="#chapexercise-4" id="toc-chapexercise-4" class="nav-link" data-scroll-target="#chapexercise-4"> <span class="header-section-number">6.4</span> Chapter Exercises</a></li>
-  <li><a href="#solutions-4" id="toc-solutions-4" class="nav-link" data-scroll-target="#solutions-4"> <span class="header-section-number">6.5</span> Exercise Solutions</a>
-  <ul class="collapse">
-  <li><a href="#what-is-tidy-data-s" id="toc-what-is-tidy-data-s" class="nav-link" data-scroll-target="#what-is-tidy-data-s"> <span class="header-section-number">6.5.1</span> What is Tidy Data? S</a></li>
-  <li><a href="#separate-and-unite-s" id="toc-separate-and-unite-s" class="nav-link" data-scroll-target="#separate-and-unite-s"> <span class="header-section-number">6.5.2</span> <code>separate()</code> and <code>unite()</code> S</a></li>
-  <li><a href="#pivot_-s" id="toc-pivot_-s" class="nav-link" data-scroll-target="#pivot_-s"> <span class="header-section-number">6.5.3</span> <code>pivot_()</code> S</a></li>
-  <li><a href="#chapexercise-4-S" id="toc-chapexercise-4-S" class="nav-link" data-scroll-target="#chapexercise-4-S"> <span class="header-section-number">6.5.4</span> Chapter Exercises S</a></li>
-  </ul></li>
-  <li><a href="#rcode-4" id="toc-rcode-4" class="nav-link" data-scroll-target="#rcode-4"> <span class="header-section-number">6.6</span> Non-Exercise <code>R</code> Code</a></li>
   </ul>
-</nav>
+</li>
+  <li>
+<a href="#reshaping-with-pivot_" id="toc-reshaping-with-pivot_" class="nav-link" data-scroll-target="#reshaping-with-pivot_"> <span class="header-section-number">6.3</span> Reshaping with <code>pivot_()</code></a>
+  <ul class="collapse">
+<li><a href="#pivot_longer-to-gather-columns" id="toc-pivot_longer-to-gather-columns" class="nav-link" data-scroll-target="#pivot_longer-to-gather-columns"> <span class="header-section-number">6.3.1</span> <code>pivot_longer()</code> to Gather Columns</a></li>
+  <li><a href="#pivot_wider-to-spread-to-multiple-columns" id="toc-pivot_wider-to-spread-to-multiple-columns" class="nav-link" data-scroll-target="#pivot_wider-to-spread-to-multiple-columns"> <span class="header-section-number">6.3.2</span> <code>pivot_wider()</code> to Spread to Multiple Columns</a></li>
+  </ul>
+</li>
+  <li>
+<a href="#practice" id="toc-practice" class="nav-link" data-scroll-target="#practice"> <span class="header-section-number">6.4</span> Practice</a>
+  <ul class="collapse">
+<li><a href="#class-exercises" id="toc-class-exercises" class="nav-link" data-scroll-target="#class-exercises"> <span class="header-section-number">6.4.1</span> Class Exercises</a></li>
+  <li><a href="#your-turn" id="toc-your-turn" class="nav-link" data-scroll-target="#your-turn"> <span class="header-section-number">6.4.2</span> Your Turn</a></li>
+  </ul>
+</li>
+  </ul></nav>
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content">
-
-<header id="title-block-header" class="quarto-title-block default">
-<div class="quarto-title">
+<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><div class="quarto-title">
 <h1 class="title"><span id="tidyr" class="quarto-section-identifier d-none d-lg-block"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Tidying with <code>tidyr</code></span></span></h1>
 </div>
 
@@ -325,31 +304,52 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   </div>
   
 
-</header>
+</header><div class="cell">
 
-<!-- For a quiz: unheadr::AOEunits_raw -->
-<!-- For a quiz: smoothie data  -->
+</div>
 <p><strong>Goals:</strong></p>
 <ul>
 <li><p>describe what it means for a data set to be <strong>tidy</strong>.</p></li>
-<li><p>use <code>separate()</code> and <code>unite()</code> to transform a data set into tidy form.</p></li>
-<li><p>use <code>pivot_longer()</code> and <code>pivot_wider()</code> to transform a data set into tidy form.</p></li>
+<li><p>use <code><a href="https://tidyr.tidyverse.org/reference/separate.html">separate()</a></code> and <code><a href="https://tidyr.tidyverse.org/reference/unite.html">unite()</a></code> to transform a data set into tidy form.</p></li>
+<li><p>use <code><a href="https://tidyr.tidyverse.org/reference/pivot_longer.html">pivot_longer()</a></code> and <code><a href="https://tidyr.tidyverse.org/reference/pivot_wider.html">pivot_wider()</a></code> to transform a data set into tidy form.</p></li>
 <li><p>combine <code>tidyr</code> functions with <code>dplyr</code> and <code>ggplot2</code> functions to form a more complete workflow.</p></li>
 </ul>
 <p><strong>The Data</strong>: We will first use a polling data set that contains variables collected from a few different polls in July 2016 for the U.S. presidential election. The data set was scraped from RealClear politics <a href="https://www.realclearpolitics.com/epolls/latest_polls/president/" class="uri">https://www.realclearpolitics.com/epolls/latest_polls/president/</a> by Dr.&nbsp;Ramler. The variables are:</p>
 <ul>
-<li><code>Poll</code>, the name of the poll</li>
-<li><code>Date</code>, the date range that the poll was conducted</li>
-<li><code>Sample</code>, contains the sample size of the poll and whether the poll was of Likely Voters or Registered Voters</li>
-<li><code>MoE</code>, the margin of error of the poll (recall this term from IntroStat)</li>
-<li><code>Clinton (D)</code>, the percentage of people in the poll voting for Clinton</li>
-<li><code>Trump (R)</code>, the percentage of people in the poll voting for Trump</li>
-<li><code>Johnson (L)</code>, the percentage of people in the poll voting for Johnson</li>
-<li><code>Steing (G)</code>, the percentage of people in the poll voting for Stein</li>
+<li>
+<code>Poll</code>, the name of the poll</li>
+<li>
+<code>Date</code>, the date range that the poll was conducted</li>
+<li>
+<code>Sample</code>, contains the sample size of the poll and whether the poll was of Likely Voters or Registered Voters</li>
+<li>
+<code>MoE</code>, the margin of error of the poll (recall this term from IntroStat)</li>
+<li>
+<code>Clinton (D)</code>, the percentage of people in the poll voting for Clinton</li>
+<li>
+<code>Trump (R)</code>, the percentage of people in the poll voting for Trump</li>
+<li>
+<code>Johnson (L)</code>, the percentage of people in the poll voting for Johnson</li>
+<li>
+<code>Steing (G)</code>, the percentage of people in the poll voting for Stein</li>
 </ul>
-<section id="what-is-tidy-data" class="level2" data-number="6.1">
-<h2 data-number="6.1" class="anchored" data-anchor-id="what-is-tidy-data"><span class="header-section-number">6.1</span> What is Tidy Data?</h2>
-<p><code>R</code> usually (but not always) works best when your data is in tidy form. A tidy data set has a few characteristics. Note that you should already be quite familiar with tidy data because, up to this point, all of the data sets we have used in this class (and probably most of the data sets that you see in STAT 113 an all of the data sets that you may have seen in STAT 213) are tidy. This definition of tidy data is taken from <code>R for Data Science</code>:</p>
+<section id="what-is-tidy-data" class="level2" data-number="6.1"><h2 data-number="6.1" class="anchored" data-anchor-id="what-is-tidy-data">
+<span class="header-section-number">6.1</span> What is Tidy Data?</h2>
+<p><code>R</code> usually (but not always) works best when your data is in tidy form. A tidy data set has a few characteristics.</p>
+<div class="callout-note callout callout-style-simple callout-captioned">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>You should already be quite familiar with tidy data because, up to this point, all of the data sets we have used in this class (and probably most of the data sets that you see in STAT 113 an all of the data sets that you may have seen in STAT 213) are tidy.</p>
+</div>
+</div>
+<p>The definition of tidy data below is taken from <code>R for Data Science</code>:</p>
 <ol type="1">
 <li>every variable in the data set is stored in its own column</li>
 <li>every case in the data set is stored in its own row</li>
@@ -358,274 +358,229 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>there should not be any table headers or footnotes</li>
 </ol>
 <p>We will begin by focusing on the first characteristic: every variable in a the data set should be stored in its own column (and correspondingly, number 3: each value of a variable should be stored in one cell).</p>
-</section>
-<section id="separate-and-unite-columns" class="level2" data-number="6.2">
-<h2 data-number="6.2" class="anchored" data-anchor-id="separate-and-unite-columns"><span class="header-section-number">6.2</span> <code>separate()</code> and <code>unite()</code> Columns</h2>
+</section><section id="separate-and-unite-columns" class="level2" data-number="6.2"><h2 data-number="6.2" class="anchored" data-anchor-id="separate-and-unite-columns">
+<span class="header-section-number">6.2</span> <code>separate()</code> and <code>unite()</code> Columns</h2>
 <p>In a fresh .qmd file (File -&gt; New File -&gt; Quarto) that is in your Notes project, copy and paste the following code into an <code>R</code> chunk:</p>
 <div class="cell" data-appendix="true">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(here)</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>polls <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="fu">here</span>(<span class="st">"data/rcp-polls.csv"</span>), <span class="at">na =</span> <span class="st">"--"</span>)</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>polls</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 7 × 8
-  Poll                   Date       Sample   MoE Clint…¹ Trump…² Johns…³ Stein…⁴
-  &lt;chr&gt;                  &lt;chr&gt;      &lt;chr&gt;  &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;
-1 Monmouth               7/14 - 7/… 688 LV   3.7      45      43       5       1
-2 CNN/ORC                7/13 - 7/… 872 RV   3.5      42      37      13       5
-3 ABC News/Wash Post     7/11 - 7/… 816 RV   4        42      38       8       5
-4 NBC News/Wall St. Jrnl 7/9 - 7/13 1000 …   3.1      41      35      11       6
-5 Economist/YouGov       7/9 - 7/11 932 RV   4.5      40      37       5       2
-6 Associated Press-GfK   7/7 - 7/11 837 RV  NA        40      36       6       2
-7 McClatchy/Marist       7/5 - 7/9  1053 …   3        40      35      10       5
-# … with abbreviated variable names ¹​`Clinton (D)`, ²​`Trump (R)`,
-#   ³​`Johnson (L)`, ⁴​`Stein (G)`</code></pre>
-</div>
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://here.r-lib.org/">here</a></span><span class="op">)</span></span>
+<span><span class="va">polls</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv</a></span><span class="op">(</span><span class="fu"><a href="https://here.r-lib.org//reference/here.html">here</a></span><span class="op">(</span><span class="st">"data/rcp-polls.csv"</span><span class="op">)</span>, na <span class="op">=</span> <span class="st">"--"</span><span class="op">)</span></span>
+<span><span class="va">polls</span></span>
+<span><span class="co">#&gt; # A tibble: 7 × 8</span></span>
+<span><span class="co">#&gt;   Poll                   Date    Sample   MoE Clint…¹ Trump…² Johns…³ Stein…⁴</span></span>
+<span><span class="co">#&gt;   &lt;chr&gt;                  &lt;chr&gt;   &lt;chr&gt;  &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;</span></span>
+<span><span class="co">#&gt; 1 Monmouth               7/14 -… 688 LV   3.7      45      43       5       1</span></span>
+<span><span class="co">#&gt; 2 CNN/ORC                7/13 -… 872 RV   3.5      42      37      13       5</span></span>
+<span><span class="co">#&gt; 3 ABC News/Wash Post     7/11 -… 816 RV   4        42      38       8       5</span></span>
+<span><span class="co">#&gt; 4 NBC News/Wall St. Jrnl 7/9 - … 1000 …   3.1      41      35      11       6</span></span>
+<span><span class="co">#&gt; 5 Economist/YouGov       7/9 - … 932 RV   4.5      40      37       5       2</span></span>
+<span><span class="co">#&gt; 6 Associated Press-GfK   7/7 - … 837 RV  NA        40      36       6       2</span></span>
+<span><span class="co">#&gt; # … with 1 more row, and abbreviated variable names ¹​`Clinton (D)`,</span></span>
+<span><span class="co">#&gt; #   ²​`Trump (R)`, ³​`Johnson (L)`, ⁴​`Stein (G)`</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Suppose that you wanted to know what the average sample size of the polls was. Using <code>dplyr</code> functions,</p>
 <div class="cell" data-appendix="true">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>polls <span class="sc">|&gt;</span> <span class="fu">summarise</span>(<span class="at">meansample =</span> <span class="fu">mean</span>(Sample))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">polls</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise</a></span><span class="op">(</span>meansample <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">Sample</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>What warning do you get? Why?</p>
 <p>You would get a similar warning (or sometimes an error) any time that you want to try to use <code>Sample</code> size in plotting or summaries. The issue is that the <code>Sample</code> column actually contains two variables so the data set is not tidy.</p>
-<section id="separate-a-column" class="level3" data-number="6.2.1">
-<h3 data-number="6.2.1" class="anchored" data-anchor-id="separate-a-column"><span class="header-section-number">6.2.1</span> <code>separate()</code> a Column</h3>
-<p>Let’s <code>separate()</code> the two variables into <code>Sample_size</code> and <code>Sample_type</code>:</p>
+<section id="separate-a-column" class="level3" data-number="6.2.1"><h3 data-number="6.2.1" class="anchored" data-anchor-id="separate-a-column">
+<span class="header-section-number">6.2.1</span> <code>separate()</code> a Column</h3>
+<p>Let’s <code><a href="https://tidyr.tidyverse.org/reference/separate.html">separate()</a></code> the <code>Sample</code> column into <code>Sample_size</code> and <code>Sample_type</code>:</p>
 <div class="cell" data-appendix="true">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>polls <span class="sc">|&gt;</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">separate</span>(<span class="at">col =</span> Sample, <span class="at">into =</span> <span class="fu">c</span>(<span class="st">"Sample_size"</span>, <span class="st">"Sample_type"</span>), </span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>           <span class="at">sep =</span> <span class="st">" "</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 7 × 9
-  Poll               Date  Sampl…¹ Sampl…²   MoE Clint…³ Trump…⁴ Johns…⁵ Stein…⁶
-  &lt;chr&gt;              &lt;chr&gt; &lt;chr&gt;   &lt;chr&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;
-1 Monmouth           7/14… 688     LV        3.7      45      43       5       1
-2 CNN/ORC            7/13… 872     RV        3.5      42      37      13       5
-3 ABC News/Wash Post 7/11… 816     RV        4        42      38       8       5
-4 NBC News/Wall St.… 7/9 … 1000    RV        3.1      41      35      11       6
-5 Economist/YouGov   7/9 … 932     RV        4.5      40      37       5       2
-6 Associated Press-… 7/7 … 837     RV       NA        40      36       6       2
-7 McClatchy/Marist   7/5 … 1053    RV        3        40      35      10       5
-# … with abbreviated variable names ¹​Sample_size, ²​Sample_type, ³​`Clinton (D)`,
-#   ⁴​`Trump (R)`, ⁵​`Johnson (L)`, ⁶​`Stein (G)`</code></pre>
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">polls</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://tidyr.tidyverse.org/reference/separate.html">separate</a></span><span class="op">(</span>col <span class="op">=</span> <span class="va">Sample</span>, into <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Sample_size"</span>, <span class="st">"Sample_type"</span><span class="op">)</span>, </span>
+<span>           sep <span class="op">=</span> <span class="st">" "</span><span class="op">)</span></span>
+<span><span class="co">#&gt; # A tibble: 7 × 9</span></span>
+<span><span class="co">#&gt;   Poll            Date  Sampl…¹ Sampl…²   MoE Clint…³ Trump…⁴ Johns…⁵ Stein…⁶</span></span>
+<span><span class="co">#&gt;   &lt;chr&gt;           &lt;chr&gt; &lt;chr&gt;   &lt;chr&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;</span></span>
+<span><span class="co">#&gt; 1 Monmouth        7/14… 688     LV        3.7      45      43       5       1</span></span>
+<span><span class="co">#&gt; 2 CNN/ORC         7/13… 872     RV        3.5      42      37      13       5</span></span>
+<span><span class="co">#&gt; 3 ABC News/Wash … 7/11… 816     RV        4        42      38       8       5</span></span>
+<span><span class="co">#&gt; 4 NBC News/Wall … 7/9 … 1000    RV        3.1      41      35      11       6</span></span>
+<span><span class="co">#&gt; 5 Economist/YouG… 7/9 … 932     RV        4.5      40      37       5       2</span></span>
+<span><span class="co">#&gt; 6 Associated Pre… 7/7 … 837     RV       NA        40      36       6       2</span></span>
+<span><span class="co">#&gt; # … with 1 more row, and abbreviated variable names ¹​Sample_size,</span></span>
+<span><span class="co">#&gt; #   ²​Sample_type, ³​`Clinton (D)`, ⁴​`Trump (R)`, ⁵​`Johnson (L)`, ⁶​`Stein (G)`</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</div>
-<p>The arguments to <code>separate()</code> are fairly easy to learn:</p>
+<p>The arguments to <code><a href="https://tidyr.tidyverse.org/reference/separate.html">separate()</a></code> are fairly easy to learn:</p>
 <ul>
 <li><p><code>col</code> is the name of the column in the data set you want to separate.</p></li>
-<li><p><code>into</code> is the name of the new columns. These could be anything you want, and are entered in as a vector (with <code>c()</code> to separate the names)</p></li>
+<li><p><code>into</code> is the name of the new columns. These could be anything you want, and are entered in as a vector (with <code><a href="https://rdrr.io/r/base/c.html">c()</a></code> to separate the names)</p></li>
 <li><p><code>sep</code> is the character that you want to separate the column by. In this case, the sample size and sample type were separated by whitespace, so our <code>sep = " "</code>, white space.</p></li>
 </ul>
-<p>The <code>sep</code> argument is the newest piece of information here. Note that even using <code>sep = ""</code> will produce an error (there is not a space now, so <code>R</code> doesn’t know what to separate by).</p>
+<p>The <code>sep</code> argument is the newest piece of information here.</p>
+<p>Note that even using <code>sep = ""</code> will produce an error (there is not a space now, so <code>R</code> doesn’t know what to separate by):</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>polls <span class="sc">|&gt;</span></span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">separate</span>(<span class="at">col =</span> Sample, <span class="at">into =</span> <span class="fu">c</span>(<span class="st">"Sample_size"</span>, <span class="st">"Sample_type"</span>), </span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>           <span class="at">sep =</span> <span class="st">""</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">polls</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://tidyr.tidyverse.org/reference/separate.html">separate</a></span><span class="op">(</span>col <span class="op">=</span> <span class="va">Sample</span>, into <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Sample_size"</span>, <span class="st">"Sample_type"</span><span class="op">)</span>, </span>
+<span>           sep <span class="op">=</span> <span class="st">""</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Similarly, we would like the <code>Date</code> column to be separated into a poll start date and a poll end date:</p>
 <div class="cell" data-appendix="true">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>polls_sep <span class="ot">&lt;-</span> polls <span class="sc">|&gt;</span></span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">separate</span>(<span class="at">col =</span> Date, <span class="at">into =</span> <span class="fu">c</span>(<span class="st">"Start"</span>, <span class="st">"End"</span>),</span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>           <span class="at">sep =</span> <span class="st">" - "</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">polls_sep</span> <span class="op">&lt;-</span> <span class="va">polls</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://tidyr.tidyverse.org/reference/separate.html">separate</a></span><span class="op">(</span>col <span class="op">=</span> <span class="va">Date</span>, into <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Start"</span>, <span class="st">"End"</span><span class="op">)</span>,</span>
+<span>           sep <span class="op">=</span> <span class="st">" - "</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Why should you use <code>" - "</code> as the separator instead of <code>"-"</code>? Try using <code>"-"</code> if you aren’t sure: you shouldn’t get an error but something should look off.</p>
-<p>What happened to <code>Sample</code>? Why is it back to its un-separated form?</p>
-</section>
-<section id="unite-columns" class="level3" data-number="6.2.2">
-<h3 data-number="6.2.2" class="anchored" data-anchor-id="unite-columns"><span class="header-section-number">6.2.2</span> <code>unite()</code> Columns</h3>
-<p><code>unite()</code> is the “opposite” of <code>separate()</code>: use it when one variable is stored across multiple columns, but each row still represents a single case. The need to use <code>unite()</code> is less common than <code>separate()</code>. In our current data set, there is no need to use it at all. But, for the sake of seeing an example, let’s separate the <code>Start</code> date into <code>month</code> and <code>day</code> and then use <code>unite()</code> to re-unite those columns:</p>
+</section><section id="unite-columns" class="level3" data-number="6.2.2"><h3 data-number="6.2.2" class="anchored" data-anchor-id="unite-columns">
+<span class="header-section-number">6.2.2</span> <code>unite()</code> Columns</h3>
+<p><code><a href="https://tidyr.tidyverse.org/reference/unite.html">unite()</a></code> is the “opposite” of <code><a href="https://tidyr.tidyverse.org/reference/separate.html">separate()</a></code>: use it when one variable is stored across multiple columns, but each row still represents a single case. The need to use <code><a href="https://tidyr.tidyverse.org/reference/unite.html">unite()</a></code> is less common than <code><a href="https://tidyr.tidyverse.org/reference/separate.html">separate()</a></code>. In our current data set, there is no need to use it at all. But, for the sake of seeing an example, let’s separate the <code>Start</code> date into <code>month</code> and <code>day</code> and then use <code><a href="https://tidyr.tidyverse.org/reference/unite.html">unite()</a></code> to re-unite those columns:</p>
 <div class="cell" data-appendix="true">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>polls_sillytest <span class="ot">&lt;-</span> polls_sep <span class="sc">|&gt;</span></span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">separate</span>(<span class="at">col =</span> Start, <span class="at">into =</span> <span class="fu">c</span>(<span class="st">"Start_month"</span>, <span class="st">"Start_day"</span>), </span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>           <span class="at">sep =</span> <span class="st">"/"</span>)</span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>polls_sillytest</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 7 × 10
-  Poll        Start…¹ Start…² End   Sample   MoE Clint…³ Trump…⁴ Johns…⁵ Stein…⁶
-  &lt;chr&gt;       &lt;chr&gt;   &lt;chr&gt;   &lt;chr&gt; &lt;chr&gt;  &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;
-1 Monmouth    7       14      7/16  688 LV   3.7      45      43       5       1
-2 CNN/ORC     7       13      7/16  872 RV   3.5      42      37      13       5
-3 ABC News/W… 7       11      7/14  816 RV   4        42      38       8       5
-4 NBC News/W… 7       9       7/13  1000 …   3.1      41      35      11       6
-5 Economist/… 7       9       7/11  932 RV   4.5      40      37       5       2
-6 Associated… 7       7       7/11  837 RV  NA        40      36       6       2
-7 McClatchy/… 7       5       7/9   1053 …   3        40      35      10       5
-# … with abbreviated variable names ¹​Start_month, ²​Start_day, ³​`Clinton (D)`,
-#   ⁴​`Trump (R)`, ⁵​`Johnson (L)`, ⁶​`Stein (G)`</code></pre>
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">polls_sillytest</span> <span class="op">&lt;-</span> <span class="va">polls_sep</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://tidyr.tidyverse.org/reference/separate.html">separate</a></span><span class="op">(</span>col <span class="op">=</span> <span class="va">Start</span>, into <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Start_month"</span>, <span class="st">"Start_day"</span><span class="op">)</span>, </span>
+<span>           sep <span class="op">=</span> <span class="st">"/"</span><span class="op">)</span></span>
+<span><span class="va">polls_sillytest</span></span>
+<span><span class="co">#&gt; # A tibble: 7 × 10</span></span>
+<span><span class="co">#&gt;   Poll     Start…¹ Start…² End   Sample   MoE Clint…³ Trump…⁴ Johns…⁵ Stein…⁶</span></span>
+<span><span class="co">#&gt;   &lt;chr&gt;    &lt;chr&gt;   &lt;chr&gt;   &lt;chr&gt; &lt;chr&gt;  &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;</span></span>
+<span><span class="co">#&gt; 1 Monmouth 7       14      7/16  688 LV   3.7      45      43       5       1</span></span>
+<span><span class="co">#&gt; 2 CNN/ORC  7       13      7/16  872 RV   3.5      42      37      13       5</span></span>
+<span><span class="co">#&gt; 3 ABC New… 7       11      7/14  816 RV   4        42      38       8       5</span></span>
+<span><span class="co">#&gt; 4 NBC New… 7       9       7/13  1000 …   3.1      41      35      11       6</span></span>
+<span><span class="co">#&gt; 5 Economi… 7       9       7/11  932 RV   4.5      40      37       5       2</span></span>
+<span><span class="co">#&gt; 6 Associa… 7       7       7/11  837 RV  NA        40      36       6       2</span></span>
+<span><span class="co">#&gt; # … with 1 more row, and abbreviated variable names ¹​Start_month,</span></span>
+<span><span class="co">#&gt; #   ²​Start_day, ³​`Clinton (D)`, ⁴​`Trump (R)`, ⁵​`Johnson (L)`, ⁶​`Stein (G)`</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</div>
-<p>This situation could occur in practice: the date variable is in multiple columns: one for month and one for day (and if there are multiple years, there could be a third for year). We would use <code>unite()</code> to combine these two columns into a single <code>Date</code>, called <code>New_start_date</code>:</p>
+<p>This situation could occur in practice: for example, the date variable may be in multiple columns, one for month and one for day (and if there are multiple years, there could be a third for year). We would use <code><a href="https://tidyr.tidyverse.org/reference/unite.html">unite()</a></code> to combine these two columns into a single <code>Date</code>, called <code>New_start_date</code>:</p>
 <div class="cell" data-appendix="true">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>polls_sillytest <span class="sc">|&gt;</span></span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">unite</span>(<span class="st">"New_start_date"</span>, <span class="fu">c</span>(Start_month, Start_day),</span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>        <span class="at">sep =</span> <span class="st">"/"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 7 × 9
-  Poll                New_s…¹ End   Sample   MoE Clint…² Trump…³ Johns…⁴ Stein…⁵
-  &lt;chr&gt;               &lt;chr&gt;   &lt;chr&gt; &lt;chr&gt;  &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;
-1 Monmouth            7/14    7/16  688 LV   3.7      45      43       5       1
-2 CNN/ORC             7/13    7/16  872 RV   3.5      42      37      13       5
-3 ABC News/Wash Post  7/11    7/14  816 RV   4        42      38       8       5
-4 NBC News/Wall St. … 7/9     7/13  1000 …   3.1      41      35      11       6
-5 Economist/YouGov    7/9     7/11  932 RV   4.5      40      37       5       2
-6 Associated Press-G… 7/7     7/11  837 RV  NA        40      36       6       2
-7 McClatchy/Marist    7/5     7/9   1053 …   3        40      35      10       5
-# … with abbreviated variable names ¹​New_start_date, ²​`Clinton (D)`,
-#   ³​`Trump (R)`, ⁴​`Johnson (L)`, ⁵​`Stein (G)`</code></pre>
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">polls_sillytest</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://tidyr.tidyverse.org/reference/unite.html">unite</a></span><span class="op">(</span><span class="st">"New_start_date"</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="va">Start_month</span>, <span class="va">Start_day</span><span class="op">)</span>,</span>
+<span>        sep <span class="op">=</span> <span class="st">"/"</span><span class="op">)</span></span>
+<span><span class="co">#&gt; # A tibble: 7 × 9</span></span>
+<span><span class="co">#&gt;   Poll             New_s…¹ End   Sample   MoE Clint…² Trump…³ Johns…⁴ Stein…⁵</span></span>
+<span><span class="co">#&gt;   &lt;chr&gt;            &lt;chr&gt;   &lt;chr&gt; &lt;chr&gt;  &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;</span></span>
+<span><span class="co">#&gt; 1 Monmouth         7/14    7/16  688 LV   3.7      45      43       5       1</span></span>
+<span><span class="co">#&gt; 2 CNN/ORC          7/13    7/16  872 RV   3.5      42      37      13       5</span></span>
+<span><span class="co">#&gt; 3 ABC News/Wash P… 7/11    7/14  816 RV   4        42      38       8       5</span></span>
+<span><span class="co">#&gt; 4 NBC News/Wall S… 7/9     7/13  1000 …   3.1      41      35      11       6</span></span>
+<span><span class="co">#&gt; 5 Economist/YouGov 7/9     7/11  932 RV   4.5      40      37       5       2</span></span>
+<span><span class="co">#&gt; 6 Associated Pres… 7/7     7/11  837 RV  NA        40      36       6       2</span></span>
+<span><span class="co">#&gt; # … with 1 more row, and abbreviated variable names ¹​New_start_date,</span></span>
+<span><span class="co">#&gt; #   ²​`Clinton (D)`, ³​`Trump (R)`, ⁴​`Johnson (L)`, ⁵​`Stein (G)`</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="callout-note callout callout-style-simple callout-captioned">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+Note
 </div>
 </div>
-<p>Note how <code>unite()</code> just switches around the first two arguments of <code>separate()</code>. Argument 1 is now the name of the new column and Argument 2 is the names of columns in the data set that you want to combine.</p>
-<p>We have also used the <code>c()</code> function in <code>separate()</code> and <code>unite()</code>. While <code>c()</code> is a very general <code>R</code> function and isn’t specific to tidy data, this is the first time that we’re seeing it in this course. <code>c()</code> officially stands for concatenate, but, in simpler terms, <code>c()</code> combines two or more “things”, separated by a comma.</p>
+<div class="callout-body-container callout-body">
+<p><code><a href="https://tidyr.tidyverse.org/reference/unite.html">unite()</a></code> just switches around the first two arguments of <code><a href="https://tidyr.tidyverse.org/reference/separate.html">separate()</a></code>. Argument 1 is now the name of the new column and Argument 2 is the names of columns in the data set that you want to combine.</p>
+</div>
+</div>
+<p>We have also used the <code><a href="https://rdrr.io/r/base/c.html">c()</a></code> function in <code><a href="https://tidyr.tidyverse.org/reference/separate.html">separate()</a></code> and <code><a href="https://tidyr.tidyverse.org/reference/unite.html">unite()</a></code>. While <code><a href="https://rdrr.io/r/base/c.html">c()</a></code> is a very general <code>R</code> function and isn’t specific to tidy data, this is the first time that we’re seeing it in this course. <code><a href="https://rdrr.io/r/base/c.html">c()</a></code> officially stands for concatenate, but, in simpler terms, <code><a href="https://rdrr.io/r/base/c.html">c()</a></code> combines two or more “things”, separated by a comma.</p>
 <div class="cell" data-appendix="true">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">4</span>, <span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 1 4 2</code></pre>
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">4</span>, <span class="fl">2</span><span class="op">)</span></span>
+<span><span class="co">#&gt; [1] 1 4 2</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"A"</span>, <span class="st">"A"</span>, <span class="st">"D"</span><span class="op">)</span></span>
+<span><span class="co">#&gt; [1] "A" "A" "D"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">c</span>(<span class="st">"A"</span>, <span class="st">"A"</span>, <span class="st">"D"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] "A" "A" "D"</code></pre>
-</div>
-</div>
-<p>This is useful if a function argument expects two or more “things”: for example, in <code>separate()</code>, the <code>into</code> argument requires two column names for this example. Those column names must be specified by combining the names together with <code>c()</code>.</p>
-</section>
-<section id="column-names-and-rename" class="level3" data-number="6.2.3">
-<h3 data-number="6.2.3" class="anchored" data-anchor-id="column-names-and-rename"><span class="header-section-number">6.2.3</span> Column Names and <code>rename()</code></h3>
+<p>This is useful if a function argument expects two or more “things”: for example, in <code><a href="https://tidyr.tidyverse.org/reference/separate.html">separate()</a></code>, the <code>into</code> argument requires two column names for this example. Those column names must be specified by combining the names together with <code><a href="https://rdrr.io/r/base/c.html">c()</a></code>.</p>
+</section><section id="column-names-and-rename" class="level3" data-number="6.2.3"><h3 data-number="6.2.3" class="anchored" data-anchor-id="column-names-and-rename">
+<span class="header-section-number">6.2.3</span> Column Names and <code>rename()</code>
+</h3>
 <p>You might have noticed that the columns with percentage of votes for Clinton, Trump, etc. are surrounded by backticks ` ` when you print <code>polls</code> or <code>polls_sep</code>:</p>
 <div class="cell" data-appendix="true">
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>polls_sep</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 7 × 9
-  Poll                  Start End   Sample   MoE Clint…¹ Trump…² Johns…³ Stein…⁴
-  &lt;chr&gt;                 &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;  &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;
-1 Monmouth              7/14  7/16  688 LV   3.7      45      43       5       1
-2 CNN/ORC               7/13  7/16  872 RV   3.5      42      37      13       5
-3 ABC News/Wash Post    7/11  7/14  816 RV   4        42      38       8       5
-4 NBC News/Wall St. Jr… 7/9   7/13  1000 …   3.1      41      35      11       6
-5 Economist/YouGov      7/9   7/11  932 RV   4.5      40      37       5       2
-6 Associated Press-GfK  7/7   7/11  837 RV  NA        40      36       6       2
-7 McClatchy/Marist      7/5   7/9   1053 …   3        40      35      10       5
-# … with abbreviated variable names ¹​`Clinton (D)`, ²​`Trump (R)`,
-#   ³​`Johnson (L)`, ⁴​`Stein (G)`</code></pre>
-</div>
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">polls_sep</span></span>
+<span><span class="co">#&gt; # A tibble: 7 × 9</span></span>
+<span><span class="co">#&gt;   Poll               Start End   Sample   MoE Clint…¹ Trump…² Johns…³ Stein…⁴</span></span>
+<span><span class="co">#&gt;   &lt;chr&gt;              &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;  &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;</span></span>
+<span><span class="co">#&gt; 1 Monmouth           7/14  7/16  688 LV   3.7      45      43       5       1</span></span>
+<span><span class="co">#&gt; 2 CNN/ORC            7/13  7/16  872 RV   3.5      42      37      13       5</span></span>
+<span><span class="co">#&gt; 3 ABC News/Wash Post 7/11  7/14  816 RV   4        42      38       8       5</span></span>
+<span><span class="co">#&gt; 4 NBC News/Wall St.… 7/9   7/13  1000 …   3.1      41      35      11       6</span></span>
+<span><span class="co">#&gt; 5 Economist/YouGov   7/9   7/11  932 RV   4.5      40      37       5       2</span></span>
+<span><span class="co">#&gt; 6 Associated Press-… 7/7   7/11  837 RV  NA        40      36       6       2</span></span>
+<span><span class="co">#&gt; # … with 1 more row, and abbreviated variable names ¹​`Clinton (D)`,</span></span>
+<span><span class="co">#&gt; #   ²​`Trump (R)`, ³​`Johnson (L)`, ⁴​`Stein (G)`</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>This happens because the column names have a space in them (this also would occur if the columns started with a number or had odd special characters in them). Then, any time you want to reference a variable, you need the include the backticks:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>polls_sep <span class="sc">|&gt;</span></span>
-<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">meanclinton =</span> <span class="fu">mean</span>(<span class="fu">Clinton</span> (D))) <span class="do">## throws an error</span></span>
-<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>polls_sep <span class="sc">|&gt;</span></span>
-<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">meanclinton =</span> <span class="fu">mean</span>(<span class="st">`</span><span class="at">Clinton (D)</span><span class="st">`</span>)) <span class="do">## backticks save the day!</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">polls_sep</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise</a></span><span class="op">(</span>meanclinton <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="fu">Clinton</span> <span class="op">(</span><span class="va">D</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="co">## throws an error</span></span>
+<span><span class="va">polls_sep</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise</a></span><span class="op">(</span>meanclinton <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">`Clinton (D)`</span><span class="op">)</span><span class="op">)</span> <span class="co">## backticks save the day!</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Having variable names with spaces doesn’t technically violate any principle of tidy data, but it can be quite annoying. Always using backticks can be a huge pain. We can rename variables easily with <code>rename()</code>, which just takes a series of <code>new_name = old_name</code> arguments.</p>
+<p>Having variable names with spaces doesn’t technically violate any principle of tidy data, but it can be quite annoying. Always using backticks can be a huge pain. We can rename variables easily with <code><a href="https://dplyr.tidyverse.org/reference/rename.html">rename()</a></code>, which just takes a series of <code>new_name = old_name</code> arguments.</p>
 <div class="cell" data-appendix="true">
-<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>polls_new <span class="ot">&lt;-</span> polls_sep <span class="sc">|&gt;</span></span>
-<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="at">Clinton_D =</span> <span class="st">`</span><span class="at">Clinton (D)</span><span class="st">`</span>, <span class="at">Trump_R =</span> <span class="st">`</span><span class="at">Trump (R)</span><span class="st">`</span>,</span>
-<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>         <span class="at">Johnson_L =</span> <span class="st">`</span><span class="at">Johnson (L)</span><span class="st">`</span>, <span class="at">Stein_G =</span> <span class="st">`</span><span class="at">Stein (G)</span><span class="st">`</span>)</span>
-<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>polls_new</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 7 × 9
-  Poll                  Start End   Sample   MoE Clint…¹ Trump_R Johns…² Stein_G
-  &lt;chr&gt;                 &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;  &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;
-1 Monmouth              7/14  7/16  688 LV   3.7      45      43       5       1
-2 CNN/ORC               7/13  7/16  872 RV   3.5      42      37      13       5
-3 ABC News/Wash Post    7/11  7/14  816 RV   4        42      38       8       5
-4 NBC News/Wall St. Jr… 7/9   7/13  1000 …   3.1      41      35      11       6
-5 Economist/YouGov      7/9   7/11  932 RV   4.5      40      37       5       2
-6 Associated Press-GfK  7/7   7/11  837 RV  NA        40      36       6       2
-7 McClatchy/Marist      7/5   7/9   1053 …   3        40      35      10       5
-# … with abbreviated variable names ¹​Clinton_D, ²​Johnson_L</code></pre>
+<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">polls_new</span> <span class="op">&lt;-</span> <span class="va">polls_sep</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/rename.html">rename</a></span><span class="op">(</span>Clinton_D <span class="op">=</span> <span class="va">`Clinton (D)`</span>, Trump_R <span class="op">=</span> <span class="va">`Trump (R)`</span>,</span>
+<span>         Johnson_L <span class="op">=</span> <span class="va">`Johnson (L)`</span>, Stein_G <span class="op">=</span> <span class="va">`Stein (G)`</span><span class="op">)</span></span>
+<span><span class="va">polls_new</span></span>
+<span><span class="co">#&gt; # A tibble: 7 × 9</span></span>
+<span><span class="co">#&gt;   Poll               Start End   Sample   MoE Clint…¹ Trump_R Johns…² Stein_G</span></span>
+<span><span class="co">#&gt;   &lt;chr&gt;              &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;  &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;</span></span>
+<span><span class="co">#&gt; 1 Monmouth           7/14  7/16  688 LV   3.7      45      43       5       1</span></span>
+<span><span class="co">#&gt; 2 CNN/ORC            7/13  7/16  872 RV   3.5      42      37      13       5</span></span>
+<span><span class="co">#&gt; 3 ABC News/Wash Post 7/11  7/14  816 RV   4        42      38       8       5</span></span>
+<span><span class="co">#&gt; 4 NBC News/Wall St.… 7/9   7/13  1000 …   3.1      41      35      11       6</span></span>
+<span><span class="co">#&gt; 5 Economist/YouGov   7/9   7/11  932 RV   4.5      40      37       5       2</span></span>
+<span><span class="co">#&gt; 6 Associated Press-… 7/7   7/11  837 RV  NA        40      36       6       2</span></span>
+<span><span class="co">#&gt; # … with 1 more row, and abbreviated variable names ¹​Clinton_D, ²​Johnson_L</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><code><a href="https://dplyr.tidyverse.org/reference/rename.html">rename()</a></code> can also be very useful if you have variable names that are very long to type out.</p>
+<div class="callout-note callout callout-style-simple callout-captioned">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+Note
 </div>
 </div>
-<p><code>rename()</code> can also be very useful if you have variable names that are very long to type out. <code>rename()</code> is actually from <code>dplyr</code>, not <code>tidyr</code>, but we didn’t have a need for it with any of the <code>dplyr</code> data sets.</p>
-</section>
-<section id="exercise-4-1" class="level3" data-number="6.2.4">
-<h3 data-number="6.2.4" class="anchored" data-anchor-id="exercise-4-1"><span class="header-section-number">6.2.4</span> Exercises</h3>
-<p>Exercises marked with an * indicate that the exercise has a solution at the end of the chapter at @ref(solutions-4).</p>
-<p>The MLB salary data set contains salaries on all 862 players in Major League Baseball in 2016. The data set was obtained from <a href="http://www.usatoday.com/sports/mlb/salaries/2016/player/all/" target="_blank">http://www.usatoday.com/sports/mlb/salaries/2016/player/all/</a></p>
-<ol type="1">
-<li>Read in the data using the following code chunk and write a sentence or two that explains why the data set is not tidy.</li>
-</ol>
+<div class="callout-body-container callout-body">
+<p><code><a href="https://dplyr.tidyverse.org/reference/rename.html">rename()</a></code> is actually from <code>dplyr</code>, not <code>tidyr</code>, but we did not have a need for it with any of the <code>dplyr</code> data sets.</p>
+</div>
+</div>
+<p>In the following exercises, use the toy data set to practice with <code><a href="https://tidyr.tidyverse.org/reference/separate.html">separate()</a></code> and <code><a href="https://tidyr.tidyverse.org/reference/unite.html">unite()</a></code>.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(here)</span>
-<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>baseball_df <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="fu">here</span>(<span class="st">"data/mlb2016.csv"</span>))</span>
-<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(baseball_df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 6 × 7
-  Name             Team  POS   Salary       Years        Total.Value   Avg.Ann…¹
-  &lt;chr&gt;            &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;        &lt;chr&gt;        &lt;chr&gt;         &lt;chr&gt;    
-1 Clayton Kershaw  LAD   SP    $ 33,000,000 7 (2014-20)  $ 215,000,000 $ 30,714…
-2 Zack Greinke     ARI   SP    $ 31,799,030 6 (2016-21)  $ 206,500,000 $ 34,416…
-3 David Price      BOS   SP    $ 30,000,000 7 (2016-22)  $ 217,000,000 $ 31,000…
-4 Miguel Cabrera   DET   1B    $ 28,000,000 10 (2014-23) $ 292,000,000 $ 29,200…
-5 Justin Verlander DET   SP    $ 28,000,000 7 (2013-19)  $ 180,000,000 $ 25,714…
-6 Yoenis Cespedes  NYM   CF    $ 27,328,046 3 (2016-18)  $ 75,000,000  $ 25,000…
-# … with abbreviated variable name ¹​Avg.Annual</code></pre>
+<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">toy_df</span> <span class="op">&lt;-</span> <span class="fu">tibble</span><span class="fu">::</span><span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble</a></span><span class="op">(</span>show <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Bojack Horseman: Netflix"</span>,</span>
+<span>                                  <span class="st">"VEEP: HBO"</span>,</span>
+<span>                                  <span class="st">"American Vandal: Netflix"</span>,</span>
+<span>                                  <span class="st">"Community: Peacock"</span><span class="op">)</span>,</span>
+<span>                         seasons <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"1-6"</span>, <span class="st">"1-7"</span>, <span class="st">"1-2"</span>, <span class="st">"1-6"</span><span class="op">)</span>,</span>
+<span>                         main_first <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Bojack"</span>, <span class="st">"Selina"</span>, <span class="st">"Peter"</span>, <span class="st">"Jeff"</span><span class="op">)</span>,</span>
+<span>                         main_last <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Horseman"</span>, <span class="st">"Meyer"</span>, <span class="st">"Molganado"</span>, <span class="st">"Winger"</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="va">toy_df</span></span>
+<span><span class="co">#&gt; # A tibble: 4 × 4</span></span>
+<span><span class="co">#&gt;   show                     seasons main_first main_last</span></span>
+<span><span class="co">#&gt;   &lt;chr&gt;                    &lt;chr&gt;   &lt;chr&gt;      &lt;chr&gt;    </span></span>
+<span><span class="co">#&gt; 1 Bojack Horseman: Netflix 1-6     Bojack     Horseman </span></span>
+<span><span class="co">#&gt; 2 VEEP: HBO                1-7     Selina     Meyer    </span></span>
+<span><span class="co">#&gt; 3 American Vandal: Netflix 1-2     Peter      Molganado</span></span>
+<span><span class="co">#&gt; 4 Community: Peacock       1-6     Jeff       Winger</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</div>
-<div class="cell">
-
-</div>
-<ol start="2" type="1">
-<li>* Tidy the data set just so that</li>
-</ol>
-<ul>
-<li><code>Duration</code> of the salary contract (currently given in the <code>Year</code> column) is in its own column</li>
-<li>the year range (also currently given in the <code>Year</code> column) is split into a variable called <code>Start</code> and a variable called <code>End</code> year that give the start and end years of the contract. You can still have special characters for now (like <code>(</code> and <code>)</code>) in the start and end year.</li>
-</ul>
-<div class="cell">
-
-</div>
-<ol start="3" type="1">
-<li>You should have received a warning message. What does this message mean? See if you can figure it out by typing <code>View(baseball_df)</code> in your console window and scrolling down to some of the rows that the warning mentions: 48, 59, 60, etc.</li>
-</ol>
-<div class="cell">
-
-</div>
-<ol start="4" type="1">
-<li>We won’t learn about <code>parse_number()</code> until <code>readr</code>, but the function is straightforward enough to mention here. It’s useful when you have extra characters in the values of a numeric variable (like a <code>$</code> or a <code>(</code>), but you just want to grab the actual number:</li>
-</ol>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>baseball_df <span class="ot">&lt;-</span> baseball_df <span class="sc">|&gt;</span></span>
-<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">Salary =</span> <span class="fu">parse_number</span>(Salary),</span>
-<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>         <span class="at">Total.Value =</span> <span class="fu">parse_number</span>(Total.Value),</span>
-<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>         <span class="at">Avg.Annual =</span> <span class="fu">parse_number</span>(Avg.Annual),</span>
-<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a>         <span class="at">Start =</span> <span class="fu">parse_number</span>(Start),</span>
-<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a>         <span class="at">End =</span> <span class="fu">parse_number</span>(End))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>Run the code above so that the parsing is saved to <code>baseball_df</code>.</p>
-<ol start="5" type="1">
-<li><p>* Using a function from <code>dplyr</code>. fix the <code>End</code> variable that you created so that, for example, the first observation is <code>2020</code> instead of just <code>20</code>.</p></li>
-<li><p>* <code>tidyr</code> is extremely useful, but it’s not glamorous. What you end up with is a data set that <code>ggplot2</code> and <code>dplyr</code> can use to do cool things. So, let’s do something with our tidy data set to make all that tidying a little worth it before moving on. Make a graphic that investigates how player <code>Salary</code> compares for different <code>POS</code>.</p></li>
-<li><p>* State the reason why making that plot would not have worked before we tidied the data set.</p></li>
-</ol>
-</section>
-</section>
-<section id="reshaping-with-pivot_" class="level2" data-number="6.3">
-<h2 data-number="6.3" class="anchored" data-anchor-id="reshaping-with-pivot_"><span class="header-section-number">6.3</span> Reshaping with <code>pivot_()</code></h2>
+<p><strong>Exercise 1</strong>. <code><a href="https://tidyr.tidyverse.org/reference/separate.html">separate()</a></code> the <code>show</code> variable into a column that has the TV show name and a column that has the name of the network.</p>
+<p><strong>Exercise 2</strong>. <code><a href="https://tidyr.tidyverse.org/reference/separate.html">separate()</a></code> the <code>seasons</code> variable into a column that has the starting season and a column that has the ending season.</p>
+<p><strong>Exercise 3</strong>. <code><a href="https://tidyr.tidyverse.org/reference/unite.html">unite()</a></code> the <code>main_first</code> and <code>main_last</code> columns into a new column that gives the full name of the main character, with their first and last names separated by a single space.</p>
+</section></section><section id="reshaping-with-pivot_" class="level2" data-number="6.3"><h2 data-number="6.3" class="anchored" data-anchor-id="reshaping-with-pivot_">
+<span class="header-section-number">6.3</span> Reshaping with <code>pivot_()</code>
+</h2>
 <p>We will continue to use the polling data set to introduce the pivoting functions and data reshaping. To make sure that we are all working with the same data set, run the following line of code:</p>
 <div class="cell" data-appendix="true">
-<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>polls_clean <span class="ot">&lt;-</span> polls <span class="sc">|&gt;</span></span>
-<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">separate</span>(<span class="at">col =</span> Sample, <span class="at">into =</span> <span class="fu">c</span>(<span class="st">"Sample_size"</span>, <span class="st">"Sample_type"</span>), </span>
-<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>           <span class="at">sep =</span> <span class="st">" "</span>)  <span class="sc">|&gt;</span></span>
-<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">separate</span>(<span class="at">col =</span> Date, <span class="at">into =</span> <span class="fu">c</span>(<span class="st">"Start"</span>, <span class="st">"End"</span>),</span>
-<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a>           <span class="at">sep =</span> <span class="st">" - "</span>) <span class="sc">|&gt;</span> </span>
-<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="at">Clinton_D =</span> <span class="st">`</span><span class="at">Clinton (D)</span><span class="st">`</span>, <span class="at">Trump_R =</span> <span class="st">`</span><span class="at">Trump (R)</span><span class="st">`</span>,</span>
-<span id="cb24-7"><a href="#cb24-7" aria-hidden="true" tabindex="-1"></a>         <span class="at">Johnson_L =</span> <span class="st">`</span><span class="at">Johnson (L)</span><span class="st">`</span>, <span class="at">Stein_G =</span> <span class="st">`</span><span class="at">Stein (G)</span><span class="st">`</span>)</span>
-<span id="cb24-8"><a href="#cb24-8" aria-hidden="true" tabindex="-1"></a>polls_clean</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 7 × 10
-  Poll         Start End   Sampl…¹ Sampl…²   MoE Clint…³ Trump_R Johns…⁴ Stein_G
-  &lt;chr&gt;        &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;   &lt;chr&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;
-1 Monmouth     7/14  7/16  688     LV        3.7      45      43       5       1
-2 CNN/ORC      7/13  7/16  872     RV        3.5      42      37      13       5
-3 ABC News/Wa… 7/11  7/14  816     RV        4        42      38       8       5
-4 NBC News/Wa… 7/9   7/13  1000    RV        3.1      41      35      11       6
-5 Economist/Y… 7/9   7/11  932     RV        4.5      40      37       5       2
-6 Associated … 7/7   7/11  837     RV       NA        40      36       6       2
-7 McClatchy/M… 7/5   7/9   1053    RV        3        40      35      10       5
-# … with abbreviated variable names ¹​Sample_size, ²​Sample_type, ³​Clinton_D,
-#   ⁴​Johnson_L</code></pre>
-</div>
+<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">polls_clean</span> <span class="op">&lt;-</span> <span class="va">polls</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://tidyr.tidyverse.org/reference/separate.html">separate</a></span><span class="op">(</span>col <span class="op">=</span> <span class="va">Sample</span>, into <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Sample_size"</span>, <span class="st">"Sample_type"</span><span class="op">)</span>, </span>
+<span>           sep <span class="op">=</span> <span class="st">" "</span><span class="op">)</span>  <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://tidyr.tidyverse.org/reference/separate.html">separate</a></span><span class="op">(</span>col <span class="op">=</span> <span class="va">Date</span>, into <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Start"</span>, <span class="st">"End"</span><span class="op">)</span>,</span>
+<span>           sep <span class="op">=</span> <span class="st">" - "</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/rename.html">rename</a></span><span class="op">(</span>Clinton_D <span class="op">=</span> <span class="va">`Clinton (D)`</span>, Trump_R <span class="op">=</span> <span class="va">`Trump (R)`</span>,</span>
+<span>         Johnson_L <span class="op">=</span> <span class="va">`Johnson (L)`</span>, Stein_G <span class="op">=</span> <span class="va">`Stein (G)`</span><span class="op">)</span></span>
+<span><span class="va">polls_clean</span></span>
+<span><span class="co">#&gt; # A tibble: 7 × 10</span></span>
+<span><span class="co">#&gt;   Poll      Start End   Sampl…¹ Sampl…²   MoE Clint…³ Trump_R Johns…⁴ Stein_G</span></span>
+<span><span class="co">#&gt;   &lt;chr&gt;     &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;   &lt;chr&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;</span></span>
+<span><span class="co">#&gt; 1 Monmouth  7/14  7/16  688     LV        3.7      45      43       5       1</span></span>
+<span><span class="co">#&gt; 2 CNN/ORC   7/13  7/16  872     RV        3.5      42      37      13       5</span></span>
+<span><span class="co">#&gt; 3 ABC News… 7/11  7/14  816     RV        4        42      38       8       5</span></span>
+<span><span class="co">#&gt; 4 NBC News… 7/9   7/13  1000    RV        3.1      41      35      11       6</span></span>
+<span><span class="co">#&gt; 5 Economis… 7/9   7/11  932     RV        4.5      40      37       5       2</span></span>
+<span><span class="co">#&gt; 6 Associat… 7/7   7/11  837     RV       NA        40      36       6       2</span></span>
+<span><span class="co">#&gt; # … with 1 more row, and abbreviated variable names ¹​Sample_size,</span></span>
+<span><span class="co">#&gt; #   ²​Sample_type, ³​Clinton_D, ⁴​Johnson_L</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>The data set <code>polls_clean</code> <strong>still</strong> isn’t tidy!! The <code>candidate</code> variable is spread out over 4 different columns and the values in each of these 4 columns actually represent 1 variable: poll percentage.</p>
 <p>Thinking about data “tidyness” using the definitions above can sometimes be a little bit confusing. In practice, oftentimes we will usually realize that a data set is untidy when we go to do something that should be super simple but that something turns out to not be super simple at all when the data is in its current form.</p>
@@ -633,608 +588,266 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Take a moment to think about how you would make this graph in <code>ggplot2</code>: what is your x-axis variable? What variable are you specifying for the y-axis? For the colours?</p>
 <p>A first attempt in making a graph would be:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> polls_clean, <span class="fu">aes</span>(<span class="at">x =</span> Start, <span class="at">y =</span> Clinton_D)) <span class="sc">+</span> </span>
-<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">colour =</span> ....??????????))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> polls_clean, <span class="fu">aes</span>(<span class="at">x =</span> Start, <span class="at">y =</span> Clinton_D)) <span class="sc">+</span> </span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">colour =</span> ....??????????))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>And we’re stuck. It’s certainly not impossible to make the graph with the data in its current form (keep adding <code>geom_point()</code> and re-specifying the aesthetics, then manually specify colours, then manually specify a legend), but it’s definitely a huge pain.</p>
-<p>This is where <code>pivot_longer()</code> can help! <a href="https://www.youtube.com/watch?v=8w3wmQAMoxQ" target="_blank">https://www.youtube.com/watch?v=8w3wmQAMoxQ</a></p>
-<section id="pivot_longer-to-gather-columns" class="level3" data-number="6.3.1">
-<h3 data-number="6.3.1" class="anchored" data-anchor-id="pivot_longer-to-gather-columns"><span class="header-section-number">6.3.1</span> <code>pivot_longer()</code> to Gather Columns</h3>
-<p><code>pivot_longer()</code> “pivots” the data set so that is has more rows (hence the “longer”) by collapsing multiple columns into two columns. One new column is a “key” column, which is the new variable containing the old data set’s column names. The second new column is a “value” column, which is the new variable containing the old data set’s values for each of the old data set’s column names. It’s easier to see this with an example. We know from our plotting exercise above that we’d really like a <code>candidate</code> variable to colour by and a <code>poll_percent</code> variable for the y-axis of our plot. So, we can use <code>pivot_longer()</code> to make these two columns:</p>
+<p>And we’re stuck. It’s certainly not impossible to make the graph with the data in its current form (keep adding <code><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point()</a></code> and re-specifying the aesthetics, then manually specify colours, then manually specify a legend), but it’s definitely a huge pain.</p>
+<p>This is where <code><a href="https://tidyr.tidyverse.org/reference/pivot_longer.html">pivot_longer()</a></code> can help! <a href="https://www.youtube.com/watch?v=8w3wmQAMoxQ" target="_blank">https://www.youtube.com/watch?v=8w3wmQAMoxQ</a></p>
+<section id="pivot_longer-to-gather-columns" class="level3" data-number="6.3.1"><h3 data-number="6.3.1" class="anchored" data-anchor-id="pivot_longer-to-gather-columns">
+<span class="header-section-number">6.3.1</span> <code>pivot_longer()</code> to Gather Columns</h3>
+<p><code><a href="https://tidyr.tidyverse.org/reference/pivot_longer.html">pivot_longer()</a></code> “pivots” the data set so that is has more rows (hence the “longer”) by collapsing multiple columns into two columns. One new column is a “key” column, which is the new variable containing the old data set’s column names. The second new column is a “value” column, which is the new variable containing the old data set’s values for each of the old data set’s column names. It’s easier to see this with an example. We know from our plotting exercise above that we’d really like a <code>candidate</code> variable to colour by and a <code>poll_percent</code> variable for the y-axis of our plot. So, we can use <code><a href="https://tidyr.tidyverse.org/reference/pivot_longer.html">pivot_longer()</a></code> to make these two columns:</p>
 <div class="cell" data-appendix="true">
-<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>polls_clean <span class="sc">|&gt;</span></span>
-<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="at">cols =</span> <span class="fu">c</span>(Clinton_D, Trump_R, Johnson_L, Stein_G),</span>
-<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>               <span class="at">names_to =</span> <span class="st">"candidate"</span>, <span class="at">values_to =</span> <span class="st">"poll_percent"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 28 × 8
-   Poll               Start End   Sample_size Sample_type   MoE candid…¹ poll_…²
-   &lt;chr&gt;              &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;       &lt;chr&gt;       &lt;dbl&gt; &lt;chr&gt;      &lt;dbl&gt;
- 1 Monmouth           7/14  7/16  688         LV            3.7 Clinton…      45
- 2 Monmouth           7/14  7/16  688         LV            3.7 Trump_R       43
- 3 Monmouth           7/14  7/16  688         LV            3.7 Johnson…       5
- 4 Monmouth           7/14  7/16  688         LV            3.7 Stein_G        1
- 5 CNN/ORC            7/13  7/16  872         RV            3.5 Clinton…      42
- 6 CNN/ORC            7/13  7/16  872         RV            3.5 Trump_R       37
- 7 CNN/ORC            7/13  7/16  872         RV            3.5 Johnson…      13
- 8 CNN/ORC            7/13  7/16  872         RV            3.5 Stein_G        5
- 9 ABC News/Wash Post 7/11  7/14  816         RV            4   Clinton…      42
-10 ABC News/Wash Post 7/11  7/14  816         RV            4   Trump_R       38
-# … with 18 more rows, and abbreviated variable names ¹​candidate, ²​poll_percent</code></pre>
+<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">polls_clean</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://tidyr.tidyverse.org/reference/pivot_longer.html">pivot_longer</a></span><span class="op">(</span>cols <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="va">Clinton_D</span>, <span class="va">Trump_R</span>, <span class="va">Johnson_L</span>, <span class="va">Stein_G</span><span class="op">)</span>,</span>
+<span>               names_to <span class="op">=</span> <span class="st">"candidate"</span>, values_to <span class="op">=</span> <span class="st">"poll_percent"</span><span class="op">)</span></span>
+<span><span class="co">#&gt; # A tibble: 28 × 8</span></span>
+<span><span class="co">#&gt;   Poll     Start End   Sample_size Sample_type   MoE candidate poll_percent</span></span>
+<span><span class="co">#&gt;   &lt;chr&gt;    &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;       &lt;chr&gt;       &lt;dbl&gt; &lt;chr&gt;            &lt;dbl&gt;</span></span>
+<span><span class="co">#&gt; 1 Monmouth 7/14  7/16  688         LV            3.7 Clinton_D           45</span></span>
+<span><span class="co">#&gt; 2 Monmouth 7/14  7/16  688         LV            3.7 Trump_R             43</span></span>
+<span><span class="co">#&gt; 3 Monmouth 7/14  7/16  688         LV            3.7 Johnson_L            5</span></span>
+<span><span class="co">#&gt; 4 Monmouth 7/14  7/16  688         LV            3.7 Stein_G              1</span></span>
+<span><span class="co">#&gt; 5 CNN/ORC  7/13  7/16  872         RV            3.5 Clinton_D           42</span></span>
+<span><span class="co">#&gt; 6 CNN/ORC  7/13  7/16  872         RV            3.5 Trump_R             37</span></span>
+<span><span class="co">#&gt; # … with 22 more rows</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</div>
-<p><code>pivot_longer()</code> has three important arguments:</p>
+<p><code><a href="https://tidyr.tidyverse.org/reference/pivot_longer.html">pivot_longer()</a></code> has three important arguments:</p>
 <ul>
-<li><code>cols</code>, the names of the columns that you want to PIVOT!</li>
-<li><code>names_to</code>, the name of the new variable that will have the old column names (anything you want it to be!)</li>
-<li><code>values_to</code>, the name of the new variable that will have the old column values (anything you want it to be!)</li>
+<li>
+<code>cols</code>, the names of the columns that you want to PIVOT!</li>
+<li>
+<code>names_to</code>, the name of the new variable that will have the old column names (anything you want it to be!)</li>
+<li>
+<code>values_to</code>, the name of the new variable that will have the old column values (anything you want it to be!)</li>
 </ul>
-<p>What happens when you omit <code>names_to</code> and <code>values_to</code> arguments? Give it a try!</p>
-<p>Now we can make our plot using Week 1 <code>ggplot</code> functions. But don’t forget to give a name to our new “long” data set first!</p>
+<p>Now we can make our plot using <code>ggplot</code> functions. But don’t forget to give a name to our new “long” data set first!</p>
 <div class="cell" data-appendix="true">
-<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>polls_long <span class="ot">&lt;-</span> polls_clean <span class="sc">|&gt;</span></span>
-<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="at">cols =</span> <span class="fu">c</span>(Clinton_D, Trump_R, Johnson_L, Stein_G),</span>
-<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>               <span class="at">names_to =</span> <span class="st">"candidate"</span>, <span class="at">values_to =</span> <span class="st">"poll_percent"</span>)</span>
-<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb29-5"><a href="#cb29-5" aria-hidden="true" tabindex="-1"></a><span class="do">## ignore as.Date for now....we will get to dates later!</span></span>
-<span id="cb29-6"><a href="#cb29-6" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> polls_long,</span>
-<span id="cb29-7"><a href="#cb29-7" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">as.Date</span>(Start, <span class="st">"%m/%d"</span>), <span class="at">y =</span> poll_percent,</span>
-<span id="cb29-8"><a href="#cb29-8" aria-hidden="true" tabindex="-1"></a>           <span class="at">colour =</span> candidate)) <span class="sc">+</span></span>
-<span id="cb29-9"><a href="#cb29-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span> <span class="fu">xlab</span>(<span class="st">"Poll Start Date"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">polls_long</span> <span class="op">&lt;-</span> <span class="va">polls_clean</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://tidyr.tidyverse.org/reference/pivot_longer.html">pivot_longer</a></span><span class="op">(</span>cols <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="va">Clinton_D</span>, <span class="va">Trump_R</span>, <span class="va">Johnson_L</span>, <span class="va">Stein_G</span><span class="op">)</span>,</span>
+<span>               names_to <span class="op">=</span> <span class="st">"candidate"</span>, values_to <span class="op">=</span> <span class="st">"poll_percent"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co">## ignore as.Date for now....we will get to dates later!</span></span>
+<span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">polls_long</span>,</span>
+<span>       <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/as.Date.html">as.Date</a></span><span class="op">(</span><span class="va">Start</span>, <span class="st">"%m/%d"</span><span class="op">)</span>, y <span class="op">=</span> <span class="va">poll_percent</span>,</span>
+<span>           colour <span class="op">=</span> <span class="va">candidate</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span>x <span class="op">=</span> <span class="st">"Poll Start Date"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="04-tidyr_files/figure-html/unnamed-chunk-20-1.png" class="img-fluid" width="672"></p>
+<p><img src="04-tidyr_files/figure-html/unnamed-chunk-17-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
-</section>
-<section id="pivot_wider-to-spread-to-multiple-columns" class="level3" data-number="6.3.2">
-<h3 data-number="6.3.2" class="anchored" data-anchor-id="pivot_wider-to-spread-to-multiple-columns"><span class="header-section-number">6.3.2</span> <code>pivot_wider()</code> to Spread to Multiple Columns</h3>
-<p>The “opposite” of <code>pivot_longer()</code> is <code>pivot_wider()</code>. We need to use <code>pivot_wider()</code> when one case is actually spread across multiple rows. Again, I typically will realize there is an issue with untidy data when I go to do something that should be simple and it’s not.</p>
-<p>Let’s examine some airline safety data that fivethirtyeight used in their Should Travelers Avoid Flying Airlines that Have Had Crashes in the Past? story: <a href="https://fivethirtyeight.com/features/should-travelers-avoid-flying-airlines-that-have-had-crashes-in-the-past/" target="_blank">https://fivethirtyeight.com/features/should-travelers-avoid-flying-airlines-that-have-had-crashes-in-the-past/</a> . The raw data can be found <a href="https://github.com/fivethirtyeight/data/tree/master/airline-safety" target="_blank">here</a>.</p>
-<div class="cell" data-appendix="true">
-<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(here)</span>
-<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>airlines <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="fu">here</span>(<span class="st">"data/airline-safety.csv"</span>))</span>
-<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(airlines)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 6 × 8
-  airline               avail_…¹ incid…² fatal…³ fatal…⁴ incid…⁵ fatal…⁶ fatal…⁷
-  &lt;chr&gt;                    &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;
-1 Aer Lingus              3.21e8       2       0       0       0       0       0
-2 Aeroflot*               1.20e9      76      14     128       6       1      88
-3 Aerolineas Argentinas   3.86e8       6       0       0       1       0       0
-4 Aeromexico*             5.97e8       3       1      64       5       0       0
-5 Air Canada              1.87e9       2       0       0       2       0       0
-6 Air France              3.00e9      14       4      79       6       2     337
-# … with abbreviated variable names ¹​avail_seat_km_per_week,
-#   ²​`incidents 1985_1999`, ³​`fatal_accidents 1985_1999`,
-#   ⁴​`fatalities 1985_1999`, ⁵​`incidents 2000_2014`,
-#   ⁶​`fatal_accidents 2000_2014`, ⁷​`fatalities 2000_2014`</code></pre>
-</div>
-</div>
-<p>The data set contains the following columns:</p>
+</section><section id="pivot_wider-to-spread-to-multiple-columns" class="level3" data-number="6.3.2"><h3 data-number="6.3.2" class="anchored" data-anchor-id="pivot_wider-to-spread-to-multiple-columns">
+<span class="header-section-number">6.3.2</span> <code>pivot_wider()</code> to Spread to Multiple Columns</h3>
+<p>The “opposite” of <code><a href="https://tidyr.tidyverse.org/reference/pivot_longer.html">pivot_longer()</a></code> is <code><a href="https://tidyr.tidyverse.org/reference/pivot_wider.html">pivot_wider()</a></code>. We need to use <code><a href="https://tidyr.tidyverse.org/reference/pivot_wider.html">pivot_wider()</a></code> when one case is actually spread across multiple rows. <code><a href="https://tidyr.tidyverse.org/reference/pivot_wider.html">pivot_wider()</a></code> has two main arguments:</p>
 <ul>
-<li><code>airline</code>, the name of the airline</li>
-<li><code>avail_seat_km_per_week</code>, the available seat kilometers flown each week</li>
-<li><code>incidents 1985_1999</code>, the number of incidents between 1985 and 1999</li>
-<li><code>fatal_accidents 1985_1999</code>, the number of fatal accidents between 1985 and 1999</li>
-<li><code>fatalities 1985_1999</code>, the number of fatalities between 1985 and 1999</li>
-<li><code>incidents 2000_2014</code></li>
-<li><code>fatal_accidents 2000_2014</code></li>
-<li><code>fatalities 2000_2014</code></li>
+<li>
+<code>names_from</code>, the column in the old data set that will provide the names of the new columns and</li>
+<li>
+<code>values_from</code>, the column in the old data set that will provide the values that fill in the new columns</li>
 </ul>
-<p>There’s a whole lot of mess in this data set: we really want a variable for year that has two values (1985-1999 and 2000-2014). Sometimes it’s tough to know where to even start, but one strategy is to draw a sketch of a data frame that you’d like to <strong>end</strong> with. For example, we think that we want a data set with the following columns: airline, available seat km, years, incidents, fatal accidents, and fatalities. So, our sketch might look something like:</p>
-<table class="table">
-<thead>
-<tr class="header">
-<th>airline</th>
-<th>avail</th>
-<th>years</th>
-<th>incidents</th>
-<th>fatalacc</th>
-<th>fatalities</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>airline1</td>
-<td>1009391</td>
-<td>1985-1999</td>
-<td>0</td>
-<td>1</td>
-<td>2</td>
-</tr>
-<tr class="even">
-<td>airline1</td>
-<td>1009391</td>
-<td>2000-2014</td>
-<td>9</td>
-<td>1</td>
-<td>1</td>
-</tr>
-<tr class="odd">
-<td>airline2</td>
-<td>2141</td>
-<td>1985-1999</td>
-<td>2</td>
-<td>0</td>
-<td>0</td>
-</tr>
-</tbody>
-</table>
-<p>etc.</p>
-<p>Let’s start with <code>pivot_longer()</code> to see if we can get year to be its own variable (We know that a year variable, which is what we want, will make more rows so <code>pivot_longer()</code> seems like a good place to start):</p>
-<div class="cell" data-appendix="true">
-<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>airlines <span class="sc">|&gt;</span></span>
-<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="fu">c</span>(<span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>, <span class="dv">6</span>, <span class="dv">7</span>, <span class="dv">8</span>), <span class="at">names_to =</span> <span class="st">"type_year"</span>,</span>
-<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">values_to =</span> <span class="st">"total_num"</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 336 × 4
-   airline    avail_seat_km_per_week type_year                 total_num
-   &lt;chr&gt;                       &lt;dbl&gt; &lt;chr&gt;                         &lt;dbl&gt;
- 1 Aer Lingus              320906734 incidents 1985_1999               2
- 2 Aer Lingus              320906734 fatal_accidents 1985_1999         0
- 3 Aer Lingus              320906734 fatalities 1985_1999              0
- 4 Aer Lingus              320906734 incidents 2000_2014               0
- 5 Aer Lingus              320906734 fatal_accidents 2000_2014         0
- 6 Aer Lingus              320906734 fatalities 2000_2014              0
- 7 Aeroflot*              1197672318 incidents 1985_1999              76
- 8 Aeroflot*              1197672318 fatal_accidents 1985_1999        14
- 9 Aeroflot*              1197672318 fatalities 1985_1999            128
-10 Aeroflot*              1197672318 incidents 2000_2014               6
-# … with 326 more rows</code></pre>
+<p>One common use case of <code><a href="https://tidyr.tidyverse.org/reference/pivot_wider.html">pivot_wider()</a></code> is the creation of a contingency table from summarised data. For example, suppose that, from the STAT 113 survey data, we have</p>
+<div class="cell">
+<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">stat113_df</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv</a></span><span class="op">(</span><span class="fu">here</span><span class="fu">::</span><span class="fu"><a href="https://here.r-lib.org//reference/here.html">here</a></span><span class="op">(</span><span class="st">"data/stat113.csv"</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="va">stat113_sum</span> <span class="op">&lt;-</span> <span class="va">stat113_df</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/NA.html">is.na</a></span><span class="op">(</span><span class="va">Sex</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">Year</span>, <span class="va">Sex</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise</a></span><span class="op">(</span>n_students <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/context.html">n</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="va">stat113_sum</span></span>
+<span><span class="co">#&gt; # A tibble: 8 × 3</span></span>
+<span><span class="co">#&gt; # Groups:   Year [4]</span></span>
+<span><span class="co">#&gt;   Year      Sex   n_students</span></span>
+<span><span class="co">#&gt;   &lt;chr&gt;     &lt;chr&gt;      &lt;int&gt;</span></span>
+<span><span class="co">#&gt; 1 FirstYear F             90</span></span>
+<span><span class="co">#&gt; 2 FirstYear M             84</span></span>
+<span><span class="co">#&gt; 3 Junior    F             15</span></span>
+<span><span class="co">#&gt; 4 Junior    M             18</span></span>
+<span><span class="co">#&gt; 5 Senior    F              3</span></span>
+<span><span class="co">#&gt; 6 Senior    M             10</span></span>
+<span><span class="co">#&gt; # … with 2 more rows</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>We want to make a two-way (contingency) table of the number of students that has <code>Sex</code> on the rows and <code>Year</code> on the columns. <code><a href="https://tidyr.tidyverse.org/reference/pivot_wider.html">pivot_wider()</a></code> can put the levels of the <code>Year</code> variable as new columns in the data frame:</p>
+<div class="cell">
+<div class="sourceCode" id="cb18"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">stat113_sum</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://tidyr.tidyverse.org/reference/pivot_wider.html">pivot_wider</a></span><span class="op">(</span>names_from <span class="op">=</span> <span class="va">Year</span>, values_from <span class="op">=</span> <span class="va">n_students</span><span class="op">)</span></span>
+<span><span class="co">#&gt; # A tibble: 2 × 5</span></span>
+<span><span class="co">#&gt;   Sex   FirstYear Junior Senior Sophomore</span></span>
+<span><span class="co">#&gt;   &lt;chr&gt;     &lt;int&gt;  &lt;int&gt;  &lt;int&gt;     &lt;int&gt;</span></span>
+<span><span class="co">#&gt; 1 F            90     15      3       100</span></span>
+<span><span class="co">#&gt; 2 M            84     18     10        76</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>We will see more examples of <code><a href="https://tidyr.tidyverse.org/reference/pivot_wider.html">pivot_wider()</a></code> and <code><a href="https://tidyr.tidyverse.org/reference/pivot_longer.html">pivot_longer()</a></code> in the Exercises.</p>
+<div class="callout-important callout callout-style-simple callout-captioned">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+Important
 </div>
 </div>
-<p>Instead of giving <code>pivot_longer()</code> names of variables, we gave it the column numbers instead. So <code>c(3, 4, 5, 6, 7, 8)</code> corresponds to the 3rd, 4th, …., 8th columns in the data set. That didn’t quite give us a <code>year</code> variable, but we should be excited to see an opportunity to take advantage of <code>separate()</code>:</p>
-<div class="cell" data-appendix="true">
-<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>airlines <span class="sc">|&gt;</span> <span class="fu">pivot_longer</span>(<span class="fu">c</span>(<span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>, <span class="dv">6</span>, <span class="dv">7</span>, <span class="dv">8</span>), <span class="at">names_to =</span> <span class="st">"type_year"</span>,</span>
-<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a>                          <span class="at">values_to =</span> <span class="st">"total_num"</span>) <span class="sc">|&gt;</span></span>
-<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">separate</span>(type_year, <span class="at">into =</span> <span class="fu">c</span>(<span class="st">"type"</span>, <span class="st">"year"</span>), <span class="at">sep =</span> <span class="st">" "</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 336 × 5
-   airline    avail_seat_km_per_week type            year      total_num
-   &lt;chr&gt;                       &lt;dbl&gt; &lt;chr&gt;           &lt;chr&gt;         &lt;dbl&gt;
- 1 Aer Lingus              320906734 incidents       1985_1999         2
- 2 Aer Lingus              320906734 fatal_accidents 1985_1999         0
- 3 Aer Lingus              320906734 fatalities      1985_1999         0
- 4 Aer Lingus              320906734 incidents       2000_2014         0
- 5 Aer Lingus              320906734 fatal_accidents 2000_2014         0
- 6 Aer Lingus              320906734 fatalities      2000_2014         0
- 7 Aeroflot*              1197672318 incidents       1985_1999        76
- 8 Aeroflot*              1197672318 fatal_accidents 1985_1999        14
- 9 Aeroflot*              1197672318 fatalities      1985_1999       128
-10 Aeroflot*              1197672318 incidents       2000_2014         6
-# … with 326 more rows</code></pre>
+<div class="callout-body-container callout-body">
+<p>Tidy data isn’t necessarily always better: you might find cases where you need to “untidy” the data by using <code><a href="https://tidyr.tidyverse.org/reference/pivot_longer.html">pivot_longer()</a></code> or <code><a href="https://tidyr.tidyverse.org/reference/pivot_wider.html">pivot_wider()</a></code>. However, most functions in <code>R</code> (and in other languages) work best with tidy data.</p>
 </div>
 </div>
-<p>Is this the format that we want the data set to be in? Depending on the task, it could be. But, we also might want each of the accident <code>type</code>s to be its own variable. That is, we might want to collapse the data set to have a variable for <code>incidents</code>, a variable for <code>fatal_accidents</code>, and a variable for <code>fatalities</code>. If so, we want to add more columns to the data set, so we need to use <code>pivot_wider()</code>.</p>
-<div class="cell" data-appendix="true">
-<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="do">## name the long data set</span></span>
-<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a>airlines_long <span class="ot">&lt;-</span> airlines <span class="sc">|&gt;</span></span>
-<span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="fu">c</span>(<span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>, <span class="dv">6</span>, <span class="dv">7</span>, <span class="dv">8</span>), <span class="at">names_to =</span> <span class="st">"type_year"</span>,</span>
-<span id="cb36-4"><a href="#cb36-4" aria-hidden="true" tabindex="-1"></a>               <span class="at">values_to =</span> <span class="st">"total_num"</span>) <span class="sc">|&gt;</span></span>
-<span id="cb36-5"><a href="#cb36-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">separate</span>(type_year, <span class="at">into =</span> <span class="fu">c</span>(<span class="st">"type"</span>, <span class="st">"year"</span>), <span class="at">sep =</span> <span class="st">" "</span>)</span>
-<span id="cb36-6"><a href="#cb36-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb36-7"><a href="#cb36-7" aria-hidden="true" tabindex="-1"></a><span class="do">## use pivot_wider() to create variables for incidents, fatalities, and</span></span>
-<span id="cb36-8"><a href="#cb36-8" aria-hidden="true" tabindex="-1"></a><span class="do">## fatal_accidents:</span></span>
-<span id="cb36-9"><a href="#cb36-9" aria-hidden="true" tabindex="-1"></a>airlines_long <span class="sc">|&gt;</span> <span class="fu">pivot_wider</span>(<span class="at">names_from =</span> type,</span>
-<span id="cb36-10"><a href="#cb36-10" aria-hidden="true" tabindex="-1"></a>                              <span class="at">values_from =</span> total_num)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 112 × 6
-   airline               avail_seat_km_per_week year     incid…¹ fatal…² fatal…³
-   &lt;chr&gt;                                  &lt;dbl&gt; &lt;chr&gt;      &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;
- 1 Aer Lingus                         320906734 1985_19…       2       0       0
- 2 Aer Lingus                         320906734 2000_20…       0       0       0
- 3 Aeroflot*                         1197672318 1985_19…      76      14     128
- 4 Aeroflot*                         1197672318 2000_20…       6       1      88
- 5 Aerolineas Argentinas              385803648 1985_19…       6       0       0
- 6 Aerolineas Argentinas              385803648 2000_20…       1       0       0
- 7 Aeromexico*                        596871813 1985_19…       3       1      64
- 8 Aeromexico*                        596871813 2000_20…       5       0       0
- 9 Air Canada                        1865253802 1985_19…       2       0       0
-10 Air Canada                        1865253802 2000_20…       2       0       0
-# … with 102 more rows, and abbreviated variable names ¹​incidents,
-#   ²​fatal_accidents, ³​fatalities</code></pre>
+<div class="callout-note callout callout-style-simple callout-captioned">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+Note
 </div>
 </div>
-<p><code>pivot_wider()</code> has two main arguments:</p>
-<ul>
-<li><p><code>names_from</code>, the column in the old data set that will provide the names of the new columns and</p></li>
-<li><p><code>values_from</code>, the column in the old data set that will provide the values that fill in the new columns</p></li>
-</ul>
-<p>We will see more examples of <code>pivot_wider()</code> and <code>pivot_longer()</code> in the Exercises. Note that tidy data isn’t necessarily always better: you might find cases where you need to “untidy” the data by using <code>pivot_longer()</code> or <code>pivot_wider()</code>. However, most functions in <code>R</code> (and in other languages) work best with tidy data.</p>
+<div class="callout-body-container callout-body">
 <p>There are a few more topics to discuss in tidying data. We have not yet discussed the 4th or 5th characteristics of tidy data (cells should not contain units and there should be no headers or footers), but these are usually dealt with when we read in the data. Therefore, these issues will be covered when we discuss <code>readr</code>.</p>
-</section>
-<section id="exercise-4-2" class="level3" data-number="6.3.3">
-<h3 data-number="6.3.3" class="anchored" data-anchor-id="exercise-4-2"><span class="header-section-number">6.3.3</span> Exercises</h3>
-<p>Exercises marked with an * indicate that the exercise has a solution at the end of the chapter at @ref(solutions-4).</p>
-<ol type="1">
-<li>Once you have a handle on data science terminology, it’s not too difficult to transfer what you’ve learned to a different language. For example, students in computer science might be more familiar with Python. Google something like “pivot from wide to long in python” to find help on achieving the equivalent of <code>pivot_longer()</code> in Python.</li>
-</ol>
-<div class="cell">
-
 </div>
-<p>The <code>UBSprices2</code> data set contains information on prices of common commodities in cities throughout the world in the years 2003 and 2009. The three commodities in the data set are Rice (1 kg worth), Bread (1 kg worth), and a Big Mac <a href="https://media1.giphy.com/media/Fw5LicDKem6nC/source.gif" class="uri">https://media1.giphy.com/media/Fw5LicDKem6nC/source.gif</a></p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a>prices_df <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="fu">here</span>(<span class="st">"data/UBSprices2.csv"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<ol start="2" type="1">
-<li>* Convert the data set to a tidier form so that there is a <code>year</code> variable and a <code>commodity</code> variable that has 3 values: <code>"bigmac"</code>, <code>"bread"</code>, and <code>"rice"</code></li>
-</ol>
-<p><strong>Hint</strong>: At some point, you will need to separate the commodity from the year in, for example, bread2009. But, you’ll notice this is different than our other uses of <code>separate()</code> because there is no “-” or ” ” or “/” to use as a separating character. Look at the help for <code>separate()</code> and scroll down to the <code>sep</code> argument to see if you can figure out this issue. The first code chunk below shows the solution for this particular issue in case you only get stuck on this part while the second code chunk shows the entire solution.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="fu">separate</span>(name_of_variable, <span class="at">into =</span> <span class="fu">c</span>(<span class="st">"newname1"</span>, <span class="st">"newname2"</span>), <span class="at">sep =</span> <span class="sc">-</span><span class="dv">4</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><strong>Exercise 4</strong>. With the <code>stat113_df</code> data, construct a table showing the average GPA (without missing GPA values) for each <code>Sex</code>-<code>Sport</code> combination. Then, pivot the table so that the columns are the levels of <code>Sport</code> and the rows are the levels of <code>Sex</code>.</p>
+<div class="callout-tip callout callout-style-simple callout-captioned">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-6-contents" aria-controls="callout-6" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
 </div>
-<ol start="3" type="1">
-<li><p>* Convert your data set from the previous exercise so that <code>commodity</code> is split up into 3 variables: <code>bigmac</code> price, <code>rice</code> price and <code>bread</code> price.</p></li>
-<li><p>In which data set would it be easiest to make a line plot with <code>year</code> on the x-axis and price of <code>rice</code> on the y-axis with lines for each <code>city</code>? In which data set would it be easiest to make a line chart with 3 lines, one for each type of commodity, for the city of Amsterdam?</p></li>
-</ol>
-<p>If you have time, make these plots!</p>
-<div class="cell">
-
+<div class="callout-caption-container flex-fill">
+Hint (only if you get stuck)
 </div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-6" class="callout-6-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>To create the (unpivoted) table, you will need to use <code><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by()</a></code> and <code><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise()</a></code>, adding in an <code>na.rm = TRUE</code> argument to <code><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise()</a></code>.</p>
+</div>
+</div>
+</div>
+<p><strong>Exercise 5</strong>. Suppose that you have the following data set that has the number of deaths from a disease for various years in different locations.</p>
+<div class="cell">
+<div class="sourceCode" id="cb19"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">disease_df</span> <span class="op">&lt;-</span> <span class="fu">tibble</span><span class="fu">::</span><span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble</a></span><span class="op">(</span>location <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"A"</span>, <span class="st">"B"</span>, <span class="st">"C"</span>, <span class="st">"D"</span>, <span class="st">"E"</span><span class="op">)</span>,</span>
+<span>                             year1 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">5</span>, <span class="fl">1</span>, <span class="fl">10</span>, <span class="fl">400</span>, <span class="fl">31</span><span class="op">)</span>,</span>
+<span>                             year2 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">10</span>, <span class="fl">80</span>, <span class="fl">99</span>, <span class="fl">100</span>, <span class="fl">1</span><span class="op">)</span>,</span>
+<span>                             year3 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">0</span>, <span class="fl">20</span>, <span class="fl">0</span>, <span class="fl">40</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Pivot the data set so that there is a single column that gives the year and a single column that gives the death count.</p>
+</section></section><section id="practice" class="level2" data-number="6.4"><h2 data-number="6.4" class="anchored" data-anchor-id="practice">
+<span class="header-section-number">6.4</span> Practice</h2>
+<section id="class-exercises" class="level3" data-number="6.4.1"><h3 data-number="6.4.1" class="anchored" data-anchor-id="class-exercises">
+<span class="header-section-number">6.4.1</span> Class Exercises</h3>
+<p><strong>Class Exercise 1</strong>. Once you have a handle on data science terminology, it’s not too difficult to transfer what you’ve learned to a different language. For example, students in computer science might be more familiar with Python. Google something like “pivot from wide to long in python” to find help on achieving the equivalent of <code><a href="https://tidyr.tidyverse.org/reference/pivot_longer.html">pivot_longer()</a></code> in Python.</p>
+<p><strong>Class Exercise 2</strong>. The <code>UBSprices2</code> data set contains information on prices of common commodities in cities throughout the world in the years 2003 and 2009. The three commodities in the data set are Rice (1 kg worth), Bread (1 kg worth), and a Big Mac <a href="https://media1.giphy.com/media/Fw5LicDKem6nC/source.gif" class="uri">https://media1.giphy.com/media/Fw5LicDKem6nC/source.gif</a></p>
+<div class="cell">
+<div class="sourceCode" id="cb20"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">prices_df</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv</a></span><span class="op">(</span><span class="fu"><a href="https://here.r-lib.org//reference/here.html">here</a></span><span class="op">(</span><span class="st">"data/UBSprices2.csv"</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Convert the data set to a tidier form so that there is a <code>year</code> variable and a <code>commodity</code> variable that has 3 values: <code>"bigmac"</code>, <code>"bread"</code>, and <code>"rice"</code>. <strong>Hint</strong>: At some point, you will need to separate the commodity from the year in, for example, bread2009. But, you’ll notice this is different than our other uses of <code><a href="https://tidyr.tidyverse.org/reference/separate.html">separate()</a></code> because there is no “-” or ” ” or “/” to use as a separating character. Look at the help for <code><a href="https://tidyr.tidyverse.org/reference/separate.html">separate()</a></code> and scroll down to the <code>sep</code> argument to see if you can figure out this issue. The first code chunk below shows the solution for this particular issue in case you only get stuck on this part while the second code chunk shows the entire solution.</p>
+<p><strong>Class Exercise 3</strong>. Convert your data set from the previous exercise so that <code>commodity</code> is split up into 3 variables: <code>bigmac</code> price, <code>rice</code> price and <code>bread</code> price.</p>
+<p><strong>Class Exercise 4</strong>. In which data set would it be easiest to make a line plot with <code>year</code> on the x-axis and price of <code>rice</code> on the y-axis with lines for each <code>city</code>? In which data set would it be easiest to make a line chart with 3 lines, one for each type of commodity, for the city of Amsterdam?</p>
 <p><strong>New Data</strong>:</p>
 <p>The <code>under5mortality.csv</code> file contains data on mortality for people under the age of 5 in countries around the world (mortality in deaths per 1000 people). The data come from <a href="https://www.gapminder.org/data/" class="uri">https://www.gapminder.org/data/</a>. The data set is <strong>extremely</strong> wide in its current form, having a column for each year in the data set. Read in the data set with</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a>mortality_df <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="fu">here</span>(<span class="st">"data/under5mortality.csv"</span>))</span>
-<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(mortality_df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 6 × 217
-  Under …¹ `1800` `1801` `1802` `1803` `1804` `1805` `1806` `1807` `1808` `1809`
-  &lt;chr&gt;     &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;
-1 Abkhazia    NA     NA     NA     NA     NA     NA     NA     NA     NA     NA 
-2 Afghani…   469.   469.   469.   469.   469.   469.   470.   470.   470.   470.
-3 Akrotir…    NA     NA     NA     NA     NA     NA     NA     NA     NA     NA 
-4 Albania    375.   375.   375.   375.   375.   375.   375.   375.   375.   375.
-5 Algeria    460.   460.   460.   460.   460.   460.   460.   460.   460.   460.
-6 America…    NA     NA     NA     NA     NA     NA     NA     NA     NA     NA 
-# … with 206 more variables: `1810` &lt;dbl&gt;, `1811` &lt;dbl&gt;, `1812` &lt;dbl&gt;,
-#   `1813` &lt;dbl&gt;, `1814` &lt;dbl&gt;, `1815` &lt;dbl&gt;, `1816` &lt;dbl&gt;, `1817` &lt;dbl&gt;,
-#   `1818` &lt;dbl&gt;, `1819` &lt;dbl&gt;, `1820` &lt;dbl&gt;, `1821` &lt;dbl&gt;, `1822` &lt;dbl&gt;,
-#   `1823` &lt;dbl&gt;, `1824` &lt;dbl&gt;, `1825` &lt;dbl&gt;, `1826` &lt;dbl&gt;, `1827` &lt;dbl&gt;,
-#   `1828` &lt;dbl&gt;, `1829` &lt;dbl&gt;, `1830` &lt;dbl&gt;, `1831` &lt;dbl&gt;, `1832` &lt;dbl&gt;,
-#   `1833` &lt;dbl&gt;, `1834` &lt;dbl&gt;, `1835` &lt;dbl&gt;, `1836` &lt;dbl&gt;, `1837` &lt;dbl&gt;,
-#   `1838` &lt;dbl&gt;, `1839` &lt;dbl&gt;, `1840` &lt;dbl&gt;, `1841` &lt;dbl&gt;, `1842` &lt;dbl&gt;, …</code></pre>
+<div class="sourceCode" id="cb21"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">mortality_df</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv</a></span><span class="op">(</span><span class="fu"><a href="https://here.r-lib.org//reference/here.html">here</a></span><span class="op">(</span><span class="st">"data/under5mortality.csv"</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">mortality_df</span><span class="op">)</span></span>
+<span><span class="co">#&gt; # A tibble: 6 × 217</span></span>
+<span><span class="co">#&gt;   Under five…¹ `1800` `1801` `1802` `1803` `1804` `1805` `1806` `1807` `1808`</span></span>
+<span><span class="co">#&gt;   &lt;chr&gt;         &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;</span></span>
+<span><span class="co">#&gt; 1 Abkhazia        NA     NA     NA     NA     NA     NA     NA     NA     NA </span></span>
+<span><span class="co">#&gt; 2 Afghanistan    469.   469.   469.   469.   469.   469.   470.   470.   470.</span></span>
+<span><span class="co">#&gt; 3 Akrotiri an…    NA     NA     NA     NA     NA     NA     NA     NA     NA </span></span>
+<span><span class="co">#&gt; 4 Albania        375.   375.   375.   375.   375.   375.   375.   375.   375.</span></span>
+<span><span class="co">#&gt; 5 Algeria        460.   460.   460.   460.   460.   460.   460.   460.   460.</span></span>
+<span><span class="co">#&gt; 6 American Sa…    NA     NA     NA     NA     NA     NA     NA     NA     NA </span></span>
+<span><span class="co">#&gt; # … with 207 more variables: `1809` &lt;dbl&gt;, `1810` &lt;dbl&gt;, `1811` &lt;dbl&gt;,</span></span>
+<span><span class="co">#&gt; #   `1812` &lt;dbl&gt;, `1813` &lt;dbl&gt;, `1814` &lt;dbl&gt;, `1815` &lt;dbl&gt;, `1816` &lt;dbl&gt;,</span></span>
+<span><span class="co">#&gt; #   `1817` &lt;dbl&gt;, `1818` &lt;dbl&gt;, `1819` &lt;dbl&gt;, `1820` &lt;dbl&gt;, `1821` &lt;dbl&gt;,</span></span>
+<span><span class="co">#&gt; #   `1822` &lt;dbl&gt;, `1823` &lt;dbl&gt;, `1824` &lt;dbl&gt;, `1825` &lt;dbl&gt;, `1826` &lt;dbl&gt;,</span></span>
+<span><span class="co">#&gt; #   `1827` &lt;dbl&gt;, `1828` &lt;dbl&gt;, `1829` &lt;dbl&gt;, `1830` &lt;dbl&gt;, `1831` &lt;dbl&gt;,</span></span>
+<span><span class="co">#&gt; #   `1832` &lt;dbl&gt;, `1833` &lt;dbl&gt;, `1834` &lt;dbl&gt;, `1835` &lt;dbl&gt;, `1836` &lt;dbl&gt;,</span></span>
+<span><span class="co">#&gt; #   `1837` &lt;dbl&gt;, `1838` &lt;dbl&gt;, `1839` &lt;dbl&gt;, `1840` &lt;dbl&gt;, `1841` &lt;dbl&gt;, …</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><strong>Class Exercise 5</strong>. Notice that there are 217 columns (at the top of the print out of the header, 217 is the second number). When we use <code>tidyr</code>, we aren’t going to want to type out <code>c(2, 3, 4, 5, .....)</code> all the way up to <code>217</code>! <code>R</code> has short-hand notation that we can use with <code>:</code>. For example, type in <code>4:9</code> in your console window. Use this notation to tidy the <code>mortality_df</code> data set.</p>
+<div class="callout-note callout callout-style-simple callout-captioned">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+Note
 </div>
 </div>
-<ol start="5" type="1">
-<li>* Notice that there are 217 columns (at the top of the print out of the header, 217 is the second number). When we use <code>tidyr</code>, we aren’t going to want to type out <code>c(2, 3, 4, 5, .....)</code> all the way up to <code>217</code>! <code>R</code> has short-hand notation that we can use with <code>:</code>. For example, type in <code>4:9</code> in your console window. Use this notation to tidy the <code>mortality_df</code> data set.</li>
-</ol>
-<p><strong>Note</strong>: You’ll need to add something to your <code>pivot_longer()</code> function to convert the variable <code>Year</code> to numeric. We haven’t talked too much about variable types yet so, after your <code>values_to = "Mortality"</code> statement, add <code>, names_transform = list(Year = as.numeric)</code>, making sure you have a second <code>)</code> to close the <code>pivot_longer()</code> function.</p>
+<div class="callout-body-container callout-body">
+<p>You’ll need to add something to your <code><a href="https://tidyr.tidyverse.org/reference/pivot_longer.html">pivot_longer()</a></code> function to convert the variable <code>Year</code> to numeric. We haven’t talked too much about variable types yet so, after your <code>values_to = "Mortality"</code> statement, add <code>, names_transform = list(Year = as.numeric)</code>, making sure you have a second <code>)</code> to close the <code><a href="https://tidyr.tidyverse.org/reference/pivot_longer.html">pivot_longer()</a></code> function.</p>
+</div>
+</div>
 <div class="cell">
 
 </div>
-<ol start="6" type="1">
-<li>Make a line plot to look at the overall under 5 mortality trends for each country.</li>
-</ol>
+<p><strong>Class Exercise 6</strong>. Make a line plot to look at the overall under 5 mortality trends for each country.</p>
 <div class="cell">
 
 </div>
-<ol start="7" type="1">
-<li>What is the overall trend in under 5 mortality? Does every single country follow this trend? What looks strange about the plot, specifically about the data collected before 1900?</li>
-</ol>
+<p><strong>Class Exercise 7</strong>. What is the overall trend in under 5 mortality? Does every single country follow this trend? What looks strange about the plot, specifically about the data collected before 1900?</p>
+</section><section id="your-turn" class="level3" data-number="6.4.2"><h3 data-number="6.4.2" class="anchored" data-anchor-id="your-turn">
+<span class="header-section-number">6.4.2</span> Your Turn</h3>
+<p>The MLB salary data set contains salaries on all 862 players in Major League Baseball in 2016. The data set was obtained from <a href="http://www.usatoday.com/sports/mlb/salaries/2016/player/all/" target="_blank">http://www.usatoday.com/sports/mlb/salaries/2016/player/all/</a></p>
+<p><strong>Your Turn 1</strong>. Read in the data using the following code chunk and, with your group, write a sentence or two that explains why the data set is not tidy.</p>
 <div class="cell">
-
+<div class="sourceCode" id="cb22"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://here.r-lib.org/">here</a></span><span class="op">)</span></span>
+<span><span class="va">baseball_df</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv</a></span><span class="op">(</span><span class="fu"><a href="https://here.r-lib.org//reference/here.html">here</a></span><span class="op">(</span><span class="st">"data/mlb2016.csv"</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">baseball_df</span><span class="op">)</span></span>
+<span><span class="co">#&gt; # A tibble: 6 × 7</span></span>
+<span><span class="co">#&gt;   Name             Team  POS   Salary       Years        Total.Value  Avg.A…¹</span></span>
+<span><span class="co">#&gt;   &lt;chr&gt;            &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;        &lt;chr&gt;        &lt;chr&gt;        &lt;chr&gt;  </span></span>
+<span><span class="co">#&gt; 1 Clayton Kershaw  LAD   SP    $ 33,000,000 7 (2014-20)  $ 215,000,0… $ 30,7…</span></span>
+<span><span class="co">#&gt; 2 Zack Greinke     ARI   SP    $ 31,799,030 6 (2016-21)  $ 206,500,0… $ 34,4…</span></span>
+<span><span class="co">#&gt; 3 David Price      BOS   SP    $ 30,000,000 7 (2016-22)  $ 217,000,0… $ 31,0…</span></span>
+<span><span class="co">#&gt; 4 Miguel Cabrera   DET   1B    $ 28,000,000 10 (2014-23) $ 292,000,0… $ 29,2…</span></span>
+<span><span class="co">#&gt; 5 Justin Verlander DET   SP    $ 28,000,000 7 (2013-19)  $ 180,000,0… $ 25,7…</span></span>
+<span><span class="co">#&gt; 6 Yoenis Cespedes  NYM   CF    $ 27,328,046 3 (2016-18)  $ 75,000,000 $ 25,0…</span></span>
+<span><span class="co">#&gt; # … with abbreviated variable name ¹​Avg.Annual</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<ol start="8" type="1">
-<li>Write two short paragraphs about an article found on <a href="https://www.r-bloggers.com/" target="_blank">https://www.r-bloggers.com/</a>. The most important thing for this exercise is to <strong>pick an article that interests you</strong>. There are many to choose from, with multiple posts being put up each day. For the purposes of this assignment though, find an article where the author actually provides code (most have this but there are a few that are more “big-picture” views of certain topics).</li>
-</ol>
-<p>In the first paragraph, answer the following: (a) What is the main purpose of the blog post? (b) What data is/are the author(s) using? (c) What are the main findings? (d) Why was it important for the author to have data in their main findings?</p>
-<p>In the second paragraph, discuss (a) Any code that you see that we have explicitly seen in class, (b) Any code that you see that we have not explicitly seen in class, and (c) anything else you find interesting about your article. Then, copy and paste the URL.</p>
-</section>
-</section>
-<section id="chapexercise-4" class="level2" data-number="6.4">
-<h2 data-number="6.4" class="anchored" data-anchor-id="chapexercise-4"><span class="header-section-number">6.4</span> Chapter Exercises</h2>
-<p>Exercises marked with an * indicate that the exercise has a solution at the end of the chapter at @ref(solutions-4).</p>
-<p>We will use nfl salary data obtained from FiveThirtyEight that were originally obtained from <a href="https://github.com/rfordatascience/tidytuesday/tree/master/data/2018/2018-04-09" target="_blank">Spotrac.com</a>.</p>
+<p><strong>Your Turn 2</strong>. Tidy the data set just so that</p>
+<ul>
+<li>
+<code>Duration</code> of the salary contract (currently given in the <code>Year</code> column) is in its own column</li>
+<li>the year range (also currently given in the <code>Year</code> column) is split into a variable called <code>Start</code> and a variable called <code>End</code> year that give the start and end years of the contract. You can still have special characters for now (like <code>(</code> and <code>)</code>) in the start and end year.</li>
+</ul>
+<p><strong>Your Turn 3</strong>. You should have received a warning message. What does this message mean? See if you can figure it out by typing <code>View(baseball_df)</code> in your console window and scrolling down to some of the rows that the warning mentions: 48, 59, 60, etc. Discuss with your group why that warning message was given.</p>
+<p><strong>Your Turn 4</strong>. We won’t learn about <code><a href="https://readr.tidyverse.org/reference/parse_number.html">parse_number()</a></code> until <code>readr</code>, but the function is straightforward enough to mention here. It’s useful when you have extra characters in the values of a numeric variable (like a <code>$</code> or a <code>(</code>), but you just want to grab the actual number:</p>
+<div class="cell">
+<div class="sourceCode" id="cb23"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">baseball_df</span> <span class="op">&lt;-</span> <span class="va">baseball_df</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>Salary <span class="op">=</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/parse_number.html">parse_number</a></span><span class="op">(</span><span class="va">Salary</span><span class="op">)</span>,</span>
+<span>         Total.Value <span class="op">=</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/parse_number.html">parse_number</a></span><span class="op">(</span><span class="va">Total.Value</span><span class="op">)</span>,</span>
+<span>         Avg.Annual <span class="op">=</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/parse_number.html">parse_number</a></span><span class="op">(</span><span class="va">Avg.Annual</span><span class="op">)</span>,</span>
+<span>         Start <span class="op">=</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/parse_number.html">parse_number</a></span><span class="op">(</span><span class="va">Start</span><span class="op">)</span>,</span>
+<span>         End <span class="op">=</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/parse_number.html">parse_number</a></span><span class="op">(</span><span class="va">End</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Run the code above so that the parsing is saved to <code>baseball_df</code>.</p>
+<p><strong>Your Turn 5</strong>. With a partner, brainstorm <strong>2</strong> different graphics you could construct to investigate how player <code>Salary</code> compares for players with different <code>POS</code>. Each of you should make 1 of the graphics you discussed. Then, state the reason why making that plot would not have worked before we tidied the data set.</p>
+<p><strong>New Data</strong>: For the rest of the exercises, we will use salary data from the National Football League obtained from FiveThirtyEight that were originally obtained from <a href="https://github.com/rfordatascience/tidytuesday/tree/master/data/2018/2018-04-09" target="_blank">Spotrac.com</a>.</p>
 <p>The data set has the top 100 paid players for each year for each position from 2011 through 2018, broken down by player position. For those unfamiliar with American football, the positions in the data set are Quarterback, Running Back, Wide Receiver, Tight End, and Offensive Lineman for offense, Cornerback, Defensive Lineman, Linebacker, and Safety for Defense, and a separate category for Special Teams players that includes punters and kickers. You can review a summary of player positions <a href="https://i.pinimg.com/originals/56/32/87/56328741cb64cd59dafd200c9d06a301.png" target="_blank"> here</a>.</p>
 <p>We are interested in how salaries compare for the top 100 players in each position and on how salaries have changed through time for each position.</p>
 <p>Read in the data set with</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a>nfl_df <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="fu">here</span>(<span class="st">"data/nfl_salary.csv"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb24"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">nfl_df</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv</a></span><span class="op">(</span><span class="fu">here</span><span class="fu">::</span><span class="fu"><a href="https://here.r-lib.org//reference/here.html">here</a></span><span class="op">(</span><span class="st">"data/nfl_salary.csv"</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<ol type="1">
-<li>Use the <code>head()</code> functions to look at the data, and then explain why this data set is <strong>not</strong> in tidy form.</li>
-</ol>
-<div class="cell">
-
+<p><strong>Your Turn 6</strong>. Use the <code><a href="https://rdrr.io/r/utils/head.html">head()</a></code> functions to look at the data, and then, with your group, explain why this data set is <strong>not</strong> in tidy form.</p>
+<p><strong>Your Turn 7</strong>. Use a function in <code>tidyr</code> to make the data tidy, and give your tidy data set a new name.</p>
+<div class="callout-caution callout callout-style-simple callout-captioned">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
 </div>
-<ol start="2" type="1">
-<li><p>* Use a function in <code>tidyr</code> to make the data tidy, and give your tidy data set a new name.</p></li>
-<li><p>* To your data set in the previous exercise, add a ranking variable that ranks the salaries within each player position so that the highest paid players in each position all receive a <code>1</code>, the second highest paid players receive a <code>2</code>, etc. Compare your results for the default way that <code>R</code> uses to break ties between two salaries that are the same and using <code>ties.method = "first"</code>.</p></li>
-</ol>
-<p><strong>Hint</strong>: See Exercise 4 in @ref(exercise-3-3) for another example on how to do this.</p>
-<ol start="4" type="1">
-<li><p>* Find the maximum salary for each player position in each year. Then, create two different line graphs that shows how the maximum salary has changed from 2011 to 2018 for each position. For one line graph, make the colours of the lines different for each position. For the second line graph, facet by position. Which graph do you like better?</p></li>
-<li><p>* The maximum salary is very dependent on one specific player. Make the same graph, but plot the average salary of the top 20 players in each position of each year. What do you notice? Any interesting patterns for any of the positions? If you’re a fan of football, provide a guess as to why one of the positions has had their salary plateau in recent years.</p></li>
-<li><p>* Sometimes for graphs involving cost or salary, we want to take into account the inflation rate. Google what the inflation rate was between 2011 and 2018 (Google something like “inflation rate from 2011 to 2018” and you should be able to find something). Adjust all of the 2011 salaries for inflation so that they are comparable to the 2018 salaries. Then, make a similar line plot as above but ignore all of the years between 2012 and 2017 (so your line plot will just have 2 points per position).</p></li>
-</ol>
+<div class="callout-caption-container flex-fill">
+Cuation
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The following exercises are a bit more challenging. Even though they are “Your Turn” exercises, we will discuss them a bit as a class as well.</p>
+</div>
+</div>
+<p><strong>Your Turn 8</strong>. To your data set in the previous exercise, add a ranking variable that ranks the salaries within each player position so that the highest paid players in each <code>year-position</code> combination all receive a <code>1</code>, the second highest paid players receive a <code>2</code>, etc. Compare your results for the default way that <code>R</code> uses to break ties between two salaries that are the same and using <code>ties.method = "first"</code>.</p>
+<p><strong>Your Turn 9</strong>. Find the maximum salary for each player position in each year. Then, create two different line graphs that shows how the maximum salary has changed from 2011 to 2018 for each position. For one line graph, make the colours of the lines different for each position. For the second line graph, facet by position. Which graph do you like better?</p>
+<p><strong>Your Turn 10</strong>. The maximum salary is very dependent on one specific player. Make the same graph, but plot the average salary of the top 20 players in each position of each year. What do you notice? Any interesting patterns for any of the positions? If you’re a fan of football, provide a guess as to why one of the positions has had their salary plateau in recent years.</p>
+<p><strong>Your Turn 11</strong>. Sometimes for graphs involving cost or salary, we want to take into account the inflation rate. Google what the inflation rate was between 2011 and 2018 (Google something like “inflation rate from 2011 to 2018” and you should be able to find something). Adjust all of the 2011 salaries for inflation so that they are comparable to the 2018 salaries. Then, make a similar line plot as above but ignore all of the years between 2012 and 2017 (so your line plot will just have 2 points per position).</p>
 <p>After adjusting for inflation, how many positions have average higher salaries for the top 20 players in that position?</p>
-<ol start="7" type="1">
-<li>Construct a graph that shows how much salary decreases moving from higher ranked players to lower ranked players for each position in the year 2018. Why do you think the depreciation is so large for Quarterbacks?</li>
-</ol>
-<div class="cell">
-
-</div>
-</section>
-<section id="solutions-4" class="level2" data-number="6.5">
-<h2 data-number="6.5" class="anchored" data-anchor-id="solutions-4"><span class="header-section-number">6.5</span> Exercise Solutions</h2>
-<section id="what-is-tidy-data-s" class="level3" data-number="6.5.1">
-<h3 data-number="6.5.1" class="anchored" data-anchor-id="what-is-tidy-data-s"><span class="header-section-number">6.5.1</span> What is Tidy Data? S</h3>
-</section>
-<section id="separate-and-unite-s" class="level3" data-number="6.5.2">
-<h3 data-number="6.5.2" class="anchored" data-anchor-id="separate-and-unite-s"><span class="header-section-number">6.5.2</span> <code>separate()</code> and <code>unite()</code> S</h3>
-<ol start="2" type="1">
-<li>* Tidy the data set just so that</li>
-</ol>
-<ul>
-<li><code>Duration</code> of the salary contract (currently given in the <code>Year</code> column) is in its own column</li>
-<li>the year range (also currently given in the <code>Year</code> column) is split into a variable called <code>Start</code> and a variable called <code>End</code> year that give the start and end years of the contract. You can still have special characters for now (like <code>(</code> and <code>)</code>) in the start and end year.</li>
-</ul>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a>baseball_df <span class="ot">&lt;-</span> baseball_df <span class="sc">|&gt;</span></span>
-<span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">separate</span>(Years, <span class="at">into =</span> <span class="fu">c</span>(<span class="st">"Duration"</span>, <span class="st">"Range"</span>), <span class="at">sep =</span> <span class="st">" "</span>) <span class="sc">|&gt;</span></span>
-<span id="cb43-3"><a href="#cb43-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">separate</span>(Range, <span class="at">into =</span> <span class="fu">c</span>(<span class="st">"Start"</span>, <span class="st">"End"</span>), <span class="at">sep =</span> <span class="st">"-"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<ol start="5" type="1">
-<li>* Using a function from <code>dplyr</code>. fix the <code>End</code> variable that you created so that, for example, the first observation is <code>2020</code> instead of just <code>20</code>.</li>
-</ol>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a>baseball_df <span class="ot">&lt;-</span> baseball_df <span class="sc">|&gt;</span> <span class="fu">mutate</span>(<span class="at">End =</span> End <span class="sc">+</span> <span class="dv">2000</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>This is a somewhat lazy way to do this and could get you into trouble (what if one of the years was in the 1990s?) But, it’s safe for this particular data set.</p>
-<ol start="6" type="1">
-<li>* <code>tidyr</code> is extremely useful, but it’s not glamorous. What you end up with is a data set that <code>ggplot2</code> and <code>dplyr</code> can use to do cool things. So, let’s do something with our tidy data set to make all that tidying a little worth it before moving on. Make a graphic that investigates how player <code>Salary</code> compares for different <code>POS</code>.</li>
-</ol>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb45"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> baseball_df, <span class="fu">aes</span>(<span class="at">x =</span> POS, <span class="at">y =</span> Salary)) <span class="sc">+</span></span>
-<span id="cb45-2"><a href="#cb45-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>()</span>
-<span id="cb45-3"><a href="#cb45-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> baseball_df, <span class="fu">aes</span>(<span class="at">x =</span> Salary, <span class="at">colour =</span> POS)) <span class="sc">+</span> </span>
-<span id="cb45-4"><a href="#cb45-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_freqpoly</span>() <span class="do">## boxplots look better in this case</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<ol start="7" type="1">
-<li>* State the reason why making that plot would not have worked before we tidied the data set.</li>
-</ol>
-<p>The <code>Salary</code> variable had a dollar sign in it so <code>ggplot</code> would not have known how to plot it.</p>
-</section>
-<section id="pivot_-s" class="level3" data-number="6.5.3">
-<h3 data-number="6.5.3" class="anchored" data-anchor-id="pivot_-s"><span class="header-section-number">6.5.3</span> <code>pivot_()</code> S</h3>
-<ol start="2" type="1">
-<li>* Convert the data set to a tidier form so that there is a <code>year</code> variable and a <code>commodity</code> variable that has 3 values: <code>"bigmac"</code>, <code>"bread"</code>, and <code>"rice"</code></li>
-</ol>
-<p><strong>Hint</strong>: At some point, you will need to separate the commodity from the year in, for example, bread2009. But, you’ll notice this is different than our other uses of <code>separate()</code> because there is no “-” or ” ” or “/” to use as a separating character. Look at the help for <code>separate()</code> and scroll down to the <code>sep</code> argument to see if you can figure out this issue. The first code chunk below shows the solution for this particular issue in case you only get stuck on this part while the second code chunk shows the entire solution.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb46"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a><span class="fu">separate</span>(name_of_variable, <span class="at">into =</span> <span class="fu">c</span>(<span class="st">"newname1"</span>, <span class="st">"newname2"</span>), <span class="at">sep =</span> <span class="sc">-</span><span class="dv">4</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb47"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a>prices_long <span class="ot">&lt;-</span> prices_df <span class="sc">|&gt;</span> <span class="fu">pivot_longer</span>(<span class="at">cols =</span> <span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>, <span class="dv">6</span>, <span class="dv">7</span>),</span>
-<span id="cb47-2"><a href="#cb47-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">names_to =</span> <span class="st">"commod_year"</span>, <span class="at">values_to =</span> <span class="st">"price"</span>) <span class="sc">|&gt;</span></span>
-<span id="cb47-3"><a href="#cb47-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">separate</span>(<span class="at">col =</span> <span class="st">"commod_year"</span>, <span class="at">into =</span> <span class="fu">c</span>(<span class="st">"commodity"</span>, <span class="st">"year"</span>), <span class="at">sep =</span> <span class="sc">-</span><span class="dv">4</span>)</span>
-<span id="cb47-4"><a href="#cb47-4" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(prices_long)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 6 × 4
-  city      commodity year  price
-  &lt;chr&gt;     &lt;chr&gt;     &lt;chr&gt; &lt;dbl&gt;
-1 Amsterdam bigmac    2009     19
-2 Amsterdam bread     2009     10
-3 Amsterdam rice      2009     11
-4 Amsterdam bigmac    2003     16
-5 Amsterdam bread     2003      9
-6 Amsterdam rice      2003      9</code></pre>
-</div>
-</div>
-<ol start="3" type="1">
-<li>* Convert your data set from the previous exercise so that <code>commodity</code> is split up into 3 variables: <code>bigmac</code> price, <code>rice</code> price and <code>bread</code> price.</li>
-</ol>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb49"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a>prices_wide <span class="ot">&lt;-</span> prices_long <span class="sc">|&gt;</span></span>
-<span id="cb49-2"><a href="#cb49-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_wider</span>(<span class="at">names_from =</span> commodity, <span class="at">values_from =</span> price)</span>
-<span id="cb49-3"><a href="#cb49-3" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(prices_wide)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 6 × 5
-  city      year  bigmac bread  rice
-  &lt;chr&gt;     &lt;chr&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
-1 Amsterdam 2009      19    10    11
-2 Amsterdam 2003      16     9     9
-3 Athens    2009      30    13    27
-4 Athens    2003      21    12    19
-5 Auckland  2009      19    19    13
-6 Auckland  2003      19    19     9</code></pre>
-</div>
-</div>
-<ol start="5" type="1">
-<li>* Notice that there are 217 columns (at the top of the print out of the header, 217 is the second number). When we use <code>tidyr</code>, we aren’t going to want to type out <code>c(2, 3, 4, 5, .....)</code> all the way up to <code>217</code>! <code>R</code> has short-hand notation that we can use with <code>:</code>. For example, type in <code>4:9</code> in your console window. Use this notation to tidy the <code>mortality_df</code> data set.</li>
-</ol>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb51"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a>mortality_long <span class="ot">&lt;-</span> mortality_df <span class="sc">|&gt;</span></span>
-<span id="cb51-2"><a href="#cb51-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="at">cols =</span> <span class="dv">2</span><span class="sc">:</span><span class="dv">217</span>, <span class="at">names_to =</span> <span class="st">"Year"</span>,</span>
-<span id="cb51-3"><a href="#cb51-3" aria-hidden="true" tabindex="-1"></a>               <span class="at">values_to =</span> <span class="st">"Mortality"</span>,</span>
-<span id="cb51-4"><a href="#cb51-4" aria-hidden="true" tabindex="-1"></a>               <span class="at">names_transform =</span> <span class="fu">list</span>(<span class="at">Year =</span> as.numeric))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>You’ll need to add something to your <code>pivot_longer()</code> function to convert the variable <code>Year</code> to numeric. We haven’t talked too much about variable types yet so, after your <code>values_to = "Mortality"</code> statement, add <code>, names_transform = list(Year = as.numeric)</code>, making sure you have a second <code>)</code> to close the <code>pivot_longer()</code> function.</p>
-</section>
-<section id="chapexercise-4-S" class="level3" data-number="6.5.4">
-<h3 data-number="6.5.4" class="anchored" data-anchor-id="chapexercise-4-S"><span class="header-section-number">6.5.4</span> Chapter Exercises S</h3>
-<ol start="2" type="1">
-<li>* Use a function in <code>tidyr</code> to make the data tidy, and give your tidy data set a new name.</li>
-</ol>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb52"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a>nfl_long <span class="ot">&lt;-</span> nfl_df <span class="sc">|&gt;</span></span>
-<span id="cb52-2"><a href="#cb52-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>, <span class="dv">6</span>, <span class="dv">7</span>, <span class="dv">8</span>, <span class="dv">9</span>, <span class="dv">10</span>, <span class="dv">11</span>),</span>
-<span id="cb52-3"><a href="#cb52-3" aria-hidden="true" tabindex="-1"></a>               <span class="at">names_to =</span> <span class="st">"position"</span>, <span class="at">values_to =</span> <span class="st">"salary"</span>)</span>
-<span id="cb52-4"><a href="#cb52-4" aria-hidden="true" tabindex="-1"></a>nfl_long</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 8,000 × 3
-    year position            salary
-   &lt;dbl&gt; &lt;chr&gt;                &lt;dbl&gt;
- 1  2011 Cornerback        11265916
- 2  2011 Defensive Lineman 17818000
- 3  2011 Linebacker        16420000
- 4  2011 Offensive Lineman 15960000
- 5  2011 Quarterback       17228125
- 6  2011 Running Back      12955000
- 7  2011 Safety             8871428
- 8  2011 Special Teamer     4300000
- 9  2011 Tight End          8734375
-10  2011 Wide Receiver     16250000
-# … with 7,990 more rows</code></pre>
-</div>
-</div>
-<ol start="3" type="1">
-<li>* To your data set in the previous exercise, add a ranking variable that ranks the salaries within each player position in each year so that the highest paid players in each position in each year all receive a <code>1</code>, the second highest paid players receive a <code>2</code>, etc. Compare your results for the default way that <code>R</code> uses to break ties between two salaries that are the same and using <code>ties.method = "first"</code>.</li>
-</ol>
-<p><strong>Hint</strong>: See Exercise 4 in @ref(exercise-3-3) for another example on how to do this.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb54"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a>nfl_long_default <span class="ot">&lt;-</span> nfl_long <span class="sc">|&gt;</span> <span class="fu">group_by</span>(position, year) <span class="sc">|&gt;</span></span>
-<span id="cb54-2"><a href="#cb54-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">rank =</span> <span class="fu">rank</span>(<span class="fu">desc</span>(salary)))</span>
-<span id="cb54-3"><a href="#cb54-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb54-4"><a href="#cb54-4" aria-hidden="true" tabindex="-1"></a>nfl_long <span class="ot">&lt;-</span> nfl_long <span class="sc">|&gt;</span> <span class="fu">group_by</span>(position, year) <span class="sc">|&gt;</span></span>
-<span id="cb54-5"><a href="#cb54-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">rank =</span> <span class="fu">rank</span>(<span class="fu">desc</span>(salary), <span class="at">ties.method =</span> <span class="st">"first"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>The first ranking code allows observations that have the same ranking get their rankings averaged together (e.g.&nbsp;two observations tied for 5th would get a ranking of (5 + 6) / 2 = 5.5).</p>
-<p>In the second ranking method, the first observation in the data set gets the “higher” rank.</p>
-<ol start="4" type="1">
-<li>* Find the maximum salary for each player position in each year. Then, create two different line graphs that shows how the maximum salary has changed from 2011 to 2018 for each position. For one line graph, make the colours of the lines different for each position. For the second line graph, facet by position. Which graph do you like better?</li>
-</ol>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb55"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb55-1"><a href="#cb55-1" aria-hidden="true" tabindex="-1"></a>nfl_max <span class="ot">&lt;-</span> nfl_long <span class="sc">|&gt;</span> <span class="fu">group_by</span>(position, year) <span class="sc">|&gt;</span></span>
-<span id="cb55-2"><a href="#cb55-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">maxsal =</span> <span class="fu">max</span>(salary, <span class="at">na.rm =</span> <span class="cn">TRUE</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>`summarise()` has grouped output by 'position'. You can override using the
-`.groups` argument.</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb57"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb57-1"><a href="#cb57-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> nfl_max,</span>
-<span id="cb57-2"><a href="#cb57-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">aes</span>(<span class="at">x =</span> year, <span class="at">y =</span> maxsal, <span class="at">group =</span> position, <span class="at">colour =</span> position)) <span class="sc">+</span></span>
-<span id="cb57-3"><a href="#cb57-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-<p><img src="04-tidyr_files/figure-html/unnamed-chunk-45-1.png" class="img-fluid" width="672"></p>
-</div>
-<div class="sourceCode cell-code" id="cb58"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb58-1"><a href="#cb58-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> nfl_max, <span class="fu">aes</span>(<span class="at">x =</span> year, <span class="at">y =</span> maxsal)) <span class="sc">+</span></span>
-<span id="cb58-2"><a href="#cb58-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>() <span class="sc">+</span></span>
-<span id="cb58-3"><a href="#cb58-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>( <span class="sc">~</span> position)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-<p><img src="04-tidyr_files/figure-html/unnamed-chunk-45-2.png" class="img-fluid" width="672"></p>
-</div>
-</div>
-<p>With this number of levels, I personally prefer the faceted graph for its cleaner look.</p>
-<ol start="5" type="1">
-<li>* The maximum salary is very dependent on one specific player. Make the same graph, but plot the average salary of the top 20 players in each position of each year. What do you notice? Any interesting patterns for any of the positions? If you’re a fan of football, provide a guess as to why one of the positions has had their salary plateau in recent years.</li>
-</ol>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb59"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb59-1"><a href="#cb59-1" aria-hidden="true" tabindex="-1"></a>nfl_rank <span class="ot">&lt;-</span> nfl_long <span class="sc">|&gt;</span> <span class="fu">filter</span>(rank <span class="sc">&lt;=</span> <span class="dv">20</span>) <span class="sc">|&gt;</span></span>
-<span id="cb59-2"><a href="#cb59-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(position, year) <span class="sc">|&gt;</span></span>
-<span id="cb59-3"><a href="#cb59-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">mean20 =</span> <span class="fu">mean</span>(salary, <span class="at">na.rm =</span> <span class="cn">TRUE</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>`summarise()` has grouped output by 'position'. You can override using the
-`.groups` argument.</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb61"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb61-1"><a href="#cb61-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> nfl_rank, <span class="fu">aes</span>(<span class="at">x =</span> year, <span class="at">y =</span> mean20)) <span class="sc">+</span></span>
-<span id="cb61-2"><a href="#cb61-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>() <span class="sc">+</span> </span>
-<span id="cb61-3"><a href="#cb61-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>( <span class="sc">~</span> position)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-<p><img src="04-tidyr_files/figure-html/unnamed-chunk-46-1.png" class="img-fluid" width="672"></p>
-</div>
-</div>
-<p>Running backs haven’t had much of a salary increase whereas all other offensive positions have had a large salary increase. There are many plausible explanations for why this is the case. One is that the NFL is much more of a “passing league” now than it was decades ago.</p>
-<ol start="6" type="1">
-<li>* Sometimes for graphs involving cost or salary, we want to take into account the inflation rate. Google what the inflation rate was between 2011 and 2018 (Google something like “inflation rate from 2011 to 2018” and you should be able to find something). Adjust all of the 2011 salaries for inflation so that they are comparable to the 2018 salaries. Then, make a similar line plot as above but ignore all of the years between 2012 and 2017 (so your line plot will just have 2 points per position).</li>
-</ol>
-<p>After adjusting for inflation, how many positions have average higher salaries for the top 20 players in that position?</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb62"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb62-1"><a href="#cb62-1" aria-hidden="true" tabindex="-1"></a><span class="do">## 11.6% from 2011 to 2018.</span></span>
-<span id="cb62-2"><a href="#cb62-2" aria-hidden="true" tabindex="-1"></a>nfl_inf <span class="ot">&lt;-</span> nfl_long <span class="sc">|&gt;</span></span>
-<span id="cb62-3"><a href="#cb62-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">salary_inf =</span> <span class="fu">if_else</span>(year <span class="sc">==</span> <span class="dv">2011</span>,</span>
-<span id="cb62-4"><a href="#cb62-4" aria-hidden="true" tabindex="-1"></a>                              <span class="at">true =</span> salary <span class="sc">*</span> <span class="fl">1.116</span>,</span>
-<span id="cb62-5"><a href="#cb62-5" aria-hidden="true" tabindex="-1"></a>                              <span class="at">false =</span> salary)) <span class="sc">|&gt;</span> </span>
-<span id="cb62-6"><a href="#cb62-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(year <span class="sc">==</span> <span class="dv">2011</span> <span class="sc">|</span> year <span class="sc">==</span> <span class="dv">2018</span>) <span class="sc">|&gt;</span> </span>
-<span id="cb62-7"><a href="#cb62-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(rank <span class="sc">&lt;=</span> <span class="dv">20</span>) <span class="sc">|&gt;</span> <span class="fu">group_by</span>(position, year) <span class="sc">|&gt;</span></span>
-<span id="cb62-8"><a href="#cb62-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">mean20 =</span> <span class="fu">mean</span>(salary, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>`summarise()` has grouped output by 'position'. You can override using the
-`.groups` argument.</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb64"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb64-1"><a href="#cb64-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> nfl_inf, <span class="fu">aes</span>(<span class="at">x =</span> year, <span class="at">y =</span> mean20)) <span class="sc">+</span></span>
-<span id="cb64-2"><a href="#cb64-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>() <span class="sc">+</span></span>
-<span id="cb64-3"><a href="#cb64-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
-<span id="cb64-4"><a href="#cb64-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>( <span class="sc">~</span> position)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-<p><img src="04-tidyr_files/figure-html/unnamed-chunk-47-1.png" class="img-fluid" width="672"></p>
-</div>
-</div>
-<p>All positions have higher salaries, even after adjusting for inflation, except perhaps running backs (it’s too hard to tell from the graph).</p>
-</section>
-</section>
-<section id="rcode-4" class="level2" data-number="6.6">
-<h2 data-number="6.6" class="anchored" data-anchor-id="rcode-4"><span class="header-section-number">6.6</span> Non-Exercise <code>R</code> Code</h2>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb65"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb65-1"><a href="#cb65-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb65-2"><a href="#cb65-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(here)</span>
-<span id="cb65-3"><a href="#cb65-3" aria-hidden="true" tabindex="-1"></a>polls <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="fu">here</span>(<span class="st">"data/rcp-polls.csv"</span>), <span class="at">na =</span> <span class="st">"--"</span>)</span>
-<span id="cb65-4"><a href="#cb65-4" aria-hidden="true" tabindex="-1"></a>polls</span>
-<span id="cb65-5"><a href="#cb65-5" aria-hidden="true" tabindex="-1"></a>polls <span class="sc">|&gt;</span> <span class="fu">summarise</span>(<span class="at">meansample =</span> <span class="fu">mean</span>(Sample))</span>
-<span id="cb65-6"><a href="#cb65-6" aria-hidden="true" tabindex="-1"></a>polls <span class="sc">|&gt;</span></span>
-<span id="cb65-7"><a href="#cb65-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">separate</span>(<span class="at">col =</span> Sample, <span class="at">into =</span> <span class="fu">c</span>(<span class="st">"Sample_size"</span>, <span class="st">"Sample_type"</span>), </span>
-<span id="cb65-8"><a href="#cb65-8" aria-hidden="true" tabindex="-1"></a>           <span class="at">sep =</span> <span class="st">" "</span>)</span>
-<span id="cb65-9"><a href="#cb65-9" aria-hidden="true" tabindex="-1"></a>polls_sep <span class="ot">&lt;-</span> polls <span class="sc">|&gt;</span></span>
-<span id="cb65-10"><a href="#cb65-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">separate</span>(<span class="at">col =</span> Date, <span class="at">into =</span> <span class="fu">c</span>(<span class="st">"Start"</span>, <span class="st">"End"</span>),</span>
-<span id="cb65-11"><a href="#cb65-11" aria-hidden="true" tabindex="-1"></a>           <span class="at">sep =</span> <span class="st">" - "</span>)</span>
-<span id="cb65-12"><a href="#cb65-12" aria-hidden="true" tabindex="-1"></a>polls_sillytest <span class="ot">&lt;-</span> polls_sep <span class="sc">|&gt;</span></span>
-<span id="cb65-13"><a href="#cb65-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">separate</span>(<span class="at">col =</span> Start, <span class="at">into =</span> <span class="fu">c</span>(<span class="st">"Start_month"</span>, <span class="st">"Start_day"</span>), </span>
-<span id="cb65-14"><a href="#cb65-14" aria-hidden="true" tabindex="-1"></a>           <span class="at">sep =</span> <span class="st">"/"</span>)</span>
-<span id="cb65-15"><a href="#cb65-15" aria-hidden="true" tabindex="-1"></a>polls_sillytest</span>
-<span id="cb65-16"><a href="#cb65-16" aria-hidden="true" tabindex="-1"></a>polls_sillytest <span class="sc">|&gt;</span></span>
-<span id="cb65-17"><a href="#cb65-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">unite</span>(<span class="st">"New_start_date"</span>, <span class="fu">c</span>(Start_month, Start_day),</span>
-<span id="cb65-18"><a href="#cb65-18" aria-hidden="true" tabindex="-1"></a>        <span class="at">sep =</span> <span class="st">"/"</span>)</span>
-<span id="cb65-19"><a href="#cb65-19" aria-hidden="true" tabindex="-1"></a><span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">4</span>, <span class="dv">2</span>)</span>
-<span id="cb65-20"><a href="#cb65-20" aria-hidden="true" tabindex="-1"></a><span class="fu">c</span>(<span class="st">"A"</span>, <span class="st">"A"</span>, <span class="st">"D"</span>)</span>
-<span id="cb65-21"><a href="#cb65-21" aria-hidden="true" tabindex="-1"></a>polls_sep</span>
-<span id="cb65-22"><a href="#cb65-22" aria-hidden="true" tabindex="-1"></a>polls_new <span class="ot">&lt;-</span> polls_sep <span class="sc">|&gt;</span></span>
-<span id="cb65-23"><a href="#cb65-23" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="at">Clinton_D =</span> <span class="st">`</span><span class="at">Clinton (D)</span><span class="st">`</span>, <span class="at">Trump_R =</span> <span class="st">`</span><span class="at">Trump (R)</span><span class="st">`</span>,</span>
-<span id="cb65-24"><a href="#cb65-24" aria-hidden="true" tabindex="-1"></a>         <span class="at">Johnson_L =</span> <span class="st">`</span><span class="at">Johnson (L)</span><span class="st">`</span>, <span class="at">Stein_G =</span> <span class="st">`</span><span class="at">Stein (G)</span><span class="st">`</span>)</span>
-<span id="cb65-25"><a href="#cb65-25" aria-hidden="true" tabindex="-1"></a>polls_new</span>
-<span id="cb65-26"><a href="#cb65-26" aria-hidden="true" tabindex="-1"></a>polls_clean <span class="ot">&lt;-</span> polls <span class="sc">|&gt;</span></span>
-<span id="cb65-27"><a href="#cb65-27" aria-hidden="true" tabindex="-1"></a>  <span class="fu">separate</span>(<span class="at">col =</span> Sample, <span class="at">into =</span> <span class="fu">c</span>(<span class="st">"Sample_size"</span>, <span class="st">"Sample_type"</span>), </span>
-<span id="cb65-28"><a href="#cb65-28" aria-hidden="true" tabindex="-1"></a>           <span class="at">sep =</span> <span class="st">" "</span>)  <span class="sc">|&gt;</span></span>
-<span id="cb65-29"><a href="#cb65-29" aria-hidden="true" tabindex="-1"></a>  <span class="fu">separate</span>(<span class="at">col =</span> Date, <span class="at">into =</span> <span class="fu">c</span>(<span class="st">"Start"</span>, <span class="st">"End"</span>),</span>
-<span id="cb65-30"><a href="#cb65-30" aria-hidden="true" tabindex="-1"></a>           <span class="at">sep =</span> <span class="st">" - "</span>) <span class="sc">|&gt;</span> </span>
-<span id="cb65-31"><a href="#cb65-31" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="at">Clinton_D =</span> <span class="st">`</span><span class="at">Clinton (D)</span><span class="st">`</span>, <span class="at">Trump_R =</span> <span class="st">`</span><span class="at">Trump (R)</span><span class="st">`</span>,</span>
-<span id="cb65-32"><a href="#cb65-32" aria-hidden="true" tabindex="-1"></a>         <span class="at">Johnson_L =</span> <span class="st">`</span><span class="at">Johnson (L)</span><span class="st">`</span>, <span class="at">Stein_G =</span> <span class="st">`</span><span class="at">Stein (G)</span><span class="st">`</span>)</span>
-<span id="cb65-33"><a href="#cb65-33" aria-hidden="true" tabindex="-1"></a>polls_clean</span>
-<span id="cb65-34"><a href="#cb65-34" aria-hidden="true" tabindex="-1"></a>polls_clean <span class="sc">|&gt;</span></span>
-<span id="cb65-35"><a href="#cb65-35" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="at">cols =</span> <span class="fu">c</span>(Clinton_D, Trump_R, Johnson_L, Stein_G),</span>
-<span id="cb65-36"><a href="#cb65-36" aria-hidden="true" tabindex="-1"></a>               <span class="at">names_to =</span> <span class="st">"candidate"</span>, <span class="at">values_to =</span> <span class="st">"poll_percent"</span>)</span>
-<span id="cb65-37"><a href="#cb65-37" aria-hidden="true" tabindex="-1"></a>polls_long <span class="ot">&lt;-</span> polls_clean <span class="sc">|&gt;</span></span>
-<span id="cb65-38"><a href="#cb65-38" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="at">cols =</span> <span class="fu">c</span>(Clinton_D, Trump_R, Johnson_L, Stein_G),</span>
-<span id="cb65-39"><a href="#cb65-39" aria-hidden="true" tabindex="-1"></a>               <span class="at">names_to =</span> <span class="st">"candidate"</span>, <span class="at">values_to =</span> <span class="st">"poll_percent"</span>)</span>
-<span id="cb65-40"><a href="#cb65-40" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb65-41"><a href="#cb65-41" aria-hidden="true" tabindex="-1"></a><span class="do">## ignore as.Date for now....we will get to dates later!</span></span>
-<span id="cb65-42"><a href="#cb65-42" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> polls_long,</span>
-<span id="cb65-43"><a href="#cb65-43" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">as.Date</span>(Start, <span class="st">"%m/%d"</span>), <span class="at">y =</span> poll_percent,</span>
-<span id="cb65-44"><a href="#cb65-44" aria-hidden="true" tabindex="-1"></a>           <span class="at">colour =</span> candidate)) <span class="sc">+</span></span>
-<span id="cb65-45"><a href="#cb65-45" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span> <span class="fu">xlab</span>(<span class="st">"Poll Start Date"</span>)</span>
-<span id="cb65-46"><a href="#cb65-46" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(here)</span>
-<span id="cb65-47"><a href="#cb65-47" aria-hidden="true" tabindex="-1"></a>airlines <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="fu">here</span>(<span class="st">"data/airline-safety.csv"</span>))</span>
-<span id="cb65-48"><a href="#cb65-48" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(airlines)</span>
-<span id="cb65-49"><a href="#cb65-49" aria-hidden="true" tabindex="-1"></a>airlines <span class="sc">|&gt;</span></span>
-<span id="cb65-50"><a href="#cb65-50" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="fu">c</span>(<span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>, <span class="dv">6</span>, <span class="dv">7</span>, <span class="dv">8</span>), <span class="at">names_to =</span> <span class="st">"type_year"</span>,</span>
-<span id="cb65-51"><a href="#cb65-51" aria-hidden="true" tabindex="-1"></a>  <span class="at">values_to =</span> <span class="st">"total_num"</span>) </span>
-<span id="cb65-52"><a href="#cb65-52" aria-hidden="true" tabindex="-1"></a>airlines <span class="sc">|&gt;</span> <span class="fu">pivot_longer</span>(<span class="fu">c</span>(<span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>, <span class="dv">6</span>, <span class="dv">7</span>, <span class="dv">8</span>), <span class="at">names_to =</span> <span class="st">"type_year"</span>,</span>
-<span id="cb65-53"><a href="#cb65-53" aria-hidden="true" tabindex="-1"></a>                          <span class="at">values_to =</span> <span class="st">"total_num"</span>) <span class="sc">|&gt;</span></span>
-<span id="cb65-54"><a href="#cb65-54" aria-hidden="true" tabindex="-1"></a>  <span class="fu">separate</span>(type_year, <span class="at">into =</span> <span class="fu">c</span>(<span class="st">"type"</span>, <span class="st">"year"</span>), <span class="at">sep =</span> <span class="st">" "</span>)</span>
-<span id="cb65-55"><a href="#cb65-55" aria-hidden="true" tabindex="-1"></a><span class="do">## name the long data set</span></span>
-<span id="cb65-56"><a href="#cb65-56" aria-hidden="true" tabindex="-1"></a>airlines_long <span class="ot">&lt;-</span> airlines <span class="sc">|&gt;</span></span>
-<span id="cb65-57"><a href="#cb65-57" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="fu">c</span>(<span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>, <span class="dv">6</span>, <span class="dv">7</span>, <span class="dv">8</span>), <span class="at">names_to =</span> <span class="st">"type_year"</span>,</span>
-<span id="cb65-58"><a href="#cb65-58" aria-hidden="true" tabindex="-1"></a>               <span class="at">values_to =</span> <span class="st">"total_num"</span>) <span class="sc">|&gt;</span></span>
-<span id="cb65-59"><a href="#cb65-59" aria-hidden="true" tabindex="-1"></a>  <span class="fu">separate</span>(type_year, <span class="at">into =</span> <span class="fu">c</span>(<span class="st">"type"</span>, <span class="st">"year"</span>), <span class="at">sep =</span> <span class="st">" "</span>)</span>
-<span id="cb65-60"><a href="#cb65-60" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb65-61"><a href="#cb65-61" aria-hidden="true" tabindex="-1"></a><span class="do">## use pivot_wider() to create variables for incidents, fatalities, and</span></span>
-<span id="cb65-62"><a href="#cb65-62" aria-hidden="true" tabindex="-1"></a><span class="do">## fatal_accidents:</span></span>
-<span id="cb65-63"><a href="#cb65-63" aria-hidden="true" tabindex="-1"></a>airlines_long <span class="sc">|&gt;</span> <span class="fu">pivot_wider</span>(<span class="at">names_from =</span> type,</span>
-<span id="cb65-64"><a href="#cb65-64" aria-hidden="true" tabindex="-1"></a>                              <span class="at">values_from =</span> total_num)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
+<p><strong>Your Turn 12</strong>. Construct a graph that shows how much salary decreases moving from higher ranked players to lower ranked players for each position in the year 2018. Why do you think the depreciation is so large for Quarterbacks?</p>
 
 
-</section>
-
-</main> <!-- /main -->
-<script id="quarto-html-after-body" type="application/javascript">
+</section></section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
     const mode = bsSheetEl.getAttribute("data-mode");
@@ -1330,9 +943,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     });
   }
 });
-</script>
-<nav class="page-navigation">
-  <div class="nav-page nav-page-previous">
+</script><nav class="page-navigation"><div class="nav-page nav-page-previous">
       <a href="./14-workflow.html" class="pagination-link">
         <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Workflow and Other Skills</span></span>
       </a>          
@@ -1344,13 +955,11 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   </div>
 </nav>
 </div> <!-- /content -->
-<footer class="footer">
-  <div class="nav-footer">
+<footer class="footer"><div class="nav-footer">
     <div class="nav-footer-left">Course Materials were written by Matt Higham for STAT/DATA 234 at St.&nbsp;Lawrence University.</div>   
     <div class="nav-footer-right">This book was built with <a href="https://quarto.org/">Quarto</a>.</div>
   </div>
 </footer>
-
 
 
 </body></html>

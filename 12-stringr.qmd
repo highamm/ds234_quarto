@@ -1,5 +1,10 @@
 # Text Data with `tidytext` and `stringr` {#text}
 
+```{r}
+#| echo: false
+source("_common.R")
+```
+
 __Goals__:
 
 * use functions in the `stringr` package and in the `tidytext` package to analyze text data.
@@ -73,17 +78,19 @@ beyonce_sum <- beyonce_stop |> group_by(word) |>
 beyonce_sum
 ```
 
-Looking through the list, there are __still__ some stop words in there that were not picked up on in the `stop_words` data set. We will address these, as well as make a plot, in the exercises.
+Looking through the list, there are __still__ some stop words in there that were not picked up on in the `stop_words` data set. 
 
-### Exercises {#exercise-12-1}
+__Exercise 1__. Look at the remaining words. Do any of them look like stop words that were missed with the stop words from the `tidytext` package? Create a tibble with a few of the remaining stop words (like `ooh`, `gotta`, `ya`, `uh`, and `yeah`) not picked up by the `tidytext` package, and use a join function to drop these words from the data set.
 
-Exercises marked with an \* indicate that the exercise has a solution at the end of the chapter at \@ref(solutions-12).
+::: {.callout-tip collapse="true"}
+## Hint (only if you get stuck)
 
-1. Look at the remaining words. Do any of them look like stop words that were missed with the stop words from the `tidytext` package? Create a tibble with a few of the remaining stop words (like `ooh`, `gotta`, `ya`, `uh`, and `yeah`) not picked up by the `tidytext` package, and use a join function to drop these words from the data set.
+The join function you will need to use here is `anti_join()`.
+:::
 
-2. With the new data set, construct a lollipop plot or a bar plot that shows the 20 most common words Beyonce uses, as well as the number of times each word is used.
+__Exercise 2__. With the new data set, construct a lollipop plot or a bar plot that shows the 20 most common words Beyonce uses, as well as the number of times each word is used.
 
-3. Use the `wordcloud()` function in the `wordcloud` library and the code below to make a wordcloud of Beyonce's words.
+__Exercise 3__. Use the `wordcloud()` function in the `wordcloud` library and the code below to make a wordcloud of Beyonce's words.
 
 ```{r, echo = TRUE, results = "hide", fig.keep = "none", appendix = TRUE}
 ## install.packages("wordcloud")
@@ -94,9 +101,13 @@ wordcloud(beyonce_small$word, beyonce_small$n,
           random.order = FALSE, random.color = FALSE)
 ```
 
-Then, use `?wordcloud` to read about what the various arguments like `random.order`, `scale`, and `random.color` do.
+There is not anything else you need to do for this exercise: just make the word cloud!
+
+::: {.callout-note}
+## Note
 
 If you want to delve into text data more, you'll need to learn about _regular expressions_ , or _regexes_. If interested, you can read more in the <a href="https://r4ds.had.co.nz/strings.html#matching-patterns-with-regular-expressions" target="_blank">R4DS textbook</a>. Starting out is not too bad, but learning about escaping special characters in `R` can be much more challenging!
+:::
 
 We analyzed a short text data set, but, you can imagine extending this type of analysis to things like:
 
@@ -105,12 +116,6 @@ We analyzed a short text data set, but, you can imagine extending this type of a
 * tv analysis, if you have the scripts to all episodes of a tv show
 
 If you were doing one of these analyses, there are lots of cool functions in `tidytext` to help you out! We will do one more example, this time looking at Donald Trump's twitter account in 2016.
-
-## Basic Sentiment Analysis
-
-We will use a provided .qmd file to replicate a sentiment analysis on Trump's twitter account from 2016. This analysis was used in conjunction with a major news story that hypothesized that Trump himself wrote tweets from an Android device while his campaign staff wrote tweets for him from an iPhone device. We will investigate what properties of his tweets led the author to believe this.
-
-The .qmd file used for this is posted on Canvas. We will see more uses of `stringr` for this particular analysis. For this entire section, you should be able to follow along and understand what each line of code is doing. However, unlike all previous sections, you will not be expected to do a sentiment analysis on your own.
 
 <!-- see below: sentiment analysis for the friends package -->
 
@@ -154,15 +159,29 @@ Clearly, there is a lot of data encoded in the `point` variable. We are going to
 
 ### Regular Expressions
 
-A __regex__, or __regular expression__, is a string used to identify particular patterns in string data. Regular expressions are used in __many__ languages (so, if you google something about a regular expression, you do not need to limit yourself to just looking at resources pertaining to `R`). 
+A __regex__, or __regular expression__, is a string used to identify particular patterns in string data. 
 
-Regex's can be used with the functions in the `stringr` package. The functions in the `stringr` package begin with `str_()`, much like the functions in `forcats` began with `fct_()`. We will first focus on the `str_detect()` function, which detects whether a particular regex is present in a string variable. `str_detect()` takes the name of the string as its first argument and the regex as the second argument. For example,
+::: {.callout-note}
+## Note
+
+Regular expressions are used in __many__ languages (so, if you google something about a regular expression, you do not need to limit yourself to just looking at resources pertaining to `R`). 
+:::
+
+Regex's can be used with the functions in the `stringr` package. 
+
+::: {.callout-note}
+## Note
+
+The functions in the `stringr` package begin with `str_()`, much like the functions in `forcats` began with `fct_()`. 
+:::
+
+We will first focus on the `str_detect()` function, which detects whether a particular regex is present in a string variable. `str_detect()` takes the name of the string as its first argument and the regex as the second argument. For example,
 
 ```{r, appendix = TRUE}
 str_detect(med_djok_df$point, pattern = "f")
 ```
 
-returns a `TRUE` if the letter `f` appears anywhere in the string and a `FALSE` if it does not. So, we can examine how many points a forehand was hit in the Medvedev Djokovic match. As a second example,
+returns a `TRUE` if the letter `f` appears anywhere in the string and a `FALSE` if it does not. So, we can examine how many points a forehand was hit in the Medvedev-Djokovic match. As a second example,
 
 ```{r, appendix = TRUE, results = "hide"}
 str_detect(med_djok_df$point, pattern = "d@")
@@ -234,51 +253,36 @@ str_detect(med_djok_df$point, pattern = "@$")
 ```
 
 <br>
+
 * Extract all of the forehand shots that were hit with `str_extract_all()`. The regex here says to extract anything with an f followed by any number of digits before another non-digit symbol.
 
 ```{r, results = "hide", appendix = TRUE}
 str_extract_all(med_djok_df$point, pattern = "f[:digit:]+")
 ```
 
-The purpose of these examples is just to show that things can get complicated with strings. For the purposes of assessment in this course, you are only responsible for the relatively simple cases discussed earlier in the section and in the exercises.
+The purpose of these examples is just to show that things can get more complicated with strings. 
 
-### Exercises {#exercise-12-1}
+__Exercise 4__. Use `str_detect()` and the `dplyr` functions `mutate()` and `case_when()` to create a variable for `serve_location` that is either `"wide"` if the `point` starts with a `4`, `"body"` if the `point` starts with a `5`, and `"down the center"` if the `point` starts with a `6`.
 
-1. Use `str_detect()` and `dplyr` functions to create a variable for `serve_location` that is either `"wide"` if the `point` starts with a `4`, `"body"` if the `point` starts with a `5`, and `"down the center"` if the `point` starts with a `6`.
+## Practice
 
-2. Use `dplyr` functions and the `Serving` variable to count the number of serve locations for each player. (i.e. for how many points did Medvedev hit a serve out wide?). 
+### Class Exercises
 
-3. Use `dplyr` functions, the `Serving` variable, and the `isSrvWinner` variable to find the proportion of points each player won for each of their serving locations (i.e. if Medvedev won 5 points while serving out wide and lost 3 points, the proportion would be 5 / 8 = `0.625`). 
+__Class Exercise 1__. We will use a provided .qmd file to replicate what is called a __sentiment analysis__ on Trump's twitter account from 2016. This analysis was used in conjunction with a major news story that hypothesized that Trump himself wrote tweets from an Android device while his campaign staff wrote tweets for him from an iPhone device. We will investigate what properties of his tweets led the author to believe this.
 
-Note that the `isSrvWinner` variable is coded as a `1` if the serving player won the point and `0` if the serving player lost the point.
+The `.qmd` file used for this is posted on Canvas. We will see more uses of `stringr` for this particular analysis. For this entire section, you should be able to follow along and understand what each line of code is doing. However, unlike other topics, you will not be expected to do a sentiment analysis on your own.
 
-4. The letters `v`, `z`, `i`, and `k` denote volleys (of different types). Use `str_detect()` and `dplyr` functions to figure out the proportion of points where a volley was hit.
+### Your Turn
 
-## Chapter Exercises {#chapexercise-12}
+__Your Turn 1__. Use `dplyr` functions and the `Serving` variable to count the number of serve locations for each player. (i.e. for how many points did Medvedev hit a serve out wide?). 
 
-Exercises marked with an \* indicate that the exercise has a solution at the end of the chapter at \@ref(solutions-12).
+__Your Turn 2__. Use `dplyr` functions, the `Serving` variable, and the `isSrvWinner` variable to find the proportion of points each player won for each of their serving locations (i.e. if Medvedev won 5 points while serving out wide and lost 3 points, the proportion would be 5 / 8 = `0.625`). 
 
-There are no Chapter Exercises.
+::: {.callout-note}
+## Note
 
-## Exercise Solutions {#solutions-12}
+The `isSrvWinner` variable is coded as a `1` if the serving player won the point and `0` if the serving player lost the point.
+:::
 
-### Text Analysis S
+__Your Turn 3__. The letters `v`, `z`, `i`, and `k` denote volleys (of different types). Use `str_detect()` and `dplyr` functions to figure out the proportion of points where a volley was hit.
 
-There are no solutions.
-
-### Basic Sentiment Analysis S
-
-There are no solutions.
-
-### Introduction to `stringr` S
-
-There are no solutions.
-
-### Chapter Exercises S {#chapexercise-12-S}
-
-There are no solutions. 
-
-## Non-Exercise `R` Code {#rcode-12}
-
-```{r ref.label=knitr::all_labels(appendix == TRUE), echo=TRUE, eval=FALSE}
-```

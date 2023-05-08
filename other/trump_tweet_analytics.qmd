@@ -1,0 +1,243 @@
+---
+title: "Text Analysis of Trump's Tweets in 2016 with `tidytext`"
+execute:
+  echo: true
+  warning: false
+format: 
+  html:
+    self-contained: true
+---
+
+
+
+__Note__: The code for this text analysis was modified from David Robinson's GitHub account at <https://github.com/dgrtwo/dgrtwo.github.com/blob/master/_R/2016-08-09-trump-tweets.Rmd>. 
+
+We will use this link a couple of times to understand regexes: <https://medium.com/factory-mind/regex-tutorial-a-simple-cheatsheet-by-examples-649dc1c3f285>
+
+In this text analysis, we will follow along with the modified code here to perform a basic sentiment analysis on Trump's tweets, comparing his tweets from an Android device and an iPhone. There was a major news story that broke out in 2016 that speculated that the iPhone was a campaign device (used by staffers to tweet from Trump's twitter account) while the Android device was used by Trump himself. We will investigate why with the following text analysis.
+
+
+### The dataset
+
+While you can upload twitter data from anyone's public account with the `twitteR` package, you need to create an account first. We will skip this step by directly reading in the data set from the author's website `varianceexplained`:
+
+```{r trump_tweets_df}
+load(url("http://varianceexplained.org/files/trump_tweets_df.rda"))
+```
+
+We clean this data a bit, extracting the source application. (We're looking only at the iPhone and Android tweets- a much smaller number are from the web client or iPad).
+
+```{r tweets}
+library(ggplot2)
+theme_set(theme_bw())
+library(dplyr)
+library(tidyr)
+tweets <- trump_tweets_df |>
+  select(id, statusSource, text, created) |>
+  extract(statusSource, "source", "Twitter for (.*?)<") |>
+  filter(source %in% c("iPhone", "Android"))
+```
+
+Exercise. Describe what the `extract()` function does.
+
+<br>
+
+Overall, this includes `r sum(tweets$source == "iPhone")` tweets from iPhone, and `r sum(tweets$source == "Android")` tweets from Android.
+
+One consideration is what time of day the tweets occur, which we'd expect to be a "signature" of their user. Here we can certainly spot a difference:
+
+```{r dependson = "tweets"}
+library(lubridate)
+library(scales)
+tweets |>
+  mutate(hour = hour(with_tz(created, "EST"))) |>
+  group_by(source, hour) |>
+  summarise(n = n()) |>
+  ungroup() |>
+  mutate(percent = n / sum(n)) |>
+  ggplot(aes(hour, percent, color = source)) +
+  geom_line() +
+  scale_y_continuous(labels = percent_format()) +
+  labs(x = "Hour of day (EST)",
+       y = "% of tweets",
+       color = "")
+```
+
+Another place we can spot a difference is in Trump's anachronistic behavior of "manually retweeting" people by copy-pasting their tweets, then surrounding them with quotation marks:
+
+Almost all of these quoted tweets are posted from the Android:
+
+```{r dependson = "tweets", echo = FALSE}
+library(stringr)
+tweets |>
+  mutate(quoted = if_else(str_detect(text, '^"'),
+                          true = "Quoted",
+                          false = "Not quoted")) |>
+  group_by(source, quoted) |>
+  summarise(n = n()) |>
+  ggplot(aes(source, n, fill = quoted)) +
+  geom_bar(stat = "identity", position = "dodge") +
+  labs(x = "", y = "Number of tweets", fill = "") +
+  ggtitle('Whether tweets start with a quotation mark (")')
+```
+
+Exercise. Describe what the `str_detect()` function is doing in the above code when combined with `mutate()` and `if_else()`.
+
+<br>
+
+In the remaining by-word analyses in this text, I'll filter these quoted tweets out (since they contain text from followers that may not be representative of Trump's own tweets).
+
+### Comparison of words
+
+Now that we're sure there's a difference between these two accounts, what can we say about the difference in the *content*? We'll use the [tidytext](https://cran.r-project.org/web/packages/tidytext) package that [Julia Silge](http://juliasilge.com/) and the author of this post developed.
+
+We start by dividing into individual words using the `unnest_tokens` function (see [this vignette](https://cran.r-project.org/web/packages/tidytext/vignettes/tidytext.html) for more), and removing some common "stopwords"[^regex]:
+
+In the following code chunk, we will comment what each line of code is doing.
+
+```{r tweet_words}
+## install.packages("tidytext")
+library(tidytext)
+
+tweet_words <- tweets |>
+  filter(!str_detect(text, '^"')) |>
+  mutate(text = str_replace_all(text, "https://t.co/[A-Za-z\\d]+|&amp;", "")) |>
+  unnest_tokens(word, text) |>
+  anti_join(stop_words, by = c("word" = "word")) |>
+  filter(str_detect(word, "[a-z]"))
+
+tweet_words
+```
+
+```{r}
+df <- tibble(test_words = c("agg", "a42b", "20ff", "2:30"))
+df |> mutate(test_az = str_detect(test_words, "[a-z]"))
+```
+
+Exercise. What types of words and tweets are included and excluded in the `word` variable in the `tweet_words` data frame?
+
+<br>
+
+What were the most common words in Trump's tweets overall?
+
+```{r tweet_words_plot}
+library(forcats)
+tweet_words |>
+  group_by(word) |>
+  summarise(n = n()) |>
+  arrange(desc(n)) |>
+  head(20) |>
+  mutate(word = fct_reorder(word, n)) |>
+  ggplot(aes(word, n)) +
+  geom_bar(stat = "identity") +
+  ylab("Occurrences") +
+  coord_flip()
+```
+
+These should look familiar for anyone who has seen the feed. Now let's consider which words are most common from the Android relative to the iPhone, and vice versa. We'll use the simple measure of log odds ratio, calculated for each word as:[^plusone]
+
+$$\log_2(\frac{\frac{\mbox{# in Android} + 1}{\mbox{Total Android} + 1}}
+  {\frac{\mbox{# in iPhone} + 1}{\mbox{Total iPhone} + 1}})$$
+
+We won't focus on the details of this log odds ratio calculation: the most important thing to note is that, the higher the log ratio is for a word, the more often that word appeared on the andriod device compared to the iphone device. The more negative the log odds ratio, the more often that word appeared on the iphone device compared to the android device.
+
+```{r android_iphone_ratios, dependson = "tweet_words"}
+android_iphone_ratios <- tweet_words |>
+  group_by(word, source) |>
+  summarise(n = n()) |>
+  filter(sum(n) >= 5) |>
+  pivot_wider(names_from = "source", values_from = "n",
+              values_fill = 0) |>
+  ungroup() |>
+  mutate(across(where(is.numeric), ~ (. + 1) / sum(. + 1))) |>
+  mutate(logratio = log2(Android / iPhone)) |>
+  arrange(desc(logratio))
+```
+
+Which are the words most likely to be from Android and most likely from iPhone?
+
+```{r android_iphone_ratios_plot}
+android_iphone_ratios |>
+  group_by(logratio > 0) |>
+  top_n(15, abs(logratio)) |>
+  ungroup() |>
+  mutate(word = reorder(word, logratio)) |>
+  ggplot(aes(word, logratio, fill = logratio < 0)) +
+  geom_bar(stat = "identity") +
+  coord_flip() +
+  ylab("Android / iPhone log ratio") +
+  scale_fill_manual(name = "", labels = c("Android", "iPhone"),
+                    values = c("red", "lightblue"))
+```
+
+Exercise. There are some new functions and arguments used in the above code chunk. Identify what `top_n()`, `reorder()`, the `stat = "identity"` argument, and `scale_fill_manual()` do.
+
+<br>
+
+Exercise. What are some patterns you can discern from the types of words that more frequently on the Android account compared to the iPhone account?
+
+<br>
+
+### Sentiment analysis
+
+Since we've observed a difference in sentiment between the Android and iPhone tweets, let's try quantifying it. We'll work with the [NRC Word-Emotion Association](http://saifmohammad.com/WebPages/NRC-Emotion-Lexicon.htm) lexicon, available from the tidytext package, which associates words with 10 sentiments: **positive**, **negative**, **anger**, **anticipation**, **disgust**, **fear**, **joy**, **sadness**, **surprise**, and **trust**.
+
+```{r nrc}
+## install.packages("textdata")
+library(textdata)
+sentiment_df <- get_sentiments("nrc")
+nrc <- sentiment_df |>
+  dplyr::select(word, sentiment)
+nrc
+```
+
+To measure the sentiment of the Android and iPhone tweets, we can count the number of words in each category:
+
+```{r by_source_sentiment}
+sources <- tweet_words |>
+  group_by(source) |>
+  mutate(total_words = n()) |>
+  ungroup() |>
+  distinct(id, source, total_words)
+
+by_source_sentiment <- tweet_words |>
+  inner_join(nrc, by = "word") |>
+  count(sentiment, id) |>
+  ungroup() |>
+  complete(sentiment, id, fill = list(n = 0)) |>
+  inner_join(sources) |>
+  group_by(source, sentiment, total_words) |>
+  summarize(words = sum(n)) |>
+  ungroup()
+by_source_sentiment
+```
+
+Exercise. Describe the data frame that the code above is creating.
+
+<br>
+
+```{r}
+android_iphone_ratios |>
+    inner_join(nrc, by = "word") |>
+  filter(!sentiment %in% c("positive", "negative")) |>
+  mutate(sentiment = reorder(sentiment, -logratio),
+         word = reorder(word, -logratio)) |>
+  group_by(sentiment) |>
+  top_n(10, abs(logratio)) |>
+  ungroup() |>
+  ggplot(aes(word, logratio, fill = logratio < 0)) +
+  facet_wrap(~ sentiment, scales = "free", nrow = 2) +
+  geom_bar(stat = "identity") +
+  theme(axis.text.x = element_text(angle = 90, hjust = 1)) +
+  labs(x = "", y = "Android / iPhone log ratio") +
+  scale_fill_manual(name = "", labels = c("Android", "iPhone"),
+                    values = c("red", "lightblue"))
+```
+
+Exercise. What are some patterns that you see in the sentiments for the tweets from the Android phone compared to the iPhone? Again, a higher log ratio means that the word was used more often on the android phone while a negative log ratio means that the word was used more often on the iPhone.
+
+<br>
+
+The author's original write-up for this analysis is here: <https://blog.revolutionanalytics.com/2016/08/sentiment-analysis-of-trumps-tweets-with-r.html>.
+
+<br>

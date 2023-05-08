@@ -1,12 +1,9 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
-
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
 <meta name="generator" content="quarto-1.0.36">
-
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-
-
 <title>DATA / STAT 234 - 10&nbsp; Data Import</title>
 <style>
 code{white-space: pre-wrap;}
@@ -80,7 +77,6 @@ code span.vs { color: #4070a0; } /* VerbatimString */
 code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
-
 <script src="site_libs/quarto-nav/quarto-nav.js"></script>
 <script src="site_libs/quarto-nav/headroom.min.js"></script>
 <script src="site_libs/clipboard/clipboard.min.js"></script>
@@ -98,8 +94,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
-<script id="quarto-search-options" type="application/json">{
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light"><script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
   "collapse-after": 3,
@@ -118,28 +113,19 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     "search-submit-button-title": "Submit"
   }
 }</script>
-
-
 </head>
-
 <body class="nav-sidebar floating">
 
 <div id="quarto-search-results"></div>
-  <header id="quarto-header" class="headroom fixed-top">
-  <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
-    <div class="container-fluid d-flex justify-content-between">
+  <header id="quarto-header" class="headroom fixed-top"><nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }"><div class="container-fluid d-flex justify-content-between">
       <h1 class="quarto-secondary-nav-title"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Data Import</span></h1>
       <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
         <i class="bi bi-chevron-right"></i>
       </button>
     </div>
-  </nav>
-</header>
-<!-- content -->
-<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+  </nav></header><!-- content --><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation floating overflow-auto">
-    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation floating overflow-auto"><div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
       <a href="./">DATA / STAT 234</a> 
         <div class="sidebar-tools-main">
@@ -158,7 +144,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       </div>
     <div class="sidebar-menu-container"> 
     <ul class="list-unstyled mt-1">
-        <li class="sidebar-item">
+<li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./index.html" class="sidebar-item-text sidebar-link">Syllabus and Course Information</a>
   </div>
@@ -170,10 +156,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
-          <li class="sidebar-item">
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">
+<li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./01-intro.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Getting Started with <code>R</code> and <code>R Studio</code></span></a>
+  <a href="./01-intro.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Getting Started</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -197,7 +183,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   </div>
 </li>
       </ul>
-  </li>
+</li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">Data Wrangling</a>
@@ -205,8 +191,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
-          <li class="sidebar-item">
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">
+<li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./04-tidyr.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Tidying with <code>tidyr</code></span></a>
   </div>
@@ -237,7 +223,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   </div>
 </li>
       </ul>
-  </li>
+</li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">Special Topics</a>
@@ -245,8 +231,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
-          <li class="sidebar-item">
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">
+<li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./11-lubridate.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Dates with <code>lubridate</code></span></a>
   </div>
@@ -272,48 +258,38 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   </div>
 </li>
       </ul>
-  </li>
+</li>
     </ul>
-    </div>
-</nav>
-<!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc">
-    <h2 id="toc-title">Table of contents</h2>
+</div>
+</nav><!-- margin-sidebar --><div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc"><h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#readr-to-read-in-data" id="toc-readr-to-read-in-data" class="nav-link active" data-scroll-target="#readr-to-read-in-data"> <span class="header-section-number">10.1</span> <code>readr</code> to Read in Data</a>
+<li>
+<a href="#readr-to-read-in-data" id="toc-readr-to-read-in-data" class="nav-link active" data-scroll-target="#readr-to-read-in-data"> <span class="header-section-number">10.1</span> <code>readr</code> to Read in Data</a>
   <ul class="collapse">
-  <li><a href="#read_csv-options" id="toc-read_csv-options" class="nav-link" data-scroll-target="#read_csv-options"> <span class="header-section-number">10.1.1</span> <code>read_csv()</code> Options</a></li>
-  <li><a href="#exercise-8-2" id="toc-exercise-8-2" class="nav-link" data-scroll-target="#exercise-8-2"> <span class="header-section-number">10.1.2</span> Exercises</a></li>
-  </ul></li>
-  <li><a href="#data-scraping-with-rvest" id="toc-data-scraping-with-rvest" class="nav-link" data-scroll-target="#data-scraping-with-rvest"> <span class="header-section-number">10.2</span> Data Scraping with <code>rvest</code></a>
-  <ul class="collapse">
-  <li><a href="#exercise-8-3" id="toc-exercise-8-3" class="nav-link" data-scroll-target="#exercise-8-3"> <span class="header-section-number">10.2.1</span> Exercises</a></li>
-  </ul></li>
-  <li><a href="#json-files-with-jsonlite" id="toc-json-files-with-jsonlite" class="nav-link" data-scroll-target="#json-files-with-jsonlite"> <span class="header-section-number">10.3</span> JSON Files with <code>jsonlite</code></a>
-  <ul class="collapse">
-  <li><a href="#everything-working-well" id="toc-everything-working-well" class="nav-link" data-scroll-target="#everything-working-well"> <span class="header-section-number">10.3.1</span> Everything Working Well</a></li>
-  <li><a href="#things-arent-always-so-easy" id="toc-things-arent-always-so-easy" class="nav-link" data-scroll-target="#things-arent-always-so-easy"> <span class="header-section-number">10.3.2</span> Things Aren’t Always So Easy</a></li>
-  <li><a href="#exercise-8-4" id="toc-exercise-8-4" class="nav-link" data-scroll-target="#exercise-8-4"> <span class="header-section-number">10.3.3</span> Exercises</a></li>
-  </ul></li>
-  <li><a href="#chapexercise-8" id="toc-chapexercise-8" class="nav-link" data-scroll-target="#chapexercise-8"> <span class="header-section-number">10.4</span> Chapter Exercises</a></li>
-  <li><a href="#solutions-8" id="toc-solutions-8" class="nav-link" data-scroll-target="#solutions-8"> <span class="header-section-number">10.5</span> Exercise Solutions</a>
-  <ul class="collapse">
-  <li><a href="#readr-s" id="toc-readr-s" class="nav-link" data-scroll-target="#readr-s"> <span class="header-section-number">10.5.1</span> <code>readr</code> S</a></li>
-  <li><a href="#rvest-and-data-scraping-s" id="toc-rvest-and-data-scraping-s" class="nav-link" data-scroll-target="#rvest-and-data-scraping-s"> <span class="header-section-number">10.5.2</span> <code>rvest</code> and Data Scraping S</a></li>
-  <li><a href="#json-with-jsonlite-s" id="toc-json-with-jsonlite-s" class="nav-link" data-scroll-target="#json-with-jsonlite-s"> <span class="header-section-number">10.5.3</span> JSON with <code>jsonlite</code> S</a></li>
-  <li><a href="#chapexercise-8-S" id="toc-chapexercise-8-S" class="nav-link" data-scroll-target="#chapexercise-8-S"> <span class="header-section-number">10.5.4</span> Chapter Exercises S</a></li>
-  </ul></li>
-  <li><a href="#rcode-8" id="toc-rcode-8" class="nav-link" data-scroll-target="#rcode-8"> <span class="header-section-number">10.6</span> Non-Exercise <code>R</code> Code</a></li>
+<li><a href="#read_csv-options" id="toc-read_csv-options" class="nav-link" data-scroll-target="#read_csv-options"> <span class="header-section-number">10.1.1</span> <code>read_csv()</code> Options</a></li>
   </ul>
-</nav>
+</li>
+  <li><a href="#data-scraping-with-rvest" id="toc-data-scraping-with-rvest" class="nav-link" data-scroll-target="#data-scraping-with-rvest"> <span class="header-section-number">10.2</span> Data Scraping with <code>rvest</code></a></li>
+  <li>
+<a href="#json-files-with-jsonlite" id="toc-json-files-with-jsonlite" class="nav-link" data-scroll-target="#json-files-with-jsonlite"> <span class="header-section-number">10.3</span> JSON Files with <code>jsonlite</code></a>
+  <ul class="collapse">
+<li><a href="#everything-working-well" id="toc-everything-working-well" class="nav-link" data-scroll-target="#everything-working-well"> <span class="header-section-number">10.3.1</span> Everything Working Well</a></li>
+  <li><a href="#things-arent-always-so-easy" id="toc-things-arent-always-so-easy" class="nav-link" data-scroll-target="#things-arent-always-so-easy"> <span class="header-section-number">10.3.2</span> Things Aren’t Always So Easy</a></li>
+  </ul>
+</li>
+  <li>
+<a href="#practice" id="toc-practice" class="nav-link" data-scroll-target="#practice"> <span class="header-section-number">10.4</span> Practice</a>
+  <ul class="collapse">
+<li><a href="#class-exercises" id="toc-class-exercises" class="nav-link" data-scroll-target="#class-exercises"> <span class="header-section-number">10.4.1</span> Class Exercises</a></li>
+  <li><a href="#your-turn" id="toc-your-turn" class="nav-link" data-scroll-target="#your-turn"> <span class="header-section-number">10.4.2</span> Your Turn</a></li>
+  </ul>
+</li>
+  </ul></nav>
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content">
-
-<header id="title-block-header" class="quarto-title-block default">
-<div class="quarto-title">
+<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><div class="quarto-title">
 <h1 class="title"><span id="import" class="quarto-section-identifier d-none d-lg-block"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Data Import</span></span></h1>
 </div>
 
@@ -326,431 +302,350 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   </div>
   
 
-</header>
+</header><div class="cell">
 
+</div>
 <p><strong>Goals:</strong></p>
 <ul>
 <li><p>Use <code>readr</code> to read in data to <code>R</code> from .csv, .txt, and .tsv files.</p></li>
 <li><p>Use <code>rvest</code> to scrape data from public websites.</p></li>
 <li><p>Use <code>jsonlite</code> to read in data in JSON (Java Script Object Notation) files.</p></li>
 </ul>
-<section id="readr-to-read-in-data" class="level2" data-number="10.1">
-<h2 data-number="10.1" class="anchored" data-anchor-id="readr-to-read-in-data"><span class="header-section-number">10.1</span> <code>readr</code> to Read in Data</h2>
-<p>Up to now, we have mostly worked with data that was “<code>R</code> Ready”: meaning that it was in a nice .csv file that could be read into <code>R</code> easily with <code>read_csv()</code> from the <code>readr</code> package. We will begin by looking at some options in the <code>read_csv()</code> function and then move into formats other than .csv that data are commonly stored in.</p>
-<section id="read_csv-options" class="level3" data-number="10.1.1">
-<h3 data-number="10.1.1" class="anchored" data-anchor-id="read_csv-options"><span class="header-section-number">10.1.1</span> <code>read_csv()</code> Options</h3>
-<p>The <code>mtcarsex.csv</code> has observations on different car models with variables that include things like gas mileage, number of cylinders, etc. Read in the <code>mtcarsex.csv</code> data set with the following code. Then, examine the data set with <code>head()</code>.</p>
+<section id="readr-to-read-in-data" class="level2" data-number="10.1"><h2 data-number="10.1" class="anchored" data-anchor-id="readr-to-read-in-data">
+<span class="header-section-number">10.1</span> <code>readr</code> to Read in Data</h2>
+<p>Up to now, we have mostly worked with data that was “<code>R</code> Ready”: meaning that it was in a nice .csv file that could be read into <code>R</code> easily with <code><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv()</a></code> from the <code>readr</code> package. We will begin by looking at some options in the <code><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv()</a></code> function and then move into formats other than .csv that data are commonly stored in.</p>
+<section id="read_csv-options" class="level3" data-number="10.1.1"><h3 data-number="10.1.1" class="anchored" data-anchor-id="read_csv-options">
+<span class="header-section-number">10.1.1</span> <code>read_csv()</code> Options</h3>
+<p>The <code>mtcarsex.csv</code> has observations on different car models with variables that include things like gas mileage, number of cylinders, etc. Read in the <code>mtcarsex.csv</code> data set with the following code. Then, examine the data set with <code><a href="https://rdrr.io/r/utils/head.html">head()</a></code>.</p>
 <div class="cell" data-appendix="true">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(here)</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>cars_df <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="fu">here</span>(<span class="st">"data/mtcarsex.csv"</span>))</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(cars_df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 6 × 11
-  This is a data s…¹ ...2  ...3  ...4  ...5  ...6  ...7  ...8  ...9  ...10 ...11
-  &lt;chr&gt;              &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;
-1 "I'm a na\x95ve d… &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt; 
-2 "mpg"              cyl   disp  hp    drat  wt    qsec  vs    am    gear  carb 
-3  &lt;NA&gt;              &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt; 
-4  &lt;NA&gt;              &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt; 
-5 "-999"             6     160   110   3.9   2.62  16.46 0     1     4     4    
-6 "21"               6     160   110   3.9   2.875 17.02 0     1     4     4    
-# … with abbreviated variable name ¹​`This is a data set about cars.`</code></pre>
-</div>
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://here.r-lib.org/">here</a></span><span class="op">)</span></span>
+<span><span class="va">cars_df</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv</a></span><span class="op">(</span><span class="fu"><a href="https://here.r-lib.org//reference/here.html">here</a></span><span class="op">(</span><span class="st">"data/mtcarsex.csv"</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">cars_df</span><span class="op">)</span></span>
+<span><span class="co">#&gt; # A tibble: 6 × 11</span></span>
+<span><span class="co">#&gt;   This is a dat…¹ ...2  ...3  ...4  ...5  ...6  ...7  ...8  ...9  ...10 ...11</span></span>
+<span><span class="co">#&gt;   &lt;chr&gt;           &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;</span></span>
+<span><span class="co">#&gt; 1 "I'm a na\x95v… &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt; </span></span>
+<span><span class="co">#&gt; 2 "mpg"           cyl   disp  hp    drat  wt    qsec  vs    am    gear  carb </span></span>
+<span><span class="co">#&gt; 3  &lt;NA&gt;           &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt; </span></span>
+<span><span class="co">#&gt; 4  &lt;NA&gt;           &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt; </span></span>
+<span><span class="co">#&gt; 5 "-999"          6     160   110   3.9   2.62  16.46 0     1     4     4    </span></span>
+<span><span class="co">#&gt; 6 "21"            6     160   110   3.9   2.875 17.02 0     1     4     4    </span></span>
+<span><span class="co">#&gt; # … with abbreviated variable name ¹​`This is a data set about cars.`</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>What do you notice about the data set that seems odd? Open the .csv file with Excel or some other program to examine the data set outside of <code>R</code>.</p>
-<p>Type in <code>?read_csv</code> in the bottom-left window and look at some of the options in <code>read_csv()</code>. In particular, we will use the <code>na</code> and the <code>skip</code> arguments to fix up our reading.</p>
+<p>Type in <code><a href="https://readr.tidyverse.org/reference/read_delim.html">?read_csv</a></code> in the bottom-left window and look at some of the options in <code><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv()</a></code>. In particular, we will use the <code>na</code> and the <code>skip</code> arguments to fix up our reading.</p>
 <p>Let’s start with <code>skip</code> so that we aren’t reading in the first two rows of the data set:</p>
 <div class="cell" data-appendix="true">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>cars_df <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="fu">here</span>(<span class="st">"data/mtcarsex.csv"</span>), <span class="at">skip =</span> <span class="dv">2</span>)</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="do">## first two lines will be skipped</span></span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(cars_df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 6 × 11
-     mpg   cyl  disp    hp  drat    wt  qsec    vs    am  gear  carb
-   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
-1   NA      NA    NA    NA NA    NA     NA      NA    NA    NA    NA
-2   NA      NA    NA    NA NA    NA     NA      NA    NA    NA    NA
-3 -999       6   160   110  3.9   2.62  16.5     0     1     4     4
-4   21       6   160   110  3.9   2.88  17.0     0     1     4     4
-5   22.8     4   108    93  3.85  2.32  18.6     1     1     4     1
-6   21.4     6   258   110  3.08  3.22  19.4     1     0     3     1</code></pre>
-</div>
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">cars_df</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv</a></span><span class="op">(</span><span class="fu"><a href="https://here.r-lib.org//reference/here.html">here</a></span><span class="op">(</span><span class="st">"data/mtcarsex.csv"</span><span class="op">)</span>, skip <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></span>
+<span><span class="co">## first two lines will be skipped</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">cars_df</span><span class="op">)</span></span>
+<span><span class="co">#&gt; # A tibble: 6 × 11</span></span>
+<span><span class="co">#&gt;      mpg   cyl  disp    hp  drat    wt  qsec    vs    am  gear  carb</span></span>
+<span><span class="co">#&gt;    &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;</span></span>
+<span><span class="co">#&gt; 1   NA      NA    NA    NA NA    NA     NA      NA    NA    NA    NA</span></span>
+<span><span class="co">#&gt; 2   NA      NA    NA    NA NA    NA     NA      NA    NA    NA    NA</span></span>
+<span><span class="co">#&gt; 3 -999       6   160   110  3.9   2.62  16.5     0     1     4     4</span></span>
+<span><span class="co">#&gt; 4   21       6   160   110  3.9   2.88  17.0     0     1     4     4</span></span>
+<span><span class="co">#&gt; 5   22.8     4   108    93  3.85  2.32  18.6     1     1     4     1</span></span>
+<span><span class="co">#&gt; 6   21.4     6   258   110  3.08  3.22  19.4     1     0     3     1</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>That looks better, but there are still a couple of problems. What do you notice?</p>
-<p>Go the help and read about the <code>na</code> argument. Let’s add that as an option to fix the missing value issue.</p>
+<p>Go to the help and read about the <code>na</code> argument. Let’s add that as an option to fix the missing value issue.</p>
 <div class="cell" data-appendix="true">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>cars_df <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="fu">here</span>(<span class="st">"data/mtcarsex.csv"</span>), <span class="at">na =</span> <span class="fu">c</span>(<span class="st">"NA"</span>, <span class="st">"-999"</span>), <span class="at">skip =</span> <span class="dv">2</span>)</span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(cars_df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 6 × 11
-    mpg   cyl  disp    hp  drat    wt  qsec    vs    am  gear  carb
-  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
-1  NA      NA    NA    NA NA    NA     NA      NA    NA    NA    NA
-2  NA      NA    NA    NA NA    NA     NA      NA    NA    NA    NA
-3  NA       6   160   110  3.9   2.62  16.5     0     1     4     4
-4  21       6   160   110  3.9   2.88  17.0     0     1     4     4
-5  22.8     4   108    93  3.85  2.32  18.6     1     1     4     1
-6  21.4     6   258   110  3.08  3.22  19.4     1     0     3     1</code></pre>
-</div>
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">cars_df</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv</a></span><span class="op">(</span><span class="fu"><a href="https://here.r-lib.org//reference/here.html">here</a></span><span class="op">(</span><span class="st">"data/mtcarsex.csv"</span><span class="op">)</span>, na <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"NA"</span>, <span class="st">"-999"</span><span class="op">)</span>, skip <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">cars_df</span><span class="op">)</span></span>
+<span><span class="co">#&gt; # A tibble: 6 × 11</span></span>
+<span><span class="co">#&gt;     mpg   cyl  disp    hp  drat    wt  qsec    vs    am  gear  carb</span></span>
+<span><span class="co">#&gt;   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;</span></span>
+<span><span class="co">#&gt; 1  NA      NA    NA    NA NA    NA     NA      NA    NA    NA    NA</span></span>
+<span><span class="co">#&gt; 2  NA      NA    NA    NA NA    NA     NA      NA    NA    NA    NA</span></span>
+<span><span class="co">#&gt; 3  NA       6   160   110  3.9   2.62  16.5     0     1     4     4</span></span>
+<span><span class="co">#&gt; 4  21       6   160   110  3.9   2.88  17.0     0     1     4     4</span></span>
+<span><span class="co">#&gt; 5  22.8     4   108    93  3.85  2.32  18.6     1     1     4     1</span></span>
+<span><span class="co">#&gt; 6  21.4     6   258   110  3.08  3.22  19.4     1     0     3     1</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Now look at the classes of each variable. Which classes look like they are incorrect?</p>
-<p>We’ve talked about how to re-specify classes of variables using <code>mutate()</code> and the <code>as.factor()</code> or <code>as.Date()</code> or <code>as.numeric()</code> functions, but sometimes it’s easier just to respecify the class when we are reading in the data. Notice how, when we use <code>read_csv()</code>, <code>R</code> gives us a message about each of the column types. This is actually an argument in <code>read_csv()</code> called <code>col_types</code>. We can add a <code>|&gt; spec()</code> piping statement after a <code>read_csv()</code> statement to tell <code>R</code> to print the <code>col_types</code> so that it’s easy for us to copy and paste it into <code>read_csv()</code> and change any classes.</p>
+<p>We’ve talked about how to re-specify classes of variables using <code><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate()</a></code> and the <code><a href="https://rdrr.io/r/base/factor.html">as.factor()</a></code> or <code><a href="https://rdrr.io/r/base/as.Date.html">as.Date()</a></code> or <code><a href="https://rdrr.io/r/base/numeric.html">as.numeric()</a></code> functions, but sometimes it’s easier just to respecify the class when we are reading in the data. Notice how, when we use <code><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv()</a></code>, <code>R</code> gives us a message about each of the column types. This is actually an argument in <code><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv()</a></code> called <code>col_types</code>. We can add a <code>|&gt; spec()</code> piping statement after a <code><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv()</a></code> statement to tell <code>R</code> to print the <code>col_types</code> so that it’s easy for us to copy and paste it into <code><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv()</a></code> and change any classes.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">read_csv</span>(<span class="fu">here</span>(<span class="st">"data/mtcarsex.csv"</span>), <span class="at">na =</span> <span class="fu">c</span>(<span class="st">"NA"</span>, <span class="st">"-999"</span>), <span class="at">skip =</span> <span class="dv">2</span>) <span class="sc">|&gt;</span></span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">spec</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Rows: 34 Columns: 11
-── Column specification ────────────────────────────────────────────────────────
-Delimiter: ","
-dbl (11): mpg, cyl, disp, hp, drat, wt, qsec, vs, am, gear, carb
-
-ℹ Use `spec()` to retrieve the full column specification for this data.
-ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
-</div>
-<div class="cell-output cell-output-stdout">
-<pre><code>cols(
-  mpg = col_double(),
-  cyl = col_double(),
-  disp = col_double(),
-  hp = col_double(),
-  drat = col_double(),
-  wt = col_double(),
-  qsec = col_double(),
-  vs = col_double(),
-  am = col_double(),
-  gear = col_double(),
-  carb = col_double()
-)</code></pre>
-</div>
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv</a></span><span class="op">(</span><span class="fu"><a href="https://here.r-lib.org//reference/here.html">here</a></span><span class="op">(</span><span class="st">"data/mtcarsex.csv"</span><span class="op">)</span>, na <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"NA"</span>, <span class="st">"-999"</span><span class="op">)</span>, skip <span class="op">=</span> <span class="fl">2</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://readr.tidyverse.org/reference/spec.html">spec</a></span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="co">#&gt; cols(</span></span>
+<span><span class="co">#&gt;   mpg = col_double(),</span></span>
+<span><span class="co">#&gt;   cyl = col_double(),</span></span>
+<span><span class="co">#&gt;   disp = col_double(),</span></span>
+<span><span class="co">#&gt;   hp = col_double(),</span></span>
+<span><span class="co">#&gt;   drat = col_double(),</span></span>
+<span><span class="co">#&gt;   wt = col_double(),</span></span>
+<span><span class="co">#&gt;   qsec = col_double(),</span></span>
+<span><span class="co">#&gt;   vs = col_double(),</span></span>
+<span><span class="co">#&gt;   am = col_double(),</span></span>
+<span><span class="co">#&gt;   gear = col_double(),</span></span>
+<span><span class="co">#&gt;   carb = col_double()</span></span>
+<span><span class="co">#&gt; )</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>For example, notice how <code>cyl = col_double()</code> is changed to <code>cyl = col_factor()</code> in the code chunk below:</p>
 <div class="cell" data-appendix="true">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>cars_df <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="fu">here</span>(<span class="st">"data/mtcarsex.csv"</span>), <span class="at">na =</span> <span class="fu">c</span>(<span class="cn">NA</span>, <span class="st">"-999"</span>), <span class="at">skip =</span> <span class="dv">2</span>,</span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">col_types =</span> <span class="fu">cols</span>(</span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">mpg =</span> <span class="fu">col_double</span>(),</span>
-<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">cyl =</span> <span class="fu">col_factor</span>(),</span>
-<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">disp =</span> <span class="fu">col_double</span>(),</span>
-<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">hp =</span> <span class="fu">col_double</span>(),</span>
-<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">drat =</span> <span class="fu">col_double</span>(),</span>
-<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">wt =</span> <span class="fu">col_double</span>(),</span>
-<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">qsec =</span> <span class="fu">col_double</span>(),</span>
-<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>  <span class="at">vs =</span> <span class="fu">col_factor</span>(),</span>
-<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a>  <span class="at">am =</span> <span class="fu">col_double</span>(),</span>
-<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a>  <span class="at">gear =</span> <span class="fu">col_double</span>(),</span>
-<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a>  <span class="at">carb =</span> <span class="fu">col_double</span>()</span>
-<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">cars_df</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv</a></span><span class="op">(</span><span class="fu"><a href="https://here.r-lib.org//reference/here.html">here</a></span><span class="op">(</span><span class="st">"data/mtcarsex.csv"</span><span class="op">)</span>, na <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="cn">NA</span>, <span class="st">"-999"</span><span class="op">)</span>, skip <span class="op">=</span> <span class="fl">2</span>,</span>
+<span>  col_types <span class="op">=</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/cols.html">cols</a></span><span class="op">(</span></span>
+<span>  mpg <span class="op">=</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/parse_atomic.html">col_double</a></span><span class="op">(</span><span class="op">)</span>,</span>
+<span>  cyl <span class="op">=</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/parse_factor.html">col_factor</a></span><span class="op">(</span><span class="op">)</span>,</span>
+<span>  disp <span class="op">=</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/parse_atomic.html">col_double</a></span><span class="op">(</span><span class="op">)</span>,</span>
+<span>  hp <span class="op">=</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/parse_atomic.html">col_double</a></span><span class="op">(</span><span class="op">)</span>,</span>
+<span>  drat <span class="op">=</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/parse_atomic.html">col_double</a></span><span class="op">(</span><span class="op">)</span>,</span>
+<span>  wt <span class="op">=</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/parse_atomic.html">col_double</a></span><span class="op">(</span><span class="op">)</span>,</span>
+<span>  qsec <span class="op">=</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/parse_atomic.html">col_double</a></span><span class="op">(</span><span class="op">)</span>,</span>
+<span>  vs <span class="op">=</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/parse_factor.html">col_factor</a></span><span class="op">(</span><span class="op">)</span>,</span>
+<span>  am <span class="op">=</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/parse_atomic.html">col_double</a></span><span class="op">(</span><span class="op">)</span>,</span>
+<span>  gear <span class="op">=</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/parse_atomic.html">col_double</a></span><span class="op">(</span><span class="op">)</span>,</span>
+<span>  carb <span class="op">=</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/parse_atomic.html">col_double</a></span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Finally, there are two rows with all missing values. These aren’t providing anything useful so we can <code>slice()</code> them out:</p>
+<p>Finally, there are two rows with all missing values. These aren’t providing anything useful so we can <code><a href="https://dplyr.tidyverse.org/reference/slice.html">slice()</a></code> them out:</p>
 <div class="cell" data-appendix="true">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>cars_df <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="fu">here</span>(<span class="st">"data/mtcarsex.csv"</span>), <span class="at">na =</span> <span class="fu">c</span>(<span class="st">"NA"</span>, <span class="st">"-999"</span>), <span class="at">skip =</span> <span class="dv">2</span>,</span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">col_types =</span> <span class="fu">cols</span>(</span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">mpg =</span> <span class="fu">col_double</span>(),</span>
-<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">cyl =</span> <span class="fu">col_factor</span>(),</span>
-<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">disp =</span> <span class="fu">col_double</span>(),</span>
-<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">hp =</span> <span class="fu">col_double</span>(),</span>
-<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">drat =</span> <span class="fu">col_double</span>(),</span>
-<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">wt =</span> <span class="fu">col_double</span>(),</span>
-<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">qsec =</span> <span class="fu">col_double</span>(),</span>
-<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a>  <span class="at">vs =</span> <span class="fu">col_factor</span>(),</span>
-<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a>  <span class="at">am =</span> <span class="fu">col_double</span>(),</span>
-<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a>  <span class="at">gear =</span> <span class="fu">col_double</span>(),</span>
-<span id="cb11-13"><a href="#cb11-13" aria-hidden="true" tabindex="-1"></a>  <span class="at">carb =</span> <span class="fu">col_double</span>()</span>
-<span id="cb11-14"><a href="#cb11-14" aria-hidden="true" tabindex="-1"></a>)) <span class="sc">|&gt;</span></span>
-<span id="cb11-15"><a href="#cb11-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">slice</span>(<span class="sc">-</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>))</span>
-<span id="cb11-16"><a href="#cb11-16" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(cars_df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 6 × 11
-    mpg cyl    disp    hp  drat    wt  qsec vs       am  gear  carb
-  &lt;dbl&gt; &lt;fct&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;fct&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
-1  NA   6       160   110  3.9   2.62  16.5 0         1     4     4
-2  21   6       160   110  3.9   2.88  17.0 0         1     4     4
-3  22.8 4       108    93  3.85  2.32  18.6 1         1     4     1
-4  21.4 6       258   110  3.08  3.22  19.4 1         0     3     1
-5  NA   8       360   175  3.15  3.44  17.0 0         0     3     2
-6  18.1 6       225   105  2.76  3.46  20.2 1         0     3     1</code></pre>
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">cars_df</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv</a></span><span class="op">(</span><span class="fu"><a href="https://here.r-lib.org//reference/here.html">here</a></span><span class="op">(</span><span class="st">"data/mtcarsex.csv"</span><span class="op">)</span>, na <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"NA"</span>, <span class="st">"-999"</span><span class="op">)</span>, skip <span class="op">=</span> <span class="fl">2</span>,</span>
+<span>  col_types <span class="op">=</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/cols.html">cols</a></span><span class="op">(</span></span>
+<span>  mpg <span class="op">=</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/parse_atomic.html">col_double</a></span><span class="op">(</span><span class="op">)</span>,</span>
+<span>  cyl <span class="op">=</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/parse_factor.html">col_factor</a></span><span class="op">(</span><span class="op">)</span>,</span>
+<span>  disp <span class="op">=</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/parse_atomic.html">col_double</a></span><span class="op">(</span><span class="op">)</span>,</span>
+<span>  hp <span class="op">=</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/parse_atomic.html">col_double</a></span><span class="op">(</span><span class="op">)</span>,</span>
+<span>  drat <span class="op">=</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/parse_atomic.html">col_double</a></span><span class="op">(</span><span class="op">)</span>,</span>
+<span>  wt <span class="op">=</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/parse_atomic.html">col_double</a></span><span class="op">(</span><span class="op">)</span>,</span>
+<span>  qsec <span class="op">=</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/parse_atomic.html">col_double</a></span><span class="op">(</span><span class="op">)</span>,</span>
+<span>  vs <span class="op">=</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/parse_factor.html">col_factor</a></span><span class="op">(</span><span class="op">)</span>,</span>
+<span>  am <span class="op">=</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/parse_atomic.html">col_double</a></span><span class="op">(</span><span class="op">)</span>,</span>
+<span>  gear <span class="op">=</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/parse_atomic.html">col_double</a></span><span class="op">(</span><span class="op">)</span>,</span>
+<span>  carb <span class="op">=</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/parse_atomic.html">col_double</a></span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/slice.html">slice</a></span><span class="op">(</span><span class="op">-</span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">2</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">cars_df</span><span class="op">)</span></span>
+<span><span class="co">#&gt; # A tibble: 6 × 11</span></span>
+<span><span class="co">#&gt;     mpg cyl    disp    hp  drat    wt  qsec vs       am  gear  carb</span></span>
+<span><span class="co">#&gt;   &lt;dbl&gt; &lt;fct&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;fct&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;</span></span>
+<span><span class="co">#&gt; 1  NA   6       160   110  3.9   2.62  16.5 0         1     4     4</span></span>
+<span><span class="co">#&gt; 2  21   6       160   110  3.9   2.88  17.0 0         1     4     4</span></span>
+<span><span class="co">#&gt; 3  22.8 4       108    93  3.85  2.32  18.6 1         1     4     1</span></span>
+<span><span class="co">#&gt; 4  21.4 6       258   110  3.08  3.22  19.4 1         0     3     1</span></span>
+<span><span class="co">#&gt; 5  NA   8       360   175  3.15  3.44  17.0 0         0     3     2</span></span>
+<span><span class="co">#&gt; 6  18.1 6       225   105  2.76  3.46  20.2 1         0     3     1</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</div>
-<p>There are <strong>many</strong> other possible file formats for data storage. For example, there is a data set called <code>oscars.tsv</code>, which is a tab-separated file. You can read it in with <code>read_tsv()</code> instead of <code>read_csv()</code>.</p>
+<p>There are <strong>many</strong> other possible file formats for data storage. For example, there is a data set called <code>oscars.tsv</code>, which is a tab-separated file. You can read it in with <code><a href="https://readr.tidyverse.org/reference/read_delim.html">read_tsv()</a></code> instead of <code><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv()</a></code>.</p>
 <div class="cell" data-appendix="true">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>oscars_df <span class="ot">&lt;-</span> <span class="fu">read_tsv</span>(<span class="fu">here</span>(<span class="st">"data/oscars.tsv"</span>))</span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(oscars_df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 6 × 51
-  FilmN…¹ Oscar…² Durat…³ Rating Direc…⁴ Direc…⁵ Oscar…⁶ Genre…⁷ Genre…⁸ Genre…⁹
-  &lt;chr&gt;     &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt; &lt;chr&gt;     &lt;dbl&gt;   &lt;dbl&gt; &lt;chr&gt;     &lt;dbl&gt;   &lt;dbl&gt;
-1 Crash      2006     113      4 Haggis        0       1 Drama         1       0
-2 Brokeb…    2006     134      4 Lee           0       0 Drama,…       1       0
-3 Capote     2006     114      4 Miller        0       0 Drama,…       1       1
-4 Good N…    2006      93      2 Clooney       0       0 Drama         1       0
-5 Munich     2006     164      4 Spielb…       0       0 Drama,…       1       0
-6 The De…    2007     151      4 Scorse…       0       1 Drama,…       1       0
-# … with 41 more variables: CountryName &lt;chr&gt;, ForeignandUSA &lt;dbl&gt;,
-#   ProductionName &lt;chr&gt;, ProductionCompany &lt;dbl&gt;, BudgetRevised &lt;chr&gt;,
-#   Budget &lt;chr&gt;, DomesticBoxOffice &lt;dbl&gt;, WorldwideRevised &lt;dbl&gt;,
-#   WorldwideBoxOffice &lt;dbl&gt;, DomesticPercent &lt;dbl&gt;, LimitedOpeningWnd &lt;dbl&gt;,
-#   LimitedTheaters &lt;dbl&gt;, LimitedAveragePThtr &lt;dbl&gt;, WideOpeningWkd &lt;dbl&gt;,
-#   WideTheaters &lt;dbl&gt;, WideTheaterAverage &lt;dbl&gt;, WidestTheaters &lt;dbl&gt;,
-#   Days &lt;chr&gt;, Rotten &lt;dbl&gt;, Metacritic &lt;dbl&gt;, IMDb &lt;dbl&gt;, …</code></pre>
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">oscars_df</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html">read_tsv</a></span><span class="op">(</span><span class="fu"><a href="https://here.r-lib.org//reference/here.html">here</a></span><span class="op">(</span><span class="st">"data/oscars.tsv"</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">oscars_df</span><span class="op">)</span></span>
+<span><span class="co">#&gt; # A tibble: 6 × 51</span></span>
+<span><span class="co">#&gt;   FilmName     Oscar…¹ Durat…² Rating Direc…³ Direc…⁴ Oscar…⁵ Genre…⁶ Genre…⁷</span></span>
+<span><span class="co">#&gt;   &lt;chr&gt;          &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt; &lt;chr&gt;     &lt;dbl&gt;   &lt;dbl&gt; &lt;chr&gt;     &lt;dbl&gt;</span></span>
+<span><span class="co">#&gt; 1 Crash           2006     113      4 Haggis        0       1 Drama         1</span></span>
+<span><span class="co">#&gt; 2 Brokeback M…    2006     134      4 Lee           0       0 Drama,…       1</span></span>
+<span><span class="co">#&gt; 3 Capote          2006     114      4 Miller        0       0 Drama,…       1</span></span>
+<span><span class="co">#&gt; 4 Good Night,…    2006      93      2 Clooney       0       0 Drama         1</span></span>
+<span><span class="co">#&gt; 5 Munich          2006     164      4 Spielb…       0       0 Drama,…       1</span></span>
+<span><span class="co">#&gt; 6 The Departed    2007     151      4 Scorse…       0       1 Drama,…       1</span></span>
+<span><span class="co">#&gt; # … with 42 more variables: Genre_Bio &lt;dbl&gt;, CountryName &lt;chr&gt;,</span></span>
+<span><span class="co">#&gt; #   ForeignandUSA &lt;dbl&gt;, ProductionName &lt;chr&gt;, ProductionCompany &lt;dbl&gt;,</span></span>
+<span><span class="co">#&gt; #   BudgetRevised &lt;chr&gt;, Budget &lt;chr&gt;, DomesticBoxOffice &lt;dbl&gt;,</span></span>
+<span><span class="co">#&gt; #   WorldwideRevised &lt;dbl&gt;, WorldwideBoxOffice &lt;dbl&gt;, DomesticPercent &lt;dbl&gt;,</span></span>
+<span><span class="co">#&gt; #   LimitedOpeningWnd &lt;dbl&gt;, LimitedTheaters &lt;dbl&gt;,</span></span>
+<span><span class="co">#&gt; #   LimitedAveragePThtr &lt;dbl&gt;, WideOpeningWkd &lt;dbl&gt;, WideTheaters &lt;dbl&gt;,</span></span>
+<span><span class="co">#&gt; #   WideTheaterAverage &lt;dbl&gt;, WidestTheaters &lt;dbl&gt;, Days &lt;chr&gt;, …</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="callout-note callout callout-style-simple callout-captioned">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+Note
 </div>
 </div>
-<p>You’ll be able to work with .txt files and Excel files in the Exercises. Check out <a href="https://rawgit.com/rstudio/cheatsheets/master/data-import.pdf" target="_blank">https://rawgit.com/rstudio/cheatsheets/master/data-import.pdf</a> for a data import cheatsheet.</p>
+<div class="callout-body-container callout-body">
+<p>We’ll be able to work with .txt files and Excel files in the Exercises. Check out <a href="https://rawgit.com/rstudio/cheatsheets/master/data-import.pdf" target="_blank">https://rawgit.com/rstudio/cheatsheets/master/data-import.pdf</a> for a data import cheatsheet.</p>
+</div>
+</div>
 <p>The final issue that we will discuss in this section occurs when a data set has units within its cells. Consider the earlier example that we used in the reprex section:</p>
 <div class="cell" data-appendix="true">
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>test_df <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="fu">here</span>(<span class="st">"data/parsedf.csv"</span>))</span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(test_df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 3 × 2
-  x                   y
-  &lt;chr&gt;           &lt;dbl&gt;
-1 20,000 dollars      1
-2 40 dollars          2
-3 only 13 dollars     3</code></pre>
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">test_df</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv</a></span><span class="op">(</span><span class="fu"><a href="https://here.r-lib.org//reference/here.html">here</a></span><span class="op">(</span><span class="st">"data/parsedf.csv"</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">test_df</span><span class="op">)</span></span>
+<span><span class="co">#&gt; # A tibble: 3 × 2</span></span>
+<span><span class="co">#&gt;   x                   y</span></span>
+<span><span class="co">#&gt;   &lt;chr&gt;           &lt;dbl&gt;</span></span>
+<span><span class="co">#&gt; 1 20,000 dollars      1</span></span>
+<span><span class="co">#&gt; 2 40 dollars          2</span></span>
+<span><span class="co">#&gt; 3 only 13 dollars     3</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</div>
-<p>The <code>parse_number()</code> function is really useful if you just want the number (no commas, no units, etc.). The function is often paired with <code>mutate()</code> since we are creating a new variable:</p>
+<p>The <code><a href="https://readr.tidyverse.org/reference/parse_number.html">parse_number()</a></code> function is really useful if we just want the number (no commas, no units, etc.). The function is often paired with <code><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate()</a></code> since we are creating a new variable:</p>
 <div class="cell" data-appendix="true">
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>test_df <span class="sc">|&gt;</span> <span class="fu">mutate</span>(<span class="at">x2 =</span> <span class="fu">parse_number</span>(x))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 3 × 3
-  x                   y    x2
-  &lt;chr&gt;           &lt;dbl&gt; &lt;dbl&gt;
-1 20,000 dollars      1 20000
-2 40 dollars          2    40
-3 only 13 dollars     3    13</code></pre>
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">test_df</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>x2 <span class="op">=</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/parse_number.html">parse_number</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="co">#&gt; # A tibble: 3 × 3</span></span>
+<span><span class="co">#&gt;   x                   y    x2</span></span>
+<span><span class="co">#&gt;   &lt;chr&gt;           &lt;dbl&gt; &lt;dbl&gt;</span></span>
+<span><span class="co">#&gt; 1 20,000 dollars      1 20000</span></span>
+<span><span class="co">#&gt; 2 40 dollars          2    40</span></span>
+<span><span class="co">#&gt; 3 only 13 dollars     3    13</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</div>
-</section>
-<section id="exercise-8-2" class="level3" data-number="10.1.2">
-<h3 data-number="10.1.2" class="anchored" data-anchor-id="exercise-8-2"><span class="header-section-number">10.1.2</span> Exercises</h3>
-<p>Exercises marked with an * indicate that the exercise has a solution at the end of the chapter at @ref(solutions-8).</p>
-<ol type="1">
-<li>* The <code>birthdays.txt</code> file has information on the birthdays of various animals on my Animal Crossing island. There are also columns for the Animal’s Name, Animal Type, and how long the animal has lived on the island (in weeks). Click on the file to open it to look at the format of the data.</li>
-</ol>
-<p>Start with the following code chunk and use the options of <code>read_delim()</code> to read in the data (<code>?read_delim</code>). The <code>delim</code> argument that’s already provided specifies that the delimiter (separator) that you’ll use is a <code>-</code>, as opposed to, for example, a <code>,</code> in a .csv file. Arguments that you may need to change include</p>
-<ul>
-<li><code>skip</code></li>
-<li><code>col_names</code></li>
-<li><code>na</code></li>
-<li><code>trim_ws</code></li>
-<li><code>col_types</code></li>
-</ul>
+<p><strong>Exercise 1</strong>. Recall the fitness data set.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">read_delim</span>(<span class="fu">here</span>(<span class="st">"data/birthdays.txt"</span>), <span class="at">delim =</span> <span class="st">" - "</span>)</span>
-<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">fitness_df</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv</a></span><span class="op">(</span><span class="fu">here</span><span class="fu">::</span><span class="fu"><a href="https://here.r-lib.org//reference/here.html">here</a></span><span class="op">(</span><span class="st">"data/higham_fitness_notclean.csv"</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<ol start="2" type="1">
-<li><p>* Another common format for data to be stored in is an Excel file. Often, it’s easiest just to save the Excel file as a .csv file and read it in using <code>read_csv()</code>. But, sometimes this route can be difficult (for example, if your Excel file has thousands of sheets). To read in directly from Excel, you’ll need to install the <code>readxl</code> with <code>install.packages("readxl")</code>. Once installed, load the package with <code>library(readxl)</code>, and read in the first sheet <code>evals_prof.xlsx</code> data set, a similar data set as the one that will be used for Project 2, with the <code>read_excel()</code> function.</p></li>
-<li><p>* Now, read in the second sheet in the Excel file, using the help file for <code>?read_excel</code> to change one of the arguments.</p></li>
-</ol>
-</section>
-</section>
-<section id="data-scraping-with-rvest" class="level2" data-number="10.2">
-<h2 data-number="10.2" class="anchored" data-anchor-id="data-scraping-with-rvest"><span class="header-section-number">10.2</span> Data Scraping with <code>rvest</code></h2>
-<p>Sometimes, you might want data from a public website that <strong>isn’t</strong> provided in a file format. To obtain this data, you’ll need to use web scraping, a term which just means “getting data from a website.” The easiest way to do this in <code>R</code> is with the <code>rvest</code> package. Note that we could spend an entire semester talking about web scraping, but we will focus only on websites where the scraping of data is “easy” and won’t give us any major errors.</p>
-<p>Go to the following website and suppose that you wanted the table of gun violence statistics in <code>R</code>: <a href="https://en.wikipedia.org/wiki/Gun_violence_in_the_United_States_by_state" target="_blank">https://en.wikipedia.org/wiki/Gun_violence_in_the_United_States_by_state</a>. You could try copy-pasting the table into Excel and reading the data set in with <code>read_excel()</code>. Depending on the format of the table, that strategy may work but it may not. Another way is to scrape it directly with <code>rvest</code>. Additionally, if the website continually updates (standings for a sports league, enrollment data for a school, best-selling products for a company, etc.), then scraping is much more convenient, as you don’t need to continually copy-paste for updated data.</p>
-<p>In the following code chunk, <code>read_html()</code> reads in the entire html file from the url provided while <code>html_nodes()</code> extracts only the tables on the website.</p>
+<p>Use the <code>col_types</code> argument in <code><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv()</a></code> so that <code>stepgoal</code> is read in as a logical variable with <code><a href="https://readr.tidyverse.org/reference/parse_atomic.html">col_logical()</a></code> and so that <code>month</code> and <code>weekday</code> are both read in as factors.</p>
+</section></section><section id="data-scraping-with-rvest" class="level2" data-number="10.2"><h2 data-number="10.2" class="anchored" data-anchor-id="data-scraping-with-rvest">
+<span class="header-section-number">10.2</span> Data Scraping with <code>rvest</code>
+</h2>
+<p>Sometimes, we might want data from a public website that <strong>isn’t</strong> provided in a file format. To obtain this data, we’ll need to use web scraping, a term which just means “getting data from a website.” The easiest way to do this in <code>R</code> is with the <code>rvest</code> package. Note that we could spend an entire semester talking about web scraping, but we will focus only on websites where the scraping of data is “easy” and won’t give us any major errors.</p>
+<p>Go to the following website and suppose that you wanted the table of gun violence statistics in <code>R</code>: <a href="https://en.wikipedia.org/wiki/Gun_violence_in_the_United_States_by_state" target="_blank">https://en.wikipedia.org/wiki/Gun_violence_in_the_United_States_by_state</a>. We could try copy-pasting the table into Excel and reading the data set in with <code>read_excel()</code>. Depending on the format of the table, that strategy may work but it may not. Another way is to scrape it directly with <code>rvest</code>. Additionally, if the website continually updates (standings for a sports league, enrollment data for a school, best-selling products for a company, etc.), then scraping is much more convenient, as we don’t need to continually copy-paste for updated data.</p>
+<p>In the following code chunk, <code><a href="http://xml2.r-lib.org/reference/read_xml.html">read_html()</a></code> reads in the entire html file from the url provided while <code><a href="https://rvest.tidyverse.org/reference/rename.html">html_nodes()</a></code> extracts only the tables on the website.</p>
 <div class="cell" data-appendix="true">
-<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(rvest)</span>
-<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a><span class="do">## provide the URL and name it something (in this case, url).</span></span>
-<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>url <span class="ot">&lt;-</span> <span class="st">"https://en.wikipedia.org/wiki/Gun_violence_in_the_United_States_by_state"</span></span>
-<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a><span class="do">## convert the html code into something R can read</span></span>
-<span id="cb20-8"><a href="#cb20-8" aria-hidden="true" tabindex="-1"></a>h <span class="ot">&lt;-</span> <span class="fu">read_html</span>(url)</span>
-<span id="cb20-9"><a href="#cb20-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb20-10"><a href="#cb20-10" aria-hidden="true" tabindex="-1"></a><span class="do">## grabs the tables</span></span>
-<span id="cb20-11"><a href="#cb20-11" aria-hidden="true" tabindex="-1"></a>tab <span class="ot">&lt;-</span> h <span class="sc">|&gt;</span> <span class="fu">html_nodes</span>(<span class="st">"table"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://rvest.tidyverse.org/">rvest</a></span><span class="op">)</span></span>
+<span></span>
+<span><span class="co">## provide the URL and name it something (in this case, url).</span></span>
+<span><span class="va">url</span> <span class="op">&lt;-</span> <span class="st">"https://en.wikipedia.org/wiki/Gun_violence_in_the_United_States_by_state"</span></span>
+<span></span>
+<span><span class="co">## convert the html code into something R can read</span></span>
+<span><span class="va">h</span> <span class="op">&lt;-</span> <span class="fu"><a href="http://xml2.r-lib.org/reference/read_xml.html">read_html</a></span><span class="op">(</span><span class="va">url</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co">## grabs the tables</span></span>
+<span><span class="va">tab</span> <span class="op">&lt;-</span> <span class="va">h</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rvest.tidyverse.org/reference/rename.html">html_nodes</a></span><span class="op">(</span><span class="st">"table"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>You’ll see that, for this example, there are 3 tables provided. The tables are stored in a <code>list</code> and we can reference the first table using <code>[[1]]</code>, the second table using <code>[[2]]</code>, etc. For the purposes of this class, we will figure out which of the 3 tables is the one we actually want using trial and error.</p>
-<p>The <code>html_table()</code> function converts the table into a <code>data.frame</code> object.</p>
+<p>We see that, for this example, there are 3 tables provided. The tables are stored in a <code>list</code> and we can reference the first table using <code>[[1]]</code>, the second table using <code>[[2]]</code>, etc.</p>
+<div class="callout-important callout callout-style-simple callout-captioned">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+Important
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>For the purposes of this class, we will figure out which of the 3 tables is the one we actually want using trial and error.</p>
+</div>
+</div>
+<p>The <code><a href="https://rvest.tidyverse.org/reference/html_table.html">html_table()</a></code> function converts the table into a <code>data.frame</code> object.</p>
 <div class="cell" data-appendix="true">
-<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>test1 <span class="ot">&lt;-</span> tab[[<span class="dv">1</span>]] <span class="sc">|&gt;</span> <span class="fu">html_table</span>()</span>
-<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>test2 <span class="ot">&lt;-</span> tab[[<span class="dv">2</span>]] <span class="sc">|&gt;</span> <span class="fu">html_table</span>()</span>
-<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>test3 <span class="ot">&lt;-</span> tab[[<span class="dv">3</span>]] <span class="sc">|&gt;</span> <span class="fu">html_table</span>()</span>
-<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(test1)</span>
-<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(test2)</span>
-<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(test3)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">test1</span> <span class="op">&lt;-</span> <span class="va">tab</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rvest.tidyverse.org/reference/html_table.html">html_table</a></span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="va">test2</span> <span class="op">&lt;-</span> <span class="va">tab</span><span class="op">[[</span><span class="fl">2</span><span class="op">]</span><span class="op">]</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rvest.tidyverse.org/reference/html_table.html">html_table</a></span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="va">test3</span> <span class="op">&lt;-</span> <span class="va">tab</span><span class="op">[[</span><span class="fl">3</span><span class="op">]</span><span class="op">]</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rvest.tidyverse.org/reference/html_table.html">html_table</a></span><span class="op">(</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">test1</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">test2</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">test3</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Which of the 3 tables is the one that we would want to use for an analysis on gun violence in the United States?</p>
 <p>As another example, consider scraping data from SLU’s athletics page. In particular, suppose we want to do an analysis on SLU’s baseball team.</p>
 <p>Go to the following website to look at the table of data that we want to scrape: <a href="https://saintsathletics.com/sports/baseball/stats/2021" target="_blank">https://saintsathletics.com/sports/baseball/stats/2021</a>.</p>
 <p>After looking at the website, use the following code to scrape the data set.</p>
 <div class="cell" data-appendix="true">
-<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>url <span class="ot">&lt;-</span> <span class="st">"https://saintsathletics.com/sports/baseball/stats/2021"</span></span>
-<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>h <span class="ot">&lt;-</span> <span class="fu">read_html</span>(url)</span>
-<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>tab <span class="ot">&lt;-</span> h <span class="sc">|&gt;</span> <span class="fu">html_nodes</span>(<span class="st">"table"</span>)</span>
-<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>tab</span>
-<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a>obj <span class="ot">&lt;-</span> tab[[<span class="dv">1</span>]] <span class="sc">|&gt;</span> <span class="fu">html_table</span>(<span class="at">fill =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(obj)</span>
-<span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a><span class="fu">tail</span>(obj)</span>
-<span id="cb22-8"><a href="#cb22-8" aria-hidden="true" tabindex="-1"></a>obj2 <span class="ot">&lt;-</span> tab[[<span class="dv">2</span>]] <span class="sc">|&gt;</span> <span class="fu">html_table</span>(<span class="at">fill =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb22-9"><a href="#cb22-9" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(obj2)</span>
-<span id="cb22-10"><a href="#cb22-10" aria-hidden="true" tabindex="-1"></a><span class="fu">tail</span>(obj2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">url</span> <span class="op">&lt;-</span> <span class="st">"https://saintsathletics.com/sports/baseball/stats/2021"</span></span>
+<span><span class="va">h</span> <span class="op">&lt;-</span> <span class="fu"><a href="http://xml2.r-lib.org/reference/read_xml.html">read_html</a></span><span class="op">(</span><span class="va">url</span><span class="op">)</span></span>
+<span><span class="va">tab</span> <span class="op">&lt;-</span> <span class="va">h</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rvest.tidyverse.org/reference/rename.html">html_nodes</a></span><span class="op">(</span><span class="st">"table"</span><span class="op">)</span></span>
+<span><span class="va">tab</span></span>
+<span><span class="va">obj</span> <span class="op">&lt;-</span> <span class="va">tab</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rvest.tidyverse.org/reference/html_table.html">html_table</a></span><span class="op">(</span>fill <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">obj</span><span class="op">)</span></span>
+<span><span class="va">obj2</span> <span class="op">&lt;-</span> <span class="va">tab</span><span class="op">[[</span><span class="fl">2</span><span class="op">]</span><span class="op">]</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rvest.tidyverse.org/reference/html_table.html">html_table</a></span><span class="op">(</span>fill <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">obj2</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>There’s now 72 different tables! See if you can figure out where the first few tables are coming from on the website.</p>
-<section id="exercise-8-3" class="level3" data-number="10.2.1">
-<h3 data-number="10.2.1" class="anchored" data-anchor-id="exercise-8-3"><span class="header-section-number">10.2.1</span> Exercises</h3>
-<p>Exercises marked with an * indicate that the exercise has a solution at the end of the chapter at @ref(solutions-8).</p>
-<ol type="1">
-<li><p>Choose a topic/person/place/etc. that interests you that has tables on Wikipedia and scrape the table that is related to that topic.</p></li>
-<li><p>* SLU keeps track of diversity of faculty through time and makes this data public on the following website: <a href="https://www.stlawu.edu/offices/institutional-research/faculty-diversity" target="_blank">https://www.stlawu.edu/offices/institutional-research/faculty-diversity</a>. Use <code>rvest</code> to scrape the data tables into <code>R</code>.</p></li>
-</ol>
-<p><strong>Hint</strong>: You may need to use an extra argument in <code>html_table()</code> like <code>fill</code>.</p>
-</section>
-</section>
-<section id="json-files-with-jsonlite" class="level2" data-number="10.3">
-<h2 data-number="10.3" class="anchored" data-anchor-id="json-files-with-jsonlite"><span class="header-section-number">10.3</span> JSON Files with <code>jsonlite</code></h2>
+<p><strong>Exercise 2</strong>. SLU keeps track of diversity of students and makes this data public on the following website: <a href="https://www.stlawu.edu/offices/institutional-research/student-diversity-2021" target="_blank">https://www.stlawu.edu/offices/institutional-research/student-diversity-2021</a>. Use <code>rvest</code> to scrape one of the data tables into <code>R</code>.</p>
+</section><section id="json-files-with-jsonlite" class="level2" data-number="10.3"><h2 data-number="10.3" class="anchored" data-anchor-id="json-files-with-jsonlite">
+<span class="header-section-number">10.3</span> JSON Files with <code>jsonlite</code>
+</h2>
 <p>A final common data format that we will discuss is JSON (JavaScript Object Notation). We will only cover the very basics of JSON data and use the <code>jsonlite</code> package in <code>R</code> to read in some .json files. JSON files are read in to <code>R</code> as a <code>list</code> object.</p>
-<section id="everything-working-well" class="level3" data-number="10.3.1">
-<h3 data-number="10.3.1" class="anchored" data-anchor-id="everything-working-well"><span class="header-section-number">10.3.1</span> Everything Working Well</h3>
-<p>First, consider data from the mobile game Clash Royale. Install the <code>jsonlite</code> package and then use it to read in the <code>json</code> file with the function <code>fromJSON()</code>:</p>
+<section id="everything-working-well" class="level3" data-number="10.3.1"><h3 data-number="10.3.1" class="anchored" data-anchor-id="everything-working-well">
+<span class="header-section-number">10.3.1</span> Everything Working Well</h3>
+<p>First, consider data from the mobile game Clash Royale. Install the <code>jsonlite</code> package and then use it to read in the <code>json</code> file with the function <code><a href="https://rdrr.io/pkg/jsonlite/man/fromJSON.html">fromJSON()</a></code>:</p>
 <div class="cell" data-appendix="true">
-<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="do">## install.packages("jsonlite")</span></span>
-<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(jsonlite)</span>
-<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>cr_cards <span class="ot">&lt;-</span> <span class="fu">fromJSON</span>(<span class="fu">here</span>(<span class="st">"data/clash_royale_card_info.json"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co">## install.packages("jsonlite")</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://arxiv.org/abs/1403.2805">jsonlite</a></span><span class="op">)</span></span>
+<span><span class="va">cr_cards</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/jsonlite/man/fromJSON.html">fromJSON</a></span><span class="op">(</span><span class="fu"><a href="https://here.r-lib.org//reference/here.html">here</a></span><span class="op">(</span><span class="st">"data/clash_royale_card_info.json"</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>You should get a warning message, which we will investigate in class.</p>
-<p>Next, type <code>View(cr_cards)</code> in your console (bottom-left) window to look at the data. See if you can pull out the data set by clicking on some things in the <code>View()</code> window.</p>
-<p>The following give a couple of ways to grab the data using code. The <code>as_tibble()</code> function converts a rectangular object into our familiar <code>tibble</code>.</p>
+<p>Next, type <code>View(cr_cards)</code> in your console (bottom-left) window to look at the data. See if you can pull out the data set by clicking on some things in the <code><a href="https://rdrr.io/r/utils/View.html">View()</a></code> window.</p>
+<p>The following give a couple of ways to grab the data using code. The <code><a href="https://tibble.tidyverse.org/reference/as_tibble.html">as_tibble()</a></code> function converts a rectangular object into our familiar <code>tibble</code>.</p>
 <p>The first option specifies the name of the table that’s in the JSON file (in this case, the name is <code>"cards"</code>):</p>
 <div class="cell" data-appendix="true">
-<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>cr_cards_flat <span class="ot">&lt;-</span> cr_cards[[<span class="st">"cards"</span>]]</span>
-<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>cr_cards_df <span class="ot">&lt;-</span> <span class="fu">as_tibble</span>(cr_cards_flat)</span>
-<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(cr_cards_df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 6 × 8
-  key     name      elixir type  rarity arena description                     id
-  &lt;chr&gt;   &lt;chr&gt;      &lt;int&gt; &lt;chr&gt; &lt;chr&gt;  &lt;int&gt; &lt;chr&gt;                        &lt;int&gt;
-1 knight  Knight         3 Troop Common     0 A tough melee fighter. The… 2.6 e7
-2 archers Archers        3 Troop Common     0 A pair of lightly armored … 2.60e7
-3 goblins Goblins        2 Troop Common     1 Three fast, unarmored mele… 2.60e7
-4 giant   Giant          5 Troop Rare       0 Slow but durable, only att… 2.60e7
-5 pekka   P.E.K.K.A      7 Troop Epic       4 A heavily armored, slow me… 2.60e7
-6 minions Minions        3 Troop Common     0 Three fast, unarmored flyi… 2.60e7</code></pre>
+<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span></span>
+<span><span class="va">cr_cards_flat</span> <span class="op">&lt;-</span> <span class="va">cr_cards</span><span class="op">[[</span><span class="st">"cards"</span><span class="op">]</span><span class="op">]</span></span>
+<span><span class="va">cr_cards_df</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://tibble.tidyverse.org/reference/as_tibble.html">as_tibble</a></span><span class="op">(</span><span class="va">cr_cards_flat</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">cr_cards_df</span><span class="op">)</span></span>
+<span><span class="co">#&gt; # A tibble: 6 × 8</span></span>
+<span><span class="co">#&gt;   key     name      elixir type  rarity arena description                  id</span></span>
+<span><span class="co">#&gt;   &lt;chr&gt;   &lt;chr&gt;      &lt;int&gt; &lt;chr&gt; &lt;chr&gt;  &lt;int&gt; &lt;chr&gt;                     &lt;int&gt;</span></span>
+<span><span class="co">#&gt; 1 knight  Knight         3 Troop Common     0 A tough melee fighter. … 2.6 e7</span></span>
+<span><span class="co">#&gt; 2 archers Archers        3 Troop Common     0 A pair of lightly armor… 2.60e7</span></span>
+<span><span class="co">#&gt; 3 goblins Goblins        2 Troop Common     1 Three fast, unarmored m… 2.60e7</span></span>
+<span><span class="co">#&gt; 4 giant   Giant          5 Troop Rare       0 Slow but durable, only … 2.60e7</span></span>
+<span><span class="co">#&gt; 5 pekka   P.E.K.K.A      7 Troop Epic       4 A heavily armored, slow… 2.60e7</span></span>
+<span><span class="co">#&gt; 6 minions Minions        3 Troop Common     0 Three fast, unarmored f… 2.60e7</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</div>
-<p>The second method uses the <code>flatten()</code> function from the <code>purrr</code> package, the only package in the core <code>tidyverse</code> that we do not talk about in detail in this class. There is also a different <code>flatten()</code> function in the <code>jsonlite</code> package. In the code below, we specify that we want to use <code>flatten()</code> from <code>purrr</code> with <code>purrr::flatten()</code>. If we wanted to use <code>flatten()</code> from <code>jsonlite</code>, we’d use <code>jsonlite::flatten()</code></p>
+<p>The second method uses the <code>flatten()</code> function from the <code>purrr</code> package, the only package in the core <code>tidyverse</code> that we do not talk about in detail in this class. There is also a different <code>flatten()</code> function in the <code>jsonlite</code> package. In the code below, we specify that we want to use <code>flatten()</code> from <code>purrr</code> with <code>purrr::flatten()</code>. If we wanted to use <code>flatten()</code> from <code>jsonlite</code>, we’d use <code><a href="https://rdrr.io/pkg/jsonlite/man/flatten.html">jsonlite::flatten()</a></code></p>
 <div class="cell" data-appendix="true">
-<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>cr_cards_flat2 <span class="ot">&lt;-</span> purrr<span class="sc">::</span><span class="fu">flatten</span>(cr_cards)</span>
-<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>cr_cards_df2 <span class="ot">&lt;-</span> <span class="fu">as_tibble</span>(cr_cards_flat2)</span>
-<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(cr_cards_df2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 6 × 8
-  key     name      elixir type  rarity arena description                     id
-  &lt;chr&gt;   &lt;chr&gt;      &lt;int&gt; &lt;chr&gt; &lt;chr&gt;  &lt;int&gt; &lt;chr&gt;                        &lt;int&gt;
-1 knight  Knight         3 Troop Common     0 A tough melee fighter. The… 2.6 e7
-2 archers Archers        3 Troop Common     0 A pair of lightly armored … 2.60e7
-3 goblins Goblins        2 Troop Common     1 Three fast, unarmored mele… 2.60e7
-4 giant   Giant          5 Troop Rare       0 Slow but durable, only att… 2.60e7
-5 pekka   P.E.K.K.A      7 Troop Epic       4 A heavily armored, slow me… 2.60e7
-6 minions Minions        3 Troop Common     0 Three fast, unarmored flyi… 2.60e7</code></pre>
-</div>
+<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">cr_cards_flat2</span> <span class="op">&lt;-</span> <span class="fu">purrr</span><span class="fu">::</span><span class="fu">flatten</span><span class="op">(</span><span class="va">cr_cards</span><span class="op">)</span></span>
+<span><span class="va">cr_cards_df2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://tibble.tidyverse.org/reference/as_tibble.html">as_tibble</a></span><span class="op">(</span><span class="va">cr_cards_flat2</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">cr_cards_df2</span><span class="op">)</span></span>
+<span><span class="co">#&gt; # A tibble: 6 × 8</span></span>
+<span><span class="co">#&gt;   key     name      elixir type  rarity arena description                  id</span></span>
+<span><span class="co">#&gt;   &lt;chr&gt;   &lt;chr&gt;      &lt;int&gt; &lt;chr&gt; &lt;chr&gt;  &lt;int&gt; &lt;chr&gt;                     &lt;int&gt;</span></span>
+<span><span class="co">#&gt; 1 knight  Knight         3 Troop Common     0 A tough melee fighter. … 2.6 e7</span></span>
+<span><span class="co">#&gt; 2 archers Archers        3 Troop Common     0 A pair of lightly armor… 2.60e7</span></span>
+<span><span class="co">#&gt; 3 goblins Goblins        2 Troop Common     1 Three fast, unarmored m… 2.60e7</span></span>
+<span><span class="co">#&gt; 4 giant   Giant          5 Troop Rare       0 Slow but durable, only … 2.60e7</span></span>
+<span><span class="co">#&gt; 5 pekka   P.E.K.K.A      7 Troop Epic       4 A heavily armored, slow… 2.60e7</span></span>
+<span><span class="co">#&gt; 6 minions Minions        3 Troop Common     0 Three fast, unarmored f… 2.60e7</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Both methods give a <code>tibble</code> that we can then use our usual <code>tidyverse</code> tools <code>ggplot2</code>, <code>dplyr</code>, <code>tidyr</code>, etc. on.</p>
-</section>
-<section id="things-arent-always-so-easy" class="level3" data-number="10.3.2">
-<h3 data-number="10.3.2" class="anchored" data-anchor-id="things-arent-always-so-easy"><span class="header-section-number">10.3.2</span> Things Aren’t Always So Easy</h3>
+</section><section id="things-arent-always-so-easy" class="level3" data-number="10.3.2"><h3 data-number="10.3.2" class="anchored" data-anchor-id="things-arent-always-so-easy">
+<span class="header-section-number">10.3.2</span> Things Aren’t Always So Easy</h3>
 <p>Now let’s try to look at some animal crossing data that were obtained from <a href="https://github.com/jefflomacy/villagerdb" target="_blank">https://github.com/jefflomacy/villagerdb</a>. We first just want to look at the data from one individual villager (ace) in the file <code>ace.json</code>.</p>
 <div class="cell" data-appendix="true">
-<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>acedata <span class="ot">&lt;-</span> <span class="fu">fromJSON</span>(<span class="fu">here</span>(<span class="st">"data/ace.json"</span>))</span>
-<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>aceflat <span class="ot">&lt;-</span> purrr<span class="sc">::</span><span class="fu">flatten</span>(acedata)</span>
-<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(aceflat)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>$gender
-[1] "male"
-
-$species
-[1] "bird"
-
-$birthday
-[1] "3-13"
-
-$ac
-$ac$personality
-[1] "jock"
-
-$ac$clothes
-[1] "spade-shirt"
-
-$ac$song
-[1] "K.K. Parade"
-
-$ac$phrase
-[1] "ace"
-
-
-$`afe+`
-$`afe+`$personality
-[1] "jock"
-
-$`afe+`$clothes
-[1] "spade-shirt"
-
-$`afe+`$song
-[1] "K.K. Parade"
-
-
-$name
-[1] "Ace"</code></pre>
-</div>
+<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">acedata</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/jsonlite/man/fromJSON.html">fromJSON</a></span><span class="op">(</span><span class="fu"><a href="https://here.r-lib.org//reference/here.html">here</a></span><span class="op">(</span><span class="st">"data/ace.json"</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="va">aceflat</span> <span class="op">&lt;-</span> <span class="fu">purrr</span><span class="fu">::</span><span class="fu">flatten</span><span class="op">(</span><span class="va">acedata</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">aceflat</span><span class="op">)</span></span>
+<span><span class="co">#&gt; $gender</span></span>
+<span><span class="co">#&gt; [1] "male"</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; $species</span></span>
+<span><span class="co">#&gt; [1] "bird"</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; $birthday</span></span>
+<span><span class="co">#&gt; [1] "3-13"</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; $ac</span></span>
+<span><span class="co">#&gt; $ac$personality</span></span>
+<span><span class="co">#&gt; [1] "jock"</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; $ac$clothes</span></span>
+<span><span class="co">#&gt; [1] "spade-shirt"</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; $ac$song</span></span>
+<span><span class="co">#&gt; [1] "K.K. Parade"</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; $ac$phrase</span></span>
+<span><span class="co">#&gt; [1] "ace"</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; $`afe+`</span></span>
+<span><span class="co">#&gt; $`afe+`$personality</span></span>
+<span><span class="co">#&gt; [1] "jock"</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; $`afe+`$clothes</span></span>
+<span><span class="co">#&gt; [1] "spade-shirt"</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; $`afe+`$song</span></span>
+<span><span class="co">#&gt; [1] "K.K. Parade"</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; $name</span></span>
+<span><span class="co">#&gt; [1] "Ace"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Things are now….more complicated. This example is just to show that it’s not always easy working with JSON data. Lists can be nested and that creates problems when trying to convert a deeply nested list into our “rectangular” format that’s easy to work with.</p>
 <p>There’s also the added problem of reading in the <code>.json</code> files from all villagers at the same time We could do this with a for loop or a mapping function from <code>purrr</code> to download and read in the JSON files for all villagers. We won’t delve any more deeply into this, but there’s a lot more to all of the file formats that we’ve discussed this week, particularly web scraping and .json files.</p>
-</section>
-<section id="exercise-8-4" class="level3" data-number="10.3.3">
-<h3 data-number="10.3.3" class="anchored" data-anchor-id="exercise-8-4"><span class="header-section-number">10.3.3</span> Exercises</h3>
-<p>Exercises marked with an * indicate that the exercise has a solution at the end of the chapter at @ref(solutions-8).</p>
-<ol type="1">
-<li><p>* Read in the <code>pokedex.json</code> file, a data set that has information on the 151 original Pokemon. Then, use the <code>flatten()</code> function from <code>purrr</code> to flatten the list.</p></li>
-<li><p>* Use <code>as_tibble()</code> to convert your flattened list to a <code>tibble</code>.</p></li>
-<li><p>* Use <code>parse_number()</code> with <code>mutate()</code> to tidy two of the variables in the data set.</p></li>
-<li><p>* Look at the <code>type</code> variable. What looks odd about it? What happens when you try to use it, either in a plot, or using a <code>dplyr</code> function?</p></li>
-</ol>
-<p>You can <code>unnest()</code> the <code>Type</code> variable with the <code>unnest()</code> function from <code>tidyr</code>. We didn’t discuss this function but feel free to read about it with <code>?unnest</code></p>
-<div class="cell">
-
-</div>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>pokemon_unnest <span class="ot">&lt;-</span> <span class="fu">unnest</span>(pokemon_df, <span class="at">cols =</span> <span class="fu">c</span>(type))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<ol start="5" type="1">
-<li>There are 6 pokemon with a <code>spawn_chance</code> of 0. Figure out what these 6 pokemon are.</li>
-</ol>
-<div class="cell">
-
-</div>
-<ol start="6" type="1">
-<li>Figure out what the 5 most common Pokemon types are in the first generation (you’ll need to use the <code>unnest()</code>-ed data set for this: why?).</li>
-</ol>
-<div class="cell">
-
-</div>
-</section>
-</section>
-<section id="chapexercise-8" class="level2" data-number="10.4">
-<h2 data-number="10.4" class="anchored" data-anchor-id="chapexercise-8"><span class="header-section-number">10.4</span> Chapter Exercises</h2>
-<p>Exercises marked with an * indicate that the exercise has a solution at the end of the chapter at @ref(solutions-8).</p>
-<ol type="1">
-<li>Choose a sports team at SLU, and go to that team’s website (by simply googling SLU name_of_sport). Scrape the data tables from the “Results” or “Statistics” section of this sport. After you scrape the data, tidy the data set. Then, choose one of the following options (different options might make more/less sense for different sports)</li>
-</ol>
-<p>(a). Summarise different <strong>team</strong> statistics, either numerically or graphically. Perhaps make some graphs showing different statistics through time.</p>
-<p>(b). Summarise different <strong>individual</strong> statistics, either numerically or graphically.</p>
-<p>(c). Ask and answer any other questions that make sense for the particular sport that you are looking at!</p>
-<p><strong>Note</strong>: A few sports (men’s and women’s golf, for example), give results in PDF format. PDF format is generally a horrible way to record and share data, as it’s very difficult to read in to almost any program. Therefore, avoid sports with PDF results for the purposes of this exercise.</p>
-</section>
-<section id="solutions-8" class="level2" data-number="10.5">
-<h2 data-number="10.5" class="anchored" data-anchor-id="solutions-8"><span class="header-section-number">10.5</span> Exercise Solutions</h2>
-<section id="readr-s" class="level3" data-number="10.5.1">
-<h3 data-number="10.5.1" class="anchored" data-anchor-id="readr-s"><span class="header-section-number">10.5.1</span> <code>readr</code> S</h3>
-<ol type="1">
-<li>* The <code>birthdays.txt</code> file has information on the birthdays of various animals on my Animal Crossing island. There are also columns for the Animal’s Name, Animal Type, and how long the animal has lived on the island (in weeks). Click on the file to open it to look at the format of the data.</li>
-</ol>
-<p>Start with the following code chunk and use the options of <code>read_delim()</code> to read in the data (<code>?read_delim</code>). The <code>delim</code> argument that’s already provided specifies that the delimiter (separator) that you’ll use is a <code>-</code>, as opposed to, for example, a <code>,</code> in a .csv file. Arguments that you may to change include</p>
+</section></section><section id="practice" class="level2" data-number="10.4"><h2 data-number="10.4" class="anchored" data-anchor-id="practice">
+<span class="header-section-number">10.4</span> Practice</h2>
+<section id="class-exercises" class="level3" data-number="10.4.1"><h3 data-number="10.4.1" class="anchored" data-anchor-id="class-exercises">
+<span class="header-section-number">10.4.1</span> Class Exercises</h3>
+<p><strong>Class Exercise 1</strong>. The <code>birthdays.txt</code> file has information on the birthdays of various animals on my Animal Crossing island. There are also columns for the Animal’s Name, Animal Type, and how long the animal has lived on the island (in weeks). Click on the file to open it to look at the format of the data.</p>
+<p>Start with the following code chunk and use the options of <code><a href="https://readr.tidyverse.org/reference/read_delim.html">read_delim()</a></code> to read in the data (<code><a href="https://readr.tidyverse.org/reference/read_delim.html">?read_delim</a></code>). The <code>delim</code> argument that’s already provided specifies that the delimiter (separator) that you’ll use is a <code>-</code>, as opposed to, for example, a <code>,</code> in a .csv file. Arguments that you may need to change include</p>
 <ul>
 <li><code>skip</code></li>
 <li><code>col_names</code></li>
@@ -759,187 +654,93 @@ $name
 <li><code>col_types</code></li>
 </ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">read_delim</span>(<span class="fu">here</span>(<span class="st">"data/birthdays.txt"</span>), <span class="at">delim =</span> <span class="st">" - "</span>)</span>
-<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb18"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span></span>
+<span><span class="va">df</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html">read_delim</a></span><span class="op">(</span><span class="fu"><a href="https://here.r-lib.org//reference/here.html">here</a></span><span class="op">(</span><span class="st">"data/birthdays.txt"</span><span class="op">)</span>, delim <span class="op">=</span> <span class="st">" - "</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">df</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="fu">read_delim</span>(<span class="fu">here</span>(<span class="st">"data/birthdays.txt"</span>), <span class="at">delim =</span> <span class="st">"-"</span>, <span class="at">skip =</span> <span class="dv">4</span>,</span>
-<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">col_names =</span> <span class="fu">c</span>(<span class="st">"Birthday"</span>, <span class="st">"Name"</span>,</span>
-<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Animal"</span>, <span class="st">"Island"</span>),</span>
-<span id="cb32-4"><a href="#cb32-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">trim_ws =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb32-5"><a href="#cb32-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">col_types =</span> <span class="fu">list</span>(</span>
-<span id="cb32-6"><a href="#cb32-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">col_character</span>(), <span class="fu">col_character</span>(), <span class="fu">col_character</span>(), <span class="fu">col_number</span>()</span>
-<span id="cb32-7"><a href="#cb32-7" aria-hidden="true" tabindex="-1"></a>  ), <span class="at">na =</span> <span class="fu">c</span>(<span class="st">"N/A"</span>, <span class="st">"?"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<ol start="2" type="1">
-<li>* Another common format for data to be stored in is an Excel file. Often, it’s easiest just to save the Excel file as a .csv file and read it in using <code>read_csv()</code>. But, sometimes this route can be difficult (for example, if your Excel file has thousands of sheets). To read in directly from Excel, you’ll need to install the <code>readxl</code> with <code>install.packages("readxl")</code>. Once installed, load the package with <code>library(readxl)</code>, and read in the first sheet <code>evals_prof.xlsx</code> data set with the <code>read_excel()</code> function.</li>
-</ol>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="do">## install.packages("readxl")</span></span>
-<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readxl)</span>
-<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a><span class="fu">read_excel</span>(<span class="fu">here</span>(<span class="st">"data/evals_prof.xlsx"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<ol start="3" type="1">
-<li>* Now, read in the second sheet, using the help file for <code>?read_excel</code> to change one of the arguments.</li>
-</ol>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="fu">read_excel</span>(<span class="fu">here</span>(<span class="st">"data/evals_prof.xlsx"</span>), <span class="at">sheet =</span> <span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-</section>
-<section id="rvest-and-data-scraping-s" class="level3" data-number="10.5.2">
-<h3 data-number="10.5.2" class="anchored" data-anchor-id="rvest-and-data-scraping-s"><span class="header-section-number">10.5.2</span> <code>rvest</code> and Data Scraping S</h3>
-<ol start="2" type="1">
-<li>* SLU keeps track of diversity of faculty through time and makes this data public on the following website: <a href="https://www.stlawu.edu/ir/diversity/faculty" target="_blank">https://www.stlawu.edu/ir/diversity/faculty</a>. Use <code>rvest</code> to scrape the data tables into <code>R</code>.</li>
-</ol>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>url <span class="ot">&lt;-</span> <span class="st">"https://www.stlawu.edu/ir/diversity/faculty"</span></span>
-<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a>h <span class="ot">&lt;-</span> <span class="fu">read_html</span>(url)</span>
-<span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a>tab <span class="ot">&lt;-</span> h <span class="sc">|&gt;</span> <span class="fu">html_nodes</span>(<span class="st">"table"</span>)</span>
-<span id="cb35-4"><a href="#cb35-4" aria-hidden="true" tabindex="-1"></a>obj <span class="ot">&lt;-</span> tab[[<span class="dv">1</span>]] <span class="sc">|&gt;</span> <span class="fu">html_table</span>(<span class="at">fill =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb35-5"><a href="#cb35-5" aria-hidden="true" tabindex="-1"></a>obj</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-</section>
-<section id="json-with-jsonlite-s" class="level3" data-number="10.5.3">
-<h3 data-number="10.5.3" class="anchored" data-anchor-id="json-with-jsonlite-s"><span class="header-section-number">10.5.3</span> JSON with <code>jsonlite</code> S</h3>
-<ol type="1">
-<li>* Read in the <code>pokedex.json</code> file, a data set that has information on the 151 original Pokemon. Then, use the <code>flatten()</code> function from <code>purrr</code> to flatten the list.</li>
-</ol>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(jsonlite)</span>
-<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a>pokedex <span class="ot">&lt;-</span> <span class="fu">fromJSON</span>(<span class="fu">here</span>(<span class="st">"data/pokedex.json"</span>))</span>
-<span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> purrr<span class="sc">::</span><span class="fu">flatten</span>(pokedex)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<ol start="2" type="1">
-<li>* Use <code>as_tibble()</code> to convert your flattened list to a <code>tibble</code>.</li>
-</ol>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a>pokemon_df <span class="ot">&lt;-</span> <span class="fu">as_tibble</span>(df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<ol start="3" type="1">
-<li>* Use <code>parse_number()</code> with <code>mutate()</code> to tidy two of the variables in the data set.</li>
-</ol>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a>pokemon_df <span class="ot">&lt;-</span> pokemon_df <span class="sc">|&gt;</span> <span class="fu">mutate</span>(<span class="at">height =</span> <span class="fu">parse_number</span>(height),</span>
-<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a>                                    <span class="at">weight =</span> <span class="fu">parse_number</span>(weight))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<ol start="4" type="1">
-<li>* Look at the <code>type</code> variable. What looks odd about it? What happens when you try to use it, either in a plot, or using a <code>dplyr</code> function?</li>
-</ol>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="do">## it's a variable of lists....this is happening because some </span></span>
-<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a><span class="do">## pokemon have more than one type.</span></span>
-<span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb39-4"><a href="#cb39-4" aria-hidden="true" tabindex="-1"></a><span class="do">## most ggplot() and dplyr() functions won't work, or</span></span>
-<span id="cb39-5"><a href="#cb39-5" aria-hidden="true" tabindex="-1"></a><span class="do">## won't work as you'd expect</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>You can <code>unnest()</code> the <code>Type</code> variable with the <code>unnest()</code> function from <code>tidyr</code>. We didn’t discuss this function but feel free to read about it with <code>?unnest</code></p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a>pokemon_unnest <span class="ot">&lt;-</span> <span class="fu">unnest</span>(pokemon_df, <span class="at">cols =</span> <span class="fu">c</span>(type))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-</section>
-<section id="chapexercise-8-S" class="level3" data-number="10.5.4">
-<h3 data-number="10.5.4" class="anchored" data-anchor-id="chapexercise-8-S"><span class="header-section-number">10.5.4</span> Chapter Exercises S</h3>
 <div class="cell">
 
 </div>
-</section>
-</section>
-<section id="rcode-8" class="level2" data-number="10.6">
-<h2 data-number="10.6" class="anchored" data-anchor-id="rcode-8"><span class="header-section-number">10.6</span> Non-Exercise <code>R</code> Code</h2>
+<p><strong>Class Exercise 2</strong>. Another common format for data to be stored in is an Excel file. Often, it’s easiest just to save the Excel file as a .csv file and read it in using <code><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv()</a></code>. But, sometimes this route can be difficult (for example, if your Excel file has thousands of sheets). To read in directly from Excel, you’ll need to install the <code>readxl</code> with <code>install.packages("readxl")</code>. Once installed, load the package with <code><a href="https://readxl.tidyverse.org">library(readxl)</a></code>, and read in the first sheet <code>evals_prof.xlsx</code> data set, a similar data set as the one that will be used for Project 2, with the <code>read_excel()</code> function.</p>
+<p><strong>Class Exercise 3</strong>. Now, read in the second sheet in the Excel file, using the help file for <code>?read_excel</code> to change one of the arguments.</p>
+</section><section id="your-turn" class="level3" data-number="10.4.2"><h3 data-number="10.4.2" class="anchored" data-anchor-id="your-turn">
+<span class="header-section-number">10.4.2</span> Your Turn</h3>
+<p><strong>Your Turn 1</strong>. Choose a topic/person/place/etc. that interests you that has tables on Wikipedia and scrape the table that is related to that topic.</p>
+<p><strong>Your Turn 2</strong>. Choose a sports team at SLU, and go to that team’s website (by simply googling SLU name_of_sport). Scrape the data tables from the “Results” or “Statistics” section of this sport. After you scrape the data, tidy the data set. Then, choose one of the following options (different options might make more/less sense for different sports)</p>
+<ol type="a">
+<li><p>Summarise different <strong>team</strong> statistics, either numerically or graphically. Perhaps make some graphs showing different statistics through time.</p></li>
+<li><p>Summarise different <strong>individual</strong> statistics, either numerically or graphically.</p></li>
+</ol>
+<div class="callout-note callout callout-style-simple callout-captioned">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>A few sports (men’s and women’s golf, for example), give results in PDF format. PDF format is generally a horrible way to record and share data, as it’s very difficult to read in to almost any program. Therefore, avoid sports with PDF results for the purposes of this exercise.</p>
+</div>
+</div>
+<p><strong>Your Turn 3</strong>. For either your topic of choice data set or your sports team data set, ask and answer any other questions that make sense for the particular topic or sport that you are looking at!</p>
+<!-- ### Exercises {#exercise-8-4} -->
+<!-- Exercises marked with an \* indicate that the exercise has a solution at the end of the chapter at \@ref(solutions-8). -->
+<!-- 1. \* Read in the `pokedex.json` file, a data set that has information on the 151 original Pokemon. Then, use the `flatten()` function from `purrr` to flatten the list. -->
+<!-- 2. \* Use `as_tibble()` to convert your flattened list to a `tibble`. -->
+<!-- 3. \* Use `parse_number()` with `mutate()` to tidy two of the variables in the data set. -->
+<!-- 4. \* Look at the `type` variable. What looks odd about it? What happens when you try to use it, either in a plot, or using a `dplyr` function? -->
+<!-- You can `unnest()` the `Type` variable with the `unnest()` function from `tidyr`. We didn't discuss this function but feel free to read about it with `?unnest` -->
+<!-- ```{r, echo = FALSE, message = FALSE, warning = FALSE} -->
+<!-- library(jsonlite) -->
+<!-- pokedex <- fromJSON(here("data/pokedex.json")) -->
+<!-- df <- purrr::flatten(pokedex) -->
+<!-- pokemon_df <- as_tibble(df) -->
+<!-- ``` -->
+<!-- ```{r} -->
+<!-- pokemon_unnest <- unnest(pokemon_df, cols = c(type)) -->
+<!-- ``` -->
+<!-- 5. There are 6 pokemon with a `spawn_chance` of 0. Figure out what these 6 pokemon are. -->
+<!-- ```{r, echo = FALSE, results = "hide"} -->
+<!-- pokemon_df |> arrange(spawn_chance) |> -->
+<!--   filter(spawn_chance == 0) |> -->
+<!--   select(spawn_chance, everything())  -->
+<!-- ``` -->
+<!-- 6. Figure out what the 5 most common Pokemon types are in the first generation (you'll need to use the `unnest()`-ed data set for this: why?).  -->
+<!-- ```{r, echo = FALSE, results = "hide"} -->
+<!-- pokemon_unnest |> group_by(type) |> -->
+<!--   summarise(total_type = n()) |> -->
+<!--   arrange(desc(total_type)) -->
+<!-- ## 5 most common -->
+<!-- pokemon_unnest |> group_by(type) |> -->
+<!--   summarise(total_type = n()) |> -->
+<!--   arrange(desc(total_type)) |> -->
+<!--   slice(1:5) -->
+<!-- ``` -->
+<!-- 1. \* Read in the `pokedex.json` file, a data set that has information on the 151 original Pokemon. Then, use the `flatten()` function from `purrr` to flatten the list. -->
 <div class="cell">
-<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(here)</span>
-<span id="cb41-3"><a href="#cb41-3" aria-hidden="true" tabindex="-1"></a>cars_df <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="fu">here</span>(<span class="st">"data/mtcarsex.csv"</span>))</span>
-<span id="cb41-4"><a href="#cb41-4" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(cars_df)</span>
-<span id="cb41-5"><a href="#cb41-5" aria-hidden="true" tabindex="-1"></a>cars_df <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="fu">here</span>(<span class="st">"data/mtcarsex.csv"</span>), <span class="at">skip =</span> <span class="dv">2</span>)</span>
-<span id="cb41-6"><a href="#cb41-6" aria-hidden="true" tabindex="-1"></a><span class="do">## first two lines will be skipped</span></span>
-<span id="cb41-7"><a href="#cb41-7" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(cars_df)</span>
-<span id="cb41-8"><a href="#cb41-8" aria-hidden="true" tabindex="-1"></a>cars_df <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="fu">here</span>(<span class="st">"data/mtcarsex.csv"</span>), <span class="at">na =</span> <span class="fu">c</span>(<span class="st">"NA"</span>, <span class="st">"-999"</span>), <span class="at">skip =</span> <span class="dv">2</span>)</span>
-<span id="cb41-9"><a href="#cb41-9" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(cars_df)</span>
-<span id="cb41-10"><a href="#cb41-10" aria-hidden="true" tabindex="-1"></a>cars_df <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="fu">here</span>(<span class="st">"data/mtcarsex.csv"</span>), <span class="at">na =</span> <span class="fu">c</span>(<span class="cn">NA</span>, <span class="st">"-999"</span>), <span class="at">skip =</span> <span class="dv">2</span>,</span>
-<span id="cb41-11"><a href="#cb41-11" aria-hidden="true" tabindex="-1"></a>  <span class="at">col_types =</span> <span class="fu">cols</span>(</span>
-<span id="cb41-12"><a href="#cb41-12" aria-hidden="true" tabindex="-1"></a>  <span class="at">mpg =</span> <span class="fu">col_double</span>(),</span>
-<span id="cb41-13"><a href="#cb41-13" aria-hidden="true" tabindex="-1"></a>  <span class="at">cyl =</span> <span class="fu">col_factor</span>(),</span>
-<span id="cb41-14"><a href="#cb41-14" aria-hidden="true" tabindex="-1"></a>  <span class="at">disp =</span> <span class="fu">col_double</span>(),</span>
-<span id="cb41-15"><a href="#cb41-15" aria-hidden="true" tabindex="-1"></a>  <span class="at">hp =</span> <span class="fu">col_double</span>(),</span>
-<span id="cb41-16"><a href="#cb41-16" aria-hidden="true" tabindex="-1"></a>  <span class="at">drat =</span> <span class="fu">col_double</span>(),</span>
-<span id="cb41-17"><a href="#cb41-17" aria-hidden="true" tabindex="-1"></a>  <span class="at">wt =</span> <span class="fu">col_double</span>(),</span>
-<span id="cb41-18"><a href="#cb41-18" aria-hidden="true" tabindex="-1"></a>  <span class="at">qsec =</span> <span class="fu">col_double</span>(),</span>
-<span id="cb41-19"><a href="#cb41-19" aria-hidden="true" tabindex="-1"></a>  <span class="at">vs =</span> <span class="fu">col_factor</span>(),</span>
-<span id="cb41-20"><a href="#cb41-20" aria-hidden="true" tabindex="-1"></a>  <span class="at">am =</span> <span class="fu">col_double</span>(),</span>
-<span id="cb41-21"><a href="#cb41-21" aria-hidden="true" tabindex="-1"></a>  <span class="at">gear =</span> <span class="fu">col_double</span>(),</span>
-<span id="cb41-22"><a href="#cb41-22" aria-hidden="true" tabindex="-1"></a>  <span class="at">carb =</span> <span class="fu">col_double</span>()</span>
-<span id="cb41-23"><a href="#cb41-23" aria-hidden="true" tabindex="-1"></a>))</span>
-<span id="cb41-24"><a href="#cb41-24" aria-hidden="true" tabindex="-1"></a>cars_df <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="fu">here</span>(<span class="st">"data/mtcarsex.csv"</span>), <span class="at">na =</span> <span class="fu">c</span>(<span class="st">"NA"</span>, <span class="st">"-999"</span>), <span class="at">skip =</span> <span class="dv">2</span>,</span>
-<span id="cb41-25"><a href="#cb41-25" aria-hidden="true" tabindex="-1"></a>  <span class="at">col_types =</span> <span class="fu">cols</span>(</span>
-<span id="cb41-26"><a href="#cb41-26" aria-hidden="true" tabindex="-1"></a>  <span class="at">mpg =</span> <span class="fu">col_double</span>(),</span>
-<span id="cb41-27"><a href="#cb41-27" aria-hidden="true" tabindex="-1"></a>  <span class="at">cyl =</span> <span class="fu">col_factor</span>(),</span>
-<span id="cb41-28"><a href="#cb41-28" aria-hidden="true" tabindex="-1"></a>  <span class="at">disp =</span> <span class="fu">col_double</span>(),</span>
-<span id="cb41-29"><a href="#cb41-29" aria-hidden="true" tabindex="-1"></a>  <span class="at">hp =</span> <span class="fu">col_double</span>(),</span>
-<span id="cb41-30"><a href="#cb41-30" aria-hidden="true" tabindex="-1"></a>  <span class="at">drat =</span> <span class="fu">col_double</span>(),</span>
-<span id="cb41-31"><a href="#cb41-31" aria-hidden="true" tabindex="-1"></a>  <span class="at">wt =</span> <span class="fu">col_double</span>(),</span>
-<span id="cb41-32"><a href="#cb41-32" aria-hidden="true" tabindex="-1"></a>  <span class="at">qsec =</span> <span class="fu">col_double</span>(),</span>
-<span id="cb41-33"><a href="#cb41-33" aria-hidden="true" tabindex="-1"></a>  <span class="at">vs =</span> <span class="fu">col_factor</span>(),</span>
-<span id="cb41-34"><a href="#cb41-34" aria-hidden="true" tabindex="-1"></a>  <span class="at">am =</span> <span class="fu">col_double</span>(),</span>
-<span id="cb41-35"><a href="#cb41-35" aria-hidden="true" tabindex="-1"></a>  <span class="at">gear =</span> <span class="fu">col_double</span>(),</span>
-<span id="cb41-36"><a href="#cb41-36" aria-hidden="true" tabindex="-1"></a>  <span class="at">carb =</span> <span class="fu">col_double</span>()</span>
-<span id="cb41-37"><a href="#cb41-37" aria-hidden="true" tabindex="-1"></a>)) <span class="sc">|&gt;</span></span>
-<span id="cb41-38"><a href="#cb41-38" aria-hidden="true" tabindex="-1"></a>  <span class="fu">slice</span>(<span class="sc">-</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>))</span>
-<span id="cb41-39"><a href="#cb41-39" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(cars_df)</span>
-<span id="cb41-40"><a href="#cb41-40" aria-hidden="true" tabindex="-1"></a>oscars_df <span class="ot">&lt;-</span> <span class="fu">read_tsv</span>(<span class="fu">here</span>(<span class="st">"data/oscars.tsv"</span>))</span>
-<span id="cb41-41"><a href="#cb41-41" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(oscars_df)</span>
-<span id="cb41-42"><a href="#cb41-42" aria-hidden="true" tabindex="-1"></a>test_df <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="fu">here</span>(<span class="st">"data/parsedf.csv"</span>))</span>
-<span id="cb41-43"><a href="#cb41-43" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(test_df)</span>
-<span id="cb41-44"><a href="#cb41-44" aria-hidden="true" tabindex="-1"></a>test_df <span class="sc">|&gt;</span> <span class="fu">mutate</span>(<span class="at">x2 =</span> <span class="fu">parse_number</span>(x))</span>
-<span id="cb41-45"><a href="#cb41-45" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb41-46"><a href="#cb41-46" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(rvest)</span>
-<span id="cb41-47"><a href="#cb41-47" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb41-48"><a href="#cb41-48" aria-hidden="true" tabindex="-1"></a><span class="do">## provide the URL and name it something (in this case, url).</span></span>
-<span id="cb41-49"><a href="#cb41-49" aria-hidden="true" tabindex="-1"></a>url <span class="ot">&lt;-</span> <span class="st">"https://en.wikipedia.org/wiki/Gun_violence_in_the_United_States_by_state"</span></span>
-<span id="cb41-50"><a href="#cb41-50" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb41-51"><a href="#cb41-51" aria-hidden="true" tabindex="-1"></a><span class="do">## convert the html code into something R can read</span></span>
-<span id="cb41-52"><a href="#cb41-52" aria-hidden="true" tabindex="-1"></a>h <span class="ot">&lt;-</span> <span class="fu">read_html</span>(url)</span>
-<span id="cb41-53"><a href="#cb41-53" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb41-54"><a href="#cb41-54" aria-hidden="true" tabindex="-1"></a><span class="do">## grabs the tables</span></span>
-<span id="cb41-55"><a href="#cb41-55" aria-hidden="true" tabindex="-1"></a>tab <span class="ot">&lt;-</span> h <span class="sc">|&gt;</span> <span class="fu">html_nodes</span>(<span class="st">"table"</span>)</span>
-<span id="cb41-56"><a href="#cb41-56" aria-hidden="true" tabindex="-1"></a>test1 <span class="ot">&lt;-</span> tab[[<span class="dv">1</span>]] <span class="sc">|&gt;</span> <span class="fu">html_table</span>()</span>
-<span id="cb41-57"><a href="#cb41-57" aria-hidden="true" tabindex="-1"></a>test2 <span class="ot">&lt;-</span> tab[[<span class="dv">2</span>]] <span class="sc">|&gt;</span> <span class="fu">html_table</span>()</span>
-<span id="cb41-58"><a href="#cb41-58" aria-hidden="true" tabindex="-1"></a>test3 <span class="ot">&lt;-</span> tab[[<span class="dv">3</span>]] <span class="sc">|&gt;</span> <span class="fu">html_table</span>()</span>
-<span id="cb41-59"><a href="#cb41-59" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb41-60"><a href="#cb41-60" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(test1)</span>
-<span id="cb41-61"><a href="#cb41-61" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(test2)</span>
-<span id="cb41-62"><a href="#cb41-62" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(test3)</span>
-<span id="cb41-63"><a href="#cb41-63" aria-hidden="true" tabindex="-1"></a>url <span class="ot">&lt;-</span> <span class="st">"https://saintsathletics.com/sports/baseball/stats/2021"</span></span>
-<span id="cb41-64"><a href="#cb41-64" aria-hidden="true" tabindex="-1"></a>h <span class="ot">&lt;-</span> <span class="fu">read_html</span>(url)</span>
-<span id="cb41-65"><a href="#cb41-65" aria-hidden="true" tabindex="-1"></a>tab <span class="ot">&lt;-</span> h <span class="sc">|&gt;</span> <span class="fu">html_nodes</span>(<span class="st">"table"</span>)</span>
-<span id="cb41-66"><a href="#cb41-66" aria-hidden="true" tabindex="-1"></a>tab</span>
-<span id="cb41-67"><a href="#cb41-67" aria-hidden="true" tabindex="-1"></a>obj <span class="ot">&lt;-</span> tab[[<span class="dv">1</span>]] <span class="sc">|&gt;</span> <span class="fu">html_table</span>(<span class="at">fill =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb41-68"><a href="#cb41-68" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(obj)</span>
-<span id="cb41-69"><a href="#cb41-69" aria-hidden="true" tabindex="-1"></a><span class="fu">tail</span>(obj)</span>
-<span id="cb41-70"><a href="#cb41-70" aria-hidden="true" tabindex="-1"></a>obj2 <span class="ot">&lt;-</span> tab[[<span class="dv">2</span>]] <span class="sc">|&gt;</span> <span class="fu">html_table</span>(<span class="at">fill =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb41-71"><a href="#cb41-71" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(obj2)</span>
-<span id="cb41-72"><a href="#cb41-72" aria-hidden="true" tabindex="-1"></a><span class="fu">tail</span>(obj2)</span>
-<span id="cb41-73"><a href="#cb41-73" aria-hidden="true" tabindex="-1"></a><span class="do">## install.packages("jsonlite")</span></span>
-<span id="cb41-74"><a href="#cb41-74" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(jsonlite)</span>
-<span id="cb41-75"><a href="#cb41-75" aria-hidden="true" tabindex="-1"></a>cr_cards <span class="ot">&lt;-</span> <span class="fu">fromJSON</span>(<span class="fu">here</span>(<span class="st">"data/clash_royale_card_info.json"</span>))</span>
-<span id="cb41-76"><a href="#cb41-76" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb41-77"><a href="#cb41-77" aria-hidden="true" tabindex="-1"></a>cr_cards_flat <span class="ot">&lt;-</span> cr_cards[[<span class="st">"cards"</span>]]</span>
-<span id="cb41-78"><a href="#cb41-78" aria-hidden="true" tabindex="-1"></a>cr_cards_df <span class="ot">&lt;-</span> <span class="fu">as_tibble</span>(cr_cards_flat)</span>
-<span id="cb41-79"><a href="#cb41-79" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(cr_cards_df)</span>
-<span id="cb41-80"><a href="#cb41-80" aria-hidden="true" tabindex="-1"></a>cr_cards_flat2 <span class="ot">&lt;-</span> purrr<span class="sc">::</span><span class="fu">flatten</span>(cr_cards)</span>
-<span id="cb41-81"><a href="#cb41-81" aria-hidden="true" tabindex="-1"></a>cr_cards_df2 <span class="ot">&lt;-</span> <span class="fu">as_tibble</span>(cr_cards_flat2)</span>
-<span id="cb41-82"><a href="#cb41-82" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(cr_cards_df2)</span>
-<span id="cb41-83"><a href="#cb41-83" aria-hidden="true" tabindex="-1"></a>acedata <span class="ot">&lt;-</span> <span class="fu">fromJSON</span>(<span class="fu">here</span>(<span class="st">"data/ace.json"</span>))</span>
-<span id="cb41-84"><a href="#cb41-84" aria-hidden="true" tabindex="-1"></a>aceflat <span class="ot">&lt;-</span> purrr<span class="sc">::</span><span class="fu">flatten</span>(acedata)</span>
-<span id="cb41-85"><a href="#cb41-85" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(aceflat)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+
+</div>
+<!-- 2. \* Use `as_tibble()` to convert your flattened list to a `tibble`. -->
+<div class="cell">
+
+</div>
+<!-- 3. \* Use `parse_number()` with `mutate()` to tidy two of the variables in the data set. -->
+<div class="cell">
+
+</div>
+<!-- 4. \* Look at the `type` variable. What looks odd about it? What happens when you try to use it, either in a plot, or using a `dplyr` function? -->
+<div class="cell">
+
+</div>
+<!-- You can `unnest()` the `Type` variable with the `unnest()` function from `tidyr`. We didn't discuss this function but feel free to read about it with `?unnest` -->
+<div class="cell">
+
 </div>
 
 
-</section>
-
-</main> <!-- /main -->
-<script id="quarto-html-after-body" type="application/javascript">
+</section></section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
     const mode = bsSheetEl.getAttribute("data-mode");
@@ -1035,9 +836,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     });
   }
 });
-</script>
-<nav class="page-navigation">
-  <div class="nav-page nav-page-previous">
+</script><nav class="page-navigation"><div class="nav-page nav-page-previous">
       <a href="./09-ethics.html" class="pagination-link">
         <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Data Ethics</span></span>
       </a>          
@@ -1049,13 +848,11 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   </div>
 </nav>
 </div> <!-- /content -->
-<footer class="footer">
-  <div class="nav-footer">
+<footer class="footer"><div class="nav-footer">
     <div class="nav-footer-left">Course Materials were written by Matt Higham for STAT/DATA 234 at St.&nbsp;Lawrence University.</div>   
     <div class="nav-footer-right">This book was built with <a href="https://quarto.org/">Quarto</a>.</div>
   </div>
 </footer>
-
 
 
 </body></html>

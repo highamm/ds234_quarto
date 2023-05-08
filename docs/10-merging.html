@@ -1,12 +1,9 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
-
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
 <meta name="generator" content="quarto-1.0.36">
-
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-
-
 <title>DATA / STAT 234 - 11&nbsp; Merging with dplyr</title>
 <style>
 code{white-space: pre-wrap;}
@@ -80,7 +77,6 @@ code span.vs { color: #4070a0; } /* VerbatimString */
 code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
-
 <script src="site_libs/quarto-nav/quarto-nav.js"></script>
 <script src="site_libs/quarto-nav/headroom.min.js"></script>
 <script src="site_libs/clipboard/clipboard.min.js"></script>
@@ -98,8 +94,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
-<script id="quarto-search-options" type="application/json">{
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light"><script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
   "collapse-after": 3,
@@ -118,28 +113,19 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     "search-submit-button-title": "Submit"
   }
 }</script>
-
-
 </head>
-
 <body class="nav-sidebar floating">
 
 <div id="quarto-search-results"></div>
-  <header id="quarto-header" class="headroom fixed-top">
-  <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
-    <div class="container-fluid d-flex justify-content-between">
+  <header id="quarto-header" class="headroom fixed-top"><nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }"><div class="container-fluid d-flex justify-content-between">
       <h1 class="quarto-secondary-nav-title"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Merging with <code>dplyr</code></span></h1>
       <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
         <i class="bi bi-chevron-right"></i>
       </button>
     </div>
-  </nav>
-</header>
-<!-- content -->
-<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+  </nav></header><!-- content --><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation floating overflow-auto">
-    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation floating overflow-auto"><div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
       <a href="./">DATA / STAT 234</a> 
         <div class="sidebar-tools-main">
@@ -158,7 +144,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       </div>
     <div class="sidebar-menu-container"> 
     <ul class="list-unstyled mt-1">
-        <li class="sidebar-item">
+<li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./index.html" class="sidebar-item-text sidebar-link">Syllabus and Course Information</a>
   </div>
@@ -170,10 +156,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
-          <li class="sidebar-item">
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">
+<li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./01-intro.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Getting Started with <code>R</code> and <code>R Studio</code></span></a>
+  <a href="./01-intro.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Getting Started</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -197,7 +183,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   </div>
 </li>
       </ul>
-  </li>
+</li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">Data Wrangling</a>
@@ -205,8 +191,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
-          <li class="sidebar-item">
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">
+<li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./04-tidyr.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Tidying with <code>tidyr</code></span></a>
   </div>
@@ -237,7 +223,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   </div>
 </li>
       </ul>
-  </li>
+</li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">Special Topics</a>
@@ -245,8 +231,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
-          <li class="sidebar-item">
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">
+<li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./11-lubridate.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Dates with <code>lubridate</code></span></a>
   </div>
@@ -272,56 +258,49 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   </div>
 </li>
       </ul>
-  </li>
+</li>
     </ul>
-    </div>
-</nav>
-<!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc">
-    <h2 id="toc-title">Table of contents</h2>
+</div>
+</nav><!-- margin-sidebar --><div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc"><h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#stacking-rows-and-appending-columns" id="toc-stacking-rows-and-appending-columns" class="nav-link active" data-scroll-target="#stacking-rows-and-appending-columns"> <span class="header-section-number">11.1</span> Stacking Rows and Appending Columns</a>
+<li>
+<a href="#stacking-rows-and-appending-columns" id="toc-stacking-rows-and-appending-columns" class="nav-link active" data-scroll-target="#stacking-rows-and-appending-columns"> <span class="header-section-number">11.1</span> Stacking Rows and Appending Columns</a>
   <ul class="collapse">
-  <li><a href="#stacking-with-bind_rows" id="toc-stacking-with-bind_rows" class="nav-link" data-scroll-target="#stacking-with-bind_rows"> <span class="header-section-number">11.1.1</span> Stacking with <code>bind_rows()</code></a></li>
+<li><a href="#stacking-with-bind_rows" id="toc-stacking-with-bind_rows" class="nav-link" data-scroll-target="#stacking-with-bind_rows"> <span class="header-section-number">11.1.1</span> Stacking with <code>bind_rows()</code></a></li>
   <li><a href="#binding-columns-with-bind_cols" id="toc-binding-columns-with-bind_cols" class="nav-link" data-scroll-target="#binding-columns-with-bind_cols"> <span class="header-section-number">11.1.2</span> Binding Columns with <code>bind_cols()</code></a></li>
-  <li><a href="#exercise-10-1" id="toc-exercise-10-1" class="nav-link" data-scroll-target="#exercise-10-1"> <span class="header-section-number">11.1.3</span> Exercises</a></li>
-  </ul></li>
-  <li><a href="#mutating-joins" id="toc-mutating-joins" class="nav-link" data-scroll-target="#mutating-joins"> <span class="header-section-number">11.2</span> Mutating Joins</a>
+  </ul>
+</li>
+  <li>
+<a href="#mutating-joins" id="toc-mutating-joins" class="nav-link" data-scroll-target="#mutating-joins"> <span class="header-section-number">11.2</span> Mutating Joins</a>
   <ul class="collapse">
-  <li><a href="#keep-all-rows-of-data-set-1-with-left_join" id="toc-keep-all-rows-of-data-set-1-with-left_join" class="nav-link" data-scroll-target="#keep-all-rows-of-data-set-1-with-left_join"> <span class="header-section-number">11.2.1</span> Keep All Rows of Data Set 1 with <code>left_join()</code></a></li>
+<li><a href="#keep-all-rows-of-data-set-1-with-left_join" id="toc-keep-all-rows-of-data-set-1-with-left_join" class="nav-link" data-scroll-target="#keep-all-rows-of-data-set-1-with-left_join"> <span class="header-section-number">11.2.1</span> Keep All Rows of Data Set 1 with <code>left_join()</code></a></li>
   <li><a href="#keep-all-rows-of-data-set-2-with-right_join" id="toc-keep-all-rows-of-data-set-2-with-right_join" class="nav-link" data-scroll-target="#keep-all-rows-of-data-set-2-with-right_join"> <span class="header-section-number">11.2.2</span> Keep All Rows of Data Set 2 with <code>right_join()</code></a></li>
   <li><a href="#keep-all-rows-of-both-data-sets-with-full_join" id="toc-keep-all-rows-of-both-data-sets-with-full_join" class="nav-link" data-scroll-target="#keep-all-rows-of-both-data-sets-with-full_join"> <span class="header-section-number">11.2.3</span> Keep All Rows of Both Data Sets with <code>full_join()</code></a></li>
   <li><a href="#keep-only-rows-with-matching-keys-with-inner_join" id="toc-keep-only-rows-with-matching-keys-with-inner_join" class="nav-link" data-scroll-target="#keep-only-rows-with-matching-keys-with-inner_join"> <span class="header-section-number">11.2.4</span> Keep Only Rows with Matching Keys with <code>inner_join()</code></a></li>
   <li><a href="#which-xxxx_join" id="toc-which-xxxx_join" class="nav-link" data-scroll-target="#which-xxxx_join"> <span class="header-section-number">11.2.5</span> Which <code>xxxx_join()</code>?</a></li>
-  <li><a href="#the-importance-of-a-good-key" id="toc-the-importance-of-a-good-key" class="nav-link" data-scroll-target="#the-importance-of-a-good-key"> <span class="header-section-number">11.2.6</span> The Importance of a Good Key</a></li>
-  <li><a href="#exercise-10-2" id="toc-exercise-10-2" class="nav-link" data-scroll-target="#exercise-10-2"> <span class="header-section-number">11.2.7</span> Exercises</a></li>
-  </ul></li>
-  <li><a href="#filtering-joins" id="toc-filtering-joins" class="nav-link" data-scroll-target="#filtering-joins"> <span class="header-section-number">11.3</span> Filtering Joins</a>
-  <ul class="collapse">
-  <li><a href="#filtering-with-semi_join" id="toc-filtering-with-semi_join" class="nav-link" data-scroll-target="#filtering-with-semi_join"> <span class="header-section-number">11.3.1</span> Filtering with <code>semi_join()</code></a></li>
-  <li><a href="#filtering-with-anti_join" id="toc-filtering-with-anti_join" class="nav-link" data-scroll-target="#filtering-with-anti_join"> <span class="header-section-number">11.3.2</span> Filtering with <code>anti_join()</code></a></li>
-  <li><a href="#exercise-10-3" id="toc-exercise-10-3" class="nav-link" data-scroll-target="#exercise-10-3"> <span class="header-section-number">11.3.3</span> Exercises</a></li>
-  </ul></li>
-  <li><a href="#chapexercise-10" id="toc-chapexercise-10" class="nav-link" data-scroll-target="#chapexercise-10"> <span class="header-section-number">11.4</span> Chapter Exercises</a></li>
-  <li><a href="#solutions-10" id="toc-solutions-10" class="nav-link" data-scroll-target="#solutions-10"> <span class="header-section-number">11.5</span> Exercise Solutions</a>
-  <ul class="collapse">
-  <li><a href="#bind_rows-and-bind_cols-s" id="toc-bind_rows-and-bind_cols-s" class="nav-link" data-scroll-target="#bind_rows-and-bind_cols-s"> <span class="header-section-number">11.5.1</span> <code>bind_rows()</code> and <code>bind_cols()</code> S</a></li>
-  <li><a href="#mutating-joins-s" id="toc-mutating-joins-s" class="nav-link" data-scroll-target="#mutating-joins-s"> <span class="header-section-number">11.5.2</span> Mutating Joins S</a></li>
-  <li><a href="#filtering-joins-s" id="toc-filtering-joins-s" class="nav-link" data-scroll-target="#filtering-joins-s"> <span class="header-section-number">11.5.3</span> Filtering Joins S</a></li>
-  <li><a href="#chapexercise-10-S" id="toc-chapexercise-10-S" class="nav-link" data-scroll-target="#chapexercise-10-S"> <span class="header-section-number">11.5.4</span> Chapter Exercises S</a></li>
-  </ul></li>
-  <li><a href="#rcode-10" id="toc-rcode-10" class="nav-link" data-scroll-target="#rcode-10"> <span class="header-section-number">11.6</span> Non-Exercise <code>R</code> Code</a></li>
   </ul>
-</nav>
+</li>
+  <li>
+<a href="#filtering-joins" id="toc-filtering-joins" class="nav-link" data-scroll-target="#filtering-joins"> <span class="header-section-number">11.3</span> Filtering Joins</a>
+  <ul class="collapse">
+<li><a href="#filtering-with-semi_join" id="toc-filtering-with-semi_join" class="nav-link" data-scroll-target="#filtering-with-semi_join"> <span class="header-section-number">11.3.1</span> Filtering with <code>semi_join()</code></a></li>
+  <li><a href="#filtering-with-anti_join" id="toc-filtering-with-anti_join" class="nav-link" data-scroll-target="#filtering-with-anti_join"> <span class="header-section-number">11.3.2</span> Filtering with <code>anti_join()</code></a></li>
+  </ul>
+</li>
+  <li>
+<a href="#practice" id="toc-practice" class="nav-link" data-scroll-target="#practice"> <span class="header-section-number">11.4</span> Practice</a>
+  <ul class="collapse">
+<li><a href="#class-exercises" id="toc-class-exercises" class="nav-link" data-scroll-target="#class-exercises"> <span class="header-section-number">11.4.1</span> Class Exercises</a></li>
+  <li><a href="#your-turn" id="toc-your-turn" class="nav-link" data-scroll-target="#your-turn"> <span class="header-section-number">11.4.2</span> Your Turn</a></li>
+  </ul>
+</li>
+  </ul></nav>
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content">
-
-<header id="title-block-header" class="quarto-title-block default">
-<div class="quarto-title">
-<h1 class="title"><span id="mergin" class="quarto-section-identifier d-none d-lg-block"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Merging with <code>dplyr</code></span></span></h1>
+<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><div class="quarto-title">
+<h1 class="title"><span id="merging" class="quarto-section-identifier d-none d-lg-block"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Merging with <code>dplyr</code></span></span></h1>
 </div>
 
 
@@ -333,512 +312,361 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   </div>
   
 
-</header>
+</header><div class="cell">
 
+</div>
 <p><strong>Goals:</strong></p>
 <ul>
-<li><p>use <code>bind_rows()</code> to stack two data sets and <code>bind_cols()</code> to merge two data sets.</p></li>
+<li><p>use <code><a href="https://dplyr.tidyverse.org/reference/bind.html">bind_rows()</a></code> to stack two data sets and <code><a href="https://dplyr.tidyverse.org/reference/bind.html">bind_cols()</a></code> to merge two data sets.</p></li>
 <li><p>identify <strong>keys</strong> in two related data sets.</p></li>
 <li><p>use the mutating join functions in <code>dplyr</code> to merge two data sets by a key.</p></li>
 <li><p>use the filtering join functions in <code>dplyr</code> to filter one data set by values in another data set.</p></li>
 <li><p>apply the appropriate <code>join()</code> function for a given problem and context.</p></li>
 </ul>
-<section id="stacking-rows-and-appending-columns" class="level2" data-number="11.1">
-<h2 data-number="11.1" class="anchored" data-anchor-id="stacking-rows-and-appending-columns"><span class="header-section-number">11.1</span> Stacking Rows and Appending Columns</h2>
-<section id="stacking-with-bind_rows" class="level3" data-number="11.1.1">
-<h3 data-number="11.1.1" class="anchored" data-anchor-id="stacking-with-bind_rows"><span class="header-section-number">11.1.1</span> Stacking with <code>bind_rows()</code></h3>
-<p>First, we will talk about combining two data sets by “stacking” them on top of each other to form one new data set. The <code>bind_rows()</code> function can be used for this purpose <strong>if</strong> the two data sets have identical column names.</p>
+<section id="stacking-rows-and-appending-columns" class="level2" data-number="11.1"><h2 data-number="11.1" class="anchored" data-anchor-id="stacking-rows-and-appending-columns">
+<span class="header-section-number">11.1</span> Stacking Rows and Appending Columns</h2>
+<section id="stacking-with-bind_rows" class="level3" data-number="11.1.1"><h3 data-number="11.1.1" class="anchored" data-anchor-id="stacking-with-bind_rows">
+<span class="header-section-number">11.1.1</span> Stacking with <code>bind_rows()</code>
+</h3>
+<p>First, we will talk about combining two data sets by “stacking” them on top of each other to form one new data set. The <code><a href="https://dplyr.tidyverse.org/reference/bind.html">bind_rows()</a></code> function can be used for this purpose <strong>if</strong> the two data sets have identical column names.</p>
 <p>A common instance where this is useful is if two data sets come from the same source and have different locations or years, but the same exact column names.</p>
 <p>For example, examine the following website and notice how there are .csv files given for each year of matches in the ATP (Association of (men’s) Tennis Professionals). <a href="https://github.com/JeffSackmann/tennis_atp" target="_blank">https://github.com/JeffSackmann/tennis_atp</a>.</p>
 <p>Then, read in the data sets, and look at how many columns each has.</p>
 <div class="cell" data-appendix="true">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(here)</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>atp_2019 <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="fu">here</span>(<span class="st">"data/atp_matches_2019.csv"</span>))</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>atp_2018 <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="fu">here</span>(<span class="st">"data/atp_matches_2018.csv"</span>))</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(atp_2019) </span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(atp_2018)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://here.r-lib.org/">here</a></span><span class="op">)</span></span>
+<span><span class="va">atp_2019</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv</a></span><span class="op">(</span><span class="fu"><a href="https://here.r-lib.org//reference/here.html">here</a></span><span class="op">(</span><span class="st">"data/atp_matches_2019.csv"</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="va">atp_2018</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv</a></span><span class="op">(</span><span class="fu"><a href="https://here.r-lib.org//reference/here.html">here</a></span><span class="op">(</span><span class="st">"data/atp_matches_2018.csv"</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">atp_2019</span><span class="op">)</span> </span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">atp_2018</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>To combine results from both data sets,</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>atp_df <span class="ot">&lt;-</span> <span class="fu">bind_rows</span>(atp_2018, atp_2019)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-error">
-<pre><code>Error in `bind_rows()`:
-! Can't combine `..1$winner_seed` &lt;double&gt; and `..2$winner_seed` &lt;character&gt;.</code></pre>
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">atp_df</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/bind.html">bind_rows</a></span><span class="op">(</span><span class="va">atp_2018</span>, <span class="va">atp_2019</span><span class="op">)</span></span>
+<span><span class="co">#&gt; Error in `bind_rows()`:</span></span>
+<span><span class="co">#&gt; ! Can't combine `..1$winner_seed` &lt;double&gt; and `..2$winner_seed` &lt;character&gt;.</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</div>
-<p>What happens? Can you fix the error? <strong>Hint</strong>: run</p>
+<p>The issue is that the <code>winner_seed</code> and <code>loser_seed</code> variables are of different variable classes in the <code>atp_2018</code> data vs.&nbsp;the <code>atp_2019</code> data. The following code forces the seed variables in the 2018 data set to be characters.</p>
 <div class="cell" data-appendix="true">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">spec</span>(atp_2018)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>to get the full column specifications and use your <code>readr</code> knowledge to change a couple of the column types. We also did not discuss this, but, when using the <code>col_type</code> argument in <code>read_csv()</code>, you don’t need to specify all of the column types. Just specifying the ones that you want to change works too. The following code forces the seed variables in the 2018 data set to be characters.</p>
-<div class="cell" data-appendix="true">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>atp_2018 <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="fu">here</span>(<span class="st">"data/atp_matches_2018.csv"</span>),</span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>                     <span class="at">col_types =</span> <span class="fu">cols</span>(<span class="at">winner_seed =</span> <span class="fu">col_character</span>(),</span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>                                      <span class="at">loser_seed =</span> <span class="fu">col_character</span>()))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">atp_2018</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv</a></span><span class="op">(</span><span class="fu"><a href="https://here.r-lib.org//reference/here.html">here</a></span><span class="op">(</span><span class="st">"data/atp_matches_2018.csv"</span><span class="op">)</span>,</span>
+<span>                     col_types <span class="op">=</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/cols.html">cols</a></span><span class="op">(</span>winner_seed <span class="op">=</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/parse_atomic.html">col_character</a></span><span class="op">(</span><span class="op">)</span>,</span>
+<span>                                      loser_seed <span class="op">=</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/parse_atomic.html">col_character</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>We can try combining the data sets now.</p>
 <div class="cell" data-appendix="true">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>atp_df <span class="ot">&lt;-</span> <span class="fu">bind_rows</span>(atp_2018, atp_2019)</span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>atp_df</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">atp_df</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/bind.html">bind_rows</a></span><span class="op">(</span><span class="va">atp_2018</span>, <span class="va">atp_2019</span><span class="op">)</span></span>
+<span><span class="va">atp_df</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Do a quick check to make sure the number of rows in <code>atp_2018</code> plus the number of rows in <code>atp_2019</code> equals the number of rows in <code>atp_df</code>.</p>
-<p>It might seem a little annoying, but, by default <code>bind_rows()</code> will only combine two data sets by stacking rows if the data sets have <strong>identical</strong> column names and <strong>identical</strong> column classes, as we saw in the previous example.</p>
+<p>It might seem a little annoying, but, by default <code><a href="https://dplyr.tidyverse.org/reference/bind.html">bind_rows()</a></code> will only combine two data sets by stacking rows if the data sets have <strong>identical</strong> column names and <strong>identical</strong> column classes, as we saw in the previous example.</p>
 <p>Now run the following and look at the output.</p>
 <div class="cell" data-appendix="true">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>df_test2a <span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="at">xvar =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>))</span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>df_test2b <span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="at">xvar =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>), <span class="at">y =</span> <span class="fu">c</span>(<span class="dv">5</span>, <span class="dv">1</span>))</span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="fu">bind_rows</span>(df_test2a, df_test2b)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 4 × 2
-   xvar     y
-  &lt;dbl&gt; &lt;dbl&gt;
-1     1    NA
-2     2    NA
-3     1     5
-4     2     1</code></pre>
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">df_test2a</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble</a></span><span class="op">(</span>xvar <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">2</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="va">df_test2b</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble</a></span><span class="op">(</span>xvar <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">2</span><span class="op">)</span>, y <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">5</span>, <span class="fl">1</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/bind.html">bind_rows</a></span><span class="op">(</span><span class="va">df_test2a</span>, <span class="va">df_test2b</span><span class="op">)</span></span>
+<span><span class="co">#&gt; # A tibble: 4 × 2</span></span>
+<span><span class="co">#&gt;    xvar     y</span></span>
+<span><span class="co">#&gt;   &lt;dbl&gt; &lt;dbl&gt;</span></span>
+<span><span class="co">#&gt; 1     1    NA</span></span>
+<span><span class="co">#&gt; 2     2    NA</span></span>
+<span><span class="co">#&gt; 3     1     5</span></span>
+<span><span class="co">#&gt; 4     2     1</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</div>
-<p>Is this the behavior you would expect?</p>
-<p><br></p>
-</section>
-<section id="binding-columns-with-bind_cols" class="level3" data-number="11.1.2">
-<h3 data-number="11.1.2" class="anchored" data-anchor-id="binding-columns-with-bind_cols"><span class="header-section-number">11.1.2</span> Binding Columns with <code>bind_cols()</code></h3>
-<p>We won’t spend much time talking about how to bind together columns because it’s generally a little dangerous.</p>
+<p>We can see from this toy example that, if a variable is missing entirely in one of the data sets we are binding together, then <code>NA</code> values are filled in for that variable.</p>
+</section><section id="binding-columns-with-bind_cols" class="level3" data-number="11.1.2"><h3 data-number="11.1.2" class="anchored" data-anchor-id="binding-columns-with-bind_cols">
+<span class="header-section-number">11.1.2</span> Binding Columns with <code>bind_cols()</code>
+</h3>
+<p><code><a href="https://dplyr.tidyverse.org/reference/bind.html">bind_cols()</a></code> combines two data sets by combining their columns into one data set. We won’t spend much time talking about how to bind together columns because it’s generally a little dangerous.</p>
 <p>We will use a couple of test data sets, <code>df_test1a</code> and <code>df_test1b</code>, to see it in action:</p>
 <div class="cell" data-appendix="true">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>df_test1a <span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="at">xvar =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>), <span class="at">yvar =</span> <span class="fu">c</span>(<span class="dv">5</span>, <span class="dv">1</span>))</span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>df_test1b <span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="at">x =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>), <span class="at">y =</span> <span class="fu">c</span>(<span class="dv">5</span>, <span class="dv">1</span>))</span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="fu">bind_cols</span>(df_test1a, df_test1b)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 2 × 4
-   xvar  yvar     x     y
-  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
-1     1     5     1     5
-2     2     1     2     1</code></pre>
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">df_test1a</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble</a></span><span class="op">(</span>xvar <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">2</span><span class="op">)</span>, yvar <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">5</span>, <span class="fl">1</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="va">df_test1b</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble</a></span><span class="op">(</span>x <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">2</span><span class="op">)</span>, y <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">5</span>, <span class="fl">1</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/bind.html">bind_cols</a></span><span class="op">(</span><span class="va">df_test1a</span>, <span class="va">df_test1b</span><span class="op">)</span></span>
+<span><span class="co">#&gt; # A tibble: 2 × 4</span></span>
+<span><span class="co">#&gt;    xvar  yvar     x     y</span></span>
+<span><span class="co">#&gt;   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;</span></span>
+<span><span class="co">#&gt; 1     1     5     1     5</span></span>
+<span><span class="co">#&gt; 2     2     1     2     1</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</div>
-<p>For a larger data set, why might this be a dangerous way to combine data? What must you be sure of about the way the data was collected in order to combine data in this way?</p>
-</section>
-<section id="exercise-10-1" class="level3" data-number="11.1.3">
-<h3 data-number="11.1.3" class="anchored" data-anchor-id="exercise-10-1"><span class="header-section-number">11.1.3</span> Exercises</h3>
-<p>Exercises marked with an * indicate that the exercise has a solution at the end of the chapter at @ref(solutions-10).</p>
-<ol type="1">
-<li>* Run the following and explain why <code>R</code> does not simply stack the rows. Then, fix the issue with the <code>rename()</code> function.</li>
-</ol>
+<p><strong>Exercise 1</strong>. Run the following and explain why <code>R</code> does not simply stack the rows. Then, fix the issue with the <code><a href="https://dplyr.tidyverse.org/reference/rename.html">rename()</a></code> function.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>df_test1a <span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="at">xvar =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>), <span class="at">yvar =</span> <span class="fu">c</span>(<span class="dv">5</span>, <span class="dv">1</span>))</span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>df_test1b <span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="at">x =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>), <span class="at">y =</span> <span class="fu">c</span>(<span class="dv">5</span>, <span class="dv">1</span>))</span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="fu">bind_rows</span>(df_test1a, df_test1b)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 4 × 4
-   xvar  yvar     x     y
-  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
-1     1     5    NA    NA
-2     2     1    NA    NA
-3    NA    NA     1     5
-4    NA    NA     2     1</code></pre>
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">df_test1a</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble</a></span><span class="op">(</span>xvar <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">2</span><span class="op">)</span>, yvar <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">5</span>, <span class="fl">1</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="va">df_test1b</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble</a></span><span class="op">(</span>x <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">2</span><span class="op">)</span>, y <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">5</span>, <span class="fl">1</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/bind.html">bind_rows</a></span><span class="op">(</span><span class="va">df_test1a</span>, <span class="va">df_test1b</span><span class="op">)</span></span>
+<span><span class="co">#&gt; # A tibble: 4 × 4</span></span>
+<span><span class="co">#&gt;    xvar  yvar     x     y</span></span>
+<span><span class="co">#&gt;   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;</span></span>
+<span><span class="co">#&gt; 1     1     5    NA    NA</span></span>
+<span><span class="co">#&gt; 2     2     1    NA    NA</span></span>
+<span><span class="co">#&gt; 3    NA    NA     1     5</span></span>
+<span><span class="co">#&gt; 4    NA    NA     2     1</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</div>
-</section>
-</section>
-<section id="mutating-joins" class="level2" data-number="11.2">
-<h2 data-number="11.2" class="anchored" data-anchor-id="mutating-joins"><span class="header-section-number">11.2</span> Mutating Joins</h2>
+</section></section><section id="mutating-joins" class="level2" data-number="11.2"><h2 data-number="11.2" class="anchored" data-anchor-id="mutating-joins">
+<span class="header-section-number">11.2</span> Mutating Joins</h2>
 <p>If the goal is to combine two data sets using some common variable(s) that both data sets have, we need different tools than simply stacking rows or appending columns. When merging together two or more data sets, we need to have a matching identification variable in each data set. This variable is commonly called a <strong>key</strong>. A key can be an identification number, a name, a date, etc, but must be present in both data sets.</p>
 <p>As a simple first example, consider</p>
 <div class="cell" data-appendix="true">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>df1 <span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="at">name =</span> <span class="fu">c</span>(<span class="st">"Emily"</span>, <span class="st">"Miguel"</span>, <span class="st">"Tonya"</span>), <span class="at">fav_sport =</span> <span class="fu">c</span>(<span class="st">"Swimming"</span>, <span class="st">"Football"</span>, <span class="st">"Tennis"</span>))</span>
-<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>df2 <span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="at">name =</span> <span class="fu">c</span>(<span class="st">"Tonya"</span>, <span class="st">"Miguel"</span>, <span class="st">"Emily"</span>),</span>
-<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>              <span class="at">fav_colour =</span> <span class="fu">c</span>(<span class="st">"Robin's Egg Blue"</span>, <span class="st">"Tickle Me Pink"</span>, <span class="st">"Goldenrod"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span></span>
+<span><span class="va">df1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble</a></span><span class="op">(</span>name <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Emily"</span>, <span class="st">"Miguel"</span>, <span class="st">"Tonya"</span><span class="op">)</span>, fav_sport <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Swimming"</span>, <span class="st">"Football"</span>, <span class="st">"Tennis"</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="va">df2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble</a></span><span class="op">(</span>name <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Tonya"</span>, <span class="st">"Miguel"</span>, <span class="st">"Emily"</span><span class="op">)</span>,</span>
+<span>              fav_colour <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Robin's Egg Blue"</span>, <span class="st">"Tickle Me Pink"</span>, <span class="st">"Goldenrod"</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Our goal is to combine the two data sets so that the people’s favorite sports and favorite colours are in one data set.</p>
-<p>Identify the <code>key</code> in the example above. Why can we no longer use <code>bind_cols()</code> here?</p>
-<section id="keep-all-rows-of-data-set-1-with-left_join" class="level3" data-number="11.2.1">
-<h3 data-number="11.2.1" class="anchored" data-anchor-id="keep-all-rows-of-data-set-1-with-left_join"><span class="header-section-number">11.2.1</span> Keep All Rows of Data Set 1 with <code>left_join()</code></h3>
+<p>Identify the <code>key</code> in the example above.</p>
+<section id="keep-all-rows-of-data-set-1-with-left_join" class="level3" data-number="11.2.1"><h3 data-number="11.2.1" class="anchored" data-anchor-id="keep-all-rows-of-data-set-1-with-left_join">
+<span class="header-section-number">11.2.1</span> Keep All Rows of Data Set 1 with <code>left_join()</code>
+</h3>
 <p>Consider the <code>babynames</code> <code>R</code> package, which has the following data sets:</p>
 <ul>
-<li><code>lifetables</code>: cohort life tables for different <code>sex</code> and different <code>year</code> variables, starting at the year 1900.</li>
-<li><code>births</code>: the number of births in the United States in each year, since 1909</li>
-<li><code>babynames</code>: popularity of different baby names per year and sex since the year 1880.</li>
+<li>
+<code>lifetables</code>: cohort life tables for different <code>sex</code> and different <code>year</code> variables, starting at the year 1900.</li>
+<li>
+<code>births</code>: the number of births in the United States in each year, since 1909</li>
+<li>
+<code>babynames</code>: popularity of different baby names per year and sex since the year 1880.</li>
 </ul>
 <div class="cell" data-appendix="true">
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="do">##install.packages("babynames")</span></span>
-<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(babynames)</span>
-<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>life_df <span class="ot">&lt;-</span> babynames<span class="sc">::</span>lifetables</span>
-<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>birth_df <span class="ot">&lt;-</span> babynames<span class="sc">::</span>births</span>
-<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>babynames_df <span class="ot">&lt;-</span> babynames<span class="sc">::</span>babynames</span>
-<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(babynames)</span>
-<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(births)</span>
-<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(lifetables)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co">##install.packages("babynames")</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/hadley/babynames">babynames</a></span><span class="op">)</span></span>
+<span><span class="va">life_df</span> <span class="op">&lt;-</span> <span class="fu">babynames</span><span class="fu">::</span><span class="va"><a href="https://rdrr.io/pkg/babynames/man/lifetables.html">lifetables</a></span></span>
+<span><span class="va">birth_df</span> <span class="op">&lt;-</span> <span class="fu">babynames</span><span class="fu">::</span><span class="va"><a href="https://rdrr.io/pkg/babynames/man/births.html">births</a></span></span>
+<span><span class="va">babynames_df</span> <span class="op">&lt;-</span> <span class="fu">babynames</span><span class="fu">::</span><span class="va"><a href="https://rdrr.io/pkg/babynames/man/babynames.html">babynames</a></span></span>
+<span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">babynames</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">births</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">lifetables</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Read about each data set with <code>?babynames</code>, <code>?births</code> and <code>?lifetables</code>.</p>
-<p>Suppose that you want to combine the <code>births</code> data set with the <code>babynames</code> data set, so that each row of <code>babynames</code> now has the total number of births for that year. We first need to identify the key in each data set that we will use for the joining. In this case, each data set has a <code>year</code> variable, and we can use <code>left_join()</code> to keep all observations in <code>babynames_df</code>, even for years that are not in the <code>births_df</code> data set.</p>
+<p>Read about each data set with <code><a href="https://rdrr.io/pkg/babynames/man/babynames.html">?babynames</a></code>, <code><a href="https://rdrr.io/pkg/babynames/man/births.html">?births</a></code> and <code><a href="https://rdrr.io/pkg/babynames/man/lifetables.html">?lifetables</a></code>.</p>
+<p>Suppose that you want to combine the <code>births</code> data set with the <code>babynames</code> data set, so that each row of <code>babynames</code> now has the total number of births for that year. We first need to identify the key in each data set that we will use for the joining. In this case, each data set has a <code>year</code> variable, and we can use <code><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">left_join()</a></code> to keep all observations in <code>babynames_df</code>, even for years that are not in the <code>births_df</code> data set.</p>
 <div class="cell" data-appendix="true">
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>combined_left <span class="ot">&lt;-</span> <span class="fu">left_join</span>(babynames_df, birth_df, <span class="at">by =</span> <span class="fu">c</span>(<span class="st">"year"</span> <span class="ot">=</span> <span class="st">"year"</span>))</span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(combined_left)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 6 × 6
-   year sex   name          n   prop births
-  &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt;     &lt;int&gt;  &lt;dbl&gt;  &lt;int&gt;
-1  1880 F     Mary       7065 0.0724     NA
-2  1880 F     Anna       2604 0.0267     NA
-3  1880 F     Emma       2003 0.0205     NA
-4  1880 F     Elizabeth  1939 0.0199     NA
-5  1880 F     Minnie     1746 0.0179     NA
-6  1880 F     Margaret   1578 0.0162     NA</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tail</span>(combined_left)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 6 × 6
-   year sex   name       n       prop  births
-  &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt;  &lt;int&gt;      &lt;dbl&gt;   &lt;int&gt;
-1  2017 M     Zyhier     5 0.00000255 3855500
-2  2017 M     Zykai      5 0.00000255 3855500
-3  2017 M     Zykeem     5 0.00000255 3855500
-4  2017 M     Zylin      5 0.00000255 3855500
-5  2017 M     Zylis      5 0.00000255 3855500
-6  2017 M     Zyrie      5 0.00000255 3855500</code></pre>
-</div>
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">combined_left</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">left_join</a></span><span class="op">(</span><span class="va">babynames_df</span>, <span class="va">birth_df</span>, by <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"year"</span> <span class="op">=</span> <span class="st">"year"</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">combined_left</span><span class="op">)</span></span>
+<span><span class="co">#&gt; # A tibble: 6 × 6</span></span>
+<span><span class="co">#&gt;    year sex   name          n   prop births</span></span>
+<span><span class="co">#&gt;   &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt;     &lt;int&gt;  &lt;dbl&gt;  &lt;int&gt;</span></span>
+<span><span class="co">#&gt; 1  1880 F     Mary       7065 0.0724     NA</span></span>
+<span><span class="co">#&gt; 2  1880 F     Anna       2604 0.0267     NA</span></span>
+<span><span class="co">#&gt; 3  1880 F     Emma       2003 0.0205     NA</span></span>
+<span><span class="co">#&gt; 4  1880 F     Elizabeth  1939 0.0199     NA</span></span>
+<span><span class="co">#&gt; 5  1880 F     Minnie     1746 0.0179     NA</span></span>
+<span><span class="co">#&gt; 6  1880 F     Margaret   1578 0.0162     NA</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html">tail</a></span><span class="op">(</span><span class="va">combined_left</span><span class="op">)</span></span>
+<span><span class="co">#&gt; # A tibble: 6 × 6</span></span>
+<span><span class="co">#&gt;    year sex   name       n       prop  births</span></span>
+<span><span class="co">#&gt;   &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt;  &lt;int&gt;      &lt;dbl&gt;   &lt;int&gt;</span></span>
+<span><span class="co">#&gt; 1  2017 M     Zyhier     5 0.00000255 3855500</span></span>
+<span><span class="co">#&gt; 2  2017 M     Zykai      5 0.00000255 3855500</span></span>
+<span><span class="co">#&gt; 3  2017 M     Zykeem     5 0.00000255 3855500</span></span>
+<span><span class="co">#&gt; 4  2017 M     Zylin      5 0.00000255 3855500</span></span>
+<span><span class="co">#&gt; 5  2017 M     Zylis      5 0.00000255 3855500</span></span>
+<span><span class="co">#&gt; 6  2017 M     Zyrie      5 0.00000255 3855500</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Why are <code>births</code> missing in <code>head(combined_left)</code> but not in <code>tail(combined_left)</code>?</p>
-</section>
-<section id="keep-all-rows-of-data-set-2-with-right_join" class="level3" data-number="11.2.2">
-<h3 data-number="11.2.2" class="anchored" data-anchor-id="keep-all-rows-of-data-set-2-with-right_join"><span class="header-section-number">11.2.2</span> Keep All Rows of Data Set 2 with <code>right_join()</code></h3>
-<p>Recall from the accompanying handout that there is no need to ever use <code>right_join()</code> because it is the same as using a <code>left_join()</code> with the first two data set arguments switched:</p>
+</section><section id="keep-all-rows-of-data-set-2-with-right_join" class="level3" data-number="11.2.2"><h3 data-number="11.2.2" class="anchored" data-anchor-id="keep-all-rows-of-data-set-2-with-right_join">
+<span class="header-section-number">11.2.2</span> Keep All Rows of Data Set 2 with <code>right_join()</code>
+</h3>
+<p>Recall from the accompanying handout that there is no need to ever use <code><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">right_join()</a></code> because it is the same as using a <code><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">left_join()</a></code> with the first two data set arguments switched:</p>
 <div class="cell" data-appendix="true">
-<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="do">## these will always do the same exact thing</span></span>
-<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="fu">right_join</span>(babynames_df, birth_df, <span class="at">by =</span> <span class="fu">c</span>(<span class="st">"year"</span> <span class="ot">=</span> <span class="st">"year"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 1,839,952 × 6
-    year sex   name          n   prop  births
-   &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt;     &lt;int&gt;  &lt;dbl&gt;   &lt;int&gt;
- 1  1909 F     Mary      19259 0.0523 2718000
- 2  1909 F     Helen      9250 0.0251 2718000
- 3  1909 F     Margaret   7359 0.0200 2718000
- 4  1909 F     Ruth       6509 0.0177 2718000
- 5  1909 F     Dorothy    6253 0.0170 2718000
- 6  1909 F     Anna       5804 0.0158 2718000
- 7  1909 F     Elizabeth  5176 0.0141 2718000
- 8  1909 F     Mildred    5054 0.0137 2718000
- 9  1909 F     Marie      4301 0.0117 2718000
-10  1909 F     Alice      4170 0.0113 2718000
-# … with 1,839,942 more rows</code></pre>
+<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co">## these will always do the same exact thing</span></span>
+<span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">right_join</a></span><span class="op">(</span><span class="va">babynames_df</span>, <span class="va">birth_df</span>, by <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"year"</span> <span class="op">=</span> <span class="st">"year"</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="co">#&gt; # A tibble: 1,839,952 × 6</span></span>
+<span><span class="co">#&gt;    year sex   name         n   prop  births</span></span>
+<span><span class="co">#&gt;   &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt;    &lt;int&gt;  &lt;dbl&gt;   &lt;int&gt;</span></span>
+<span><span class="co">#&gt; 1  1909 F     Mary     19259 0.0523 2718000</span></span>
+<span><span class="co">#&gt; 2  1909 F     Helen     9250 0.0251 2718000</span></span>
+<span><span class="co">#&gt; 3  1909 F     Margaret  7359 0.0200 2718000</span></span>
+<span><span class="co">#&gt; 4  1909 F     Ruth      6509 0.0177 2718000</span></span>
+<span><span class="co">#&gt; 5  1909 F     Dorothy   6253 0.0170 2718000</span></span>
+<span><span class="co">#&gt; 6  1909 F     Anna      5804 0.0158 2718000</span></span>
+<span><span class="co">#&gt; # … with 1,839,946 more rows</span></span>
+<span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">left_join</a></span><span class="op">(</span><span class="va">birth_df</span>, <span class="va">babynames_df</span>, by <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"year"</span> <span class="op">=</span> <span class="st">"year"</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="co">#&gt; # A tibble: 1,839,952 × 6</span></span>
+<span><span class="co">#&gt;    year  births sex   name         n   prop</span></span>
+<span><span class="co">#&gt;   &lt;dbl&gt;   &lt;int&gt; &lt;chr&gt; &lt;chr&gt;    &lt;int&gt;  &lt;dbl&gt;</span></span>
+<span><span class="co">#&gt; 1  1909 2718000 F     Mary     19259 0.0523</span></span>
+<span><span class="co">#&gt; 2  1909 2718000 F     Helen     9250 0.0251</span></span>
+<span><span class="co">#&gt; 3  1909 2718000 F     Margaret  7359 0.0200</span></span>
+<span><span class="co">#&gt; 4  1909 2718000 F     Ruth      6509 0.0177</span></span>
+<span><span class="co">#&gt; 5  1909 2718000 F     Dorothy   6253 0.0170</span></span>
+<span><span class="co">#&gt; 6  1909 2718000 F     Anna      5804 0.0158</span></span>
+<span><span class="co">#&gt; # … with 1,839,946 more rows</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">left_join</span>(birth_df, babynames_df, <span class="at">by =</span> <span class="fu">c</span>(<span class="st">"year"</span> <span class="ot">=</span> <span class="st">"year"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 1,839,952 × 6
-    year  births sex   name          n   prop
-   &lt;dbl&gt;   &lt;int&gt; &lt;chr&gt; &lt;chr&gt;     &lt;int&gt;  &lt;dbl&gt;
- 1  1909 2718000 F     Mary      19259 0.0523
- 2  1909 2718000 F     Helen      9250 0.0251
- 3  1909 2718000 F     Margaret   7359 0.0200
- 4  1909 2718000 F     Ruth       6509 0.0177
- 5  1909 2718000 F     Dorothy    6253 0.0170
- 6  1909 2718000 F     Anna       5804 0.0158
- 7  1909 2718000 F     Elizabeth  5176 0.0141
- 8  1909 2718000 F     Mildred    5054 0.0137
- 9  1909 2718000 F     Marie      4301 0.0117
-10  1909 2718000 F     Alice      4170 0.0113
-# … with 1,839,942 more rows</code></pre>
-</div>
-</div>
-<p>Therefore, it’s usually easier to just always use <code>left_join()</code> and ignore <code>right_join()</code> completely.</p>
-</section>
-<section id="keep-all-rows-of-both-data-sets-with-full_join" class="level3" data-number="11.2.3">
-<h3 data-number="11.2.3" class="anchored" data-anchor-id="keep-all-rows-of-both-data-sets-with-full_join"><span class="header-section-number">11.2.3</span> Keep All Rows of Both Data Sets with <code>full_join()</code></h3>
-<p>In addition to keeping any rows with a matching key in the other data frame, a <code>full_join()</code> will keep all rows in data set 1 that don’t have a matching key in data set 2, and will also keep all rows in data set 2 that don’t have a matching key in data set 1, filling in <code>NA</code> for missing values when necessary. For our example of merging <code>babynames_df</code> with <code>birth_df</code>,</p>
+<p>Therefore, it’s usually easier to just always use <code><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">left_join()</a></code> and ignore <code><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">right_join()</a></code> completely.</p>
+</section><section id="keep-all-rows-of-both-data-sets-with-full_join" class="level3" data-number="11.2.3"><h3 data-number="11.2.3" class="anchored" data-anchor-id="keep-all-rows-of-both-data-sets-with-full_join">
+<span class="header-section-number">11.2.3</span> Keep All Rows of Both Data Sets with <code>full_join()</code>
+</h3>
+<p>In addition to keeping any rows with a matching key in the other data frame, a <code><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">full_join()</a></code> will keep all rows in data set 1 that don’t have a matching key in data set 2, and will also keep all rows in data set 2 that don’t have a matching key in data set 1, filling in <code>NA</code> for missing values when necessary. For our example of merging <code>babynames_df</code> with <code>birth_df</code>,</p>
 <div class="cell" data-appendix="true">
-<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="fu">full_join</span>(babynames_df, birth_df, <span class="at">by =</span> <span class="fu">c</span>(<span class="st">"year"</span> <span class="ot">=</span> <span class="st">"year"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">full_join</a></span><span class="op">(</span><span class="va">babynames_df</span>, <span class="va">birth_df</span>, by <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"year"</span> <span class="op">=</span> <span class="st">"year"</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</section>
-<section id="keep-only-rows-with-matching-keys-with-inner_join" class="level3" data-number="11.2.4">
-<h3 data-number="11.2.4" class="anchored" data-anchor-id="keep-only-rows-with-matching-keys-with-inner_join"><span class="header-section-number">11.2.4</span> Keep Only Rows with Matching Keys with <code>inner_join()</code></h3>
-<p>We can also keep only rows with matching keys with <code>inner_join()</code>. For this join, any row in data set 1 without a matching key in data set 2 is dropped, and any row in data set 2 without a matching key in data set 1 is also dropped.</p>
+</section><section id="keep-only-rows-with-matching-keys-with-inner_join" class="level3" data-number="11.2.4"><h3 data-number="11.2.4" class="anchored" data-anchor-id="keep-only-rows-with-matching-keys-with-inner_join">
+<span class="header-section-number">11.2.4</span> Keep Only Rows with Matching Keys with <code>inner_join()</code>
+</h3>
+<p>We can also keep only rows with matching keys with <code><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">inner_join()</a></code>. For this join, any row in data set 1 without a matching key in data set 2 is dropped, and any row in data set 2 without a matching key in data set 1 is also dropped.</p>
 <div class="cell" data-appendix="true">
-<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="fu">inner_join</span>(babynames_df, birth_df, <span class="at">by =</span> <span class="fu">c</span>(<span class="st">"year"</span> <span class="ot">=</span> <span class="st">"year"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 1,839,952 × 6
-    year sex   name          n   prop  births
-   &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt;     &lt;int&gt;  &lt;dbl&gt;   &lt;int&gt;
- 1  1909 F     Mary      19259 0.0523 2718000
- 2  1909 F     Helen      9250 0.0251 2718000
- 3  1909 F     Margaret   7359 0.0200 2718000
- 4  1909 F     Ruth       6509 0.0177 2718000
- 5  1909 F     Dorothy    6253 0.0170 2718000
- 6  1909 F     Anna       5804 0.0158 2718000
- 7  1909 F     Elizabeth  5176 0.0141 2718000
- 8  1909 F     Mildred    5054 0.0137 2718000
- 9  1909 F     Marie      4301 0.0117 2718000
-10  1909 F     Alice      4170 0.0113 2718000
-# … with 1,839,942 more rows</code></pre>
-</div>
+<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">inner_join</a></span><span class="op">(</span><span class="va">babynames_df</span>, <span class="va">birth_df</span>, by <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"year"</span> <span class="op">=</span> <span class="st">"year"</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="co">#&gt; # A tibble: 1,839,952 × 6</span></span>
+<span><span class="co">#&gt;    year sex   name         n   prop  births</span></span>
+<span><span class="co">#&gt;   &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt;    &lt;int&gt;  &lt;dbl&gt;   &lt;int&gt;</span></span>
+<span><span class="co">#&gt; 1  1909 F     Mary     19259 0.0523 2718000</span></span>
+<span><span class="co">#&gt; 2  1909 F     Helen     9250 0.0251 2718000</span></span>
+<span><span class="co">#&gt; 3  1909 F     Margaret  7359 0.0200 2718000</span></span>
+<span><span class="co">#&gt; 4  1909 F     Ruth      6509 0.0177 2718000</span></span>
+<span><span class="co">#&gt; 5  1909 F     Dorothy   6253 0.0170 2718000</span></span>
+<span><span class="co">#&gt; 6  1909 F     Anna      5804 0.0158 2718000</span></span>
+<span><span class="co">#&gt; # … with 1,839,946 more rows</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p><br></p>
-</section>
-<section id="which-xxxx_join" class="level3" data-number="11.2.5">
-<h3 data-number="11.2.5" class="anchored" data-anchor-id="which-xxxx_join"><span class="header-section-number">11.2.5</span> Which <code>xxxx_join()</code>?</h3>
-<p>Which join function we use will depend on the context of the data and what questions you will be answering in your analysis. Most importantly, if you’re using a <code>left_join()</code>, <code>right_join()</code> or <code>inner_join()</code>, you’re potentially cutting out some data. It’s important to be aware of what data you’re omitting. For example, with the <code>babynames</code> and <code>births</code> data, we would want to keep a note that a <code>left_join()</code> removed all observations before 1909 from joined data set.</p>
-</section>
-<section id="the-importance-of-a-good-key" class="level3" data-number="11.2.6">
-<h3 data-number="11.2.6" class="anchored" data-anchor-id="the-importance-of-a-good-key"><span class="header-section-number">11.2.6</span> The Importance of a Good Key</h3>
-<p>The key variable is very important for joining and is not always available in a “perfect” form. Recall the college majors data sets we have, called <code>slumajors_df</code>, which information on majors at SLU. Another data set, <code>collegemajors_df</code>, has different statistics on college majors nationwide. There’s lots of interesting variables in these data sets, but we’ll focus on the <code>Major</code> variable here. Read in and examine the two data sets with:</p>
-<div class="cell" data-appendix="true">
-<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>slumajors_df <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="fu">here</span>(<span class="st">"data/SLU_Majors_15_19.csv"</span>))</span>
-<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>collegemajors_df <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="fu">here</span>(<span class="st">"data/college-majors.csv"</span>))</span>
-<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(slumajors_df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 6 × 3
-  Major                        nfemales nmales
-  &lt;chr&gt;                           &lt;dbl&gt;  &lt;dbl&gt;
-1 Anthropology                       34     15
-2 Art &amp; Art History                  65     11
-3 Biochemistry                       14     11
-4 Biology                           162     67
-5 Business in the Liberal Arts      135    251
-6 Chemistry                          26     14</code></pre>
+</section><section id="which-xxxx_join" class="level3" data-number="11.2.5"><h3 data-number="11.2.5" class="anchored" data-anchor-id="which-xxxx_join">
+<span class="header-section-number">11.2.5</span> Which <code>xxxx_join()</code>?</h3>
+<p>Which join function we use will depend on the context of the data and what questions you will be answering in your analysis.</p>
+<div class="callout-important callout callout-style-simple callout-captioned">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
 </div>
-<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(collegemajors_df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 6 × 12
-  Major   Total   Men Women Major…¹ Emplo…² Full_…³ Part_…⁴ Unemp…⁵ Median P25th
-  &lt;chr&gt;   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;     &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt;
-1 PETROL…  2339  2057   282 Engine…    1976    1849     270      37 110000 95000
-2 MINING…   756   679    77 Engine…     640     556     170      85  75000 55000
-3 METALL…   856   725   131 Engine…     648     558     133      16  73000 50000
-4 NAVAL …  1258  1123   135 Engine…     758    1069     150      40  70000 43000
-5 CHEMIC… 32260 21239 11021 Engine…   25694   23170    5180    1672  65000 50000
-6 NUCLEA…  2573  2200   373 Engine…    1857    2038     264     400  65000 50000
-# … with 1 more variable: P75th &lt;dbl&gt;, and abbreviated variable names
-#   ¹​Major_category, ²​Employed, ³​Full_time, ⁴​Part_time, ⁵​Unemployed</code></pre>
+<div class="callout-caption-container flex-fill">
+Important
 </div>
 </div>
-<p>The most logical key for joining these two data sets is <code>Major</code>, but joining the data sets won’t actually work. The following is an attempt at using <code>Major</code> as the key.</p>
-<div class="cell" data-appendix="true">
-<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="fu">left_join</span>(slumajors_df, collegemajors_df, <span class="at">by =</span> <span class="fu">c</span>(<span class="st">"Major"</span> <span class="ot">=</span> <span class="st">"Major"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 27 × 14
-   Major        nfema…¹ nmales Total   Men Women Major…² Emplo…³ Full_…⁴ Part_…⁵
-   &lt;chr&gt;          &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;     &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;
- 1 Anthropology      34     15    NA    NA    NA &lt;NA&gt;         NA      NA      NA
- 2 Art &amp; Art H…      65     11    NA    NA    NA &lt;NA&gt;         NA      NA      NA
- 3 Biochemistry      14     11    NA    NA    NA &lt;NA&gt;         NA      NA      NA
- 4 Biology          162     67    NA    NA    NA &lt;NA&gt;         NA      NA      NA
- 5 Business in…     135    251    NA    NA    NA &lt;NA&gt;         NA      NA      NA
- 6 Chemistry         26     14    NA    NA    NA &lt;NA&gt;         NA      NA      NA
- 7 Computer Sc…      21     47    NA    NA    NA &lt;NA&gt;         NA      NA      NA
- 8 Conservatio…      38     20    NA    NA    NA &lt;NA&gt;         NA      NA      NA
- 9 Economics        128    349    NA    NA    NA &lt;NA&gt;         NA      NA      NA
-10 English          131     54    NA    NA    NA &lt;NA&gt;         NA      NA      NA
-# … with 17 more rows, 4 more variables: Unemployed &lt;dbl&gt;, Median &lt;dbl&gt;,
-#   P25th &lt;dbl&gt;, P75th &lt;dbl&gt;, and abbreviated variable names ¹​nfemales,
-#   ²​Major_category, ³​Employed, ⁴​Full_time, ⁵​Part_time</code></pre>
+<div class="callout-body-container callout-body">
+<p>Most importantly, if you’re using a <code><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">left_join()</a></code>, <code><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">right_join()</a></code> or <code><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">inner_join()</a></code>, you’re potentially cutting out some data. It’s important to be aware of what data you’re omitting. For example, with the <code>babynames</code> and <code>births</code> data, we would want to keep a note that a <code><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">left_join()</a></code> removed all observations before 1909 from joined data set.</p>
 </div>
 </div>
-<p>Why did the <code>collegemajors_df</code> give only <code>NA</code> values when we tried to merge by major?</p>
-<p>This example underscores the importance of having a key that matches <strong>exactly</strong>. Some, but not all, of the issues involved in joining these two data sets can be solved with functions in the <code>stringr</code> package (discussed in a few weeks). For example, the capitalization issue can be solved with the <code>str_to_title()</code> function, which converts that all-caps majors in <code>collegemajors_df</code> to majors where only the first letter of each word is capitalized:</p>
-<div class="cell" data-appendix="true">
-<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>collegemajors_df <span class="ot">&lt;-</span> collegemajors_df <span class="sc">|&gt;</span></span>
-<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">Major =</span> <span class="fu">str_to_title</span>(Major))</span>
-<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a><span class="fu">left_join</span>(slumajors_df, collegemajors_df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Joining, by = "Major"</code></pre>
-</div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 27 × 14
-   Major     nfema…¹ nmales  Total    Men  Women Major…² Emplo…³ Full_…⁴ Part_…⁵
-   &lt;chr&gt;       &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt; &lt;chr&gt;     &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;
- 1 Anthropo…      34     15     NA     NA     NA &lt;NA&gt;         NA      NA      NA
- 2 Art &amp; Ar…      65     11     NA     NA     NA &lt;NA&gt;         NA      NA      NA
- 3 Biochemi…      14     11     NA     NA     NA &lt;NA&gt;         NA      NA      NA
- 4 Biology       162     67 280709 111762 168947 Biolog…  182295  144512   72371
- 5 Business…     135    251     NA     NA     NA &lt;NA&gt;         NA      NA      NA
- 6 Chemistry      26     14  66530  32923  33607 Physic…   48535   39509   15066
- 7 Computer…      21     47 128319  99743  28576 Comput…  102087   91485   18726
- 8 Conserva…      38     20     NA     NA     NA &lt;NA&gt;         NA      NA      NA
- 9 Economics     128    349 139247  89749  49498 Social…  104117   96567   25325
-10 English       131     54     NA     NA     NA &lt;NA&gt;         NA      NA      NA
-# … with 17 more rows, 4 more variables: Unemployed &lt;dbl&gt;, Median &lt;dbl&gt;,
-#   P25th &lt;dbl&gt;, P75th &lt;dbl&gt;, and abbreviated variable names ¹​nfemales,
-#   ²​Major_category, ³​Employed, ⁴​Full_time, ⁵​Part_time</code></pre>
-</div>
-</div>
-<p>As we can see, this solves the issue for some majors but others still have different naming conventions in the two data sets.</p>
-</section>
-<section id="exercise-10-2" class="level3" data-number="11.2.7">
-<h3 data-number="11.2.7" class="anchored" data-anchor-id="exercise-10-2"><span class="header-section-number">11.2.7</span> Exercises</h3>
-<p>Exercises marked with an * indicate that the exercise has a solution at the end of the chapter at @ref(solutions-10).</p>
-<ol type="1">
-<li>Examine the following two joins that we’ve done, and explain why one resulting data set has fewer observations (rows) than the other.</li>
-</ol>
+<p><strong>Exercise 2</strong>. Examine the following two joins that we’ve done, and explain why one resulting data set has fewer observations (rows) than the other.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="fu">left_join</span>(babynames_df, birth_df, <span class="at">by =</span> <span class="fu">c</span>(<span class="st">"year"</span> <span class="ot">=</span> <span class="st">"year"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 1,924,665 × 6
-    year sex   name          n   prop births
-   &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt;     &lt;int&gt;  &lt;dbl&gt;  &lt;int&gt;
- 1  1880 F     Mary       7065 0.0724     NA
- 2  1880 F     Anna       2604 0.0267     NA
- 3  1880 F     Emma       2003 0.0205     NA
- 4  1880 F     Elizabeth  1939 0.0199     NA
- 5  1880 F     Minnie     1746 0.0179     NA
- 6  1880 F     Margaret   1578 0.0162     NA
- 7  1880 F     Ida        1472 0.0151     NA
- 8  1880 F     Alice      1414 0.0145     NA
- 9  1880 F     Bertha     1320 0.0135     NA
-10  1880 F     Sarah      1288 0.0132     NA
-# … with 1,924,655 more rows</code></pre>
+<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">left_join</a></span><span class="op">(</span><span class="va">babynames_df</span>, <span class="va">birth_df</span>, by <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"year"</span> <span class="op">=</span> <span class="st">"year"</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="co">#&gt; # A tibble: 1,924,665 × 6</span></span>
+<span><span class="co">#&gt;    year sex   name          n   prop births</span></span>
+<span><span class="co">#&gt;   &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt;     &lt;int&gt;  &lt;dbl&gt;  &lt;int&gt;</span></span>
+<span><span class="co">#&gt; 1  1880 F     Mary       7065 0.0724     NA</span></span>
+<span><span class="co">#&gt; 2  1880 F     Anna       2604 0.0267     NA</span></span>
+<span><span class="co">#&gt; 3  1880 F     Emma       2003 0.0205     NA</span></span>
+<span><span class="co">#&gt; 4  1880 F     Elizabeth  1939 0.0199     NA</span></span>
+<span><span class="co">#&gt; 5  1880 F     Minnie     1746 0.0179     NA</span></span>
+<span><span class="co">#&gt; 6  1880 F     Margaret   1578 0.0162     NA</span></span>
+<span><span class="co">#&gt; # … with 1,924,659 more rows</span></span>
+<span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">left_join</a></span><span class="op">(</span><span class="va">birth_df</span>, <span class="va">babynames_df</span>, by <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"year"</span> <span class="op">=</span> <span class="st">"year"</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="co">#&gt; # A tibble: 1,839,952 × 6</span></span>
+<span><span class="co">#&gt;    year  births sex   name         n   prop</span></span>
+<span><span class="co">#&gt;   &lt;dbl&gt;   &lt;int&gt; &lt;chr&gt; &lt;chr&gt;    &lt;int&gt;  &lt;dbl&gt;</span></span>
+<span><span class="co">#&gt; 1  1909 2718000 F     Mary     19259 0.0523</span></span>
+<span><span class="co">#&gt; 2  1909 2718000 F     Helen     9250 0.0251</span></span>
+<span><span class="co">#&gt; 3  1909 2718000 F     Margaret  7359 0.0200</span></span>
+<span><span class="co">#&gt; 4  1909 2718000 F     Ruth      6509 0.0177</span></span>
+<span><span class="co">#&gt; 5  1909 2718000 F     Dorothy   6253 0.0170</span></span>
+<span><span class="co">#&gt; 6  1909 2718000 F     Anna      5804 0.0158</span></span>
+<span><span class="co">#&gt; # … with 1,839,946 more rows</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="fu">left_join</span>(birth_df, babynames_df, <span class="at">by =</span> <span class="fu">c</span>(<span class="st">"year"</span> <span class="ot">=</span> <span class="st">"year"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 1,839,952 × 6
-    year  births sex   name          n   prop
-   &lt;dbl&gt;   &lt;int&gt; &lt;chr&gt; &lt;chr&gt;     &lt;int&gt;  &lt;dbl&gt;
- 1  1909 2718000 F     Mary      19259 0.0523
- 2  1909 2718000 F     Helen      9250 0.0251
- 3  1909 2718000 F     Margaret   7359 0.0200
- 4  1909 2718000 F     Ruth       6509 0.0177
- 5  1909 2718000 F     Dorothy    6253 0.0170
- 6  1909 2718000 F     Anna       5804 0.0158
- 7  1909 2718000 F     Elizabeth  5176 0.0141
- 8  1909 2718000 F     Mildred    5054 0.0137
- 9  1909 2718000 F     Marie      4301 0.0117
-10  1909 2718000 F     Alice      4170 0.0113
-# … with 1,839,942 more rows</code></pre>
-</div>
-</div>
-<ol start="2" type="1">
-<li><p>Evaluate whether the following statement is true or false: an <code>inner_join()</code> will always result in a data set with the same or fewer rows than a <code>full_join()</code>.</p></li>
-<li><p>Evaluate whether the following statement is true or false: an <code>inner_join()</code> will always result in a data set with the same or fewer rows than a <code>left_join()</code>.</p></li>
-<li><p>Evaluate whether the following statement is true or false: a <code>left_join()</code> will always result in a data set with the same number of rows as a <code>semi_join()</code> on the same two data sets.</p></li>
-</ol>
-</section>
-</section>
-<section id="filtering-joins" class="level2" data-number="11.3">
-<h2 data-number="11.3" class="anchored" data-anchor-id="filtering-joins"><span class="header-section-number">11.3</span> Filtering Joins</h2>
-<p>Filtering joins (<code>semi_join()</code> and <code>anti_join()</code>) are useful if you would only like to keep the variables in one data set, but you want to filter out observations by a variable in the second data set.</p>
+</section></section><section id="filtering-joins" class="level2" data-number="11.3"><h2 data-number="11.3" class="anchored" data-anchor-id="filtering-joins">
+<span class="header-section-number">11.3</span> Filtering Joins</h2>
+<p>Filtering joins (<code><a href="https://dplyr.tidyverse.org/reference/filter-joins.html">semi_join()</a></code> and <code><a href="https://dplyr.tidyverse.org/reference/filter-joins.html">anti_join()</a></code>) are useful if we would only like to keep the variables in one data set, but we want to filter out observations by a variable in the second data set.</p>
 <p>Consider again the two data sets on men’s tennis matches in 2018 and in 2019.</p>
 <div class="cell" data-appendix="true">
-<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a>atp_2019 <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="fu">here</span>(<span class="st">"data/atp_matches_2019.csv"</span>))</span>
-<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a>atp_2018 <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="fu">here</span>(<span class="st">"data/atp_matches_2018.csv"</span>))</span>
-<span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a>atp_2019</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 2,781 × 49
-   tourney_id tourney_…¹ surface draw_…² tourn…³ tourn…⁴ match…⁵ winne…⁶ winne…⁷
-   &lt;chr&gt;      &lt;chr&gt;      &lt;chr&gt;     &lt;dbl&gt; &lt;chr&gt;     &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt; &lt;chr&gt;  
- 1 2019-M020  Brisbane   Hard         32 A        2.02e7     300  105453 2      
- 2 2019-M020  Brisbane   Hard         32 A        2.02e7     299  106421 4      
- 3 2019-M020  Brisbane   Hard         32 A        2.02e7     298  105453 2      
- 4 2019-M020  Brisbane   Hard         32 A        2.02e7     297  104542 &lt;NA&gt;   
- 5 2019-M020  Brisbane   Hard         32 A        2.02e7     296  106421 4      
- 6 2019-M020  Brisbane   Hard         32 A        2.02e7     295  104871 &lt;NA&gt;   
- 7 2019-M020  Brisbane   Hard         32 A        2.02e7     294  105453 2      
- 8 2019-M020  Brisbane   Hard         32 A        2.02e7     293  104542 &lt;NA&gt;   
- 9 2019-M020  Brisbane   Hard         32 A        2.02e7     292  200282 7      
-10 2019-M020  Brisbane   Hard         32 A        2.02e7     291  106421 4      
-# … with 2,771 more rows, 40 more variables: winner_entry &lt;chr&gt;,
-#   winner_name &lt;chr&gt;, winner_hand &lt;chr&gt;, winner_ht &lt;dbl&gt;, winner_ioc &lt;chr&gt;,
-#   winner_age &lt;dbl&gt;, loser_id &lt;dbl&gt;, loser_seed &lt;chr&gt;, loser_entry &lt;chr&gt;,
-#   loser_name &lt;chr&gt;, loser_hand &lt;chr&gt;, loser_ht &lt;dbl&gt;, loser_ioc &lt;chr&gt;,
-#   loser_age &lt;dbl&gt;, score &lt;chr&gt;, best_of &lt;dbl&gt;, round &lt;chr&gt;, minutes &lt;dbl&gt;,
-#   w_ace &lt;dbl&gt;, w_df &lt;dbl&gt;, w_svpt &lt;dbl&gt;, w_1stIn &lt;dbl&gt;, w_1stWon &lt;dbl&gt;,
-#   w_2ndWon &lt;dbl&gt;, w_SvGms &lt;dbl&gt;, w_bpSaved &lt;dbl&gt;, w_bpFaced &lt;dbl&gt;, …</code></pre>
+<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">atp_2019</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv</a></span><span class="op">(</span><span class="fu"><a href="https://here.r-lib.org//reference/here.html">here</a></span><span class="op">(</span><span class="st">"data/atp_matches_2019.csv"</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="va">atp_2018</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv</a></span><span class="op">(</span><span class="fu"><a href="https://here.r-lib.org//reference/here.html">here</a></span><span class="op">(</span><span class="st">"data/atp_matches_2018.csv"</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="va">atp_2019</span></span>
+<span><span class="co">#&gt; # A tibble: 2,781 × 49</span></span>
+<span><span class="co">#&gt;   tourney_id tourne…¹ surface draw_…² tourn…³ tourn…⁴ match…⁵ winne…⁶ winne…⁷</span></span>
+<span><span class="co">#&gt;   &lt;chr&gt;      &lt;chr&gt;    &lt;chr&gt;     &lt;dbl&gt; &lt;chr&gt;     &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt; &lt;chr&gt;  </span></span>
+<span><span class="co">#&gt; 1 2019-M020  Brisbane Hard         32 A        2.02e7     300  105453 2      </span></span>
+<span><span class="co">#&gt; 2 2019-M020  Brisbane Hard         32 A        2.02e7     299  106421 4      </span></span>
+<span><span class="co">#&gt; 3 2019-M020  Brisbane Hard         32 A        2.02e7     298  105453 2      </span></span>
+<span><span class="co">#&gt; 4 2019-M020  Brisbane Hard         32 A        2.02e7     297  104542 &lt;NA&gt;   </span></span>
+<span><span class="co">#&gt; 5 2019-M020  Brisbane Hard         32 A        2.02e7     296  106421 4      </span></span>
+<span><span class="co">#&gt; 6 2019-M020  Brisbane Hard         32 A        2.02e7     295  104871 &lt;NA&gt;   </span></span>
+<span><span class="co">#&gt; # … with 2,775 more rows, 40 more variables: winner_entry &lt;chr&gt;,</span></span>
+<span><span class="co">#&gt; #   winner_name &lt;chr&gt;, winner_hand &lt;chr&gt;, winner_ht &lt;dbl&gt;, winner_ioc &lt;chr&gt;,</span></span>
+<span><span class="co">#&gt; #   winner_age &lt;dbl&gt;, loser_id &lt;dbl&gt;, loser_seed &lt;chr&gt;, loser_entry &lt;chr&gt;,</span></span>
+<span><span class="co">#&gt; #   loser_name &lt;chr&gt;, loser_hand &lt;chr&gt;, loser_ht &lt;dbl&gt;, loser_ioc &lt;chr&gt;,</span></span>
+<span><span class="co">#&gt; #   loser_age &lt;dbl&gt;, score &lt;chr&gt;, best_of &lt;dbl&gt;, round &lt;chr&gt;, minutes &lt;dbl&gt;,</span></span>
+<span><span class="co">#&gt; #   w_ace &lt;dbl&gt;, w_df &lt;dbl&gt;, w_svpt &lt;dbl&gt;, w_1stIn &lt;dbl&gt;, w_1stWon &lt;dbl&gt;,</span></span>
+<span><span class="co">#&gt; #   w_2ndWon &lt;dbl&gt;, w_SvGms &lt;dbl&gt;, w_bpSaved &lt;dbl&gt;, w_bpFaced &lt;dbl&gt;, …</span></span>
+<span><span class="va">atp_2018</span></span>
+<span><span class="co">#&gt; # A tibble: 2,889 × 49</span></span>
+<span><span class="co">#&gt;   tourney_id tourne…¹ surface draw_…² tourn…³ tourn…⁴ match…⁵ winne…⁶ winne…⁷</span></span>
+<span><span class="co">#&gt;   &lt;chr&gt;      &lt;chr&gt;    &lt;chr&gt;     &lt;dbl&gt; &lt;chr&gt;     &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;</span></span>
+<span><span class="co">#&gt; 1 2018-M020  Brisbane Hard         32 A        2.02e7     271  105992      NA</span></span>
+<span><span class="co">#&gt; 2 2018-M020  Brisbane Hard         32 A        2.02e7     272  111577      NA</span></span>
+<span><span class="co">#&gt; 3 2018-M020  Brisbane Hard         32 A        2.02e7     273  104797      NA</span></span>
+<span><span class="co">#&gt; 4 2018-M020  Brisbane Hard         32 A        2.02e7     275  200282      NA</span></span>
+<span><span class="co">#&gt; 5 2018-M020  Brisbane Hard         32 A        2.02e7     276  111581      NA</span></span>
+<span><span class="co">#&gt; 6 2018-M020  Brisbane Hard         32 A        2.02e7     277  104999       8</span></span>
+<span><span class="co">#&gt; # … with 2,883 more rows, 40 more variables: winner_entry &lt;chr&gt;,</span></span>
+<span><span class="co">#&gt; #   winner_name &lt;chr&gt;, winner_hand &lt;chr&gt;, winner_ht &lt;dbl&gt;, winner_ioc &lt;chr&gt;,</span></span>
+<span><span class="co">#&gt; #   winner_age &lt;dbl&gt;, loser_id &lt;dbl&gt;, loser_seed &lt;dbl&gt;, loser_entry &lt;chr&gt;,</span></span>
+<span><span class="co">#&gt; #   loser_name &lt;chr&gt;, loser_hand &lt;chr&gt;, loser_ht &lt;dbl&gt;, loser_ioc &lt;chr&gt;,</span></span>
+<span><span class="co">#&gt; #   loser_age &lt;dbl&gt;, score &lt;chr&gt;, best_of &lt;dbl&gt;, round &lt;chr&gt;, minutes &lt;dbl&gt;,</span></span>
+<span><span class="co">#&gt; #   w_ace &lt;dbl&gt;, w_df &lt;dbl&gt;, w_svpt &lt;dbl&gt;, w_1stIn &lt;dbl&gt;, w_1stWon &lt;dbl&gt;,</span></span>
+<span><span class="co">#&gt; #   w_2ndWon &lt;dbl&gt;, w_SvGms &lt;dbl&gt;, w_bpSaved &lt;dbl&gt;, w_bpFaced &lt;dbl&gt;, …</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a>atp_2018</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 2,889 × 49
-   tourney_id tourney_…¹ surface draw_…² tourn…³ tourn…⁴ match…⁵ winne…⁶ winne…⁷
-   &lt;chr&gt;      &lt;chr&gt;      &lt;chr&gt;     &lt;dbl&gt; &lt;chr&gt;     &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;
- 1 2018-M020  Brisbane   Hard         32 A        2.02e7     271  105992      NA
- 2 2018-M020  Brisbane   Hard         32 A        2.02e7     272  111577      NA
- 3 2018-M020  Brisbane   Hard         32 A        2.02e7     273  104797      NA
- 4 2018-M020  Brisbane   Hard         32 A        2.02e7     275  200282      NA
- 5 2018-M020  Brisbane   Hard         32 A        2.02e7     276  111581      NA
- 6 2018-M020  Brisbane   Hard         32 A        2.02e7     277  104999       8
- 7 2018-M020  Brisbane   Hard         32 A        2.02e7     278  105238      NA
- 8 2018-M020  Brisbane   Hard         32 A        2.02e7     279  104547      NA
- 9 2018-M020  Brisbane   Hard         32 A        2.02e7     280  105051      NA
-10 2018-M020  Brisbane   Hard         32 A        2.02e7     282  111202      NA
-# … with 2,879 more rows, 40 more variables: winner_entry &lt;chr&gt;,
-#   winner_name &lt;chr&gt;, winner_hand &lt;chr&gt;, winner_ht &lt;dbl&gt;, winner_ioc &lt;chr&gt;,
-#   winner_age &lt;dbl&gt;, loser_id &lt;dbl&gt;, loser_seed &lt;dbl&gt;, loser_entry &lt;chr&gt;,
-#   loser_name &lt;chr&gt;, loser_hand &lt;chr&gt;, loser_ht &lt;dbl&gt;, loser_ioc &lt;chr&gt;,
-#   loser_age &lt;dbl&gt;, score &lt;chr&gt;, best_of &lt;dbl&gt;, round &lt;chr&gt;, minutes &lt;dbl&gt;,
-#   w_ace &lt;dbl&gt;, w_df &lt;dbl&gt;, w_svpt &lt;dbl&gt;, w_1stIn &lt;dbl&gt;, w_1stWon &lt;dbl&gt;,
-#   w_2ndWon &lt;dbl&gt;, w_SvGms &lt;dbl&gt;, w_bpSaved &lt;dbl&gt;, w_bpFaced &lt;dbl&gt;, …</code></pre>
-</div>
-</div>
-<section id="filtering-with-semi_join" class="level3" data-number="11.3.1">
-<h3 data-number="11.3.1" class="anchored" data-anchor-id="filtering-with-semi_join"><span class="header-section-number">11.3.1</span> Filtering with <code>semi_join()</code></h3>
+<section id="filtering-with-semi_join" class="level3" data-number="11.3.1"><h3 data-number="11.3.1" class="anchored" data-anchor-id="filtering-with-semi_join">
+<span class="header-section-number">11.3.1</span> Filtering with <code>semi_join()</code>
+</h3>
 <p>Suppose that we only want to keep matches in 2019 where the winning player had 10 or more wins in 2018. This might be useful if we want to not consider players in 2018 that only played in a couple of matches, perhaps because they got injured or perhaps because they received a special wildcard into the draw of only one event.</p>
 <p>To accomplish this, we can first create a data set that has the names of all of the players that won 10 or more matches in 2018, using functions that we learned from <code>dplyr</code> earlier in the semester:</p>
 <div class="cell" data-appendix="true">
-<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a>win10 <span class="ot">&lt;-</span> atp_2018 <span class="sc">|&gt;</span> <span class="fu">group_by</span>(winner_name) <span class="sc">|&gt;</span></span>
-<span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">nwin =</span> <span class="fu">n</span>()) <span class="sc">|&gt;</span> </span>
-<span id="cb43-3"><a href="#cb43-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(nwin <span class="sc">&gt;=</span> <span class="dv">10</span>)</span>
-<span id="cb43-4"><a href="#cb43-4" aria-hidden="true" tabindex="-1"></a>win10</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 93 × 2
-   winner_name       nwin
-   &lt;chr&gt;            &lt;int&gt;
- 1 Adrian Mannarino    26
- 2 Albert Ramos        21
- 3 Alex De Minaur      29
- 4 Alexander Zverev    58
- 5 Aljaz Bedene        19
- 6 Andreas Seppi       24
- 7 Andrey Rublev       20
- 8 Benoit Paire        27
- 9 Borna Coric         40
-10 Cameron Norrie      19
-# … with 83 more rows</code></pre>
+<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">win10</span> <span class="op">&lt;-</span> <span class="va">atp_2018</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">winner_name</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise</a></span><span class="op">(</span>nwin <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/context.html">n</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">nwin</span> <span class="op">&gt;=</span> <span class="fl">10</span><span class="op">)</span></span>
+<span><span class="va">win10</span></span>
+<span><span class="co">#&gt; # A tibble: 93 × 2</span></span>
+<span><span class="co">#&gt;   winner_name       nwin</span></span>
+<span><span class="co">#&gt;   &lt;chr&gt;            &lt;int&gt;</span></span>
+<span><span class="co">#&gt; 1 Adrian Mannarino    26</span></span>
+<span><span class="co">#&gt; 2 Albert Ramos        21</span></span>
+<span><span class="co">#&gt; 3 Alex De Minaur      29</span></span>
+<span><span class="co">#&gt; 4 Alexander Zverev    58</span></span>
+<span><span class="co">#&gt; 5 Aljaz Bedene        19</span></span>
+<span><span class="co">#&gt; 6 Andreas Seppi       24</span></span>
+<span><span class="co">#&gt; # … with 87 more rows</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</div>
-<p>Next, we apply <code>semi_join()</code>, which takes the names of two data sets (the second is the one that contains information about how the first should be “filtered”). The third argument gives the name of the key (<code>winner_name</code>) in this case.</p>
+<p>Next, we apply <code><a href="https://dplyr.tidyverse.org/reference/filter-joins.html">semi_join()</a></code>, which takes the names of two data sets (the second is the one that contains information about how the first should be “filtered”). The third argument gives the name of the key (<code>winner_name</code>) in this case.</p>
 <div class="cell" data-appendix="true">
-<div class="sourceCode cell-code" id="cb45"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a>tennis_2019_10 <span class="ot">&lt;-</span> <span class="fu">semi_join</span>(atp_2019, win10,</span>
-<span id="cb45-2"><a href="#cb45-2" aria-hidden="true" tabindex="-1"></a>                            <span class="at">by =</span> <span class="fu">c</span>(<span class="st">"winner_name"</span> <span class="ot">=</span> <span class="st">"winner_name"</span>))</span>
-<span id="cb45-3"><a href="#cb45-3" aria-hidden="true" tabindex="-1"></a>tennis_2019_10<span class="sc">$</span>winner_name</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">tennis_2019_10</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter-joins.html">semi_join</a></span><span class="op">(</span><span class="va">atp_2019</span>, <span class="va">win10</span>,</span>
+<span>                            by <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"winner_name"</span> <span class="op">=</span> <span class="st">"winner_name"</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="va">tennis_2019_10</span><span class="op">$</span><span class="va">winner_name</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Note that this only keeps the matches in 2019 where the <strong>winner</strong> had 10 or more match wins in 2018. It drops any matches where the <strong>loser</strong> lost against someone who did not have 10 or more match wins in 2018. So this isn’t yet perfect and would take a little more thought into which matches we actually want to keep for a particular analysis.</p>
-</section>
-<section id="filtering-with-anti_join" class="level3" data-number="11.3.2">
-<h3 data-number="11.3.2" class="anchored" data-anchor-id="filtering-with-anti_join"><span class="header-section-number">11.3.2</span> Filtering with <code>anti_join()</code></h3>
-<p>Now suppose that we want to only keep the matches in 2019 where the winning player did not have <strong>any</strong> wins in 2018. We might think of these players as “emerging players” in 2019, players who are coming back from an injury, etc.. To do this, we can use <code>anti_join()</code>, which only keeps the rows in the first data set that do <strong>not</strong> have a match in the second data set.</p>
+<div class="callout-note callout callout-style-simple callout-captioned">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>This strategy only keeps the matches in 2019 where the <strong>winner</strong> had 10 or more match wins in 2018. It drops any matches where the <strong>loser</strong> lost against someone who did not have 10 or more match wins in 2018. So this isn’t yet perfect and would take a little more thought into which matches we actually want to keep for a particular analysis.</p>
+</div>
+</div>
+</section><section id="filtering-with-anti_join" class="level3" data-number="11.3.2"><h3 data-number="11.3.2" class="anchored" data-anchor-id="filtering-with-anti_join">
+<span class="header-section-number">11.3.2</span> Filtering with <code>anti_join()</code>
+</h3>
+<p>Now suppose that we want to only keep the matches in 2019 where the winning player did not have <strong>any</strong> wins in 2018. We might think of these players as “emerging players” in 2019, players who are coming back from an injury, etc.. To do this, we can use <code><a href="https://dplyr.tidyverse.org/reference/filter-joins.html">anti_join()</a></code>, which only keeps the rows in the first data set that do <strong>not</strong> have a match in the second data set.</p>
 <div class="cell" data-appendix="true">
-<div class="sourceCode cell-code" id="cb46"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a>new_winners <span class="ot">&lt;-</span> <span class="fu">anti_join</span>(atp_2019, atp_2018,</span>
-<span id="cb46-2"><a href="#cb46-2" aria-hidden="true" tabindex="-1"></a>                         <span class="at">by =</span> <span class="fu">c</span>(<span class="st">"winner_name"</span> <span class="ot">=</span> <span class="st">"winner_name"</span>)) </span>
-<span id="cb46-3"><a href="#cb46-3" aria-hidden="true" tabindex="-1"></a>new_winners<span class="sc">$</span>winner_name</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb18"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">new_winners</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter-joins.html">anti_join</a></span><span class="op">(</span><span class="va">atp_2019</span>, <span class="va">atp_2018</span>,</span>
+<span>                         by <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"winner_name"</span> <span class="op">=</span> <span class="st">"winner_name"</span><span class="op">)</span><span class="op">)</span> </span>
+<span><span class="va">new_winners</span><span class="op">$</span><span class="va">winner_name</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>We can then examine how many wins each of these “new” (or perhaps previously injured) players had in 2019:</p>
 <div class="cell" data-appendix="true">
-<div class="sourceCode cell-code" id="cb47"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a>new_winners <span class="sc">|&gt;</span> <span class="fu">group_by</span>(winner_name) <span class="sc">|&gt;</span></span>
-<span id="cb47-2"><a href="#cb47-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">nwin =</span> <span class="fu">n</span>()) <span class="sc">|&gt;</span></span>
-<span id="cb47-3"><a href="#cb47-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(nwin))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 59 × 2
-   winner_name           nwin
-   &lt;chr&gt;                &lt;int&gt;
- 1 Christian Garin         32
- 2 Juan Ignacio Londero    22
- 3 Miomir Kecmanovic       22
- 4 Hugo Dellien            12
- 5 Attila Balazs            7
- 6 Cedrik Marcel Stebe      7
- 7 Janko Tipsarevic         7
- 8 Jannik Sinner            7
- 9 Soon Woo Kwon            7
-10 Gregoire Barrere         6
-# … with 49 more rows</code></pre>
-</div>
+<div class="sourceCode" id="cb19"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">new_winners</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">winner_name</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise</a></span><span class="op">(</span>nwin <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/context.html">n</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/arrange.html">arrange</a></span><span class="op">(</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/desc.html">desc</a></span><span class="op">(</span><span class="va">nwin</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="co">#&gt; # A tibble: 59 × 2</span></span>
+<span><span class="co">#&gt;   winner_name           nwin</span></span>
+<span><span class="co">#&gt;   &lt;chr&gt;                &lt;int&gt;</span></span>
+<span><span class="co">#&gt; 1 Christian Garin         32</span></span>
+<span><span class="co">#&gt; 2 Juan Ignacio Londero    22</span></span>
+<span><span class="co">#&gt; 3 Miomir Kecmanovic       22</span></span>
+<span><span class="co">#&gt; 4 Hugo Dellien            12</span></span>
+<span><span class="co">#&gt; 5 Attila Balazs            7</span></span>
+<span><span class="co">#&gt; 6 Cedrik Marcel Stebe      7</span></span>
+<span><span class="co">#&gt; # … with 53 more rows</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>The filtering join functions are useful if you want to filter out observations by some criterion in a different data set.</p>
-</section>
-<section id="exercise-10-3" class="level3" data-number="11.3.3">
-<h3 data-number="11.3.3" class="anchored" data-anchor-id="exercise-10-3"><span class="header-section-number">11.3.3</span> Exercises</h3>
-<ol type="1">
-<li>Examine the following data sets (the first is <code>df1</code> and the second is <code>df2</code>) and then, without running any code, answer the following questions.</li>
-</ol>
+<p><strong>Exercise 3</strong>. Examine the following data sets (the first is <code>df1</code> and the second is <code>df2</code>) and then, without running any code, answer the following questions.</p>
 <div class="cell">
 <div class="cell-output-display">
 <table class="table table-sm table-striped">
@@ -846,12 +674,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <col style="width: 6%">
 <col style="width: 9%">
 </colgroup>
-<thead>
-<tr class="header">
+<thead><tr class="header">
 <th style="text-align: center;">id</th>
 <th style="text-align: center;">xvar</th>
-</tr>
-</thead>
+</tr></thead>
 <tbody>
 <tr class="odd">
 <td style="text-align: center;">A</td>
@@ -882,12 +708,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <col style="width: 6%">
 <col style="width: 9%">
 </colgroup>
-<thead>
-<tr class="header">
+<thead><tr class="header">
 <th style="text-align: center;">id</th>
 <th style="text-align: center;">yvar</th>
-</tr>
-</thead>
+</tr></thead>
 <tbody>
 <tr class="odd">
 <td style="text-align: center;">A</td>
@@ -918,44 +742,111 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 </div>
 <ol type="a">
-<li>How many rows would be in the data set from <code>left_join(df1, df2, by = c("id" = "id"))</code>?</li>
+<li><p>How many rows would be in the data set from <code>left_join(df1, df2, by = c("id" = "id"))</code>?</p></li>
+<li><p>How many rows would be in the data set from <code>left_join(df2, df1, by = c("id" = "id"))</code>?</p></li>
+<li><p>How many rows would be in the data set from <code>full_join(df1, df2, by = c("id" = "id"))</code>?</p></li>
+<li><p>How many rows would be in the data set from <code>inner_join(df1, df2, by = c("id" = "id"))</code>?</p></li>
+<li><p>How many rows would be in the data set from <code>semi_join(df1, df2, by = c("id" = "id"))</code>?</p></li>
+<li><p>How many rows would be in the data set from <code>anti_join(df1, df2, by = c("id" = "id"))</code>?</p></li>
+</ol></section></section><section id="practice" class="level2" data-number="11.4"><h2 data-number="11.4" class="anchored" data-anchor-id="practice">
+<span class="header-section-number">11.4</span> Practice</h2>
+<section id="class-exercises" class="level3" data-number="11.4.1"><h3 data-number="11.4.1" class="anchored" data-anchor-id="class-exercises">
+<span class="header-section-number">11.4.1</span> Class Exercises</h3>
+<p><strong>Class Exercise 1</strong>. Why might <code><a href="https://dplyr.tidyverse.org/reference/bind.html">bind_cols()</a></code> be a dangerous way to combine data? What must you be sure of about the way the data was collected in order to combine data in this way?</p>
+<p><strong>Class Exercise 2</strong>. The key variable is very important for joining and is not always available in a “perfect” form. Recall the college majors data sets we have, called <code>slumajors_df</code>, which information on majors at SLU. Another data set, <code>collegemajors_df</code>, has different statistics on college majors nationwide. There’s lots of interesting variables in these data sets, but we’ll focus on the <code>Major</code> variable here. Read in and examine the two data sets with:</p>
+<div class="cell" data-appendix="true">
+<div class="sourceCode" id="cb20"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">slumajors_df</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv</a></span><span class="op">(</span><span class="fu"><a href="https://here.r-lib.org//reference/here.html">here</a></span><span class="op">(</span><span class="st">"data/SLU_Majors_15_19.csv"</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="va">collegemajors_df</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv</a></span><span class="op">(</span><span class="fu"><a href="https://here.r-lib.org//reference/here.html">here</a></span><span class="op">(</span><span class="st">"data/college-majors.csv"</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">slumajors_df</span><span class="op">)</span></span>
+<span><span class="co">#&gt; # A tibble: 6 × 3</span></span>
+<span><span class="co">#&gt;   Major                        nfemales nmales</span></span>
+<span><span class="co">#&gt;   &lt;chr&gt;                           &lt;dbl&gt;  &lt;dbl&gt;</span></span>
+<span><span class="co">#&gt; 1 Anthropology                       34     15</span></span>
+<span><span class="co">#&gt; 2 Art &amp; Art History                  65     11</span></span>
+<span><span class="co">#&gt; 3 Biochemistry                       14     11</span></span>
+<span><span class="co">#&gt; 4 Biology                           162     67</span></span>
+<span><span class="co">#&gt; 5 Business in the Liberal Arts      135    251</span></span>
+<span><span class="co">#&gt; 6 Chemistry                          26     14</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">collegemajors_df</span><span class="op">)</span></span>
+<span><span class="co">#&gt; # A tibble: 6 × 12</span></span>
+<span><span class="co">#&gt;   Major      Total   Men Women Major…¹ Emplo…² Full_…³ Part_…⁴ Unemp…⁵ Median</span></span>
+<span><span class="co">#&gt;   &lt;chr&gt;      &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;     &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt;</span></span>
+<span><span class="co">#&gt; 1 PETROLEUM…  2339  2057   282 Engine…    1976    1849     270      37 110000</span></span>
+<span><span class="co">#&gt; 2 MINING AN…   756   679    77 Engine…     640     556     170      85  75000</span></span>
+<span><span class="co">#&gt; 3 METALLURG…   856   725   131 Engine…     648     558     133      16  73000</span></span>
+<span><span class="co">#&gt; 4 NAVAL ARC…  1258  1123   135 Engine…     758    1069     150      40  70000</span></span>
+<span><span class="co">#&gt; 5 CHEMICAL … 32260 21239 11021 Engine…   25694   23170    5180    1672  65000</span></span>
+<span><span class="co">#&gt; 6 NUCLEAR E…  2573  2200   373 Engine…    1857    2038     264     400  65000</span></span>
+<span><span class="co">#&gt; # … with 2 more variables: P25th &lt;dbl&gt;, P75th &lt;dbl&gt;, and abbreviated</span></span>
+<span><span class="co">#&gt; #   variable names ¹​Major_category, ²​Employed, ³​Full_time, ⁴​Part_time,</span></span>
+<span><span class="co">#&gt; #   ⁵​Unemployed</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<ol type="a">
+<li><p>Attempt to join the two data sets together with a key.</p></li>
+<li><p>Why did the <code>collegemajors_df</code> give only <code>NA</code> values when we tried to join by major?</p></li>
 </ol>
+<div class="callout-note callout callout-style-simple callout-captioned">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>This example underscores the importance of having a key that matches <strong>exactly</strong>. Some, but not all, of the issues involved in joining these two data sets can be solved with functions in the <code>stringr</code> package (discussed in a few weeks). But, the underlying problem remains and, if we wanted to combine the two data sets fully, we would need to recode some of the major names by hand.</p>
+</div>
+</div>
+<p><strong>Class Exercise 3</strong>. Read in the gun violence data set, and suppose that you want to add a row to this data set that has the statistics on gun ownership and mortality rate in the District of Columbia (Washington D.C., which is in the NE region, has 16.7 deaths per 100,000 people, and a gun ownership rate of 8.7%). To do so, create a <code><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble()</a></code> that has a single row representing D.C. and then combine your new <code>tibble</code> with the overall gun violence data set. Name this new data set <code>all_df</code>.</p>
+<div class="cell">
+<div class="sourceCode" id="cb21"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span></span>
+<span><span class="va">mortality_df</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv</a></span><span class="op">(</span><span class="fu"><a href="https://here.r-lib.org//reference/here.html">here</a></span><span class="op">(</span><span class="st">"data/gun_violence_us.csv"</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 <div class="cell">
 
 </div>
-<ol start="2" type="a">
-<li>How many rows would be in the data set from <code>left_join(df2, df1, by = c("id" = "id"))</code>?</li>
-</ol>
+<p><strong>Class Exercise 4</strong>. Examine the following data sets that are in <code>R</code>’s base library on demographic statistics about the U.S. states and state abbreviations:</p>
 <div class="cell">
-
+<div class="sourceCode" id="cb22"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">df1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://tibble.tidyverse.org/reference/as_tibble.html">as_tibble</a></span><span class="op">(</span><span class="va">state.x77</span><span class="op">)</span></span>
+<span><span class="va">df2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://tibble.tidyverse.org/reference/as_tibble.html">as_tibble</a></span><span class="op">(</span><span class="va">state.abb</span><span class="op">)</span></span>
+<span><span class="va">df1</span></span>
+<span><span class="co">#&gt; # A tibble: 50 × 8</span></span>
+<span><span class="co">#&gt;   Population Income Illiteracy `Life Exp` Murder `HS Grad` Frost   Area</span></span>
+<span><span class="co">#&gt;        &lt;dbl&gt;  &lt;dbl&gt;      &lt;dbl&gt;      &lt;dbl&gt;  &lt;dbl&gt;     &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt;</span></span>
+<span><span class="co">#&gt; 1       3615   3624        2.1       69.0   15.1      41.3    20  50708</span></span>
+<span><span class="co">#&gt; 2        365   6315        1.5       69.3   11.3      66.7   152 566432</span></span>
+<span><span class="co">#&gt; 3       2212   4530        1.8       70.6    7.8      58.1    15 113417</span></span>
+<span><span class="co">#&gt; 4       2110   3378        1.9       70.7   10.1      39.9    65  51945</span></span>
+<span><span class="co">#&gt; 5      21198   5114        1.1       71.7   10.3      62.6    20 156361</span></span>
+<span><span class="co">#&gt; 6       2541   4884        0.7       72.1    6.8      63.9   166 103766</span></span>
+<span><span class="co">#&gt; # … with 44 more rows</span></span>
+<span><span class="va">df2</span></span>
+<span><span class="co">#&gt; # A tibble: 50 × 1</span></span>
+<span><span class="co">#&gt;   value</span></span>
+<span><span class="co">#&gt;   &lt;chr&gt;</span></span>
+<span><span class="co">#&gt; 1 AL   </span></span>
+<span><span class="co">#&gt; 2 AK   </span></span>
+<span><span class="co">#&gt; 3 AZ   </span></span>
+<span><span class="co">#&gt; 4 AR   </span></span>
+<span><span class="co">#&gt; 5 CA   </span></span>
+<span><span class="co">#&gt; 6 CO   </span></span>
+<span><span class="co">#&gt; # … with 44 more rows</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<ol start="3" type="a">
-<li>How many rows would be in the data set from <code>full_join(df1, df2, by = c("id" = "id"))</code>?</li>
+<p>Combine the two data sets with <code><a href="https://dplyr.tidyverse.org/reference/bind.html">bind_cols()</a></code> and name the new data set <code>states_df</code>. What are you assuming about the data sets in order to use this function?</p>
+<p><strong>Class Exercise 5</strong>. Use a join function to combine the mortality data set <strong>with</strong> D.C. (which we named <code>all_df</code>) with the states data set from the previous exercise (<code>states_df</code>). For this exercise, keep the row with Washington D.C., having it take on <code>NA</code> values for any variable not observed in the states data.</p>
+<p><strong>Class Exercise 6</strong>. Repeat the previous exercise, but now drop Washington D.C. in your merging process. Practice doing this <strong>with a join function</strong> (as opposed to <code><a href="https://dplyr.tidyverse.org/reference/slice.html">slice()</a></code>-ing it out explicitly).</p>
+<p><strong>Class Exercise 7</strong>. Use <code><a href="https://dplyr.tidyverse.org/reference/filter-joins.html">semi_join()</a></code> to create a subset of <code>states_df</code> that are in the <code>NE</code> region. <strong>Hint</strong>: You will need to filter <code>all_df</code> from Exercise 1 first to contain only states in the <code>NE</code> region.</p>
+<p><strong>Class Exercise 8</strong>. Do the same thing as in the previous exercise (that is, create a subset of <code>states_df</code> that are in the <code>NE</code> region), but this time, use <code><a href="https://dplyr.tidyverse.org/reference/filter-joins.html">anti_join()</a></code>.</p>
+</section><section id="your-turn" class="level3" data-number="11.4.2"><h3 data-number="11.4.2" class="anchored" data-anchor-id="your-turn">
+<span class="header-section-number">11.4.2</span> Your Turn</h3>
+<p><strong>Your Turn 1</strong>. In your group, evaluate whether each of the following statements are true or false:</p>
+<ol type="a">
+<li><p>An <code><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">inner_join()</a></code> will always result in a data set with the same or fewer rows than a <code><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">full_join()</a></code>.</p></li>
+<li><p>An <code><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">inner_join()</a></code> will always result in a data set with the same or fewer rows than a <code><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">left_join()</a></code>.</p></li>
+<li><p>A <code><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">left_join()</a></code> will always result in a data set with the same number of rows as a <code><a href="https://dplyr.tidyverse.org/reference/filter-joins.html">semi_join()</a></code> on the same two data sets.</p></li>
 </ol>
-<div class="cell">
-
-</div>
-<ol start="4" type="a">
-<li>How many rows would be in the data set from <code>inner_join(df1, df2, by = c("id" = "id"))</code>?</li>
-</ol>
-<div class="cell">
-
-</div>
-<ol start="5" type="a">
-<li>How many rows would be in the data set from <code>semi_join(df1, df2, by = c("id" = "id"))</code>?</li>
-</ol>
-<div class="cell">
-
-</div>
-<ol start="6" type="a">
-<li>How many rows would be in the data set from <code>anti_join(df1, df2, by = c("id" = "id"))</code>?</li>
-</ol>
-<div class="cell">
-
-</div>
-<ol start="2" type="1">
-<li>Examine the following data sets (the first is <code>df3</code> and the second is <code>df4</code>) and then, without running any code, answer the following questions. This question is a step up in challenge from Exercise 9 because a few of the levels of the <code>id</code> key have duplicates.</li>
-</ol>
+<p><strong>Your Turn 2</strong>. Examine the following data sets (the first is <code>df3</code> and the second is <code>df4</code>) and then, without running any code, answer the following questions in your group. Keep in mind that there are some duplicate keys!</p>
 <div class="cell">
 <div class="cell-output-display">
 <table class="table table-sm table-striped">
@@ -963,12 +854,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <col style="width: 6%">
 <col style="width: 9%">
 </colgroup>
-<thead>
-<tr class="header">
+<thead><tr class="header">
 <th style="text-align: center;">id</th>
 <th style="text-align: center;">xvar</th>
-</tr>
-</thead>
+</tr></thead>
 <tbody>
 <tr class="odd">
 <td style="text-align: center;">A</td>
@@ -1003,12 +892,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <col style="width: 6%">
 <col style="width: 9%">
 </colgroup>
-<thead>
-<tr class="header">
+<thead><tr class="header">
 <th style="text-align: center;">id</th>
 <th style="text-align: center;">yvar</th>
-</tr>
-</thead>
+</tr></thead>
 <tbody>
 <tr class="odd">
 <td style="text-align: center;">A</td>
@@ -1046,406 +933,27 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><p>How many rows would be in the data set from <code>semi_join(df1, df2, by = c("id" = "id"))</code>?</p></li>
 <li><p>How many rows would be in the data set from <code>anti_join(df1, df2, by = c("id" = "id"))</code>?</p></li>
 </ol>
-</section>
-</section>
-<section id="chapexercise-10" class="level2" data-number="11.4">
-<h2 data-number="11.4" class="anchored" data-anchor-id="chapexercise-10"><span class="header-section-number">11.4</span> Chapter Exercises</h2>
-<p>Exercises marked with an * indicate that the exercise has a solution at the end of the chapter at @ref(solutions-10).</p>
-<ol type="1">
-<li>* Read in the gun violence data set, and suppose that you want to add a row to this data set that has the statistics on gun ownership and mortality rate in the District of Columbia (Washington D.C., which is in the NE region, has 16.7 deaths per 100,000 people, and a gun ownership rate of 8.7%). To do so, create a <code>tibble()</code> that has a single row representing D.C. and then combine your new <code>tibble</code> with the overall gun violence data set. Name this new data set <code>all_df</code>.</li>
-</ol>
+<p><strong>Your Turn 3</strong>. Examine again the gun violence data set, and explain why each attempt at combining the D.C. data with the overall data doesn’t work or is incorrect.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb49"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb49-2"><a href="#cb49-2" aria-hidden="true" tabindex="-1"></a>mortality_df <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="fu">here</span>(<span class="st">"data/gun_violence_us.csv"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<div class="cell">
-
-</div>
-<ol start="2" type="1">
-<li>Explain why each attempt at combining the D.C. data with the overall data doesn’t work or is incorrect.</li>
-</ol>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb50"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a>test1 <span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="at">state =</span> <span class="st">"Washington D.C."</span>, <span class="at">mortality_rate =</span> <span class="fl">16.7</span>,</span>
-<span id="cb50-2"><a href="#cb50-2" aria-hidden="true" tabindex="-1"></a>                <span class="at">ownership_rate =</span> <span class="fl">8.7</span>, <span class="at">region =</span> <span class="st">"NE"</span>)</span>
-<span id="cb50-3"><a href="#cb50-3" aria-hidden="true" tabindex="-1"></a><span class="fu">bind_rows</span>(mortality_df, test1)</span>
-<span id="cb50-4"><a href="#cb50-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb50-5"><a href="#cb50-5" aria-hidden="true" tabindex="-1"></a>test2 <span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="at">state =</span> <span class="st">"Washington D.C."</span>, <span class="at">mortality_rate =</span> <span class="fl">16.7</span>,</span>
-<span id="cb50-6"><a href="#cb50-6" aria-hidden="true" tabindex="-1"></a>       <span class="at">ownership_rate =</span> <span class="fl">0.087</span>, <span class="at">region =</span> NE)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-error">
-<pre><code>Error in eval_tidy(xs[[j]], mask): object 'NE' not found</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb52"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a><span class="fu">bind_rows</span>(mortality_df, test2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-error">
-<pre><code>Error in list2(...): object 'test2' not found</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb54"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a>test3 <span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="at">state =</span> <span class="st">"Washington D.C."</span>, <span class="at">mortality_rate =</span> <span class="st">"16.7"</span>,</span>
-<span id="cb54-2"><a href="#cb54-2" aria-hidden="true" tabindex="-1"></a>       <span class="at">ownership_rate =</span> <span class="st">"0.087"</span>, <span class="at">region =</span> <span class="st">"NE"</span>)</span>
-<span id="cb54-3"><a href="#cb54-3" aria-hidden="true" tabindex="-1"></a><span class="fu">bind_rows</span>(mortality_df, test3)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-error">
-<pre><code>Error in `bind_rows()`:
-! Can't combine `..1$mortality_rate` &lt;double&gt; and `..2$mortality_rate` &lt;character&gt;.</code></pre>
-</div>
-</div>
-<ol start="3" type="1">
-<li>Examine the following data sets that are in <code>R</code>’s base library on demographic statistics about the U.S. states and state abbreviations:</li>
-</ol>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb56"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb56-1"><a href="#cb56-1" aria-hidden="true" tabindex="-1"></a>df1 <span class="ot">&lt;-</span> <span class="fu">as_tibble</span>(state.x77)</span>
-<span id="cb56-2"><a href="#cb56-2" aria-hidden="true" tabindex="-1"></a>df2 <span class="ot">&lt;-</span> <span class="fu">as_tibble</span>(state.abb)</span>
-<span id="cb56-3"><a href="#cb56-3" aria-hidden="true" tabindex="-1"></a>df1</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 50 × 8
-   Population Income Illiteracy `Life Exp` Murder `HS Grad` Frost   Area
-        &lt;dbl&gt;  &lt;dbl&gt;      &lt;dbl&gt;      &lt;dbl&gt;  &lt;dbl&gt;     &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt;
- 1       3615   3624        2.1       69.0   15.1      41.3    20  50708
- 2        365   6315        1.5       69.3   11.3      66.7   152 566432
- 3       2212   4530        1.8       70.6    7.8      58.1    15 113417
- 4       2110   3378        1.9       70.7   10.1      39.9    65  51945
- 5      21198   5114        1.1       71.7   10.3      62.6    20 156361
- 6       2541   4884        0.7       72.1    6.8      63.9   166 103766
- 7       3100   5348        1.1       72.5    3.1      56     139   4862
- 8        579   4809        0.9       70.1    6.2      54.6   103   1982
- 9       8277   4815        1.3       70.7   10.7      52.6    11  54090
-10       4931   4091        2         68.5   13.9      40.6    60  58073
-# … with 40 more rows</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb58"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb58-1"><a href="#cb58-1" aria-hidden="true" tabindex="-1"></a>df2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 50 × 1
-   value
-   &lt;chr&gt;
- 1 AL   
- 2 AK   
- 3 AZ   
- 4 AR   
- 5 CA   
- 6 CO   
- 7 CT   
- 8 DE   
- 9 FL   
-10 GA   
-# … with 40 more rows</code></pre>
-</div>
-</div>
-<p>Combine the two data sets with <code>bind_cols()</code>. What are you assuming about the data sets in order to use this function?</p>
-<div class="cell">
-
-</div>
-<ol start="4" type="1">
-<li>* Combine the columns of the states data set you made in Exercise 3 with the mortality data set <strong>without</strong> Washington D.C.</li>
-</ol>
-<div class="cell">
-
-</div>
-<ol start="5" type="1">
-<li>* Use a join function to combine the mortality data set (<code>all_df</code> from Exercise 1) <strong>with</strong> D.C. with the states data set from Exercise 3 (<code>states_df</code>). For this exercise, keep the row with Washington D.C., having it take on <code>NA</code> values for any variable not observed in the states data.</li>
-</ol>
-<div class="cell">
-
-</div>
-<ol start="6" type="1">
-<li>* Repeat Exercise 5, but now drop Washington D.C. in your merging process. Practice doing this <strong>with a join function</strong> (as opposed to <code>slice()</code>-ing it out explicitly).</li>
-</ol>
-<div class="cell">
-
-</div>
-<ol start="7" type="1">
-<li>* Use <code>semi_join()</code> to create a subset of <code>states_df</code> that are in the <code>NE</code> region. <strong>Hint</strong>: You will need to filter <code>all_df</code> from Exercise 1 first to contain only states in the <code>NE</code> region.</li>
-</ol>
-<div class="cell">
-
-</div>
-<ol start="8" type="1">
-<li>* Do the same thing as Exercise 7, but this time, use <code>anti_join()</code>. <strong>Hint</strong>: You’ll need to filter <code>all_df</code> in a different way to achieve this.</li>
-</ol>
-<div class="cell">
-
-</div>
-<p><br></p>
-</section>
-<section id="solutions-10" class="level2" data-number="11.5">
-<h2 data-number="11.5" class="anchored" data-anchor-id="solutions-10"><span class="header-section-number">11.5</span> Exercise Solutions</h2>
-<section id="bind_rows-and-bind_cols-s" class="level3" data-number="11.5.1">
-<h3 data-number="11.5.1" class="anchored" data-anchor-id="bind_rows-and-bind_cols-s"><span class="header-section-number">11.5.1</span> <code>bind_rows()</code> and <code>bind_cols()</code> S</h3>
-<ol type="1">
-<li>* Run the following and explain why <code>R</code> does not simply stack the rows. Then, fix the issue with the <code>rename()</code> function.</li>
-</ol>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb60"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb60-1"><a href="#cb60-1" aria-hidden="true" tabindex="-1"></a>df_test1a <span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="at">xvar =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>), <span class="at">yvar =</span> <span class="fu">c</span>(<span class="dv">5</span>, <span class="dv">1</span>))</span>
-<span id="cb60-2"><a href="#cb60-2" aria-hidden="true" tabindex="-1"></a>df_test1b <span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="at">x =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>), <span class="at">y =</span> <span class="fu">c</span>(<span class="dv">5</span>, <span class="dv">1</span>))</span>
-<span id="cb60-3"><a href="#cb60-3" aria-hidden="true" tabindex="-1"></a><span class="fu">bind_rows</span>(df_test1a, df_test1b)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 4 × 4
-   xvar  yvar     x     y
-  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
-1     1     5    NA    NA
-2     2     1    NA    NA
-3    NA    NA     1     5
-4    NA    NA     2     1</code></pre>
-</div>
-</div>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb62"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb62-1"><a href="#cb62-1" aria-hidden="true" tabindex="-1"></a><span class="do">## This doesn't stack rows because the columns are named differently</span></span>
-<span id="cb62-2"><a href="#cb62-2" aria-hidden="true" tabindex="-1"></a><span class="do">## in the two data sets. If xvar is the same variable as x and </span></span>
-<span id="cb62-3"><a href="#cb62-3" aria-hidden="true" tabindex="-1"></a><span class="do">## yvar is the same variable as y, then we can rename the columns in</span></span>
-<span id="cb62-4"><a href="#cb62-4" aria-hidden="true" tabindex="-1"></a><span class="do">## one of the data sets:</span></span>
-<span id="cb62-5"><a href="#cb62-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb62-6"><a href="#cb62-6" aria-hidden="true" tabindex="-1"></a>df_test1a <span class="ot">&lt;-</span> df_test1a <span class="sc">|&gt;</span> <span class="fu">rename</span>(<span class="at">x =</span> <span class="st">"xvar"</span>, <span class="at">y =</span> <span class="st">"yvar"</span>)</span>
-<span id="cb62-7"><a href="#cb62-7" aria-hidden="true" tabindex="-1"></a><span class="fu">bind_rows</span>(df_test1a, df_test1b)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 4 × 2
-      x     y
-  &lt;dbl&gt; &lt;dbl&gt;
-1     1     5
-2     2     1
-3     1     5
-4     2     1</code></pre>
-</div>
-</div>
-</section>
-<section id="mutating-joins-s" class="level3" data-number="11.5.2">
-<h3 data-number="11.5.2" class="anchored" data-anchor-id="mutating-joins-s"><span class="header-section-number">11.5.2</span> Mutating Joins S</h3>
-</section>
-<section id="filtering-joins-s" class="level3" data-number="11.5.3">
-<h3 data-number="11.5.3" class="anchored" data-anchor-id="filtering-joins-s"><span class="header-section-number">11.5.3</span> Filtering Joins S</h3>
-</section>
-<section id="chapexercise-10-S" class="level3" data-number="11.5.4">
-<h3 data-number="11.5.4" class="anchored" data-anchor-id="chapexercise-10-S"><span class="header-section-number">11.5.4</span> Chapter Exercises S</h3>
-<ol type="1">
-<li>* Read in the gun violence data set, and suppose that you want to add a row to this data set that has the statistics on gun ownership and mortality rate in the District of Columbia (Washington D.C., which is in the NE region, has 16.7 deaths per 100,000 people, and a gun ownership rate of 8.7%). To do so, create a <code>tibble()</code> that has a single row representing D.C. and then combine your new <code>tibble</code> with the overall gun violence data set. Name this new data set <code>all_df</code>.</li>
-</ol>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb64"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb64-1"><a href="#cb64-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb64-2"><a href="#cb64-2" aria-hidden="true" tabindex="-1"></a>mortality_df <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="fu">here</span>(<span class="st">"data/gun_violence_us.csv"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Rows: 50 Columns: 4
-── Column specification ────────────────────────────────────────────────────────
-Delimiter: ","
-chr (2): state, region
-dbl (2): mortality_rate, ownership_rate
-
-ℹ Use `spec()` to retrieve the full column specification for this data.
-ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
-</div>
-</div>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb66"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb66-1"><a href="#cb66-1" aria-hidden="true" tabindex="-1"></a>dc_df <span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="at">state =</span> <span class="st">"Washington D.C."</span>, <span class="at">mortality_rate =</span> <span class="fl">16.7</span>,</span>
-<span id="cb66-2"><a href="#cb66-2" aria-hidden="true" tabindex="-1"></a>       <span class="at">ownership_rate =</span> <span class="fl">0.087</span>, <span class="at">region =</span> <span class="st">"NE"</span>)</span>
-<span id="cb66-3"><a href="#cb66-3" aria-hidden="true" tabindex="-1"></a>all_df <span class="ot">&lt;-</span> <span class="fu">bind_rows</span>(mortality_df, dc_df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<ol start="4" type="1">
-<li>* Combine the columns of the states data set you made in Section A Exercise 3 with the mortality data set <strong>without</strong> Washington D.C.</li>
-</ol>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb67"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb67-1"><a href="#cb67-1" aria-hidden="true" tabindex="-1"></a><span class="fu">bind_cols</span>(mortality_df, states_df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<ol start="5" type="1">
-<li>* Use a join function to combine the mortality data set <strong>with</strong> D.C. with the states data set from Exercise 3. For this exercise, keep the row with Washington D.C., having it take on <code>NA</code> values for any variable not observed in the states data.</li>
-</ol>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb68"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb68-1"><a href="#cb68-1" aria-hidden="true" tabindex="-1"></a><span class="fu">left_join</span>(all_df, states_df, <span class="at">by =</span> <span class="fu">c</span>(<span class="st">"state"</span> <span class="ot">=</span> <span class="st">"value"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 51 × 12
-   state mortalit…¹ owner…² region Popul…³ Income Illit…⁴ Life …⁵ Murder HS Gr…⁶
-   &lt;chr&gt;      &lt;dbl&gt;   &lt;dbl&gt; &lt;chr&gt;    &lt;dbl&gt;  &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt;   &lt;dbl&gt;
- 1 AL          16.7   0.489 South     3615   3624     2.1    69.0   15.1    41.3
- 2 AK          18.8   0.617 West       365   6315     1.5    69.3   11.3    66.7
- 3 AZ          13.4   0.323 West      2212   4530     1.8    70.6    7.8    58.1
- 4 AR          16.4   0.579 South     2110   3378     1.9    70.7   10.1    39.9
- 5 CA           7.4   0.201 West     21198   5114     1.1    71.7   10.3    62.6
- 6 CO          12.1   0.343 West      2541   4884     0.7    72.1    6.8    63.9
- 7 CT           4.9   0.166 NE        3100   5348     1.1    72.5    3.1    56  
- 8 DE          11.1   0.052 NE         579   4809     0.9    70.1    6.2    54.6
- 9 FL          11.5   0.325 South     8277   4815     1.3    70.7   10.7    52.6
-10 GA          13.7   0.316 South     4931   4091     2      68.5   13.9    40.6
-# … with 41 more rows, 2 more variables: Frost &lt;dbl&gt;, Area &lt;dbl&gt;, and
-#   abbreviated variable names ¹​mortality_rate, ²​ownership_rate, ³​Population,
-#   ⁴​Illiteracy, ⁵​`Life Exp`, ⁶​`HS Grad`</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb70"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb70-1"><a href="#cb70-1" aria-hidden="true" tabindex="-1"></a><span class="do">## or</span></span>
-<span id="cb70-2"><a href="#cb70-2" aria-hidden="true" tabindex="-1"></a><span class="fu">full_join</span>(all_df, states_df, <span class="at">by =</span> <span class="fu">c</span>(<span class="st">"state"</span> <span class="ot">=</span> <span class="st">"value"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 51 × 12
-   state mortalit…¹ owner…² region Popul…³ Income Illit…⁴ Life …⁵ Murder HS Gr…⁶
-   &lt;chr&gt;      &lt;dbl&gt;   &lt;dbl&gt; &lt;chr&gt;    &lt;dbl&gt;  &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt;   &lt;dbl&gt;
- 1 AL          16.7   0.489 South     3615   3624     2.1    69.0   15.1    41.3
- 2 AK          18.8   0.617 West       365   6315     1.5    69.3   11.3    66.7
- 3 AZ          13.4   0.323 West      2212   4530     1.8    70.6    7.8    58.1
- 4 AR          16.4   0.579 South     2110   3378     1.9    70.7   10.1    39.9
- 5 CA           7.4   0.201 West     21198   5114     1.1    71.7   10.3    62.6
- 6 CO          12.1   0.343 West      2541   4884     0.7    72.1    6.8    63.9
- 7 CT           4.9   0.166 NE        3100   5348     1.1    72.5    3.1    56  
- 8 DE          11.1   0.052 NE         579   4809     0.9    70.1    6.2    54.6
- 9 FL          11.5   0.325 South     8277   4815     1.3    70.7   10.7    52.6
-10 GA          13.7   0.316 South     4931   4091     2      68.5   13.9    40.6
-# … with 41 more rows, 2 more variables: Frost &lt;dbl&gt;, Area &lt;dbl&gt;, and
-#   abbreviated variable names ¹​mortality_rate, ²​ownership_rate, ³​Population,
-#   ⁴​Illiteracy, ⁵​`Life Exp`, ⁶​`HS Grad`</code></pre>
-</div>
-</div>
-<ol start="6" type="1">
-<li>* Repeat Exercise 5, but now drop Washington D.C. in your merging process. Practice doing this <strong>with a join function</strong> (as opposed to <code>slice()</code> ing it out explictly).</li>
-</ol>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb72"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb72-1"><a href="#cb72-1" aria-hidden="true" tabindex="-1"></a><span class="fu">inner_join</span>(all_df, states_df, <span class="at">by =</span> <span class="fu">c</span>(<span class="st">"state"</span> <span class="ot">=</span> <span class="st">"value"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 50 × 12
-   state mortalit…¹ owner…² region Popul…³ Income Illit…⁴ Life …⁵ Murder HS Gr…⁶
-   &lt;chr&gt;      &lt;dbl&gt;   &lt;dbl&gt; &lt;chr&gt;    &lt;dbl&gt;  &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt;   &lt;dbl&gt;
- 1 AL          16.7   0.489 South     3615   3624     2.1    69.0   15.1    41.3
- 2 AK          18.8   0.617 West       365   6315     1.5    69.3   11.3    66.7
- 3 AZ          13.4   0.323 West      2212   4530     1.8    70.6    7.8    58.1
- 4 AR          16.4   0.579 South     2110   3378     1.9    70.7   10.1    39.9
- 5 CA           7.4   0.201 West     21198   5114     1.1    71.7   10.3    62.6
- 6 CO          12.1   0.343 West      2541   4884     0.7    72.1    6.8    63.9
- 7 CT           4.9   0.166 NE        3100   5348     1.1    72.5    3.1    56  
- 8 DE          11.1   0.052 NE         579   4809     0.9    70.1    6.2    54.6
- 9 FL          11.5   0.325 South     8277   4815     1.3    70.7   10.7    52.6
-10 GA          13.7   0.316 South     4931   4091     2      68.5   13.9    40.6
-# … with 40 more rows, 2 more variables: Frost &lt;dbl&gt;, Area &lt;dbl&gt;, and
-#   abbreviated variable names ¹​mortality_rate, ²​ownership_rate, ³​Population,
-#   ⁴​Illiteracy, ⁵​`Life Exp`, ⁶​`HS Grad`</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb74"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb74-1"><a href="#cb74-1" aria-hidden="true" tabindex="-1"></a><span class="do">## or</span></span>
-<span id="cb74-2"><a href="#cb74-2" aria-hidden="true" tabindex="-1"></a><span class="fu">left_join</span>(states_df, all_df, <span class="at">by =</span> <span class="fu">c</span>(<span class="st">"value"</span> <span class="ot">=</span> <span class="st">"state"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 50 × 12
-   Population Income Illiter…¹ Life …² Murder HS Gr…³ Frost   Area value morta…⁴
-        &lt;dbl&gt;  &lt;dbl&gt;     &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt;   &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt; &lt;chr&gt;   &lt;dbl&gt;
- 1       3615   3624       2.1    69.0   15.1    41.3    20  50708 AL       16.7
- 2        365   6315       1.5    69.3   11.3    66.7   152 566432 AK       18.8
- 3       2212   4530       1.8    70.6    7.8    58.1    15 113417 AZ       13.4
- 4       2110   3378       1.9    70.7   10.1    39.9    65  51945 AR       16.4
- 5      21198   5114       1.1    71.7   10.3    62.6    20 156361 CA        7.4
- 6       2541   4884       0.7    72.1    6.8    63.9   166 103766 CO       12.1
- 7       3100   5348       1.1    72.5    3.1    56     139   4862 CT        4.9
- 8        579   4809       0.9    70.1    6.2    54.6   103   1982 DE       11.1
- 9       8277   4815       1.3    70.7   10.7    52.6    11  54090 FL       11.5
-10       4931   4091       2      68.5   13.9    40.6    60  58073 GA       13.7
-# … with 40 more rows, 2 more variables: ownership_rate &lt;dbl&gt;, region &lt;chr&gt;,
-#   and abbreviated variable names ¹​Illiteracy, ²​`Life Exp`, ³​`HS Grad`,
-#   ⁴​mortality_rate</code></pre>
-</div>
-</div>
-<ol start="7" type="1">
-<li>* Use <code>semi_join()</code> to create a subset of <code>states_df</code> that are in the <code>NE</code> region. <strong>Hint</strong>: You will need to filter <code>all_df</code> first to contain only states in the <code>NE</code> region.</li>
-</ol>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb76"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb76-1"><a href="#cb76-1" aria-hidden="true" tabindex="-1"></a>ne_df <span class="ot">&lt;-</span> all_df <span class="sc">|&gt;</span> <span class="fu">filter</span>(region <span class="sc">==</span> <span class="st">"NE"</span>)</span>
-<span id="cb76-2"><a href="#cb76-2" aria-hidden="true" tabindex="-1"></a><span class="fu">semi_join</span>(states_df, ne_df, <span class="at">by =</span> <span class="fu">c</span>(<span class="st">"value"</span> <span class="ot">=</span> <span class="st">"state"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 10 × 9
-   Population Income Illiteracy `Life Exp` Murder `HS Grad` Frost  Area value
-        &lt;dbl&gt;  &lt;dbl&gt;      &lt;dbl&gt;      &lt;dbl&gt;  &lt;dbl&gt;     &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;
- 1       3100   5348        1.1       72.5    3.1      56     139  4862 CT   
- 2        579   4809        0.9       70.1    6.2      54.6   103  1982 DE   
- 3       1058   3694        0.7       70.4    2.7      54.7   161 30920 ME   
- 4       4122   5299        0.9       70.2    8.5      52.3   101  9891 MD   
- 5       5814   4755        1.1       71.8    3.3      58.5   103  7826 MA   
- 6        812   4281        0.7       71.2    3.3      57.6   174  9027 NH   
- 7       7333   5237        1.1       70.9    5.2      52.5   115  7521 NJ   
- 8      18076   4903        1.4       70.6   10.9      52.7    82 47831 NY   
- 9        931   4558        1.3       71.9    2.4      46.4   127  1049 RI   
-10        472   3907        0.6       71.6    5.5      57.1   168  9267 VT   </code></pre>
-</div>
-</div>
-<ol start="8" type="1">
-<li>* Do the same thing as Exercise 7, but this time, use <code>anti_join()</code>. <strong>Hint</strong>: You’ll need to filter <code>all_df</code> in a different way to achieve this.</li>
-</ol>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb78"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb78-1"><a href="#cb78-1" aria-hidden="true" tabindex="-1"></a>notne_df <span class="ot">&lt;-</span> all_df <span class="sc">|&gt;</span> <span class="fu">filter</span>(region <span class="sc">!=</span> <span class="st">"NE"</span>)</span>
-<span id="cb78-2"><a href="#cb78-2" aria-hidden="true" tabindex="-1"></a><span class="fu">anti_join</span>(states_df, notne_df, <span class="at">by =</span> <span class="fu">c</span>(<span class="st">"value"</span> <span class="ot">=</span> <span class="st">"state"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 10 × 9
-   Population Income Illiteracy `Life Exp` Murder `HS Grad` Frost  Area value
-        &lt;dbl&gt;  &lt;dbl&gt;      &lt;dbl&gt;      &lt;dbl&gt;  &lt;dbl&gt;     &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;
- 1       3100   5348        1.1       72.5    3.1      56     139  4862 CT   
- 2        579   4809        0.9       70.1    6.2      54.6   103  1982 DE   
- 3       1058   3694        0.7       70.4    2.7      54.7   161 30920 ME   
- 4       4122   5299        0.9       70.2    8.5      52.3   101  9891 MD   
- 5       5814   4755        1.1       71.8    3.3      58.5   103  7826 MA   
- 6        812   4281        0.7       71.2    3.3      57.6   174  9027 NH   
- 7       7333   5237        1.1       70.9    5.2      52.5   115  7521 NJ   
- 8      18076   4903        1.4       70.6   10.9      52.7    82 47831 NY   
- 9        931   4558        1.3       71.9    2.4      46.4   127  1049 RI   
-10        472   3907        0.6       71.6    5.5      57.1   168  9267 VT   </code></pre>
-</div>
-</div>
-</section>
-</section>
-<section id="rcode-10" class="level2" data-number="11.6">
-<h2 data-number="11.6" class="anchored" data-anchor-id="rcode-10"><span class="header-section-number">11.6</span> Non-Exercise <code>R</code> Code</h2>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb80"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb80-1"><a href="#cb80-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb80-2"><a href="#cb80-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(here)</span>
-<span id="cb80-3"><a href="#cb80-3" aria-hidden="true" tabindex="-1"></a>atp_2019 <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="fu">here</span>(<span class="st">"data/atp_matches_2019.csv"</span>))</span>
-<span id="cb80-4"><a href="#cb80-4" aria-hidden="true" tabindex="-1"></a>atp_2018 <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="fu">here</span>(<span class="st">"data/atp_matches_2018.csv"</span>))</span>
-<span id="cb80-5"><a href="#cb80-5" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(atp_2019) </span>
-<span id="cb80-6"><a href="#cb80-6" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(atp_2018)</span>
-<span id="cb80-7"><a href="#cb80-7" aria-hidden="true" tabindex="-1"></a><span class="fu">spec</span>(atp_2018)</span>
-<span id="cb80-8"><a href="#cb80-8" aria-hidden="true" tabindex="-1"></a>atp_2018 <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="fu">here</span>(<span class="st">"data/atp_matches_2018.csv"</span>),</span>
-<span id="cb80-9"><a href="#cb80-9" aria-hidden="true" tabindex="-1"></a>                     <span class="at">col_types =</span> <span class="fu">cols</span>(<span class="at">winner_seed =</span> <span class="fu">col_character</span>(),</span>
-<span id="cb80-10"><a href="#cb80-10" aria-hidden="true" tabindex="-1"></a>                                      <span class="at">loser_seed =</span> <span class="fu">col_character</span>()))</span>
-<span id="cb80-11"><a href="#cb80-11" aria-hidden="true" tabindex="-1"></a>atp_df <span class="ot">&lt;-</span> <span class="fu">bind_rows</span>(atp_2018, atp_2019)</span>
-<span id="cb80-12"><a href="#cb80-12" aria-hidden="true" tabindex="-1"></a>atp_df</span>
-<span id="cb80-13"><a href="#cb80-13" aria-hidden="true" tabindex="-1"></a>df_test2a <span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="at">xvar =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>))</span>
-<span id="cb80-14"><a href="#cb80-14" aria-hidden="true" tabindex="-1"></a>df_test2b <span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="at">xvar =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>), <span class="at">y =</span> <span class="fu">c</span>(<span class="dv">5</span>, <span class="dv">1</span>))</span>
-<span id="cb80-15"><a href="#cb80-15" aria-hidden="true" tabindex="-1"></a><span class="fu">bind_rows</span>(df_test2a, df_test2b)</span>
-<span id="cb80-16"><a href="#cb80-16" aria-hidden="true" tabindex="-1"></a>df_test1a <span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="at">xvar =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>), <span class="at">yvar =</span> <span class="fu">c</span>(<span class="dv">5</span>, <span class="dv">1</span>))</span>
-<span id="cb80-17"><a href="#cb80-17" aria-hidden="true" tabindex="-1"></a>df_test1b <span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="at">x =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>), <span class="at">y =</span> <span class="fu">c</span>(<span class="dv">5</span>, <span class="dv">1</span>))</span>
-<span id="cb80-18"><a href="#cb80-18" aria-hidden="true" tabindex="-1"></a><span class="fu">bind_cols</span>(df_test1a, df_test1b)</span>
-<span id="cb80-19"><a href="#cb80-19" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb80-20"><a href="#cb80-20" aria-hidden="true" tabindex="-1"></a>df1 <span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="at">name =</span> <span class="fu">c</span>(<span class="st">"Emily"</span>, <span class="st">"Miguel"</span>, <span class="st">"Tonya"</span>), <span class="at">fav_sport =</span> <span class="fu">c</span>(<span class="st">"Swimming"</span>, <span class="st">"Football"</span>, <span class="st">"Tennis"</span>))</span>
-<span id="cb80-21"><a href="#cb80-21" aria-hidden="true" tabindex="-1"></a>df2 <span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="at">name =</span> <span class="fu">c</span>(<span class="st">"Tonya"</span>, <span class="st">"Miguel"</span>, <span class="st">"Emily"</span>),</span>
-<span id="cb80-22"><a href="#cb80-22" aria-hidden="true" tabindex="-1"></a>              <span class="at">fav_colour =</span> <span class="fu">c</span>(<span class="st">"Robin's Egg Blue"</span>, <span class="st">"Tickle Me Pink"</span>, <span class="st">"Goldenrod"</span>))</span>
-<span id="cb80-23"><a href="#cb80-23" aria-hidden="true" tabindex="-1"></a><span class="do">##install.packages("babynames")</span></span>
-<span id="cb80-24"><a href="#cb80-24" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(babynames)</span>
-<span id="cb80-25"><a href="#cb80-25" aria-hidden="true" tabindex="-1"></a>life_df <span class="ot">&lt;-</span> babynames<span class="sc">::</span>lifetables</span>
-<span id="cb80-26"><a href="#cb80-26" aria-hidden="true" tabindex="-1"></a>birth_df <span class="ot">&lt;-</span> babynames<span class="sc">::</span>births</span>
-<span id="cb80-27"><a href="#cb80-27" aria-hidden="true" tabindex="-1"></a>babynames_df <span class="ot">&lt;-</span> babynames<span class="sc">::</span>babynames</span>
-<span id="cb80-28"><a href="#cb80-28" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(babynames)</span>
-<span id="cb80-29"><a href="#cb80-29" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(births)</span>
-<span id="cb80-30"><a href="#cb80-30" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(lifetables)</span>
-<span id="cb80-31"><a href="#cb80-31" aria-hidden="true" tabindex="-1"></a>combined_left <span class="ot">&lt;-</span> <span class="fu">left_join</span>(babynames_df, birth_df, <span class="at">by =</span> <span class="fu">c</span>(<span class="st">"year"</span> <span class="ot">=</span> <span class="st">"year"</span>))</span>
-<span id="cb80-32"><a href="#cb80-32" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(combined_left)</span>
-<span id="cb80-33"><a href="#cb80-33" aria-hidden="true" tabindex="-1"></a><span class="fu">tail</span>(combined_left)</span>
-<span id="cb80-34"><a href="#cb80-34" aria-hidden="true" tabindex="-1"></a><span class="do">## these will always do the same exact thing</span></span>
-<span id="cb80-35"><a href="#cb80-35" aria-hidden="true" tabindex="-1"></a><span class="fu">right_join</span>(babynames_df, birth_df, <span class="at">by =</span> <span class="fu">c</span>(<span class="st">"year"</span> <span class="ot">=</span> <span class="st">"year"</span>))</span>
-<span id="cb80-36"><a href="#cb80-36" aria-hidden="true" tabindex="-1"></a><span class="fu">left_join</span>(birth_df, babynames_df, <span class="at">by =</span> <span class="fu">c</span>(<span class="st">"year"</span> <span class="ot">=</span> <span class="st">"year"</span>))</span>
-<span id="cb80-37"><a href="#cb80-37" aria-hidden="true" tabindex="-1"></a><span class="fu">full_join</span>(babynames_df, birth_df, <span class="at">by =</span> <span class="fu">c</span>(<span class="st">"year"</span> <span class="ot">=</span> <span class="st">"year"</span>))</span>
-<span id="cb80-38"><a href="#cb80-38" aria-hidden="true" tabindex="-1"></a><span class="fu">inner_join</span>(babynames_df, birth_df, <span class="at">by =</span> <span class="fu">c</span>(<span class="st">"year"</span> <span class="ot">=</span> <span class="st">"year"</span>))</span>
-<span id="cb80-39"><a href="#cb80-39" aria-hidden="true" tabindex="-1"></a>slumajors_df <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="fu">here</span>(<span class="st">"data/SLU_Majors_15_19.csv"</span>))</span>
-<span id="cb80-40"><a href="#cb80-40" aria-hidden="true" tabindex="-1"></a>collegemajors_df <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="fu">here</span>(<span class="st">"data/college-majors.csv"</span>))</span>
-<span id="cb80-41"><a href="#cb80-41" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(slumajors_df)</span>
-<span id="cb80-42"><a href="#cb80-42" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(collegemajors_df)</span>
-<span id="cb80-43"><a href="#cb80-43" aria-hidden="true" tabindex="-1"></a><span class="fu">left_join</span>(slumajors_df, collegemajors_df, <span class="at">by =</span> <span class="fu">c</span>(<span class="st">"Major"</span> <span class="ot">=</span> <span class="st">"Major"</span>))</span>
-<span id="cb80-44"><a href="#cb80-44" aria-hidden="true" tabindex="-1"></a>collegemajors_df <span class="ot">&lt;-</span> collegemajors_df <span class="sc">|&gt;</span></span>
-<span id="cb80-45"><a href="#cb80-45" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">Major =</span> <span class="fu">str_to_title</span>(Major))</span>
-<span id="cb80-46"><a href="#cb80-46" aria-hidden="true" tabindex="-1"></a><span class="fu">left_join</span>(slumajors_df, collegemajors_df)</span>
-<span id="cb80-47"><a href="#cb80-47" aria-hidden="true" tabindex="-1"></a>atp_2019 <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="fu">here</span>(<span class="st">"data/atp_matches_2019.csv"</span>))</span>
-<span id="cb80-48"><a href="#cb80-48" aria-hidden="true" tabindex="-1"></a>atp_2018 <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="fu">here</span>(<span class="st">"data/atp_matches_2018.csv"</span>))</span>
-<span id="cb80-49"><a href="#cb80-49" aria-hidden="true" tabindex="-1"></a>atp_2019</span>
-<span id="cb80-50"><a href="#cb80-50" aria-hidden="true" tabindex="-1"></a>atp_2018</span>
-<span id="cb80-51"><a href="#cb80-51" aria-hidden="true" tabindex="-1"></a>win10 <span class="ot">&lt;-</span> atp_2018 <span class="sc">|&gt;</span> <span class="fu">group_by</span>(winner_name) <span class="sc">|&gt;</span></span>
-<span id="cb80-52"><a href="#cb80-52" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">nwin =</span> <span class="fu">n</span>()) <span class="sc">|&gt;</span> </span>
-<span id="cb80-53"><a href="#cb80-53" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(nwin <span class="sc">&gt;=</span> <span class="dv">10</span>)</span>
-<span id="cb80-54"><a href="#cb80-54" aria-hidden="true" tabindex="-1"></a>win10</span>
-<span id="cb80-55"><a href="#cb80-55" aria-hidden="true" tabindex="-1"></a>tennis_2019_10 <span class="ot">&lt;-</span> <span class="fu">semi_join</span>(atp_2019, win10,</span>
-<span id="cb80-56"><a href="#cb80-56" aria-hidden="true" tabindex="-1"></a>                            <span class="at">by =</span> <span class="fu">c</span>(<span class="st">"winner_name"</span> <span class="ot">=</span> <span class="st">"winner_name"</span>))</span>
-<span id="cb80-57"><a href="#cb80-57" aria-hidden="true" tabindex="-1"></a>tennis_2019_10<span class="sc">$</span>winner_name</span>
-<span id="cb80-58"><a href="#cb80-58" aria-hidden="true" tabindex="-1"></a>new_winners <span class="ot">&lt;-</span> <span class="fu">anti_join</span>(atp_2019, atp_2018,</span>
-<span id="cb80-59"><a href="#cb80-59" aria-hidden="true" tabindex="-1"></a>                         <span class="at">by =</span> <span class="fu">c</span>(<span class="st">"winner_name"</span> <span class="ot">=</span> <span class="st">"winner_name"</span>)) </span>
-<span id="cb80-60"><a href="#cb80-60" aria-hidden="true" tabindex="-1"></a>new_winners<span class="sc">$</span>winner_name</span>
-<span id="cb80-61"><a href="#cb80-61" aria-hidden="true" tabindex="-1"></a>new_winners <span class="sc">|&gt;</span> <span class="fu">group_by</span>(winner_name) <span class="sc">|&gt;</span></span>
-<span id="cb80-62"><a href="#cb80-62" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">nwin =</span> <span class="fu">n</span>()) <span class="sc">|&gt;</span></span>
-<span id="cb80-63"><a href="#cb80-63" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(nwin))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb23"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">test1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble</a></span><span class="op">(</span>state <span class="op">=</span> <span class="st">"Washington D.C."</span>, mortality_rate <span class="op">=</span> <span class="fl">16.7</span>,</span>
+<span>                ownership_rate <span class="op">=</span> <span class="fl">8.7</span>, region <span class="op">=</span> <span class="st">"NE"</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/bind.html">bind_rows</a></span><span class="op">(</span><span class="va">mortality_df</span>, <span class="va">test1</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">test2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble</a></span><span class="op">(</span>state <span class="op">=</span> <span class="st">"Washington D.C."</span>, mortality_rate <span class="op">=</span> <span class="fl">16.7</span>,</span>
+<span>       ownership_rate <span class="op">=</span> <span class="fl">0.087</span>, region <span class="op">=</span> <span class="va">NE</span><span class="op">)</span></span>
+<span><span class="co">#&gt; Error in eval_tidy(xs[[j]], mask): object 'NE' not found</span></span>
+<span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/bind.html">bind_rows</a></span><span class="op">(</span><span class="va">mortality_df</span>, <span class="va">test2</span><span class="op">)</span></span>
+<span><span class="co">#&gt; Error in list2(...): object 'test2' not found</span></span>
+<span></span>
+<span><span class="va">test3</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble</a></span><span class="op">(</span>state <span class="op">=</span> <span class="st">"Washington D.C."</span>, mortality_rate <span class="op">=</span> <span class="st">"16.7"</span>,</span>
+<span>       ownership_rate <span class="op">=</span> <span class="st">"0.087"</span>, region <span class="op">=</span> <span class="st">"NE"</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/bind.html">bind_rows</a></span><span class="op">(</span><span class="va">mortality_df</span>, <span class="va">test3</span><span class="op">)</span></span>
+<span><span class="co">#&gt; Error in `bind_rows()`:</span></span>
+<span><span class="co">#&gt; ! Can't combine `..1$mortality_rate` &lt;double&gt; and `..2$mortality_rate` &lt;character&gt;.</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 
 
-</section>
-
-</main> <!-- /main -->
-<script id="quarto-html-after-body" type="application/javascript">
+</section></section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
     const mode = bsSheetEl.getAttribute("data-mode");
@@ -1541,9 +1049,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     });
   }
 });
-</script>
-<nav class="page-navigation">
-  <div class="nav-page nav-page-previous">
+</script><nav class="page-navigation"><div class="nav-page nav-page-previous">
       <a href="./08-import.html" class="pagination-link">
         <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Data Import</span></span>
       </a>          
@@ -1555,13 +1061,11 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   </div>
 </nav>
 </div> <!-- /content -->
-<footer class="footer">
-  <div class="nav-footer">
+<footer class="footer"><div class="nav-footer">
     <div class="nav-footer-left">Course Materials were written by Matt Higham for STAT/DATA 234 at St.&nbsp;Lawrence University.</div>   
     <div class="nav-footer-right">This book was built with <a href="https://quarto.org/">Quarto</a>.</div>
   </div>
 </footer>
-
 
 
 </body></html>

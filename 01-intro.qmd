@@ -1,4 +1,11 @@
-# Getting Started with `R` and `R Studio` {#intro}
+# Getting Started {#sec-intro}
+
+MAKE VIDEOS ON DOWNLOADING R, DOWNLOADING R STUDIO, CREATING AN R PROJECT,  GETTING THE DATA IN R, AND TESTING READING IN THE DATA
+
+```{r}
+#| echo: false
+source("_common.R")
+```
 
 __Goals__:
 
@@ -70,9 +77,17 @@ format:
 ---
 ```
 
-Note the `self-contained: true` option that we added. This ensures that all figures, images, tables, etc. are contained in the one `.html` file, which is important because, for quizzes and exercises, you will typically only turn in the `.html` file.
+::: {.callout-note}
+## Note
+
+The `self-contained: true` option ensures that all figures, images, tables, etc. are contained in the one `.html` file, which is important because, for quizzes and exercises, you will typically only turn in the `.html` file.
+:::
+
+::: {.callout-important}
+## Important
 
 Before moving on, click the **Render** button in the top-left window at the top of the menu bar. Make sure that the file renders to a pretty-looking .html file. The newly rendered .html file can now be found in your folder with your `R` project.
+:::
 
 
 <!-- Open `R Studio` on the SLU `R Studio` server at -->
@@ -113,7 +128,13 @@ We will use packages outside of the core `tidyverse` as well, but the `tidyverse
 
 On the `R Studio` server, either myself or one of the other statistics faculty members have installed all packages that we've needed to use on the server globally. However, if you want to use a package that isn't installed on the server, or, you want to use a package using `R Studio` on your own personal computer, you need to install it first. 
 
-Installation only needs to happen once (or until you upgrade `R`, which usually doesn't happen too often), whereas the package needs to be loaded with `library()` __every__ time you open `R`. The analogy of a  <a href="https://hbctraining.github.io/Intro-to-R/img/install_vs_library.jpeg" target="_blank">lightbulb might be helpful</a>. You only need to screw in the lightbulb into a socket once, but, every time you want the lightbulb to provide light, you need to flip the light switch.
+::: {.callout-important}
+## Important
+
+Installation only needs to happen once (or until you upgrade `R`, which usually doesn't happen too often), whereas the package needs to be loaded with `library()` __every__ time you open `R`. 
+:::
+
+The analogy of a  <a href="https://hbctraining.github.io/Intro-to-R/img/install_vs_library.jpeg" target="_blank">lightbulb might be helpful</a>. You only need to screw in the lightbulb into a socket once, but, every time you want the lightbulb to provide light, you need to flip the light switch.
 
 In the lightbulb analogy, what does putting the lightbulb into the socket correspond to? What does flipping the light switch correspond to?
 
@@ -141,13 +162,114 @@ When you run the previous line, some text will appear in the bottom-left window.
 
 Congrats on running your first line of code for this class! This particular code isn't particularly exciting because it doesn't really do anything that we can see.
 
-We have run `R` code using an `R` chunk. In your `R` chunk, on a new line, try typing in a basic calculation, like `71 + 9` or `4 / 3`, them run the line and observe the result. 
+In your `R` chunk, on a new line, try typing in a basic calculation, like `71 + 9` or `4 / 3`, them run the line and observe the result. 
 
 So, that still wasn't super exciting. `R` can perform basic calculations, but you could just use a calculator or Excel for that. In order to look at things that are a bit more interesting, we need some data.
 
+## Election Data Example
+
+We will first use a data set on the 2000 United States Presidential election between former President George Bush and Al Gore obtained from <a href="http://www.econometrics.com/intro/votes.htm" target="_blank">http://www.econometrics.com/intro/votes.htm</a>. For those unfamiliar with U.S. political elections, it is enough to know that each state is allocated a certain number of "electoral votes" for the president: states award all of their electoral votes to the candidate that receives the most ballots in that state. You can read more about this strange system <a href="https://en.wikipedia.org/wiki/United_States_Electoral_College" target="_blank">on Wikipedia</a>.
+
+Florida is typically a highly-contentious "battleground" state. The data set that we have has the following variables, recorded for each of the 67 counties in Florida:
+
+* `Gore`, the number of people who voted for Al Gore in 2000
+* `Bush`, the number of people who voted for George Bush in 2000
+* `Buchanan`, the number of people who voted for the third-party candidate Buchanan
+* `Nader`, the number of people who voted for the third-party candidate Nader
+* `Other`, the number of people who voted for a candidate other than the previous 4 listed
+* `County`, the name of the county in Florida
+
+Read in the data set, name the data set `pres_df`, and take a look at the data set by running the `head(pres_df)` line, which shows the first few observations of the data set:
+
+```{r, message = FALSE, warning = FALSE, appendix = TRUE}
+library(tidyverse)
+pres_df <- read_table("data/PRES2000.txt") 
+## don't worry about the `read_table` function....yet
+head(pres_df)
+```
+
+::: {.callout-note}
+## Note
+
+Pay special attention to the variable names given at the top of the printed output: we'll need to use these names when we make all of our plots. And, `R` is case-sensitive, meaning that we will, for example, need to use `Gore`, not `gore`.
+:::
+
+Let's go ahead and begin our exploration of the data by making a histogram of the number of people who voted for `Gore` in each county. Recall that a histogram is useful if we would like a graph of a single quantitative variable. Copy the following code to an `R` chunk and run the code:
+
+```{r, warning = TRUE, message = TRUE, appendix = TRUE}
+ggplot(data = pres_df, aes(x = Gore)) +
+  geom_histogram(colour = "black", fill = "white") +
+  labs(x = "Votes for Gore in Florida")
+```
+
+We can also change some things in the code above. The following brief questions will ask you to add or change small things about the historam we created for the number of votes.
+
+__Exercise 1__. What do the 1e+05, 2e+05, etc. labels on the x-axis mean?
+
+__Exercise 2__. `R` gives us a message to "Pick a better value with `binwidth`" instead of the default `bins = 30`. Add `, bins = 15`  inside the parentheses of `geom_histogram()` to change the number of bins in the histogram.
+
+__Exercise 3__. Change the colour of the inside of the bins to `"darkred"`. Do you think that the colour of the inside of the bins maps to `colour` or `fill`? Try both!
+
+::: {.callout-tip collapse="true"}
+## Hint (only if you get stuck)
+
+For the histogram, `colour` controls the outside lines of the bins while `fill` controls what gets filled in the bins.
+:::
+
+
+__Exercise 4__. There are a couple of observations with very high vote values. What could explain these large outliers?
+
+__Exercise 5__. We can also change the __variable__ that is being plotted on the histogram. Try changing `x = Gore`, to `x = Bush` to plot a histogram of the number of votes `Bush` received in Florida counties.
+
+<br>
+
+Thus far, we've figured out that there a couple of counties with very large numbers of votes for Gore and very large number of votes for Bush. We don't know the reason for this (if some counties are very democratic, very republican, or if some counties are just more populous). Do the counties that have a large number of votes for Bush also tend to have a large number of votes for Gore? And what about the other candidates: do they have any interesting patterns?
+
+Let's start by making a scatterplot of the number of votes for Gore and the number of votes for Bush. 
+
+::: {.callout-note}
+## Note
+
+The `geom_` for making a scatterplot is called `geom_point()` because we are adding a layer of points to the plot.
+:::
+
+```{r, appendix = TRUE}
+ggplot(data = pres_df, aes(x = Gore, y = Bush)) +
+  geom_point()
+```
+
+What patterns do you see in the scatterplot?
+
+Now, let's change the `x` variable from `Gore` to `Buchanan`. You should notice something strange in this scatterplot. Try to come up with one explanation for why the outlying point has so many votes for `Buchanan`.
+
+```{r, appendix = TRUE}
+ggplot(data = pres_df, aes(x = Buchanan, y = Bush)) +
+  geom_point()
+```
+
+<br>
+
+In trying to come up with an explanation, it would be nice to figure out which Florida county has that outlying point and it would be nice if we knew something about Florida counties. To remedy the first issue, recall that we can type `View(pres_df)` in the lower-left window of `R Studio` to pull up a spreadsheet of the data set. Once you have the new window open, click on the column heading `Buchanan` to sort the votes for Buchanan from high to low to figure out which county is the outlier.
+
+Use some Google sleuthing skills to find an explanation: try to search for "2000 united states presidential election [name of outlier county]". Write a sentence about what you find. 
+
+::: {.callout-tip collapse="true"}
+## Hint 
+
+If nothing useful pops up in an initial search, try adding the term "butterfly ballot" to your search.
+:::
+
+We have used the 2000 Presidential data set to find out something really interesting! In particular, we have used _exploratory data analysis_ to examine a data set, without having a specific question of interest that we want to answer. This type of exploring is often really useful, but does have some drawbacks, which we will discuss later in the semester.
+
 ## Alcohol Data Example
 
-We will be looking at two data sets just to get a little bit of a preview of things we will be working on for the rest of the semester. __Important__: Do not worry about understanding what the following code is doing at this point. There will be plenty of time to understand this in the weeks ahead. The purpose of this section is just to get used to using `R`: there will be more detailed explanations and exercises about the functions used and various options in the coming weeks. In particular, the following code uses the `ggplot2`, `dplyr`, and `tidyr` packages, which we will cover in detail throughout the first ~ 3-4 weeks of this course.
+We will be looking at two data sets just to get a little bit of a preview of things we will be working on for the rest of the semester. 
+
+::: {.callout-important}
+## Important
+
+Do not worry about understanding what the following code is doing at this point. There will be plenty of time to understand this in the weeks ahead. The purpose of this section is just to get used to using `R`: there will be more detailed explanations and exercises about the functions used and various options in the coming weeks. In particular, the following code uses the `ggplot2`, `dplyr`, and `tidyr` packages, which we will cover in detail throughout the first ~ 3-4 weeks of this course.
+:::
 
 Data for this first part was obtained from fivethirtyeight at <a href="https://github.com/fivethirtyeight/data/tree/master/alcohol-consumption" target="_blank">Five Thirty Eight GitHub page</a>.
 
@@ -167,7 +289,13 @@ We would like to name our data set something so that we could easily reference i
 alcohol_data <- read_csv("data/alcohol.csv")
 ```
 
-You can name your data set whatever you want to (with a few restrictions). I've named it `alcohol_data`. Now, if you run the line of code above where you name the data set, and run `alcohol_data`, you should see the data set appear:
+::: {.callout-note}
+## Note
+
+You can name your data set whatever you want to (with a few restrictions), but it's generally helpful to give it a name that you will remember and can easily be typed moving forward. So, assigning the name `alcohol_data` makes more sense than assigning the data to a name like `fjrewrjweaipjfadpgfj`.
+:::
+
+Now, if you run the line of code above where you name the data set, and run `alcohol_data`, you should see the data set appear:
 
 ```{r, echo=TRUE, eval=TRUE, warning=FALSE, message=FALSE}
 alcohol_data
@@ -264,13 +392,18 @@ Why is one of the ratios `Inf`?
 
 2. In the histogram of total alcohol consumption, pick a country other than the USA that interests you. See if you can change the code in the chunk that made the histogram so that the red vertical line is drawn for the country that interests you.
 
-Hint: Use the `View()` function to look at the alcohol data set by typing `View(alcohol_data)` in your bottom-left window to help you see which countries are in the data set.
+::: {.callout-tip collapse="true"}
+## Hint
+
+Use the `View()` function to look at the alcohol data set by typing `View(alcohol_data)` in your bottom-left window to help you see which countries are in the data set.
 
 ```{r, eval = FALSE}
 View(alcohol_data)
 ```
 
-Note: careful about capitalization: `R` is case sensitive so USA is different than usa.
+Careful about capitalization: `R` is case sensitive so USA is different than usa.
+:::
+
 
 3. In the histogram of total alcohol consumption, change the __fill__ colour of the bins in the histogram above: what should be changed in the code chunk?
 
@@ -282,7 +415,7 @@ Note: careful about capitalization: `R` is case sensitive so USA is different th
 
 ## Athlete Data Example
 
-Secondly, we will look at a data set on the top 100 highest paid athletes in 2014. The `athletesdata` was obtained from <a href="https://github.com/ali-ce/datasets" target="_blank">https://github.com/ali-ce/datasets</a> data set has information on the following variables from the 100 highest paid athletes of 2014, according to Forbes (pay includes __both__ salary and endorsements):
+As another example, we will look at a data set on the top 100 highest paid athletes in 2014. The `athletesdata` was obtained from <a href="https://github.com/ali-ce/datasets" target="_blank">https://github.com/ali-ce/datasets</a> data set has information on the following variables from the 100 highest paid athletes of 2014, according to Forbes (pay includes __both__ salary and endorsements):
 
 * `Name` (name of the athlete)
 * `Rank` (where the athlete ranks, with 1 being the highest paid)
@@ -339,7 +472,7 @@ ggplot(data = football_basketball,
   labs(y = "Endorsements / Salary")
 ```
 
-In the graph an endorsements / salary ratio of 1 indicates that the person makes half of their overall pay from endorsements and half of their overall pay from salary.
+In the graph, an `endorsements / salary` ratio of 1 indicates that the person makes half of their overall pay from endorsements and half of their overall pay from salary.
 
 Which sport looks like it tends to receive a larger proportion of their overall pay from endorsements for athletes in the top 100? 
 
@@ -349,15 +482,21 @@ Which sport looks like it tends to receive a larger proportion of their overall 
 
 1. Instead of looking at the relationship between age and salary in the top 100 athletes of 2014, change the plot to look at the relationship between age and endorsements. What would you change in the code above? Try it!
 
-2. Pick a `Sport` other than Tennis and see if you can count the number of athletes in the top 100 in that sport as well as sort them by Rank. __Careful__: not all sports will have athletes in the Top 100.
+2. Pick a `Sport` other than Tennis and see if you can count the number of athletes in the top 100 in that sport as well as sort them by Rank.
+
+::: {.callout-caution}
+## Caution
+
+Not all sports will have athletes in the Top 100.
+:::
 
 How many athletes are in the top 100 in the sport that you chose?
 
-3. In the endorsements / salary example, change one of the sports to the sport of your choice and make a comparison. Which sport tends to receive a larger proportion of their overall pay from endorsements.
+3. In the `endorsements / salary` example, change one of the sports to the sport of your choice and make a comparison. Which sport tends to receive a larger proportion of their overall pay from endorsements.
 
 4. What qualification might you want to make about your statement in the previous exercise? (Is this a random sample of athletes from each sport? Why does that matter?).
 
-5. In the side-by-side boxplots comparing the endorsements to salary ratio of two different sports,  I've changed the y-axis label above to be Endorsements / Salary using the `labs(y = "Endorsements / Salary")` statement. Try changing the x-axis label to something else. What do you think you would need to add to the plot?
+5. In the side-by-side boxplots comparing the endorsements to salary ratio of two different sports, I've changed the y-axis label above to be Endorsements / Salary using the `labs(y = "Endorsements / Salary")` statement. Try changing the x-axis label to something else. What do you think you would need to add to the plot?
 
 ## Finishing Up: Common Errors in `R`
 
@@ -408,7 +547,7 @@ The error for forgetting quotes is typically an "Unexpected Symbol" though this 
 
 <br>
 
-Finally, you can add a comment to a code chunk with the `#` symbol (I always use double `##` for some reason though). This allows you to type a comment into a code chunk that __isn't__ code:
+Finally, we can add a comment to a code chunk with the `#` symbol (I always use double `##` for some reason though). This allows you to type a comment into a code chunk that __isn't__ code:
 
 ```{r}
 ## this is a comment
@@ -416,13 +555,15 @@ Finally, you can add a comment to a code chunk with the `#` symbol (I always use
 7 * 42
 ```
 
+::: {.callout-important}
+## Important
+
 Comments are most useful for longer code chunks, as they allow you to remember why you did something. They also tell someone whom you've shared your code with why you did something.
+:::
 
 Save this file by clicking File -> Save or by using the keyboard shortcut Command + s (or Control + s on a PC). Render this file by clicking the Render button in the top-left window. You should see a .html file pop up, if there are no errors in your code!
 
-## Chapter Exercises {#chapexercise-1}
-
-__Note__: Usually, exercises will ask you to write code on your own using the week's chapter as a reference. However, for this initial chapter, we will do something a little different.
+## Your Turn {#chapexercise-1}
 
 Open a new .qmd file (File -> New File -> `Quarto Document` -> OK) and delete the text explaining what `Quarto` is. Make sure that your Quarto document is self-contained by using something like the following in the first few lines of the file:
 
@@ -436,21 +577,9 @@ format:
 ---
 ```
 
-Then, complete the following exercises.
+Then, complete the following exercise.
 
-Exercise 1. Read the very short paper at <a href="https://joss.theoj.org/papers/10.21105/joss.01686" target="_blank">https://joss.theoj.org/papers/10.21105/joss.01686</a> on an Introduction to the `tidyverse`, and answer the questions below in your `Quarto` file. I'm imagining this whole exercise should only take you ~ 20-25 minutes.
-
-Answer the following questions by typing answers in your .qmd document. You should not need to make any new code chunks, as the questions don't ask you to do any coding! 
-
-1. What are the two major areas that the `tidyverse` __doesn't__ provide tools for?
-
-2. How do the authors define "tidy"?
-
-3. What does it mean for the `tidyverse` to be "human-centred"?
-
-4. In about 2 sentences, describe the data science "cycle" given in the diagram at the top of page 3. 
-
-Exercise 2. You may continue to use the same .qmd file to answer these questions. For each question, type your answer on a new line, with a line space between your answers. All of these questions should be answered outside of code chunks since your answers will all be text, not code.
+__Your Turn 1__. You may continue to use the same .qmd file to answer these questions. For each question, type your answer on a new line, with a line space between your answers. All of these questions should be answered outside of code chunks since your answers will all be text, not code.
 
 a. What is your name and what is your class year (first-year, sophomore, junior, senior)?
 
@@ -474,16 +603,13 @@ j. Take a look at the learning outcomes listed on the syllabus. Which are you mo
 
 k. What are your expectations for this class and/or what do you hope to gain from this class?
 
-l. Take a moment to scroll through the advice from students who took this course in the Fall semester of 2021. What is one piece of advice that you hope to apply to our course this semester?
+l. Take a moment to scroll through the advice from students who took this course in the Fall semester of 2021 or the Fall semester of 2022. What is one piece of advice that you hope to apply to our course this semester?
 
 <br>
 
-Render your .qmd file into an .html file and submit your rendered .html file to Canvas. If your file won't render, then submit the .qmd file instead. To submit either file, you first need to get the file off of the server and onto your computer so that you can upload it to Canvas. 
+Render your .qmd file into an .html file and submit your rendered .html file to Canvas in the "Practice Submission" Assignment. If your file won't render, then submit the .qmd file instead. 
 
 Nice work: we will dive into `ggplot()` in the `ggplot2` package next!
 
 <br>
 
-## Exercise Solutions {#solutions-1}
-
-In most sections, some exercise solutions will be posted at the end of the section. However, because `R` is brand new, we will do all of the coding exercises as a class for this first section.

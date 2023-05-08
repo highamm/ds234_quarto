@@ -1,0 +1,99 @@
+---
+title:  "`ggplot2` Solutions"
+format: 
+  html:
+    self-contained: true
+execute:
+  echo: true
+  warning: false
+  fig-height: 3
+---
+
+```{r}
+library(tidyverse)
+stat113_df <- read_csv(here::here("data/stat113.csv"))
+
+fitness_full <- read_csv(here::here("data/higham_fitness_clean.csv")) |>
+  mutate(weekend_ind = case_when(weekday == "Sat" | weekday == "Sun" ~ "weekend",
+                                 TRUE ~ "weekday"))
+```
+
+__Exercise 1__. Answers will vary.
+
+```{r}
+ggplot(data = stat113_df, aes(x = Haircut)) +
+  geom_histogram(colour = "black", fill = "white", bins = 14)
+```
+
+__Exercise 2__. 
+
+```{r}
+ggplot(data = stat113_df, aes(x = Haircut)) +
+  geom_histogram(colour = "dodgerblue4", fill = "dodgerblue1", bins = 14)
+```
+
+__Exercise 3__. Answers will vary.
+
+```{r}
+ggplot(data = stat113_df, aes(x = Haircut)) +
+  geom_histogram(colour = "lightpink4", fill = "lightpink1", bins = 14)
+```
+
+__Exercise 4__. Answers will vary.
+
+```{r}
+ggplot(data = stat113_df, aes(x = Award)) +
+  geom_bar()
+```
+
+__Exercise 5__. Answers will vary.
+
+```{r}
+ggplot(data = stat113_df, aes(x = Award)) +
+  geom_bar(colour = "coral4", fill = "coral1")
+```
+
+__Exercise 6__. Answers will vary.
+
+```{r}
+ggplot(data = stat113_df, aes(x = Sport, fill = Award)) +
+  geom_bar() 
+```
+
+We see that a higher proportion of students who play a sport would prefer to win an Olympic medal compared to students who do not play a sport (and vice versa for the Nobel prize).
+
+__Exercise 7__. Answers will vary.
+
+```{r}
+ggplot(data = stat113_df, aes(x = Year, y = GPA)) +
+  geom_violin()
+```
+
+It looks like GPAs are fairly similar across class years, on average, but that there are not any seniors in the sample with a GPA below a 3.2.
+
+__Exercise 8__. 
+
+```{r}
+ggplot(data = stat113_df, aes(x = Year, y = GPA)) +
+  geom_violin(colour = "darkseagreen4", fill = "darkseagreen1")
+```
+
+__Exercise 9__. Answers will vary, but there are many days where the number of active calories burned is 0. These could be days where the watch was not worn or days where the watch was malfunctioning.
+
+__Exericse 10__. Answers will vary.
+
+```{r}
+ggplot(data = fitness_full, aes(x = steps, y = flights)) +
+  geom_point()
+```
+
+The plot is generally hard to read because of the outliers, but it does look like there is a slight positive relationship that is linear and is weak in strength.
+
+__Exercise 11__. Answers will vary.
+
+```{r}
+ggplot(data = fitness_full, aes(x = steps, y = active_cals)) +
+  geom_point() +
+  facet_wrap(~ weekday)
+```
+

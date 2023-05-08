@@ -1,0 +1,72 @@
+---
+title:  "Text Data Solutions"
+format: 
+  html:
+    self-contained: true
+execute:
+  echo: true
+  warning: false
+  fig-height: 3
+---
+
+```{r}
+library(tidyverse)
+library(here)
+beyonce <- read_csv(here("data/beyonce_lyrics.csv"))
+
+library(tidytext)
+beyonce_unnest <- beyonce |> unnest_tokens(output = "word", input = "line")
+beyonce_unnest <- beyonce_unnest |> mutate(word = str_to_lower(word))
+
+beyonce_stop <- anti_join(beyonce_unnest, stop_words, by = c("word" = "word"))
+
+beyonce_sum <- beyonce_stop |> group_by(word) |>
+  summarise(n = n()) |>
+  arrange(desc(n)) |>
+  print(n = 25)
+```
+
+__Exercise 1__.
+
+```{r}
+more_stop_df <- tibble::tibble(word = c("ooh", "gotta", "ya", "uh", "yeah"))
+anti_join(beyonce_sum, more_stop_df)
+```
+
+__Exercise 2__. 
+
+```{r}
+beyonce_lolli <- anti_join(beyonce_sum, more_stop_df)
+beyonce_20 <- beyonce_lolli |> 
+  slice(1:20) |> 
+  mutate(word = fct_reorder(word, n))
+
+ggplot(data = beyonce_20, aes(x = word, y = n)) +
+  geom_point() +
+  geom_segment(aes(xend = word, y = 0, yend = n)) +
+  theme_minimal() +
+  coord_flip()
+```
+
+__Exercise 3__. 
+
+```{r}
+library(wordcloud)
+beyonce_small <- beyonce_sum |> filter(n > 50)
+wordcloud(beyonce_small$word, beyonce_small$n, 
+          colors = brewer.pal(8, "Dark2"), scale = c(5, .2),
+          random.order = FALSE, random.color = FALSE)
+```
+
+__Exercise 4__. Use `str_detect()` and the `dplyr` functions `mutate()` and `case_when()` to create a variable for `serve_location` that is either `"wide"` if the `point` starts with a `4`, `"body"` if the `point` starts with a `5`, and `"down the center"` if the `point` starts with a `6`.
+
+```{r}
+med_djok_df <- read_csv(here("data/med_djok.csv"))
+med_djok_df |>
+  mutate(serve_location = case_when(str_detect(point, "^4") ~ "wide",
+                                    str_detect(point, "^5") ~ "body",
+                                    str_detect(point, "^6") ~ "down the center")) |>
+  relocate(serve_location)
+```
+
+

@@ -1,0 +1,55 @@
+---
+title: "`forcats` Solutions"
+format: 
+  html:
+    self-contained: true
+execute:
+  echo: true
+  warning: false
+  fig-height: 3
+---
+
+```{r}
+library(tidyverse)
+```
+
+__Exercise 1__. 
+
+`case_when()` with `mutate()` could be used to create the new levels (as in `case_when(group == level1 | group == level2 | group == level3 ~ "newlevel", ...)`. However, the syntax of `fct_collapse()` is more concise so we may be less likely to make a syntax error when using `fct_collapse()`.
+
+__Exercise 2__. 
+
+Use `fct_recode()` with `mutate()` to recode "A" to "Apple", and "B" to "Banana" in the following toy data set:
+
+```{r}
+fruit_df <- tibble::tibble(fruit = c("A", "B", "B", "A"))
+fruit_df |> mutate(fruit_newlevels = fct_recode(fruit,
+                                                "Apple" = "A",
+                                                "Banana" = "B"))
+```
+
+__Exercise 3__.
+
+```{r}
+library(here)
+pokemon_df <- read_csv(here("data/pokemon_allgen.csv")) |>
+  mutate(Generation_cat = factor(Generation))
+pokemon_nodup <- pokemon_df |> group_by(`#`) |> slice(1) |>
+  ungroup()
+pokemon_long <- pokemon_nodup |>
+  pivot_longer(c(`Type 1`, `Type 2`),
+               names_to = "Number",
+               values_to = "Type")
+```
+
+```{r}
+pokemon_long <- pokemon_long |>
+  filter(!is.na(Type)) |>
+  mutate(Type_Deford = fct_reorder(.f = Type, .x = Defense,
+                                   .fun = max))
+ggplot(data = pokemon_long, aes(x = Type_Deford,
+                               y = Defense)) +
+  geom_boxplot() + 
+  coord_flip() +
+  theme_minimal()
+```

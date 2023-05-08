@@ -1,0 +1,139 @@
+---
+title:  "Connections Solutions"
+format: 
+  html:
+    self-contained: true
+execute:
+  echo: true
+  warning: false
+  fig-height: 3
+---
+
+## STAT 113 Solutions
+
+```{r}
+library(tidyverse)
+library(openintro)
+resume
+```
+
+__Exercise 1__. 
+
+```{r}
+resume_sum <- resume |> 
+  mutate(received_callback = received_callback) |>
+           group_by(gender, received_callback) |>
+  summarise(count = n())
+ggplot(data = resume_sum, aes(x = gender, y = count)) +
+  geom_col(aes(fill = received_callback)) +
+  scale_fill_viridis_c()
+```
+
+__Exercise 2__. 
+
+```{r}
+ggplot(data = resume, aes(x = factor(received_callback),
+                          y = years_experience)) +
+  geom_boxplot() +
+  theme_minimal() +
+  labs(x = "Received Callback")
+```
+
+__Exercise 3__. 
+
+a. $H_0:$ There is no association between gender and receiving a callback.
+
+$H_a:$ There is an association between gender and receiving a callback.
+
+```{r}
+chisq.test(x = resume$gender, y = resume$received_callback)
+```
+
+b. `R` does not give a warning about any test assumptions.
+
+There is not evidence for an association between `gender` and whether or not an applicant received a callback.
+
+__Exercise 4__. Answers will vary.
+
+## STAT 213
+
+```{r, appendix = TRUE}
+library(broom)
+library(here)
+coffee_df <- read_csv(here("data/coffee_ratings.csv"))
+coffee_mod <- lm(total_cup_points ~ species + aroma + flavor +
+                   sweetness + moisture,
+   data = coffee_df)
+```
+
+__Exercise 1__. 
+
+```{r}
+coffee_mod_large <- lm(total_cup_points ~ species + aroma + flavor +
+                   sweetness + moisture + aftertaste + acidity,
+   data = coffee_df)
+glance(coffee_mod)
+glance(coffee_mod_large)
+```
+
+According to both AIC and BIC, the model with the additional predictors is better, as these values are smaller for this model.
+
+__Exercise 2__. 
+
+```{r}
+coffee_aug <- augment(coffee_mod_large)
+ggplot(data = coffee_aug, aes(x = .resid)) +
+  geom_histogram(colour = "black", fill = "white") +
+  theme_minimal()
+```
+
+There are some extreme outliers that might warrant further investigation. However, our sample size is large, so hypothesis tests should be robust to the normality assumption.
+
+__Exercise 3__. 
+
+```{r}
+coffee_aug |> arrange(desc(.fitted)) |> slice(1:5)
+```
+
+__Exercise 4__. Answers will vary.
+
+## CS 140
+
+__Exercise 1__. 
+
+```{r}
+library(rvest)
+library(tidyverse)
+
+scrape_billboard <- function(year) {
+  url <- paste0("https://en.wikipedia.org/wiki/Billboard_Year-End_Hot_100_singles_of_", year)
+  
+  ## convert the html code into something R can read
+  billboard_tab <- read_html(url) |> html_nodes("table")
+  
+  ## grabs the tables
+  billboard_df <- billboard_tab[[1]] |> html_table() |>
+    mutate(year = year)
+  billboard_df
+}
+```
+
+__Exercise 2__.
+
+```{r}
+year_vec <- 2014:2021
+map(year_vec, scrape_billboard)
+```
+
+__Exercise 3__.
+
+```{r}
+combined_df <- map(year_vec, scrape_billboard) |> bind_rows()
+combined_df |> group_by(`Artist(s)`) |>
+  summarise(n_appear = n()) |>
+  arrange(desc(n_appear))
+```
+
+The artist with the most appearances is Drake!
+
+__Exercise 4__. Answers will vary.

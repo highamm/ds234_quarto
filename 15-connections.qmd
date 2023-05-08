@@ -1,5 +1,12 @@
 # Connections to STAT 113, STAT 213, and CS 140 {#connections}
 
+```{r}
+#| echo: false
+source("_common.R")
+```
+
+The structure of this section than the structure of most other sections. In this section, you'll relate some of what we have learned in this course to what you have learned in at least one other course here (STAT 113, STAT 213, or CS 140).
+
 ## STAT 113
 
 In this section, we discuss how what we have learned in this data science course connects to some concepts that you learned about in STAT 113. As a quick refresher, a few concepts that you learned about in STAT 113 are:
@@ -8,9 +15,13 @@ In this section, we discuss how what we have learned in this data science course
 * explaining what sampling distributions are and how they relate to confidence intervals and hypothesis tests. This topic is probably the least connected to what we have learned so far in this class.
 * conducting hypothesis tests and creating confidence intervals to answer questions of interest. We will focus on this third general objective in this section.
 
-The example we will use is an experiment  designed to assess the effects of race and sex on whether or not an employee received a callback for a job. In order to conduct the experiment, researchers randomly assigned names to resumes with each name associated with a particular race and gender, sent the resumes to employers, and recorded whether or not the resume received a callback. In addition to race, sex, and whether or not an employee received a callback, a few more variables were collected, like resume quality, whether or not the applicant had computer skills, years of experience, etc. A `1` for the `received_callback` indicates that the applicant received a callback.
+The example we will use is an experiment designed to assess the effects of race and sex on whether or not an employee received a callback for a job. In order to conduct the experiment, researchers randomly assigned names to resumes with each name associated with a particular race and gender, sent the resumes to employers, and recorded whether or not the resume received a callback. In addition to race, sex, and whether or not an employee received a callback, a few more variables were collected, like resume quality, whether or not the applicant had computer skills, years of experience, etc. A `1` for the `received_callback` indicates that the applicant received a callback.
+
+::: {.callout-note}
+## Note
 
 You may recall this example from STAT 113: we used it to introduce a chi-square test of association. In that example and others like it, an appropriate graphic and summary statistics were provided. Here, we create these ourselves.
+:::
 
 The data set is called `resume` in the `openintro` package: you'll need to install this package with `install.packages("openintro")`. Then, load in the data with
 
@@ -77,7 +88,7 @@ The output of `chisq.test()` gives a p-value of 0.00004998 with a chi-square sta
 
 __Conclude__. Finally, we write a conclusion in context of the problem.
 
-There is strong evidence that `race` and `callback` are associated. The graph shows that `white` applicants receive a callback more often than `black` applicants do and the hypothesis test shows that this is statistically significant.
+There is strong evidence that `race` and `callback` are associated (p-value = 0.00004998). The graph shows that `white` applicants receive a callback more often than `black` applicants do and the hypothesis test shows that this is statistically significant.
 
 ### Additional Analysis
 
@@ -136,17 +147,13 @@ ggplot(data = resume_firstname, aes(x = gender_race, y = propcallback)) +
   geom_label_repel(data = label_df, aes(label = firstname))
 ```
 
-### Exercises {#exercise-15-1}
+__Exercise 1__. Construct a graphic or make a table that explores whether one of the other variables in the data set is associated with whether the applicant receives a callback for the job. Other variables include `gender`, `years_college`, `college_degree`, `honors`, `worked_during_school`, `years_experience`, `computer_skills`, `special_skills`, `volunteer`, `military`, `employment_holes`, and `resume_quality`.
 
-Exercises marked with an \* indicate that the exercise has a solution at the end of the chapter at \@ref(solutions-15).
+__Exercise 2__. Construct a graphic or make a table that explores one of the other variables in the data set is associated with whether the applicant receives a callback for the job. If your variable in Exercise 1 was categorical, choose a quantitative variable for this exercise. If your variable in Exercise 1 was quantitative, choose a categorical variable for this exercise.
 
-1. Construct a graphic or make a table that explores whether one of the other variables in the data set is associated with whether the applicant receives a callback for the job. Other variables include `gender`, `years_college`, `college_degree`, `honors`, `worked_during_school`, `years_experience`, `computer_skills`, `special_skills`, `volunteer`, `military`, `employment_holes`, and `resume_quality`.
+__Exercise 3__. For the categorical variable that you chose, conduct a Chi-square test of association to see if there is statistical evidence that the variable is associated with `received_callback`. In your test, (a), write the null and alternative hypotheses, run the test in `chisq.test()` and make a note of whether or not you get a warning about assumptions for the test, and write a conclusion in context of the problem.
 
-2. Construct a graphic or make a table that explores one of the other variables in the data set is associated with whether the applicant receives a callback for the job. If your variable in Exercise 1 was categorical, choose a quantitative variable for this exercise. If your variable in Exercise 1 was quantitative, choose a categorical variable for this exercise.
-
-3. For the categorical variable that you chose, conduct a Chi-square test of association to see if there is statistical evidence that the variable is associated with `received_callback`. In your test, (a), write the null and alternative hypotheses, run the test in `chisq.test()` and make a note of whether or not you get a warning about assumptions for the test, and write a conclusion in context of the problem.
-
-4. Write a short, one paragraph summary on your major take-aways from this section.
+__Exercise 4__. Write a short, one paragraph summary on your major take-aways from this section.
 
 ## STAT 213
 
@@ -156,7 +163,7 @@ For this section, however, we will focus more on a tidy approach to modeling. In
 
 We will use the `coffee_ratings` data set, which contains observations on ratings of various coffees throughout the world. The data was obtained from the Github account (<https://github.com/rfordatascience/tidytuesday/blob/master/data/2020/2020-07-07/readme.md>). 
 
- A description of each variable in the data set is given below.
+A description of each variable in the data set is given below.
 
 * `total_cup_points`, the score of the coffee by a panel of experts (our response variable for this section)
 * `species`, the species of the coffee bean (Arabica or Robusta)
@@ -358,37 +365,17 @@ ggplot(data = coffee_noout, aes(x = flavor, y = total_cup_points)) +
   scale_colour_viridis_d() +
   labs(colour = "Aroma") +
   theme_minimal()
-
-# grid <- coffee_noout |>
-#   modelr::data_grid(
-#     flavor = quantile(aroma),
-#     aroma = quantile(flavor), 
-#   ) |>
-#   modelr::gather_predictions(coffee_fa_int)
-# coffee_noout <- coffee_noout |> mutate(flavor_cut = cut(flavor, breaks = 5))
-# ggplot(data = coffee_noout, aes(x = aroma, y = total_cup_points)) +
-#   geom_point(alpha = 0.2, aes(colour = flavor_cut)) +
-#   geom_smooth(aes(colour = flavor_cut), method = "lm", fullrange = TRUE, se = FALSE) +
-#   scale_colour_viridis_d() +
-#   theme_minimal()
 ```
 
 From the plot, we can understand the nature of the interaction a little better. It looks like, no matter what the value of `aroma`, `flavor` and `total_cup_points` have a positive association. But, for larger  values of `aroma`, the slope is smaller while, for smaller values of `aroma`, the slope is larger. The model says that, when `aroma` is small, we would expect a larger increase in `total_cup_points` (on average) for a one point increase in `flavor` while, when `aroma` is large, we would expect a smaller increase in `total_cup_points` (on average) for a one point increase in `flavor`.
 
+__Exercise 1__. Add a couple of more predictors to the linear model that we fit earlier. Then, use `glance()` to obtain some model fit statistics. Which model is "better" according to some of the metrics you learned about in STAT 213?
 
-### Exercises {#exercise-15-2}
+__Exercise 2__. For one of your fitted models, construct a histogram of the residuals to assess the normality assumption (using `ggplot2` and `augment()`).
 
-Exercises marked with an \* indicate that the exercise has a solution at the end of the chapter at \@ref(solutions-15).
+__Exercise 3__. Make a table of the 5 coffees that have the highest __predicted__ coffee rating, according to one of your models.
 
-1. Add a couple of more predictors to the linear model that we fit earlier. Then, use `glance()` to obtain some model fit statistics. Which model is "better" according to some of the metrics you learned about in STAT 213?
-
-2. For one of your fitted models, construct a histogram of the residuals to assess the normality assumption (using `ggplot2` and `augment()`).
-
-3. Make a table of the 5 coffees that have the highest __predicted__ coffee rating, according to one of your models.
-
-4. Re-examine the interaction model plot that had `total_cup_points` on the y-axis, `flavor` on the x-axis, and coloured lines for `aroma`. Change the plotso that, `aroma` is on the x-axis and the five coloured lines correspond to the quantiles of `flavor`. This allows us to explore how the association between `total_cup_points` and `aroma` changes for different values of `flavor`.
-
-5. Write a short, one paragraph summary on your major take-aways from this section.
+__Exercise 4__. Write a short, one paragraph summary on your major take-aways from this section.
 
 ## CS 140
 
@@ -422,7 +409,13 @@ SLU_Hitting |> select(wOBA, everything()) |> arrange(desc(wOBA))
 
 ### Functions
 
-Now, suppose that we might want to repeat the scraping and calculation of `wOBA` for other years at SLU or for other teams. We could, of course, obtain the new URL address and copy and paste the code that we used above, replacing the old URL address with the new one. This would be a reasonable thing to do if we only wanted to do this for _one_ other url. But, if we wanted to do this for 10, 20, 50, 1000, urls, we might consider writing a function to scrape the data and calculate the `wOBA`.
+Now, suppose that we might want to repeat the scraping and calculation of `wOBA` for other years at SLU or for other teams. 
+
+::: {.callout-note}
+## Note
+
+We could, of course, obtain the new URL address and copy and paste the code that we used above, replacing the old URL address with the new one. This would be a reasonable thing to do if we only wanted to do this for _one_ other url. But, if we wanted to do this for 10, 20, 50, 1000, urls, we might consider writing a function to scrape the data and calculate the `wOBA`.
+:::
 
 The format of a function in `R` is:
 
@@ -453,7 +446,13 @@ Now, let's test our function on the numeric vector `c(2, 4, 1)`
 get_sum_squares(x_vec = c(2, 4, 1))
 ```
 
-Now, we will move back to our example. We want to write a function called `get_hitting_data` that takes a `url_name`, scrapes the data from that url, and calculates the `wOBA` from the variables that were scraped. Note that our function will only work on urls that contain a data table formatted with the various baseball statistics as column names.
+Now, we will move back to our example. We want to write a function called `get_hitting_data` that takes a `url_name`, scrapes the data from that url, and calculates the `wOBA` from the variables that were scraped. 
+
+::: {.callout-note}
+## Note
+
+Our function will only work on urls that contain a data table formatted with the various baseball statistics as column names.
+:::
 
 To create this function, we can simply copy and paste the code above and replace the SLU url web address with the argument `url_name` in the body of the function.
 
@@ -560,11 +559,7 @@ hitting_ll |> group_by(school_name) |>
   select(Player, school_name, AB)
 ```
 
-### Exercises {#exercise-15-3}
-
-Exercises marked with an \* indicate that the exercise has a solution at the end of the chapter at \@ref(solutions-15).
-
-The code below scrapes data from a wikipedia page listing the billboard end of year "hot 100" songs for the year 2021
+Examine the code below scrapes data from a wikipedia page listing the billboard end of year "hot 100" songs for the year 2021.
 
 ```{r}
 library(rvest)
@@ -582,11 +577,11 @@ billboard_df <- billboard_tab[[1]] |> html_table() |>
 billboard_df
 ```
 
-1. Wrap the code above in a function that scrapes data from Wikipedia for a user-provided `year_scrape` argument.
+__Exercise 1__. Wrap the code above in a function that scrapes data from Wikipedia for a user-provided `year_scrape` argument.
 
-2. Create either a vector of the years 2014 through 2021 or a list of the years 2014 through 2021. Use your vector or list, along with the function you wrote in Exercise 1 and the `map()` function, to scrape data tables from each year.
+__Exercise 2__. Create either a vector of the years 2014 through 2021 or a list of the years 2014 through 2021. Use your vector or list, along with the function you wrote in Exercise 1 and the `map()` function, to scrape data tables from each year.
 
-3. Combine the data frames you scraped in Exercise 2 with `bind_rows()` and use the combined data set to figure out which artist appears the highest number of times in the billboard hot 100 list within the years 2014 through 2021. To save time, once you have the data frames combined you should be able to do something like:
+__Exercise 3__. Combine the data frames you scraped in Exercise 2 with `bind_rows()` and use the combined data set to figure out which artist appears the highest number of times in the billboard hot 100 list within the years 2014 through 2021. To save time, once you have the data frames combined you should be able to do something like:
 
 ```{r, eval = FALSE, echo = TRUE}
 combined_df |> group_by(`Artist(s)`) |>
@@ -594,27 +589,9 @@ combined_df |> group_by(`Artist(s)`) |>
   arrange(desc(n_appear))
 ```
 
-4. \* Note that your solution to Exercise 3 is likely imperfect because of songs that feature another musical artist. Why would such songs present a problem in counting the number of songs for each artist?
+__Exercise 4__. Write a short, one paragraph summary on your major take-aways from this section.
 
-5. Write a short, one paragraph summary on your major take-aways from this section.
+## Practice
 
-## Chapter Exercises {#chapexercise-15}
+There are no practice exercises for this section on connections to STAT 113, STAT 213, and CS 140.
 
-There are no chapter exercises for this section on connections to STAT 113, STAT 213, and CS 140.
-
-## Exercise Solutions {#solutions-15}
-
-### STAT 113 S
-
-### STAT 213 S
-
-### CS 140 S
-
-4. \* Note that your solution to Exercise 3 is likely imperfect because of songs that feature another musical artist. Why would such songs present a problem in counting the number of songs for each artist?
-
-When we `group_by()` musical artist and use our counting function `n()`, the artist by themselves and the artist featuring the other musician would be counted separately in our table.
-
-## Non-Exercise `R` Code {#rcode-15}
-
-```{r ref.label=knitr::all_labels(appendix == TRUE), echo=TRUE, eval=FALSE}
-```

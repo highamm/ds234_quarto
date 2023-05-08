@@ -1,4 +1,9 @@
-# Merging with `dplyr` {#mergin}
+# Merging with `dplyr` {#merging}
+
+```{r}
+#| echo: false
+source("_common.R")
+```
 
 __Goals:__
 
@@ -39,13 +44,7 @@ To combine results from both data sets,
 atp_df <- bind_rows(atp_2018, atp_2019)
 ```
 
-What happens? Can you fix the error? __Hint__: run
-
-```{r, eval = FALSE, appendix = TRUE}
-spec(atp_2018)
-```
-
-to get the full column specifications and use your `readr` knowledge to change a couple of the column types. We also did not discuss this, but, when using the `col_type` argument in `read_csv()`, you don't need to specify all of the column types. Just specifying the ones that you want to change works too. The following code forces the seed variables in the 2018 data set to be characters.
+The issue is that the `winner_seed` and `loser_seed` variables are of different variable classes in the `atp_2018` data vs. the `atp_2019` data. The following code forces the seed variables in the 2018 data set to be characters.
 
 ```{r, message = FALSE, appendix = TRUE}
 atp_2018 <- read_csv(here("data/atp_matches_2018.csv"),
@@ -72,13 +71,11 @@ df_test2b <- tibble(xvar = c(1, 2), y = c(5, 1))
 bind_rows(df_test2a, df_test2b)
 ```
 
-Is this the behavior you would expect?
-
-<br>
+We can see from this toy example that, if a variable is missing entirely in one of the data sets we are binding together, then `NA` values are filled in for that variable.
 
 ### Binding Columns with `bind_cols()`
 
-We won't spend much time talking about how to bind together columns because it's generally a little dangerous. 
+`bind_cols()` combines two data sets by combining their columns into one data set. We won't spend much time talking about how to bind together columns because it's generally a little dangerous. 
 
 We will use a couple of test data sets, `df_test1a` and `df_test1b`, to see it in action:
 
@@ -88,13 +85,7 @@ df_test1b <- tibble(x = c(1, 2), y = c(5, 1))
 bind_cols(df_test1a, df_test1b)
 ```
 
-For a larger data set, why might this be a dangerous way to combine data? What must you be sure of about the way the data was collected in order to combine data in this way?
-
-### Exercises {#exercise-10-1}
-
-Exercises marked with an \* indicate that the exercise has a solution at the end of the chapter at \@ref(solutions-10).
-
-1. \* Run the following and explain why `R` does not simply stack the rows. Then, fix the issue with the `rename()` function.
+__Exercise 1__. Run the following and explain why `R` does not simply stack the rows. Then, fix the issue with the `rename()` function.
 
 ```{r}
 df_test1a <- tibble(xvar = c(1, 2), yvar = c(5, 1))
@@ -117,7 +108,7 @@ df2 <- tibble(name = c("Tonya", "Miguel", "Emily"),
 
 Our goal is to combine the two data sets so that the people's favorite sports and favorite colours are in one data set.
 
-Identify the `key` in the example above. Why can we no longer use `bind_cols()` here?
+Identify the `key` in the example above. 
 
 ### Keep All Rows of Data Set 1 with `left_join()`
 
@@ -133,6 +124,7 @@ library(babynames)
 life_df <- babynames::lifetables
 birth_df <- babynames::births
 babynames_df <- babynames::babynames
+
 head(babynames)
 head(births)
 head(lifetables)
@@ -182,57 +174,24 @@ inner_join(babynames_df, birth_df, by = c("year" = "year"))
 
 ### Which `xxxx_join()`?
 
-Which join function we use will depend on the context of the data and what questions you will be answering in your analysis. Most importantly, if you're using a `left_join()`, `right_join()` or `inner_join()`, you're potentially cutting out some data. It's important to be aware of what data you're omitting. For example, with the `babynames` and `births` data, we would want to keep a note that a `left_join()` removed all observations before 1909 from joined data set. 
+Which join function we use will depend on the context of the data and what questions you will be answering in your analysis. 
 
-### The Importance of a Good Key
+::: {.callout-important}
+## Important
 
-The key variable is very important for joining and is not always available in a "perfect" form. Recall the college majors data sets we have, called `slumajors_df`, which information on majors at SLU. Another data set, `collegemajors_df`, has different statistics on college majors nationwide. There's lots of interesting variables in these data sets, but we'll focus on the `Major` variable here. Read in and examine the two data sets with:
+Most importantly, if you're using a `left_join()`, `right_join()` or `inner_join()`, you're potentially cutting out some data. It's important to be aware of what data you're omitting. For example, with the `babynames` and `births` data, we would want to keep a note that a `left_join()` removed all observations before 1909 from joined data set. 
+:::
 
-```{r, message = FALSE, appendix = TRUE}
-slumajors_df <- read_csv(here("data/SLU_Majors_15_19.csv"))
-collegemajors_df <- read_csv(here("data/college-majors.csv"))
-head(slumajors_df)
-head(collegemajors_df)
-```
-
-The most logical key for joining these two data sets is `Major`,  but joining the data sets won't actually work. The following is an attempt at using `Major` as the key.
-
-```{r, appendix = TRUE}
-left_join(slumajors_df, collegemajors_df, by = c("Major" = "Major"))
-```
-
-Why did the `collegemajors_df` give only `NA` values when we tried to merge by major?
-
-This example underscores the importance of having a key that matches __exactly__. Some, but not all, of the issues involved in joining these two data sets can be solved with functions in the `stringr` package (discussed in a few weeks). For example, the capitalization issue can be solved with the `str_to_title()` function, which converts that all-caps majors in `collegemajors_df` to majors where only the first letter of each word is capitalized:
-
-```{r, appendix = TRUE}
-collegemajors_df <- collegemajors_df |>
-  mutate(Major = str_to_title(Major))
-left_join(slumajors_df, collegemajors_df)
-```
-
-As we can see, this solves the issue for some majors but others still have different naming conventions in the two data sets.
-
-### Exercises {#exercise-10-2}
-
-Exercises marked with an \* indicate that the exercise has a solution at the end of the chapter at \@ref(solutions-10).
-
-1. Examine the following two joins that we've done, and explain why one resulting data set has fewer observations (rows) than the other.
+__Exercise 2__. Examine the following two joins that we've done, and explain why one resulting data set has fewer observations (rows) than the other.
 
 ```{r}
 left_join(babynames_df, birth_df, by = c("year" = "year"))
 left_join(birth_df, babynames_df, by = c("year" = "year"))
 ```
 
-2. Evaluate whether the following statement is true or false: an `inner_join()` will always result in a data set with the same or fewer rows than a `full_join()`.
-
-3. Evaluate whether the following statement is true or false: an `inner_join()` will always result in a data set with the same or fewer rows than a `left_join()`.
-
-4. Evaluate whether the following statement is true or false: a `left_join()` will always result in a data set with the same number of rows as a `semi_join()` on the same two data sets.
-
 ## Filtering Joins
 
-Filtering joins (`semi_join()` and `anti_join()`) are useful if you would only like to keep the variables in one data set, but you want to filter out observations by a variable in the second data set.
+Filtering joins (`semi_join()` and `anti_join()`) are useful if we would only like to keep the variables in one data set, but we want to filter out observations by a variable in the second data set.
 
 Consider again the two data sets on men's tennis matches in 2018 and in 2019.
 
@@ -264,7 +223,11 @@ tennis_2019_10 <- semi_join(atp_2019, win10,
 tennis_2019_10$winner_name
 ```
 
-Note that this only keeps the matches in 2019 where the __winner__ had 10 or more match wins in 2018. It drops any matches where the __loser__ lost against someone who did not have 10 or more match wins in 2018. So this isn't yet perfect and would take a little more thought into which matches we actually want to keep for a particular analysis.
+::: {.callout-note}
+## Note
+
+This strategy only keeps the matches in 2019 where the __winner__ had 10 or more match wins in 2018. It drops any matches where the __loser__ lost against someone who did not have 10 or more match wins in 2018. So this isn't yet perfect and would take a little more thought into which matches we actually want to keep for a particular analysis.
+:::
 
 ### Filtering with `anti_join()`
 
@@ -286,9 +249,7 @@ new_winners |> group_by(winner_name) |>
 
 The filtering join functions are useful if you want to filter out observations by some criterion in a different data set.
 
-### Exercises {#exercise-10-3}
-
-1. Examine the following data sets (the first is `df1` and the second is `df2`) and then, without running any code, answer the following questions.
+__Exercise 3__. Examine the following data sets (the first is `df1` and the second is `df2`) and then, without running any code, answer the following questions.
 
 ```{r, echo = FALSE, results = "show"}
 df1 <- tibble(id = c("A", "B", "C", "E", "F"), xvar = c(1, 2, 3, 1, 2))
@@ -300,41 +261,84 @@ pander(df2)
 
 a. How many rows would be in the data set from `left_join(df1, df2, by = c("id" = "id"))`?
 
-```{r, echo = FALSE}
-## 5 
-```
-
 b. How many rows would be in the data set from `left_join(df2, df1, by = c("id" = "id"))`?
-
-```{r, echo = FALSE}
-## 6
-```
 
 c. How many rows would be in the data set from `full_join(df1, df2, by = c("id" = "id"))`?
 
-```{r, echo = FALSE}
-## 8
-```
-
 d. How many rows would be in the data set from `inner_join(df1, df2, by = c("id" = "id"))`?
-
-```{r, echo = FALSE}
-## 3
-```
 
 e. How many rows would be in the data set from `semi_join(df1, df2, by = c("id" = "id"))`?
 
-```{r, echo = FALSE}
-## 3
-```
-
 f. How many rows would be in the data set from `anti_join(df1, df2, by = c("id" = "id"))`?
 
-```{r, echo = FALSE}
-## 2
+## Practice
+
+### Class Exercises
+
+__Class Exercise 1__. Why might `bind_cols()` be a dangerous way to combine data? What must you be sure of about the way the data was collected in order to combine data in this way?
+
+__Class Exercise 2__. The key variable is very important for joining and is not always available in a "perfect" form. Recall the college majors data sets we have, called `slumajors_df`, which information on majors at SLU. Another data set, `collegemajors_df`, has different statistics on college majors nationwide. There's lots of interesting variables in these data sets, but we'll focus on the `Major` variable here. Read in and examine the two data sets with:
+
+```{r, message = FALSE, appendix = TRUE}
+slumajors_df <- read_csv(here("data/SLU_Majors_15_19.csv"))
+collegemajors_df <- read_csv(here("data/college-majors.csv"))
+head(slumajors_df)
+head(collegemajors_df)
 ```
 
-2. Examine the following data sets (the first is `df3` and the second is `df4`) and then, without running any code, answer the following questions. This question is a step up in challenge from Exercise 9 because a few of the levels of the `id` key have duplicates.
+a. Attempt to join the two data sets together with a key.
+
+b. Why did the `collegemajors_df` give only `NA` values when we tried to join by major?
+
+::: {.callout-note}
+## Note
+
+This example underscores the importance of having a key that matches __exactly__. Some, but not all, of the issues involved in joining these two data sets can be solved with functions in the `stringr` package (discussed in a few weeks). But, the underlying problem remains and, if we wanted to combine the two data sets fully, we would need to recode some of the major names by hand.
+:::
+
+__Class Exercise 3__. Read in the gun violence data set, and suppose that you want to add a row to this data set that has the statistics on gun ownership and mortality rate in the District of Columbia (Washington D.C., which is in the NE region, has 16.7 deaths per 100,000 people, and a gun ownership rate of 8.7%). To do so, create a `tibble()` that has a single row representing D.C. and then combine your new `tibble` with the overall gun violence data set. Name this new data set `all_df`.
+
+```{r, message = FALSE}
+library(tidyverse)
+mortality_df <- read_csv(here("data/gun_violence_us.csv"))
+```
+
+```{r, echo = FALSE, results = "hide"}
+dc_df <- tibble(state = "Washington D.C.", mortality_rate = 16.7,
+       ownership_rate = 0.087, region = "NE")
+all_df <- bind_rows(mortality_df, dc_df)
+```
+
+__Class Exercise 4__. Examine the following data sets that are in `R`'s base library on demographic statistics about the U.S. states and state abbreviations:
+
+```{r}
+df1 <- as_tibble(state.x77)
+df2 <- as_tibble(state.abb)
+df1
+df2
+```
+
+Combine the two data sets with `bind_cols()` and name the new data set `states_df`. What are you assuming about the data sets in order to use this function? 
+
+__Class Exercise 5__. Use a join function to combine the mortality data set __with__ D.C. (which we named `all_df`) with the states data set from the previous exercise (`states_df`). For this exercise, keep the row with Washington D.C., having it take on `NA` values for any variable not observed in the states data.
+
+__Class Exercise 6__. Repeat the previous exercise, but now drop Washington D.C. in your merging process. Practice doing this __with a join function__ (as opposed to `slice()`-ing it out explicitly).
+
+__Class Exercise 7__. Use `semi_join()` to create a subset of `states_df` that are in the `NE` region. __Hint__: You will need to filter `all_df` from Exercise 1 first to contain only states in the `NE` region.
+
+__Class Exercise 8__. Do the same thing as in the previous exercise (that is, create a subset of `states_df` that are in the `NE` region), but this time, use `anti_join()`. 
+
+### Your Turn
+
+__Your Turn 1__. In your group, evaluate whether each of the following statements are true or false: 
+
+a. An `inner_join()` will always result in a data set with the same or fewer rows than a `full_join()`.
+
+b. An `inner_join()` will always result in a data set with the same or fewer rows than a `left_join()`.
+
+c. A `left_join()` will always result in a data set with the same number of rows as a `semi_join()` on the same two data sets.
+
+__Your Turn 2__. Examine the following data sets (the first is `df3` and the second is `df4`) and then, without running any code, answer the following questions in your group. Keep in mind that there are some duplicate keys!
 
 ```{r, echo = FALSE, results = "show"}
 df3 <- tibble(id = c("A", "A", "C", "C", "F", "F"), xvar = c(1, 2, 3, 1, 2, 6))
@@ -356,24 +360,7 @@ e. How many rows would be in the data set from `semi_join(df1, df2, by = c("id" 
 
 f. How many rows would be in the data set from `anti_join(df1, df2, by = c("id" = "id"))`?
 
-## Chapter Exercises {#chapexercise-10}
-
-Exercises marked with an \* indicate that the exercise has a solution at the end of the chapter at \@ref(solutions-10).
-
-1. \* Read in the gun violence data set, and suppose that you want to add a row to this data set that has the statistics on gun ownership and mortality rate in the District of Columbia (Washington D.C., which is in the NE region, has 16.7 deaths per 100,000 people, and a gun ownership rate of 8.7%). To do so, create a `tibble()` that has a single row representing D.C. and then combine your new `tibble` with the overall gun violence data set. Name this new data set `all_df`.
-
-```{r, message = FALSE}
-library(tidyverse)
-mortality_df <- read_csv(here("data/gun_violence_us.csv"))
-```
-
-```{r, echo = FALSE, results = "hide"}
-dc_df <- tibble(state = "Washington D.C.", mortality_rate = 16.7,
-       ownership_rate = 0.087, region = "NE")
-all_df <- bind_rows(mortality_df, dc_df)
-```
-
-2. Explain why each attempt at combining the D.C. data with the overall data doesn't work or is incorrect.
+__Your Turn 3__. Examine again the gun violence data set, and explain why each attempt at combining the D.C. data with the overall data doesn't work or is incorrect.
 
 ```{r, error = TRUE, echo = TRUE, results = "hide"}
 test1 <- tibble(state = "Washington D.C.", mortality_rate = 16.7,
@@ -389,143 +376,6 @@ test3 <- tibble(state = "Washington D.C.", mortality_rate = "16.7",
 bind_rows(mortality_df, test3)
 ```
 
-3. Examine the following data sets that are in `R`'s base library on demographic statistics about the U.S. states and state abbreviations:
 
-```{r}
-df1 <- as_tibble(state.x77)
-df2 <- as_tibble(state.abb)
-df1
-df2
-```
-
-Combine the two data sets with `bind_cols()`. What are you assuming about the data sets in order to use this function? 
-
-```{r, echo = FALSE}
-states_df <- bind_cols(df1, df2)
-## assuming that the order of these data sets in base R is the same
-## 
-## (they are, as they all come from the same data base: can look
-## at them with ?state.x77)
-```
-
-4. \* Combine the columns of the states data set you made in Exercise 3 with the mortality data set __without__ Washington D.C.
-
-```{r, echo = FALSE, message = FALSE, results = "hide"}
-bind_cols(mortality_df, states_df)
-```
-
-5. \* Use a join function to combine the mortality data set (`all_df` from Exercise 1) __with__ D.C. with the states data set from Exercise 3 (`states_df`). For this exercise, keep the row with Washington D.C., having it take on `NA` values for any variable not observed in the states data.
-
-```{r, echo = FALSE, message = FALSE, results = "hide"}
-left_join(all_df, states_df, by = c("state" = "value"))
-## or
-full_join(all_df, states_df, by = c("state" = "value"))
-```
-
-6. \* Repeat Exercise 5, but now drop Washington D.C. in your merging process. Practice doing this __with a join function__ (as opposed to `slice()`-ing it out explicitly).
-
-```{r, echo = FALSE, message = FALSE, results = "hide"}
-inner_join(all_df, states_df, by = c("state" = "value"))
-## or
-left_join(states_df, all_df, by = c("value" = "state"))
-```
-
-7. \* Use `semi_join()` to create a subset of `states_df` that are in the `NE` region. __Hint__: You will need to filter `all_df` from Exercise 1 first to contain only states in the `NE` region.
-
-```{r, echo = FALSE, message = FALSE, results = "hide"}
-ne_df <- all_df |> filter(region == "NE")
-semi_join(states_df, ne_df, by = c("value" = "state"))
-```
-
-8. \* Do the same thing as Exercise 7, but this time, use `anti_join()`. __Hint__: You'll need to filter `all_df` in a different way to achieve this.
-
-```{r, echo = FALSE, message = FALSE, results = "hide"}
-notne_df <- all_df |> filter(region != "NE")
-anti_join(states_df, notne_df, by = c("value" = "state"))
-```
-
-<br>
-
-## Exercise Solutions {#solutions-10}
-
-### `bind_rows()` and `bind_cols()` S
-
-1. \* Run the following and explain why `R` does not simply stack the rows. Then, fix the issue with the `rename()` function.
-
-```{r}
-df_test1a <- tibble(xvar = c(1, 2), yvar = c(5, 1))
-df_test1b <- tibble(x = c(1, 2), y = c(5, 1))
-bind_rows(df_test1a, df_test1b)
-```
-
-```{r}
-## This doesn't stack rows because the columns are named differently
-## in the two data sets. If xvar is the same variable as x and 
-## yvar is the same variable as y, then we can rename the columns in
-## one of the data sets:
-
-df_test1a <- df_test1a |> rename(x = "xvar", y = "yvar")
-bind_rows(df_test1a, df_test1b)
-```
-
-### Mutating Joins S
-
-### Filtering Joins S
-
-### Chapter Exercises S {#chapexercise-10-S}
-
-1. \* Read in the gun violence data set, and suppose that you want to add a row to this data set that has the statistics on gun ownership and mortality rate in the District of Columbia (Washington D.C., which is in the NE region, has 16.7 deaths per 100,000 people, and a gun ownership rate of 8.7%). To do so, create a `tibble()` that has a single row representing D.C. and then combine your new `tibble` with the overall gun violence data set. Name this new data set `all_df`.
-
-```{r}
-library(tidyverse)
-mortality_df <- read_csv(here("data/gun_violence_us.csv"))
-```
-
-```{r}
-dc_df <- tibble(state = "Washington D.C.", mortality_rate = 16.7,
-       ownership_rate = 0.087, region = "NE")
-all_df <- bind_rows(mortality_df, dc_df)
-```
-
-4. \* Combine the columns of the states data set you made in Section A Exercise 3 with the mortality data set __without__ Washington D.C.
-
-```{r, message = FALSE, results = "hide"}
-bind_cols(mortality_df, states_df)
-```
-
-5. \* Use a join function to combine the mortality data set __with__ D.C. with the states data set from Exercise 3. For this exercise, keep the row with Washington D.C., having it take on `NA` values for any variable not observed in the states data.
-
-```{r, message = FALSE}
-left_join(all_df, states_df, by = c("state" = "value"))
-## or
-full_join(all_df, states_df, by = c("state" = "value"))
-```
-
-6. \* Repeat Exercise 5, but now drop Washington D.C. in your merging process. Practice doing this __with a join function__ (as opposed to `slice()` ing it out explictly).
-
-```{r}
-inner_join(all_df, states_df, by = c("state" = "value"))
-## or
-left_join(states_df, all_df, by = c("value" = "state"))
-```
-
-7. \* Use `semi_join()` to create a subset of `states_df` that are in the `NE` region. __Hint__: You will need to filter `all_df` first to contain only states in the `NE` region.
-
-```{r}
-ne_df <- all_df |> filter(region == "NE")
-semi_join(states_df, ne_df, by = c("value" = "state"))
-```
-
-8. \* Do the same thing as Exercise 7, but this time, use `anti_join()`. __Hint__: You'll need to filter `all_df` in a different way to achieve this.
-
-```{r}
-notne_df <- all_df |> filter(region != "NE")
-anti_join(states_df, notne_df, by = c("value" = "state"))
-```
-
-## Non-Exercise `R` Code {#rcode-10}
-
-```{r ref.label=knitr::all_labels(appendix == TRUE), echo=TRUE, eval=FALSE}
-```
 
 

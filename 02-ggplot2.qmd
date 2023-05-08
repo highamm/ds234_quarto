@@ -1,12 +1,15 @@
-# Plotting with `ggplot2` {#ggplot2}
+# Plotting with `ggplot2` {#sec-ggplot2}
+
+```{r}
+#| echo: false
+source("_common.R")
+```
 
 __Goals:__
 
-1. Use the `ggplot2` package to make exploratory plots from STAT 113 of a single quantitative variable, two quantitative variables, a quantitative and a categorical variable, a single categorical variable, and two categorical variables.
+* Use the `ggplot2` package to make exploratory plots from STAT 113 of a single quantitative variable, a single categorical variable, two quantitative variables, a quantitative and a categorical variable, two categorical variables, and more than two variables.
 
-1. Use the plots produced to answer questions about the Presidential election data set and the Fitness data set.
-
-1. Further practice running code in `R`.
+* Further practice running code in `R`.
 
 ## Introduction and Basic Terminology
 
@@ -16,45 +19,19 @@ We will begin our data science journey with plotting in the `ggplot2` package. W
 
 1. In an exploratory data analysis, you would typically start by making plots of your data.
 
-1. Plotting can lead us to ask and subsequently investigate interesting questions, as we will see in our first example.
-
-We will first use a data set on the 2000 United States Presidential election between former President George Bush and Al Gore obtained from <a href="http://www.econometrics.com/intro/votes.htm" target="_blank">http://www.econometrics.com/intro/votes.htm</a>. For those unfamiliar with U.S. political elections, it is enough to know that each state is allocated a certain number of "electoral votes" for the president: states award all of their electoral votes to the candidate that receives the most ballots in that state. You can read more about this strange system <a href="https://en.wikipedia.org/wiki/United_States_Electoral_College" target="_blank">on Wikipedia</a>.
-
-Florida is typically a highly-contentious "battleground" state. The data set that we have has the following variables, recorded for each of the 67 counties in Florida:
-
-* `Gore`, the number of people who voted for Al Gore in 2000
-* `Bush`, the number of people who voted for George Bush in 2000
-* `Buchanan`, the number of people who voted for the third-party candidate Buchanan
-* `Nader`, the number of people who voted for the third-party candidate Nader
-* `Other`, the number of people who voted for a candidate other than the previous 4 listed
-* `County`, the name of the county in Florida
-
-To get started exploring the data, complete the following steps that you learned in Week 0:
-
-1. Open your `R Project` by double clicking the `.RProj` icon in the folder on your desktop, or, by opening `R Studio` and clicking `File -> Open Project`.
-
-1. Create a new .qmd file in the same folder as your Notes `R Project` using File -> New File -> `Quarto`.
-
-1. Finally, read in and name the data set `pres_df`, and take a look at the data set by running the `head(pres_df)` line, which shows the first few observations of the data set:
-
-```{r, message = FALSE, warning = FALSE, appendix = TRUE}
-library(tidyverse)
-pres_df <- read_table("data/PRES2000.txt") 
-## don't worry about the `read_table` function....yet
-head(pres_df)
-```
-
-Pay special attention to the variable names: we'll need to use these names when we make all of our plots. And, `R` is case-sensitive, meaning that we will, for example, need to use `Gore`, not `gore`.
-
-We are trying to go very light on the technical code terminology to start out with (but we will come back to some things later in the semester). The terminology will make a lot more sense once you've actually worked with data. But, there are three terms that will be thrown around quite a bit in the next few weeks: _function_, _argument_, and _object_. 
+Throughout the first couple of sections, we will try to go very light on the technical code terminology to start out with (but we will come back to some things later in the semester). The terminology will make a lot more sense once you've actually worked with data. But, there are three terms that will be thrown around quite a bit in the next few weeks: _function_, _argument_, and _object_. 
 
 * a _function_ in `R` is always* (*always for this class) followed by an open `(` and ended with a closed `)`. In non-technical terms, a _function_ __does__ something to its inputs and is often analogous to an English verb. For example, the `mean()` function calculates the mean, the `rank()` functions ranks a variable from lowest to highest, and the `labs()` is used to add labels to a plot. Every function has a help file that can be accessed by typing in `?name_of_function`. Try typing `?mean` in your lower left window.
 
 * an _argument_ is something that goes inside the parentheses in a function. Arguments could include _objects_, or they might not. In the bottom-left window, type `?mean` to view the Help file on this `R` function. We see that `mean()` has 3 arguments: `x`, which is an `R` object, `trim`, and `na.rm`. `trim = 0` is the default, which means that, by default, `R` will not trim any of the numbers when computing the mean.
 
-* an _object_ is something created in `R`, usually with `<-`. So, looking at the code above where we read in the data, `pres_df` is an `R` object. 
+* an _object_ is something created in `R`, usually with `<-`. So, in the code below where we read in the STAT 113 survey data set, `stat113_df` is an `R` object. 
 
-All of this will make more sense as we go through these first couple of weeks. 
+::: {.callout-note}
+## Note
+
+This terminology will make more sense as we go through these first couple of weeks and see some examples.
+:::
 
 ## Basic Plot Structure 
 
@@ -77,115 +54,9 @@ ggplot(data = name_of_data, aes(x = name_of_x_var,
 
 The structure of `ggplot()` plots is based on the Grammar of Graphics <a href="https://www.springer.com/gp/book/9780387245447" target="_blank">https://www.springer.com/gp/book/9780387245447</a>. As with most new things, the components above will be easier to think about with some examples. 
 
-## Graphing a Single Variable
+Throughout this section, we will be using survey data from STAT 113 in the 2018-2019 academic year for many exercises in this section. For those who may not have taken STAT 113 from having AP credit or another reason, the STAT 113 survey is given to all students in STAT 113 across all sections. Some analyses in Intro Stat are then carried out using the survey. 
 
-### Histograms and Frequency Plots for a Quantitative Variable
-
-Let's go ahead and begin our exploration of the data by making a histogram of the number of people who voted for `Gore` in each county. Recall that a histogram is useful if we would like a graph of a single quantitative variable. Copy the following code to an `R` chunk and run the code:
-
-```{r, warning = TRUE, message = TRUE, appendix = TRUE}
-ggplot(data = pres_df, aes(x = Gore)) +
-  geom_histogram(colour = "black", fill = "white") +
-  xlab("Votes for Gore in Florida")
-```
-
-What do the 1e+05, 2e+05, etc. labels on the x-axis mean?
-
-`R` gives us a message to "Pick a better value with `binwidth`" instead of the default `bins = 30`. Add `, bins = 15`  inside the parentheses of `geom_histogram()` to change the number of bins in the histogram.
-
-Change the colour of the inside of the bins to "darkred". Do you think that the colour of the inside of the bins maps to `colour` or `fill`? Try both!
-
-There are a couple of observations with very high vote values. What could explain these large outliers?
-
-<br>
-
-Another graph useful in visualizing a single quantitative variable is a frequency plot. The code to make a frequency plot is given below. We are simply replacing `geom_histogram()` with `geom_freqpoly()`.
-
-```{r, appendix = TRUE}
-ggplot(data = pres_df, aes(x = Gore)) +
-  geom_freqpoly(colour = "black") +
-  xlab("Votes for Gore in Florida") 
-```
-
-The frequency plot is just like a histogram but the counts are connected by a line instead of represented with bins. You can see how they relate by including __both__ a geom_freqpoly() and a geom_histogram() in your plot, though it doesn't make for the prettiest graph:
-
-```{r, appendix = TRUE}
-ggplot(data = pres_df, aes(x = Gore)) +
-  geom_freqpoly(colour = "black") +
-  xlab("Votes for Gore in Florida") +
-  geom_histogram() 
-```
-
-### `R` Code Style
-
-We want our code to be as readable as possible. This not only benefits other people who may read your code (like me), but it also benefits you, particularly if you read your own code in the future. I try to follow the Style Guide in the Advanced `R` book: <a href="http://adv-r.had.co.nz/Style.html" target="_blank">http://adv-r.had.co.nz/Style.html</a>. Feel free to skim through that, but you don't need to worry about it too much: you should be able to pick up on some important elements just from going through this course. You might actually end up having better code style if you _haven't_ had any previous coding experience.
-
-As a quick example of why code style can be important, consider the following two code chunks, both of which produce the same graph.
-
-```{r, eval = FALSE}
-ggplot(data=pres_df,mapping=aes(x=Gore))+geom_histogram(colour="black",fill="white")+
-  xlab("Votes for Gore in Florida")
-```
-
-```{r, eval = FALSE}
-ggplot(data = pres_df, aes(x = Gore)) +
-  geom_histogram(colour = "black", fill = "white") +
-  xlab("Votes for Gore in Florida")
-```
-
-Which code chunk would you want to read two years from now? Which code chunk would you want your classmate/friend/coworker to read? (assuming you like your classmate/friend/coworker....)
-
-### Bar Plots for a Categorical Variable
-
-Recall from STAT 113 that bar plots are useful if you want to examine the distribution of one categorical variable. Side-by-side bar plots or stacked bar plots are plots that are useful for looking at the relationship between two categorical variables. There actually aren't any categorical variables that would be interesting to plot in this data set, so we'll make one, called `winner` using code that we don't need to understand until next week. `winner` will be `"Gore"` if Gore won the county and `"Bush"` if Bush won the county. We'll name this new data set `pres_cat`.
-
-```{r, appendix = TRUE}
-pres_cat <- pres_df |> mutate(winner = if_else(Gore > Bush,
-                                                true = "Gore",
-                                                false = "Bush"))
-pres_cat
-```
-
-Using this data set, we can make a bar plot with `geom_bar()`. The beauty of `ggplot()` is that the code is super-similar to what we used for histograms and frequency plots!
-
-```{r, appendix = TRUE}
-ggplot(data = pres_cat, aes(x = winner)) +
-  geom_bar()
-```
-
-Note that, sometimes, data are in format such that one column contains the _levels_ of the categorical variable while another column contains the counts directly. For example, we can create such a data set using code that we will learn next week:
-
-```{r, appendix = TRUE}
-pres_cat2 <- pres_cat |> group_by(winner) |>
-  summarise(nwins = n())
-pres_cat2
-```
-
-This data set has just two observations and contains a column for the two major presidential candidates and a column for the number of counties that each candidate won. If we wanted to make a barplot showing the number of wins for each candidate, we can't use `geom_bar()`. Predict what the result will be from running the following code.
-
-```{r, fig.keep = "none", appendix = TRUE}
-ggplot(pres_cat2, aes(x = winner)) +
-  geom_bar()
-```
-
-Instead, we can use `geom_col()`, which takes an `x` aesthetic giving the column with names of the levels of our categorical variable, and a `y` aesthetic giving the column with the counts:
-
-```{r, appendix = TRUE}
-ggplot(pres_cat2, aes(x = winner, y = nwins)) +
-  geom_col()
-```
-
-### Exercises {#exercise-2-1}
-
-Exercises marked with an \* indicate that the exercise has a solution at the end of the chapter at \@ref(solutions-2).
-
-1. Change the frequency plot to plot the number of votes for Bush instead of the number for Gore. Are there any obvious outliers in the Bush frequency plot?
-
-2. Do you have a preference for histograms or a preference for frequency plots? Can you think of a situation where one would be more desirable than the other?
-
-3. It looks like Bush won a lot more....does that necessarily mean that Bush won more votes in total in Florida? Why or why not?
-
-We will be using survey data from STAT 113 in the 2018-2019 academic year for many exercises in this section. For those who may not have taken STAT 113 from having AP credit or another reason, the STAT 113 survey is given to all students in STAT 113 across all sections. Some analyses in Intro Stat are then carried out using the survey. 
+Create a new Quarto file. Then, read in the data set by copying and pasting the `R` chunk below into an `R` chunk in your Quarto file.
 
 ```{r, message = FALSE}
 library(tidyverse)
@@ -208,54 +79,151 @@ The data set contains the following variables:
 * `Pulse`, pulse rate, in beats per minute.
 * `SocialMedia`, most used social media platform (Instagram, SnapChat, FaceBook, Twitter, Other, or None).
 
-4. \* Create a histogram of the `Exercise` variable, change the x-axis label to be "Exercise (hours per typical week)", change the number of `bins` to `14`, and change the `fill` of the bins to be "lightpink2" and the outline `colour` of the bins to be black.
+## Introduction to Plotting
 
-5. \* We can change the y-axis of a histogram to be "density" instead of a raw count. This means that each bar shows a __proportion__ of cases instead of a raw count. Google something like "geom_histogram with density" to figure out how to create a y `aes()` to show density instead of count.
+We will now move into making many of the graphics that you saw in STAT 113. We will also introduce some new types of graphs that you might not have seen before. Throughout the section, we will also introduce some of the syntax used in making these plots so that, by the end, you should be able to construct an entire plot on your own.
 
-6. Construct a histogram using a quantitative variable of your choice. Change the `fill` and `colour` using <a href="http://www.stat.columbia.edu/~tzheng/files/Rcolor.pdf" target="_blank">http://www.stat.columbia.edu/~tzheng/files/Rcolor.pdf</a> to help you choose colours. 
+### Single Quantitative Variable
 
-```{r, echo = FALSE, eval = FALSE}
-ggplot(data = stat113_df, aes(x = GPA)) + 
-  geom_histogram(colour = "darkolivegreen", fill = "darkolivegreen3")
+In STAT 113, you probably used a few graphs to explore a single quantitative variable. We will begin with what is probably the most common graph to use in this situation: the __histogram__. The following code creates a histogram for the `GPA` variable in the data set named `stat113_df`.
+
+```{r}
+ggplot(data = stat113_df, aes(x = GPA)) +
+  geom_histogram()
 ```
 
-7. Construct a bar plot for a variable of your choosing. What do you find?
+We can add some function __arguments__ to `geom_histogram()` to make the graph a little more pleasing to the eye. For the following histogram, we are changing the `colour`, `fill`, and the number of `bins` of the histogram of `GPA`:
 
-```{r, echo = FALSE, eval = FALSE}
-ggplot(data = stat113_df, aes(x = Award)) +
+```{r}
+ggplot(data = stat113_df, aes(x = GPA)) +
+  geom_histogram(colour = "black", fill = "white", bins = 17)
+```
+
+Let's note some of the components of the plot:
+
+* `data = stat113_df` tells `R` which data set to use. In this case, we want to use the data set that we read in earlier and named `stat113_df`.
+* `aes(x = GPA)` tells `R` to map the `GPA` variable in `stat113_df` to the `x` axis on the plot. We will come back to `aes()` (aesthetics) in a bit.
+* `geom_histogram()` tells `R` that we want to use the histogram `GEOM` to bin the GPA variable and construct the histogram. The extra options `colour = "black", fill = "white", bins = 17` are options for the plot that change the `colour`, `fill`, and number of `bins` in the histogram.
+
+There are other graphs besides a histogram that we can use to visualize a quantitative variable. Another useful graph is a frequency plot, made with the geom `geom_freqpoly()`. The code to make a frequency plot is given below.
+
+::: {.callout-note}
+## Note
+
+The only thing that changes in the code is the `GEOM`: the data and the fact that we are mapping `GPA` to the `x`-axis remain consistent with the histogram. 
+:::
+
+```{r, appendix = TRUE}
+ggplot(data = stat113_df, aes(x = GPA)) +
+  geom_freqpoly(bins = 15)
+```
+
+The frequency plot is just like a histogram but the counts are connected by a line instead of represented with bins. You can see how they relate by including __both__ a `geom_freqpoly()` and a `geom_histogram()` in your plot 
+
+::: {.callout-important}
+## Important
+
+The code below doesn't make the prettiest graph but it does show how more complex graphs are built with `ggplot()`: by continually adding __layers__ to the plot. 
+:::
+
+```{r, appendix = TRUE}
+ggplot(data = stat113_df, aes(x = GPA)) +
+    geom_histogram(colour = "black", fill = "white", bins = 17) +
+    geom_freqpoly(bins = 15)
+```
+
+__Exercise 1__. Change the variable being plotted in the earlier histogram from `GPA` to another variable in the data set. Note that the variable must be quantitative. The variable names were given earlier in this section, but you can also see the variable names if you type in `stat113_df` in your bottom left window. Also, you can run `names(stat113_df)` in your bottom left window of `R Studio` to obtain all of the variable names in the `stat113_df` data frame.
+
+__Exercise 2__. In the histogram you just created, change the `colour` of the histogram to be `"dodgerblue4"` and the `fill` of the histogram to be `"dodgerblue1"`.
+
+__Exercise 3__. There are a lot of named colours that you can use in `R`. After looking through some at <a href="http://www.stat.columbia.edu/~tzheng/files/Rcolor.pdf" target="_blank">http://www.stat.columbia.edu/~tzheng/files/Rcolor.pdf</a>, change the `colour` and `fill` of the histogram again to be colours of your choice.
+
+### Single Categorical Variable
+
+The most common graph for visualizing a single categorical variable is a __bar plot__. The following code makes a bar plot with the `SocialMedia` variable from the STAT 113 survey. Keep in mind that the data is from 2018 - 2019, before the explosion of Tik Tok!
+
+```{r}
+ggplot(data = stat113_df, aes(x = SocialMedia)) +
   geom_bar()
 ```
 
-8. What format would the STAT 113 data set need to be in to construct your bar plot with `geom_col()` instead of `geom_bar()`?
+Note the syntax used to create the plot: we still are specifying `data`, the name of the data set used (`stat113_df`) and we still are mapping a variable (`SocialMedia`) to the `x` axis of the plot. `geom_bar()` is the GEOM used to create a bar plot.
 
-## Graphing Two Quantitative Variables, Faceting, and `aes()` Options
+For a single categorical variable, bar plots are by far the most common plot to make so we won't discuss any other plots here.
 
-### Scatterplots
+__Exercise 4__. Choose another categorical variable to plot, and change `x = SocialMedia` to `x = name_of_your_variable`.
 
-Moving back to the 2000 presidential election data set, thus far, we've figured out that there a couple of counties with very large numbers of votes for Gore and very large number of votes for Bush. We don't know the reason for this (if some counties are very democratic, very republican, or if some counties are just more populous). Do the counties that have a large number of votes for Bush also tend to have a large number of votes for Gore? And what about the other candidates: do they have any interesting patterns?
+__Exercise 5__. `geom_bar()` also has `colour` and `fill` options just like `geom_histogram()` did. Add these arguments into `geom_bar()` in the plot you just created. You can choose whichever colours you want for `colour` and `fill`!
 
-Let's start by making a scatterplot of the number of votes for Gore and the number of votes for Bush. Note that the `geom_` for making a scatterplot is called `geom_point()` because we are adding a layer of points to the plot.
+### Two Variables: Both Categorical 
+
+To explore the relationship between two categorical variables, we can construct a stacked barplot. Let's look at the relationship between `Year` and `SocialMedia` first using two versions of a stacked bar plot: one stacked bar plot of the raw counts and one stacked bar plot of proportions.
+
+To make a stacked bar plot of raw counts, we map the `SocialMedia` variable to the `fill` aesthetic:
 
 ```{r, appendix = TRUE}
-ggplot(data = pres_df, aes(x = Gore, y = Bush)) +
-  geom_point()
+ggplot(data = stat113_df, aes(x = Year, fill = SocialMedia)) +
+  geom_bar() 
 ```
 
-What patterns do you see in the scatterplot?
+Because the number of students from each class are drastically different, it is difficult to read the distribution of `SocialMedia` preference for the levels of class Year with fewer students (Juniors and Seniors). Changing the y-axis from a count to a __proportion__ of students who prefer that particular `SocialMedia` within each class year can help mitigate this problem:
 
-Now, change the x variable from `Gore` to `Buchanan`. You should notice something strange in this scatterplot. Try to come up with one explanation for why the outlying point has so many votes for `Buchanan`.
+```{r}
+ggplot(data = stat113_df, aes(x = Year, fill = SocialMedia)) +
+  geom_bar(position = "fill") +
+  labs(y = "Proportion")
+```
 
-In trying to come up with an explanation, it would be nice to figure out which Florida county has that outlying point and it would be nice if we knew something about Florida counties. To remedy the first issue, recall that we can type `View(pres_df)` to pull up the data set. Once you have the new window open, click on the column heading `Buchanan` to sort the votes for Buchanan from high to low to figure out which county is the outlier.
+We will not worry too much about the `position = "fill"` argument needed to make this change at this point. But, do note that, (1) with the proportion graph, we no longer see the sample size and (2) we've added `labs(y = "Proportion")` to change the y-axis label of the graph.
 
-Use some Google sleuthing skills to find an explanation: try to search for "2000 united states presidential election [name of outlier county]". Write a sentence about what you find. Hint: if nothing useful pops up, try adding the term "butterfly ballot" to your search.
+__Exercise 6__. Change __both__ the `x` and `fill` variables to be two other categorical variables from the STAT 113 data set. Your new plot can either be of the raw counts or of the proportion. Write a one sentence interpretation of any findings from your new plot.
 
-<br>
+### Two Variables: One Cat. and One Quant.
 
-We have used the 2000 Presidential data set to find out something really interesting! In particular, we have used _exploratory data analysis_ to examine a data set, without having a specific question of interest that we want to answer. This type of exploring is often really useful, but does have some drawbacks, which we will discuss later in the semester.
+If we are interested in exploring the relationship between a categorical variable and a quantitative variable, side-by-side boxplots can be useful. Let's stick with the STAT 113 survey data to examine the relationship between `Exercise`, the amount of exercise in hours per week and `Award` preference.
 
-### Aesthetics in `aes()`
+```{r, appendix = TRUE}
+ggplot(data = stat113_df, aes(x = Award, y = Exercise)) +
+  geom_boxplot()
+```
 
-For the remainder of this chapter, we will work with some fitness data collected from my Apple Watch since November 2018. The `higham_fitness_clean.csv` contains information on the following variables:
+::: {.callout-note}
+## Note
+
+Again, examine the consistency in the syntax: we specify `data` to be the name of the data set, we map `Award` to the `x` axis, `Exercise` to the `y` axis, and we provide a relevant `GEOM`, `geom_boxplot()`.
+:::
+
+Alternatively, we can make side-by-side violin plots.
+
+```{r, appendix = TRUE}
+ggplot(data = stat113_df, aes(x = Award, y = Exercise)) +
+  geom_violin()
+```
+
+The violin plots are similar to boxplots, but are wider in areas that generally have more data.
+
+A third common option is what is known as a __strip plot__, given below:
+
+```{r}
+ggplot(data = stat113_df, aes(x = Award, y = Exercise)) +
+  geom_jitter(width = 0.10)
+```
+
+The `geom_jitter()` `GEOM` adds a little bit of "noise" to the points that are plotted. In this case, the noise is added to the width and how much noise is added depends on the value of the `width` argument.
+
+::: {.callout-important}
+## Important
+
+One big advantage of a strip plot over a side-by-side boxplots and violin plots is that we can get a rough idea about the sample size in each group in the strip plot.
+:::
+
+__Exercise 7__. Change the side-by-side violin plot to be of a different quantitative variable and a different categorical variable from the `stat113_df` data frame. Write a one sentence interpretation about any findings from your new plot.
+
+__Exercise 8__. To your violin plot in the previous exercise, change the default `colour` and `fill` arguments to be two different colours of your choice.
+
+### Two Quantitative Variables
+
+For this, we will work with some fitness data collected from my Apple Watch since November 2018. The `higham_fitness_clean.csv` contains information on the following variables:
 
 * `Start`, the month, day, and year that the fitness data was recorded on
 * `month`, the month
@@ -268,345 +236,385 @@ For the remainder of this chapter, we will work with some fitness data collected
 * `stepgoal`, whether or not I reached 10,000 steps for the day
 * `weekend_ind`, a variable for whether or not the day of the week was a weekend day (Saturday or Sunday) or a weekday (Monday - Friday).
 
+Read in the data set by putting the following code into an `R` chunk in your Quarto file:
+
 ```{r, appendix = TRUE}
 library(tidyverse)
-fitness_full <- read_csv("data/higham_fitness_clean.csv") |> mutate(weekend_ind = case_when(weekday == "Sat" | weekday == "Sun" ~ "weekend",
-  TRUE ~ "weekday"))
+fitness_full <- read_csv("data/higham_fitness_clean.csv",
+                         col_types = list(stepgoal = col_factor())) |>
+  mutate(weekend_ind = case_when(weekday == "Sat" | weekday == "Sun" ~ "weekend",
+                                 TRUE ~ "weekday"))
 ```
 
-First, let's make a basic scatterplot to illustrate why it's so important to plot your data. I'll use the variable `distance` as the x-variable and `active_cals` as the y-variable.
+By far, the most common plot to visualize the relationship between two quantitative variables is the scatterplot, which is made with the `geom_point()` `GEOM`. Again, in the following code, try to note the similarities in syntax with the previous plots: we still specify the `data` frame that we are using, and we still map variables in that data frame to aesthetics on the plot.
+
+In the following scatterplot, the variable `distance` is the x-variable and `active_cals` is the y-variable.
 
 ```{r, appendix = TRUE}
 ggplot(data = fitness_full, aes(x = distance, y = active_cals)) +
   geom_point()
 ```
 
-One aspect of the plot that you may notice is that there are observations where I burned 0 or very few active calories, yet walked/jogged/ran/moved some distance. Is it possible to not burn any calories and move ~ 4 miles? Probably not, so let's drop these observations from the data set and make a note of why we dropped those observations. Unfortunately, we don't have the tools to do this yet, so just run the following chunk of code without worrying too much about the syntax.
+__Exercise 9__. Do you see anything "odd" about the plot? Make a note of any strange observations that you see.
+
+::: {.callout-tip collapse="true"}
+## Hint
+
+In particular, what about having `0`'s for either `distance` or `active_cals` could indicate a flaw in how the data was collected?
+:::
+
+__Exercise 10__. Change the `x` and `y` variables plotted to two different quantitative variables in the fitness data set. Give a one sentence interpretation of any findings from your new plot. 
+
+::: {.callout-tip collapse="true"}
+## Hint
+
+Recall from STAT 113 that three aspects you might think about are the __strength__ of the relationship (weak, moderate, strong), whether or not the relationship is __linear__, and the __direction__ of the relationship (positive or negative)
+:::
+
+### More Than Two Variables
+
+When constructing a graph involving more than two variables, there are two commonly used strategies: (1) Use another plot aesthetic for the third variable (most commonly a __colour__ aesthetic) and (2) Facet by the third variable.
+
+First, in addition to `x` and `y` aesthetics, we can also use `aes()` to map variables to things like `colour`, `size`, and `shape`. For example, using the STAT 113 data set again, we might make a scatterplot with `Wgt` on the x-axis and `Hgt` on the y-axis, and use the `colour` aesthetic for the `Sex` of the student. In this older version of the STAT 113 survey there are only two levels of `Sex` in the data: `M` and `F`.
 
 ```{r, appendix = TRUE}
-## drop observations that have active calories < 50. 
-## assuming that these are data errors or 
-## days where the Apple Watch wasn't worn.
-fitness <- fitness_full |>
-  filter(active_cals > 50)
+ggplot(data = stat113_df, aes(x = Wgt, y = Hgt, colour = Sex)) +
+  geom_point()
 ```
 
-Let's make the plot again with the `fitness` data set instead of `fitness_full` to see if the outliers are actually gone. This time, we will put the `aes()` in the `geom_point()` function:
+Colour is the most popular aesthetic, but other aesthetics include `shape` (if the third variable is categorical) and `size` (if the third variable is quantitative). Neither of these are particularly useful for this example but examples of using each are given in the next code chunk.
 
-```{r, appendix = TRUE}
-ggplot(data = fitness) +
-  geom_point(aes(x = distance, y = active_cals))
+```{r}
+ggplot(data = stat113_df, aes(x = Wgt, y = Hgt, shape = Sex)) +
+  geom_point()
+ggplot(data = stat113_df, aes(x = Wgt, y = Hgt, size = Exercise)) +
+  geom_point()
 ```
 
-Putting the `aes()` in `ggplot()` and putting the `aes()` in `geom_point()` results in the same graph in this case. When you put the `aes()` in `ggplot()`,  `R` perpetuates these `aes()` aesthetics in all `geom_    `s in your plotting command. However, if you put your `aes()` in `geom_point()`, then any future `geom    `s that you use will need you to re-specify different `aes()`. We'll see an example of this in the exercises.
+A second option for including a third variable in a plot is to __facet__ by that variable using the `facet_wrap()` function. The syntax of `facet_wrap()` is `facet_wrap(~ name_of_faceting_variable)`. 
 
-__Other `aes()` Options__
+::: {.callout-important}
+## Important
 
-In addition to `x` and `y`, we can also use `aes()` to map variables to things like `colour`, `size`, and `shape`. For example, we might make a scatterplot with `Start` on the x-axis (for the date) and `active_cals` on the y-axis, colouring by whether or not the day of the week was a weekend.
+Faceting creates a __subplot__ for each __level__ of the variable that you choose to facet by.
+:::
 
-```{r, appendix = TRUE}
-ggplot(data = fitness) +
-  geom_point(aes(x = Start, y = active_cals, colour = weekend_ind))
-```
+For example, in the following plot, we make a scatterplot of `Hgt` vs. `Wgt` and facet by `Year`. This makes 4 subplots: one for each class `Year`:
 
-Is there anything useful that you notice about the plot? Is there anything about the plot that could be improved?
-
-Instead of using colour, you can also specify the point shape. This could be useful, for example, if you are printing something in black and white.
-
-```{r, appendix = TRUE}
-ggplot(data = fitness) +
-  geom_point(aes(x = Start, y = active_cals, shape = weekend_ind))
-```
-
-Do you prefer the colour or the shape? Why?
-
-Finally, another common `aes()` is `size`. For example, we could make the size of the points in the scatterplot change depending on how many `flights` of stairs I climbed.
-
-```{r, appendix = TRUE}
-ggplot(data = fitness) +
-  geom_point(aes(x = Start, y = active_cals, size = flights))
-```
-
-I don't think any of the previous three plots are necessarily the "best" and need some work, but, part of the fun of exploratory data analysis is making trying out different plots to see what "works."
-
-__Inside vs Outside `aes()`__
-
-We've changed the colour of the points to correspond to `weekend_ind`, but what if we just wanted to change the colour of points to all be the same colour, `"purple"`. Try running the following code chunk:
-
-```{r, appendix = TRUE}
-ggplot(data = fitness) +
-  geom_point(aes(x = Start, y = active_cals, colour = "purple"))
-```
-
-What does the graph look like? Did it do what you expected?
-
-Putting `colour = ____` inside `aes()` or outside `aes()` achieves different things. In general,
-
-* when we want to map something in our data set (`fitness`) to something in our plot (`x`, `y`, `colour`, `size`, etc.), we put that __inside__ the `aes()` as in `geom_point(aes(colour = weekend_ind))`. 
-
-* When we assign fixed characteristics that don't come from the data, we put them __outside__ the `aes()`, as in `geom_point(colour = "purple")`. 
-
-You can also change the overall point size and shape. The standard size is `1` so the following code chunk makes the points bigger. The standard shape is `19`: you can try changing that to other integers to see what other shapes you can get.
-
-```{r, appendix = TRUE}
-ggplot(data = fitness) +
-  geom_point(aes(x = Start, y = active_cals), size = 1.5, shape = 19)
-```
-
-### Using More Than One `geom()`
-
-We might also be interested in fitting a smooth curve to our scatterplot. When we want to put more than one "geom" on our plot, we can use multiple `geoms`. Since I want the `aes()` to apply to __both__ `geom_point()` and `geom_smooth()`, I am going to move the `aes()` command to the overall `ggplot()` line of code:
-
-```{r, appendix = TRUE}
-ggplot(data = fitness, aes(x = Start, y = active_cals)) +
+```{r}
+ggplot(data = stat113_df, aes(x = Wgt, y = Hgt)) +
   geom_point() +
-  geom_smooth(span = 0.3)
-```
-
-Within `geom_smooth()`, you can set `se = FALSE` to get rid of the grey standard errors around each of the lines, and you can set`method = "lm"` to fit straight linear regression lines instead of smooth curves:
-
-```{r, appendix = TRUE}
-ggplot(data = fitness, aes(x = Start, y = active_cals)) +
-  geom_point() +
-  geom_smooth(se = FALSE, method = "lm")
-```
-
-Does it look like there is an increasing overall trend? decreasing? Does it make sense to use a line to model the relationship or did you prefer the smooth curve?
-
-### Line Plots with `geom_line()`
-
-Line plots are often useful when you have a quantitative variable that you'd like to explore over time. The y-axis is the quantitative variable while the x-axis is typically time. More generally, line plots are often used when the x-axis variable has one discrete value for each y-axis variable. For example, suppose we want to explore how my step count has changed through time over the past couple of years. Compare the standard scatterplot with the following line plot: which do you prefer?
-
-```{r, appendix = TRUE}
-ggplot(data = fitness, aes(x = Start, y = steps)) +
-  geom_point() + geom_smooth() + xlab("Date")
-ggplot(data = fitness, aes(x = Start, y = steps)) +
-  geom_line() + geom_smooth() + xlab("Date")
-```
-
-Can you spot the start of the pandemic in the graph? What seemed to happen with the step count?
-
-### Faceting
-
-Using colour to colour points of different levels of a categorical variable is generally fine when there are just a couple of levels and/or there is little overlap among the levels. But, what if there are a lot more than two categories to colour by. For example, let's move back to the STAT 113 survey data set and investigate the relationship between `Pulse` and `Exercise` for different class `Year`'s. We might hypothesize that students who get more exercise tend to have lower pulse rates.
-
-```{r, appendix = TRUE}
-ggplot(data = stat113_df, aes(x = Exercise, y = Pulse,
-                           colour = Year)) +
-  geom_point() +
-  geom_smooth(se = TRUE)
-```
-
-When there are many different categories for a categorical variable (there are only 4 categories for `Year`, but this particular plot is still a bit difficult to read), it can sometimes be useful to `facet` the plot by that variable instead of trying to use different `colour`s or `shape`s.
-
-```{r, appendix = TRUE}
-ggplot(data = stat113_df, aes(x = Exercise, y = Pulse)) +
-  geom_point() +
-  geom_smooth(se = TRUE) +
   facet_wrap(~ Year)
 ```
 
-We have eliminated the `colour = ` argument and added `facet_wrap( ~ name_of_facet_variable)`. Doing so creates a different scatterplot and smooth line for each level of `name_of_facet_variable`. 
+In general, the more levels of the variable there are, the more useful faceting is compared to using a `colour` aesthetic. We will explore this idea more in the Exercises.
 
-What can you see from this plot that was harder to see from the plot with colour?
+__Exercise 11__. In the `fitness_full` data, construct a scatterplot of two of the quantitative variables and facet by one of the categorical variables.
 
-Does the data seem to support the hypothesis that more exercise is associated with lower pulse rates in this sample of students?
+## Practice
 
-### Exercises {#exercise-2-2}
+In general, practice exercises will be split between exercises that will be done together as a class and exercises that you will do in groups or on your own. The purpose of the class exercises is to give some guidance on how we might think logically through some of the code and the results. The purpose of the group exercises and the on your own exercises is so that you have a chance to practice what you've learned with your table or on your own.
 
-Exercises marked with an \* indicate that the exercise has a solution at the end of the chapter at \@ref(solutions-2).
+### Class Exercises
 
-1. Fix the code chunk where we tried to specify the colour of all points to be purple to actually make all of the points "purple" by moving `colour = "purple"` outside the parentheses in `aes()` (but still inside `geom_point()`).
+__Class Exercise 1__. As we progress through the semester, we will pay close attention to the way that our data set is structured. In the earlier bar plot that we made of the `SocialMedia` variable from the `stat113_df` data frame, we had a column called `SocialMedia` where each row represented a student. `geom_bar()` then counts up the total number of times each level appears to make the bar plot. 
 
-2. In the console (bottom-left) window, type `?geom_smooth` and scroll down to "Arguments." Find `span`, read about it, and then, within the  `geom_smooth()` argument of the line plot with steps vs. date, add a `span` argument to make the smooth line wigglier. 
+However, sometimes, data are in format such that one column contains the _levels_ of the categorical variable while another column contains the counts directly. For example, we can create such a data set using code that we will learn next week and name it `stat113_restructured`:
 
-3. Explain why it doesn't make sense to construct a line plot of `Exercise` vs. `GPA`.
-
-4. \* Make a scatterplot of `Hgt` on the y-axis and `Wgt` on the x-axis, colouring by `Sport`. Add a smooth fitted curve to your scatterplot. Then, move `colour = Sport` from an `aes()` in the `ggplot()` function to an `aes()` in the `geom_point()` function. What changes in the plot? Can you give an explanation as to why that change occurs?
-
-5. \* Faceting can be used for other types of plots too! Make a pair of faceted histograms for a quantitative variable of your choosing that are faceted by a categorical variable of your choosing.
-
-<br>
-
-## Boxplots, Stacked Barplots and Others
-
-There are a few other common geoms that will be useful throughout the semester. These only skim the surface: we'll come back to plotting in a few weeks, after we're able to do more with data wrangling and reshaping.
-
-### Graphing a Quant. Variable vs. a Cat. Variable 
-
-Another common plot used in Intro Stat courses is a boxplot. Side-by-side boxplots are particularly useful if you want to compare a quantitative response variable across two or more levels of a categorical variable. Let's stick with the STAT 113 survey data to examine the relationship between `Exercise` and `Award` preference.
-
-```{r, appendix = TRUE}
-ggplot(data = stat113_df, aes(x = Award, y = Exercise)) +
-  geom_boxplot()
+```{r}
+stat113_restructured <- stat113_df |> group_by(SocialMedia) |>
+  summarise(n_social = n())
+stat113_restructured
 ```
 
-What can you conclude from the plot?
+a. Suppose that you attempted to make a bar plot of `SocialMedia` with `stat113_restructured` using `geom_bar()`. Predict what the plot will look like.
 
-<br>
+b. Construct the plot described in (a) to test your prediction.
 
-An alternative to side-by-side boxplots are violin plots:
+c. When the data is structured such that there is a column that uniquely gives the levels of the categorical variable and a second column that gives the count of each level, we typically use the `geom_col()` `GEOM` instead of `geom_bar()`. `geom_col()` uses both an `x` and a `y` aesthetic mapping. Construct the bar plot using `stat113_restructured` with the `geom_col()` `GEOM`.
 
-```{r, appendix = TRUE}
-ggplot(data = stat113_df, aes(x = Award, y = Exercise)) +
-  geom_violin()
+__Class Exercise 2__. To the scatterplot of `distance` vs. `active calories`, add a smoother with the `geom_smooth()` `GEOM`. After adding the smoother, investigate the following arguments: (1) `method`, (2) `se`, and (3) `span`.
+
+::: {.callout-tip collapse="true"}
+## Hint
+
+You can investigate the arguments either by typing `?geom_smooth` in your lower left window or by using Google or ChatGPT.
+:::
+
+__Class Exercise 3__. Another useful `GEOM` for some types of quantitative variables is `geom_line()`, which is often used if the x-axis variable is time. Construct a line plot with the `fitness_full` data to look at how `steps` changes through time.
+
+__Class Exercise 4__. Thus far, we have only faceted by a single variable. With the `stat113_df` data frame, figure out (with the help of Google) how to facet by two variables to make a plot that shows the relationship between GPA (y-axis) and Exercise (x-axis) with four facets: one for male students who play a sport, one for female students who play a sport, one for male students who do not play a sport, and one for female students who do not play a sport.
+
+__Class Exercise 5__. In STAT 113, boxplots are typically introduced using the `*` symbol to identify outliers. Using a combination of the help `?geom_boxplot` and Googling "R point shapes", figure out how to modify your side-by-side boxplots so that the outliers are shown using `*`, not the default dots. 
+
+__Class Exercise 6__. We can change the y-axis of a histogram to be "density" instead of a raw count. This means that each bar shows a __proportion__ of cases instead of a raw count. Google something like "ggplot2 geom_histogram with density" to figure out how to create a y `aes()` to show density instead of count.
+
+### Your Turn
+
+__Your Turn 1__. Suppose that you ask each student in this class the following question: Is your major `Statistics`, `Data Science`, or `Other`. You now want to make a bar plot of your hypothetical data. In pairs, have one person complete part (a) and the second person complete part (b).
+
+a. Sketch out (with pen and paper) how the data would be structured if you were to use `geom_bar()` to make a bar plot of the `Major` variable.
+
+b. Sketch out (with pen and paper) how the data would be structured if you were to use `geom_col()` to make a bar plot of the `Major` variable.
+
+__Your Turn 2__. With a partner, decide on __two__ quantitative variables and __one__ categorical variable from the STAT 113 data set that you are interested in exploring. Have one person complete part (a) and the second person complete part (b).
+
+a. Make a scatterplot that colours the points by the categorical variable.
+
+b. Make a set of faceted scatterplots (that are faceted by the levels of the categorical variable). 
+
+With your partner, decide which of the two graphs is "better" for exploring the three variables and why.
+
+__Your Turn 3__. Repeat the previous exercise with your partner with different variables, but switch parts (so that you will work on (a) if you previously worked on (b) and vice versa).
+
+__Your Turn 4__. Besides strip plots, boxplots, and violin plots, we can also make coloured frequency plots or faceted histograms if we are interested in exploring the relationship between a quantitative variable and a categorical variable. With a partner, decide on one quantitative and one categorical variable that you wish to explore from the `fitness_full` data set. Have one person complete part (a) and the second person complete part (b).
+
+a. Make a coloured frequency plot of the variables you selected (colouring by the levels of the categorical variable).
+
+b. Make a set of faceted histograms (faceting by the categorical variable that you selected).
+
+__Your Turn 5__. In your group, discuss why it would not make sense to construct a line plot of `Exercise` vs. `GPA` from the `stat113_df` data set.
+
+::: {.callout-tip collapse="true"}
+## Hint
+
+What about the `GPA` variable in particular would make construction of a line plot impossible?
+:::
+
+__Your Turn 6__. In your group, discuss why you think `R` gives us a warning message that it "Removed 70 rows containing non-finite values" whenever we make a plot of the `GPA` variable from `stat113_df`. 
+
+__Your Turn 7__. On your own, construct a plot of your choosing, with any variables from either of the data sets we have used so far! Give a one sentence interpretation of your findings from your plot.
+
+__Your Turn 8__. A common theme that we'll see throughout the course is that it's advantageous to know as much background information as possible about the data set we are analyzing. Data sets will be easier to analyze and pose questions about if you're familiar with the subject matter. 
+
+In your group, give an example of something that you know about STAT 113 and the survey data set that helped you answer or pose a question that someone from another university (and therefore unfamiliar with our intro stat course) wouldn't know.
+
+In your group, give an example of something that you don't know about the fitness data set that the person who owns the fitness data would know. Why does that give an advantage to the person who is more familiar with the fitness data?
+
+## Aesthetic Mapping in `ggplot`
+
+__Goals__:
+
+* further use `ggplot2` to construct plots of data
+* explain how aesthetics are used in `ggplot()` and describe the difference between local and global aesthetics.
+
+The purpose of this second section on `ggplot2` is to discuss more about plot aesthetics. While the previous section focused more on basic plot construction, this section will focus more on how the plots are constructed by what is specified in the `aes()` mapping argument.
+
+::: {.callout-important}
+## Important
+
+The aesthetic mappings are what map __variables__ in the data frame we are using to characteristics of the plot.
+:::
+
+Which aesthetic mappings are available depend on the `GEOM` used. Common mappings include `x`, `y`, `colour`, `fill`, `size`, `shape`, and `linewidth`.
+
+However, `colour`, `fill`, `size`, `shape`, and `linewidth` are also things that we commonly change outside of aesthetic mappings. Details of when to put an argument inside of `aes()` or outside of `aes()` are discussed next.
+
+### Inside vs. Outside `aes()`
+
+Examine the following graph of some of the variables in the fitness data set we used in the previous section.
+
+```{r}
+library(tidyverse)
+fitness_full <- read_csv("data/higham_fitness_clean.csv",
+                         col_types = list(stepgoal = col_factor())) |>
+  mutate(weekend_ind = case_when(weekday == "Sat" | weekday == "Sun" ~ "weekend",
+                                 TRUE ~ "weekday"))
+
+ggplot(data = fitness_full,
+       aes(x = Start, y = active_cals, colour = stepgoal)) +
+  geom_point()
 ```
 
-Read about Violin plots by typing `?geom_violin` into your console (bottom-left window). How are they different than boxplots?
+Here, we have used a `colour` aesthetic to map the `stepgoal` variable to `colour`. But, what if we wanted to simply colour all of the points `"blue"`. Try running:
 
-### Graphing Two Categorical Variables
-
-The only combination of two variables that we have yet to explore are two variables that are both categorical. Let's look at the relationship between `Year` and `SocialMedia` first using a stacked bar plot.
-
-To make the graph, we specify `position = "fill"` so that the bars are "filled" by `stepgoal`.
-
-```{r, appendix = TRUE}
-ggplot(data = stat113_df, aes(x = Year, fill = SocialMedia)) +
-  geom_bar(position = "fill") +
-  ylab("Proportion")
+```{r}
+ggplot(data = fitness_full,
+       aes(x = Start, y = active_cals, colour = "blue")) +
+  geom_point()
 ```
 
-What patterns do you notice from the plot? Is there anything about the plot that could be improved?
+What does the graph look like? Did it do what you expected? To actual colour the points `"blue"`, we need to specify `colour = "blue"` __outside__ of `aes()` because `"blue"` is not a variable from the `fitness_full` data frame. Also, when giving non-aesthetic characteristics to a plot, the argument must go with the associated `GEOM`; so, `colour = "blue"` must be an argument to `geom_point()`:
 
-### Exercises {#exercise-2-3}
-
-Exercises marked with an \* indicate that the exercise has a solution at the end of the chapter at \@ref(solutions-2).
-
-1. \* Change the colour of the inside of the boxplots in the Exercise vs. Award graph to be `"blue"`. Do you think you'll use `colour = "blue"` or `fill = "blue"`?
-
-2. \* Create a side-by-side boxplot that compares the `GPA`s of students who prefer different `Award`s. Then change the fill of the boxplot to be a colour of your choice. What do you notice in the plot?
-
-3. \* When making the previous plot, `R` gives us a warning message that it "Removed 70 rows containing non-finite values". This is `R`'s robotic way of telling us that 70 `GPA` values are missing in the data set. Use what you know about how the data was collected (Fall and Spring semester of the 2018-2019 school-year) to guess why these are missing.
-
-4. \* Make a stacked bar plot for two variables of your choosing in the STAT 113 data set. Comment on something that you notice in the plot.
-
-## Chapter Exercises {#chapexercise-2}
-
-Exercises marked with an \* indicate that the exercise has a solution at the end of the chapter at \@ref(solutions-2).
-
-1. \* The default of `geom_smooth()` is to use LOESS (locally estimated scatterplot smoothing). Read about LOESS here: <a href="https://19january2017snapshot.epa.gov/sites/production/files/2016-07/documents/loess-lowess.pdf" target="_blank">here</a>. Write one or two sentences explaining what LOESS does.
-
-2. \* Thus far, we have only faceted by a single variable. Use Google to figure out how to facet by two variables to make a plot that shows the relationship between GPA (y-axis) and Exercise (x-axis) with four facets: one for male students who play a sport, one for female students who play a sport, one for male students who do not play a sport, and one for female students who do not play a sport.
-
-3. \* In Intro-Stat, boxplots are typically introduced using the `*` symbol to identify outliers. Using a combination of the help `?geom_boxplot` and Googling "R point shapes", figure out how to modify your side-by-side boxplots so that the outliers are shown using `*`, not the default dots. Then, using Google, figure out how to add the mean to each boxplot as a "darkgreen" diamond-shaped symbol with `stat_summary()`.
-
-4. A common theme that we'll see throughout the course is that it's advantageous to know as much background information as possible about the data set we are analyzing. Data sets will be easier to analyze and pose questions about if you're familiar with the subject matter. 
-
-Give an example of something that you know about STAT 113 and the survey data set that helped you answer or pose a question that someone from another university (and therefore unfamiliar with our intro stat course) wouldn't know.
-
-Give an example of something that you don't know about the fitness data set that the person who owns the fitness data would know. Why does that give an advantage to the person who is more familiar with the fitness data?
-
-## Exercise Solutions {#solutions-2}
-
-### Introduction  etc. S
-
-### Basic Plot Structure S
-
-### Graphing a Single Variable S
-
-4. \* Create a histogram of the `Exercise` variable, change the x-axis label to be "Exercise (hours per typical week)", change the number of `bins` to `14`, and change the `fill` of the bins to be "lightpink2" and the outline `colour` of the bins to be black.
-
-```{r, echo = TRUE}
-ggplot(data = stat113_df, aes(x = Exercise)) +
-  geom_histogram(bins = 14, fill = "lightpink2", colour = "black") +
-  xlab("Exercise (hours per typical week)")
+```{r}
+ggplot(data = fitness_full,
+       aes(x = Start, y = active_cals)) +
+  geom_point(colour = "blue")
 ```
 
-5. \* We can change the y-axis of a histogram to be "density" instead of a raw count. This means that each bar shows a __proportion__ of cases instead of a raw count. Google something like "geom_histogram with density" to figure out how to create a y `aes()` to show density instead of count.
+To sum up, putting `colour = ____` inside `aes()` or outside `aes()` achieves different things. In general,
 
-```{r, echo = TRUE}
-ggplot(data = stat113_df, aes(x = Exercise, y = ..density..)) +
-  geom_histogram(bins = 14, fill = "lightpink2", colour = "black") +
-  xlab("Exercise (hours per typical week)")
+* when we want to map something in our data set (`fitness_full`) to something in our plot (`x`, `y`, `colour`, `size`, etc.), we put that __inside__ the `aes()` as in `aes(colour = weekend_ind)`. 
+
+* When we assign fixed characteristics (making all points a larger size, widening the width of a line, using a constant colour, etc.) that don't come from the data, we put them __outside__ of `aes()`.
+
+::: {.callout-note}
+## Note
+
+We actually have already used non-aesthetic options in `ggplot()`, though we did not frame them as non-aesthetic options at the time. In the previous section, we often changed the `colour` option and `fill` option to histograms, bar plots, and box plots. These are non-aesthetic options because, again, we are not mapping a variable in the data frame to these arguments.
+:::
+
+__Exercise 1__. The default point `size` is `1.5` while the default point `shape` is `19`. In the following plot, change the defaults so that the points are a little larger than the default and so that the shape is an `X`. Google image search "`R point shapes`" to figure out which integer corresponds to the `X` point shape.
+
+```{r}
+ggplot(data = fitness_full,
+       aes(x = Start, y = active_cals)) +
+  geom_point(size = 1.5, shape = 19)
 ```
 
-### Graphing Two Quant. etc. S
+__Exercise 2__. Use the `linewidth` option in `geom_smooth()` to increase the width of the smoother. Note that the default `linewidth` is `1`.
 
-4. \* Make a scatterplot of `Hgt` on the y-axis and `Wgt` on the x-axis, colouring by `Sport`. Add a smooth fitted curve to your scatterplot. Then, move `colour = Sport` from an `aes()` in the `ggplot()` function to an `aes()` in the `geom_point()` function. What changes in the plot? Can you give an explanation as to why that change occurs?
-
-```{r, warning = FALSE, message = FALSE}
-ggplot(data = stat113_df, aes(x = Wgt, y = Hgt, colour = Sport)) +
+```{r}
+ggplot(data = fitness_full,
+       aes(x = Start, y = active_cals)) +
   geom_point() +
   geom_smooth()
+```
 
-ggplot(data = stat113_df, aes(x = Wgt, y = Hgt)) +
-  geom_point(aes(colour = Sport)) +
+### Local vs. Global Aesthetics
+
+Up until this point, we have always supplied aesthetics __globally__ in the `ggplot()` function. However, there are times when we must override the global aesthetics and change the __locally__ within an individual `GEOM`. 
+
+In the following plot, the __global__ aesthetics `x`, `y`, and `colour` are passed to all further `GEOM`s (`geom_point()` and `geom_smooth()` in this case) unless specifically overridden. So, the plot with global aesthetics
+
+```{r}
+ggplot(data = fitness_full,
+       aes(x = Start, y = active_cals, colour = stepgoal)) +
+  geom_point() +
   geom_smooth()
 ```
 
-The points are now coloured by `Sport` but there is only one smooth fitted line. This makes sense because `geom_point()` now has the two global aesthetics x and y, as well as the colour aesthetic. `geom_smooth()` no longer has the colour aesthetic but still inherits the two global aesthetics, x and y.
-
-5. \* Faceting can be used for other types of plots too! Make a pair of faceted histograms for a quantitative variable of your choosing that are faceted by a categorical variable of your choosing.
-
-Answers will vary:
-
-```{r, warning = FALSE, message = FALSE}
-ggplot(data = stat113_df, aes(x = GPA)) + 
-  geom_histogram(bins = 15) +
-  facet_wrap( ~ Sport)
-```
-
-### Boxplots, Stacked, etc. S
-
-1. \* Change the colour of the inside of the boxplots in the Exercise vs. Award graph to be `"blue"`. Do you think you'll use `colour = "blue"` or `fill = "blue"`?
+is equivalent to the following plot with local aesthetics:
 
 ```{r}
-ggplot(data = stat113_df, aes(x = Award, y = Exercise)) +
-  geom_boxplot(fill = "blue")
+ggplot(data = fitness_full) +
+  geom_point(aes(x = Start, y = active_cals, colour = stepgoal)) +
+  geom_smooth(aes(x = Start, y = active_cals, colour = stepgoal))
 ```
 
-`fill` because it's the inside of the boxplots that we want to modify. `colour` will modify the outline colour. 
+::: {.callout-important}
+## Important
 
-2. \* Create a side-by-side boxplot that compares the `GPA`s of students who prefer different `Award`s. Then change the fill of the boxplot to be a colour of your choice. What do you notice in the plot?
+When we put the `aes()` in `ggplot()` as global aesthetics, `R` perpetuates these `aes()` aesthetics in all further `GEOM`s in your plotting command. 
+:::
+
+As our plots become more complex, we will need to think carefully about whether we want to supply an aesthetic globally or locally. As an example, we can change which aesthetics are supplied globally and which are supplied locally to create a graph that has the points coloured by `stepgoal` but a single smoother and a graph that has smoothers for each level of `stepgoal` but a single point colour:
 
 ```{r}
-ggplot(data = stat113_df, aes(x = Award, y = GPA)) +
-  geom_boxplot(fill = "lightpink1")
+ggplot(data = fitness_full,
+       aes(x = Start, y = active_cals)) +
+  geom_point(aes(colour = stepgoal)) +
+  geom_smooth()
+
+ggplot(data = fitness_full,
+       aes(x = Start, y = active_cals)) +
+  geom_point() +
+  geom_smooth(aes(colour = stepgoal))
 ```
 
-There are a few outlier students, but the three groups overall seem to have similar GPAs.
-
-3. \* When making the previous plot, `R` gives us a warning message that it "Removed 70 rows containing non-finite values". This is `R`'s robotic way of telling us that 70 `GPA` values are missing in the data set. Use what you know about how the data was collected (Fall and Spring semeseter of the 2018-2019 school-year) to guess why these are missing.
-
-STAT 113 has first-year students: first-years taking the course in the fall would not have a GPA to report. Additionally, another reason might be that a student chose not to report his or her GPA.
-
-4. \* Make a stacked bar plot for two variables of your choosing in the STAT 113 data set. Comment on something that you notice in the plot.
-
-Answers will vary.
+__Exercise 3__. Modify the following plot so that the aesthetics are all explicitly given __locally__ to each `GEOM` instead of __globally__.
 
 ```{r}
-ggplot(data = stat113_df, aes(x = Sport, fill = Award)) +
-  geom_bar(position = "fill")
+ggplot(data = fitness_full,
+       aes(x = Start, y = active_cals)) +
+  geom_point() +
+  geom_line()
 ```
 
-As we might expect, it does seem like a higher proportion of students who play a sport would prefer to win an Olympic medal, compared with students who do not play a sport.
+### `R` Code Style
 
-### Chapter Exercises S {#chapexercise-2-S}
+We want our code to be as readable as possible. This not only benefits other people who may read your code (like me), but it also benefits you, particularly if you read your own code in the future. I try to follow the Style Guide in the Advanced `R` book: <a href="http://adv-r.had.co.nz/Style.html" target="_blank">http://adv-r.had.co.nz/Style.html</a>. Feel free to skim through that, but you don't need to worry about it too much: you should be able to pick up on some important elements just from going through this course. You might actually end up having better code style if you _haven't_ had any previous coding experience.
 
-1. \* The default of `geom_smooth()` is to use LOESS (locally estimated scatterplot smoothing). Read about LOESS here: <a href="https://19january2017snapshot.epa.gov/sites/production/files/2016-07/documents/loess-lowess.pdf" target="_blank">here</a>. Write one or two sentences explaining what LOESS does.
+As a quick example of why code style can be important, consider the following two code chunks, both of which produce the same graph.
 
-Loess uses a bunch of local regressions to predict the y-variable at each point, giving more weight to observations near the point of interest on the x-axis. Once this is done for every point, the predictions are connected with a smooth curve. 
-
-2. \* Thus far, we have only faceted by a single variable. Use Google to figure out how to facet by two variables to make a plot that shows the relationship between GPA (y-axis) and Exercise (x-axis) with four facets: one for male students who play a sport, one for female students who play a sport, one for male students who do not play a sport, and one for female students who do not play a sport.
-
-```{r, echo = TRUE}
-ggplot(data = stat113_df |> filter(!is.na(Sport) & !is.na(Sex)),
-  aes(x = Exercise, y = GPA)) + 
-  geom_point() + geom_smooth() +
-  facet_grid(Sex ~ Sport)
+```{r, eval = FALSE}
+ggplot(data=fitness_full,aes(x=Start,y=steps))+geom_point(colour=
+     "darkgreen")+geom_smooth(se=FALSE,colour="black",linewidth=1.4)
 ```
 
-3. \* In Intro-Stat, boxplots are typically introduced using the `*` symbol to identify outliers. Using a combination of the help `?geom_boxplot` and Googling "R point shapes", figure out how to modify your side-by-side boxplots so that the outliers are shown using `*`, not the default dots. 
-
-Then, using Google, figure out how to add the mean to each boxplot as a "darkgreen" diamond-shaped symbol with `stat_summary()`.
-
-```{r, echo = TRUE}
-ggplot(data = stat113_df, aes(x = Sex, y = GPA)) +
-  geom_boxplot(fill = "lightpink1", outlier.shape = 8) +
-  stat_summary(fun = mean, shape = 18, colour = "darkgreen")
+```{r, eval = FALSE}
+ggplot(data = fitness_full,
+       aes(x = Start, y = steps)) +
+  geom_point(colour = "darkgreen") +
+  geom_smooth(se = FALSE, colour = "black", linewidth = 1.4)
 ```
 
-## Non-Exercise `R` Code {#rcode-2}
+Which code chunk would you want to read two years from now? Which code chunk would you want your classmate/friend/coworker to read? (assuming you like your classmate/friend/coworker....)
 
-```{r ref.label=knitr::all_labels(appendix == TRUE), echo=TRUE, eval=FALSE}
+__Exercise 4__. Fix the following code so that the code is more readable.
+
+```{r}
+ggplot(data =fitness_full,
+       aes(x =weekday,y= steps)) +geom_boxplot(fill="coral1",colour ="black")
 ```
+
+__Exercise 5__. Read the very short paper at <a href="https://joss.theoj.org/papers/10.21105/joss.01686" target="_blank">https://joss.theoj.org/papers/10.21105/joss.01686</a> on an Introduction to the `tidyverse`, and answer the questions below in your `Quarto` file. Answer the following questions by typing answers in your .qmd document. Because these answers do not involve code, you should be able to type them into your `.qmd` document outside of a code chunk.
+
+a. What are the two major areas that the `tidyverse` __doesn't__ provide tools for?
+
+b. How do the authors define "tidy"?
+
+c. What does it mean for the `tidyverse` to be "human-centred"?
+
+d. In about 2 sentences, describe the data science "cycle" given in the diagram at the top of page 3. 
+
+## Practice
+
+In general, practice exercises will be split between exercises that will be done together as a class and exercises that you will do in groups or on your own. The purpose of the class exercises is to give some guidance on how we might think logically through some of the code and the results. The purpose of the group exercises and the on your own exercises is so that you have a chance to practice what you've learned with your table or on your own.
+
+For some of these exercises we will again use the `stat113_df` data, described in the previous section.
+
+```{r}
+stat113_df <- read_csv("data/stat113.csv")
+head(stat113_df)
+```
+
+### Class Exercises
+
+__Class Exercise 1__. With the `stat113_df` data, make a scatterplot of `Hgt` on the y-axis and `Wgt` on the x-axis, colouring by `Sport`. Add a smooth fitted curve to your scatterplot. Then, move `colour = Sport` from an `aes()` in the `ggplot()` function to an `aes()` in the `geom_point()` function. What changes in the plot? Can you give an explanation as to why that change occurs?
+
+__Class Exercise 2__. Fix the following plot so that the fill colour of the histogram is `"white"` and the outline colour is `"black"`.
+
+```{r}
+ggplot(data = stat113_df, aes(x = TV)) +
+  geom_histogram(aes(colour = "black", fill = "white"))
+```
+
+### Your Turn
+
+__Your Turn 1__. Suppose you have a generic data frame named `toy_df`, with quantitative variables `xvar` and `yvar`, and categorical variable `groupvar`. In your group, select which of the following plots will result in a scatterplot of `xvar` and `yvar` where there are separate coloured fitted linear regression line for each level of `groupvar` but all of the points are coloured `"purple"`. You may select one, more than one, or none at all.
+
+```{r}
+#| eval: false
+## a
+ggplot(data = toy_df, aes(x = xvar, y = yvar, colour = groupvar)) +
+  geom_point(colour = "purple") +
+  geom_smooth(aes(method = "lm"))
+
+## b
+ggplot(data = toy_df, aes(x = xvar, y = yvar, colour = groupvar)) +
+  geom_point(colour = "purple") +
+  geom_smooth(method = "lm")
+
+## c
+ggplot(data = toy_df, aes(x = xvar, y = yvar)) +
+  geom_point(aes(colour = "purple")) +
+  geom_smooth(method = "lm", colour = groupvar)
+
+## d
+ggplot(data = toy_df, aes(x = xvar, y = yvar)) +
+  geom_point(colour = "purple") +
+  geom_smooth(method = "lm", colour = groupvar)
+
+## e
+ggplot(data = toy_df, aes(x = xvar, y = yvar)) +
+  geom_point(colour = "purple") +
+  geom_smooth(method = "lm", aes(colour = groupvar))
+
+## f
+ggplot(data = toy_df, aes(x = xvar, y = yvar)) +
+  geom_point(aes(colour = "purple")) +
+  geom_smooth(method = "lm", aes(colour = groupvar))
+```
+
+__Your Turn 2__. Choose one of the plots that you selected as "correct" in the previous exercise. In your group, discuss, how the syntax of the plot would change if all aesthetics were supplied __locally__ instead of __globally__? Based on this discussion, when are global aesthetics more useful than local aesthetics?

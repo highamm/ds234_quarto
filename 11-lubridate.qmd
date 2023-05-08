@@ -1,5 +1,10 @@
 # Dates with `lubridate` {#lubridate}
 
+```{r}
+#| echo: false
+source("_common.R")
+```
+
 __Goals__:
 
 * use `lubridate` functions to convert a character variable to a `<date>` variable.
@@ -35,7 +40,7 @@ Which columns were specified as Dates? In this example, none of the columns have
 
 ### From `<chr>` to `<date>`
 
-We will use the `dmy()` series of functions in `lubridate` to convert character variables to dates. We will typically pair this new function with a `mutate()` statement: much like the `forcats` functions, we are almost always __creating__ a new variable.
+We will use the `dmy()` series of functions in `lubridate` to convert character variables to dates. 
 
 There are a series of `dmy()`-type variables, each corresponding to a different Day-Month-Year order. 
 
@@ -44,6 +49,12 @@ There are a series of `dmy()`-type variables, each corresponding to a different 
 * `ydm()` is used to parse a date that has year first, day second, and month last,....
 
 and `dym()`, `mdy()`, and `myd()` work similarly. `lubridate` is usually "smart" and picks up dates in all kinds of different formats (e.g. it can pick up specifying `October` as the month and `Oct` as the month and `10` as the month).
+
+::: {.callout-important}
+## Important
+
+We will typically pair these `lubridate` functions with a `mutate()` statement: much like the `forcats` functions, we are almost always __creating__ a new variable.
+:::
 
 Let's try it out on `Date1` and `Date2`:
 
@@ -59,6 +70,7 @@ __A Reminder__: Why do `<date>` objects even matter? Compare the following two p
 ```{r, appendix = TRUE}
 ggplot(data = holiday_df, aes(x = Date1, y = Holiday)) +
   geom_point()
+
 holiday_df <- holiday_df |> mutate(Date_test_plot = dmy(Date1)) |>
   select(Date_test_plot, everything())
 ggplot(data = holiday_df, aes(x = Date_test_plot, y = Holiday)) +
@@ -89,22 +101,24 @@ holiday_df |> mutate(Date_test2 = make_date(year = Year,
 
 So the `make_date()` function requires a specific format for the year, month, and day columns. It may take a little pre-processing to put a particular data set in that format.
 
-### Exercises {#exercise-11-1}
-
-Exercises marked with an \* indicate that the exercise has a solution at the end of the chapter at \@ref(solutions-11).
-
-1. \* What's the issue with trying to convert `Date4` to a `<date>` form? You may want to investigate `Date4` further to answer this question.
+__Exercise 1__. What's the issue with trying to convert `Date4` to a `<date>` form? You may want to investigate `Date4` further to answer this question.
 
 ```{r}
 holiday_df |> mutate(Date_test = ymd(Date4)) |>
   select(Date_test, everything())
 ```
 
-2. \* Practice converting `Date3` and `Date5` to `<date>` variables with `lubridate` functions.
+__Exercise 2__. Practice converting `Date3` and `Date5` to `<date>` variables with `lubridate` functions.
 
 ## Functions for `<date>` Variables
 
-Once an object is in the `<date>` format, there are some special functions in `lubridate` that can be used on that date variable. To investigate some of these functions, we will pull stock market data from Yahoo using the `quantmod` package. Install the package, and run the following code, which gets stock market price data on Apple, Nintendo, Chipotle, and the S & P 500 Index from 2011 to now. Note that you have the ability to understand all of the code below, but we will skip over this code for now to focus more on the new information in this section (information about date functions).
+Once an object is in the `<date>` format, there are some special functions in `lubridate` that can be used on that date variable. To investigate some of these functions, we will pull stock market data from Yahoo using the `quantmod` package. Install the package, and run the following code, which gets stock market price data on Apple, Nintendo, Chipotle, and the S & P 500 Index from 2011 to now. 
+
+::: {.callout-note}
+## Note
+
+We have the ability to understand all of the code below, but we will skip over this code for now to focus more on the new information in this section (information about date functions).
+:::
 
 ```{r, message = FALSE, appendix = TRUE}
 ## install.packages("quantmod")
@@ -136,7 +150,7 @@ stocks_long <- all_stocks |>
 tail(stocks_long)
 ```
 
-You'll have a chance in the Exercises to choose your own stocks to investigate. For now, I've made a data set with three variables:
+You'll have a chance in class to choose your own stocks to investigate. For now, we've made a data set with three variables:
 
 * `start_date`, the opening date for the stock market
 * `Stock_Type`, a factor with 4 levels: `Apple`, `Nintendo`, `Chipotle`, and `S & P 500`
@@ -154,7 +168,13 @@ But, there's other information that we can get from the `start_date` variable. W
 
 ### `year()`, `month()`, and `mday()` 
 
-The functions `year()`, `month()`, and `mday()` can grab the year, month, and day of the month, respectively, from a `<date>` variable. Like the `forcats` functions, these will almost always be paired with a `mutate()` statement because they will create a new variable:
+The functions `year()`, `month()`, and `mday()` can grab the year, month, and day of the month, respectively, from a `<date>` variable. 
+
+::: {.callout-note}
+## Note
+
+Like the `forcats` functions and the earlier `lubridate` functions, the `year()`, `month()`, and `mday()` functions will almost always be paired with a `mutate()` statement because they will create a new variable.
+:::
 
 ```{r, results = "hide", appendix = TRUE}
 stocks_long |> mutate(year_stock = year(start_date))
@@ -187,40 +207,45 @@ stocks_long |> mutate(day_of_week = wday(start_date,
 
 Possible uses for these functions are:
 
-* you want to look at differences between years (with `year()`)
+* we want to look at differences between years (with `year()`)
 
-* you want to look at differences between months (with `month()`)
+* we want to look at differences between months (with `month()`)
 
-* you want to look at differences between days of the week (with `wday()`)
+* we want to look at differences between days of the week (with `wday()`)
 
-* you want to see whether there are yearly trends __within years__ (with `yday()`)
+* we want to see whether there are yearly trends __within years__ (with `yday()`)
 
-__Note__: Working with times is extremely similar to working with dates. Instead of `ymd()`, `mdy()`, etc., you tack on a few extra letters to specify the order that the hour, minute, and seconds appear in the variable: `ymd_hms()` converts a character vector that has the order year, month, day, hour, minute, second to a `<datetime>`.
+::: {.callout-note}
+## Note
+
+Working with times is extremely similar to working with dates. Instead of `ymd()`, `mdy()`, etc., you tack on a few extra letters to specify the order that the hour, minute, and seconds appear in the variable: `ymd_hms()` converts a character vector that has the order year, month, day, hour, minute, second to a `<datetime>`.
 
 Additionally, the functions `hour()`, `minute()`, and `second()` grab the hour, minute, and second from a `<datetime>` variable.
+:::
 
-__Note on Complications__: Things can get complicated, especially if you start to consider things like time __duration__. The reason is that our time system is inherently confusing. Consider how the following might affect an analysis involving time duration:
+
+::: {.callout-note}
+## Note
+
+Things can get complicated with dates and times, especially if you start to consider things like time __duration__. Consider how the following might affect an analysis involving time duration:
 
 * time zones
 * leap years (not all years have the same number of days)
 * differing number of days in a given month
 * daylight saving time (not all days have the same number of hours)
+:::
 
-### Exercises {#exercise-11-2}
-
-Exercises marked with an \* indicate that the exercise has a solution at the end of the chapter at \@ref(solutions-11).
-
-1. The `month()` function gives the numbers corresponding to each month by default. Type `?month` and figure out which argument you would need to change to get the __names__ (January, February, etc.) instead of the month numbers. What about the __abbreviations__ (Jan, Feb, etc.) of each month instead of the month numbers? Try making the changes in the `mutate()` statement below.
+__Exercise 3__. The `month()` function gives the numbers corresponding to each month by default. Type `?month` and figure out which argument you would need to change to get the __names__ (January, February, etc.) instead of the month numbers. What about the __abbreviations__ (Jan, Feb, etc.) of each month instead of the month numbers? Try making the changes in the `mutate()` statement below.
 
 ```{r, results = "hide"}
 stocks_long |> mutate(month_stock = month(start_date))
 ```
 
-## Chapter Exercises {#chapexercise-11}
+## Practice
 
-Exercises marked with an \* indicate that the exercise has a solution at the end of the chapter at \@ref(solutions-11).
+### Class Exercises
 
-The `truncated` argument to `ymd()`, `dmy()`, `mdy()`, etc. will allow `R` to parse dates that aren't actually complete. For example,
+__Class Exercise 1__. The `truncated` argument to `ymd()`, `dmy()`, `mdy()`, etc. will allow `R` to parse dates that aren't actually complete. For example,
 
 ```{r}
 library(lubridate)
@@ -233,7 +258,7 @@ parses `2019` to be January 1, 2019 when the month and day are missing. The `2` 
 dmy("19-10", truncated = 1)
 ```
 
-truncates the year (which is given as 0000). The truncate function is usually most useful in the context of the first example with a truncated month and/or day.
+truncates the year (which is given as `0000`). The truncate function is usually most useful in the context of the first example with a truncated month and/or day.
 
 Examine the `ds_google.csv`, which contains
 
@@ -247,27 +272,25 @@ ds_df <- read_csv(here("data/ds_google.csv"))
 ds_df
 ```
 
-1. \* Use a `lubridate` function with the `truncated` option to convert the `Month` variable to be in the `<date>` format.
+Use a `lubridate` function with the `truncated` option to convert the `Month` variable to be in the `<date>` format.
 
-```{r, echo = FALSE, results = "hide"}
-ds_df <- ds_df |> mutate(Month = ymd(Month, truncated = 1))
-ds_df
-```
+__Class Exercise 2__. Make a plot of the popularity of Data Science through Time. Add a smoother to your plot. What patterns do you notice?
 
-2. \* Make a plot of the popularity of Data Science through Time. Add a smoother to your plot. What patterns do you notice?
+__Class Exercise 3__. Modify the code in the tutorial section on the Stocks data to get a data frame on stock prices for the now infamous Gamestop stock. Construct a line plot of the price through time.
 
-```{r, fig.keep = "none", echo = FALSE, message = FALSE}
-ggplot(data = ds_df, aes(x = Month, y = Data_Science)) +
-  geom_line() +
-  geom_smooth(se = FALSE)
-## it's like super popular!!!!
-```
+__Class Exercise 4__. Use the `lag()` function to create a new variable that is the previous day's stock price. Can you predict the current stock price based on the previous day's stock price accurately? Why or why not? Use either graphical or numerical evidence.
 
-The data was obtained from Google Trends: <a href="https://trends.google.com/trends/?geo=US" target="_blank">Google Trends</a>. Google Trends is incredibly cool to explore, even without `R`. 
+### Your Turn
 
-3. \* On Google Trends, Enter in a search term, and change the Time dropdown menu to be 2004-present. Then, enter in a second search term that you want to compare. You can also change the country if you want to (or, you can keep the country as United States).   
+The data in the Class Exercises was obtained from Google Trends: <a href="https://trends.google.com/trends/?geo=US" target="_blank">Google Trends</a>. Google Trends is incredibly cool to explore, even without `R`. 
+
+__Your Turn 1__. On Google Trends, Enter in a search term, and change the Time dropdown menu to be 2004-present. Then, enter in a second search term that you want to compare. You can also change the country if you want to (or, you can keep the country as United States).   
+
+::: {.callout-note}
+## Note
 
 My search terms will be "super smash" and "animal crossing", but yours should be something that interests you!
+:::
 
 In the top-right window of the graph, you should click the down arrow to download the data set. Delete the first two rows of your data set (either in Excel or `R`), read in the data set, and change the date variable so that it's in a Date format.
 
@@ -276,7 +299,13 @@ videogame_df <- read_csv(here("data/smash_animal_crossing.csv"))
 videogame_df <- videogame_df |> mutate(date = ymd(Month, truncated = 1))
 ```
 
-4. \* Make a plot of your Popularity variables through time. __Hint__: Does the data set need to be tidied at all first?
+__Your Turn 2__. Make a plot of your Popularity variables through time.
+
+::: {.callout-tip collapse="true"}
+## Hint (only if you get stuck)
+
+You will need to use a function from `tidyr` to tidy the data set first.
+:::
 
 ```{r, echo = FALSE, fig.keep = "none"}
 videogame_long <- videogame_df |>
@@ -290,9 +319,15 @@ ggplot(data = videogame_long, aes(x = date,
   scale_colour_viridis_d(begin = 0, end = 0.9)
 ```
 
-5. \* Using your data set that explored a variable or two from 2004 through now, make a table of the __average__ popularity for each year. __Hint__: You'll need a lubridate function to extract the year variable from the date object.
+__Your Turn 3__. Using your data set that explored a variable or two from 2004 through now, make a table of the __average__ popularity for each year.
 
-6. \* Clear your search and now enter a search term that you'd like to investigate for the past 90 days. Mine will be "Pittsburgh Steelers" but, again, yours should be something that interests you.
+::: {.callout-tip collapse="true"}
+## Hint (only if you get stuck)
+
+You'll need a `lubridate` function to extract the year variable from the date object.
+:::
+
+__Your Turn 4__. Clear your search and now enter a search term that you'd like to investigate for the past 90 days. Mine will be "Pittsburgh Steelers" but, again, yours should be something that interests you.
 
 Again, click the download button again and read in the data to `R`. Convert the date variable to be in `<date>` format.
 
@@ -301,7 +336,7 @@ steelers_df <- read_csv(here("data/steelers.csv"))
 steelers_df <- steelers_df |> mutate(day_var = mdy(Day))
 ```
 
-7. \* Make a plot of your popularity variable through time, adding a smoother.
+__Your Turn 5__. Make a plot of your popularity variable through time, adding a smoother.
 
 ```{r, echo = FALSE, fig.keep = "none", message = FALSE}
 ggplot(data = steelers_df, aes(x = day_var, y = Steelers)) +
@@ -310,111 +345,10 @@ ggplot(data = steelers_df, aes(x = day_var, y = Steelers)) +
   labs(y = "Popularity")
 ```
 
-8. Using your data set that explored a variable from the past 90 days, construct a table that compares the __average__ popularity on each day of the week (Monday through Saturday). 
+__Your Turn 6__. Using your data set that explored a variable from the past 90 days, construct a table that compares the __average__ popularity on each day of the week (Monday through Saturday). 
 
-9. Examine the `ds_df` data set again, the data set on data science in Google Trends, and suppose that you have an observation for __each__ day of every year (not just one observation per month). You want to look at whether data science is more popular on certain days of the week. Explain why the following strategy __wouldn't__ really work that well. 
+__Your Turn 7__. Examine the `ds_df` data set again, the data set on data science in Google Trends, and suppose that you have an observation for __each__ day of every year (not just one observation per month). You want to look at whether data science is more popular on certain days of the week. Explain why the following strategy __wouldn't__ really work that well. 
 
 * create a weekday variable with `wday()`
 * use `summarise()` and `group_by()` to find the average popularity for each day of the week
-
-10. Use the code in the tutorial section on the Stocks data to get a data frame on stock prices for a couple of different stocks that interest you. The start and end date that you use are completely up to you.
-
-Explore the stock data that you chose, constructing a line plot of the price through time, as well as any graphs or summaries that show interesting patterns across years, months, days, days of the week, etc.
-
-11. Use the `lag()` function to create a new variable that is the previous day's stock price. Can you predict the current stock price based on the previous day's stock price accurately? Why or why not? Use either graphical or numerical evidence.
-
-## Exercise Solutions {#solutions-11}
-
-### Converting Variables to `<date>` S
-
-1. \* What's the issue with trying to convert `Date4` to a `<date>` form?
-
-```{r}
-holiday_df |> mutate(Date_test = ymd(Date4)) |>
-  select(Date_test, everything())
-```
-
-```{r}
-## Date4 has two __different__ formats, 
-## which creates problems for `lubridate` functions
-```
-
-2. \* Practice converting `Date3` and `Date5` to date objects with `lubridate` functions.
-
-```{r}
-holiday_df |> mutate(Date_test = mdy(Date3)) |>
-  select(Date_test, everything())
-holiday_df |> mutate(Date_test = ymd(Date5)) |>
-  select(Date_test, everything())
-```
-
-### Functions for `<date>` Variables S
-
-### Chapter Exercises S {#chapexercise-11-S}
-
-1. \* Use a `lubridate` function with the `truncated` option to convert the `Month` variable to be in the `<date>` format.
-
-```{r, results = "hide"}
-ds_df <- ds_df |> mutate(Month = ymd(Month, truncated = 1))
-ds_df
-```
-
-2. \* Make a plot of the popularity of Data Science through Time. Add a smoother to your plot. What patterns do you notice?
-
-```{r}
-ggplot(data = ds_df, aes(x = Month, y = Data_Science)) +
-  geom_line() +
-  geom_smooth(se = FALSE)
-## it's like super popular!!!!
-```
-
-3. \* On Google Trends, Enter in a search term, and change the Time dropdown menu to be 2004-present. Then, enter in a second search term that you want to compare. You can also change the country if you want to (or, you can keep the country as United States).   
-
-My search terms will be "super smash" and "animal crossing", but yours should be something that interests you!
-
-In the top-right window of the graph, you should click the down arrow to download the data set. Delete the first two rows of your data set (either in Excel or `R`), read in the data set, and change the date variable so that it's in a Date format.
-
-```{r}
-videogame_df <- read_csv(here("data/smash_animal_crossing.csv"))
-videogame_df <- videogame_df |> mutate(date = ymd(Month, truncated = 1))
-```
-
-4. \* Make a plot of your Popularity variables through time. __Hint__: Does the data set need to be tidied at all first?
-
-```{r}
-videogame_long <- videogame_df |>
-  pivot_longer(cols = c("super_smash", "animal_crossing"),
-                              names_to = "game",
-                              values_to = "popularity")
-ggplot(data = videogame_long, aes(x = date, 
-                                  y = popularity,
-                                  colour = game)) +
-  geom_line() +
-  scale_colour_viridis_d(begin = 0, end = 0.9)
-```
-
-5. \* Using your data set that explored a variable or two from 2004 through now, make a table of the __average__ popularity for each year. __Hint__: You'll need a lubridate function to extract the year variable from the date object.
-
-6. \* Clear your search and now enter a search term that you'd like to investigate for the past 90 days. Mine will be "pittsburgh steelers" but, again, yours should be something that interests you.
-
-Again, click the download button again and read in the data to `R`. Convert the date variable to be in `<date>` format.
-
-```{r}
-steelers_df <- read_csv(here("data/steelers.csv"))
-steelers_df <- steelers_df |> mutate(day_var = mdy(Day))
-```
-
-7. \* Make a plot of your popularity variable through time, adding a smoother.
-
-```{r}
-ggplot(data = steelers_df, aes(x = day_var, y = Steelers)) +
-  geom_smooth() + 
-  geom_line() +
-  labs(y = "Popularity")
-```
-
-## Non-Exercise `R` Code {#rcode-11}
-
-```{r ref.label=knitr::all_labels(appendix == TRUE), echo=TRUE, eval=FALSE}
-```
 
