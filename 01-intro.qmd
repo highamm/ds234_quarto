@@ -183,7 +183,8 @@ Read in the data set, name the data set `pres_df`, and take a look at the data s
 
 ```{r, message = FALSE, warning = FALSE, appendix = TRUE}
 library(tidyverse)
-pres_df <- read_table("data/PRES2000.txt") 
+
+pres_df <- read_csv("https://raw.githubusercontent.com/highamm/ds234_quarto/main/data_online/pres2000.csv") 
 ## don't worry about the `read_table` function....yet
 head(pres_df)
 ```
@@ -276,7 +277,7 @@ Data for this first part was obtained from fivethirtyeight at <a href="https://g
 The first step is to read the data set into `R`. Though you have already downloaded alcohol.csv in the data zip, we still need to load it into `R`. Check to make sure the alcohol.csv is in the data folder in your bottom-right hand window. The following code can be copied to an `R` code chunk to read in the data:
 
 ```{r, echo=TRUE, eval=TRUE, warning=FALSE, message=FALSE, results = "hide"}
-read_csv("data/alcohol.csv")
+read_csv("https://raw.githubusercontent.com/highamm/ds234_quarto/main/data_online/alcohol.csv")
 ```
 
 Note that we do not need the full file extension __if__ we have the data set in an `R` project. 
@@ -286,7 +287,7 @@ Did something show up in your console window? If so, great! If not, make sure th
 We would like to name our data set something so that we could easily reference it later, so name your data set using the `<-` operator, as in
 
 ```{r, echo=TRUE, eval=TRUE, warning=FALSE, message=FALSE}
-alcohol_data <- read_csv("data/alcohol.csv")
+alcohol_data <- read_csv("https://raw.githubusercontent.com/highamm/ds234_quarto/main/data_online/alcohol.csv")
 ```
 
 ::: {.callout-note}
@@ -429,7 +430,7 @@ As another example, we will look at a data set on the top 100 highest paid athle
 We will first read in the data set below and name it `athletes`. We can then use the `head()` function to look at the first few rows of the data set.
 
 ```{r, message = FALSE, warning = FALSE}
-athletes <- read_csv("data/athletesdata.csv")
+athletes <- read_csv("https://raw.githubusercontent.com/highamm/ds234_quarto/main/data_online/athletesdata.csv")
 head(athletes)
 ```
 
