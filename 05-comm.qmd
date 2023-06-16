@@ -325,7 +325,7 @@ Read in the data set with
 
 ```{r, message = FALSE, appendix = TRUE}
 library(tidyverse)
-hpi_df <- read_csv("data/hpi-tidy.csv")
+hpi_df <- read_csv("https://raw.githubusercontent.com/highamm/ds234_quarto/main/data_online/hpi-tidy.csv")
 head(hpi_df)
 ```
 
@@ -704,7 +704,7 @@ d. Chaz uses the t.test function in Excel to run the test. He writes down the de
 
 e. Chaz copies his graph to Word and writes a conclusion in context of the problem.
 
-State 2 aspects of Chaz's analysis that are __not__ reproducible.
+With your group, come up with two or more aspects of Chaz's analysis that are __not__ reproducible.
 
 __Your Turn 2__. Go back to the line plot that you made of the __5__ names in the `babynames` data set. Add a label with the `name` to each of the lines with `geom_label()`.
 

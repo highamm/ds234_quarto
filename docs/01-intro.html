@@ -2,16 +2,22 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.0.36">
+<meta name="generator" content="quarto-1.3.353">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 <title>DATA / STAT 234 - 1&nbsp; Getting Started</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
-span.underline{text-decoration: underline;}
-div.column{display: inline-block; vertical-align: top; width: 50%;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
 div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
 pre > code.sourceCode { white-space: pre; position: relative; }
 pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
@@ -38,43 +44,13 @@ pre.numberSource code > span > a:first-child::before
     -khtml-user-select: none; -moz-user-select: none;
     -ms-user-select: none; user-select: none;
     padding: 0 4px; width: 4em;
-    color: #aaaaaa;
   }
-pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
 div.sourceCode
   {   }
 @media screen {
 pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
-code span.al { color: #ff0000; font-weight: bold; } /* Alert */
-code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-code span.at { color: #7d9029; } /* Attribute */
-code span.bn { color: #40a070; } /* BaseN */
-code span.bu { } /* BuiltIn */
-code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-code span.ch { color: #4070a0; } /* Char */
-code span.cn { color: #880000; } /* Constant */
-code span.co { color: #60a0b0; font-style: italic; } /* Comment */
-code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-code span.do { color: #ba2121; font-style: italic; } /* Documentation */
-code span.dt { color: #902000; } /* DataType */
-code span.dv { color: #40a070; } /* DecVal */
-code span.er { color: #ff0000; font-weight: bold; } /* Error */
-code span.ex { } /* Extension */
-code span.fl { color: #40a070; } /* Float */
-code span.fu { color: #06287e; } /* Function */
-code span.im { } /* Import */
-code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
-code span.kw { color: #007020; font-weight: bold; } /* Keyword */
-code span.op { color: #666666; } /* Operator */
-code span.ot { color: #007020; } /* Other */
-code span.pp { color: #bc7a00; } /* Preprocessor */
-code span.sc { color: #4070a0; } /* SpecialChar */
-code span.ss { color: #bb6688; } /* SpecialString */
-code span.st { color: #4070a0; } /* String */
-code span.va { color: #19177c; } /* Variable */
-code span.vs { color: #4070a0; } /* VerbatimString */
-code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
 <script src="site_libs/quarto-nav/quarto-nav.js"></script>
@@ -117,19 +93,24 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <body class="nav-sidebar floating">
 
 <div id="quarto-search-results"></div>
-  <header id="quarto-header" class="headroom fixed-top"><nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }"><div class="container-fluid d-flex justify-content-between">
-      <h1 class="quarto-secondary-nav-title"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Getting Started</span></h1>
-      <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
-        <i class="bi bi-chevron-right"></i>
+  <header id="quarto-header" class="headroom fixed-top"><nav class="quarto-secondary-nav"><div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./01-intro.html">The Core</a></li><li class="breadcrumb-item"><a href="./01-intro.html"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Getting Started</span></a></li></ol></nav>
+      <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+      </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
       </button>
     </div>
   </nav></header><!-- content --><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation floating overflow-auto"><div class="pt-lg-2 mt-2 text-left sidebar-header">
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation floating overflow-auto"><div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
       <a href="./">DATA / STAT 234</a> 
         <div class="sidebar-tools-main">
-  <a href="" class="quarto-reader-toggle sidebar-tool" onclick="window.quartoToggleReader(); return false;" title="Toggle reader mode">
+  <a href="" class="quarto-reader-toggle quarto-navigation-tool px-1" onclick="window.quartoToggleReader(); return false;" title="Toggle reader mode">
   <div class="quarto-reader-toggle-btn">
   <i class="bi"></i>
   </div>
@@ -137,170 +118,192 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
     </div>
       </div>
-      <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="mt-2 flex-shrink-0 align-items-center">
         <div class="sidebar-search">
         <div id="quarto-search" class="" title="Search"></div>
         </div>
-      </div>
+        </div>
     <div class="sidebar-menu-container"> 
     <ul class="list-unstyled mt-1">
 <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./index.html" class="sidebar-item-text sidebar-link">Syllabus and Course Information</a>
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Syllabus and Course Information</span></a>
   </div>
 </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">The Core</a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
+ <span class="menu-text">The Core</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">
 <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./01-intro.html" class="sidebar-item-text sidebar-link active"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Getting Started</span></a>
+  <a href="./01-intro.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Getting Started</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./02-ggplot2.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Plotting with <code>ggplot2</code></span></a>
+  <a href="./02-ggplot2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Plotting with <code>ggplot2</code></span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./03-dplyr.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Wrangling with <code>dplyr</code></span></a>
+  <a href="./03-dplyr.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Wrangling with <code>dplyr</code></span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./05-comm.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Communication with <code>Quarto</code></span></a>
+  <a href="./05-comm.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Communication with <code>Quarto</code></span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./14-workflow.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Workflow and Other Skills</span></a>
+  <a href="./14-workflow.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Workflow and Other Skills</span></span></a>
   </div>
 </li>
       </ul>
 </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">Data Wrangling</a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">
+ <span class="menu-text">Data Wrangling</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">
 <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./04-tidyr.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Tidying with <code>tidyr</code></span></a>
+  <a href="./04-tidyr.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Tidying with <code>tidyr</code></span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./06-basics.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Coding in Base <code>R</code></span></a>
+  <a href="./06-basics.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Coding in Base <code>R</code></span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./07-forcats.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Factors with <code>forcats</code></span></a>
+  <a href="./07-forcats.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Factors with <code>forcats</code></span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./09-ethics.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Data Ethics</span></a>
+  <a href="./09-ethics.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Data Ethics</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./08-import.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Data Import</span></a>
+  <a href="./08-import.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Data Import</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./10-merging.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Merging with <code>dplyr</code></span></a>
+  <a href="./10-merging.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Merging with <code>dplyr</code></span></span></a>
   </div>
 </li>
       </ul>
 </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">Special Topics</a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">
+ <span class="menu-text">Special Topics</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
       <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">
 <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./11-lubridate.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Dates with <code>lubridate</code></span></a>
+  <a href="./11-lubridate.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Dates with <code>lubridate</code></span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./12-stringr.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Text Data with <code>tidytext</code> and <code>stringr</code></span></a>
+  <a href="./12-stringr.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Text Data with <code>tidytext</code> and <code>stringr</code></span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./13-knn.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Predictive Modeling with knn</span></a>
+  <a href="./13-knn.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Predictive Modeling with knn</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./15-connections.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Connections to STAT 113, STAT 213, and CS 140</span></a>
+  <a href="./15-connections.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Connections to STAT 113, STAT 213, and CS 140</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./16-sql.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Introduction to SQL with <code>dbplyr</code></span></a>
+  <a href="./16-sql.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Introduction to SQL with <code>dbplyr</code></span></span></a>
   </div>
 </li>
       </ul>
 </li>
     </ul>
 </div>
-</nav><!-- margin-sidebar --><div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc"><h2 id="toc-title">Table of contents</h2>
+</nav><div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active"><h2 id="toc-title">Table of contents</h2>
    
   <ul>
 <li>
-<a href="#intro-to-r-and-r-studio" id="toc-intro-to-r-and-r-studio" class="nav-link active" data-scroll-target="#intro-to-r-and-r-studio"> <span class="header-section-number">1.1</span> Intro to <code>R</code> and <code>R Studio</code></a>
+<a href="#intro-to-r-and-r-studio" id="toc-intro-to-r-and-r-studio" class="nav-link active" data-scroll-target="#intro-to-r-and-r-studio"><span class="header-section-number">1.1</span> Intro to <code>R</code> and <code>R Studio</code></a>
   <ul class="collapse">
-<li><a href="#installing-r-and-r-studio" id="toc-installing-r-and-r-studio" class="nav-link" data-scroll-target="#installing-r-and-r-studio"> <span class="header-section-number">1.1.1</span> Installing <code>R</code> and <code>R Studio</code></a></li>
-  <li><a href="#relevant-websites" id="toc-relevant-websites" class="nav-link" data-scroll-target="#relevant-websites"> <span class="header-section-number">1.1.2</span> Relevant Websites</a></li>
-  <li><a href="#creating-an-r-project" id="toc-creating-an-r-project" class="nav-link" data-scroll-target="#creating-an-r-project"> <span class="header-section-number">1.1.3</span> Creating an <code>R</code> Project</a></li>
+<li><a href="#installing-r-and-r-studio" id="toc-installing-r-and-r-studio" class="nav-link" data-scroll-target="#installing-r-and-r-studio"><span class="header-section-number">1.1.1</span> Installing <code>R</code> and <code>R Studio</code></a></li>
+  <li><a href="#relevant-websites" id="toc-relevant-websites" class="nav-link" data-scroll-target="#relevant-websites"><span class="header-section-number">1.1.2</span> Relevant Websites</a></li>
+  <li><a href="#creating-an-r-project" id="toc-creating-an-r-project" class="nav-link" data-scroll-target="#creating-an-r-project"><span class="header-section-number">1.1.3</span> Creating an <code>R</code> Project</a></li>
   </ul>
 </li>
   <li>
-<a href="#what-are-r-r-studio-and-quarto" id="toc-what-are-r-r-studio-and-quarto" class="nav-link" data-scroll-target="#what-are-r-r-studio-and-quarto"> <span class="header-section-number">1.2</span> What are <code>R</code>, <code>R Studio</code>, and <code>Quarto</code>?</a>
+<a href="#what-are-r-r-studio-and-quarto" id="toc-what-are-r-r-studio-and-quarto" class="nav-link" data-scroll-target="#what-are-r-r-studio-and-quarto"><span class="header-section-number">1.2</span> What are <code>R</code>, <code>R Studio</code>, and <code>Quarto</code>?</a>
   <ul class="collapse">
-<li><a href="#r-packages-and-the-tidyverse" id="toc-r-packages-and-the-tidyverse" class="nav-link" data-scroll-target="#r-packages-and-the-tidyverse"> <span class="header-section-number">1.2.1</span> <code>R</code> Packages and the <code>tidyverse</code></a></li>
-  <li><a href="#installing-r-packages" id="toc-installing-r-packages" class="nav-link" data-scroll-target="#installing-r-packages"> <span class="header-section-number">1.2.2</span> Installing <code>R</code> Packages</a></li>
+<li><a href="#r-packages-and-the-tidyverse" id="toc-r-packages-and-the-tidyverse" class="nav-link" data-scroll-target="#r-packages-and-the-tidyverse"><span class="header-section-number">1.2.1</span> <code>R</code> Packages and the <code>tidyverse</code></a></li>
+  <li><a href="#installing-r-packages" id="toc-installing-r-packages" class="nav-link" data-scroll-target="#installing-r-packages"><span class="header-section-number">1.2.2</span> Installing <code>R</code> Packages</a></li>
   </ul>
 </li>
-  <li><a href="#putting-code-in-a-.qmd-file" id="toc-putting-code-in-a-.qmd-file" class="nav-link" data-scroll-target="#putting-code-in-a-.qmd-file"> <span class="header-section-number">1.3</span> Putting Code in a <code>.qmd</code> File</a></li>
-  <li><a href="#election-data-example" id="toc-election-data-example" class="nav-link" data-scroll-target="#election-data-example"> <span class="header-section-number">1.4</span> Election Data Example</a></li>
+  <li><a href="#putting-code-in-a-.qmd-file" id="toc-putting-code-in-a-.qmd-file" class="nav-link" data-scroll-target="#putting-code-in-a-.qmd-file"><span class="header-section-number">1.3</span> Putting Code in a <code>.qmd</code> File</a></li>
+  <li><a href="#election-data-example" id="toc-election-data-example" class="nav-link" data-scroll-target="#election-data-example"><span class="header-section-number">1.4</span> Election Data Example</a></li>
   <li>
-<a href="#alcohol-data-example" id="toc-alcohol-data-example" class="nav-link" data-scroll-target="#alcohol-data-example"> <span class="header-section-number">1.5</span> Alcohol Data Example</a>
+<a href="#alcohol-data-example" id="toc-alcohol-data-example" class="nav-link" data-scroll-target="#alcohol-data-example"><span class="header-section-number">1.5</span> Alcohol Data Example</a>
   <ul class="collapse">
-<li><a href="#exercise-1-1" id="toc-exercise-1-1" class="nav-link" data-scroll-target="#exercise-1-1"> <span class="header-section-number">1.5.1</span> Exercises</a></li>
+<li><a href="#exercise-1-1" id="toc-exercise-1-1" class="nav-link" data-scroll-target="#exercise-1-1"><span class="header-section-number">1.5.1</span> Exercises</a></li>
   </ul>
 </li>
   <li>
-<a href="#athlete-data-example" id="toc-athlete-data-example" class="nav-link" data-scroll-target="#athlete-data-example"> <span class="header-section-number">1.6</span> Athlete Data Example</a>
+<a href="#athlete-data-example" id="toc-athlete-data-example" class="nav-link" data-scroll-target="#athlete-data-example"><span class="header-section-number">1.6</span> Athlete Data Example</a>
   <ul class="collapse">
-<li><a href="#exercise-1-2" id="toc-exercise-1-2" class="nav-link" data-scroll-target="#exercise-1-2"> <span class="header-section-number">1.6.1</span> Exercises</a></li>
+<li><a href="#exercise-1-2" id="toc-exercise-1-2" class="nav-link" data-scroll-target="#exercise-1-2"><span class="header-section-number">1.6.1</span> Exercises</a></li>
   </ul>
 </li>
-  <li><a href="#finishing-up-common-errors-in-r" id="toc-finishing-up-common-errors-in-r" class="nav-link" data-scroll-target="#finishing-up-common-errors-in-r"> <span class="header-section-number">1.7</span> Finishing Up: Common Errors in <code>R</code></a></li>
-  <li><a href="#chapexercise-1" id="toc-chapexercise-1" class="nav-link" data-scroll-target="#chapexercise-1"> <span class="header-section-number">1.8</span> Your Turn</a></li>
+  <li><a href="#finishing-up-common-errors-in-r" id="toc-finishing-up-common-errors-in-r" class="nav-link" data-scroll-target="#finishing-up-common-errors-in-r"><span class="header-section-number">1.7</span> Finishing Up: Common Errors in <code>R</code></a></li>
+  <li><a href="#chapexercise-1" id="toc-chapexercise-1" class="nav-link" data-scroll-target="#chapexercise-1"><span class="header-section-number">1.8</span> Your Turn</a></li>
   </ul></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><div class="quarto-title">
-<h1 class="title"><span id="sec-intro" class="quarto-section-identifier d-none d-lg-block"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Getting Started</span></span></h1>
+<h1 class="title"><span id="sec-intro" class="quarto-section-identifier"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Getting Started</span></span></h1>
 </div>
 
 
@@ -308,14 +311,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="quarto-title-meta">
 
     
+  
     
   </div>
   
 
 </header><p>MAKE VIDEOS ON DOWNLOADING R, DOWNLOADING R STUDIO, CREATING AN R PROJECT, GETTING THE DATA IN R, AND TESTING READING IN THE DATA</p>
-<div class="cell">
-
-</div>
 <p><strong>Goals</strong>:</p>
 <ol type="1">
 <li><p>Download <code>R</code> and <code>R Studio</code></p></li>
@@ -366,12 +367,12 @@ format:
   html:
     self-contained: true
 ---</code></pre>
-<div class="callout-note callout callout-style-simple callout-captioned">
+<div class="callout callout-style-simple callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
-<div class="callout-caption-container flex-fill">
+<div class="callout-title-container flex-fill">
 Note
 </div>
 </div>
@@ -379,12 +380,12 @@ Note
 <p>The <code>self-contained: true</code> option ensures that all figures, images, tables, etc. are contained in the one <code>.html</code> file, which is important because, for quizzes and exercises, you will typically only turn in the <code>.html</code> file.</p>
 </div>
 </div>
-<div class="callout-important callout callout-style-simple callout-captioned">
+<div class="callout callout-style-simple callout-important callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
-<div class="callout-caption-container flex-fill">
+<div class="callout-title-container flex-fill">
 Important
 </div>
 </div>
@@ -432,12 +433,12 @@ Important
 </section><section id="installing-r-packages" class="level3" data-number="1.2.2"><h3 data-number="1.2.2" class="anchored" data-anchor-id="installing-r-packages">
 <span class="header-section-number">1.2.2</span> Installing <code>R</code> Packages</h3>
 <p>On the <code>R Studio</code> server, either myself or one of the other statistics faculty members have installed all packages that we’ve needed to use on the server globally. However, if you want to use a package that isn’t installed on the server, or, you want to use a package using <code>R Studio</code> on your own personal computer, you need to install it first.</p>
-<div class="callout-important callout callout-style-simple callout-captioned">
+<div class="callout callout-style-simple callout-important callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
-<div class="callout-caption-container flex-fill">
+<div class="callout-title-container flex-fill">
 Important
 </div>
 </div>
@@ -487,7 +488,8 @@ Important
 <p>Read in the data set, name the data set <code>pres_df</code>, and take a look at the data set by running the <code>head(pres_df)</code> line, which shows the first few observations of the data set:</p>
 <div class="cell" data-appendix="true">
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span></span>
-<span><span class="va">pres_df</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/read_table.html">read_table</a></span><span class="op">(</span><span class="st">"data/PRES2000.txt"</span><span class="op">)</span> </span>
+<span></span>
+<span><span class="va">pres_df</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv</a></span><span class="op">(</span><span class="st">"https://raw.githubusercontent.com/highamm/ds234_quarto/main/data_online/pres2000.csv"</span><span class="op">)</span> </span>
 <span><span class="co">## don't worry about the `read_table` function....yet</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">pres_df</span><span class="op">)</span></span>
 <span><span class="co">#&gt; # A tibble: 6 × 6</span></span>
@@ -500,12 +502,12 @@ Important
 <span><span class="co">#&gt; 5  97318 115185      570  4470   852 BREVARD </span></span>
 <span><span class="co">#&gt; 6 386561 177323      788  7101  1623 BROWAR</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="callout-note callout callout-style-simple callout-captioned">
+<div class="callout callout-style-simple callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
-<div class="callout-caption-container flex-fill">
+<div class="callout-title-container flex-fill">
 Note
 </div>
 </div>
@@ -527,12 +529,12 @@ Note
 <p><strong>Exercise 1</strong>. What do the 1e+05, 2e+05, etc. labels on the x-axis mean?</p>
 <p><strong>Exercise 2</strong>. <code>R</code> gives us a message to “Pick a better value with <code>binwidth</code>” instead of the default <code>bins = 30</code>. Add <code>, bins = 15</code> inside the parentheses of <code><a href="https://ggplot2.tidyverse.org/reference/geom_histogram.html">geom_histogram()</a></code> to change the number of bins in the histogram.</p>
 <p><strong>Exercise 3</strong>. Change the colour of the inside of the bins to <code>"darkred"</code>. Do you think that the colour of the inside of the bins maps to <code>colour</code> or <code>fill</code>? Try both!</p>
-<div class="callout-tip callout callout-style-simple callout-captioned">
+<div class="callout callout-style-simple callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-5-contents" aria-controls="callout-5" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
-<div class="callout-caption-container flex-fill">
+<div class="callout-title-container flex-fill">
 Hint (only if you get stuck)
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
@@ -548,12 +550,12 @@ Hint (only if you get stuck)
 <p><br></p>
 <p>Thus far, we’ve figured out that there a couple of counties with very large numbers of votes for Gore and very large number of votes for Bush. We don’t know the reason for this (if some counties are very democratic, very republican, or if some counties are just more populous). Do the counties that have a large number of votes for Bush also tend to have a large number of votes for Gore? And what about the other candidates: do they have any interesting patterns?</p>
 <p>Let’s start by making a scatterplot of the number of votes for Gore and the number of votes for Bush.</p>
-<div class="callout-note callout callout-style-simple callout-captioned">
+<div class="callout callout-style-simple callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
-<div class="callout-caption-container flex-fill">
+<div class="callout-title-container flex-fill">
 Note
 </div>
 </div>
@@ -580,12 +582,12 @@ Note
 <p><br></p>
 <p>In trying to come up with an explanation, it would be nice to figure out which Florida county has that outlying point and it would be nice if we knew something about Florida counties. To remedy the first issue, recall that we can type <code>View(pres_df)</code> in the lower-left window of <code>R Studio</code> to pull up a spreadsheet of the data set. Once you have the new window open, click on the column heading <code>Buchanan</code> to sort the votes for Buchanan from high to low to figure out which county is the outlier.</p>
 <p>Use some Google sleuthing skills to find an explanation: try to search for “2000 united states presidential election [name of outlier county]”. Write a sentence about what you find.</p>
-<div class="callout-tip callout callout-style-simple callout-captioned">
+<div class="callout callout-style-simple callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-7-contents" aria-controls="callout-7" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
-<div class="callout-caption-container flex-fill">
+<div class="callout-title-container flex-fill">
 Hint
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
@@ -600,12 +602,12 @@ Hint
 </section><section id="alcohol-data-example" class="level2" data-number="1.5"><h2 data-number="1.5" class="anchored" data-anchor-id="alcohol-data-example">
 <span class="header-section-number">1.5</span> Alcohol Data Example</h2>
 <p>We will be looking at two data sets just to get a little bit of a preview of things we will be working on for the rest of the semester.</p>
-<div class="callout-important callout callout-style-simple callout-captioned">
+<div class="callout callout-style-simple callout-important callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
-<div class="callout-caption-container flex-fill">
+<div class="callout-title-container flex-fill">
 Important
 </div>
 </div>
@@ -616,20 +618,20 @@ Important
 <p>Data for this first part was obtained from fivethirtyeight at <a href="https://github.com/fivethirtyeight/data/tree/master/alcohol-consumption" target="_blank">Five Thirty Eight GitHub page</a>.</p>
 <p>The first step is to read the data set into <code>R</code>. Though you have already downloaded alcohol.csv in the data zip, we still need to load it into <code>R</code>. Check to make sure the alcohol.csv is in the data folder in your bottom-right hand window. The following code can be copied to an <code>R</code> code chunk to read in the data:</p>
 <div class="cell">
-<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv</a></span><span class="op">(</span><span class="st">"data/alcohol.csv"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv</a></span><span class="op">(</span><span class="st">"https://raw.githubusercontent.com/highamm/ds234_quarto/main/data_online/alcohol.csv"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Note that we do not need the full file extension <strong>if</strong> we have the data set in an <code>R</code> project.</p>
 <p>Did something show up in your console window? If so, great! If not, make sure that the data set is in the data folder and that you have an <code>R</code> project set up.</p>
 <p>We would like to name our data set something so that we could easily reference it later, so name your data set using the <code>&lt;-</code> operator, as in</p>
 <div class="cell">
-<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">alcohol_data</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv</a></span><span class="op">(</span><span class="st">"data/alcohol.csv"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">alcohol_data</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv</a></span><span class="op">(</span><span class="st">"https://raw.githubusercontent.com/highamm/ds234_quarto/main/data_online/alcohol.csv"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="callout-note callout callout-style-simple callout-captioned">
+<div class="callout callout-style-simple callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
-<div class="callout-caption-container flex-fill">
+<div class="callout-title-container flex-fill">
 Note
 </div>
 </div>
@@ -641,16 +643,16 @@ Note
 <div class="cell">
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">alcohol_data</span></span>
 <span><span class="co">#&gt; # A tibble: 193 × 5</span></span>
-<span><span class="co">#&gt;   country           beer_servings spirit_servings wine_servings total_litre…¹</span></span>
-<span><span class="co">#&gt;   &lt;chr&gt;                     &lt;dbl&gt;           &lt;dbl&gt;         &lt;dbl&gt;         &lt;dbl&gt;</span></span>
-<span><span class="co">#&gt; 1 Afghanistan                   0               0             0           0  </span></span>
-<span><span class="co">#&gt; 2 Albania                      89             132            54           4.9</span></span>
-<span><span class="co">#&gt; 3 Algeria                      25               0            14           0.7</span></span>
-<span><span class="co">#&gt; 4 Andorra                     245             138           312          12.4</span></span>
-<span><span class="co">#&gt; 5 Angola                      217              57            45           5.9</span></span>
-<span><span class="co">#&gt; 6 Antigua &amp; Barbuda           102             128            45           4.9</span></span>
-<span><span class="co">#&gt; # … with 187 more rows, and abbreviated variable name</span></span>
-<span><span class="co">#&gt; #   ¹​total_litres_of_pure_alcohol</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="co">#&gt;   country  beer_servings spirit_servings wine_servings total_litres_of_pure…¹</span></span>
+<span><span class="co">#&gt;   &lt;chr&gt;            &lt;dbl&gt;           &lt;dbl&gt;         &lt;dbl&gt;                  &lt;dbl&gt;</span></span>
+<span><span class="co">#&gt; 1 Afghani…             0               0             0                    0  </span></span>
+<span><span class="co">#&gt; 2 Albania             89             132            54                    4.9</span></span>
+<span><span class="co">#&gt; 3 Algeria             25               0            14                    0.7</span></span>
+<span><span class="co">#&gt; 4 Andorra            245             138           312                   12.4</span></span>
+<span><span class="co">#&gt; 5 Angola             217              57            45                    5.9</span></span>
+<span><span class="co">#&gt; 6 Antigua…           102             128            45                    4.9</span></span>
+<span><span class="co">#&gt; # ℹ 187 more rows</span></span>
+<span><span class="co">#&gt; # ℹ abbreviated name: ¹​total_litres_of_pure_alcohol</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>What’s in this data set? We see a few <em>variables</em> on the columns:</p>
 <ul>
@@ -688,16 +690,16 @@ Note
 <div class="cell">
 <div class="sourceCode" id="cb13"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">alcohol_data</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">total_litres_of_pure_alcohol</span> <span class="op">==</span> <span class="fl">0</span><span class="op">)</span></span>
 <span><span class="co">#&gt; # A tibble: 13 × 5</span></span>
-<span><span class="co">#&gt;   country     beer_servings spirit_servings wine_servings total_litres_of_p…¹</span></span>
-<span><span class="co">#&gt;   &lt;chr&gt;               &lt;dbl&gt;           &lt;dbl&gt;         &lt;dbl&gt;               &lt;dbl&gt;</span></span>
-<span><span class="co">#&gt; 1 Afghanistan             0               0             0                   0</span></span>
-<span><span class="co">#&gt; 2 Bangladesh              0               0             0                   0</span></span>
-<span><span class="co">#&gt; 3 North Korea             0               0             0                   0</span></span>
-<span><span class="co">#&gt; 4 Iran                    0               0             0                   0</span></span>
-<span><span class="co">#&gt; 5 Kuwait                  0               0             0                   0</span></span>
-<span><span class="co">#&gt; 6 Libya                   0               0             0                   0</span></span>
-<span><span class="co">#&gt; # … with 7 more rows, and abbreviated variable name</span></span>
-<span><span class="co">#&gt; #   ¹​total_litres_of_pure_alcohol</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="co">#&gt;   country  beer_servings spirit_servings wine_servings total_litres_of_pure…¹</span></span>
+<span><span class="co">#&gt;   &lt;chr&gt;            &lt;dbl&gt;           &lt;dbl&gt;         &lt;dbl&gt;                  &lt;dbl&gt;</span></span>
+<span><span class="co">#&gt; 1 Afghani…             0               0             0                      0</span></span>
+<span><span class="co">#&gt; 2 Banglad…             0               0             0                      0</span></span>
+<span><span class="co">#&gt; 3 North K…             0               0             0                      0</span></span>
+<span><span class="co">#&gt; 4 Iran                 0               0             0                      0</span></span>
+<span><span class="co">#&gt; 5 Kuwait               0               0             0                      0</span></span>
+<span><span class="co">#&gt; 6 Libya                0               0             0                      0</span></span>
+<span><span class="co">#&gt; # ℹ 7 more rows</span></span>
+<span><span class="co">#&gt; # ℹ abbreviated name: ¹​total_litres_of_pure_alcohol</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>It looks like there are 13 countries in the data set that consume no alcohol. Note that, in the chunk above, we have to use in <code>total_litres_of_pure_alcohol</code> as the variable name because this is the name of the variable in the data set. Even something like spelling litres in the American English liters (<code>total_liters_of_pure_alcohol</code>) would throw an error because this isn’t the exact name of the variable in the data set. This is something that can be very aggravating when you are first learning any coding language.</p>
 <p>Now suppose that we want to know the 3 countries that consume the most beer, the 3 countries that consume the most spirits, and the 3 countries that consume the most wine per person. If you’re a trivia person, you can form some guesses. Without cheating, I am going to guess (Germany, USA, and UK) for beer, (Spain, Italy, and USA) for wine, and (Russia, Poland, and Lithuania) for spirits. Let’s do beer first!</p>
@@ -749,7 +751,7 @@ Note
 <span><span class="co">#&gt; 4 Timor-Leste              1             4    4   </span></span>
 <span><span class="co">#&gt; 5 Syria                    5            16    3.2 </span></span>
 <span><span class="co">#&gt; 6 France                 127           370    2.91</span></span>
-<span><span class="co">#&gt; # … with 187 more rows</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="co">#&gt; # ℹ 187 more rows</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Why is one of the ratios <code>Inf</code>?</p>
 <section id="exercise-1-1" class="level3" data-number="1.5.1"><h3 data-number="1.5.1" class="anchored" data-anchor-id="exercise-1-1">
@@ -758,12 +760,12 @@ Note
 <li><p>What is the shape of the distribution of total alcohol consumption? Left-skewed, right-skewed, or approximately symmetric? Unimodal or multimodal?</p></li>
 <li><p>In the histogram of total alcohol consumption, pick a country other than the USA that interests you. See if you can change the code in the chunk that made the histogram so that the red vertical line is drawn for the country that interests you.</p></li>
 </ol>
-<div class="callout-tip callout callout-style-simple callout-captioned">
+<div class="callout callout-style-simple callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-10-contents" aria-controls="callout-10" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
-<div class="callout-caption-container flex-fill">
+<div class="callout-title-container flex-fill">
 Hint
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
@@ -806,18 +808,17 @@ Hint
 </ul>
 <p>We will first read in the data set below and name it <code>athletes</code>. We can then use the <code><a href="https://rdrr.io/r/utils/head.html">head()</a></code> function to look at the first few rows of the data set.</p>
 <div class="cell">
-<div class="sourceCode" id="cb19"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">athletes</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv</a></span><span class="op">(</span><span class="st">"data/athletesdata.csv"</span><span class="op">)</span></span>
+<div class="sourceCode" id="cb19"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">athletes</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv</a></span><span class="op">(</span><span class="st">"https://raw.githubusercontent.com/highamm/ds234_quarto/main/data_online/athletesdata.csv"</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">athletes</span><span class="op">)</span></span>
 <span><span class="co">#&gt; # A tibble: 6 × 9</span></span>
-<span><span class="co">#&gt;    ...1 Name               Rank Sport     endor…¹ total…² salary   age Gender</span></span>
-<span><span class="co">#&gt;   &lt;dbl&gt; &lt;chr&gt;             &lt;dbl&gt; &lt;chr&gt;       &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt; </span></span>
-<span><span class="co">#&gt; 1     1 Aaron Rodgers        55 Football  7500000  2.2 e7 1.45e7    31 Male  </span></span>
-<span><span class="co">#&gt; 2     2 Adam Scott           95 Golf      9000000  1.77e7 8.7 e6    34 Male  </span></span>
-<span><span class="co">#&gt; 3     3 Adrian Gonzalez      60 Baseball   400000  2.15e7 2.11e7    32 Male  </span></span>
-<span><span class="co">#&gt; 4     4 Alex Rodriguez       48 Baseball   300000  2.29e7 2.26e7    39 Male  </span></span>
-<span><span class="co">#&gt; 5     5 Alfonso Soriano      93 Baseball    50000  1.80e7 1.8 e7    38 Male  </span></span>
-<span><span class="co">#&gt; 6     6 Amar'e Stoudemire    27 Basketba… 5000000  2.67e7 2.17e7    32 Male  </span></span>
-<span><span class="co">#&gt; # … with abbreviated variable names ¹​endorsements, ²​totalpay</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="co">#&gt;    ...1 Name             Rank Sport endorsements totalpay salary   age Gender</span></span>
+<span><span class="co">#&gt;   &lt;dbl&gt; &lt;chr&gt;           &lt;dbl&gt; &lt;chr&gt;        &lt;dbl&gt;    &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt; </span></span>
+<span><span class="co">#&gt; 1     1 Aaron Rodgers      55 Foot…      7500000 22000000 1.45e7    31 Male  </span></span>
+<span><span class="co">#&gt; 2     2 Adam Scott         95 Golf       9000000 17700000 8.70e6    34 Male  </span></span>
+<span><span class="co">#&gt; 3     3 Adrian Gonzalez    60 Base…       400000 21500000 2.11e7    32 Male  </span></span>
+<span><span class="co">#&gt; 4     4 Alex Rodriguez     48 Base…       300000 22900000 2.26e7    39 Male  </span></span>
+<span><span class="co">#&gt; 5     5 Alfonso Soriano    93 Base…        50000 18050000 1.80e7    38 Male  </span></span>
+<span><span class="co">#&gt; 6     6 Amar'e Stoudem…    27 Bask…      5000000 26700000 2.17e7    32 Male</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>There are many different interesting questions to answer with this data set. First, we might be interested in the relationship between athlete age and salary for the top 100 athletes. Recall from an earlier stat course that one appropriate graphic to examine this relationship is a scatterplot:</p>
 <div class="cell">
@@ -845,15 +846,14 @@ Hint
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">Sport</span> <span class="op">==</span> <span class="st">"Tennis"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/arrange.html">arrange</a></span><span class="op">(</span><span class="va">Rank</span><span class="op">)</span></span>
 <span><span class="co">#&gt; # A tibble: 6 × 9</span></span>
-<span><span class="co">#&gt;    ...1 Name             Rank Sport  endorsements total…¹ salary   age Gender</span></span>
-<span><span class="co">#&gt;   &lt;dbl&gt; &lt;chr&gt;           &lt;dbl&gt; &lt;chr&gt;         &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt; </span></span>
-<span><span class="co">#&gt; 1    82 Roger Federer       7 Tennis     52000000  5.62e7 4.2 e6    33 Male  </span></span>
-<span><span class="co">#&gt; 2    78 Rafael Nadal        9 Tennis     30000000  4.45e7 1.45e7    28 Male  </span></span>
-<span><span class="co">#&gt; 3    72 Novak Djokovic     17 Tennis     21000000  3.31e7 1.21e7    27 Male  </span></span>
-<span><span class="co">#&gt; 4    64 Maria Sharapova    34 Tennis     22000000  2.44e7 2.4 e6    27 Female</span></span>
-<span><span class="co">#&gt; 5    60 Li Na              41 Tennis     18000000  2.36e7 5.6 e6    32 Female</span></span>
-<span><span class="co">#&gt; 6    89 Serena Williams    55 Tennis     11000000  2.2 e7 1.1 e7    33 Female</span></span>
-<span><span class="co">#&gt; # … with abbreviated variable name ¹​totalpay</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="co">#&gt;    ...1 Name             Rank Sport endorsements totalpay salary   age Gender</span></span>
+<span><span class="co">#&gt;   &lt;dbl&gt; &lt;chr&gt;           &lt;dbl&gt; &lt;chr&gt;        &lt;dbl&gt;    &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt; </span></span>
+<span><span class="co">#&gt; 1    82 Roger Federer       7 Tenn…     52000000 56200000 4.20e6    33 Male  </span></span>
+<span><span class="co">#&gt; 2    78 Rafael Nadal        9 Tenn…     30000000 44500000 1.45e7    28 Male  </span></span>
+<span><span class="co">#&gt; 3    72 Novak Djokovic     17 Tenn…     21000000 33100000 1.21e7    27 Male  </span></span>
+<span><span class="co">#&gt; 4    64 Maria Sharapova    34 Tenn…     22000000 24400000 2.40e6    27 Female</span></span>
+<span><span class="co">#&gt; 5    60 Li Na              41 Tenn…     18000000 23600000 5.6 e6    32 Female</span></span>
+<span><span class="co">#&gt; 6    89 Serena Williams    55 Tenn…     11000000 22000000 1.10e7    33 Female</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Finally, let’s see if we can compare the ratio of endorsements (from commercials and products) to salary of professional athletes in the Top 100 in 2 sports: Football (referring to American Football) and Basketball. Recall from an earlier Stat class that we might want to use side-by-side boxplots to make this comparison since we have one categorical variable (Sport Type) and one quantitative variable (Ratio of Endorsements to Salary).</p>
 <div class="cell">
@@ -877,12 +877,12 @@ Hint
 <li><p>Instead of looking at the relationship between age and salary in the top 100 athletes of 2014, change the plot to look at the relationship between age and endorsements. What would you change in the code above? Try it!</p></li>
 <li><p>Pick a <code>Sport</code> other than Tennis and see if you can count the number of athletes in the top 100 in that sport as well as sort them by Rank.</p></li>
 </ol>
-<div class="callout-caution callout callout-style-simple callout-captioned">
+<div class="callout callout-style-simple callout-caution callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
-<div class="callout-caption-container flex-fill">
+<div class="callout-title-container flex-fill">
 Caution
 </div>
 </div>
@@ -948,12 +948,12 @@ Caution
 <span><span class="fl">7</span> <span class="op">*</span> <span class="fl">42</span></span>
 <span><span class="co">#&gt; [1] 294</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="callout-important callout callout-style-simple callout-captioned">
+<div class="callout callout-style-simple callout-important callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
-<div class="callout-caption-container flex-fill">
+<div class="callout-title-container flex-fill">
 Important
 </div>
 </div>
@@ -1021,9 +1021,23 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     icon: icon
   };
   anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
   const clipboard = new window.ClipboardJS('.code-copy-button', {
-    target: function(trigger) {
-      return trigger.previousElementSibling;
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
     }
   });
   clipboard.on('success', function(e) {
@@ -1035,7 +1049,24 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     button.classList.add('code-copy-button-checked');
     var currentTitle = button.getAttribute("title");
     button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
     setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
       button.setAttribute("title", currentTitle);
       button.classList.remove('code-copy-button-checked');
     }, 1000);
@@ -1063,31 +1094,136 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   for (var i=0; i<noterefs.length; i++) {
     const ref = noterefs[i];
     tippyHover(ref, function() {
-      let href = ref.getAttribute('href');
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
       try { href = new URL(href).hash; } catch {}
       const id = href.replace(/^#\/?/, "");
       const note = window.document.getElementById(id);
       return note.innerHTML;
     });
   }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
   var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
   for (var i=0; i<bibliorefs.length; i++) {
     const ref = bibliorefs[i];
-    const cites = ref.parentNode.getAttribute('data-cites').split(' ');
-    tippyHover(ref, function() {
-      var popup = window.document.createElement('div');
-      cites.forEach(function(cite) {
-        var citeDiv = window.document.createElement('div');
-        citeDiv.classList.add('hanging-indent');
-        citeDiv.classList.add('csl-entry');
-        var biblioDiv = window.document.getElementById('ref-' + cite);
-        if (biblioDiv) {
-          citeDiv.innerHTML = biblioDiv.innerHTML;
-        }
-        popup.appendChild(citeDiv);
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
       });
-      return popup.innerHTML;
-    });
+    }
   }
 });
 </script><nav class="page-navigation"><div class="nav-page nav-page-previous">
@@ -1104,6 +1240,9 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </div> <!-- /content -->
 <footer class="footer"><div class="nav-footer">
     <div class="nav-footer-left">Course Materials were written by Matt Higham for STAT/DATA 234 at St.&nbsp;Lawrence University.</div>   
+    <div class="nav-footer-center">
+      &nbsp;
+    </div>
     <div class="nav-footer-right">This book was built with <a href="https://quarto.org/">Quarto</a>.</div>
   </div>
 </footer>

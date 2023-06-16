@@ -54,13 +54,13 @@ ggplot(data = name_of_data, aes(x = name_of_x_var,
 
 The structure of `ggplot()` plots is based on the Grammar of Graphics <a href="https://www.springer.com/gp/book/9780387245447" target="_blank">https://www.springer.com/gp/book/9780387245447</a>. As with most new things, the components above will be easier to think about with some examples. 
 
-Throughout this section, we will be using survey data from STAT 113 in the 2018-2019 academic year for many exercises in this section. For those who may not have taken STAT 113 from having AP credit or another reason, the STAT 113 survey is given to all students in STAT 113 across all sections. Some analyses in Intro Stat are then carried out using the survey. 
+Throughout this section, we will be using survey data from STAT 113 many years ago for the exercises in this section. For those who may not have taken STAT 113 from having AP credit or another reason, the STAT 113 survey is given to all students in STAT 113 across all sections. Some analyses in Intro Stat are then carried out using the survey. 
 
 Create a new Quarto file. Then, read in the data set by copying and pasting the `R` chunk below into an `R` chunk in your Quarto file.
 
 ```{r, message = FALSE}
 library(tidyverse)
-stat113_df <- read_csv("data/stat113.csv")
+stat113_df <- read_csv("https://raw.githubusercontent.com/highamm/ds234_quarto/main/data_online/stat113.csv")
 head(stat113_df)
 ```
 
@@ -240,7 +240,7 @@ Read in the data set by putting the following code into an `R` chunk in your Qua
 
 ```{r, appendix = TRUE}
 library(tidyverse)
-fitness_full <- read_csv("data/higham_fitness_clean.csv",
+fitness_full <- read_csv("https://raw.githubusercontent.com/highamm/ds234_quarto/main/data_online/higham_fitness_clean.csv",
                          col_types = list(stepgoal = col_factor())) |>
   mutate(weekend_ind = case_when(weekday == "Sat" | weekday == "Sun" ~ "weekend",
                                  TRUE ~ "weekday"))
@@ -416,7 +416,7 @@ Examine the following graph of some of the variables in the fitness data set we 
 
 ```{r}
 library(tidyverse)
-fitness_full <- read_csv("data/higham_fitness_clean.csv",
+fitness_full <- read_csv("https://raw.githubusercontent.com/highamm/ds234_quarto/main/data_online/higham_fitness_clean.csv",
                          col_types = list(stepgoal = col_factor())) |>
   mutate(weekend_ind = case_when(weekday == "Sat" | weekday == "Sun" ~ "weekend",
                                  TRUE ~ "weekday"))
@@ -565,7 +565,7 @@ In general, practice exercises will be split between exercises that will be done
 For some of these exercises we will again use the `stat113_df` data, described in the previous section.
 
 ```{r}
-stat113_df <- read_csv("data/stat113.csv")
+stat113_df <- read_csv("https://raw.githubusercontent.com/highamm/ds234_quarto/main/data_online/stat113.csv")
 head(stat113_df)
 ```
 

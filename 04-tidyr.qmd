@@ -384,7 +384,7 @@ __Your Turn 2__. Tidy the data set just so that
 * `Duration` of the salary contract (currently given in the `Year` column) is in its own column
 * the year range (also currently given in the `Year` column) is split into a variable called `Start` and a variable called `End` year that give the start and end years of the contract. You can still have special characters for now (like `(` and `)`) in the start and end year.
 
-__Your Turn 3__. You should have received a warning message. What does this message mean? See if you can figure it out by typing `View(baseball_df)` in your console window and scrolling down to some of the rows that the warning mentions: 48, 59, 60, etc. Discuss with your group why that warning message was given.
+__Your Turn 3__. You should have received a warning message. What does this message mean? See if you can figure it out by typing `View(baseball_df)` in your console window and scrolling down to some of the rows that the warning mentions: 48, 59, 60, etc. With your group why that warning message was given.
 
 __Your Turn 4__. We won't learn about `parse_number()` until `readr`, but the function is straightforward enough to mention here. It's useful when you have extra characters in the values of a numeric variable (like a `$` or a `(`), but you just want to grab the actual number:
 

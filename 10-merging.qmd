@@ -179,7 +179,7 @@ Which join function we use will depend on the context of the data and what quest
 ::: {.callout-important}
 ## Important
 
-Most importantly, if you're using a `left_join()`, `right_join()` or `inner_join()`, you're potentially cutting out some data. It's important to be aware of what data you're omitting. For example, with the `babynames` and `births` data, we would want to keep a note that a `left_join()` removed all observations before 1909 from joined data set. 
+If you're using a `left_join()`, `right_join()` or `inner_join()`, you're potentially cutting out some data. It's important to be aware of what data you're omitting. For example, with the `babynames` and `births` data, we would want to keep a note that a `left_join()` removed all observations before 1909 from joined data set. 
 :::
 
 __Exercise 2__. Examine the following two joins that we've done, and explain why one resulting data set has fewer observations (rows) than the other.

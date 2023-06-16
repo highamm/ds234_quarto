@@ -2,16 +2,22 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.0.36">
+<meta name="generator" content="quarto-1.3.353">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 <title>DATA / STAT 234 - 2&nbsp; Plotting with ggplot2</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
-span.underline{text-decoration: underline;}
-div.column{display: inline-block; vertical-align: top; width: 50%;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
 div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
 pre > code.sourceCode { white-space: pre; position: relative; }
 pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
@@ -38,43 +44,13 @@ pre.numberSource code > span > a:first-child::before
     -khtml-user-select: none; -moz-user-select: none;
     -ms-user-select: none; user-select: none;
     padding: 0 4px; width: 4em;
-    color: #aaaaaa;
   }
-pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
 div.sourceCode
   {   }
 @media screen {
 pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
-code span.al { color: #ff0000; font-weight: bold; } /* Alert */
-code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-code span.at { color: #7d9029; } /* Attribute */
-code span.bn { color: #40a070; } /* BaseN */
-code span.bu { } /* BuiltIn */
-code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-code span.ch { color: #4070a0; } /* Char */
-code span.cn { color: #880000; } /* Constant */
-code span.co { color: #60a0b0; font-style: italic; } /* Comment */
-code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-code span.do { color: #ba2121; font-style: italic; } /* Documentation */
-code span.dt { color: #902000; } /* DataType */
-code span.dv { color: #40a070; } /* DecVal */
-code span.er { color: #ff0000; font-weight: bold; } /* Error */
-code span.ex { } /* Extension */
-code span.fl { color: #40a070; } /* Float */
-code span.fu { color: #06287e; } /* Function */
-code span.im { } /* Import */
-code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
-code span.kw { color: #007020; font-weight: bold; } /* Keyword */
-code span.op { color: #666666; } /* Operator */
-code span.ot { color: #007020; } /* Other */
-code span.pp { color: #bc7a00; } /* Preprocessor */
-code span.sc { color: #4070a0; } /* SpecialChar */
-code span.ss { color: #bb6688; } /* SpecialString */
-code span.st { color: #4070a0; } /* String */
-code span.va { color: #19177c; } /* Variable */
-code span.vs { color: #4070a0; } /* VerbatimString */
-code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
 <script src="site_libs/quarto-nav/quarto-nav.js"></script>
@@ -117,19 +93,24 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <body class="nav-sidebar floating">
 
 <div id="quarto-search-results"></div>
-  <header id="quarto-header" class="headroom fixed-top"><nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }"><div class="container-fluid d-flex justify-content-between">
-      <h1 class="quarto-secondary-nav-title"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Plotting with <code>ggplot2</code></span></h1>
-      <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
-        <i class="bi bi-chevron-right"></i>
+  <header id="quarto-header" class="headroom fixed-top"><nav class="quarto-secondary-nav"><div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./01-intro.html">The Core</a></li><li class="breadcrumb-item"><a href="./02-ggplot2.html"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Plotting with `ggplot2`</span></a></li></ol></nav>
+      <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+      </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
       </button>
     </div>
   </nav></header><!-- content --><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation floating overflow-auto"><div class="pt-lg-2 mt-2 text-left sidebar-header">
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation floating overflow-auto"><div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
       <a href="./">DATA / STAT 234</a> 
         <div class="sidebar-tools-main">
-  <a href="" class="quarto-reader-toggle sidebar-tool" onclick="window.quartoToggleReader(); return false;" title="Toggle reader mode">
+  <a href="" class="quarto-reader-toggle quarto-navigation-tool px-1" onclick="window.quartoToggleReader(); return false;" title="Toggle reader mode">
   <div class="quarto-reader-toggle-btn">
   <i class="bi"></i>
   </div>
@@ -137,174 +118,196 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
     </div>
       </div>
-      <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="mt-2 flex-shrink-0 align-items-center">
         <div class="sidebar-search">
         <div id="quarto-search" class="" title="Search"></div>
         </div>
-      </div>
+        </div>
     <div class="sidebar-menu-container"> 
     <ul class="list-unstyled mt-1">
 <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./index.html" class="sidebar-item-text sidebar-link">Syllabus and Course Information</a>
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Syllabus and Course Information</span></a>
   </div>
 </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">The Core</a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
+ <span class="menu-text">The Core</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">
 <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./01-intro.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Getting Started</span></a>
+  <a href="./01-intro.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Getting Started</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./02-ggplot2.html" class="sidebar-item-text sidebar-link active"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Plotting with <code>ggplot2</code></span></a>
+  <a href="./02-ggplot2.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Plotting with <code>ggplot2</code></span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./03-dplyr.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Wrangling with <code>dplyr</code></span></a>
+  <a href="./03-dplyr.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Wrangling with <code>dplyr</code></span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./05-comm.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Communication with <code>Quarto</code></span></a>
+  <a href="./05-comm.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Communication with <code>Quarto</code></span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./14-workflow.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Workflow and Other Skills</span></a>
+  <a href="./14-workflow.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Workflow and Other Skills</span></span></a>
   </div>
 </li>
       </ul>
 </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">Data Wrangling</a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">
+ <span class="menu-text">Data Wrangling</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">
 <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./04-tidyr.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Tidying with <code>tidyr</code></span></a>
+  <a href="./04-tidyr.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Tidying with <code>tidyr</code></span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./06-basics.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Coding in Base <code>R</code></span></a>
+  <a href="./06-basics.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Coding in Base <code>R</code></span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./07-forcats.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Factors with <code>forcats</code></span></a>
+  <a href="./07-forcats.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Factors with <code>forcats</code></span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./09-ethics.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Data Ethics</span></a>
+  <a href="./09-ethics.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Data Ethics</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./08-import.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Data Import</span></a>
+  <a href="./08-import.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Data Import</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./10-merging.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Merging with <code>dplyr</code></span></a>
+  <a href="./10-merging.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Merging with <code>dplyr</code></span></span></a>
   </div>
 </li>
       </ul>
 </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">Special Topics</a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">
+ <span class="menu-text">Special Topics</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
       <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">
 <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./11-lubridate.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Dates with <code>lubridate</code></span></a>
+  <a href="./11-lubridate.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Dates with <code>lubridate</code></span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./12-stringr.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Text Data with <code>tidytext</code> and <code>stringr</code></span></a>
+  <a href="./12-stringr.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Text Data with <code>tidytext</code> and <code>stringr</code></span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./13-knn.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Predictive Modeling with knn</span></a>
+  <a href="./13-knn.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Predictive Modeling with knn</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./15-connections.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Connections to STAT 113, STAT 213, and CS 140</span></a>
+  <a href="./15-connections.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Connections to STAT 113, STAT 213, and CS 140</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./16-sql.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Introduction to SQL with <code>dbplyr</code></span></a>
+  <a href="./16-sql.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Introduction to SQL with <code>dbplyr</code></span></span></a>
   </div>
 </li>
       </ul>
 </li>
     </ul>
 </div>
-</nav><!-- margin-sidebar --><div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc"><h2 id="toc-title">Table of contents</h2>
+</nav><div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active"><h2 id="toc-title">Table of contents</h2>
    
   <ul>
-<li><a href="#introduction-and-basic-terminology" id="toc-introduction-and-basic-terminology" class="nav-link active" data-scroll-target="#introduction-and-basic-terminology"> <span class="header-section-number">2.1</span> Introduction and Basic Terminology</a></li>
-  <li><a href="#basic-plot-structure" id="toc-basic-plot-structure" class="nav-link" data-scroll-target="#basic-plot-structure"> <span class="header-section-number">2.2</span> Basic Plot Structure</a></li>
+<li><a href="#introduction-and-basic-terminology" id="toc-introduction-and-basic-terminology" class="nav-link active" data-scroll-target="#introduction-and-basic-terminology"><span class="header-section-number">2.1</span> Introduction and Basic Terminology</a></li>
+  <li><a href="#basic-plot-structure" id="toc-basic-plot-structure" class="nav-link" data-scroll-target="#basic-plot-structure"><span class="header-section-number">2.2</span> Basic Plot Structure</a></li>
   <li>
-<a href="#introduction-to-plotting" id="toc-introduction-to-plotting" class="nav-link" data-scroll-target="#introduction-to-plotting"> <span class="header-section-number">2.3</span> Introduction to Plotting</a>
+<a href="#introduction-to-plotting" id="toc-introduction-to-plotting" class="nav-link" data-scroll-target="#introduction-to-plotting"><span class="header-section-number">2.3</span> Introduction to Plotting</a>
   <ul class="collapse">
-<li><a href="#single-quantitative-variable" id="toc-single-quantitative-variable" class="nav-link" data-scroll-target="#single-quantitative-variable"> <span class="header-section-number">2.3.1</span> Single Quantitative Variable</a></li>
-  <li><a href="#single-categorical-variable" id="toc-single-categorical-variable" class="nav-link" data-scroll-target="#single-categorical-variable"> <span class="header-section-number">2.3.2</span> Single Categorical Variable</a></li>
-  <li><a href="#two-variables-both-categorical" id="toc-two-variables-both-categorical" class="nav-link" data-scroll-target="#two-variables-both-categorical"> <span class="header-section-number">2.3.3</span> Two Variables: Both Categorical</a></li>
-  <li><a href="#two-variables-one-cat.-and-one-quant." id="toc-two-variables-one-cat.-and-one-quant." class="nav-link" data-scroll-target="#two-variables-one-cat.-and-one-quant."> <span class="header-section-number">2.3.4</span> Two Variables: One Cat. and One Quant.</a></li>
-  <li><a href="#two-quantitative-variables" id="toc-two-quantitative-variables" class="nav-link" data-scroll-target="#two-quantitative-variables"> <span class="header-section-number">2.3.5</span> Two Quantitative Variables</a></li>
-  <li><a href="#more-than-two-variables" id="toc-more-than-two-variables" class="nav-link" data-scroll-target="#more-than-two-variables"> <span class="header-section-number">2.3.6</span> More Than Two Variables</a></li>
+<li><a href="#single-quantitative-variable" id="toc-single-quantitative-variable" class="nav-link" data-scroll-target="#single-quantitative-variable"><span class="header-section-number">2.3.1</span> Single Quantitative Variable</a></li>
+  <li><a href="#single-categorical-variable" id="toc-single-categorical-variable" class="nav-link" data-scroll-target="#single-categorical-variable"><span class="header-section-number">2.3.2</span> Single Categorical Variable</a></li>
+  <li><a href="#two-variables-both-categorical" id="toc-two-variables-both-categorical" class="nav-link" data-scroll-target="#two-variables-both-categorical"><span class="header-section-number">2.3.3</span> Two Variables: Both Categorical</a></li>
+  <li><a href="#two-variables-one-cat.-and-one-quant." id="toc-two-variables-one-cat.-and-one-quant." class="nav-link" data-scroll-target="#two-variables-one-cat.-and-one-quant."><span class="header-section-number">2.3.4</span> Two Variables: One Cat. and One Quant.</a></li>
+  <li><a href="#two-quantitative-variables" id="toc-two-quantitative-variables" class="nav-link" data-scroll-target="#two-quantitative-variables"><span class="header-section-number">2.3.5</span> Two Quantitative Variables</a></li>
+  <li><a href="#more-than-two-variables" id="toc-more-than-two-variables" class="nav-link" data-scroll-target="#more-than-two-variables"><span class="header-section-number">2.3.6</span> More Than Two Variables</a></li>
   </ul>
 </li>
   <li>
-<a href="#practice" id="toc-practice" class="nav-link" data-scroll-target="#practice"> <span class="header-section-number">2.4</span> Practice</a>
+<a href="#practice" id="toc-practice" class="nav-link" data-scroll-target="#practice"><span class="header-section-number">2.4</span> Practice</a>
   <ul class="collapse">
-<li><a href="#class-exercises" id="toc-class-exercises" class="nav-link" data-scroll-target="#class-exercises"> <span class="header-section-number">2.4.1</span> Class Exercises</a></li>
-  <li><a href="#your-turn" id="toc-your-turn" class="nav-link" data-scroll-target="#your-turn"> <span class="header-section-number">2.4.2</span> Your Turn</a></li>
+<li><a href="#class-exercises" id="toc-class-exercises" class="nav-link" data-scroll-target="#class-exercises"><span class="header-section-number">2.4.1</span> Class Exercises</a></li>
+  <li><a href="#your-turn" id="toc-your-turn" class="nav-link" data-scroll-target="#your-turn"><span class="header-section-number">2.4.2</span> Your Turn</a></li>
   </ul>
 </li>
   <li>
-<a href="#aesthetic-mapping-in-ggplot" id="toc-aesthetic-mapping-in-ggplot" class="nav-link" data-scroll-target="#aesthetic-mapping-in-ggplot"> <span class="header-section-number">2.5</span> Aesthetic Mapping in <code>ggplot</code></a>
+<a href="#aesthetic-mapping-in-ggplot" id="toc-aesthetic-mapping-in-ggplot" class="nav-link" data-scroll-target="#aesthetic-mapping-in-ggplot"><span class="header-section-number">2.5</span> Aesthetic Mapping in <code>ggplot</code></a>
   <ul class="collapse">
-<li><a href="#inside-vs.-outside-aes" id="toc-inside-vs.-outside-aes" class="nav-link" data-scroll-target="#inside-vs.-outside-aes"> <span class="header-section-number">2.5.1</span> Inside vs.&nbsp;Outside <code>aes()</code></a></li>
-  <li><a href="#local-vs.-global-aesthetics" id="toc-local-vs.-global-aesthetics" class="nav-link" data-scroll-target="#local-vs.-global-aesthetics"> <span class="header-section-number">2.5.2</span> Local vs.&nbsp;Global Aesthetics</a></li>
-  <li><a href="#r-code-style" id="toc-r-code-style" class="nav-link" data-scroll-target="#r-code-style"> <span class="header-section-number">2.5.3</span> <code>R</code> Code Style</a></li>
+<li><a href="#inside-vs.-outside-aes" id="toc-inside-vs.-outside-aes" class="nav-link" data-scroll-target="#inside-vs.-outside-aes"><span class="header-section-number">2.5.1</span> Inside vs.&nbsp;Outside <code>aes()</code></a></li>
+  <li><a href="#local-vs.-global-aesthetics" id="toc-local-vs.-global-aesthetics" class="nav-link" data-scroll-target="#local-vs.-global-aesthetics"><span class="header-section-number">2.5.2</span> Local vs.&nbsp;Global Aesthetics</a></li>
+  <li><a href="#r-code-style" id="toc-r-code-style" class="nav-link" data-scroll-target="#r-code-style"><span class="header-section-number">2.5.3</span> <code>R</code> Code Style</a></li>
   </ul>
 </li>
   <li>
-<a href="#practice-1" id="toc-practice-1" class="nav-link" data-scroll-target="#practice-1"> <span class="header-section-number">2.6</span> Practice</a>
+<a href="#practice-1" id="toc-practice-1" class="nav-link" data-scroll-target="#practice-1"><span class="header-section-number">2.6</span> Practice</a>
   <ul class="collapse">
-<li><a href="#class-exercises-1" id="toc-class-exercises-1" class="nav-link" data-scroll-target="#class-exercises-1"> <span class="header-section-number">2.6.1</span> Class Exercises</a></li>
-  <li><a href="#your-turn-1" id="toc-your-turn-1" class="nav-link" data-scroll-target="#your-turn-1"> <span class="header-section-number">2.6.2</span> Your Turn</a></li>
+<li><a href="#class-exercises-1" id="toc-class-exercises-1" class="nav-link" data-scroll-target="#class-exercises-1"><span class="header-section-number">2.6.1</span> Class Exercises</a></li>
+  <li><a href="#your-turn-1" id="toc-your-turn-1" class="nav-link" data-scroll-target="#your-turn-1"><span class="header-section-number">2.6.2</span> Your Turn</a></li>
   </ul>
 </li>
   </ul></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><div class="quarto-title">
-<h1 class="title"><span id="sec-ggplot2" class="quarto-section-identifier d-none d-lg-block"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Plotting with <code>ggplot2</code></span></span></h1>
+<h1 class="title"><span id="sec-ggplot2" class="quarto-section-identifier"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Plotting with <code>ggplot2</code></span></span></h1>
 </div>
 
 
@@ -312,43 +315,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="quarto-title-meta">
 
     
+  
     
   </div>
   
 
-</header><div class="callout-tip callout callout-style-simple callout-captioned">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-caption-container flex-fill">
-Hint (only if you get stuck)
-</div>
-<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
-</div>
-<div id="callout-1" class="callout-1-contents callout-collapse collapse">
-<div class="callout-body-container callout-body">
-<p>Recall that only aesthetic mappings (variables) go inside <code><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes()</a></code>. Of (a) or (b), which one is an aesthetic mapping?</p>
-</div>
-</div>
-</div>
-<div class="callout-note callout callout-style-simple callout-captioned">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-caption-container flex-fill">
-Note
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>Recall that only aesthetic mappings (variables) go inside <code><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes()</a></code>. Of (a) or (b), which one is an aesthetic mapping?</p>
-</div>
-</div>
-<div class="cell">
-
-</div>
-<p><strong>Goals:</strong></p>
+</header><p><strong>Goals:</strong></p>
 <ul>
 <li><p>Use the <code>ggplot2</code> package to make exploratory plots from STAT 113 of a single quantitative variable, a single categorical variable, two quantitative variables, a quantitative and a categorical variable, two categorical variables, and more than two variables.</p></li>
 <li><p>Further practice running code in <code>R</code>.</p></li>
@@ -366,12 +338,12 @@ Note
 <li><p>an <em>argument</em> is something that goes inside the parentheses in a function. Arguments could include <em>objects</em>, or they might not. In the bottom-left window, type <code><a href="https://rdrr.io/r/base/mean.html">?mean</a></code> to view the Help file on this <code>R</code> function. We see that <code><a href="https://rdrr.io/r/base/mean.html">mean()</a></code> has 3 arguments: <code>x</code>, which is an <code>R</code> object, <code>trim</code>, and <code>na.rm</code>. <code>trim = 0</code> is the default, which means that, by default, <code>R</code> will not trim any of the numbers when computing the mean.</p></li>
 <li><p>an <em>object</em> is something created in <code>R</code>, usually with <code>&lt;-</code>. So, in the code below where we read in the STAT 113 survey data set, <code>stat113_df</code> is an <code>R</code> object.</p></li>
 </ul>
-<div class="callout-note callout callout-style-simple callout-captioned">
+<div class="callout callout-style-simple callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
-<div class="callout-caption-container flex-fill">
+<div class="callout-title-container flex-fill">
 Note
 </div>
 </div>
@@ -397,11 +369,11 @@ Note
 <span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>  .....<span class="sc">&lt;</span>other stuff<span class="sc">&gt;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>The structure of <code><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot()</a></code> plots is based on the Grammar of Graphics <a href="https://www.springer.com/gp/book/9780387245447" target="_blank">https://www.springer.com/gp/book/9780387245447</a>. As with most new things, the components above will be easier to think about with some examples.</p>
-<p>Throughout this section, we will be using survey data from STAT 113 in the 2018-2019 academic year for many exercises in this section. For those who may not have taken STAT 113 from having AP credit or another reason, the STAT 113 survey is given to all students in STAT 113 across all sections. Some analyses in Intro Stat are then carried out using the survey.</p>
+<p>Throughout this section, we will be using survey data from STAT 113 many years ago for the exercises in this section. For those who may not have taken STAT 113 from having AP credit or another reason, the STAT 113 survey is given to all students in STAT 113 across all sections. Some analyses in Intro Stat are then carried out using the survey.</p>
 <p>Create a new Quarto file. Then, read in the data set by copying and pasting the <code>R</code> chunk below into an <code>R</code> chunk in your Quarto file.</p>
 <div class="cell">
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span></span>
-<span><span class="va">stat113_df</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv</a></span><span class="op">(</span><span class="st">"data/stat113.csv"</span><span class="op">)</span></span>
+<span><span class="va">stat113_df</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv</a></span><span class="op">(</span><span class="st">"https://raw.githubusercontent.com/highamm/ds234_quarto/main/data_online/stat113.csv"</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">stat113_df</span><span class="op">)</span></span>
 <span><span class="co">#&gt; # A tibble: 6 × 12</span></span>
 <span><span class="co">#&gt;   Year      Sex     Hgt   Wgt Haircut   GPA Exercise Sport    TV Award  Pulse</span></span>
@@ -412,7 +384,7 @@ Note
 <span><span class="co">#&gt; 4 FirstYear M        68   157      35  3.21       10 Yes      15 Olymp…    54</span></span>
 <span><span class="co">#&gt; 5 FirstYear M        72   175      20  3.1         2 No        5 Nobel     NA</span></span>
 <span><span class="co">#&gt; 6 Junior    F        62   150      50  3.3         8 Yes       5 Olymp…    86</span></span>
-<span><span class="co">#&gt; # … with 1 more variable: SocialMedia &lt;chr&gt;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="co">#&gt; # ℹ 1 more variable: SocialMedia &lt;chr&gt;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>The data set contains the following variables:</p>
 <ul>
@@ -470,12 +442,12 @@ Note
 <code><a href="https://ggplot2.tidyverse.org/reference/geom_histogram.html">geom_histogram()</a></code> tells <code>R</code> that we want to use the histogram <code>GEOM</code> to bin the GPA variable and construct the histogram. The extra options <code>colour = "black", fill = "white", bins = 17</code> are options for the plot that change the <code>colour</code>, <code>fill</code>, and number of <code>bins</code> in the histogram.</li>
 </ul>
 <p>There are other graphs besides a histogram that we can use to visualize a quantitative variable. Another useful graph is a frequency plot, made with the geom <code><a href="https://ggplot2.tidyverse.org/reference/geom_histogram.html">geom_freqpoly()</a></code>. The code to make a frequency plot is given below.</p>
-<div class="callout-note callout callout-style-simple callout-captioned">
+<div class="callout callout-style-simple callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
-<div class="callout-caption-container flex-fill">
+<div class="callout-title-container flex-fill">
 Note
 </div>
 </div>
@@ -491,12 +463,12 @@ Note
 </div>
 </div>
 <p>The frequency plot is just like a histogram but the counts are connected by a line instead of represented with bins. You can see how they relate by including <strong>both</strong> a <code><a href="https://ggplot2.tidyverse.org/reference/geom_histogram.html">geom_freqpoly()</a></code> and a <code><a href="https://ggplot2.tidyverse.org/reference/geom_histogram.html">geom_histogram()</a></code> in your plot</p>
-<div class="callout-important callout callout-style-simple callout-captioned">
+<div class="callout callout-style-simple callout-important callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
-<div class="callout-caption-container flex-fill">
+<div class="callout-title-container flex-fill">
 Important
 </div>
 </div>
@@ -561,12 +533,12 @@ Important
 <p><img src="02-ggplot2_files/figure-html/unnamed-chunk-11-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
-<div class="callout-note callout callout-style-simple callout-captioned">
+<div class="callout callout-style-simple callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
-<div class="callout-caption-container flex-fill">
+<div class="callout-title-container flex-fill">
 Note
 </div>
 </div>
@@ -592,12 +564,12 @@ Note
 </div>
 </div>
 <p>The <code><a href="https://ggplot2.tidyverse.org/reference/geom_jitter.html">geom_jitter()</a></code> <code>GEOM</code> adds a little bit of “noise” to the points that are plotted. In this case, the noise is added to the width and how much noise is added depends on the value of the <code>width</code> argument.</p>
-<div class="callout-important callout callout-style-simple callout-captioned">
+<div class="callout callout-style-simple callout-important callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
-<div class="callout-caption-container flex-fill">
+<div class="callout-title-container flex-fill">
 Important
 </div>
 </div>
@@ -635,7 +607,7 @@ Important
 <p>Read in the data set by putting the following code into an <code>R</code> chunk in your Quarto file:</p>
 <div class="cell" data-appendix="true">
 <div class="sourceCode" id="cb13"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span></span>
-<span><span class="va">fitness_full</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv</a></span><span class="op">(</span><span class="st">"data/higham_fitness_clean.csv"</span>,</span>
+<span><span class="va">fitness_full</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv</a></span><span class="op">(</span><span class="st">"https://raw.githubusercontent.com/highamm/ds234_quarto/main/data_online/higham_fitness_clean.csv"</span>,</span>
 <span>                         col_types <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>stepgoal <span class="op">=</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/parse_factor.html">col_factor</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>weekend_ind <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/case_when.html">case_when</a></span><span class="op">(</span><span class="va">weekday</span> <span class="op">==</span> <span class="st">"Sat"</span> <span class="op">|</span> <span class="va">weekday</span> <span class="op">==</span> <span class="st">"Sun"</span> <span class="op">~</span> <span class="st">"weekend"</span>,</span>
 <span>                                 <span class="cn">TRUE</span> <span class="op">~</span> <span class="st">"weekday"</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -650,34 +622,34 @@ Important
 </div>
 </div>
 <p><strong>Exercise 9</strong>. Do you see anything “odd” about the plot? Make a note of any strange observations that you see.</p>
-<div class="callout-tip callout callout-style-simple callout-captioned">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-8-contents" aria-controls="callout-8" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout callout-style-simple callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-6-contents" aria-controls="callout-6" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
-<div class="callout-caption-container flex-fill">
+<div class="callout-title-container flex-fill">
 Hint
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-8" class="callout-8-contents callout-collapse collapse">
+<div id="callout-6" class="callout-6-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p>In particular, what about having <code>0</code>’s for either <code>distance</code> or <code>active_cals</code> could indicate a flaw in how the data was collected?</p>
 </div>
 </div>
 </div>
 <p><strong>Exercise 10</strong>. Change the <code>x</code> and <code>y</code> variables plotted to two different quantitative variables in the fitness data set. Give a one sentence interpretation of any findings from your new plot.</p>
-<div class="callout-tip callout callout-style-simple callout-captioned">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-9-contents" aria-controls="callout-9" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout callout-style-simple callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-7-contents" aria-controls="callout-7" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
-<div class="callout-caption-container flex-fill">
+<div class="callout-title-container flex-fill">
 Hint
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-9" class="callout-9-contents callout-collapse collapse">
+<div id="callout-7" class="callout-7-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p>Recall from STAT 113 that three aspects you might think about are the <strong>strength</strong> of the relationship (weak, moderate, strong), whether or not the relationship is <strong>linear</strong>, and the <strong>direction</strong> of the relationship (positive or negative)</p>
 </div>
@@ -708,12 +680,12 @@ Hint
 </div>
 </div>
 <p>A second option for including a third variable in a plot is to <strong>facet</strong> by that variable using the <code><a href="https://ggplot2.tidyverse.org/reference/facet_wrap.html">facet_wrap()</a></code> function. The syntax of <code><a href="https://ggplot2.tidyverse.org/reference/facet_wrap.html">facet_wrap()</a></code> is <code>facet_wrap(~ name_of_faceting_variable)</code>.</p>
-<div class="callout-important callout callout-style-simple callout-captioned">
+<div class="callout callout-style-simple callout-important callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
-<div class="callout-caption-container flex-fill">
+<div class="callout-title-container flex-fill">
 Important
 </div>
 </div>
@@ -759,17 +731,17 @@ Important
 <li><p>When the data is structured such that there is a column that uniquely gives the levels of the categorical variable and a second column that gives the count of each level, we typically use the <code><a href="https://ggplot2.tidyverse.org/reference/geom_bar.html">geom_col()</a></code> <code>GEOM</code> instead of <code><a href="https://ggplot2.tidyverse.org/reference/geom_bar.html">geom_bar()</a></code>. <code><a href="https://ggplot2.tidyverse.org/reference/geom_bar.html">geom_col()</a></code> uses both an <code>x</code> and a <code>y</code> aesthetic mapping. Construct the bar plot using <code>stat113_restructured</code> with the <code><a href="https://ggplot2.tidyverse.org/reference/geom_bar.html">geom_col()</a></code> <code>GEOM</code>.</p></li>
 </ol>
 <p><strong>Class Exercise 2</strong>. To the scatterplot of <code>distance</code> vs.&nbsp;<code>active calories</code>, add a smoother with the <code><a href="https://ggplot2.tidyverse.org/reference/geom_smooth.html">geom_smooth()</a></code> <code>GEOM</code>. After adding the smoother, investigate the following arguments: (1) <code>method</code>, (2) <code>se</code>, and (3) <code>span</code>.</p>
-<div class="callout-tip callout callout-style-simple callout-captioned">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-11-contents" aria-controls="callout-11" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout callout-style-simple callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-9-contents" aria-controls="callout-9" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
-<div class="callout-caption-container flex-fill">
+<div class="callout-title-container flex-fill">
 Hint
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-11" class="callout-11-contents callout-collapse collapse">
+<div id="callout-9" class="callout-9-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p>You can investigate the arguments either by typing <code><a href="https://ggplot2.tidyverse.org/reference/geom_smooth.html">?geom_smooth</a></code> in your lower left window or by using Google or ChatGPT.</p>
 </div>
@@ -799,17 +771,17 @@ Hint
 <li><p>Make a set of faceted histograms (faceting by the categorical variable that you selected).</p></li>
 </ol>
 <p><strong>Your Turn 5</strong>. In your group, discuss why it would not make sense to construct a line plot of <code>Exercise</code> vs.&nbsp;<code>GPA</code> from the <code>stat113_df</code> data set.</p>
-<div class="callout-tip callout callout-style-simple callout-captioned">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-12-contents" aria-controls="callout-12" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout callout-style-simple callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-10-contents" aria-controls="callout-10" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
-<div class="callout-caption-container flex-fill">
+<div class="callout-title-container flex-fill">
 Hint
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-12" class="callout-12-contents callout-collapse collapse">
+<div id="callout-10" class="callout-10-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p>What about the <code>GPA</code> variable in particular would make construction of a line plot impossible?</p>
 </div>
@@ -829,12 +801,12 @@ Hint
 <li>explain how aesthetics are used in <code><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot()</a></code> and describe the difference between local and global aesthetics.</li>
 </ul>
 <p>The purpose of this second section on <code>ggplot2</code> is to discuss more about plot aesthetics. While the previous section focused more on basic plot construction, this section will focus more on how the plots are constructed by what is specified in the <code><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes()</a></code> mapping argument.</p>
-<div class="callout-important callout callout-style-simple callout-captioned">
+<div class="callout callout-style-simple callout-important callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
-<div class="callout-caption-container flex-fill">
+<div class="callout-title-container flex-fill">
 Important
 </div>
 </div>
@@ -850,7 +822,7 @@ Important
 <p>Examine the following graph of some of the variables in the fitness data set we used in the previous section.</p>
 <div class="cell">
 <div class="sourceCode" id="cb20"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span></span>
-<span><span class="va">fitness_full</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv</a></span><span class="op">(</span><span class="st">"data/higham_fitness_clean.csv"</span>,</span>
+<span><span class="va">fitness_full</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv</a></span><span class="op">(</span><span class="st">"https://raw.githubusercontent.com/highamm/ds234_quarto/main/data_online/higham_fitness_clean.csv"</span>,</span>
 <span>                         col_types <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>stepgoal <span class="op">=</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/parse_factor.html">col_factor</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>weekend_ind <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/case_when.html">case_when</a></span><span class="op">(</span><span class="va">weekday</span> <span class="op">==</span> <span class="st">"Sat"</span> <span class="op">|</span> <span class="va">weekday</span> <span class="op">==</span> <span class="st">"Sun"</span> <span class="op">~</span> <span class="st">"weekend"</span>,</span>
 <span>                                 <span class="cn">TRUE</span> <span class="op">~</span> <span class="st">"weekday"</span><span class="op">)</span><span class="op">)</span></span>
@@ -885,12 +857,12 @@ Important
 <li><p>when we want to map something in our data set (<code>fitness_full</code>) to something in our plot (<code>x</code>, <code>y</code>, <code>colour</code>, <code>size</code>, etc.), we put that <strong>inside</strong> the <code><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes()</a></code> as in <code>aes(colour = weekend_ind)</code>.</p></li>
 <li><p>When we assign fixed characteristics (making all points a larger size, widening the width of a line, using a constant colour, etc.) that don’t come from the data, we put them <strong>outside</strong> of <code><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes()</a></code>.</p></li>
 </ul>
-<div class="callout-note callout callout-style-simple callout-captioned">
+<div class="callout callout-style-simple callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
-<div class="callout-caption-container flex-fill">
+<div class="callout-title-container flex-fill">
 Note
 </div>
 </div>
@@ -939,12 +911,12 @@ Note
 <p><img src="02-ggplot2_files/figure-html/unnamed-chunk-26-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
-<div class="callout-important callout callout-style-simple callout-captioned">
+<div class="callout callout-style-simple callout-important callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
-<div class="callout-caption-container flex-fill">
+<div class="callout-title-container flex-fill">
 Important
 </div>
 </div>
@@ -1014,7 +986,7 @@ Important
 <p>In general, practice exercises will be split between exercises that will be done together as a class and exercises that you will do in groups or on your own. The purpose of the class exercises is to give some guidance on how we might think logically through some of the code and the results. The purpose of the group exercises and the on your own exercises is so that you have a chance to practice what you’ve learned with your table or on your own.</p>
 <p>For some of these exercises we will again use the <code>stat113_df</code> data, described in the previous section.</p>
 <div class="cell">
-<div class="sourceCode" id="cb33"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">stat113_df</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv</a></span><span class="op">(</span><span class="st">"data/stat113.csv"</span><span class="op">)</span></span>
+<div class="sourceCode" id="cb33"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">stat113_df</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv</a></span><span class="op">(</span><span class="st">"https://raw.githubusercontent.com/highamm/ds234_quarto/main/data_online/stat113.csv"</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">stat113_df</span><span class="op">)</span></span>
 <span><span class="co">#&gt; # A tibble: 6 × 12</span></span>
 <span><span class="co">#&gt;   Year      Sex     Hgt   Wgt Haircut   GPA Exercise Sport    TV Award  Pulse</span></span>
@@ -1025,7 +997,7 @@ Important
 <span><span class="co">#&gt; 4 FirstYear M        68   157      35  3.21       10 Yes      15 Olymp…    54</span></span>
 <span><span class="co">#&gt; 5 FirstYear M        72   175      20  3.1         2 No        5 Nobel     NA</span></span>
 <span><span class="co">#&gt; 6 Junior    F        62   150      50  3.3         8 Yes       5 Olymp…    86</span></span>
-<span><span class="co">#&gt; # … with 1 more variable: SocialMedia &lt;chr&gt;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="co">#&gt; # ℹ 1 more variable: SocialMedia &lt;chr&gt;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <section id="class-exercises-1" class="level3" data-number="2.6.1"><h3 data-number="2.6.1" class="anchored" data-anchor-id="class-exercises-1">
 <span class="header-section-number">2.6.1</span> Class Exercises</h3>
@@ -1102,9 +1074,23 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     icon: icon
   };
   anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
   const clipboard = new window.ClipboardJS('.code-copy-button', {
-    target: function(trigger) {
-      return trigger.previousElementSibling;
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
     }
   });
   clipboard.on('success', function(e) {
@@ -1116,7 +1102,24 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     button.classList.add('code-copy-button-checked');
     var currentTitle = button.getAttribute("title");
     button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
     setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
       button.setAttribute("title", currentTitle);
       button.classList.remove('code-copy-button-checked');
     }, 1000);
@@ -1144,31 +1147,136 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   for (var i=0; i<noterefs.length; i++) {
     const ref = noterefs[i];
     tippyHover(ref, function() {
-      let href = ref.getAttribute('href');
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
       try { href = new URL(href).hash; } catch {}
       const id = href.replace(/^#\/?/, "");
       const note = window.document.getElementById(id);
       return note.innerHTML;
     });
   }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
   var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
   for (var i=0; i<bibliorefs.length; i++) {
     const ref = bibliorefs[i];
-    const cites = ref.parentNode.getAttribute('data-cites').split(' ');
-    tippyHover(ref, function() {
-      var popup = window.document.createElement('div');
-      cites.forEach(function(cite) {
-        var citeDiv = window.document.createElement('div');
-        citeDiv.classList.add('hanging-indent');
-        citeDiv.classList.add('csl-entry');
-        var biblioDiv = window.document.getElementById('ref-' + cite);
-        if (biblioDiv) {
-          citeDiv.innerHTML = biblioDiv.innerHTML;
-        }
-        popup.appendChild(citeDiv);
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
       });
-      return popup.innerHTML;
-    });
+    }
   }
 });
 </script><nav class="page-navigation"><div class="nav-page nav-page-previous">
@@ -1185,6 +1293,9 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </div> <!-- /content -->
 <footer class="footer"><div class="nav-footer">
     <div class="nav-footer-left">Course Materials were written by Matt Higham for STAT/DATA 234 at St.&nbsp;Lawrence University.</div>   
+    <div class="nav-footer-center">
+      &nbsp;
+    </div>
     <div class="nav-footer-right">This book was built with <a href="https://quarto.org/">Quarto</a>.</div>
   </div>
 </footer>

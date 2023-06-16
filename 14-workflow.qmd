@@ -30,33 +30,33 @@ library(here)
 here()
 ```
 
-`here()` prints the directory of where your current `R` project is. When reading in a data set with `read_csv()`, we would use
+`here()` prints the directory of where your current `R` project is. 
+
+Up until now, we have been reading in data sets from a folder on the web where I have stored them. However, often we will have a local copy of the data set saved to our own computers. We will keep local data sets in a folder titled `data` in our current `R` Project. 
+
+::: {.callout-note}
+## Note
+
+We will download some data sets to our `data` folder from Canvas in class. Our primary way for reading in data from now on will be to read it in locally from our `data` folder.
+:::
+
+When reading in a data set locally with `read_csv()`, we would use
 
 ```{r, appendix = TRUE}
 library(tidyverse)
 library(here)
-athletes_df <- read_csv("data/athletesdata.csv")
+athletes_df <- read_csv(here("data/athletesdata.csv"))
 ```
 
-`R` can read in this data set successfully: it starts at the path given in the console that was printed from `here()`, looks for a folder called `data` in that path and looks for a file called `athletesdata.csv` in the data folder. 
+`here()` says to start looking for the file to read in from the root folder containing our current `R` project. From this folder, look for a folder called `data`, and, within `data`, look for a file called `athletesdata.csv`. 
 
 So, if you zipped up your project and sent it to someone else, they'd be able to open it and read that data file without needing to change any directory code!
 
-The `here()` function from the `here` package can be used for more than just printing out the current working directory. To see its usefulness, suppose that, in the folder that has your current `R` project, you want to make a folder called `Quizzes` that has your `.qmd` files for your quizzes in this class. Make this folder, create a new `.qmd` file, paste in the `R` code that reads in the `athletesdata.csv` data set, save the file, and then try to render the file. 
-
-You should get an error that the `athletesdata.csv` data file is not found. When rendering a `.qmd` file, `R` looks for the `data/` folder __within the folder that contains the .qmd file__. Since the `data/` folder is in the folder with your `R` Project, not in the folder with your `.qmd` file, `R` can't find it.
-
-To fix the issue, we could specify the entire file path to the `data/` file. But, a better fix would be to use the `here()` function, which tells `R` to start looking for folders and files in the folder with our `R` Project:
-
-```{r, appendix = TRUE}
-athletes_test_read <- read_csv(here("data/athletesdata.csv"))
-```
-
-This allows us to have `Quarto` files within folders in our `R` project. Including `here()` specifies that we want `R` to start looking for our file at the __Project__ directory, not at the directory where the `.qmd` file is.
+Again, including `here()` specifies that we want `R` to start looking for our file at the __Project__ root directory, which may or may not be the same as the directory where the `.qmd` file is.
 
 ### Exercises {#exercise-14-1}
 
-__Exercise 1__. Take some time to modify your files in this course by creating a `Quizzes` folder. Move the relevant files to these folders and modify each file to load in the `here` package and use the `here()` function to read in any relevant data sets. We've been using the `here()` function quite a bit already in those Quizzes so it may already be there!
+__Exercise 1__. Take some time to modify your files in this course by creating a `Quizzes` folder. Move the relevant files to these folders and modify each file to load in the `here` package and use the `here()` function to read in any relevant data sets. 
 
 ## Code Style
 

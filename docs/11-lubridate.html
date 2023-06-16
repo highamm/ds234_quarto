@@ -2,16 +2,22 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.0.36">
+<meta name="generator" content="quarto-1.3.353">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 <title>DATA / STAT 234 - 12&nbsp; Dates with lubridate</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
-span.underline{text-decoration: underline;}
-div.column{display: inline-block; vertical-align: top; width: 50%;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
 div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
 pre > code.sourceCode { white-space: pre; position: relative; }
 pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
@@ -38,43 +44,13 @@ pre.numberSource code > span > a:first-child::before
     -khtml-user-select: none; -moz-user-select: none;
     -ms-user-select: none; user-select: none;
     padding: 0 4px; width: 4em;
-    color: #aaaaaa;
   }
-pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
 div.sourceCode
   {   }
 @media screen {
 pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
-code span.al { color: #ff0000; font-weight: bold; } /* Alert */
-code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-code span.at { color: #7d9029; } /* Attribute */
-code span.bn { color: #40a070; } /* BaseN */
-code span.bu { } /* BuiltIn */
-code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-code span.ch { color: #4070a0; } /* Char */
-code span.cn { color: #880000; } /* Constant */
-code span.co { color: #60a0b0; font-style: italic; } /* Comment */
-code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-code span.do { color: #ba2121; font-style: italic; } /* Documentation */
-code span.dt { color: #902000; } /* DataType */
-code span.dv { color: #40a070; } /* DecVal */
-code span.er { color: #ff0000; font-weight: bold; } /* Error */
-code span.ex { } /* Extension */
-code span.fl { color: #40a070; } /* Float */
-code span.fu { color: #06287e; } /* Function */
-code span.im { } /* Import */
-code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
-code span.kw { color: #007020; font-weight: bold; } /* Keyword */
-code span.op { color: #666666; } /* Operator */
-code span.ot { color: #007020; } /* Other */
-code span.pp { color: #bc7a00; } /* Preprocessor */
-code span.sc { color: #4070a0; } /* SpecialChar */
-code span.ss { color: #bb6688; } /* SpecialString */
-code span.st { color: #4070a0; } /* String */
-code span.va { color: #19177c; } /* Variable */
-code span.vs { color: #4070a0; } /* VerbatimString */
-code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
 <script src="site_libs/quarto-nav/quarto-nav.js"></script>
@@ -117,19 +93,24 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <body class="nav-sidebar floating">
 
 <div id="quarto-search-results"></div>
-  <header id="quarto-header" class="headroom fixed-top"><nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }"><div class="container-fluid d-flex justify-content-between">
-      <h1 class="quarto-secondary-nav-title"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Dates with <code>lubridate</code></span></h1>
-      <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
-        <i class="bi bi-chevron-right"></i>
+  <header id="quarto-header" class="headroom fixed-top"><nav class="quarto-secondary-nav"><div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./11-lubridate.html">Special Topics</a></li><li class="breadcrumb-item"><a href="./11-lubridate.html"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Dates with `lubridate`</span></a></li></ol></nav>
+      <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+      </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
       </button>
     </div>
   </nav></header><!-- content --><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation floating overflow-auto"><div class="pt-lg-2 mt-2 text-left sidebar-header">
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation floating overflow-auto"><div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
       <a href="./">DATA / STAT 234</a> 
         <div class="sidebar-tools-main">
-  <a href="" class="quarto-reader-toggle sidebar-tool" onclick="window.quartoToggleReader(); return false;" title="Toggle reader mode">
+  <a href="" class="quarto-reader-toggle quarto-navigation-tool px-1" onclick="window.quartoToggleReader(); return false;" title="Toggle reader mode">
   <div class="quarto-reader-toggle-btn">
   <i class="bi"></i>
   </div>
@@ -137,160 +118,182 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
     </div>
       </div>
-      <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="mt-2 flex-shrink-0 align-items-center">
         <div class="sidebar-search">
         <div id="quarto-search" class="" title="Search"></div>
         </div>
-      </div>
+        </div>
     <div class="sidebar-menu-container"> 
     <ul class="list-unstyled mt-1">
 <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./index.html" class="sidebar-item-text sidebar-link">Syllabus and Course Information</a>
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Syllabus and Course Information</span></a>
   </div>
 </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">The Core</a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
+ <span class="menu-text">The Core</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">
 <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./01-intro.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Getting Started</span></a>
+  <a href="./01-intro.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Getting Started</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./02-ggplot2.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Plotting with <code>ggplot2</code></span></a>
+  <a href="./02-ggplot2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Plotting with <code>ggplot2</code></span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./03-dplyr.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Wrangling with <code>dplyr</code></span></a>
+  <a href="./03-dplyr.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Wrangling with <code>dplyr</code></span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./05-comm.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Communication with <code>Quarto</code></span></a>
+  <a href="./05-comm.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Communication with <code>Quarto</code></span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./14-workflow.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Workflow and Other Skills</span></a>
+  <a href="./14-workflow.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Workflow and Other Skills</span></span></a>
   </div>
 </li>
       </ul>
 </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">Data Wrangling</a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">
+ <span class="menu-text">Data Wrangling</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">
 <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./04-tidyr.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Tidying with <code>tidyr</code></span></a>
+  <a href="./04-tidyr.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Tidying with <code>tidyr</code></span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./06-basics.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Coding in Base <code>R</code></span></a>
+  <a href="./06-basics.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Coding in Base <code>R</code></span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./07-forcats.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Factors with <code>forcats</code></span></a>
+  <a href="./07-forcats.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Factors with <code>forcats</code></span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./09-ethics.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Data Ethics</span></a>
+  <a href="./09-ethics.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Data Ethics</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./08-import.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Data Import</span></a>
+  <a href="./08-import.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Data Import</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./10-merging.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Merging with <code>dplyr</code></span></a>
+  <a href="./10-merging.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Merging with <code>dplyr</code></span></span></a>
   </div>
 </li>
       </ul>
 </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">Special Topics</a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">
+ <span class="menu-text">Special Topics</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
       <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">
 <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./11-lubridate.html" class="sidebar-item-text sidebar-link active"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Dates with <code>lubridate</code></span></a>
+  <a href="./11-lubridate.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Dates with <code>lubridate</code></span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./12-stringr.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Text Data with <code>tidytext</code> and <code>stringr</code></span></a>
+  <a href="./12-stringr.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Text Data with <code>tidytext</code> and <code>stringr</code></span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./13-knn.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Predictive Modeling with knn</span></a>
+  <a href="./13-knn.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Predictive Modeling with knn</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./15-connections.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Connections to STAT 113, STAT 213, and CS 140</span></a>
+  <a href="./15-connections.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Connections to STAT 113, STAT 213, and CS 140</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./16-sql.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Introduction to SQL with <code>dbplyr</code></span></a>
+  <a href="./16-sql.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Introduction to SQL with <code>dbplyr</code></span></span></a>
   </div>
 </li>
       </ul>
 </li>
     </ul>
 </div>
-</nav><!-- margin-sidebar --><div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc"><h2 id="toc-title">Table of contents</h2>
+</nav><div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active"><h2 id="toc-title">Table of contents</h2>
    
   <ul>
 <li>
-<a href="#converting-variables-to-date" id="toc-converting-variables-to-date" class="nav-link active" data-scroll-target="#converting-variables-to-date"> <span class="header-section-number">12.1</span> Converting Variables to <code>&lt;date&gt;</code></a>
+<a href="#converting-variables-to-date" id="toc-converting-variables-to-date" class="nav-link active" data-scroll-target="#converting-variables-to-date"><span class="header-section-number">12.1</span> Converting Variables to <code>&lt;date&gt;</code></a>
   <ul class="collapse">
-<li><a href="#from-chr-to-date" id="toc-from-chr-to-date" class="nav-link" data-scroll-target="#from-chr-to-date"> <span class="header-section-number">12.1.1</span> From <code>&lt;chr&gt;</code> to <code>&lt;date&gt;</code></a></li>
-  <li><a href="#making-a-date-variable-from-date-components" id="toc-making-a-date-variable-from-date-components" class="nav-link" data-scroll-target="#making-a-date-variable-from-date-components"> <span class="header-section-number">12.1.2</span> Making a <code>&lt;date&gt;</code> variable from Date Components</a></li>
+<li><a href="#from-chr-to-date" id="toc-from-chr-to-date" class="nav-link" data-scroll-target="#from-chr-to-date"><span class="header-section-number">12.1.1</span> From <code>&lt;chr&gt;</code> to <code>&lt;date&gt;</code></a></li>
+  <li><a href="#making-a-date-variable-from-date-components" id="toc-making-a-date-variable-from-date-components" class="nav-link" data-scroll-target="#making-a-date-variable-from-date-components"><span class="header-section-number">12.1.2</span> Making a <code>&lt;date&gt;</code> variable from Date Components</a></li>
   </ul>
 </li>
   <li>
-<a href="#functions-for-date-variables" id="toc-functions-for-date-variables" class="nav-link" data-scroll-target="#functions-for-date-variables"> <span class="header-section-number">12.2</span> Functions for <code>&lt;date&gt;</code> Variables</a>
+<a href="#functions-for-date-variables" id="toc-functions-for-date-variables" class="nav-link" data-scroll-target="#functions-for-date-variables"><span class="header-section-number">12.2</span> Functions for <code>&lt;date&gt;</code> Variables</a>
   <ul class="collapse">
-<li><a href="#year-month-and-mday" id="toc-year-month-and-mday" class="nav-link" data-scroll-target="#year-month-and-mday"> <span class="header-section-number">12.2.1</span> <code>year()</code>, <code>month()</code>, and <code>mday()</code></a></li>
-  <li><a href="#yday-and-wday" id="toc-yday-and-wday" class="nav-link" data-scroll-target="#yday-and-wday"> <span class="header-section-number">12.2.2</span> <code>yday()</code> and <code>wday()</code></a></li>
+<li><a href="#year-month-and-mday" id="toc-year-month-and-mday" class="nav-link" data-scroll-target="#year-month-and-mday"><span class="header-section-number">12.2.1</span> <code>year()</code>, <code>month()</code>, and <code>mday()</code></a></li>
+  <li><a href="#yday-and-wday" id="toc-yday-and-wday" class="nav-link" data-scroll-target="#yday-and-wday"><span class="header-section-number">12.2.2</span> <code>yday()</code> and <code>wday()</code></a></li>
   </ul>
 </li>
   <li>
-<a href="#practice" id="toc-practice" class="nav-link" data-scroll-target="#practice"> <span class="header-section-number">12.3</span> Practice</a>
+<a href="#practice" id="toc-practice" class="nav-link" data-scroll-target="#practice"><span class="header-section-number">12.3</span> Practice</a>
   <ul class="collapse">
-<li><a href="#class-exercises" id="toc-class-exercises" class="nav-link" data-scroll-target="#class-exercises"> <span class="header-section-number">12.3.1</span> Class Exercises</a></li>
-  <li><a href="#your-turn" id="toc-your-turn" class="nav-link" data-scroll-target="#your-turn"> <span class="header-section-number">12.3.2</span> Your Turn</a></li>
+<li><a href="#class-exercises" id="toc-class-exercises" class="nav-link" data-scroll-target="#class-exercises"><span class="header-section-number">12.3.1</span> Class Exercises</a></li>
+  <li><a href="#your-turn" id="toc-your-turn" class="nav-link" data-scroll-target="#your-turn"><span class="header-section-number">12.3.2</span> Your Turn</a></li>
   </ul>
 </li>
   </ul></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><div class="quarto-title">
-<h1 class="title"><span id="lubridate" class="quarto-section-identifier d-none d-lg-block"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Dates with <code>lubridate</code></span></span></h1>
+<h1 class="title"><span id="lubridate" class="quarto-section-identifier"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Dates with <code>lubridate</code></span></span></h1>
 </div>
 
 
@@ -298,14 +301,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="quarto-title-meta">
 
     
+  
     
   </div>
   
 
-</header><div class="cell">
-
-</div>
-<p><strong>Goals</strong>:</p>
+</header><p><strong>Goals</strong>:</p>
 <ul>
 <li>use <code>lubridate</code> functions to convert a character variable to a <code>&lt;date&gt;</code> variable.</li>
 <li>use <code>lubridate</code> functions to extract useful information from a <code>&lt;date&gt;</code> variable, including the year, month, day of the week, and day of the year.</li>
@@ -319,9 +320,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://lubridate.tidyverse.org">lubridate</a></span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://lubridate.tidyverse.org/reference/now.html">today</a></span><span class="op">(</span><span class="op">)</span></span>
-<span><span class="co">#&gt; [1] "2023-04-24"</span></span>
+<span><span class="co">#&gt; [1] "2023-06-16"</span></span>
 <span><span class="fu"><a href="https://lubridate.tidyverse.org/reference/now.html">now</a></span><span class="op">(</span><span class="op">)</span></span>
-<span><span class="co">#&gt; [1] "2023-04-24 08:36:22 EDT"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="co">#&gt; [1] "2023-06-16 11:20:34 EDT"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>This first section will deal with how to convert a variable in <code>R</code> to be a <code>Date</code>. We will use a data set that has the holidays of Animal Crossing from January to April. The columns in this data set are:</p>
 <ul>
@@ -359,12 +360,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <code><a href="https://lubridate.tidyverse.org/reference/ymd.html">ydm()</a></code> is used to parse a date that has year first, day second, and month last,….</li>
 </ul>
 <p>and <code><a href="https://lubridate.tidyverse.org/reference/ymd.html">dym()</a></code>, <code><a href="https://lubridate.tidyverse.org/reference/ymd.html">mdy()</a></code>, and <code><a href="https://lubridate.tidyverse.org/reference/ymd.html">myd()</a></code> work similarly. <code>lubridate</code> is usually “smart” and picks up dates in all kinds of different formats (e.g.&nbsp;it can pick up specifying <code>October</code> as the month and <code>Oct</code> as the month and <code>10</code> as the month).</p>
-<div class="callout-important callout callout-style-simple callout-captioned">
+<div class="callout callout-style-simple callout-important callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
-<div class="callout-caption-container flex-fill">
+<div class="callout-title-container flex-fill">
 Important
 </div>
 </div>
@@ -431,7 +432,7 @@ Important
 <span><span class="co">#&gt; 4 2020-03-17 2020-03-17     Shamro… 17-M… Mar-… 3/17… 2020… 2020…     3  2020</span></span>
 <span><span class="co">#&gt; 5 2020-04-12 2020-04-12     Bunny … 12-A… Apr-… 4/12… 12/4… 2020…     4  2020</span></span>
 <span><span class="co">#&gt; 6 2020-04-22 2020-04-22     Earth … 22-A… Apr-… 4/22… 2020… 2020…     4  2020</span></span>
-<span><span class="co">#&gt; # … with 2 more variables: Day &lt;dbl&gt;, Month2 &lt;chr&gt;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="co">#&gt; # ℹ 2 more variables: Day &lt;dbl&gt;, Month2 &lt;chr&gt;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>But, when <code>Month</code> is stored as a character (e.g.&nbsp;<code>February</code>) instead of a number (e.g.&nbsp;<code>2</code>), problems arise with the <code><a href="https://lubridate.tidyverse.org/reference/make_datetime.html">make_date()</a></code> function:</p>
 <div class="cell" data-appendix="true">
@@ -448,7 +449,7 @@ Important
 <span><span class="co">#&gt; 4 NA         2020-03-17     Shamro… 17-M… Mar-… 3/17… 2020… 2020…     3  2020</span></span>
 <span><span class="co">#&gt; 5 NA         2020-04-12     Bunny … 12-A… Apr-… 4/12… 12/4… 2020…     4  2020</span></span>
 <span><span class="co">#&gt; 6 NA         2020-04-22     Earth … 22-A… Apr-… 4/22… 2020… 2020…     4  2020</span></span>
-<span><span class="co">#&gt; # … with 2 more variables: Day &lt;dbl&gt;, Month2 &lt;chr&gt;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="co">#&gt; # ℹ 2 more variables: Day &lt;dbl&gt;, Month2 &lt;chr&gt;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>So the <code><a href="https://lubridate.tidyverse.org/reference/make_datetime.html">make_date()</a></code> function requires a specific format for the year, month, and day columns. It may take a little pre-processing to put a particular data set in that format.</p>
 <p><strong>Exercise 1</strong>. What’s the issue with trying to convert <code>Date4</code> to a <code>&lt;date&gt;</code> form? You may want to investigate <code>Date4</code> further to answer this question.</p>
@@ -464,18 +465,18 @@ Important
 <span><span class="co">#&gt; 4 NA         2020-03-17     Shamro… 17-M… Mar-… 3/17… 2020… 2020…     3  2020</span></span>
 <span><span class="co">#&gt; 5 2012-04-20 2020-04-12     Bunny … 12-A… Apr-… 4/12… 12/4… 2020…     4  2020</span></span>
 <span><span class="co">#&gt; 6 NA         2020-04-22     Earth … 22-A… Apr-… 4/22… 2020… 2020…     4  2020</span></span>
-<span><span class="co">#&gt; # … with 2 more variables: Day &lt;dbl&gt;, Month2 &lt;chr&gt;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="co">#&gt; # ℹ 2 more variables: Day &lt;dbl&gt;, Month2 &lt;chr&gt;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p><strong>Exercise 2</strong>. Practice converting <code>Date3</code> and <code>Date5</code> to <code>&lt;date&gt;</code> variables with <code>lubridate</code> functions.</p>
 </section></section><section id="functions-for-date-variables" class="level2" data-number="12.2"><h2 data-number="12.2" class="anchored" data-anchor-id="functions-for-date-variables">
 <span class="header-section-number">12.2</span> Functions for <code>&lt;date&gt;</code> Variables</h2>
 <p>Once an object is in the <code>&lt;date&gt;</code> format, there are some special functions in <code>lubridate</code> that can be used on that date variable. To investigate some of these functions, we will pull stock market data from Yahoo using the <code>quantmod</code> package. Install the package, and run the following code, which gets stock market price data on Apple, Nintendo, Chipotle, and the S &amp; P 500 Index from 2011 to now.</p>
-<div class="callout-note callout callout-style-simple callout-captioned">
+<div class="callout callout-style-simple callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
-<div class="callout-caption-container flex-fill">
+<div class="callout-title-container flex-fill">
 Note
 </div>
 </div>
@@ -499,7 +500,7 @@ Note
 <span><span class="va">nint_tib</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://tibble.tidyverse.org/reference/as_tibble.html">as_tibble</a></span><span class="op">(</span><span class="va">NTDOY</span><span class="op">)</span></span>
 <span><span class="va">chip_tib</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://tibble.tidyverse.org/reference/as_tibble.html">as_tibble</a></span><span class="op">(</span><span class="va">CMG</span><span class="op">)</span></span>
 <span><span class="va">spy_tib</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://tibble.tidyverse.org/reference/as_tibble.html">as_tibble</a></span><span class="op">(</span><span class="va">SPY</span><span class="op">)</span></span>
-<span><span class="va">all_stocks</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/bind.html">bind_cols</a></span><span class="op">(</span><span class="va">date_tib</span>, <span class="va">app_tib</span>, <span class="va">nint_tib</span>, <span class="va">chip_tib</span>, <span class="va">spy_tib</span><span class="op">)</span></span>
+<span><span class="va">all_stocks</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/bind_cols.html">bind_cols</a></span><span class="op">(</span><span class="va">date_tib</span>, <span class="va">app_tib</span>, <span class="va">nint_tib</span>, <span class="va">chip_tib</span>, <span class="va">spy_tib</span><span class="op">)</span></span>
 <span></span>
 <span><span class="va">stocks_long</span> <span class="op">&lt;-</span> <span class="va">all_stocks</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">start_date</span>, <span class="va">AAPL.Adjusted</span>, <span class="va">NTDOY.Adjusted</span>,</span>
@@ -517,7 +518,7 @@ Note
 <span><span class="co">#&gt;   &lt;date&gt;     &lt;fct&gt;       &lt;dbl&gt;</span></span>
 <span><span class="co">#&gt; 1 2021-05-17 Chipotle   1332. </span></span>
 <span><span class="co">#&gt; 2 2021-05-17 S &amp; P 500   403. </span></span>
-<span><span class="co">#&gt; 3 2021-05-18 Apple       124. </span></span>
+<span><span class="co">#&gt; 3 2021-05-18 Apple       123. </span></span>
 <span><span class="co">#&gt; 4 2021-05-18 Nintendo     14.1</span></span>
 <span><span class="co">#&gt; 5 2021-05-18 Chipotle   1325. </span></span>
 <span><span class="co">#&gt; 6 2021-05-18 S &amp; P 500   400.</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -546,12 +547,12 @@ Note
 <span class="header-section-number">12.2.1</span> <code>year()</code>, <code>month()</code>, and <code>mday()</code>
 </h3>
 <p>The functions <code><a href="https://lubridate.tidyverse.org/reference/year.html">year()</a></code>, <code><a href="https://lubridate.tidyverse.org/reference/month.html">month()</a></code>, and <code><a href="https://lubridate.tidyverse.org/reference/day.html">mday()</a></code> can grab the year, month, and day of the month, respectively, from a <code>&lt;date&gt;</code> variable.</p>
-<div class="callout-note callout callout-style-simple callout-captioned">
+<div class="callout callout-style-simple callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
-<div class="callout-caption-container flex-fill">
+<div class="callout-title-container flex-fill">
 Note
 </div>
 </div>
@@ -585,7 +586,7 @@ Note
 <span><span class="co">#&gt; 4 2011-01-03 S &amp; P 500  101.             3</span></span>
 <span><span class="co">#&gt; 5 2011-01-04 Apple       10.1            4</span></span>
 <span><span class="co">#&gt; 6 2011-01-04 Nintendo     7.1            4</span></span>
-<span><span class="co">#&gt; # … with 10,438 more rows</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="co">#&gt; # ℹ 10,438 more rows</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Finally, the function <code><a href="https://lubridate.tidyverse.org/reference/day.html">wday()</a></code> grabs the day of the week from a <code>&lt;date&gt;</code>. By default, <code><a href="https://lubridate.tidyverse.org/reference/day.html">wday()</a></code> puts the day of the week as a numeric, but I find this confusing, as I can’t ever remember whether a <code>1</code> means <code>Sunday</code> or a <code>1</code> means <code>Monday</code>. Adding, <code>label = TRUE</code> creates the weekday variable as <code>Sunday</code>, <code>Monday</code>, <code>Tuesday</code>, etc.:</p>
 <div class="cell" data-appendix="true">
@@ -600,12 +601,12 @@ Note
 <li><p>we want to look at differences between days of the week (with <code><a href="https://lubridate.tidyverse.org/reference/day.html">wday()</a></code>)</p></li>
 <li><p>we want to see whether there are yearly trends <strong>within years</strong> (with <code><a href="https://lubridate.tidyverse.org/reference/day.html">yday()</a></code>)</p></li>
 </ul>
-<div class="callout-note callout callout-style-simple callout-captioned">
+<div class="callout callout-style-simple callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
-<div class="callout-caption-container flex-fill">
+<div class="callout-title-container flex-fill">
 Note
 </div>
 </div>
@@ -614,12 +615,12 @@ Note
 <p>Additionally, the functions <code><a href="https://lubridate.tidyverse.org/reference/hour.html">hour()</a></code>, <code><a href="https://lubridate.tidyverse.org/reference/minute.html">minute()</a></code>, and <code><a href="https://lubridate.tidyverse.org/reference/second.html">second()</a></code> grab the hour, minute, and second from a <code>&lt;datetime&gt;</code> variable.</p>
 </div>
 </div>
-<div class="callout-note callout callout-style-simple callout-captioned">
+<div class="callout callout-style-simple callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
-<div class="callout-caption-container flex-fill">
+<div class="callout-title-container flex-fill">
 Note
 </div>
 </div>
@@ -674,22 +675,22 @@ Note
 <span><span class="co">#&gt; 4 2004-04           11</span></span>
 <span><span class="co">#&gt; 5 2004-05            5</span></span>
 <span><span class="co">#&gt; 6 2004-06            8</span></span>
-<span><span class="co">#&gt; # … with 196 more rows</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="co">#&gt; # ℹ 196 more rows</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Use a <code>lubridate</code> function with the <code>truncated</code> option to convert the <code>Month</code> variable to be in the <code>&lt;date&gt;</code> format.</p>
 <p><strong>Class Exercise 2</strong>. Make a plot of the popularity of Data Science through Time. Add a smoother to your plot. What patterns do you notice?</p>
 <p><strong>Class Exercise 3</strong>. Modify the code in the tutorial section on the Stocks data to get a data frame on stock prices for the now infamous Gamestop stock. Construct a line plot of the price through time.</p>
-<p><strong>Class Exercise 4</strong>. Use the <code>lag()</code> function to create a new variable that is the previous day’s stock price. Can you predict the current stock price based on the previous day’s stock price accurately? Why or why not? Use either graphical or numerical evidence.</p>
+<p><strong>Class Exercise 4</strong>. Use the <code><a href="https://dplyr.tidyverse.org/reference/lead-lag.html">lag()</a></code> function to create a new variable that is the previous day’s stock price. Can you predict the current stock price based on the previous day’s stock price accurately? Why or why not? Use either graphical or numerical evidence.</p>
 </section><section id="your-turn" class="level3" data-number="12.3.2"><h3 data-number="12.3.2" class="anchored" data-anchor-id="your-turn">
 <span class="header-section-number">12.3.2</span> Your Turn</h3>
 <p>The data in the Class Exercises was obtained from Google Trends: <a href="https://trends.google.com/trends/?geo=US" target="_blank">Google Trends</a>. Google Trends is incredibly cool to explore, even without <code>R</code>.</p>
 <p><strong>Your Turn 1</strong>. On Google Trends, Enter in a search term, and change the Time dropdown menu to be 2004-present. Then, enter in a second search term that you want to compare. You can also change the country if you want to (or, you can keep the country as United States).</p>
-<div class="callout-note callout callout-style-simple callout-captioned">
+<div class="callout callout-style-simple callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
-<div class="callout-caption-container flex-fill">
+<div class="callout-title-container flex-fill">
 Note
 </div>
 </div>
@@ -698,16 +699,13 @@ Note
 </div>
 </div>
 <p>In the top-right window of the graph, you should click the down arrow to download the data set. Delete the first two rows of your data set (either in Excel or <code>R</code>), read in the data set, and change the date variable so that it’s in a Date format.</p>
-<div class="cell">
-
-</div>
 <p><strong>Your Turn 2</strong>. Make a plot of your Popularity variables through time.</p>
-<div class="callout-tip callout callout-style-simple callout-captioned">
+<div class="callout callout-style-simple callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-7-contents" aria-controls="callout-7" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
-<div class="callout-caption-container flex-fill">
+<div class="callout-title-container flex-fill">
 Hint (only if you get stuck)
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
@@ -718,16 +716,13 @@ Hint (only if you get stuck)
 </div>
 </div>
 </div>
-<div class="cell">
-
-</div>
 <p><strong>Your Turn 3</strong>. Using your data set that explored a variable or two from 2004 through now, make a table of the <strong>average</strong> popularity for each year.</p>
-<div class="callout-tip callout callout-style-simple callout-captioned">
+<div class="callout callout-style-simple callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-8-contents" aria-controls="callout-8" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
-<div class="callout-caption-container flex-fill">
+<div class="callout-title-container flex-fill">
 Hint (only if you get stuck)
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
@@ -740,13 +735,7 @@ Hint (only if you get stuck)
 </div>
 <p><strong>Your Turn 4</strong>. Clear your search and now enter a search term that you’d like to investigate for the past 90 days. Mine will be “Pittsburgh Steelers” but, again, yours should be something that interests you.</p>
 <p>Again, click the download button again and read in the data to <code>R</code>. Convert the date variable to be in <code>&lt;date&gt;</code> format.</p>
-<div class="cell">
-
-</div>
 <p><strong>Your Turn 5</strong>. Make a plot of your popularity variable through time, adding a smoother.</p>
-<div class="cell">
-
-</div>
 <p><strong>Your Turn 6</strong>. Using your data set that explored a variable from the past 90 days, construct a table that compares the <strong>average</strong> popularity on each day of the week (Monday through Saturday).</p>
 <p><strong>Your Turn 7</strong>. Examine the <code>ds_df</code> data set again, the data set on data science in Google Trends, and suppose that you have an observation for <strong>each</strong> day of every year (not just one observation per month). You want to look at whether data science is more popular on certain days of the week. Explain why the following strategy <strong>wouldn’t</strong> really work that well.</p>
 <ul>
@@ -783,9 +772,23 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     icon: icon
   };
   anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
   const clipboard = new window.ClipboardJS('.code-copy-button', {
-    target: function(trigger) {
-      return trigger.previousElementSibling;
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
     }
   });
   clipboard.on('success', function(e) {
@@ -797,7 +800,24 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     button.classList.add('code-copy-button-checked');
     var currentTitle = button.getAttribute("title");
     button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
     setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
       button.setAttribute("title", currentTitle);
       button.classList.remove('code-copy-button-checked');
     }, 1000);
@@ -825,31 +845,136 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   for (var i=0; i<noterefs.length; i++) {
     const ref = noterefs[i];
     tippyHover(ref, function() {
-      let href = ref.getAttribute('href');
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
       try { href = new URL(href).hash; } catch {}
       const id = href.replace(/^#\/?/, "");
       const note = window.document.getElementById(id);
       return note.innerHTML;
     });
   }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
   var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
   for (var i=0; i<bibliorefs.length; i++) {
     const ref = bibliorefs[i];
-    const cites = ref.parentNode.getAttribute('data-cites').split(' ');
-    tippyHover(ref, function() {
-      var popup = window.document.createElement('div');
-      cites.forEach(function(cite) {
-        var citeDiv = window.document.createElement('div');
-        citeDiv.classList.add('hanging-indent');
-        citeDiv.classList.add('csl-entry');
-        var biblioDiv = window.document.getElementById('ref-' + cite);
-        if (biblioDiv) {
-          citeDiv.innerHTML = biblioDiv.innerHTML;
-        }
-        popup.appendChild(citeDiv);
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
       });
-      return popup.innerHTML;
-    });
+    }
   }
 });
 </script><nav class="page-navigation"><div class="nav-page nav-page-previous">
@@ -866,6 +991,9 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </div> <!-- /content -->
 <footer class="footer"><div class="nav-footer">
     <div class="nav-footer-left">Course Materials were written by Matt Higham for STAT/DATA 234 at St.&nbsp;Lawrence University.</div>   
+    <div class="nav-footer-center">
+      &nbsp;
+    </div>
     <div class="nav-footer-right">This book was built with <a href="https://quarto.org/">Quarto</a>.</div>
   </div>
 </footer>

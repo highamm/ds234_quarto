@@ -231,7 +231,7 @@ Kesha first wakes up in the morning, _and then_ the Kesha that has woken up grab
 The pipe operator `|>` is loaded automatically with `R`. We will heavily use the pipe throughout the entire semester so it's worth it to delve a little deeper into what it is here. We will use the fitness data to further explore the pipe. Read in the data with
 
 ```{r}
-fitness_df <- read_csv("data/higham_fitness_clean.csv",
+fitness_df <- read_csv("https://raw.githubusercontent.com/highamm/ds234_quarto/main/data_online/higham_fitness_clean.csv",
                        col_types = list(stepgoal = col_factor()))
 fitness_df
 ```
@@ -369,7 +369,7 @@ Begin by reading in the data set with
 
 ```{r, message = FALSE, warning = FALSE, appendix = TRUE}
 library(tidyverse)
-slumajors_df <- read_csv("data/SLU_Majors_15_19.csv")
+slumajors_df <- read_csv("https://raw.githubusercontent.com/highamm/ds234_quarto/main/data_online/SLU_Majors_15_19.csv")
 slumajors_df
 ```
 

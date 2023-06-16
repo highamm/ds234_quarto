@@ -294,7 +294,7 @@ The important variables that we will use include:
 
 __Your Turn 1__. Use the `table()` function with `table(name_of_data_frame$name_of_variable)` to make a table of `team_name`. This is useful to use for categorical variables to give a quick summary of what the levels are and how many times each level appears in the data set.
 
-__Your Turn 2__. Until a couple of years ago, the Washington Commanders team used to be known as the Washington Redskins. Because of the obvious racism the name conveys, in 2022, the name was changed from Redskins to Commanders. Use a `forcats` function to rename the `Redskins` `team_name` to `Commanders`. Note that, usually, we have been renaming the new variable after we use a `forcats` function, but, oftentimes, it makes sense to just overwrite the old variable by using the same name in our `mutate()` statement.
+__Your Turn 2__. Until a few years ago, the Washington Commanders team used to be known as the Washington Redskins. Because of the obvious racism the name conveys, in 2022, the name was changed from Redskins to Commanders. Use a `forcats` function to rename the `Redskins` `team_name` to `Commanders`. Note that, usually, we have been renaming the new variable after we use a `forcats` function, but, oftentimes, it makes sense to just overwrite the old variable by using the same name in our `mutate()` statement.
 
 __Your Turn 3__. Use a function from `tidyr` to combine `team` and `team_name` into a single variable called `franchise`. You may want to specify `sep = " "` for consistency with the city names.
 

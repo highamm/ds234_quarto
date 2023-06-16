@@ -2,16 +2,22 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.0.36">
+<meta name="generator" content="quarto-1.3.353">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 <title>DATA / STAT 234 - 15&nbsp; Connections to STAT 113, STAT 213, and CS 140</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
-span.underline{text-decoration: underline;}
-div.column{display: inline-block; vertical-align: top; width: 50%;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
 div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
 pre > code.sourceCode { white-space: pre; position: relative; }
 pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
@@ -38,43 +44,13 @@ pre.numberSource code > span > a:first-child::before
     -khtml-user-select: none; -moz-user-select: none;
     -ms-user-select: none; user-select: none;
     padding: 0 4px; width: 4em;
-    color: #aaaaaa;
   }
-pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
 div.sourceCode
   {   }
 @media screen {
 pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
-code span.al { color: #ff0000; font-weight: bold; } /* Alert */
-code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-code span.at { color: #7d9029; } /* Attribute */
-code span.bn { color: #40a070; } /* BaseN */
-code span.bu { } /* BuiltIn */
-code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-code span.ch { color: #4070a0; } /* Char */
-code span.cn { color: #880000; } /* Constant */
-code span.co { color: #60a0b0; font-style: italic; } /* Comment */
-code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-code span.do { color: #ba2121; font-style: italic; } /* Documentation */
-code span.dt { color: #902000; } /* DataType */
-code span.dv { color: #40a070; } /* DecVal */
-code span.er { color: #ff0000; font-weight: bold; } /* Error */
-code span.ex { } /* Extension */
-code span.fl { color: #40a070; } /* Float */
-code span.fu { color: #06287e; } /* Function */
-code span.im { } /* Import */
-code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
-code span.kw { color: #007020; font-weight: bold; } /* Keyword */
-code span.op { color: #666666; } /* Operator */
-code span.ot { color: #007020; } /* Other */
-code span.pp { color: #bc7a00; } /* Preprocessor */
-code span.sc { color: #4070a0; } /* SpecialChar */
-code span.ss { color: #bb6688; } /* SpecialString */
-code span.st { color: #4070a0; } /* String */
-code span.va { color: #19177c; } /* Variable */
-code span.vs { color: #4070a0; } /* VerbatimString */
-code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
 <script src="site_libs/quarto-nav/quarto-nav.js"></script>
@@ -112,24 +88,29 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     "search-detached-cancel-button-title": "Cancel",
     "search-submit-button-title": "Submit"
   }
-}</script><script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+}</script><script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script><script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 </head>
 <body class="nav-sidebar floating">
 
 <div id="quarto-search-results"></div>
-  <header id="quarto-header" class="headroom fixed-top"><nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }"><div class="container-fluid d-flex justify-content-between">
-      <h1 class="quarto-secondary-nav-title"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Connections to STAT 113, STAT 213, and CS 140</span></h1>
-      <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
-        <i class="bi bi-chevron-right"></i>
+  <header id="quarto-header" class="headroom fixed-top"><nav class="quarto-secondary-nav"><div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./11-lubridate.html">Special Topics</a></li><li class="breadcrumb-item"><a href="./15-connections.html"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Connections to STAT 113, STAT 213, and CS 140</span></a></li></ol></nav>
+      <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+      </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
       </button>
     </div>
   </nav></header><!-- content --><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation floating overflow-auto"><div class="pt-lg-2 mt-2 text-left sidebar-header">
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation floating overflow-auto"><div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
       <a href="./">DATA / STAT 234</a> 
         <div class="sidebar-tools-main">
-  <a href="" class="quarto-reader-toggle sidebar-tool" onclick="window.quartoToggleReader(); return false;" title="Toggle reader mode">
+  <a href="" class="quarto-reader-toggle quarto-navigation-tool px-1" onclick="window.quartoToggleReader(); return false;" title="Toggle reader mode">
   <div class="quarto-reader-toggle-btn">
   <i class="bi"></i>
   </div>
@@ -137,161 +118,183 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
     </div>
       </div>
-      <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="mt-2 flex-shrink-0 align-items-center">
         <div class="sidebar-search">
         <div id="quarto-search" class="" title="Search"></div>
         </div>
-      </div>
+        </div>
     <div class="sidebar-menu-container"> 
     <ul class="list-unstyled mt-1">
 <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./index.html" class="sidebar-item-text sidebar-link">Syllabus and Course Information</a>
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Syllabus and Course Information</span></a>
   </div>
 </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">The Core</a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
+ <span class="menu-text">The Core</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">
 <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./01-intro.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Getting Started</span></a>
+  <a href="./01-intro.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Getting Started</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./02-ggplot2.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Plotting with <code>ggplot2</code></span></a>
+  <a href="./02-ggplot2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Plotting with <code>ggplot2</code></span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./03-dplyr.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Wrangling with <code>dplyr</code></span></a>
+  <a href="./03-dplyr.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Wrangling with <code>dplyr</code></span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./05-comm.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Communication with <code>Quarto</code></span></a>
+  <a href="./05-comm.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Communication with <code>Quarto</code></span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./14-workflow.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Workflow and Other Skills</span></a>
+  <a href="./14-workflow.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Workflow and Other Skills</span></span></a>
   </div>
 </li>
       </ul>
 </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">Data Wrangling</a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">
+ <span class="menu-text">Data Wrangling</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">
 <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./04-tidyr.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Tidying with <code>tidyr</code></span></a>
+  <a href="./04-tidyr.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Tidying with <code>tidyr</code></span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./06-basics.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Coding in Base <code>R</code></span></a>
+  <a href="./06-basics.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Coding in Base <code>R</code></span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./07-forcats.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Factors with <code>forcats</code></span></a>
+  <a href="./07-forcats.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Factors with <code>forcats</code></span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./09-ethics.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Data Ethics</span></a>
+  <a href="./09-ethics.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Data Ethics</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./08-import.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Data Import</span></a>
+  <a href="./08-import.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Data Import</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./10-merging.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Merging with <code>dplyr</code></span></a>
+  <a href="./10-merging.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Merging with <code>dplyr</code></span></span></a>
   </div>
 </li>
       </ul>
 </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">Special Topics</a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">
+ <span class="menu-text">Special Topics</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
       <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">
 <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./11-lubridate.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Dates with <code>lubridate</code></span></a>
+  <a href="./11-lubridate.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Dates with <code>lubridate</code></span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./12-stringr.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Text Data with <code>tidytext</code> and <code>stringr</code></span></a>
+  <a href="./12-stringr.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Text Data with <code>tidytext</code> and <code>stringr</code></span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./13-knn.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Predictive Modeling with knn</span></a>
+  <a href="./13-knn.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Predictive Modeling with knn</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./15-connections.html" class="sidebar-item-text sidebar-link active"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Connections to STAT 113, STAT 213, and CS 140</span></a>
+  <a href="./15-connections.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Connections to STAT 113, STAT 213, and CS 140</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./16-sql.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Introduction to SQL with <code>dbplyr</code></span></a>
+  <a href="./16-sql.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Introduction to SQL with <code>dbplyr</code></span></span></a>
   </div>
 </li>
       </ul>
 </li>
     </ul>
 </div>
-</nav><!-- margin-sidebar --><div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc"><h2 id="toc-title">Table of contents</h2>
+</nav><div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active"><h2 id="toc-title">Table of contents</h2>
    
   <ul>
 <li>
-<a href="#stat-113" id="toc-stat-113" class="nav-link active" data-scroll-target="#stat-113"> <span class="header-section-number">15.1</span> STAT 113</a>
+<a href="#stat-113" id="toc-stat-113" class="nav-link active" data-scroll-target="#stat-113"><span class="header-section-number">15.1</span> STAT 113</a>
   <ul class="collapse">
-<li><a href="#chi-square-test-of-association" id="toc-chi-square-test-of-association" class="nav-link" data-scroll-target="#chi-square-test-of-association"> <span class="header-section-number">15.1.1</span> Chi-square Test of Association</a></li>
-  <li><a href="#additional-analysis" id="toc-additional-analysis" class="nav-link" data-scroll-target="#additional-analysis"> <span class="header-section-number">15.1.2</span> Additional Analysis</a></li>
+<li><a href="#chi-square-test-of-association" id="toc-chi-square-test-of-association" class="nav-link" data-scroll-target="#chi-square-test-of-association"><span class="header-section-number">15.1.1</span> Chi-square Test of Association</a></li>
+  <li><a href="#additional-analysis" id="toc-additional-analysis" class="nav-link" data-scroll-target="#additional-analysis"><span class="header-section-number">15.1.2</span> Additional Analysis</a></li>
   </ul>
 </li>
   <li>
-<a href="#stat-213" id="toc-stat-213" class="nav-link" data-scroll-target="#stat-213"> <span class="header-section-number">15.2</span> STAT 213</a>
+<a href="#stat-213" id="toc-stat-213" class="nav-link" data-scroll-target="#stat-213"><span class="header-section-number">15.2</span> STAT 213</a>
   <ul class="collapse">
-<li><a href="#broom-package-functions" id="toc-broom-package-functions" class="nav-link" data-scroll-target="#broom-package-functions"> <span class="header-section-number">15.2.1</span> <code>broom</code> Package Functions</a></li>
-  <li><a href="#exploring-concepts" id="toc-exploring-concepts" class="nav-link" data-scroll-target="#exploring-concepts"> <span class="header-section-number">15.2.2</span> Exploring Concepts</a></li>
+<li><a href="#broom-package-functions" id="toc-broom-package-functions" class="nav-link" data-scroll-target="#broom-package-functions"><span class="header-section-number">15.2.1</span> <code>broom</code> Package Functions</a></li>
+  <li><a href="#exploring-concepts" id="toc-exploring-concepts" class="nav-link" data-scroll-target="#exploring-concepts"><span class="header-section-number">15.2.2</span> Exploring Concepts</a></li>
   </ul>
 </li>
   <li>
-<a href="#cs-140" id="toc-cs-140" class="nav-link" data-scroll-target="#cs-140"> <span class="header-section-number">15.3</span> CS 140</a>
+<a href="#cs-140" id="toc-cs-140" class="nav-link" data-scroll-target="#cs-140"><span class="header-section-number">15.3</span> CS 140</a>
   <ul class="collapse">
-<li><a href="#functions" id="toc-functions" class="nav-link" data-scroll-target="#functions"> <span class="header-section-number">15.3.1</span> Functions</a></li>
-  <li><a href="#iteration" id="toc-iteration" class="nav-link" data-scroll-target="#iteration"> <span class="header-section-number">15.3.2</span> Iteration</a></li>
+<li><a href="#functions" id="toc-functions" class="nav-link" data-scroll-target="#functions"><span class="header-section-number">15.3.1</span> Functions</a></li>
+  <li><a href="#iteration" id="toc-iteration" class="nav-link" data-scroll-target="#iteration"><span class="header-section-number">15.3.2</span> Iteration</a></li>
   </ul>
 </li>
-  <li><a href="#practice" id="toc-practice" class="nav-link" data-scroll-target="#practice"> <span class="header-section-number">15.4</span> Practice</a></li>
+  <li><a href="#practice" id="toc-practice" class="nav-link" data-scroll-target="#practice"><span class="header-section-number">15.4</span> Practice</a></li>
   </ul></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><div class="quarto-title">
-<h1 class="title"><span id="connections" class="quarto-section-identifier d-none d-lg-block"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Connections to STAT 113, STAT 213, and CS 140</span></span></h1>
+<h1 class="title"><span id="connections" class="quarto-section-identifier"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Connections to STAT 113, STAT 213, and CS 140</span></span></h1>
 </div>
 
 
@@ -299,14 +302,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="quarto-title-meta">
 
     
+  
     
   </div>
   
 
-</header><div class="cell">
-
-</div>
-<p>The structure of this section than the structure of most other sections. In this section, you’ll relate some of what we have learned in this course to what you have learned in at least one other course here (STAT 113, STAT 213, or CS 140).</p>
+</header><p>The structure of this section than the structure of most other sections. In this section, you’ll relate some of what we have learned in this course to what you have learned in at least one other course here (STAT 113, STAT 213, or CS 140).</p>
 <section id="stat-113" class="level2" data-number="15.1"><h2 data-number="15.1" class="anchored" data-anchor-id="stat-113">
 <span class="header-section-number">15.1</span> STAT 113</h2>
 <p>In this section, we discuss how what we have learned in this data science course connects to some concepts that you learned about in STAT 113. As a quick refresher, a few concepts that you learned about in STAT 113 are:</p>
@@ -316,12 +317,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>conducting hypothesis tests and creating confidence intervals to answer questions of interest. We will focus on this third general objective in this section.</li>
 </ul>
 <p>The example we will use is an experiment designed to assess the effects of race and sex on whether or not an employee received a callback for a job. In order to conduct the experiment, researchers randomly assigned names to resumes with each name associated with a particular race and gender, sent the resumes to employers, and recorded whether or not the resume received a callback. In addition to race, sex, and whether or not an employee received a callback, a few more variables were collected, like resume quality, whether or not the applicant had computer skills, years of experience, etc. A <code>1</code> for the <code>received_callback</code> indicates that the applicant received a callback.</p>
-<div class="callout-note callout callout-style-simple callout-captioned">
+<div class="callout callout-style-simple callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
-<div class="callout-caption-container flex-fill">
+<div class="callout-title-container flex-fill">
 Note
 </div>
 </div>
@@ -334,21 +335,21 @@ Note
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="http://openintrostat.github.io/openintro/">openintro</a></span><span class="op">)</span></span>
 <span><span class="va">resume</span></span>
 <span><span class="co">#&gt; # A tibble: 4,870 × 30</span></span>
-<span><span class="co">#&gt;   job_ad_id job_city job_in…¹ job_t…² job_f…³ job_e…⁴ job_o…⁵ job_r…⁶ job_r…⁷</span></span>
-<span><span class="co">#&gt;       &lt;dbl&gt; &lt;chr&gt;    &lt;chr&gt;    &lt;chr&gt;     &lt;dbl&gt;   &lt;dbl&gt; &lt;chr&gt;     &lt;dbl&gt;   &lt;dbl&gt;</span></span>
-<span><span class="co">#&gt; 1       384 Chicago  manufac… superv…      NA       1 unknown       1       0</span></span>
-<span><span class="co">#&gt; 2       384 Chicago  manufac… superv…      NA       1 unknown       1       0</span></span>
-<span><span class="co">#&gt; 3       384 Chicago  manufac… superv…      NA       1 unknown       1       0</span></span>
-<span><span class="co">#&gt; 4       384 Chicago  manufac… superv…      NA       1 unknown       1       0</span></span>
-<span><span class="co">#&gt; 5       385 Chicago  other_s… secret…       0       1 nonpro…       1       0</span></span>
-<span><span class="co">#&gt; 6       386 Chicago  wholesa… sales_…       0       1 private       0       0</span></span>
-<span><span class="co">#&gt; # … with 4,864 more rows, 21 more variables: job_req_education &lt;dbl&gt;,</span></span>
+<span><span class="co">#&gt;   job_ad_id job_city job_industry               job_type   job_fed_contractor</span></span>
+<span><span class="co">#&gt;       &lt;dbl&gt; &lt;chr&gt;    &lt;chr&gt;                      &lt;chr&gt;                   &lt;dbl&gt;</span></span>
+<span><span class="co">#&gt; 1       384 Chicago  manufacturing              supervisor                 NA</span></span>
+<span><span class="co">#&gt; 2       384 Chicago  manufacturing              supervisor                 NA</span></span>
+<span><span class="co">#&gt; 3       384 Chicago  manufacturing              supervisor                 NA</span></span>
+<span><span class="co">#&gt; 4       384 Chicago  manufacturing              supervisor                 NA</span></span>
+<span><span class="co">#&gt; 5       385 Chicago  other_service              secretary                   0</span></span>
+<span><span class="co">#&gt; 6       386 Chicago  wholesale_and_retail_trade sales_rep                   0</span></span>
+<span><span class="co">#&gt; # ℹ 4,864 more rows</span></span>
+<span><span class="co">#&gt; # ℹ 25 more variables: job_equal_opp_employer &lt;dbl&gt;, job_ownership &lt;chr&gt;,</span></span>
+<span><span class="co">#&gt; #   job_req_any &lt;dbl&gt;, job_req_communication &lt;dbl&gt;, job_req_education &lt;dbl&gt;,</span></span>
 <span><span class="co">#&gt; #   job_req_min_experience &lt;chr&gt;, job_req_computer &lt;dbl&gt;,</span></span>
 <span><span class="co">#&gt; #   job_req_organization &lt;dbl&gt;, job_req_school &lt;chr&gt;,</span></span>
 <span><span class="co">#&gt; #   received_callback &lt;dbl&gt;, firstname &lt;chr&gt;, race &lt;chr&gt;, gender &lt;chr&gt;,</span></span>
-<span><span class="co">#&gt; #   years_college &lt;int&gt;, college_degree &lt;dbl&gt;, honors &lt;int&gt;,</span></span>
-<span><span class="co">#&gt; #   worked_during_school &lt;int&gt;, years_experience &lt;int&gt;,</span></span>
-<span><span class="co">#&gt; #   computer_skills &lt;int&gt;, special_skills &lt;int&gt;, volunteer &lt;int&gt;, …</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="co">#&gt; #   years_college &lt;int&gt;, college_degree &lt;dbl&gt;, honors &lt;int&gt;, …</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <section id="chi-square-test-of-association" class="level3" data-number="15.1.1"><h3 data-number="15.1.1" class="anchored" data-anchor-id="chi-square-test-of-association">
 <span class="header-section-number">15.1.1</span> Chi-square Test of Association</h3>
@@ -594,11 +595,10 @@ Note
 <div class="cell" data-appendix="true">
 <div class="sourceCode" id="cb16"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://generics.r-lib.org/reference/glance.html">glance</a></span><span class="op">(</span><span class="va">coffee_mod</span><span class="op">)</span></span>
 <span><span class="co">#&gt; # A tibble: 1 × 12</span></span>
-<span><span class="co">#&gt;   r.squared adj.r.sq…¹ sigma stati…² p.value    df logLik   AIC   BIC devia…³</span></span>
-<span><span class="co">#&gt;       &lt;dbl&gt;      &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt;</span></span>
-<span><span class="co">#&gt; 1     0.889      0.889  1.17   2137.       0     5 -2105. 4224. 4260.   1818.</span></span>
-<span><span class="co">#&gt; # … with 2 more variables: df.residual &lt;int&gt;, nobs &lt;int&gt;, and abbreviated</span></span>
-<span><span class="co">#&gt; #   variable names ¹​adj.r.squared, ²​statistic, ³​deviance</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="co">#&gt;   r.squared adj.r.squared sigma statistic p.value    df logLik   AIC   BIC</span></span>
+<span><span class="co">#&gt;       &lt;dbl&gt;         &lt;dbl&gt; &lt;dbl&gt;     &lt;dbl&gt;   &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;</span></span>
+<span><span class="co">#&gt; 1     0.889         0.889  1.17     2137.       0     5 -2105. 4224. 4260.</span></span>
+<span><span class="co">#&gt; # ℹ 3 more variables: deviance &lt;dbl&gt;, df.residual &lt;int&gt;, nobs &lt;int&gt;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>you should notice a lot of statistics that you are familiar with from STAT 213, including <code>r.squared</code>, <code>adj.r.squared</code>, <code>sigma</code> (the residual standard error), <code>statistic</code> (the overall F-statistic), <code>AIC</code>, and <code>BIC</code>.</p>
 <p><strong><code><a href="https://generics.r-lib.org/reference/augment.html">augment()</a></code></strong></p>
@@ -606,16 +606,17 @@ Note
 <div class="cell" data-appendix="true">
 <div class="sourceCode" id="cb17"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://generics.r-lib.org/reference/augment.html">augment</a></span><span class="op">(</span><span class="va">coffee_mod</span><span class="op">)</span></span>
 <span><span class="co">#&gt; # A tibble: 1,339 × 12</span></span>
-<span><span class="co">#&gt;   total…¹ species aroma flavor sweet…² moist…³ .fitted  .resid    .hat .sigma</span></span>
-<span><span class="co">#&gt;     &lt;dbl&gt; &lt;chr&gt;   &lt;dbl&gt;  &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt;</span></span>
-<span><span class="co">#&gt; 1    90.6 Arabica  8.67   8.83      10    0.12    91.1 -0.537  0.0112    1.17</span></span>
-<span><span class="co">#&gt; 2    89.9 Arabica  8.75   8.67      10    0.12    90.5 -0.538  0.0103    1.17</span></span>
-<span><span class="co">#&gt; 3    89.8 Arabica  8.42   8.5       10    0       89.2  0.577  0.00745   1.17</span></span>
-<span><span class="co">#&gt; 4    89   Arabica  8.17   8.58      10    0.11    88.9  0.114  0.00784   1.17</span></span>
-<span><span class="co">#&gt; 5    88.8 Arabica  8.25   8.5       10    0.12    88.6  0.214  0.00669   1.17</span></span>
-<span><span class="co">#&gt; 6    88.8 Arabica  8.58   8.42      10    0.11    88.9 -0.0411 0.00726   1.17</span></span>
-<span><span class="co">#&gt; # … with 1,333 more rows, 2 more variables: .cooksd &lt;dbl&gt;, .std.resid &lt;dbl&gt;,</span></span>
-<span><span class="co">#&gt; #   and abbreviated variable names ¹​total_cup_points, ²​sweetness, ³​moisture</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="co">#&gt;   total_cup_points species aroma flavor sweetness moisture .fitted  .resid</span></span>
+<span><span class="co">#&gt;              &lt;dbl&gt; &lt;chr&gt;   &lt;dbl&gt;  &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;</span></span>
+<span><span class="co">#&gt; 1             90.6 Arabica  8.67   8.83        10     0.12    91.1 -0.537 </span></span>
+<span><span class="co">#&gt; 2             89.9 Arabica  8.75   8.67        10     0.12    90.5 -0.538 </span></span>
+<span><span class="co">#&gt; 3             89.8 Arabica  8.42   8.5         10     0       89.2  0.577 </span></span>
+<span><span class="co">#&gt; 4             89   Arabica  8.17   8.58        10     0.11    88.9  0.114 </span></span>
+<span><span class="co">#&gt; 5             88.8 Arabica  8.25   8.5         10     0.12    88.6  0.214 </span></span>
+<span><span class="co">#&gt; 6             88.8 Arabica  8.58   8.42        10     0.11    88.9 -0.0411</span></span>
+<span><span class="co">#&gt; # ℹ 1,333 more rows</span></span>
+<span><span class="co">#&gt; # ℹ 4 more variables: .hat &lt;dbl&gt;, .sigma &lt;dbl&gt;, .cooksd &lt;dbl&gt;,</span></span>
+<span><span class="co">#&gt; #   .std.resid &lt;dbl&gt;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p><code><a href="https://generics.r-lib.org/reference/augment.html">augment()</a></code> the data set makes it really easy to do things like:</p>
 <ul>
@@ -626,11 +627,11 @@ Note
 <div class="sourceCode" id="cb18"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">augment_df</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://generics.r-lib.org/reference/augment.html">augment</a></span><span class="op">(</span><span class="va">coffee_mod</span><span class="op">)</span></span>
 <span><span class="va">augment_df</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">.cooksd</span> <span class="op">&gt;</span> <span class="fl">1</span><span class="op">)</span></span>
 <span><span class="co">#&gt; # A tibble: 1 × 12</span></span>
-<span><span class="co">#&gt;   total_cu…¹ species aroma flavor sweet…² moist…³ .fitted .resid  .hat .sigma</span></span>
-<span><span class="co">#&gt;        &lt;dbl&gt; &lt;chr&gt;   &lt;dbl&gt;  &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt;</span></span>
-<span><span class="co">#&gt; 1          0 Arabica     0      0       0    0.12    6.81  -6.81 0.430   1.14</span></span>
-<span><span class="co">#&gt; # … with 2 more variables: .cooksd &lt;dbl&gt;, .std.resid &lt;dbl&gt;, and abbreviated</span></span>
-<span><span class="co">#&gt; #   variable names ¹​total_cup_points, ²​sweetness, ³​moisture</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="co">#&gt;   total_cup_points species aroma flavor sweetness moisture .fitted .resid</span></span>
+<span><span class="co">#&gt;              &lt;dbl&gt; &lt;chr&gt;   &lt;dbl&gt;  &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt;</span></span>
+<span><span class="co">#&gt; 1                0 Arabica     0      0         0     0.12    6.81  -6.81</span></span>
+<span><span class="co">#&gt; # ℹ 4 more variables: .hat &lt;dbl&gt;, .sigma &lt;dbl&gt;, .cooksd &lt;dbl&gt;,</span></span>
+<span><span class="co">#&gt; #   .std.resid &lt;dbl&gt;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>We see right away that there is a potentially influential observation with <code>0</code> <code>total_cup_points</code>. Examining this variable further, we see that it is probably a data entry error that can be removed from the data.</p>
 <div class="cell" data-appendix="true">
@@ -644,27 +645,28 @@ Note
 <div class="cell" data-appendix="true">
 <div class="sourceCode" id="cb20"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">augment_df</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">.hat</span> <span class="op">&gt;</span> <span class="fl">0.2</span><span class="op">)</span></span>
 <span><span class="co">#&gt; # A tibble: 2 × 12</span></span>
-<span><span class="co">#&gt;   total_cu…¹ species aroma flavor sweet…² moist…³ .fitted .resid  .hat .sigma</span></span>
-<span><span class="co">#&gt;        &lt;dbl&gt; &lt;chr&gt;   &lt;dbl&gt;  &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt;</span></span>
-<span><span class="co">#&gt; 1       59.8 Arabica   7.5   6.67    1.33    0.1    58.4    1.38 0.223   1.17</span></span>
-<span><span class="co">#&gt; 2        0   Arabica   0     0       0       0.12    6.81  -6.81 0.430   1.14</span></span>
-<span><span class="co">#&gt; # … with 2 more variables: .cooksd &lt;dbl&gt;, .std.resid &lt;dbl&gt;, and abbreviated</span></span>
-<span><span class="co">#&gt; #   variable names ¹​total_cup_points, ²​sweetness, ³​moisture</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="co">#&gt;   total_cup_points species aroma flavor sweetness moisture .fitted .resid</span></span>
+<span><span class="co">#&gt;              &lt;dbl&gt; &lt;chr&gt;   &lt;dbl&gt;  &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt;</span></span>
+<span><span class="co">#&gt; 1             59.8 Arabica   7.5   6.67      1.33     0.1    58.4    1.38</span></span>
+<span><span class="co">#&gt; 2              0   Arabica   0     0         0        0.12    6.81  -6.81</span></span>
+<span><span class="co">#&gt; # ℹ 4 more variables: .hat &lt;dbl&gt;, .sigma &lt;dbl&gt;, .cooksd &lt;dbl&gt;,</span></span>
+<span><span class="co">#&gt; #   .std.resid &lt;dbl&gt;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>or observations that are outliers:</p>
 <div class="cell" data-appendix="true">
 <div class="sourceCode" id="cb21"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">augment_df</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">.std.resid</span> <span class="op">&gt;</span> <span class="fl">3</span> <span class="op">|</span> <span class="va">.std.resid</span> <span class="op">&lt;</span> <span class="op">-</span><span class="fl">3</span><span class="op">)</span></span>
 <span><span class="co">#&gt; # A tibble: 25 × 12</span></span>
-<span><span class="co">#&gt;   total_…¹ species aroma flavor sweet…² moist…³ .fitted .resid    .hat .sigma</span></span>
-<span><span class="co">#&gt;      &lt;dbl&gt; &lt;chr&gt;   &lt;dbl&gt;  &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt;</span></span>
-<span><span class="co">#&gt; 1     82.8 Arabica  8.08   8.17   10       0.12    86.6  -3.85 0.00359   1.16</span></span>
-<span><span class="co">#&gt; 2     82.4 Arabica  5.08   7.75   10       0.11    78.6   3.79 0.111     1.16</span></span>
-<span><span class="co">#&gt; 3     82.3 Arabica  7.75   8.08    6.67    0.11    78.1   4.27 0.0421    1.16</span></span>
-<span><span class="co">#&gt; 4     80.7 Arabica  7.67   7.5     6.67    0       75.2   5.51 0.0347    1.16</span></span>
-<span><span class="co">#&gt; 5     80   Arabica  7.58   7.75   10       0       83.7  -3.71 0.00388   1.16</span></span>
-<span><span class="co">#&gt; 6     79.9 Arabica  7.83   7.67   10       0       83.8  -3.87 0.00365   1.16</span></span>
-<span><span class="co">#&gt; # … with 19 more rows, 2 more variables: .cooksd &lt;dbl&gt;, .std.resid &lt;dbl&gt;,</span></span>
-<span><span class="co">#&gt; #   and abbreviated variable names ¹​total_cup_points, ²​sweetness, ³​moisture</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="co">#&gt;   total_cup_points species aroma flavor sweetness moisture .fitted .resid</span></span>
+<span><span class="co">#&gt;              &lt;dbl&gt; &lt;chr&gt;   &lt;dbl&gt;  &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt;</span></span>
+<span><span class="co">#&gt; 1             82.8 Arabica  8.08   8.17     10        0.12    86.6  -3.85</span></span>
+<span><span class="co">#&gt; 2             82.4 Arabica  5.08   7.75     10        0.11    78.6   3.79</span></span>
+<span><span class="co">#&gt; 3             82.3 Arabica  7.75   8.08      6.67     0.11    78.1   4.27</span></span>
+<span><span class="co">#&gt; 4             80.7 Arabica  7.67   7.5       6.67     0       75.2   5.51</span></span>
+<span><span class="co">#&gt; 5             80   Arabica  7.58   7.75     10        0       83.7  -3.71</span></span>
+<span><span class="co">#&gt; 6             79.9 Arabica  7.83   7.67     10        0       83.8  -3.87</span></span>
+<span><span class="co">#&gt; # ℹ 19 more rows</span></span>
+<span><span class="co">#&gt; # ℹ 4 more variables: .hat &lt;dbl&gt;, .sigma &lt;dbl&gt;, .cooksd &lt;dbl&gt;,</span></span>
+<span><span class="co">#&gt; #   .std.resid &lt;dbl&gt;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Finally, we can use our <code>ggplot2</code> skills to construct plots like a residuals versus fitted values plot (filtering out the outlying observation first):</p>
 <div class="cell" data-appendix="true">
@@ -713,7 +715,7 @@ Note
 <span><span class="co">#&gt; 4   6.08  7.75</span></span>
 <span><span class="co">#&gt; 5   6.08  8.75</span></span>
 <span><span class="co">#&gt; 6   7.33  5.08</span></span>
-<span><span class="co">#&gt; # … with 19 more rows</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="co">#&gt; # ℹ 19 more rows</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>We then gather these predictions in a data set, and use that data set to make the lines in our plot. The plot will show <code>total_cup_points</code> on the y-axis, <code>flavor</code> on the x-axis, and have coloured lines for a few different values of <code>aroma</code> that we specified in the grid function:</p>
 <div class="cell" data-appendix="true">
@@ -729,7 +731,7 @@ Note
 <span><span class="co">#&gt; 4 coffee_fa   6.08  7.75  74.4</span></span>
 <span><span class="co">#&gt; 5 coffee_fa   6.08  8.75  75.8</span></span>
 <span><span class="co">#&gt; 6 coffee_fa   7.33  5.08  77.6</span></span>
-<span><span class="co">#&gt; # … with 19 more rows</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="co">#&gt; # ℹ 19 more rows</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell" data-appendix="true">
 <div class="sourceCode" id="cb26"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">coffee_noout</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">flavor</span>, y <span class="op">=</span> <span class="va">total_cup_points</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
@@ -814,19 +816,20 @@ Note
 <span><span class="co">#&gt; 4 0.452    13 "Butle… 0.325  1.08 35-35     126    31    41     9     5     7</span></span>
 <span><span class="co">#&gt; 5 0.433     6 "Clark… 0.367  1.02 29-19      79    24    29     5     2     3</span></span>
 <span><span class="co">#&gt; 6 0.425    11 "Circe… 0.252  1.00 35-33     111    27    28     9     0    11</span></span>
-<span><span class="co">#&gt; # … with 14 more rows, and 11 more variables: RBI &lt;int&gt;, TB &lt;int&gt;,</span></span>
-<span><span class="co">#&gt; #   `SLG%` &lt;dbl&gt;, BB &lt;int&gt;, HBP &lt;int&gt;, SO &lt;int&gt;, GDP &lt;int&gt;, `OB%` &lt;dbl&gt;,</span></span>
-<span><span class="co">#&gt; #   SF &lt;int&gt;, SH &lt;int&gt;, `SB-ATT` &lt;chr&gt;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="co">#&gt; # ℹ 14 more rows</span></span>
+<span><span class="co">#&gt; # ℹ 11 more variables: RBI &lt;int&gt;, TB &lt;int&gt;, `SLG%` &lt;dbl&gt;, BB &lt;int&gt;,</span></span>
+<span><span class="co">#&gt; #   HBP &lt;int&gt;, SO &lt;int&gt;, GDP &lt;int&gt;, `OB%` &lt;dbl&gt;, SF &lt;int&gt;, SH &lt;int&gt;,</span></span>
+<span><span class="co">#&gt; #   `SB-ATT` &lt;chr&gt;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <section id="functions" class="level3" data-number="15.3.1"><h3 data-number="15.3.1" class="anchored" data-anchor-id="functions">
 <span class="header-section-number">15.3.1</span> Functions</h3>
 <p>Now, suppose that we might want to repeat the scraping and calculation of <code>wOBA</code> for other years at SLU or for other teams.</p>
-<div class="callout-note callout callout-style-simple callout-captioned">
+<div class="callout callout-style-simple callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
-<div class="callout-caption-container flex-fill">
+<div class="callout-title-container flex-fill">
 Note
 </div>
 </div>
@@ -858,12 +861,12 @@ Note
 <span><span class="co">#&gt; [1] 21</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Now, we will move back to our example. We want to write a function called <code>get_hitting_data</code> that takes a <code>url_name</code>, scrapes the data from that url, and calculates the <code>wOBA</code> from the variables that were scraped.</p>
-<div class="callout-note callout callout-style-simple callout-captioned">
+<div class="callout callout-style-simple callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
-<div class="callout-caption-container flex-fill">
+<div class="callout-title-container flex-fill">
 Note
 </div>
 </div>
@@ -901,9 +904,10 @@ Note
 <span><span class="co">#&gt; 4    30 "Watso… 0.318 0.853 35-33     110    29    35     6     0     1    20</span></span>
 <span><span class="co">#&gt; 5     5 "Desja… 0.284 0.741 28-20      67    23    19     1     0     0     9</span></span>
 <span><span class="co">#&gt; 6    20 "Court… 0.281 0.646 27-17      64     6    18     2     0     0    13</span></span>
-<span><span class="co">#&gt; # … with 14 more rows, and 12 more variables: TB &lt;int&gt;, `SLG%` &lt;dbl&gt;,</span></span>
-<span><span class="co">#&gt; #   BB &lt;int&gt;, HBP &lt;int&gt;, SO &lt;int&gt;, GDP &lt;int&gt;, `OB%` &lt;dbl&gt;, SF &lt;int&gt;,</span></span>
-<span><span class="co">#&gt; #   SH &lt;int&gt;, `SB-ATT` &lt;chr&gt;, wOBA &lt;dbl&gt;, url_name &lt;chr&gt;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="co">#&gt; # ℹ 14 more rows</span></span>
+<span><span class="co">#&gt; # ℹ 12 more variables: TB &lt;int&gt;, `SLG%` &lt;dbl&gt;, BB &lt;int&gt;, HBP &lt;int&gt;,</span></span>
+<span><span class="co">#&gt; #   SO &lt;int&gt;, GDP &lt;int&gt;, `OB%` &lt;dbl&gt;, SF &lt;int&gt;, SH &lt;int&gt;, `SB-ATT` &lt;chr&gt;,</span></span>
+<span><span class="co">#&gt; #   wOBA &lt;dbl&gt;, url_name &lt;chr&gt;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section><section id="iteration" class="level3" data-number="15.3.2"><h3 data-number="15.3.2" class="anchored" data-anchor-id="iteration">
 <span class="header-section-number">15.3.2</span> Iteration</h3>
@@ -953,9 +957,9 @@ Note
 <div class="sourceCode" id="cb40"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">hitting_list</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://purrr.tidyverse.org/reference/map.html">map</a></span><span class="op">(</span><span class="va">url_vec</span>, <span class="va">get_hitting_data</span><span class="op">)</span></span>
 <span><span class="va">hitting_list</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Scraping and performing the <code>wOBA</code> calculation will take a few seconds. The output is a list of 10 tibbles. The <code><a href="https://dplyr.tidyverse.org/reference/bind.html">bind_rows()</a></code> function that we used to stack rows of different data frames or tibbles can also be used to stack rows of data frames or tibbles given in a list. We apply the function to the scraped data and then add the name of the school to the data frame with a <code><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">left_join()</a></code>:</p>
+<p>Scraping and performing the <code>wOBA</code> calculation will take a few seconds. The output is a list of 10 tibbles. The <code><a href="https://dplyr.tidyverse.org/reference/bind_rows.html">bind_rows()</a></code> function that we used to stack rows of different data frames or tibbles can also be used to stack rows of data frames or tibbles given in a list. We apply the function to the scraped data and then add the name of the school to the data frame with a <code><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">left_join()</a></code>:</p>
 <div class="cell" data-appendix="true">
-<div class="sourceCode" id="cb41"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">hitting_ll</span> <span class="op">&lt;-</span> <span class="va">hitting_list</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/bind.html">bind_rows</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<div class="sourceCode" id="cb41"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">hitting_ll</span> <span class="op">&lt;-</span> <span class="va">hitting_list</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/bind_rows.html">bind_rows</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">left_join</a></span><span class="op">(</span><span class="va">school_df</span>, by <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"url_name"</span> <span class="op">=</span> <span class="st">"hitting_web_url"</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="va">hitting_ll</span></span>
 <span><span class="co">#&gt; # A tibble: 213 × 25</span></span>
@@ -967,9 +971,10 @@ Note
 <span><span class="co">#&gt; 4    30 "Watso… 0.318 0.853 35-33     110    29    35     6     0     1    20</span></span>
 <span><span class="co">#&gt; 5     5 "Desja… 0.284 0.741 28-20      67    23    19     1     0     0     9</span></span>
 <span><span class="co">#&gt; 6    20 "Court… 0.281 0.646 27-17      64     6    18     2     0     0    13</span></span>
-<span><span class="co">#&gt; # … with 207 more rows, and 13 more variables: TB &lt;int&gt;, `SLG%` &lt;dbl&gt;,</span></span>
-<span><span class="co">#&gt; #   BB &lt;int&gt;, HBP &lt;int&gt;, SO &lt;int&gt;, GDP &lt;int&gt;, `OB%` &lt;dbl&gt;, SF &lt;int&gt;,</span></span>
-<span><span class="co">#&gt; #   SH &lt;int&gt;, `SB-ATT` &lt;chr&gt;, wOBA &lt;dbl&gt;, url_name &lt;chr&gt;, school_name &lt;chr&gt;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="co">#&gt; # ℹ 207 more rows</span></span>
+<span><span class="co">#&gt; # ℹ 13 more variables: TB &lt;int&gt;, `SLG%` &lt;dbl&gt;, BB &lt;int&gt;, HBP &lt;int&gt;,</span></span>
+<span><span class="co">#&gt; #   SO &lt;int&gt;, GDP &lt;int&gt;, `OB%` &lt;dbl&gt;, SF &lt;int&gt;, SH &lt;int&gt;, `SB-ATT` &lt;chr&gt;,</span></span>
+<span><span class="co">#&gt; #   wOBA &lt;dbl&gt;, url_name &lt;chr&gt;, school_name &lt;chr&gt;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>With this data set, we can now do things like figure out the top 3 hitters from each team, according to the <code>wOBA</code> metric:</p>
 <div class="cell" data-appendix="true">
@@ -979,15 +984,15 @@ Note
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">Player</span>, <span class="va">school_name</span>, <span class="va">wOBA</span><span class="op">)</span></span>
 <span><span class="co">#&gt; # A tibble: 30 × 3</span></span>
 <span><span class="co">#&gt; # Groups:   school_name [10]</span></span>
-<span><span class="co">#&gt;   Player                                                        schoo…¹  wOBA</span></span>
-<span><span class="co">#&gt;   &lt;chr&gt;                                                         &lt;chr&gt;   &lt;dbl&gt;</span></span>
-<span><span class="co">#&gt; 1 "Toby, Jared\r\n                                            … Bard    0.488</span></span>
-<span><span class="co">#&gt; 2 "Dumper, Sam\r\n                                            … Bard    0.475</span></span>
-<span><span class="co">#&gt; 3 "Myers, Jordan\r\n                                          … Bard    0.431</span></span>
-<span><span class="co">#&gt; 4 "Cantor, Danny\r\n                                          … Clarks… 0.805</span></span>
-<span><span class="co">#&gt; 5 "Price, Grant\r\n                                           … Clarks… 0.475</span></span>
-<span><span class="co">#&gt; 6 "Doyle, Caleb\r\n                                           … Clarks… 0.473</span></span>
-<span><span class="co">#&gt; # … with 24 more rows, and abbreviated variable name ¹​school_name</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="co">#&gt;   Player                                                    school_name  wOBA</span></span>
+<span><span class="co">#&gt;   &lt;chr&gt;                                                     &lt;chr&gt;       &lt;dbl&gt;</span></span>
+<span><span class="co">#&gt; 1 "Toby, Jared\r\n                                        … Bard        0.488</span></span>
+<span><span class="co">#&gt; 2 "Dumper, Sam\r\n                                        … Bard        0.475</span></span>
+<span><span class="co">#&gt; 3 "Myers, Jordan\r\n                                      … Bard        0.431</span></span>
+<span><span class="co">#&gt; 4 "Cantor, Danny\r\n                                      … Clarkson    0.805</span></span>
+<span><span class="co">#&gt; 5 "Price, Grant\r\n                                       … Clarkson    0.475</span></span>
+<span><span class="co">#&gt; 6 "Doyle, Caleb\r\n                                       … Clarkson    0.473</span></span>
+<span><span class="co">#&gt; # ℹ 24 more rows</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>or find the players on each team with the most at bats <code>AB</code>:</p>
 <div class="cell" data-appendix="true">
@@ -997,15 +1002,15 @@ Note
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">Player</span>, <span class="va">school_name</span>, <span class="va">AB</span><span class="op">)</span></span>
 <span><span class="co">#&gt; # A tibble: 30 × 3</span></span>
 <span><span class="co">#&gt; # Groups:   school_name [10]</span></span>
-<span><span class="co">#&gt;   Player                                                        schoo…¹    AB</span></span>
-<span><span class="co">#&gt;   &lt;chr&gt;                                                         &lt;chr&gt;   &lt;int&gt;</span></span>
-<span><span class="co">#&gt; 1 "Toby, Jared\r\n                                            … Bard      107</span></span>
-<span><span class="co">#&gt; 2 "Myers, Jordan\r\n                                          … Bard      107</span></span>
-<span><span class="co">#&gt; 3 "Luscher, Alex\r\n                                          … Bard      101</span></span>
-<span><span class="co">#&gt; 4 "Brouillette, Colby\r\n                                     … Clarks…   127</span></span>
-<span><span class="co">#&gt; 5 "Wilson, Kent\r\n                                           … Clarks…   126</span></span>
-<span><span class="co">#&gt; 6 "Doyle, Caleb\r\n                                           … Clarks…   103</span></span>
-<span><span class="co">#&gt; # … with 24 more rows, and abbreviated variable name ¹​school_name</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="co">#&gt;   Player                                                    school_name    AB</span></span>
+<span><span class="co">#&gt;   &lt;chr&gt;                                                     &lt;chr&gt;       &lt;int&gt;</span></span>
+<span><span class="co">#&gt; 1 "Toby, Jared\r\n                                        … Bard          107</span></span>
+<span><span class="co">#&gt; 2 "Myers, Jordan\r\n                                      … Bard          107</span></span>
+<span><span class="co">#&gt; 3 "Luscher, Alex\r\n                                      … Bard          101</span></span>
+<span><span class="co">#&gt; 4 "Brouillette, Colby\r\n                                 … Clarkson      127</span></span>
+<span><span class="co">#&gt; 5 "Wilson, Kent\r\n                                       … Clarkson      126</span></span>
+<span><span class="co">#&gt; 6 "Doyle, Caleb\r\n                                       … Clarkson      103</span></span>
+<span><span class="co">#&gt; # ℹ 24 more rows</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Examine the code below scrapes data from a wikipedia page listing the billboard end of year “hot 100” songs for the year 2021.</p>
 <div class="cell">
@@ -1031,11 +1036,11 @@ Note
 <span><span class="co">#&gt; 4     4 "\"Mood\""            24kGoldn featuring Iann Dior  2021</span></span>
 <span><span class="co">#&gt; 5     5 "\"Good 4 U\""        Olivia Rodrigo                2021</span></span>
 <span><span class="co">#&gt; 6     6 "\"Kiss Me More\""    Doja Cat featuring SZA        2021</span></span>
-<span><span class="co">#&gt; # … with 94 more rows</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="co">#&gt; # ℹ 94 more rows</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p><strong>Exercise 1</strong>. Wrap the code above in a function that scrapes data from Wikipedia for a user-provided <code>year_scrape</code> argument.</p>
 <p><strong>Exercise 2</strong>. Create either a vector of the years 2014 through 2021 or a list of the years 2014 through 2021. Use your vector or list, along with the function you wrote in Exercise 1 and the <code><a href="https://purrr.tidyverse.org/reference/map.html">map()</a></code> function, to scrape data tables from each year.</p>
-<p><strong>Exercise 3</strong>. Combine the data frames you scraped in Exercise 2 with <code><a href="https://dplyr.tidyverse.org/reference/bind.html">bind_rows()</a></code> and use the combined data set to figure out which artist appears the highest number of times in the billboard hot 100 list within the years 2014 through 2021. To save time, once you have the data frames combined you should be able to do something like:</p>
+<p><strong>Exercise 3</strong>. Combine the data frames you scraped in Exercise 2 with <code><a href="https://dplyr.tidyverse.org/reference/bind_rows.html">bind_rows()</a></code> and use the combined data set to figure out which artist appears the highest number of times in the billboard hot 100 list within the years 2014 through 2021. To save time, once you have the data frames combined you should be able to do something like:</p>
 <div class="cell">
 <div class="sourceCode" id="cb45"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">combined_df</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">`Artist(s)`</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise</a></span><span class="op">(</span>n_appear <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/context.html">n</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
@@ -1074,9 +1079,23 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     icon: icon
   };
   anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
   const clipboard = new window.ClipboardJS('.code-copy-button', {
-    target: function(trigger) {
-      return trigger.previousElementSibling;
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
     }
   });
   clipboard.on('success', function(e) {
@@ -1088,7 +1107,24 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     button.classList.add('code-copy-button-checked');
     var currentTitle = button.getAttribute("title");
     button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
     setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
       button.setAttribute("title", currentTitle);
       button.classList.remove('code-copy-button-checked');
     }, 1000);
@@ -1116,31 +1152,136 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   for (var i=0; i<noterefs.length; i++) {
     const ref = noterefs[i];
     tippyHover(ref, function() {
-      let href = ref.getAttribute('href');
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
       try { href = new URL(href).hash; } catch {}
       const id = href.replace(/^#\/?/, "");
       const note = window.document.getElementById(id);
       return note.innerHTML;
     });
   }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
   var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
   for (var i=0; i<bibliorefs.length; i++) {
     const ref = bibliorefs[i];
-    const cites = ref.parentNode.getAttribute('data-cites').split(' ');
-    tippyHover(ref, function() {
-      var popup = window.document.createElement('div');
-      cites.forEach(function(cite) {
-        var citeDiv = window.document.createElement('div');
-        citeDiv.classList.add('hanging-indent');
-        citeDiv.classList.add('csl-entry');
-        var biblioDiv = window.document.getElementById('ref-' + cite);
-        if (biblioDiv) {
-          citeDiv.innerHTML = biblioDiv.innerHTML;
-        }
-        popup.appendChild(citeDiv);
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
       });
-      return popup.innerHTML;
-    });
+    }
   }
 });
 </script><nav class="page-navigation"><div class="nav-page nav-page-previous">
@@ -1157,6 +1298,9 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </div> <!-- /content -->
 <footer class="footer"><div class="nav-footer">
     <div class="nav-footer-left">Course Materials were written by Matt Higham for STAT/DATA 234 at St.&nbsp;Lawrence University.</div>   
+    <div class="nav-footer-center">
+      &nbsp;
+    </div>
     <div class="nav-footer-right">This book was built with <a href="https://quarto.org/">Quarto</a>.</div>
   </div>
 </footer>

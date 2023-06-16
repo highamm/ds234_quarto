@@ -2,16 +2,22 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.0.36">
+<meta name="generator" content="quarto-1.3.353">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 <title>DATA / STAT 234 - 11&nbsp; Merging with dplyr</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
-span.underline{text-decoration: underline;}
-div.column{display: inline-block; vertical-align: top; width: 50%;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
 div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
 pre > code.sourceCode { white-space: pre; position: relative; }
 pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
@@ -38,43 +44,13 @@ pre.numberSource code > span > a:first-child::before
     -khtml-user-select: none; -moz-user-select: none;
     -ms-user-select: none; user-select: none;
     padding: 0 4px; width: 4em;
-    color: #aaaaaa;
   }
-pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
 div.sourceCode
   {   }
 @media screen {
 pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
-code span.al { color: #ff0000; font-weight: bold; } /* Alert */
-code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-code span.at { color: #7d9029; } /* Attribute */
-code span.bn { color: #40a070; } /* BaseN */
-code span.bu { } /* BuiltIn */
-code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-code span.ch { color: #4070a0; } /* Char */
-code span.cn { color: #880000; } /* Constant */
-code span.co { color: #60a0b0; font-style: italic; } /* Comment */
-code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-code span.do { color: #ba2121; font-style: italic; } /* Documentation */
-code span.dt { color: #902000; } /* DataType */
-code span.dv { color: #40a070; } /* DecVal */
-code span.er { color: #ff0000; font-weight: bold; } /* Error */
-code span.ex { } /* Extension */
-code span.fl { color: #40a070; } /* Float */
-code span.fu { color: #06287e; } /* Function */
-code span.im { } /* Import */
-code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
-code span.kw { color: #007020; font-weight: bold; } /* Keyword */
-code span.op { color: #666666; } /* Operator */
-code span.ot { color: #007020; } /* Other */
-code span.pp { color: #bc7a00; } /* Preprocessor */
-code span.sc { color: #4070a0; } /* SpecialChar */
-code span.ss { color: #bb6688; } /* SpecialString */
-code span.st { color: #4070a0; } /* String */
-code span.va { color: #19177c; } /* Variable */
-code span.vs { color: #4070a0; } /* VerbatimString */
-code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
 <script src="site_libs/quarto-nav/quarto-nav.js"></script>
@@ -117,19 +93,24 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <body class="nav-sidebar floating">
 
 <div id="quarto-search-results"></div>
-  <header id="quarto-header" class="headroom fixed-top"><nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }"><div class="container-fluid d-flex justify-content-between">
-      <h1 class="quarto-secondary-nav-title"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Merging with <code>dplyr</code></span></h1>
-      <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
-        <i class="bi bi-chevron-right"></i>
+  <header id="quarto-header" class="headroom fixed-top"><nav class="quarto-secondary-nav"><div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./04-tidyr.html">Data Wrangling</a></li><li class="breadcrumb-item"><a href="./10-merging.html"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Merging with `dplyr`</span></a></li></ol></nav>
+      <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+      </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
       </button>
     </div>
   </nav></header><!-- content --><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation floating overflow-auto"><div class="pt-lg-2 mt-2 text-left sidebar-header">
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation floating overflow-auto"><div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
       <a href="./">DATA / STAT 234</a> 
         <div class="sidebar-tools-main">
-  <a href="" class="quarto-reader-toggle sidebar-tool" onclick="window.quartoToggleReader(); return false;" title="Toggle reader mode">
+  <a href="" class="quarto-reader-toggle quarto-navigation-tool px-1" onclick="window.quartoToggleReader(); return false;" title="Toggle reader mode">
   <div class="quarto-reader-toggle-btn">
   <i class="bi"></i>
   </div>
@@ -137,170 +118,192 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
     </div>
       </div>
-      <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="mt-2 flex-shrink-0 align-items-center">
         <div class="sidebar-search">
         <div id="quarto-search" class="" title="Search"></div>
         </div>
-      </div>
+        </div>
     <div class="sidebar-menu-container"> 
     <ul class="list-unstyled mt-1">
 <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./index.html" class="sidebar-item-text sidebar-link">Syllabus and Course Information</a>
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Syllabus and Course Information</span></a>
   </div>
 </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">The Core</a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
+ <span class="menu-text">The Core</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">
 <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./01-intro.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Getting Started</span></a>
+  <a href="./01-intro.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Getting Started</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./02-ggplot2.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Plotting with <code>ggplot2</code></span></a>
+  <a href="./02-ggplot2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Plotting with <code>ggplot2</code></span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./03-dplyr.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Wrangling with <code>dplyr</code></span></a>
+  <a href="./03-dplyr.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Wrangling with <code>dplyr</code></span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./05-comm.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Communication with <code>Quarto</code></span></a>
+  <a href="./05-comm.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Communication with <code>Quarto</code></span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./14-workflow.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Workflow and Other Skills</span></a>
+  <a href="./14-workflow.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Workflow and Other Skills</span></span></a>
   </div>
 </li>
       </ul>
 </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">Data Wrangling</a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">
+ <span class="menu-text">Data Wrangling</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">
 <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./04-tidyr.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Tidying with <code>tidyr</code></span></a>
+  <a href="./04-tidyr.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Tidying with <code>tidyr</code></span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./06-basics.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Coding in Base <code>R</code></span></a>
+  <a href="./06-basics.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Coding in Base <code>R</code></span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./07-forcats.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Factors with <code>forcats</code></span></a>
+  <a href="./07-forcats.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Factors with <code>forcats</code></span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./09-ethics.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Data Ethics</span></a>
+  <a href="./09-ethics.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Data Ethics</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./08-import.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Data Import</span></a>
+  <a href="./08-import.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Data Import</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./10-merging.html" class="sidebar-item-text sidebar-link active"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Merging with <code>dplyr</code></span></a>
+  <a href="./10-merging.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Merging with <code>dplyr</code></span></span></a>
   </div>
 </li>
       </ul>
 </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">Special Topics</a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">
+ <span class="menu-text">Special Topics</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
       <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">
 <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./11-lubridate.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Dates with <code>lubridate</code></span></a>
+  <a href="./11-lubridate.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Dates with <code>lubridate</code></span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./12-stringr.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Text Data with <code>tidytext</code> and <code>stringr</code></span></a>
+  <a href="./12-stringr.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Text Data with <code>tidytext</code> and <code>stringr</code></span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./13-knn.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Predictive Modeling with knn</span></a>
+  <a href="./13-knn.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Predictive Modeling with knn</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./15-connections.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Connections to STAT 113, STAT 213, and CS 140</span></a>
+  <a href="./15-connections.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Connections to STAT 113, STAT 213, and CS 140</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./16-sql.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Introduction to SQL with <code>dbplyr</code></span></a>
+  <a href="./16-sql.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Introduction to SQL with <code>dbplyr</code></span></span></a>
   </div>
 </li>
       </ul>
 </li>
     </ul>
 </div>
-</nav><!-- margin-sidebar --><div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc"><h2 id="toc-title">Table of contents</h2>
+</nav><div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active"><h2 id="toc-title">Table of contents</h2>
    
   <ul>
 <li>
-<a href="#stacking-rows-and-appending-columns" id="toc-stacking-rows-and-appending-columns" class="nav-link active" data-scroll-target="#stacking-rows-and-appending-columns"> <span class="header-section-number">11.1</span> Stacking Rows and Appending Columns</a>
+<a href="#stacking-rows-and-appending-columns" id="toc-stacking-rows-and-appending-columns" class="nav-link active" data-scroll-target="#stacking-rows-and-appending-columns"><span class="header-section-number">11.1</span> Stacking Rows and Appending Columns</a>
   <ul class="collapse">
-<li><a href="#stacking-with-bind_rows" id="toc-stacking-with-bind_rows" class="nav-link" data-scroll-target="#stacking-with-bind_rows"> <span class="header-section-number">11.1.1</span> Stacking with <code>bind_rows()</code></a></li>
-  <li><a href="#binding-columns-with-bind_cols" id="toc-binding-columns-with-bind_cols" class="nav-link" data-scroll-target="#binding-columns-with-bind_cols"> <span class="header-section-number">11.1.2</span> Binding Columns with <code>bind_cols()</code></a></li>
+<li><a href="#stacking-with-bind_rows" id="toc-stacking-with-bind_rows" class="nav-link" data-scroll-target="#stacking-with-bind_rows"><span class="header-section-number">11.1.1</span> Stacking with <code>bind_rows()</code></a></li>
+  <li><a href="#binding-columns-with-bind_cols" id="toc-binding-columns-with-bind_cols" class="nav-link" data-scroll-target="#binding-columns-with-bind_cols"><span class="header-section-number">11.1.2</span> Binding Columns with <code>bind_cols()</code></a></li>
   </ul>
 </li>
   <li>
-<a href="#mutating-joins" id="toc-mutating-joins" class="nav-link" data-scroll-target="#mutating-joins"> <span class="header-section-number">11.2</span> Mutating Joins</a>
+<a href="#mutating-joins" id="toc-mutating-joins" class="nav-link" data-scroll-target="#mutating-joins"><span class="header-section-number">11.2</span> Mutating Joins</a>
   <ul class="collapse">
-<li><a href="#keep-all-rows-of-data-set-1-with-left_join" id="toc-keep-all-rows-of-data-set-1-with-left_join" class="nav-link" data-scroll-target="#keep-all-rows-of-data-set-1-with-left_join"> <span class="header-section-number">11.2.1</span> Keep All Rows of Data Set 1 with <code>left_join()</code></a></li>
-  <li><a href="#keep-all-rows-of-data-set-2-with-right_join" id="toc-keep-all-rows-of-data-set-2-with-right_join" class="nav-link" data-scroll-target="#keep-all-rows-of-data-set-2-with-right_join"> <span class="header-section-number">11.2.2</span> Keep All Rows of Data Set 2 with <code>right_join()</code></a></li>
-  <li><a href="#keep-all-rows-of-both-data-sets-with-full_join" id="toc-keep-all-rows-of-both-data-sets-with-full_join" class="nav-link" data-scroll-target="#keep-all-rows-of-both-data-sets-with-full_join"> <span class="header-section-number">11.2.3</span> Keep All Rows of Both Data Sets with <code>full_join()</code></a></li>
-  <li><a href="#keep-only-rows-with-matching-keys-with-inner_join" id="toc-keep-only-rows-with-matching-keys-with-inner_join" class="nav-link" data-scroll-target="#keep-only-rows-with-matching-keys-with-inner_join"> <span class="header-section-number">11.2.4</span> Keep Only Rows with Matching Keys with <code>inner_join()</code></a></li>
-  <li><a href="#which-xxxx_join" id="toc-which-xxxx_join" class="nav-link" data-scroll-target="#which-xxxx_join"> <span class="header-section-number">11.2.5</span> Which <code>xxxx_join()</code>?</a></li>
+<li><a href="#keep-all-rows-of-data-set-1-with-left_join" id="toc-keep-all-rows-of-data-set-1-with-left_join" class="nav-link" data-scroll-target="#keep-all-rows-of-data-set-1-with-left_join"><span class="header-section-number">11.2.1</span> Keep All Rows of Data Set 1 with <code>left_join()</code></a></li>
+  <li><a href="#keep-all-rows-of-data-set-2-with-right_join" id="toc-keep-all-rows-of-data-set-2-with-right_join" class="nav-link" data-scroll-target="#keep-all-rows-of-data-set-2-with-right_join"><span class="header-section-number">11.2.2</span> Keep All Rows of Data Set 2 with <code>right_join()</code></a></li>
+  <li><a href="#keep-all-rows-of-both-data-sets-with-full_join" id="toc-keep-all-rows-of-both-data-sets-with-full_join" class="nav-link" data-scroll-target="#keep-all-rows-of-both-data-sets-with-full_join"><span class="header-section-number">11.2.3</span> Keep All Rows of Both Data Sets with <code>full_join()</code></a></li>
+  <li><a href="#keep-only-rows-with-matching-keys-with-inner_join" id="toc-keep-only-rows-with-matching-keys-with-inner_join" class="nav-link" data-scroll-target="#keep-only-rows-with-matching-keys-with-inner_join"><span class="header-section-number">11.2.4</span> Keep Only Rows with Matching Keys with <code>inner_join()</code></a></li>
+  <li><a href="#which-xxxx_join" id="toc-which-xxxx_join" class="nav-link" data-scroll-target="#which-xxxx_join"><span class="header-section-number">11.2.5</span> Which <code>xxxx_join()</code>?</a></li>
   </ul>
 </li>
   <li>
-<a href="#filtering-joins" id="toc-filtering-joins" class="nav-link" data-scroll-target="#filtering-joins"> <span class="header-section-number">11.3</span> Filtering Joins</a>
+<a href="#filtering-joins" id="toc-filtering-joins" class="nav-link" data-scroll-target="#filtering-joins"><span class="header-section-number">11.3</span> Filtering Joins</a>
   <ul class="collapse">
-<li><a href="#filtering-with-semi_join" id="toc-filtering-with-semi_join" class="nav-link" data-scroll-target="#filtering-with-semi_join"> <span class="header-section-number">11.3.1</span> Filtering with <code>semi_join()</code></a></li>
-  <li><a href="#filtering-with-anti_join" id="toc-filtering-with-anti_join" class="nav-link" data-scroll-target="#filtering-with-anti_join"> <span class="header-section-number">11.3.2</span> Filtering with <code>anti_join()</code></a></li>
+<li><a href="#filtering-with-semi_join" id="toc-filtering-with-semi_join" class="nav-link" data-scroll-target="#filtering-with-semi_join"><span class="header-section-number">11.3.1</span> Filtering with <code>semi_join()</code></a></li>
+  <li><a href="#filtering-with-anti_join" id="toc-filtering-with-anti_join" class="nav-link" data-scroll-target="#filtering-with-anti_join"><span class="header-section-number">11.3.2</span> Filtering with <code>anti_join()</code></a></li>
   </ul>
 </li>
   <li>
-<a href="#practice" id="toc-practice" class="nav-link" data-scroll-target="#practice"> <span class="header-section-number">11.4</span> Practice</a>
+<a href="#practice" id="toc-practice" class="nav-link" data-scroll-target="#practice"><span class="header-section-number">11.4</span> Practice</a>
   <ul class="collapse">
-<li><a href="#class-exercises" id="toc-class-exercises" class="nav-link" data-scroll-target="#class-exercises"> <span class="header-section-number">11.4.1</span> Class Exercises</a></li>
-  <li><a href="#your-turn" id="toc-your-turn" class="nav-link" data-scroll-target="#your-turn"> <span class="header-section-number">11.4.2</span> Your Turn</a></li>
+<li><a href="#class-exercises" id="toc-class-exercises" class="nav-link" data-scroll-target="#class-exercises"><span class="header-section-number">11.4.1</span> Class Exercises</a></li>
+  <li><a href="#your-turn" id="toc-your-turn" class="nav-link" data-scroll-target="#your-turn"><span class="header-section-number">11.4.2</span> Your Turn</a></li>
   </ul>
 </li>
   </ul></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><div class="quarto-title">
-<h1 class="title"><span id="merging" class="quarto-section-identifier d-none d-lg-block"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Merging with <code>dplyr</code></span></span></h1>
+<h1 class="title"><span id="merging" class="quarto-section-identifier"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Merging with <code>dplyr</code></span></span></h1>
 </div>
 
 
@@ -308,16 +311,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="quarto-title-meta">
 
     
+  
     
   </div>
   
 
-</header><div class="cell">
-
-</div>
-<p><strong>Goals:</strong></p>
+</header><p><strong>Goals:</strong></p>
 <ul>
-<li><p>use <code><a href="https://dplyr.tidyverse.org/reference/bind.html">bind_rows()</a></code> to stack two data sets and <code><a href="https://dplyr.tidyverse.org/reference/bind.html">bind_cols()</a></code> to merge two data sets.</p></li>
+<li><p>use <code><a href="https://dplyr.tidyverse.org/reference/bind_rows.html">bind_rows()</a></code> to stack two data sets and <code><a href="https://dplyr.tidyverse.org/reference/bind_cols.html">bind_cols()</a></code> to merge two data sets.</p></li>
 <li><p>identify <strong>keys</strong> in two related data sets.</p></li>
 <li><p>use the mutating join functions in <code>dplyr</code> to merge two data sets by a key.</p></li>
 <li><p>use the filtering join functions in <code>dplyr</code> to filter one data set by values in another data set.</p></li>
@@ -328,7 +329,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <section id="stacking-with-bind_rows" class="level3" data-number="11.1.1"><h3 data-number="11.1.1" class="anchored" data-anchor-id="stacking-with-bind_rows">
 <span class="header-section-number">11.1.1</span> Stacking with <code>bind_rows()</code>
 </h3>
-<p>First, we will talk about combining two data sets by “stacking” them on top of each other to form one new data set. The <code><a href="https://dplyr.tidyverse.org/reference/bind.html">bind_rows()</a></code> function can be used for this purpose <strong>if</strong> the two data sets have identical column names.</p>
+<p>First, we will talk about combining two data sets by “stacking” them on top of each other to form one new data set. The <code><a href="https://dplyr.tidyverse.org/reference/bind_rows.html">bind_rows()</a></code> function can be used for this purpose <strong>if</strong> the two data sets have identical column names.</p>
 <p>A common instance where this is useful is if two data sets come from the same source and have different locations or years, but the same exact column names.</p>
 <p>For example, examine the following website and notice how there are .csv files given for each year of matches in the ATP (Association of (men’s) Tennis Professionals). <a href="https://github.com/JeffSackmann/tennis_atp" target="_blank">https://github.com/JeffSackmann/tennis_atp</a>.</p>
 <p>Then, read in the data sets, and look at how many columns each has.</p>
@@ -342,7 +343,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <p>To combine results from both data sets,</p>
 <div class="cell">
-<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">atp_df</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/bind.html">bind_rows</a></span><span class="op">(</span><span class="va">atp_2018</span>, <span class="va">atp_2019</span><span class="op">)</span></span>
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">atp_df</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/bind_rows.html">bind_rows</a></span><span class="op">(</span><span class="va">atp_2018</span>, <span class="va">atp_2019</span><span class="op">)</span></span>
 <span><span class="co">#&gt; Error in `bind_rows()`:</span></span>
 <span><span class="co">#&gt; ! Can't combine `..1$winner_seed` &lt;double&gt; and `..2$winner_seed` &lt;character&gt;.</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
@@ -354,16 +355,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <p>We can try combining the data sets now.</p>
 <div class="cell" data-appendix="true">
-<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">atp_df</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/bind.html">bind_rows</a></span><span class="op">(</span><span class="va">atp_2018</span>, <span class="va">atp_2019</span><span class="op">)</span></span>
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">atp_df</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/bind_rows.html">bind_rows</a></span><span class="op">(</span><span class="va">atp_2018</span>, <span class="va">atp_2019</span><span class="op">)</span></span>
 <span><span class="va">atp_df</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Do a quick check to make sure the number of rows in <code>atp_2018</code> plus the number of rows in <code>atp_2019</code> equals the number of rows in <code>atp_df</code>.</p>
-<p>It might seem a little annoying, but, by default <code><a href="https://dplyr.tidyverse.org/reference/bind.html">bind_rows()</a></code> will only combine two data sets by stacking rows if the data sets have <strong>identical</strong> column names and <strong>identical</strong> column classes, as we saw in the previous example.</p>
+<p>It might seem a little annoying, but, by default <code><a href="https://dplyr.tidyverse.org/reference/bind_rows.html">bind_rows()</a></code> will only combine two data sets by stacking rows if the data sets have <strong>identical</strong> column names and <strong>identical</strong> column classes, as we saw in the previous example.</p>
 <p>Now run the following and look at the output.</p>
 <div class="cell" data-appendix="true">
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">df_test2a</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble</a></span><span class="op">(</span>xvar <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">2</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="va">df_test2b</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble</a></span><span class="op">(</span>xvar <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">2</span><span class="op">)</span>, y <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">5</span>, <span class="fl">1</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/bind.html">bind_rows</a></span><span class="op">(</span><span class="va">df_test2a</span>, <span class="va">df_test2b</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/bind_rows.html">bind_rows</a></span><span class="op">(</span><span class="va">df_test2a</span>, <span class="va">df_test2b</span><span class="op">)</span></span>
 <span><span class="co">#&gt; # A tibble: 4 × 2</span></span>
 <span><span class="co">#&gt;    xvar     y</span></span>
 <span><span class="co">#&gt;   &lt;dbl&gt; &lt;dbl&gt;</span></span>
@@ -376,12 +377,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </section><section id="binding-columns-with-bind_cols" class="level3" data-number="11.1.2"><h3 data-number="11.1.2" class="anchored" data-anchor-id="binding-columns-with-bind_cols">
 <span class="header-section-number">11.1.2</span> Binding Columns with <code>bind_cols()</code>
 </h3>
-<p><code><a href="https://dplyr.tidyverse.org/reference/bind.html">bind_cols()</a></code> combines two data sets by combining their columns into one data set. We won’t spend much time talking about how to bind together columns because it’s generally a little dangerous.</p>
+<p><code><a href="https://dplyr.tidyverse.org/reference/bind_cols.html">bind_cols()</a></code> combines two data sets by combining their columns into one data set. We won’t spend much time talking about how to bind together columns because it’s generally a little dangerous.</p>
 <p>We will use a couple of test data sets, <code>df_test1a</code> and <code>df_test1b</code>, to see it in action:</p>
 <div class="cell" data-appendix="true">
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">df_test1a</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble</a></span><span class="op">(</span>xvar <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">2</span><span class="op">)</span>, yvar <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">5</span>, <span class="fl">1</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="va">df_test1b</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble</a></span><span class="op">(</span>x <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">2</span><span class="op">)</span>, y <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">5</span>, <span class="fl">1</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/bind.html">bind_cols</a></span><span class="op">(</span><span class="va">df_test1a</span>, <span class="va">df_test1b</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/bind_cols.html">bind_cols</a></span><span class="op">(</span><span class="va">df_test1a</span>, <span class="va">df_test1b</span><span class="op">)</span></span>
 <span><span class="co">#&gt; # A tibble: 2 × 4</span></span>
 <span><span class="co">#&gt;    xvar  yvar     x     y</span></span>
 <span><span class="co">#&gt;   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;</span></span>
@@ -392,7 +393,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="cell">
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">df_test1a</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble</a></span><span class="op">(</span>xvar <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">2</span><span class="op">)</span>, yvar <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">5</span>, <span class="fl">1</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="va">df_test1b</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble</a></span><span class="op">(</span>x <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">2</span><span class="op">)</span>, y <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">5</span>, <span class="fl">1</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/bind.html">bind_rows</a></span><span class="op">(</span><span class="va">df_test1a</span>, <span class="va">df_test1b</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/bind_rows.html">bind_rows</a></span><span class="op">(</span><span class="va">df_test1a</span>, <span class="va">df_test1b</span><span class="op">)</span></span>
 <span><span class="co">#&gt; # A tibble: 4 × 4</span></span>
 <span><span class="co">#&gt;    xvar  yvar     x     y</span></span>
 <span><span class="co">#&gt;   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;</span></span>
@@ -478,7 +479,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span><span class="co">#&gt; 4  1909 F     Ruth      6509 0.0177 2718000</span></span>
 <span><span class="co">#&gt; 5  1909 F     Dorothy   6253 0.0170 2718000</span></span>
 <span><span class="co">#&gt; 6  1909 F     Anna      5804 0.0158 2718000</span></span>
-<span><span class="co">#&gt; # … with 1,839,946 more rows</span></span>
+<span><span class="co">#&gt; # ℹ 1,839,946 more rows</span></span>
 <span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">left_join</a></span><span class="op">(</span><span class="va">birth_df</span>, <span class="va">babynames_df</span>, by <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"year"</span> <span class="op">=</span> <span class="st">"year"</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="co">#&gt; # A tibble: 1,839,952 × 6</span></span>
 <span><span class="co">#&gt;    year  births sex   name         n   prop</span></span>
@@ -489,7 +490,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span><span class="co">#&gt; 4  1909 2718000 F     Ruth      6509 0.0177</span></span>
 <span><span class="co">#&gt; 5  1909 2718000 F     Dorothy   6253 0.0170</span></span>
 <span><span class="co">#&gt; 6  1909 2718000 F     Anna      5804 0.0158</span></span>
-<span><span class="co">#&gt; # … with 1,839,946 more rows</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="co">#&gt; # ℹ 1,839,946 more rows</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Therefore, it’s usually easier to just always use <code><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">left_join()</a></code> and ignore <code><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">right_join()</a></code> completely.</p>
 </section><section id="keep-all-rows-of-both-data-sets-with-full_join" class="level3" data-number="11.2.3"><h3 data-number="11.2.3" class="anchored" data-anchor-id="keep-all-rows-of-both-data-sets-with-full_join">
@@ -514,23 +515,23 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span><span class="co">#&gt; 4  1909 F     Ruth      6509 0.0177 2718000</span></span>
 <span><span class="co">#&gt; 5  1909 F     Dorothy   6253 0.0170 2718000</span></span>
 <span><span class="co">#&gt; 6  1909 F     Anna      5804 0.0158 2718000</span></span>
-<span><span class="co">#&gt; # … with 1,839,946 more rows</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="co">#&gt; # ℹ 1,839,946 more rows</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p><br></p>
 </section><section id="which-xxxx_join" class="level3" data-number="11.2.5"><h3 data-number="11.2.5" class="anchored" data-anchor-id="which-xxxx_join">
 <span class="header-section-number">11.2.5</span> Which <code>xxxx_join()</code>?</h3>
 <p>Which join function we use will depend on the context of the data and what questions you will be answering in your analysis.</p>
-<div class="callout-important callout callout-style-simple callout-captioned">
+<div class="callout callout-style-simple callout-important callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
-<div class="callout-caption-container flex-fill">
+<div class="callout-title-container flex-fill">
 Important
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Most importantly, if you’re using a <code><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">left_join()</a></code>, <code><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">right_join()</a></code> or <code><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">inner_join()</a></code>, you’re potentially cutting out some data. It’s important to be aware of what data you’re omitting. For example, with the <code>babynames</code> and <code>births</code> data, we would want to keep a note that a <code><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">left_join()</a></code> removed all observations before 1909 from joined data set.</p>
+<p>If you’re using a <code><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">left_join()</a></code>, <code><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">right_join()</a></code> or <code><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">inner_join()</a></code>, you’re potentially cutting out some data. It’s important to be aware of what data you’re omitting. For example, with the <code>babynames</code> and <code>births</code> data, we would want to keep a note that a <code><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">left_join()</a></code> removed all observations before 1909 from joined data set.</p>
 </div>
 </div>
 <p><strong>Exercise 2</strong>. Examine the following two joins that we’ve done, and explain why one resulting data set has fewer observations (rows) than the other.</p>
@@ -545,7 +546,7 @@ Important
 <span><span class="co">#&gt; 4  1880 F     Elizabeth  1939 0.0199     NA</span></span>
 <span><span class="co">#&gt; 5  1880 F     Minnie     1746 0.0179     NA</span></span>
 <span><span class="co">#&gt; 6  1880 F     Margaret   1578 0.0162     NA</span></span>
-<span><span class="co">#&gt; # … with 1,924,659 more rows</span></span>
+<span><span class="co">#&gt; # ℹ 1,924,659 more rows</span></span>
 <span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">left_join</a></span><span class="op">(</span><span class="va">birth_df</span>, <span class="va">babynames_df</span>, by <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"year"</span> <span class="op">=</span> <span class="st">"year"</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="co">#&gt; # A tibble: 1,839,952 × 6</span></span>
 <span><span class="co">#&gt;    year  births sex   name         n   prop</span></span>
@@ -556,7 +557,7 @@ Important
 <span><span class="co">#&gt; 4  1909 2718000 F     Ruth      6509 0.0177</span></span>
 <span><span class="co">#&gt; 5  1909 2718000 F     Dorothy   6253 0.0170</span></span>
 <span><span class="co">#&gt; 6  1909 2718000 F     Anna      5804 0.0158</span></span>
-<span><span class="co">#&gt; # … with 1,839,946 more rows</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="co">#&gt; # ℹ 1,839,946 more rows</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section></section><section id="filtering-joins" class="level2" data-number="11.3"><h2 data-number="11.3" class="anchored" data-anchor-id="filtering-joins">
 <span class="header-section-number">11.3</span> Filtering Joins</h2>
@@ -567,38 +568,38 @@ Important
 <span><span class="va">atp_2018</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv</a></span><span class="op">(</span><span class="fu"><a href="https://here.r-lib.org//reference/here.html">here</a></span><span class="op">(</span><span class="st">"data/atp_matches_2018.csv"</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="va">atp_2019</span></span>
 <span><span class="co">#&gt; # A tibble: 2,781 × 49</span></span>
-<span><span class="co">#&gt;   tourney_id tourne…¹ surface draw_…² tourn…³ tourn…⁴ match…⁵ winne…⁶ winne…⁷</span></span>
-<span><span class="co">#&gt;   &lt;chr&gt;      &lt;chr&gt;    &lt;chr&gt;     &lt;dbl&gt; &lt;chr&gt;     &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt; &lt;chr&gt;  </span></span>
-<span><span class="co">#&gt; 1 2019-M020  Brisbane Hard         32 A        2.02e7     300  105453 2      </span></span>
-<span><span class="co">#&gt; 2 2019-M020  Brisbane Hard         32 A        2.02e7     299  106421 4      </span></span>
-<span><span class="co">#&gt; 3 2019-M020  Brisbane Hard         32 A        2.02e7     298  105453 2      </span></span>
-<span><span class="co">#&gt; 4 2019-M020  Brisbane Hard         32 A        2.02e7     297  104542 &lt;NA&gt;   </span></span>
-<span><span class="co">#&gt; 5 2019-M020  Brisbane Hard         32 A        2.02e7     296  106421 4      </span></span>
-<span><span class="co">#&gt; 6 2019-M020  Brisbane Hard         32 A        2.02e7     295  104871 &lt;NA&gt;   </span></span>
-<span><span class="co">#&gt; # … with 2,775 more rows, 40 more variables: winner_entry &lt;chr&gt;,</span></span>
-<span><span class="co">#&gt; #   winner_name &lt;chr&gt;, winner_hand &lt;chr&gt;, winner_ht &lt;dbl&gt;, winner_ioc &lt;chr&gt;,</span></span>
-<span><span class="co">#&gt; #   winner_age &lt;dbl&gt;, loser_id &lt;dbl&gt;, loser_seed &lt;chr&gt;, loser_entry &lt;chr&gt;,</span></span>
-<span><span class="co">#&gt; #   loser_name &lt;chr&gt;, loser_hand &lt;chr&gt;, loser_ht &lt;dbl&gt;, loser_ioc &lt;chr&gt;,</span></span>
-<span><span class="co">#&gt; #   loser_age &lt;dbl&gt;, score &lt;chr&gt;, best_of &lt;dbl&gt;, round &lt;chr&gt;, minutes &lt;dbl&gt;,</span></span>
-<span><span class="co">#&gt; #   w_ace &lt;dbl&gt;, w_df &lt;dbl&gt;, w_svpt &lt;dbl&gt;, w_1stIn &lt;dbl&gt;, w_1stWon &lt;dbl&gt;,</span></span>
-<span><span class="co">#&gt; #   w_2ndWon &lt;dbl&gt;, w_SvGms &lt;dbl&gt;, w_bpSaved &lt;dbl&gt;, w_bpFaced &lt;dbl&gt;, …</span></span>
+<span><span class="co">#&gt;   tourney_id tourney_name surface draw_size tourney_level tourney_date</span></span>
+<span><span class="co">#&gt;   &lt;chr&gt;      &lt;chr&gt;        &lt;chr&gt;       &lt;dbl&gt; &lt;chr&gt;                &lt;dbl&gt;</span></span>
+<span><span class="co">#&gt; 1 2019-M020  Brisbane     Hard           32 A                 20181231</span></span>
+<span><span class="co">#&gt; 2 2019-M020  Brisbane     Hard           32 A                 20181231</span></span>
+<span><span class="co">#&gt; 3 2019-M020  Brisbane     Hard           32 A                 20181231</span></span>
+<span><span class="co">#&gt; 4 2019-M020  Brisbane     Hard           32 A                 20181231</span></span>
+<span><span class="co">#&gt; 5 2019-M020  Brisbane     Hard           32 A                 20181231</span></span>
+<span><span class="co">#&gt; 6 2019-M020  Brisbane     Hard           32 A                 20181231</span></span>
+<span><span class="co">#&gt; # ℹ 2,775 more rows</span></span>
+<span><span class="co">#&gt; # ℹ 43 more variables: match_num &lt;dbl&gt;, winner_id &lt;dbl&gt;, winner_seed &lt;chr&gt;,</span></span>
+<span><span class="co">#&gt; #   winner_entry &lt;chr&gt;, winner_name &lt;chr&gt;, winner_hand &lt;chr&gt;,</span></span>
+<span><span class="co">#&gt; #   winner_ht &lt;dbl&gt;, winner_ioc &lt;chr&gt;, winner_age &lt;dbl&gt;, loser_id &lt;dbl&gt;,</span></span>
+<span><span class="co">#&gt; #   loser_seed &lt;chr&gt;, loser_entry &lt;chr&gt;, loser_name &lt;chr&gt;, loser_hand &lt;chr&gt;,</span></span>
+<span><span class="co">#&gt; #   loser_ht &lt;dbl&gt;, loser_ioc &lt;chr&gt;, loser_age &lt;dbl&gt;, score &lt;chr&gt;,</span></span>
+<span><span class="co">#&gt; #   best_of &lt;dbl&gt;, round &lt;chr&gt;, minutes &lt;dbl&gt;, w_ace &lt;dbl&gt;, w_df &lt;dbl&gt;, …</span></span>
 <span><span class="va">atp_2018</span></span>
 <span><span class="co">#&gt; # A tibble: 2,889 × 49</span></span>
-<span><span class="co">#&gt;   tourney_id tourne…¹ surface draw_…² tourn…³ tourn…⁴ match…⁵ winne…⁶ winne…⁷</span></span>
-<span><span class="co">#&gt;   &lt;chr&gt;      &lt;chr&gt;    &lt;chr&gt;     &lt;dbl&gt; &lt;chr&gt;     &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;</span></span>
-<span><span class="co">#&gt; 1 2018-M020  Brisbane Hard         32 A        2.02e7     271  105992      NA</span></span>
-<span><span class="co">#&gt; 2 2018-M020  Brisbane Hard         32 A        2.02e7     272  111577      NA</span></span>
-<span><span class="co">#&gt; 3 2018-M020  Brisbane Hard         32 A        2.02e7     273  104797      NA</span></span>
-<span><span class="co">#&gt; 4 2018-M020  Brisbane Hard         32 A        2.02e7     275  200282      NA</span></span>
-<span><span class="co">#&gt; 5 2018-M020  Brisbane Hard         32 A        2.02e7     276  111581      NA</span></span>
-<span><span class="co">#&gt; 6 2018-M020  Brisbane Hard         32 A        2.02e7     277  104999       8</span></span>
-<span><span class="co">#&gt; # … with 2,883 more rows, 40 more variables: winner_entry &lt;chr&gt;,</span></span>
-<span><span class="co">#&gt; #   winner_name &lt;chr&gt;, winner_hand &lt;chr&gt;, winner_ht &lt;dbl&gt;, winner_ioc &lt;chr&gt;,</span></span>
-<span><span class="co">#&gt; #   winner_age &lt;dbl&gt;, loser_id &lt;dbl&gt;, loser_seed &lt;dbl&gt;, loser_entry &lt;chr&gt;,</span></span>
-<span><span class="co">#&gt; #   loser_name &lt;chr&gt;, loser_hand &lt;chr&gt;, loser_ht &lt;dbl&gt;, loser_ioc &lt;chr&gt;,</span></span>
-<span><span class="co">#&gt; #   loser_age &lt;dbl&gt;, score &lt;chr&gt;, best_of &lt;dbl&gt;, round &lt;chr&gt;, minutes &lt;dbl&gt;,</span></span>
-<span><span class="co">#&gt; #   w_ace &lt;dbl&gt;, w_df &lt;dbl&gt;, w_svpt &lt;dbl&gt;, w_1stIn &lt;dbl&gt;, w_1stWon &lt;dbl&gt;,</span></span>
-<span><span class="co">#&gt; #   w_2ndWon &lt;dbl&gt;, w_SvGms &lt;dbl&gt;, w_bpSaved &lt;dbl&gt;, w_bpFaced &lt;dbl&gt;, …</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="co">#&gt;   tourney_id tourney_name surface draw_size tourney_level tourney_date</span></span>
+<span><span class="co">#&gt;   &lt;chr&gt;      &lt;chr&gt;        &lt;chr&gt;       &lt;dbl&gt; &lt;chr&gt;                &lt;dbl&gt;</span></span>
+<span><span class="co">#&gt; 1 2018-M020  Brisbane     Hard           32 A                 20180101</span></span>
+<span><span class="co">#&gt; 2 2018-M020  Brisbane     Hard           32 A                 20180101</span></span>
+<span><span class="co">#&gt; 3 2018-M020  Brisbane     Hard           32 A                 20180101</span></span>
+<span><span class="co">#&gt; 4 2018-M020  Brisbane     Hard           32 A                 20180101</span></span>
+<span><span class="co">#&gt; 5 2018-M020  Brisbane     Hard           32 A                 20180101</span></span>
+<span><span class="co">#&gt; 6 2018-M020  Brisbane     Hard           32 A                 20180101</span></span>
+<span><span class="co">#&gt; # ℹ 2,883 more rows</span></span>
+<span><span class="co">#&gt; # ℹ 43 more variables: match_num &lt;dbl&gt;, winner_id &lt;dbl&gt;, winner_seed &lt;dbl&gt;,</span></span>
+<span><span class="co">#&gt; #   winner_entry &lt;chr&gt;, winner_name &lt;chr&gt;, winner_hand &lt;chr&gt;,</span></span>
+<span><span class="co">#&gt; #   winner_ht &lt;dbl&gt;, winner_ioc &lt;chr&gt;, winner_age &lt;dbl&gt;, loser_id &lt;dbl&gt;,</span></span>
+<span><span class="co">#&gt; #   loser_seed &lt;dbl&gt;, loser_entry &lt;chr&gt;, loser_name &lt;chr&gt;, loser_hand &lt;chr&gt;,</span></span>
+<span><span class="co">#&gt; #   loser_ht &lt;dbl&gt;, loser_ioc &lt;chr&gt;, loser_age &lt;dbl&gt;, score &lt;chr&gt;,</span></span>
+<span><span class="co">#&gt; #   best_of &lt;dbl&gt;, round &lt;chr&gt;, minutes &lt;dbl&gt;, w_ace &lt;dbl&gt;, w_df &lt;dbl&gt;, …</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <section id="filtering-with-semi_join" class="level3" data-number="11.3.1"><h3 data-number="11.3.1" class="anchored" data-anchor-id="filtering-with-semi_join">
 <span class="header-section-number">11.3.1</span> Filtering with <code>semi_join()</code>
@@ -619,7 +620,7 @@ Important
 <span><span class="co">#&gt; 4 Alexander Zverev    58</span></span>
 <span><span class="co">#&gt; 5 Aljaz Bedene        19</span></span>
 <span><span class="co">#&gt; 6 Andreas Seppi       24</span></span>
-<span><span class="co">#&gt; # … with 87 more rows</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="co">#&gt; # ℹ 87 more rows</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Next, we apply <code><a href="https://dplyr.tidyverse.org/reference/filter-joins.html">semi_join()</a></code>, which takes the names of two data sets (the second is the one that contains information about how the first should be “filtered”). The third argument gives the name of the key (<code>winner_name</code>) in this case.</p>
 <div class="cell" data-appendix="true">
@@ -627,12 +628,12 @@ Important
 <span>                            by <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"winner_name"</span> <span class="op">=</span> <span class="st">"winner_name"</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="va">tennis_2019_10</span><span class="op">$</span><span class="va">winner_name</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="callout-note callout callout-style-simple callout-captioned">
+<div class="callout callout-style-simple callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
-<div class="callout-caption-container flex-fill">
+<div class="callout-title-container flex-fill">
 Note
 </div>
 </div>
@@ -663,13 +664,13 @@ Note
 <span><span class="co">#&gt; 4 Hugo Dellien            12</span></span>
 <span><span class="co">#&gt; 5 Attila Balazs            7</span></span>
 <span><span class="co">#&gt; 6 Cedrik Marcel Stebe      7</span></span>
-<span><span class="co">#&gt; # … with 53 more rows</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="co">#&gt; # ℹ 53 more rows</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>The filtering join functions are useful if you want to filter out observations by some criterion in a different data set.</p>
 <p><strong>Exercise 3</strong>. Examine the following data sets (the first is <code>df1</code> and the second is <code>df2</code>) and then, without running any code, answer the following questions.</p>
 <div class="cell">
 <div class="cell-output-display">
-<table class="table table-sm table-striped">
+<table class="table table-sm table-striped small">
 <colgroup>
 <col style="width: 6%">
 <col style="width: 9%">
@@ -703,7 +704,7 @@ Note
 </table>
 </div>
 <div class="cell-output-display">
-<table class="table table-sm table-striped">
+<table class="table table-sm table-striped small">
 <colgroup>
 <col style="width: 6%">
 <col style="width: 9%">
@@ -752,7 +753,7 @@ Note
 <span class="header-section-number">11.4</span> Practice</h2>
 <section id="class-exercises" class="level3" data-number="11.4.1"><h3 data-number="11.4.1" class="anchored" data-anchor-id="class-exercises">
 <span class="header-section-number">11.4.1</span> Class Exercises</h3>
-<p><strong>Class Exercise 1</strong>. Why might <code><a href="https://dplyr.tidyverse.org/reference/bind.html">bind_cols()</a></code> be a dangerous way to combine data? What must you be sure of about the way the data was collected in order to combine data in this way?</p>
+<p><strong>Class Exercise 1</strong>. Why might <code><a href="https://dplyr.tidyverse.org/reference/bind_cols.html">bind_cols()</a></code> be a dangerous way to combine data? What must you be sure of about the way the data was collected in order to combine data in this way?</p>
 <p><strong>Class Exercise 2</strong>. The key variable is very important for joining and is not always available in a “perfect” form. Recall the college majors data sets we have, called <code>slumajors_df</code>, which information on majors at SLU. Another data set, <code>collegemajors_df</code>, has different statistics on college majors nationwide. There’s lots of interesting variables in these data sets, but we’ll focus on the <code>Major</code> variable here. Read in and examine the two data sets with:</p>
 <div class="cell" data-appendix="true">
 <div class="sourceCode" id="cb20"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">slumajors_df</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv</a></span><span class="op">(</span><span class="fu"><a href="https://here.r-lib.org//reference/here.html">here</a></span><span class="op">(</span><span class="st">"data/SLU_Majors_15_19.csv"</span><span class="op">)</span><span class="op">)</span></span>
@@ -769,28 +770,27 @@ Note
 <span><span class="co">#&gt; 6 Chemistry                          26     14</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">collegemajors_df</span><span class="op">)</span></span>
 <span><span class="co">#&gt; # A tibble: 6 × 12</span></span>
-<span><span class="co">#&gt;   Major      Total   Men Women Major…¹ Emplo…² Full_…³ Part_…⁴ Unemp…⁵ Median</span></span>
-<span><span class="co">#&gt;   &lt;chr&gt;      &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;     &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt;</span></span>
-<span><span class="co">#&gt; 1 PETROLEUM…  2339  2057   282 Engine…    1976    1849     270      37 110000</span></span>
-<span><span class="co">#&gt; 2 MINING AN…   756   679    77 Engine…     640     556     170      85  75000</span></span>
-<span><span class="co">#&gt; 3 METALLURG…   856   725   131 Engine…     648     558     133      16  73000</span></span>
-<span><span class="co">#&gt; 4 NAVAL ARC…  1258  1123   135 Engine…     758    1069     150      40  70000</span></span>
-<span><span class="co">#&gt; 5 CHEMICAL … 32260 21239 11021 Engine…   25694   23170    5180    1672  65000</span></span>
-<span><span class="co">#&gt; 6 NUCLEAR E…  2573  2200   373 Engine…    1857    2038     264     400  65000</span></span>
-<span><span class="co">#&gt; # … with 2 more variables: P25th &lt;dbl&gt;, P75th &lt;dbl&gt;, and abbreviated</span></span>
-<span><span class="co">#&gt; #   variable names ¹​Major_category, ²​Employed, ³​Full_time, ⁴​Part_time,</span></span>
-<span><span class="co">#&gt; #   ⁵​Unemployed</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="co">#&gt;   Major         Total   Men Women Major_category Employed Full_time Part_time</span></span>
+<span><span class="co">#&gt;   &lt;chr&gt;         &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;             &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;</span></span>
+<span><span class="co">#&gt; 1 PETROLEUM EN…  2339  2057   282 Engineering        1976      1849       270</span></span>
+<span><span class="co">#&gt; 2 MINING AND M…   756   679    77 Engineering         640       556       170</span></span>
+<span><span class="co">#&gt; 3 METALLURGICA…   856   725   131 Engineering         648       558       133</span></span>
+<span><span class="co">#&gt; 4 NAVAL ARCHIT…  1258  1123   135 Engineering         758      1069       150</span></span>
+<span><span class="co">#&gt; 5 CHEMICAL ENG… 32260 21239 11021 Engineering       25694     23170      5180</span></span>
+<span><span class="co">#&gt; 6 NUCLEAR ENGI…  2573  2200   373 Engineering        1857      2038       264</span></span>
+<span><span class="co">#&gt; # ℹ 4 more variables: Unemployed &lt;dbl&gt;, Median &lt;dbl&gt;, P25th &lt;dbl&gt;,</span></span>
+<span><span class="co">#&gt; #   P75th &lt;dbl&gt;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <ol type="a">
 <li><p>Attempt to join the two data sets together with a key.</p></li>
 <li><p>Why did the <code>collegemajors_df</code> give only <code>NA</code> values when we tried to join by major?</p></li>
 </ol>
-<div class="callout-note callout callout-style-simple callout-captioned">
+<div class="callout callout-style-simple callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
-<div class="callout-caption-container flex-fill">
+<div class="callout-title-container flex-fill">
 Note
 </div>
 </div>
@@ -802,9 +802,6 @@ Note
 <div class="cell">
 <div class="sourceCode" id="cb21"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span></span>
 <span><span class="va">mortality_df</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv</a></span><span class="op">(</span><span class="fu"><a href="https://here.r-lib.org//reference/here.html">here</a></span><span class="op">(</span><span class="st">"data/gun_violence_us.csv"</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<div class="cell">
-
 </div>
 <p><strong>Class Exercise 4</strong>. Examine the following data sets that are in <code>R</code>’s base library on demographic statistics about the U.S. states and state abbreviations:</p>
 <div class="cell">
@@ -820,7 +817,7 @@ Note
 <span><span class="co">#&gt; 4       2110   3378        1.9       70.7   10.1      39.9    65  51945</span></span>
 <span><span class="co">#&gt; 5      21198   5114        1.1       71.7   10.3      62.6    20 156361</span></span>
 <span><span class="co">#&gt; 6       2541   4884        0.7       72.1    6.8      63.9   166 103766</span></span>
-<span><span class="co">#&gt; # … with 44 more rows</span></span>
+<span><span class="co">#&gt; # ℹ 44 more rows</span></span>
 <span><span class="va">df2</span></span>
 <span><span class="co">#&gt; # A tibble: 50 × 1</span></span>
 <span><span class="co">#&gt;   value</span></span>
@@ -831,9 +828,9 @@ Note
 <span><span class="co">#&gt; 4 AR   </span></span>
 <span><span class="co">#&gt; 5 CA   </span></span>
 <span><span class="co">#&gt; 6 CO   </span></span>
-<span><span class="co">#&gt; # … with 44 more rows</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="co">#&gt; # ℹ 44 more rows</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Combine the two data sets with <code><a href="https://dplyr.tidyverse.org/reference/bind.html">bind_cols()</a></code> and name the new data set <code>states_df</code>. What are you assuming about the data sets in order to use this function?</p>
+<p>Combine the two data sets with <code><a href="https://dplyr.tidyverse.org/reference/bind_cols.html">bind_cols()</a></code> and name the new data set <code>states_df</code>. What are you assuming about the data sets in order to use this function?</p>
 <p><strong>Class Exercise 5</strong>. Use a join function to combine the mortality data set <strong>with</strong> D.C. (which we named <code>all_df</code>) with the states data set from the previous exercise (<code>states_df</code>). For this exercise, keep the row with Washington D.C., having it take on <code>NA</code> values for any variable not observed in the states data.</p>
 <p><strong>Class Exercise 6</strong>. Repeat the previous exercise, but now drop Washington D.C. in your merging process. Practice doing this <strong>with a join function</strong> (as opposed to <code><a href="https://dplyr.tidyverse.org/reference/slice.html">slice()</a></code>-ing it out explicitly).</p>
 <p><strong>Class Exercise 7</strong>. Use <code><a href="https://dplyr.tidyverse.org/reference/filter-joins.html">semi_join()</a></code> to create a subset of <code>states_df</code> that are in the <code>NE</code> region. <strong>Hint</strong>: You will need to filter <code>all_df</code> from Exercise 1 first to contain only states in the <code>NE</code> region.</p>
@@ -849,7 +846,7 @@ Note
 <p><strong>Your Turn 2</strong>. Examine the following data sets (the first is <code>df3</code> and the second is <code>df4</code>) and then, without running any code, answer the following questions in your group. Keep in mind that there are some duplicate keys!</p>
 <div class="cell">
 <div class="cell-output-display">
-<table class="table table-sm table-striped">
+<table class="table table-sm table-striped small">
 <colgroup>
 <col style="width: 6%">
 <col style="width: 9%">
@@ -887,7 +884,7 @@ Note
 </table>
 </div>
 <div class="cell-output-display">
-<table class="table table-sm table-striped">
+<table class="table table-sm table-striped small">
 <colgroup>
 <col style="width: 6%">
 <col style="width: 9%">
@@ -937,17 +934,17 @@ Note
 <div class="cell">
 <div class="sourceCode" id="cb23"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">test1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble</a></span><span class="op">(</span>state <span class="op">=</span> <span class="st">"Washington D.C."</span>, mortality_rate <span class="op">=</span> <span class="fl">16.7</span>,</span>
 <span>                ownership_rate <span class="op">=</span> <span class="fl">8.7</span>, region <span class="op">=</span> <span class="st">"NE"</span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/bind.html">bind_rows</a></span><span class="op">(</span><span class="va">mortality_df</span>, <span class="va">test1</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/bind_rows.html">bind_rows</a></span><span class="op">(</span><span class="va">mortality_df</span>, <span class="va">test1</span><span class="op">)</span></span>
 <span></span>
 <span><span class="va">test2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble</a></span><span class="op">(</span>state <span class="op">=</span> <span class="st">"Washington D.C."</span>, mortality_rate <span class="op">=</span> <span class="fl">16.7</span>,</span>
 <span>       ownership_rate <span class="op">=</span> <span class="fl">0.087</span>, region <span class="op">=</span> <span class="va">NE</span><span class="op">)</span></span>
 <span><span class="co">#&gt; Error in eval_tidy(xs[[j]], mask): object 'NE' not found</span></span>
-<span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/bind.html">bind_rows</a></span><span class="op">(</span><span class="va">mortality_df</span>, <span class="va">test2</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/bind_rows.html">bind_rows</a></span><span class="op">(</span><span class="va">mortality_df</span>, <span class="va">test2</span><span class="op">)</span></span>
 <span><span class="co">#&gt; Error in list2(...): object 'test2' not found</span></span>
 <span></span>
 <span><span class="va">test3</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble</a></span><span class="op">(</span>state <span class="op">=</span> <span class="st">"Washington D.C."</span>, mortality_rate <span class="op">=</span> <span class="st">"16.7"</span>,</span>
 <span>       ownership_rate <span class="op">=</span> <span class="st">"0.087"</span>, region <span class="op">=</span> <span class="st">"NE"</span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/bind.html">bind_rows</a></span><span class="op">(</span><span class="va">mortality_df</span>, <span class="va">test3</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/bind_rows.html">bind_rows</a></span><span class="op">(</span><span class="va">mortality_df</span>, <span class="va">test3</span><span class="op">)</span></span>
 <span><span class="co">#&gt; Error in `bind_rows()`:</span></span>
 <span><span class="co">#&gt; ! Can't combine `..1$mortality_rate` &lt;double&gt; and `..2$mortality_rate` &lt;character&gt;.</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
@@ -980,9 +977,23 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     icon: icon
   };
   anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
   const clipboard = new window.ClipboardJS('.code-copy-button', {
-    target: function(trigger) {
-      return trigger.previousElementSibling;
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
     }
   });
   clipboard.on('success', function(e) {
@@ -994,7 +1005,24 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     button.classList.add('code-copy-button-checked');
     var currentTitle = button.getAttribute("title");
     button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
     setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
       button.setAttribute("title", currentTitle);
       button.classList.remove('code-copy-button-checked');
     }, 1000);
@@ -1022,31 +1050,136 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   for (var i=0; i<noterefs.length; i++) {
     const ref = noterefs[i];
     tippyHover(ref, function() {
-      let href = ref.getAttribute('href');
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
       try { href = new URL(href).hash; } catch {}
       const id = href.replace(/^#\/?/, "");
       const note = window.document.getElementById(id);
       return note.innerHTML;
     });
   }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
   var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
   for (var i=0; i<bibliorefs.length; i++) {
     const ref = bibliorefs[i];
-    const cites = ref.parentNode.getAttribute('data-cites').split(' ');
-    tippyHover(ref, function() {
-      var popup = window.document.createElement('div');
-      cites.forEach(function(cite) {
-        var citeDiv = window.document.createElement('div');
-        citeDiv.classList.add('hanging-indent');
-        citeDiv.classList.add('csl-entry');
-        var biblioDiv = window.document.getElementById('ref-' + cite);
-        if (biblioDiv) {
-          citeDiv.innerHTML = biblioDiv.innerHTML;
-        }
-        popup.appendChild(citeDiv);
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
       });
-      return popup.innerHTML;
-    });
+    }
   }
 });
 </script><nav class="page-navigation"><div class="nav-page nav-page-previous">
@@ -1063,6 +1196,9 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </div> <!-- /content -->
 <footer class="footer"><div class="nav-footer">
     <div class="nav-footer-left">Course Materials were written by Matt Higham for STAT/DATA 234 at St.&nbsp;Lawrence University.</div>   
+    <div class="nav-footer-center">
+      &nbsp;
+    </div>
     <div class="nav-footer-right">This book was built with <a href="https://quarto.org/">Quarto</a>.</div>
   </div>
 </footer>

@@ -435,14 +435,14 @@ __Your Turn 4__. Another option is to control point transparency with `alpha`. I
 
 __Your Turn 5__. Label the points that have median playtimes above 1500 hours. You may want to use the `ggrepel` package so that the labels don't overlap.
 
-__Your Turn 6__. Choose one of the games that got labeled and Google that game's median, or possibly average, play time. Is it in the vicinity as the `median_playtime` recorded in our data set? 
+__Your Turn 6__. With a partner, have each of you choose a game that was labeled with a very median long play time and google search that game to see what its median play time is, according to google. Is it in the vicinity as the `median_playtime` recorded in our data set? 
 
 ```{r, echo = FALSE}
 ## for every game, I Googled, the answer is "no". The median or average
 ## play time is much less than what's given in our data set
 ```
 
-__Your Turn 7__. What should be done about the outliers? Discuss with your group advantages and disadvantages of keeping the outliers on the plot.
+__Your Turn 7__. What should be done about the outliers? With your group, discuss advantages and disadvantages of keeping the outliers on the plot.
 
 ```{r, echo = FALSE}
 ## main points: what's a reasonable median playtime? You don't want to throw away a point that's not a data entry error: that point could be interesting! But you don't want to keep a point that's obviously an error. Transparency is __key__. 
