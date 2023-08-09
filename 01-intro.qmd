@@ -1,7 +1,5 @@
 # Getting Started {#sec-intro}
 
-MAKE VIDEOS ON DOWNLOADING R, DOWNLOADING R STUDIO, CREATING AN R PROJECT,  GETTING THE DATA IN R, AND TESTING READING IN THE DATA
-
 ```{r}
 #| echo: false
 source("_common.R")
@@ -18,6 +16,18 @@ __Goals__:
 4. Run code and change a few things within that code
 
 5. Correct some common errors when running code in `R`
+
+## Installation 
+
+In this section, we will work on installing `R` and `R Studio` to your personal laptop. The following videos provide instructions on how to install `R` and `R Studio` to your laptop computer. It will be easiest if you complete all of these steps consecutively in one sitting.
+
+* Watch and follow along with a <a href="https://youtu.be/quN7AQkfKBk" target="_blank">video on installing R</a>.
+    * starting link: <a href="https://www.r-project.org/" target="_blank">https://www.r-project.org/</a>
+
+* Watch and follow along with a <a href="https://youtu.be/tKoPy_FZh9w" target="_blank">video on installing R Studio</a>.
+    * starting link: <a href="https://posit.co/download/rstudio-desktop/" target="_blank">https://posit.co/download/rstudio-desktop/</a>
+    
+* Watch and follow along with a <a href="https://youtu.be/RTbHwpOTxsc" target="_blank">video on installing R packages and making an R project </a>. 
 
 ## Intro to `R` and `R Studio`
 
@@ -41,20 +51,6 @@ We, however, will move away from the server and install `R` and `R Studio` on ou
 
 * the server requires good Internet access and also has the potential to crash.
 
-In this next section, we will work on installing `R` and `R Studio` to your personal laptop. The following videos provide instructions on how to install `R` and `R Studio` to your laptop computer. It will be easiest if you complete all of these steps consecutively in one sitting.
-
-<input type="checkbox"> Watch and follow along with a <a href="https://www.youtube.com/watch?v=-WNEPGMpzns" target="_blank">video on installing R</a>. </input>
-
-<input type="checkbox"> Watch and follow along with a <a href="https://www.youtube.com/watch?v=urw6AMOzAUo" target="_blank">video on installing R Studio</a>. </input>
-
-<input type="checkbox"> Watch and follow along with a <a href="https://www.youtube.com/watch?v=IaONPkvjNZM" target="_blank">video on installing R packages and changing other options</a>. </input>
-
-### Relevant Websites
-
-* __Install `R`__: <a href="http://lib.stat.cmu.edu/R/CRAN/" target="_blank">http://lib.stat.cmu.edu/R/CRAN/</a>
-
-* __Install `R Studio`__ (the __free__ option): <a href="https://www.rstudio.com/products/rstudio/download/" target="_blank">https://www.rstudio.com/products/rstudio/download/</a>
-
 ### Creating an `R` Project
 
 After you have both `R` and `R Studio` installed, open `R Studio` in your Applications. Create a new folder on your Desktop (or some other place that is easy for you to access and remember). Make sure the folder name has no spaces in it.
@@ -73,14 +69,14 @@ title: "Your Title"
 author: "Your Name"
 format: 
   html:
-    self-contained: true
+    embed-resources: true
 ---
 ```
 
 ::: {.callout-note}
 ## Note
 
-The `self-contained: true` option ensures that all figures, images, tables, etc. are contained in the one `.html` file, which is important because, for quizzes and exercises, you will typically only turn in the `.html` file.
+The `embed-resources: true` option ensures that all figures, images, tables, etc. are contained in the one `.html` file, which is important because, for quizzes and exercises, you will typically only turn in the `.html` file.
 :::
 
 ::: {.callout-important}
@@ -566,7 +562,7 @@ Save this file by clicking File -> Save or by using the keyboard shortcut Comman
 
 ## Your Turn {#chapexercise-1}
 
-Open a new .qmd file (File -> New File -> `Quarto Document` -> OK) and delete the text explaining what `Quarto` is. Make sure that your Quarto document is self-contained by using something like the following in the first few lines of the file:
+Open a new .qmd file (File -> New File -> `Quarto Document` -> OK) and delete the text explaining what `Quarto` is. Make sure that your Quarto document is embed-resources by using something like the following in the first few lines of the file:
 
 ```
 ---
@@ -574,13 +570,13 @@ title: "Your Title"
 author: "Your Name"
 format: 
   html:
-    self-contained: true
+    embed-resources: true
 ---
 ```
 
 Then, complete the following exercise.
 
-__Your Turn 1__. You may continue to use the same .qmd file to answer these questions. For each question, type your answer on a new line, with a line space between your answers. All of these questions should be answered outside of code chunks since your answers will all be text, not code.
+__Your Turn 1__. For each question, type your answer on a new line, with a line space between your answers. All of these questions should be answered outside of code chunks since your answers will all be text, not code.
 
 a. What is your name and what is your class year (first-year, sophomore, junior, senior)?
 

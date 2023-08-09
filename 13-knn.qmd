@@ -171,9 +171,7 @@ train_sample |>
 
 ### Exercises {#exercise-13-2}
 
-Exercises marked with an \* indicate that the exercise has a solution at the end of the chapter at \@ref(solutions-13).
-
-1. \* Consider again the toy example with just two observations in the training data set and unscaled weight and height as predictors.
+1. Consider again the toy example with just two observations in the training data set and unscaled weight and height as predictors.
 
 ```{r}
 ggplot(data = train_tiny, aes(x = height, y = weight, shape = Type)) +
@@ -195,7 +193,7 @@ sqrt((15 - 9) ^ 2 + (350 - 250) ^ 2) ## fire
 sqrt((15 - 15) ^ 2 + (350 - 505) ^ 2) ## dark
 ```
 
-2. \* After scaling according to the formula in this section, the coordinates (height, weight) of the Fire pokemon are (0, 0) and the coordinates of the Dark pokemon are (1, 1). (Since there are only two observations, the formula doesn't give any output between 0 and 1 for this tiny example). The scaled coordinates for the test pokemon are (1, 0.39). Verify that, after scaling, the test pokemon is "closer" to the Dark type pokemon by numerically computing distances.
+2. After scaling according to the formula in this section, the coordinates (height, weight) of the Fire pokemon are (0, 0) and the coordinates of the Dark pokemon are (1, 1). (Since there are only two observations, the formula doesn't give any output between 0 and 1 for this tiny example). The scaled coordinates for the test pokemon are (1, 0.39). Verify that, after scaling, the test pokemon is "closer" to the Dark type pokemon by numerically computing distances.
 
 ```{r, echo = FALSE, results = "hide"}
 sqrt((0 - 1) ^ 2 + (0 - 0.39) ^ 2) ## Fire

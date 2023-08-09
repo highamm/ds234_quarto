@@ -229,7 +229,7 @@ format:
   html:
     fig-height: 2
     theme: darkly
-    self-contained: true
+    embed-resources: true
 ---
 ```
 
@@ -246,7 +246,7 @@ format:
     fig-height: 2
     theme: darkly
     toc: true
-    self-contained: true
+    embed-resources: true
 ---
 ```
 

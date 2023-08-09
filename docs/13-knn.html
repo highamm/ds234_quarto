@@ -531,9 +531,8 @@ scaled_x = \frac{x - min(x)}{max(x) - min(x)}
 </div>
 </section><section id="exercise-13-2" class="level3" data-number="14.2.5"><h3 data-number="14.2.5" class="anchored" data-anchor-id="exercise-13-2">
 <span class="header-section-number">14.2.5</span> Exercises</h3>
-<p>Exercises marked with an * indicate that the exercise has a solution at the end of the chapter at @ref(solutions-13).</p>
 <ol type="1">
-<li>* Consider again the toy example with just two observations in the training data set and unscaled weight and height as predictors.</li>
+<li>Consider again the toy example with just two observations in the training data set and unscaled weight and height as predictors.</li>
 </ol>
 <div class="cell">
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">train_tiny</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">height</span>, y <span class="op">=</span> <span class="va">weight</span>, shape <span class="op">=</span> <span class="va">Type</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
@@ -550,7 +549,7 @@ scaled_x = \frac{x - min(x)}{max(x) - min(x)}
 \]</span></p>
 <p>We’ll need to use this formula twice: once for the distance between the fire pokemon and the test pokemon and once for the distance between the dark pokemon and the test pokemon.</p>
 <ol start="2" type="1">
-<li>* After scaling according to the formula in this section, the coordinates (height, weight) of the Fire pokemon are (0, 0) and the coordinates of the Dark pokemon are (1, 1). (Since there are only two observations, the formula doesn’t give any output between 0 and 1 for this tiny example). The scaled coordinates for the test pokemon are (1, 0.39). Verify that, after scaling, the test pokemon is “closer” to the Dark type pokemon by numerically computing distances.</li>
+<li>After scaling according to the formula in this section, the coordinates (height, weight) of the Fire pokemon are (0, 0) and the coordinates of the Dark pokemon are (1, 1). (Since there are only two observations, the formula doesn’t give any output between 0 and 1 for this tiny example). The scaled coordinates for the test pokemon are (1, 0.39). Verify that, after scaling, the test pokemon is “closer” to the Dark type pokemon by numerically computing distances.</li>
 </ol>
 <ol start="3" type="1">
 <li>Consider again the example with 15 pokemon in the training data set and a single predictor, <code>Defense</code>.</li>
