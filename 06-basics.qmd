@@ -131,6 +131,7 @@ class(as.factor(videogame_df$meta_cat))
 In general, `as._____` will lets you convert between classes. Note, however, that we aren't saving our converted variable anywhere. If we wanted the conversion to the factor to be saved in the data set, we can use `mutate()`:
 
 ```{r, appendix = TRUE}
+#| results: false
 videogame_df <- videogame_df |>
   mutate(meta_cat_factor = as.factor(meta_cat))
 str(videogame_df$meta_cat_factor)
@@ -143,6 +144,7 @@ For most `R` functions, it won't matter whether our variable is in class charact
 The `<date>` class is used for dates, and the `<datetime>` class is used for Dates with times. `R` requires a very specific format for dates and times. Note that, while to the human eye, both of the following variables contain dates, only one is of class `<date>`:
 
 ```{r, appendix = TRUE}
+#| results: false
 str(videogame_df$release_date)
 str(videogame_df$release_date2)
 ```
@@ -150,6 +152,7 @@ str(videogame_df$release_date2)
 `release_date` is class character, which is why we had the issue with the odd ordering of the dates earlier. We can try converting it using `as.Date`, but this function doesn't always work:
 
 ```{r, error = TRUE}
+#| results: false
 as.Date(videogame_df$release_date)
 ```
 
@@ -158,6 +161,7 @@ Dates and times can be pretty complicated. In fact, we will spend an entire week
 On variables that are in `Date` format, like `release_date2`, we can use numerical operations:
 
 ```{r, appendix = TRUE}
+#| results: false
 median(videogame_df$release_date2, na.rm = TRUE)
 mean(videogame_df$release_date2, na.rm = TRUE)
 ```
@@ -169,6 +173,7 @@ What do you think taking the median or taking the mean of a date class means?
 Class `<dbl>` and `<int>` are probably the most self-explanatory classes. `<dbl>`, the `numeric` class, are just variables that have only numbers in them while `<int>` only have integers (..., -2, -1, 0, 1, 2, ....). We can do numerical operations on either of these classes (and we've been doing them throughout the semester). For our purposes, these two classes are interchangeable.
 
 ```{r, appendix = TRUE}
+#| results: false
 str(videogame_df$price)
 ```
 

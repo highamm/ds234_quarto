@@ -43,7 +43,10 @@ We will use the `ggplot()` function in the `ggplot2` package to construct visual
 
 The components are combined in the following form:
 
-```{r, eval = FALSE}
+```{r}
+#| eval: false
+
+## DO NOT COPY this code into your .qmd file: it will not run.
 ggplot(data = name_of_data, aes(x = name_of_x_var, 
                                           y = name_of_y_var,
                                           colour = name_of_colour_var,
@@ -58,10 +61,10 @@ Throughout this section, we will be using survey data from STAT 113 many years a
 
 Create a new Quarto file. Then, read in the data set by copying and pasting the `R` chunk below into an `R` chunk in your Quarto file.
 
-```{r, message = FALSE}
+```{r}
+#| warning: false
 library(tidyverse)
 stat113_df <- read_csv("https://raw.githubusercontent.com/highamm/ds234_quarto/main/data_online/stat113.csv")
-head(stat113_df)
 ```
 
 The data set contains the following variables:

@@ -196,6 +196,7 @@ __Exercise 3__. `unite()` the `main_first` and `main_last` columns into a new co
 We will continue to use the polling data set to introduce the pivoting functions and data reshaping. To make sure that we are all working with the same data set, run the following line of code:
 
 ```{r, appendix = TRUE}
+#| results: false
 polls_clean <- polls |>
   separate(col = Sample, into = c("Sample_size", "Sample_type"), 
            sep = " ")  |>

@@ -181,7 +181,6 @@ Read in the data set, name the data set `pres_df`, and take a look at the data s
 library(tidyverse)
 
 pres_df <- read_csv("https://raw.githubusercontent.com/highamm/ds234_quarto/main/data_online/pres2000.csv") 
-## don't worry about the `read_table` function....yet
 head(pres_df)
 ```
 
@@ -193,7 +192,9 @@ Pay special attention to the variable names given at the top of the printed outp
 
 Let's go ahead and begin our exploration of the data by making a histogram of the number of people who voted for `Gore` in each county. Recall that a histogram is useful if we would like a graph of a single quantitative variable. Copy the following code to an `R` chunk and run the code:
 
-```{r, warning = TRUE, message = TRUE, appendix = TRUE}
+```{r}
+#| warning: false
+#| message: false
 ggplot(data = pres_df, aes(x = Gore)) +
   geom_histogram(colour = "black", fill = "white") +
   labs(x = "Votes for Gore in Florida")
@@ -329,6 +330,7 @@ ggplot(data = alcohol_data,
 It looks like there are some countries that consume little to no alcohol. We might want to know what these countries are: 
 
 ```{r}
+#| results: false
 alcohol_data |> filter(total_litres_of_pure_alcohol == 0)
 ```
 
@@ -360,12 +362,11 @@ Finally, suppose that I want to know which country consumes the most wine relati
 onecountry_df <- alcohol_data |> 
   filter(country == "Denmark")
 
-library(ggrepel)
 ggplot(data = alcohol_data,
        mapping = aes(x = beer_servings, y = wine_servings)) + 
   geom_point(alpha = 0.5) +
-  geom_label_repel(data = onecountry_df, aes(label = country),
-    colour = "purple") +
+  geom_text(data = onecountry_df, aes(label = country),
+    colour = "purple", nudge_y = 20) +
   geom_point(data = onecountry_df, colour = "purple",
              size = 2.5, shape = 1) +
   geom_abline(aes(slope = 1, intercept = 0), alpha = 0.3)
@@ -375,6 +376,7 @@ The x-axis corresponds to beer servings while the y-axis corresponds to wine ser
 We might be able to better answer the original question numerically by computing the wine to beer ratio for each country and then ordering from the largest ratio to the smallest ratio:
 
 ```{r}
+#| results: false
 alcohol_data |>
   mutate(wbratio = wine_servings / beer_servings) |>
   arrange(desc(wbratio)) |>
