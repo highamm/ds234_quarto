@@ -14,6 +14,7 @@ Welcome! This is the course materials website for DATA / STAT 234. Though we wil
     -   MW 12:50 - 2:20
 -   Office Hours: 15 minute slots bookable at <a href="https://calendly.com/mhigham/prof-higham-office-hours" target="_blank">my calendly page</a>.
     -   Note that you must book a time for office hours at least 12 hours in advance to guarantee that I am present and available at that time.
+- TA: To Be Added
 
 **Course Materials**
 
@@ -148,18 +149,21 @@ Diversity encompasses differences in age, colour, ethnicity, national origin, ge
 
 ### Accessibility Statement
 
-If you have a specific learning profile, medical and or mental health condition and need accommodations, please be sure to contact the Student Accessibility Services Office right away so they can help you get the accommodations you require. If you need to use any accommodations in this class, please meet with your instructor early and provide them with your Individualized Educational Accommodation Plan (IEAP) letter so you can have the best possible experience this semester.
+The message below is copied from the Student Accessibility Services Office:
 
-Although not required, your instructor would like to know of any accommodations that are needed at least 10 days before a quiz or test. Please be proactive and set up an appointment to meet with someone from the Student Accessibility Services Office.
+Your experience in this class is important to me.  It is the policy and practice of St. Lawrence University to create inclusive and accessible learning environments consistent with federal and state law.  If you have established accommodations with the Student Accessibility Services Office in the past, please activate your accommodations so we can discuss how they will be implemented in this course.
 
-**Color-Vision Deficiency:** If you are Color-Vision Deficient, the Student Accessibility Services office has on loan glasses for students who are color vision deficient. Please contact the office to make an appointment.
+If you have not yet established services through the Student Accessibility Services Office but have a temporary health condition or permanent disability that requires accommodations (conditions include but not limited to; mental health, attention-related, learning, vision, hearing, physical or health impacts), please contact the Student Accessibility Services Office directly to set up a meeting.  The Student Accessibility Services Office will work with you on the interactive process that establishes reasonable accommodations.
 
-For more specific information about setting up an appointment with Student Accessibility Services please see the listed options below:
+__Color Vision Deficiency__: The Student Accessibility Services office can loan glasses for students who are color vision deficient. Please contact the office to make an appointment.
+ 
+For more specific information about setting up an appointment with Student Accessibility Services please see the options listed below:
 
--   Telephone: 315.229.5537
--   Email: [studentaccessibility\@stlawu.edu](mailto:studentaccessibility@stlawu.edu){.email}
-
-For further information about Student Accessibility Services you can check the website at: <https://www.stlawu.edu/student-accessibility-services>
+Telephone: 315.229.5537
+ 
+Email: studentaccessibility@stlawu.edu 
+ 
+Website: <https://www.stlawu.edu/offices/student-accessibility-services>
 
 ------------------------------------------------------------------------
 

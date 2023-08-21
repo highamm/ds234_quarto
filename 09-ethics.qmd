@@ -29,15 +29,21 @@ Some questions to consider for any data collected, especially data collected on 
     
     - We've also scraped data from SLU's athletics website to look at data pertaining to some of you! Is that ethical? Is there a line you wouldn't cross pertaining to data collected on named, individual people?
 
-__Exercise 1__. Read Sections 8.1 - 8.3 in <a href="https://mdsr-book.github.io/mdsr2e/" target="_blank">Modern Data Science with R</a>. Then, write a one paragraph summary of the reading and how it might pertain to the way you use or interpret data.
+__Exercise 1__. Read Sections 8.1 - 8.3 in <a href="https://mdsr-book.github.io/mdsr2e/ch-ethics.html#ethics-intro" target="_blank">Modern Data Science with R</a>. Then, write a one paragraph summary of the reading and how it might pertain to the way you use or interpret data.
 
-__Exercise 2__. _Data Feminism_ is related to data ethics, though the two terms are not synonymous. Recently, Catherine D’Ignazio and Lauren F. Klein published a book called _Data Feminism_ <a href="https://datafeminism.io/" target="_blank">https://datafeminism.io/ </a>
+__Exercise 2__. Read __2__ of the subsections in 8.4 in <a href="https://mdsr-book.github.io/mdsr2e/ch-ethics.html#some-settings-for-professional-ethics" target="_blank">Modern Data Science with R</a>. These can be any two of the eight subsections of your choosing.
+
+a. After reading the two subsections, read the 12 principles to guide ethical action in 8.5 in <a href="https://mdsr-book.github.io/mdsr2e/ch-ethics.html#some-principles-to-guide-ethical-action" target="_blank">Modern Data Science with R</a>. For each of the two subsections you chose, select __one__ of the 12 principles that you feel is most relevant to each example, explaining your reasoning.
+
+b. Read the two subsections in 8.5 in <a href="https://mdsr-book.github.io/mdsr2e/ch-ethics.html#some-principles-to-guide-ethical-action" target="_blank">Modern Data Science with R</a> corresponding with the two subsections that your read in section 8.4. What principles do the authors reflect on for your two examples?
+
+__Exercise 3__. _Data Feminism_ is related to data ethics, though the two terms are not synonymous. Recently, Catherine D’Ignazio and Lauren F. Klein published a book called _Data Feminism_ <a href="https://datafeminism.io/" target="_blank">https://datafeminism.io/ </a>
 
 Read the following blog post on Data Feminism, focusing on the section on Missing Data. <a href="https://teachdatascience.com/datafem/" target="_blank">https://teachdatascience.com/datafem/ </a>.
 
 Pick one example from the bulleted list and write a 2 sentence explanation that explains why it might be important to acknowledge the missing data in an analysis.
 
-__Exercise 3__. Choose __1__ of the following two articles to read
+__Exercise 4__. Choose __1__ of the following two articles to read
 
 * <a href="https://www.theguardian.com/world/2017/sep/08/ai-gay-gaydar-algorithm-facial-recognition-criticism-stanford" target="_blank">https://www.theguardian.com/world/2017/sep/08/ai-gay-gaydar-algorithm-facial-recognition-criticism-stanford </a> on the use of data in the LGBTQIA+ community
 * <a href="https://towardsdatascience.com/5-steps-to-take-as-an-antiracist-data-scientist-89712877c214" target="_blank">https://towardsdatascience.com/5-steps-to-take-as-an-antiracist-data-scientist-89712877c214 </a> on anti-racist data practices.

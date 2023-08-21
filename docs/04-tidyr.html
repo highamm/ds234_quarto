@@ -570,18 +570,7 @@ Note
 <span>           sep <span class="op">=</span> <span class="st">" - "</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/rename.html">rename</a></span><span class="op">(</span>Clinton_D <span class="op">=</span> <span class="va">`Clinton (D)`</span>, Trump_R <span class="op">=</span> <span class="va">`Trump (R)`</span>,</span>
 <span>         Johnson_L <span class="op">=</span> <span class="va">`Johnson (L)`</span>, Stein_G <span class="op">=</span> <span class="va">`Stein (G)`</span><span class="op">)</span></span>
-<span><span class="va">polls_clean</span></span>
-<span><span class="co">#&gt; # A tibble: 7 × 10</span></span>
-<span><span class="co">#&gt;   Poll  Start End   Sample_size Sample_type   MoE Clinton_D Trump_R Johnson_L</span></span>
-<span><span class="co">#&gt;   &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;       &lt;chr&gt;       &lt;dbl&gt;     &lt;dbl&gt;   &lt;dbl&gt;     &lt;dbl&gt;</span></span>
-<span><span class="co">#&gt; 1 Monm… 7/14  7/16  688         LV            3.7        45      43         5</span></span>
-<span><span class="co">#&gt; 2 CNN/… 7/13  7/16  872         RV            3.5        42      37        13</span></span>
-<span><span class="co">#&gt; 3 ABC … 7/11  7/14  816         RV            4          42      38         8</span></span>
-<span><span class="co">#&gt; 4 NBC … 7/9   7/13  1000        RV            3.1        41      35        11</span></span>
-<span><span class="co">#&gt; 5 Econ… 7/9   7/11  932         RV            4.5        40      37         5</span></span>
-<span><span class="co">#&gt; 6 Asso… 7/7   7/11  837         RV           NA          40      36         6</span></span>
-<span><span class="co">#&gt; # ℹ 1 more row</span></span>
-<span><span class="co">#&gt; # ℹ 1 more variable: Stein_G &lt;dbl&gt;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="va">polls_clean</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>The data set <code>polls_clean</code> <strong>still</strong> isn’t tidy!! The <code>candidate</code> variable is spread out over 4 different columns and the values in each of these 4 columns actually represent 1 variable: poll percentage.</p>
 <p>Thinking about data “tidyness” using the definitions above can sometimes be a little bit confusing. In practice, oftentimes we will usually realize that a data set is untidy when we go to do something that should be super simple but that something turns out to not be super simple at all when the data is in its current form.</p>

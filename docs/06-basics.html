@@ -479,8 +479,7 @@ Note
 <div class="cell" data-appendix="true">
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">videogame_df</span> <span class="op">&lt;-</span> <span class="va">videogame_df</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>meta_cat_factor <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">as.factor</a></span><span class="op">(</span><span class="va">meta_cat</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/utils/str.html">str</a></span><span class="op">(</span><span class="va">videogame_df</span><span class="op">$</span><span class="va">meta_cat_factor</span><span class="op">)</span></span>
-<span><span class="co">#&gt;  Factor w/ 4 levels "Generally Favorable",..: 4 1 3 NA NA NA 4 1 3 NA ...</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/str.html">str</a></span><span class="op">(</span><span class="va">videogame_df</span><span class="op">$</span><span class="va">meta_cat_factor</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>For most <code>R</code> functions, it won’t matter whether our variable is in class character or class factor. In general, though, character classes are for variables that have a ton of different levels, like the name of the videogame, whereas factors are reserved for categorical variables with a smaller finite number of levels.</p>
 </section><section id="date-class" class="level3" data-number="7.2.2"><h3 data-number="7.2.2" class="anchored" data-anchor-id="date-class">
@@ -488,9 +487,7 @@ Note
 <p>The <code>&lt;date&gt;</code> class is used for dates, and the <code>&lt;datetime&gt;</code> class is used for Dates with times. <code>R</code> requires a very specific format for dates and times. Note that, while to the human eye, both of the following variables contain dates, only one is of class <code>&lt;date&gt;</code>:</p>
 <div class="cell" data-appendix="true">
 <div class="sourceCode" id="cb11"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/str.html">str</a></span><span class="op">(</span><span class="va">videogame_df</span><span class="op">$</span><span class="va">release_date</span><span class="op">)</span></span>
-<span><span class="co">#&gt;  chr [1:26688] "Nov 16, 2004" "Nov 1, 2004" "Mar 1, 2004" "Nov 1, 2004" ...</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/utils/str.html">str</a></span><span class="op">(</span><span class="va">videogame_df</span><span class="op">$</span><span class="va">release_date2</span><span class="op">)</span></span>
-<span><span class="co">#&gt;  Date[1:26688], format: "2004-11-16" "2004-11-01" "2004-03-01" "2004-11-01" "2004-06-01" ...</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/str.html">str</a></span><span class="op">(</span><span class="va">videogame_df</span><span class="op">$</span><span class="va">release_date2</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p><code>release_date</code> is class character, which is why we had the issue with the odd ordering of the dates earlier. We can try converting it using <code>as.Date</code>, but this function doesn’t always work:</p>
 <div class="cell">
@@ -501,17 +498,14 @@ Note
 <p>On variables that are in <code>Date</code> format, like <code>release_date2</code>, we can use numerical operations:</p>
 <div class="cell" data-appendix="true">
 <div class="sourceCode" id="cb13"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/stats/median.html">median</a></span><span class="op">(</span><span class="va">videogame_df</span><span class="op">$</span><span class="va">release_date2</span>, na.rm <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
-<span><span class="co">#&gt; [1] "2017-06-09"</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">videogame_df</span><span class="op">$</span><span class="va">release_date2</span>, na.rm <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
-<span><span class="co">#&gt; [1] "2016-09-15"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">videogame_df</span><span class="op">$</span><span class="va">release_date2</span>, na.rm <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>What do you think taking the median or taking the mean of a date class means?</p>
 </section><section id="dbl-and-int-class" class="level3" data-number="7.2.3"><h3 data-number="7.2.3" class="anchored" data-anchor-id="dbl-and-int-class">
 <span class="header-section-number">7.2.3</span> <code>&lt;dbl&gt;</code> and <code>&lt;int&gt;</code> Class</h3>
 <p>Class <code>&lt;dbl&gt;</code> and <code>&lt;int&gt;</code> are probably the most self-explanatory classes. <code>&lt;dbl&gt;</code>, the <code>numeric</code> class, are just variables that have only numbers in them while <code>&lt;int&gt;</code> only have integers (…, -2, -1, 0, 1, 2, ….). We can do numerical operations on either of these classes (and we’ve been doing them throughout the semester). For our purposes, these two classes are interchangeable.</p>
 <div class="cell" data-appendix="true">
-<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/str.html">str</a></span><span class="op">(</span><span class="va">videogame_df</span><span class="op">$</span><span class="va">price</span><span class="op">)</span></span>
-<span><span class="co">#&gt;  num [1:26688] 9.99 9.99 9.99 4.99 9.99 ...</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/str.html">str</a></span><span class="op">(</span><span class="va">videogame_df</span><span class="op">$</span><span class="va">price</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Problems arise when numeric variables are coded as something non-numeric, or when non-numeric variables are coded as numeric. For example, examine:</p>
 <div class="cell" data-appendix="true">
