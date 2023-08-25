@@ -14,7 +14,6 @@ Welcome! This is the course materials website for DATA / STAT 234. Though we wil
     -   MW 12:50 - 2:20
 -   Office Hours: 15 minute slots bookable at <a href="https://calendly.com/mhigham/prof-higham-office-hours" target="_blank">my calendly page</a>.
     -   Note that you must book a time for office hours at least 12 hours in advance to guarantee that I am present and available at that time.
-- TA: To Be Added
 
 **Course Materials**
 

@@ -57,7 +57,7 @@ After you have both `R` and `R Studio` installed, open `R Studio` in your Applic
 
 Then, in `R Studio`, create an `R Project` by Clicking File -> New Project -> Existing  Directory. Navigate to the _DATA234_ folder you made, and click _Create Project_. You should see a new window of `R Studio` open up.
 
-Next, we want to put some data in a folder in the same folder that has our newly created `R` Project. Download the `data.zip` file from Canvas (in Resources) and move the zip file to the folder with your `R` project (you can drag and drop from downloads, copy/paste from downloads, or move it with whatever method you usually move files with). Clicking the data.zip file (either in a window or in the bottom-left window of `R Studio`) will created a `data` folder that has data sets we want to use throughout the semester.
+<!-- Next, we want to put some data in a folder in the same folder that has our newly created `R` Project. Download the `data.zip` file from Canvas (in Resources) and move the zip file to the folder with your `R` project (you can drag and drop from downloads, copy/paste from downloads, or move it with whatever method you usually move files with). Clicking the data.zip file (either in a window or in the bottom-left window of `R Studio`) will created a `data` folder that has data sets we want to use throughout the semester. -->
 
 Finally, we want to create a new `Quarto` file by clicking File -> New File -> `Quarto Document`. You can give your new `Quarto` file a title if you want, and then click okay.
 
