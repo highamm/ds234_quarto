@@ -290,7 +290,7 @@ fitness_df |> lm(active_cals ~ steps)
 But it throws us an error. Typing in `?lm` reveals that its first argument is a `formula` to fit the model, not a data set. So the function is trying to run
 
 ```{r, error = TRUE}
-lm(videogame_df, metascore ~ price)
+lm(fitness_df, active_cals ~ steps)
 ```
 
 which doesn't work because the arguments to the function are mixed up (the formula should appear first and the data set should appear second).
@@ -362,14 +362,14 @@ __Goals:__
 Throughout this section, we will use a data set that contains observations for each of SLU's majors, with three variables per major:
 
 * `Major`, the name of the major.
-* `nfemales`, the number of female graduates in that major from 2015 - 2019.
-* `nmales`, the number of male graduates in that major from 2015 - 2019.
+* `nfemales`, the number of female graduates in that major from 2017 - 2021.
+* `nmales`, the number of male graduates in that major from 2017 - 2021.
 
 Begin by reading in the data set with
 
 ```{r, message = FALSE, warning = FALSE, appendix = TRUE}
 library(tidyverse)
-slumajors_df <- read_csv("https://raw.githubusercontent.com/highamm/ds234_quarto/main/data_online/SLU_Majors_15_19.csv")
+slumajors_df <- read_csv("https://raw.githubusercontent.com/highamm/ds234_quarto/main/data_online/SLU_Majors_17_21.csv")
 slumajors_df
 ```
 

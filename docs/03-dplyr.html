@@ -740,8 +740,8 @@ Important
 </div>
 <p>But it throws us an error. Typing in <code><a href="https://rdrr.io/r/stats/lm.html">?lm</a></code> reveals that its first argument is a <code>formula</code> to fit the model, not a data set. So the function is trying to run</p>
 <div class="cell">
-<div class="sourceCode" id="cb27"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span><span class="op">(</span><span class="va">videogame_df</span>, <span class="va">metascore</span> <span class="op">~</span> <span class="va">price</span><span class="op">)</span></span>
-<span><span class="co">#&gt; Error in stats::model.frame(formula = videogame_df, data = metascore ~ : object 'videogame_df' not found</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb27"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span><span class="op">(</span><span class="va">fitness_df</span>, <span class="va">active_cals</span> <span class="op">~</span> <span class="va">steps</span><span class="op">)</span></span>
+<span><span class="co">#&gt; Error in as.data.frame.default(data): cannot coerce class '"formula"' to a data.frame</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>which doesn’t work because the arguments to the function are mixed up (the formula should appear first and the data set should appear second).</p>
 <div class="callout callout-style-simple callout-note callout-titled">
@@ -827,25 +827,25 @@ Hint
 <li>
 <code>Major</code>, the name of the major.</li>
 <li>
-<code>nfemales</code>, the number of female graduates in that major from 2015 - 2019.</li>
+<code>nfemales</code>, the number of female graduates in that major from 2017 - 2021.</li>
 <li>
-<code>nmales</code>, the number of male graduates in that major from 2015 - 2019.</li>
+<code>nmales</code>, the number of male graduates in that major from 2017 - 2021.</li>
 </ul>
 <p>Begin by reading in the data set with</p>
 <div class="cell" data-appendix="true">
 <div class="sourceCode" id="cb30"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span></span>
-<span><span class="va">slumajors_df</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv</a></span><span class="op">(</span><span class="st">"https://raw.githubusercontent.com/highamm/ds234_quarto/main/data_online/SLU_Majors_15_19.csv"</span><span class="op">)</span></span>
+<span><span class="va">slumajors_df</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv</a></span><span class="op">(</span><span class="st">"https://raw.githubusercontent.com/highamm/ds234_quarto/main/data_online/SLU_Majors_17_21.csv"</span><span class="op">)</span></span>
 <span><span class="va">slumajors_df</span></span>
-<span><span class="co">#&gt; # A tibble: 27 × 3</span></span>
+<span><span class="co">#&gt; # A tibble: 30 × 3</span></span>
 <span><span class="co">#&gt;   Major                        nfemales nmales</span></span>
 <span><span class="co">#&gt;   &lt;chr&gt;                           &lt;dbl&gt;  &lt;dbl&gt;</span></span>
-<span><span class="co">#&gt; 1 Anthropology                       34     15</span></span>
-<span><span class="co">#&gt; 2 Art &amp; Art History                  65     11</span></span>
-<span><span class="co">#&gt; 3 Biochemistry                       14     11</span></span>
-<span><span class="co">#&gt; 4 Biology                           162     67</span></span>
-<span><span class="co">#&gt; 5 Business in the Liberal Arts      135    251</span></span>
-<span><span class="co">#&gt; 6 Chemistry                          26     14</span></span>
-<span><span class="co">#&gt; # ℹ 21 more rows</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="co">#&gt; 1 Anthropology                       35     13</span></span>
+<span><span class="co">#&gt; 2 Art &amp; Art History                  62     11</span></span>
+<span><span class="co">#&gt; 3 Biochemistry                       15      6</span></span>
+<span><span class="co">#&gt; 4 Biology                           152     58</span></span>
+<span><span class="co">#&gt; 5 Business in the Liberal Arts      192    301</span></span>
+<span><span class="co">#&gt; 6 Chemistry                          28     20</span></span>
+<span><span class="co">#&gt; # ℹ 24 more rows</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <section id="mutate-create-variables" class="level3" data-number="3.3.1"><h3 data-number="3.3.1" class="anchored" data-anchor-id="mutate-create-variables">
 <span class="header-section-number">3.3.1</span> <code>mutate()</code>: Create Variables</h3>
@@ -863,16 +863,16 @@ Hint
 <p>For example, suppose that we want to create a variable in <code>slumajors_df</code> that has the total number of students graduating in each major. We can do this with <code><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate()</a></code>:</p>
 <div class="cell" data-appendix="true">
 <div class="sourceCode" id="cb31"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">slumajors_df</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>ntotal <span class="op">=</span> <span class="va">nfemales</span> <span class="op">+</span> <span class="va">nmales</span><span class="op">)</span></span>
-<span><span class="co">#&gt; # A tibble: 27 × 4</span></span>
+<span><span class="co">#&gt; # A tibble: 30 × 4</span></span>
 <span><span class="co">#&gt;   Major                        nfemales nmales ntotal</span></span>
 <span><span class="co">#&gt;   &lt;chr&gt;                           &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;</span></span>
-<span><span class="co">#&gt; 1 Anthropology                       34     15     49</span></span>
-<span><span class="co">#&gt; 2 Art &amp; Art History                  65     11     76</span></span>
-<span><span class="co">#&gt; 3 Biochemistry                       14     11     25</span></span>
-<span><span class="co">#&gt; 4 Biology                           162     67    229</span></span>
-<span><span class="co">#&gt; 5 Business in the Liberal Arts      135    251    386</span></span>
-<span><span class="co">#&gt; 6 Chemistry                          26     14     40</span></span>
-<span><span class="co">#&gt; # ℹ 21 more rows</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="co">#&gt; 1 Anthropology                       35     13     48</span></span>
+<span><span class="co">#&gt; 2 Art &amp; Art History                  62     11     73</span></span>
+<span><span class="co">#&gt; 3 Biochemistry                       15      6     21</span></span>
+<span><span class="co">#&gt; 4 Biology                           152     58    210</span></span>
+<span><span class="co">#&gt; 5 Business in the Liberal Arts      192    301    493</span></span>
+<span><span class="co">#&gt; 6 Chemistry                          28     20     48</span></span>
+<span><span class="co">#&gt; # ℹ 24 more rows</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>The <code>|&gt;</code> operator reads as “and then”, as in “take <code>slumajors_df</code> <em>and then</em> <code><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate()</a></code> it.”</p>
 <p>Piping is a really convenient, easy-to-read way to build a sequence of commands. How you can read the above code is:</p>
@@ -887,16 +887,16 @@ Hint
 <div class="cell" data-appendix="true">
 <div class="sourceCode" id="cb32"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">slumajors_df</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>percfemale <span class="op">=</span> <span class="fl">100</span> <span class="op">*</span> <span class="va">nfemales</span> <span class="op">/</span> <span class="op">(</span><span class="va">nfemales</span> <span class="op">+</span> <span class="va">nmales</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="co">#&gt; # A tibble: 27 × 4</span></span>
+<span><span class="co">#&gt; # A tibble: 30 × 4</span></span>
 <span><span class="co">#&gt;   Major                        nfemales nmales percfemale</span></span>
 <span><span class="co">#&gt;   &lt;chr&gt;                           &lt;dbl&gt;  &lt;dbl&gt;      &lt;dbl&gt;</span></span>
-<span><span class="co">#&gt; 1 Anthropology                       34     15       69.4</span></span>
-<span><span class="co">#&gt; 2 Art &amp; Art History                  65     11       85.5</span></span>
-<span><span class="co">#&gt; 3 Biochemistry                       14     11       56  </span></span>
-<span><span class="co">#&gt; 4 Biology                           162     67       70.7</span></span>
-<span><span class="co">#&gt; 5 Business in the Liberal Arts      135    251       35.0</span></span>
-<span><span class="co">#&gt; 6 Chemistry                          26     14       65  </span></span>
-<span><span class="co">#&gt; # ℹ 21 more rows</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="co">#&gt; 1 Anthropology                       35     13       72.9</span></span>
+<span><span class="co">#&gt; 2 Art &amp; Art History                  62     11       84.9</span></span>
+<span><span class="co">#&gt; 3 Biochemistry                       15      6       71.4</span></span>
+<span><span class="co">#&gt; 4 Biology                           152     58       72.4</span></span>
+<span><span class="co">#&gt; 5 Business in the Liberal Arts      192    301       38.9</span></span>
+<span><span class="co">#&gt; 6 Chemistry                          28     20       58.3</span></span>
+<span><span class="co">#&gt; # ℹ 24 more rows</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="callout callout-style-simple callout-important callout-titled">
 <div class="callout-header d-flex align-content-center">
@@ -950,16 +950,16 @@ Important
 <div class="sourceCode" id="cb36"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">slumajors_df</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>morewomen <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/if_else.html">if_else</a></span><span class="op">(</span><span class="va">percfemale</span> <span class="op">&gt;</span> <span class="fl">50</span>,</span>
 <span>                                            true <span class="op">=</span> <span class="st">"Yes"</span>,</span>
 <span>                                            false <span class="op">=</span> <span class="st">"No"</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="co">#&gt; # A tibble: 27 × 6</span></span>
+<span><span class="co">#&gt; # A tibble: 30 × 6</span></span>
 <span><span class="co">#&gt;   Major                        nfemales nmales percfemale ntotal morewomen</span></span>
 <span><span class="co">#&gt;   &lt;chr&gt;                           &lt;dbl&gt;  &lt;dbl&gt;      &lt;dbl&gt;  &lt;dbl&gt; &lt;chr&gt;    </span></span>
-<span><span class="co">#&gt; 1 Anthropology                       34     15       69.4     49 Yes      </span></span>
-<span><span class="co">#&gt; 2 Art &amp; Art History                  65     11       85.5     76 Yes      </span></span>
-<span><span class="co">#&gt; 3 Biochemistry                       14     11       56       25 Yes      </span></span>
-<span><span class="co">#&gt; 4 Biology                           162     67       70.7    229 Yes      </span></span>
-<span><span class="co">#&gt; 5 Business in the Liberal Arts      135    251       35.0    386 No       </span></span>
-<span><span class="co">#&gt; 6 Chemistry                          26     14       65       40 Yes      </span></span>
-<span><span class="co">#&gt; # ℹ 21 more rows</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="co">#&gt; 1 Anthropology                       35     13       72.9     48 Yes      </span></span>
+<span><span class="co">#&gt; 2 Art &amp; Art History                  62     11       84.9     73 Yes      </span></span>
+<span><span class="co">#&gt; 3 Biochemistry                       15      6       71.4     21 Yes      </span></span>
+<span><span class="co">#&gt; 4 Biology                           152     58       72.4    210 Yes      </span></span>
+<span><span class="co">#&gt; 5 Business in the Liberal Arts      192    301       38.9    493 No       </span></span>
+<span><span class="co">#&gt; 6 Chemistry                          28     20       58.3     48 Yes      </span></span>
+<span><span class="co">#&gt; # ℹ 24 more rows</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>The <code><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate()</a></code> statement reads: create a new variable called <code>morewomen</code> that is equal to <code>"Yes"</code> if <code>percfemale</code> &gt; <code>50</code> is true and is equal to <code>"No"</code> if <code>perfemale</code> is not &gt; <code>0.5</code>. The first argument is the condition, the second is what to name the new variable when the condition holds, and the third is what to name the variable if the condition does not hold.</p>
 <p>We use <strong>conditions</strong> all of the time in every day life. For example, New York had a quarantine order stating that people coming from 22 states in July 2020 would need to quarantine. In terms of a condition, this would read “if you are traveling to New York from one of the 22 states, then you need to quarantine for 2 weeks. Else, if not, then you don’t need to quarantine.” The trick in using these conditions in <code>R</code> is getting used to the syntax of the code.</p>
@@ -970,16 +970,16 @@ Important
 <span>                          <span class="fu"><a href="https://dplyr.tidyverse.org/reference/case_when.html">case_when</a></span><span class="op">(</span><span class="va">percfemale</span> <span class="op">&gt;=</span> <span class="fl">70</span> <span class="op">~</span> <span class="st">"female"</span>,</span>
 <span>                                    <span class="va">percfemale</span> <span class="op">&lt;=</span> <span class="fl">30</span> <span class="op">~</span> <span class="st">"male"</span>,</span>
 <span>                                    <span class="va">percfemale</span> <span class="op">&gt;</span> <span class="fl">30</span> <span class="op">&amp;</span> <span class="va">percfemale</span> <span class="op">&lt;</span> <span class="fl">70</span> <span class="op">~</span> <span class="st">"none"</span><span class="op">)</span><span class="op">)</span> </span>
-<span><span class="co">#&gt; # A tibble: 27 × 6</span></span>
+<span><span class="co">#&gt; # A tibble: 30 × 6</span></span>
 <span><span class="co">#&gt;   Major                      nfemales nmales percfemale ntotal large_majority</span></span>
 <span><span class="co">#&gt;   &lt;chr&gt;                         &lt;dbl&gt;  &lt;dbl&gt;      &lt;dbl&gt;  &lt;dbl&gt; &lt;chr&gt;         </span></span>
-<span><span class="co">#&gt; 1 Anthropology                     34     15       69.4     49 none          </span></span>
-<span><span class="co">#&gt; 2 Art &amp; Art History                65     11       85.5     76 female        </span></span>
-<span><span class="co">#&gt; 3 Biochemistry                     14     11       56       25 none          </span></span>
-<span><span class="co">#&gt; 4 Biology                         162     67       70.7    229 female        </span></span>
-<span><span class="co">#&gt; 5 Business in the Liberal A…      135    251       35.0    386 none          </span></span>
-<span><span class="co">#&gt; 6 Chemistry                        26     14       65       40 none          </span></span>
-<span><span class="co">#&gt; # ℹ 21 more rows</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="co">#&gt; 1 Anthropology                     35     13       72.9     48 female        </span></span>
+<span><span class="co">#&gt; 2 Art &amp; Art History                62     11       84.9     73 female        </span></span>
+<span><span class="co">#&gt; 3 Biochemistry                     15      6       71.4     21 female        </span></span>
+<span><span class="co">#&gt; 4 Biology                         152     58       72.4    210 female        </span></span>
+<span><span class="co">#&gt; 5 Business in the Liberal A…      192    301       38.9    493 none          </span></span>
+<span><span class="co">#&gt; 6 Chemistry                        28     20       58.3     48 none          </span></span>
+<span><span class="co">#&gt; # ℹ 24 more rows</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>The <code><a href="https://dplyr.tidyverse.org/reference/case_when.html">case_when()</a></code> function reads “When the percent female is more than or equal to 70, assign the new variable <code>large_majority</code> the value of <code>"female"</code>, when it’s less or equal to 30, assign the new variable <code>large_majority</code> the value of <code>"male"</code>, and when it’s more than 30 and less than 70, assign the <code>large_majority</code> variable the value of <code>"none"</code>.</p>
 <p>Let’s save these two new variables to the <code>slumajors_df</code>:</p>
@@ -1019,7 +1019,7 @@ Note
 <span><span class="co">#&gt; # A tibble: 1 × 2</span></span>
 <span><span class="co">#&gt;   meantotalmajor totalgrad</span></span>
 <span><span class="co">#&gt;            &lt;dbl&gt;     &lt;dbl&gt;</span></span>
-<span><span class="co">#&gt; 1           124.      3347</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="co">#&gt; 1           117.      3502</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>In the code chunk above, we obtain two summaries (<code>meantotalmajor</code> and <code>totalgrad</code>), separated by a comma. In general, this syntax also works with <code><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate()</a></code> to create more than one variable in the same <code><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate()</a></code> function.</p>
 <div class="callout callout-style-simple callout-note callout-titled">
@@ -1041,7 +1041,7 @@ Note
 <span><span class="co">#&gt; # A tibble: 1 × 1</span></span>
 <span><span class="co">#&gt;   totalobs</span></span>
 <span><span class="co">#&gt;      &lt;int&gt;</span></span>
-<span><span class="co">#&gt; 1       27</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="co">#&gt; 1       30</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="callout callout-style-simple callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">

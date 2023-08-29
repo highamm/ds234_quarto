@@ -280,7 +280,7 @@ __Class Exercise 1__. Why might `bind_cols()` be a dangerous way to combine data
 __Class Exercise 2__. The key variable is very important for joining and is not always available in a "perfect" form. Recall the college majors data sets we have, called `slumajors_df`, which information on majors at SLU. Another data set, `collegemajors_df`, has different statistics on college majors nationwide. There's lots of interesting variables in these data sets, but we'll focus on the `Major` variable here. Read in and examine the two data sets with:
 
 ```{r, message = FALSE, appendix = TRUE}
-slumajors_df <- read_csv(here("data/SLU_Majors_15_19.csv"))
+slumajors_df <- read_csv(here("data/SLU_Majors_17_21.csv"))
 collegemajors_df <- read_csv(here("data/college-majors.csv"))
 head(slumajors_df)
 head(collegemajors_df)
