@@ -9,15 +9,16 @@ Welcome! This is the course materials website for DATA / STAT 234. Though we wil
 -   Professor: Matt Higham
 -   Office: Bewkes 123
 -   Email: [mhigham\@stlawu.edu](mailto:mhigham@stlawu.edu){.email}
--   Semester: Fall 2023
+-   Semester: Spring 2024
 -   Sections:
-    -   MW 12:50 - 2:20
+    -   MWF 10:30 - 11:30
+    -   MWF 11:40 - 12:40 
 -   Office Hours: 15 minute slots bookable at <a href="https://calendly.com/mhigham/prof-higham-office-hours" target="_blank">my calendly page</a>.
     -   Note that you must book a time for office hours at least 12 hours in advance to guarantee that I am present and available at that time.
 
 **Course Materials**
 
--   <a href="https://highamm.github.io/ds234_quarto/" target="_blank">STAT 234 Materials Bundle</a>. This will be our primary source of materials.
+-   <a href="https://highamm.github.io/ds234_quarto/" target="_blank">DATA_STAT 234 Materials Bundle</a>. This will be our primary source of materials.
 -   Textbooks (only used as references):
     -   R for Data Science by Grolemund and Wickham, found <a href="https://r4ds.had.co.nz/" target="_blank">here</a> in a free online version.
     -   Modern Data Science with `R` by Baumer, Kaplan, and Horton, found <a href="https://mdsr-book.github.io/mdsr2e/" target="_blank">here</a> in a free online version.
@@ -29,7 +30,7 @@ Welcome! This is the course materials website for DATA / STAT 234. Though we wil
 
 ## Course Information
 
-Welcome to STAT 234! The overall purpose of this course is learn the data science skills necessary to complete large-scale data analysis projects. The tool that we will be using to achieve this goal is the statistical software language `R`. We will work with a wide variety of interesting data sets throughout the semester to build our `R` skills. In particular, we will focus on the Data Analysis Life Cycle (Grolemund and Wickham 2020):
+Welcome to DATA/STAT 234! The overall purpose of this course is learn the data science skills necessary to complete large-scale data analysis projects. The tool that we will be using to achieve this goal is the statistical software language `R`. We will work with a wide variety of interesting data sets throughout the semester to build our `R` skills. In particular, we will focus on the Data Analysis Life Cycle (Grolemund and Wickham 2020):
 
 ![](data-science.png)
 
@@ -76,21 +77,17 @@ The components to your grade are described below:
 
 Aside from the first module (which has a unique structure), the modules in the course will be composed of either:
 
-1. An exercise set due on Monday (worth __10__ points), a take-home quiz due on Wednesday (worth __15__ points), and a handwritten in-class quiz on Wednesday (worth __50__ points). We should have 4 total modules follow this structure.
+1. An exercise set due on Monday (worth __5__ points), a take-home quiz due on Wednesday (worth __10__ points), and a handwritten in-class quiz on Wednesday (worth __60__ points). We should have 4 total modules follow this structure.
 
-2. An exercise set due on Monday (worth __10__ points) and an in-class quiz taken on a computer on Wednesday (worth __65__ points). We should have 4 total modules follow this structure.
+2. An exercise set due on Monday (worth __5__ points), a take-home quiz due on Wednesday (worth __10__ points), and an in-class coding quiz taken on a computer on Wednesday (worth __60__ points). We should have 4 total modules follow this structure.
 
-3. An exercise set due on Monday (worth __10__ points) and a Project due Wednesday (worth __65__ points). We should have 3 total modules follow this structure.
+3. An exercise set due on Monday (worth __5__ points), a participation assessment (worth __15 points__), and a Project due Wednesday (worth __55__ points). We should have 3 total modules follow this structure.
 
 The lowest module will be dropped from your grade so the total number of points available from all modules is `11 * 75 = 825` points.
 
 Additionally, for __one__ module, you are permitted to complete whatever is due for that module late and turn it in by the following Monday. If there is an in-class quiz as part of the module, you should contact me via email to schedule a make-up time to take the quiz (again, this time should be scheduled before class on the following Monday). 
 
-Finally, if you choose to take the (optional) in-person final exam (described below), the score that you earn on that final will replace your second and third-lowest module scores.
-
--   Class Participation
-
-Class participation will be assessed three times throughout the semester in a 25 point rubric for a total of 75 points. The rubric used will be shared on the first day of class.
+Finally, if you choose to take the (optional) in-person final exam (described below), the score that you earn on that final will replace your second lowest module score.
 
 -   Final Project
 
@@ -98,16 +95,14 @@ There is one final project, worth 100 points. The primary purpose of the final p
 
 -   Final Exam
 
-There is an optional Final Exam. You **must** be on campus for our final exam time if you would like to take the optional final exam.
+There is an optional Final Exam worth 75 points. You **must** be on campus for our final exam time if you would like to take the optional final exam. If you do not take the optional final, then the __average__ of all of your module scores will be used for the 75 points for this exam. 
 
-If you take the final exam and if your final exam score percentage is better than your 2nd and 3rd lowest module grades, then they will be replaced with your final exam score. For example, suppose your 12 module scores are: `75, 75, 73, 73, 70, 70, 69, 68, 50, 44, 20, 0`. You take the final exam and score a `80% = 60 / 75`. Then, your new module scores would be: `75, 75, 73, 73, 70, 70, 69, 68, 50, 60, 60, 0`. The `0` would still be dropped as your lowest module score.
-
-If you take the final exam and score worse than your 2nd and 3rd lowest module scores, then those scores will not be replaced.
+If you take the final exam and if your final exam score percentage is better than your 2nd lowest module grade, then that grade will be replaced with your final exam score. For example, suppose your 13 module scores are: `75, 70, 70, 70, 65, 65, 59, 58, 40, 34, 15, 0`. You take the final exam and score a `60 / 75`. Then, the `60` is used for your final exam score and your new module scores would be: `75, 70, 70, 70, 65, 65, 59, 58, 40, 34, 60, 0`. The `0` would still be dropped as your lowest module score.
 
 ### Breakdown
 
 -   825 points for Modules
--   75 points for Class Participation
+-   75 points for the (optional) Final Exam
 -   100 points for the Final Project
 
 Points add up to 1000 so your grade at the end of the semester will be the number of points you've earned across all categories divided by 1000.
@@ -196,20 +191,19 @@ It is important to work in a way that maximizes your learning. Be aware that stu
 
 | Week | Date    | Topics                                                      |
 |--------------|--------------|-------------------------------------------------|
-| 0    | 8/23    | Introduction to `R`, `R Studio`                             |
-| 1    | 8/28    | Graphics with `ggplot2`                                     |
-| 2    | 9/4     | Data Wrangling  with `dplyr`    
+| 0    | 1/17    | Introduction to `R`, `R Studio`                             |
+| 1    | 1/22    | Graphics with `ggplot2`                                     |
+| 2    | 1/29     | Data Wrangling  with `dplyr`    
    |
-| 3    | 9/11    | Communication with `Quarto` and `ggplot2`                   |
-| 4    | 9/18    | Soft Skills and Workflow                                    |
-| 5    | 9/25  | Data Tidying with `tidyr`                                   |
-| 6    | 10/2    | Base `R`                                                    |
-| 7    | 10/9   | Factors with `forcats` and Data Ethics                      |
-| 8    | 10/16 | Data Import with `readr`, `jsonlite`, `rvest`, and `tibble` |
-| 9    | 10/23   | Data Merging with `dplyr`                                   |
-| 10   | 10/30 | Intro to Statistical/Machine Learning with knn                              |
-| 11   | 11/6    | Text Data with `tidytext` and `stringr`                     |
-| 12   | 11/13   |  Dates and Times with `lubridate`  |
-|     | 11/20   | Thanksgiving Break                                          |
-| 13   | 11/27   | Connections to STAT and CS                                  |
-| 14   | 12/4    | Databases and SQL with `dbplyr`                             |
+| 3    | 2/5    | Communication with `Quarto` and `ggplot2`                   |
+| 4    | 2/12    | Soft Skills and Workflow                                    |
+| 5    | 2/19  | Data Tidying with `tidyr`                                   |
+| 6    | 2/26    | Base `R`                                                    |
+| 7    | 3/4   | Factors with `forcats` and Data Ethics                      |
+| 8    | 3/11 | Data Import with `readr`, `jsonlite`, `rvest`, and `tibble` |
+| 9    | 3/25   | Data Merging with `dplyr`                                   |
+| 10   | 4/1 | Intro to Statistical/Machine Learning with knn                              |
+| 11   | 4/8    | Text Data with `tidytext` and `stringr`                     |
+| 12   | 4/15   |  Dates and Times with `lubridate`  |
+| 13   | 4/22   | Connections to STAT and CS                                  |
+| 14   | 4/29    | Databases and SQL with `dbplyr`                             |

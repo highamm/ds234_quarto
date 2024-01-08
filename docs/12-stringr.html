@@ -488,8 +488,8 @@ Note
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://here.r-lib.org/">here</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span></span>
 <span><span class="va">med_djok_df</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv</a></span><span class="op">(</span><span class="fu"><a href="https://here.r-lib.org//reference/here.html">here</a></span><span class="op">(</span><span class="st">"data/med_djok.csv"</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">med_djok_df</span><span class="op">)</span></span>
-<span><span class="co">#&gt; # A tibble: 6 × 46</span></span>
+<span><span class="va">med_djok_df</span></span>
+<span><span class="co">#&gt; # A tibble: 182 × 46</span></span>
 <span><span class="co">#&gt;   point      Serving match_id    Pt  Set1  Set2   Gm1   Gm2 Pts   `Gm#` TbSet</span></span>
 <span><span class="co">#&gt;   &lt;chr&gt;      &lt;chr&gt;   &lt;chr&gt;    &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt; &lt;dbl&gt;</span></span>
 <span><span class="co">#&gt; 1 4f2d@      ND      2021091…     1     0     0     0     0 0-0   1 (1)     1</span></span>
@@ -498,13 +498,13 @@ Note
 <span><span class="co">#&gt; 4 4b28f1f2f… ND      2021091…     4     0     0     0     0 30-15 1 (4)     1</span></span>
 <span><span class="co">#&gt; 5 5b37b3b3b… ND      2021091…     5     0     0     0     0 40-15 1 (5)     1</span></span>
 <span><span class="co">#&gt; 6 6f28f1f1f… ND      2021091…     6     0     0     0     0 40-30 1 (6)     1</span></span>
+<span><span class="co">#&gt; # ℹ 176 more rows</span></span>
 <span><span class="co">#&gt; # ℹ 35 more variables: `TB?` &lt;dbl&gt;, TBpt &lt;lgl&gt;, Svr &lt;dbl&gt;, Ret &lt;dbl&gt;,</span></span>
 <span><span class="co">#&gt; #   `1st` &lt;chr&gt;, `2nd` &lt;chr&gt;, Notes &lt;chr&gt;, `1stSV` &lt;dbl&gt;, `2ndSV` &lt;dbl&gt;,</span></span>
 <span><span class="co">#&gt; #   `1stIn` &lt;dbl&gt;, `2ndIn` &lt;dbl&gt;, isAce &lt;lgl&gt;, isUnret &lt;lgl&gt;,</span></span>
 <span><span class="co">#&gt; #   isRallyWinner &lt;lgl&gt;, isForced &lt;lgl&gt;, isUnforced &lt;lgl&gt;, isDouble &lt;lgl&gt;,</span></span>
 <span><span class="co">#&gt; #   PtWinner &lt;dbl&gt;, isSvrWinner &lt;dbl&gt;, rallyCount &lt;dbl&gt;, `Player 1` &lt;chr&gt;,</span></span>
-<span><span class="co">#&gt; #   `Player 2` &lt;chr&gt;, `Pl 1 hand` &lt;chr&gt;, `Pl 2 hand` &lt;chr&gt;, Gender &lt;chr&gt;,</span></span>
-<span><span class="co">#&gt; #   Date &lt;dbl&gt;, Tournament &lt;chr&gt;, Round &lt;lgl&gt;, Time &lt;chr&gt;, Court &lt;chr&gt;, …</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="co">#&gt; #   `Player 2` &lt;chr&gt;, `Pl 1 hand` &lt;chr&gt;, `Pl 2 hand` &lt;chr&gt;, Gender &lt;chr&gt;, …</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>The observations of the data set correspond to points played (so there is one row per point). There are a ton of variables in this data set, but the most important variable is the first variable, <code>point</code>, which contains a string with information about the types of shots that were played during the point. The coding of the <code>point</code> variable includes:</p>
 <ul>

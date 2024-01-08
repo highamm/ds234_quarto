@@ -413,7 +413,7 @@ Note
 <span><span class="va">tennis_db</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/tbl.html">tbl</a></span><span class="op">(</span><span class="va">con</span>, <span class="st">"tennis2019"</span><span class="op">)</span></span>
 <span><span class="va">tennis_db</span></span>
 <span><span class="co">#&gt; # Source:   table&lt;tennis2019&gt; [?? x 49]</span></span>
-<span><span class="co">#&gt; # Database: DuckDB 0.3.5-dev1410 [root@Darwin 22.5.0:R 4.2.1/:memory:]</span></span>
+<span><span class="co">#&gt; # Database: DuckDB 0.3.5-dev1410 [root@Darwin 22.6.0:R 4.2.1/:memory:]</span></span>
 <span><span class="co">#&gt;   tourney_id tourney_name surface draw_size tourney_level tourney_date</span></span>
 <span><span class="co">#&gt;   &lt;chr&gt;      &lt;chr&gt;        &lt;chr&gt;       &lt;int&gt; &lt;chr&gt;                &lt;int&gt;</span></span>
 <span><span class="co">#&gt; 1 2019-M020  Brisbane     Hard           32 A                 20181231</span></span>
@@ -437,7 +437,7 @@ Note
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">minutes</span>, <span class="va">winner_name</span>, <span class="va">loser_name</span>, <span class="va">minutes</span>, <span class="va">tourney_name</span><span class="op">)</span></span>
 <span><span class="va">tennis_query1</span></span>
 <span><span class="co">#&gt; # Source:   SQL [?? x 4]</span></span>
-<span><span class="co">#&gt; # Database: DuckDB 0.3.5-dev1410 [root@Darwin 22.5.0:R 4.2.1/:memory:]</span></span>
+<span><span class="co">#&gt; # Database: DuckDB 0.3.5-dev1410 [root@Darwin 22.6.0:R 4.2.1/:memory:]</span></span>
 <span><span class="co">#&gt;   minutes winner_name           loser_name            tourney_name   </span></span>
 <span><span class="co">#&gt;     &lt;int&gt; &lt;chr&gt;                 &lt;chr&gt;                 &lt;chr&gt;          </span></span>
 <span><span class="co">#&gt; 1     241 Joao Sousa            Guido Pella           Australian Open</span></span>
@@ -484,7 +484,7 @@ Note
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise</a></span><span class="op">(</span>win_loss_count <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/context.html">n</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="va">medvedev_query</span></span>
 <span><span class="co">#&gt; # Source:   SQL [2 x 2]</span></span>
-<span><span class="co">#&gt; # Database: DuckDB 0.3.5-dev1410 [root@Darwin 22.5.0:R 4.2.1/:memory:]</span></span>
+<span><span class="co">#&gt; # Database: DuckDB 0.3.5-dev1410 [root@Darwin 22.6.0:R 4.2.1/:memory:]</span></span>
 <span><span class="co">#&gt;   win_loss    win_loss_count</span></span>
 <span><span class="co">#&gt;   &lt;chr&gt;                &lt;dbl&gt;</span></span>
 <span><span class="co">#&gt; 1 winner_name             59</span></span>
@@ -613,7 +613,7 @@ Note
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/arrange.html">arrange</a></span><span class="op">(</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/desc.html">desc</a></span><span class="op">(</span><span class="va">nmatch</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="va">over20aces</span></span>
 <span><span class="co">#&gt; # Source:     SQL [?? x 2]</span></span>
-<span><span class="co">#&gt; # Database:   DuckDB 0.3.5-dev1410 [root@Darwin 22.5.0:R 4.2.1/:memory:]</span></span>
+<span><span class="co">#&gt; # Database:   DuckDB 0.3.5-dev1410 [root@Darwin 22.6.0:R 4.2.1/:memory:]</span></span>
 <span><span class="co">#&gt; # Ordered by: desc(nmatch)</span></span>
 <span><span class="co">#&gt;   winner_name      nmatch</span></span>
 <span><span class="co">#&gt;   &lt;chr&gt;             &lt;dbl&gt;</span></span>

@@ -133,7 +133,7 @@ From this repository, I have put together a data set on one particular tennis ma
 library(here)
 library(tidyverse)
 med_djok_df <- read_csv(here("data/med_djok.csv"))
-head(med_djok_df)
+med_djok_df
 ```
 
 The observations of the data set correspond to points played (so there is one row per point). There are a ton of variables in this data set, but the most important variable is the first variable, `point`, which contains a string with information about the types of shots that were played during the point. The coding of the `point` variable includes:
