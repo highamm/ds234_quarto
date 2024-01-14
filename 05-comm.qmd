@@ -302,7 +302,7 @@ However, when you've finished exploring and you'd like to communicate your resul
 
 * changing the colour scheme to be more visually appealing and easy to see for people with colour-vision-deficiency (CVD)
 
-* labeling certain points or lines with `+ geom_label()` or `+ geom_text()`
+* labeling certain points or lines with `+ geom_text()` or `+ geom_label()`
 
 * changing from the default theme with `+ theme_<name_of_theme>()`
 
@@ -419,14 +419,14 @@ Read the examples section of the Help file for `?scale_colour_viridis_d`. What's
 
 One goal we might have with communication is highlighting particular points in a data set that show something interesting. For example, we might want to label the points on the graph corresponding to the countries with the highest HPI in each region: these countries are doing the best in terms of using resources efficiently to maximize citizen happiness. Or, we might want to highlight some "bad" example of countries that are the least efficient in each region. Or, we might want to label the country that we are from on the graph. 
 
-All of this can be done with `geom_label()`. Let's start by labeling all of the points. `geom_label()` needs one aesthetic called `label` which is the name of the column in the data set with the labels you want to use.
+All of this can be done with `geom_text()`. Let's start by labeling all of the points. `geom_text()` needs one aesthetic called `label` which is the name of the column in the data set with the labels you want to use.
 
 ```{r, appendix = TRUE}
 ggplot(data = hpi_df, aes(x = Footprint, y = HappyLifeYears,
                           colour = Region)) +
   geom_point() +
   scale_colour_brewer(palette = "Dark2") +
-  geom_label(aes(label = Country))
+  geom_text(aes(label = Country))
 ```
 
 Yikes! It's quite uncommon to want to label __all__ of the points. Let's see if we can instead label each country with the best HPI in that country's region. To do so, we first need to use our `dplyr` skills to create a new data set that has these 7 "best" countries. When we used `group_by()`, we typically used `summarise()` afterward. But, `group_by()` works with `filter()` as well!
@@ -438,27 +438,27 @@ plot_df <- hpi_df |> group_by(Region) |>
 
 `plot_df` is a data frame that only has the rows with the smallest `HPIRank` in each `Region`.
 
-Now that we have this new data set, we can use it within `geom_label()`. Recall that the `data = ` argument in `ggplot()` carries on through __all__ `geom`s __unless__ we specify otherwise. Now is our chance to "specify otherwise" by including another `data = ` argument within `geom_label()`:
+Now that we have this new data set, we can use it within `geom_text()`. Recall that the `data = ` argument in `ggplot()` carries on through __all__ `geom`s __unless__ we specify otherwise. Now is our chance to "specify otherwise" by including another `data = ` argument within `geom_text()`:
 
 ```{r, appendix = TRUE}
 ggplot(data = hpi_df, aes(x = Footprint, y = HappyLifeYears,
                           colour = Region)) +
   geom_point() +
   scale_colour_brewer(palette = "Dark2") +
-  geom_label(data = plot_df, aes(label = Country))
+  geom_text(data = plot_df, aes(label = Country))
 ```
 
-The `show.legend = FALSE` argument below tells `geom_label()` that we do not want its aesthetics to appear in the legend.
+The `show.legend = FALSE` argument below tells `geom_text()` that we do not want its aesthetics to appear in the legend.
 
 ```{r, appendix = TRUE}
 ggplot(data = hpi_df, aes(x = Footprint, y = HappyLifeYears,
                           colour = Region)) +
   geom_point(aes(colour = Region)) +
   scale_colour_brewer(palette = "Dark2") +
-  geom_label(data = plot_df, aes(label = Country), show.legend = FALSE)
+  geom_text(data = plot_df, aes(label = Country), show.legend = FALSE)
 ```
 
-A common issue, even with few labels, is that some of the labels could overlap. The `ggrepel` package solves this problem by including a `geom_label_repel()` `geom` that automatically repels any overlapping labels:
+A common issue, even with few labels, is that some of the labels could overlap. The `ggrepel` package solves this problem by including a `geom_text_repel()` `geom` that automatically repels any overlapping labels:
 
 ```{r, appendix = TRUE}
 library(ggrepel)
@@ -466,7 +466,7 @@ ggplot(data = hpi_df, aes(x = Footprint, y = HappyLifeYears,
                           colour = Region)) +
   geom_point() +
   scale_colour_brewer(palette = "Dark2") +
-  geom_label_repel(data = plot_df, aes(label = Country),
+  geom_text_repel(data = plot_df, aes(label = Country),
                    show.legend = FALSE) 
 ```
 
@@ -476,7 +476,7 @@ And a final issue with the plot is that it's not always very clear which point o
 ggplot(data = hpi_df, aes(x = Footprint, y = HappyLifeYears, colour = Region)) +
   geom_point() +
   scale_colour_brewer(palette = "Dark2") +
-  geom_label_repel(data = plot_df, aes(label = Country), show.legend = FALSE) +
+  geom_text_repel(data = plot_df, aes(label = Country), show.legend = FALSE) +
   geom_point(data = plot_df, size = 3, shape = 1, show.legend = FALSE) 
 ```
 
@@ -494,7 +494,7 @@ ggplot(data = hpi_df, aes(x = Footprint, y = HappyLifeYears,
   scale_colour_brewer(palette = "Dark2") +
   geom_point(data = plot_df_us, size = 3, shape = 1,
              show.legend = FALSE) +
-  geom_label_repel(data = plot_df_us, aes(label = Country),
+  geom_text_repel(data = plot_df_us, aes(label = Country),
                    show.legend = FALSE)
 ```
 
@@ -517,7 +517,7 @@ ggplot(data = hpi_df, aes(x = Footprint, y = HappyLifeYears,
   geom_point() +
   scale_colour_brewer(palette = "Dark2") +
   geom_point(data = plot_df_us, size = 3, shape = 1, show.legend = FALSE) +
-  geom_label_repel(data = plot_df_us, aes(label = Country), show.legend = FALSE) +
+  geom_text_repel(data = plot_df_us, aes(label = Country), show.legend = FALSE) +
   theme_solarized()
 
 ggplot(data = hpi_df, aes(x = Footprint, y = HappyLifeYears,
@@ -525,7 +525,7 @@ ggplot(data = hpi_df, aes(x = Footprint, y = HappyLifeYears,
   geom_point() +
   scale_colour_brewer(palette = "Dark2") +
   geom_point(data = plot_df_us, size = 3, shape = 1, show.legend = FALSE) +
-  geom_label_repel(data = plot_df_us, aes(label = Country), show.legend = FALSE) +
+  geom_text_repel(data = plot_df_us, aes(label = Country), show.legend = FALSE) +
   theme_fivethirtyeight()
 
 ggplot(data = hpi_df, aes(x = Footprint, y = HappyLifeYears,
@@ -533,7 +533,7 @@ ggplot(data = hpi_df, aes(x = Footprint, y = HappyLifeYears,
   geom_point() +
   scale_colour_brewer(palette = "Dark2") +
   geom_point(data = plot_df_us, size = 3, shape = 1, show.legend = FALSE) +
-  geom_label_repel(data = plot_df_us, aes(label = Country), show.legend = FALSE) +
+  geom_text_repel(data = plot_df_us, aes(label = Country), show.legend = FALSE) +
   theme_economist()
 ```
 
@@ -584,7 +584,7 @@ __Class Exercise 1__. Make a line graph that shows the relationship between `lif
 
 __Class Exercise 2__. Change the colour palette to be CVD-friendly using either `scale_colour_brewer()` or `scale_colour_viridis_d()`.
 
-__Class Exercise 3__. We can see a couple of interesting trends in life expectancy. There is one country in Africa and one country in Asia that sees a sharp decline in life expectancy at one point. In Europe, there is one country that has a substantially lower life expectancy than the rest in the 1950s but catches up to other European countries by the 2000s. Use `filter()` to create a data set that only has these 3 countries. Then, use `geom_label()` to label all three countries on your plot.
+__Class Exercise 3__. We can see a couple of interesting trends in life expectancy. There is one country in Africa and one country in Asia that sees a sharp decline in life expectancy at one point. In Europe, there is one country that has a substantially lower life expectancy than the rest in the 1950s but catches up to other European countries by the 2000s. Use `filter()` to create a data set that only has these 3 countries. Then, use `geom_text()` to label all three countries on your plot.
 
 ```{r, echo = FALSE, fig.keep = "none"}
 interest_countries <- country_df |> filter((year == 1952 & continent == "Europe" &
@@ -598,7 +598,7 @@ ggplot(data = country_df, aes(x = year, y = lifeExp, group = country,
   scale_colour_brewer(palette = "Set2") +
   labs(x = "Year", y = "Life Expectancy (Years)", colour = "Continent",
     title = "Life Expectancy Increases Across time for nearly every country") +
-  geom_label(data = interest_countries, aes(label = country),
+  geom_text(data = interest_countries, aes(label = country),
     nudge_x = 7)
 ```
 
@@ -617,7 +617,7 @@ ggplot(data = country_df, aes(x = year, y = lifeExp, group = country,
   labs(x = "Year", y = "Life Expectancy (Years)", colour = "Continent",
     title = "Life Expectancy Increases Across time for nearly every country",
     caption = "Rwandan Civil War and Cambodian Civil War were the causes of the dips in Life Expectancy for these countries.") +
-  geom_label(data = interest_countries, aes(label = country),
+  geom_text(data = interest_countries, aes(label = country),
     nudge_x = 7)
 ```
 
@@ -636,7 +636,7 @@ ggplot(data = country_df, aes(x = year, y = lifeExp, group = country,
   labs(x = "Year", y = "Life Expectancy (Years)", colour = "Continent",
     title = "Life Expectancy Increases Across time for nearly every country",
     caption = "Rwandan Civil War and Cambodian Civil War were the causes of the dips in Life Expectancy for these countries.") +
-  geom_label(data = interest_countries, aes(label = country),
+  geom_text(data = interest_countries, aes(label = country),
     nudge_x = 7, show.legend = FALSE) +
   theme(legend.position = "bottom")
 ```
@@ -652,7 +652,7 @@ ggplot(data = country_df, aes(x = year, y = lifeExp, group = country,
   labs(x = "Year", y = "Life Expectancy (Years)", colour = "Continent",
     title = "Life Expectancy Increases Across time for nearly every country",
     caption = "Rwandan Civil War and Cambodian Civil War were the causes of the dips in Life Expectancy for these countries.") +
-  geom_label(data = interest_countries, aes(label = country),
+  geom_text(data = interest_countries, aes(label = country),
     nudge_x = 7, show.legend = FALSE) +
   theme(legend.position = "bottom")
 ```
@@ -669,7 +669,7 @@ ggplot(data = country_df, aes(x = year, y = lifeExp, group = country,
   labs(x = "Year", y = "Life Expectancy (Years)", colour = "Continent",
     title = "Life Expectancy Increases Across time for nearly every country",
     caption = "Rwandan Civil War and Cambodian Civil War were the causes of the dips in Life Expectancy for these countries.") +
-  geom_label(data = interest_countries, aes(label = country),
+  geom_text(data = interest_countries, aes(label = country),
     nudge_x = 7, show.legend = FALSE) +
   theme_economist_white() +
   theme(legend.position = "bottom")
@@ -706,7 +706,7 @@ e. Chaz copies his graph to Word and writes a conclusion in context of the probl
 
 With your group, come up with two or more aspects of Chaz's analysis that are __not__ reproducible.
 
-__Your Turn 2__. Go back to the line plot that you made of the __5__ names in the `babynames` data set. Add a label with the `name` to each of the lines with `geom_label()`.
+__Your Turn 2__. Go back to the line plot that you made of the __5__ names in the `babynames` data set. Add a label with the `name` to each of the lines with `geom_text()`.
 
 __Your Turn 3__. Examine the `mtcars` data set again. The code chunk below adds the `car_name` variable to the data set (no need to worry about what this code is doing specifically at this point). With `mtcars`, create a scatterplot of `mpg` on the y-axis and `wt` on the x-axis. Then, label the point for the car in the data set that has the __highest__ `mpg` with its `car_name`.
 

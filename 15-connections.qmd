@@ -144,7 +144,7 @@ label_df <- resume_firstname |>
 
 ggplot(data = resume_firstname, aes(x = gender_race, y = propcallback)) +
   geom_point() +
-  geom_label_repel(data = label_df, aes(label = firstname))
+  geom_text_repel(data = label_df, aes(label = firstname))
 ```
 
 __Exercise 1__. Construct a graphic or make a table that explores whether one of the other variables in the data set is associated with whether the applicant receives a callback for the job. Other variables include `gender`, `years_college`, `college_degree`, `honors`, `worked_during_school`, `years_experience`, `computer_skills`, `special_skills`, `volunteer`, `military`, `employment_holes`, and `resume_quality`.
