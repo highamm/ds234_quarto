@@ -706,7 +706,9 @@ e. Chaz copies his graph to Word and writes a conclusion in context of the probl
 
 With your group, come up with two or more aspects of Chaz's analysis that are __not__ reproducible.
 
-__Your Turn 2__. Go back to the line plot that you made of the __5__ names in the `babynames` data set. Add a label with the `name` to each of the lines with `geom_text()`.
+__Your Turn 2__. Go back to the line plot that we made with the fitness data set of `steps` vs. `Start` date. Using `geom_text()`, add a label to the peak at April 14, 2019 that says `"half-marathon"` and a label to the peak at May 24, 2021 that say `"grand canyon"`.
+
+<!-- __Your Turn 2__. Go back to the line plot that you made of the __5__ names in the `babynames` data set. Add a label with the `name` to each of the lines with `geom_text()`. -->
 
 __Your Turn 3__. Examine the `mtcars` data set again. The code chunk below adds the `car_name` variable to the data set (no need to worry about what this code is doing specifically at this point). With `mtcars`, create a scatterplot of `mpg` on the y-axis and `wt` on the x-axis. Then, label the point for the car in the data set that has the __highest__ `mpg` with its `car_name`.
 

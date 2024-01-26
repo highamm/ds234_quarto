@@ -47,10 +47,10 @@ The components are combined in the following form:
 #| eval: false
 
 ## DO NOT COPY this code into your .qmd file: it will not run.
-ggplot(data = name_of_data, aes(x = name_of_x_var, 
-                                          y = name_of_y_var,
-                                          colour = name_of_colour_var,
-                                          etc.)) +
+ggplot(data = name_of_data, aes(x = name_of_x_var,
+                                y = name_of_y_var,
+                                colour = name_of_colour_var,
+                                etc.)) +
   geom_nameofgeom() +
   .....<other stuff>
 ```
