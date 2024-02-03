@@ -288,7 +288,7 @@ ggplot(data = mtcars, aes(x = factor(cyl), y = mpg)) +
   geom_boxplot()
 ```
 
-Modify the `R` chunk so that: (a) the figure height is 3, (b) the code from the `R` chunk shows in the .html file, (c) the table from running `head(cars)` is hidden in the .html file. Make (b) and (c) a __local__ chunk option, but set (a) as a __global__ option that applies to all of your `R` chunks.
+Modify the `R` chunk so that: (a) the figure height is 3, (b) the code from the `R` chunk shows in the .html file, (c) the table from running `head(cars)` is hidden in the .html file. Make (b) and (c) a __local__ chunk option, but set (a) as a __global__ option that applies to all of your `R` chunks. __Hint__: Instead of setting `#| output: false`, which would cause both the table and figure to not render in the .html output, add `#| results: false` as a local chunk option, which says to include figures in the .html output, but not tables or other printed output.
 
 ## Communication Options for `ggplot2` Plots
 
