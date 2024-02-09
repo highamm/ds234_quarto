@@ -85,7 +85,7 @@ Aside from the first module (which has a unique structure), the modules in the c
 
 The lowest module will be dropped from your grade so the total number of points available from all modules is `11 * 75 = 825` points.
 
-Additionally, for __one__ module, you are permitted to complete whatever is due for that module late and turn it in by the following Monday. If there is an in-class quiz as part of the module, you should contact me via email to schedule a make-up time to take the quiz (again, this time should be scheduled before class on the following Monday). 
+Additionally, for __one__ module, you are permitted to complete whatever is due for that module late and turn it in by the following class period. If there is an in-class quiz as part of the module, you should contact me via email to schedule a make-up time to take the quiz (again, this time should be scheduled before the following class). 
 
 Finally, if you choose to take the (optional) in-person final exam (described below), the score that you earn on that final will replace your second lowest module score.
 
