@@ -538,7 +538,7 @@ Scraping and performing the `wOBA` calculation will take a few seconds. The outp
 
 ```{r, appendix = TRUE}
 hitting_ll <- hitting_list |> bind_rows() |>
-  left_join(school_df, by = c("url_name" = "hitting_web_url"))
+  left_join(school_df, by = join_by(url_name == hitting_web_url)) 
 hitting_ll
 ```
 

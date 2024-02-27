@@ -135,7 +135,7 @@ Read about each data set with `?babynames`, `?births` and `?lifetables`.
 Suppose that you want to combine the `births` data set with the `babynames` data set, so that each row of `babynames` now has the total number of births for that year. We first need to identify the key in each data set that we will use for the joining. In this case, each data set has a `year` variable, and we can use `left_join()` to keep all observations in `babynames_df`, even for years that are not in the `births_df` data set.
 
 ```{r, appendix = TRUE}
-combined_left <- left_join(babynames_df, birth_df, by = c("year" = "year"))
+combined_left <- left_join(babynames_df, birth_df, by = join_by(year == year))
 head(combined_left)
 tail(combined_left)
 ```
@@ -148,8 +148,8 @@ Recall from the accompanying handout that there is no need to ever use `right_jo
 
 ```{r, appendix = TRUE}
 ## these will always do the same exact thing
-right_join(babynames_df, birth_df, by = c("year" = "year"))
-left_join(birth_df, babynames_df, by = c("year" = "year"))
+right_join(babynames_df, birth_df, by = join_by(year == year))
+left_join(birth_df, babynames_df, by = join_by(year == year))
 ```
 
 Therefore, it's usually easier to just always use `left_join()` and ignore `right_join()` completely. 
@@ -159,7 +159,7 @@ Therefore, it's usually easier to just always use `left_join()` and ignore `righ
 In addition to keeping any rows with a matching key in the other data frame, a `full_join()` will keep all rows in data set 1 that don't have a matching key in data set 2, and will also keep all rows in data set 2 that don't have a matching key in data set 1, filling in `NA` for missing values when necessary. For our example of merging `babynames_df` with `birth_df`,
 
 ```{r, results = "hide", appendix = TRUE}
-full_join(babynames_df, birth_df, by = c("year" = "year"))
+full_join(babynames_df, birth_df, by = join_by(year == year))
 ```
 
 ### Keep Only Rows with Matching Keys with `inner_join()`
@@ -167,7 +167,7 @@ full_join(babynames_df, birth_df, by = c("year" = "year"))
 We can also keep only rows with matching keys with `inner_join()`. For this join, any row in data set 1 without a matching key in data set 2 is dropped, and any row in data set 2 without a matching key in data set 1 is also dropped.
 
 ```{r, appendix = TRUE}
-inner_join(babynames_df, birth_df, by = c("year" = "year"))
+inner_join(babynames_df, birth_df, by = join_by(year == year))
 ```
 
 <br>
@@ -185,8 +185,8 @@ If you're using a `left_join()`, `right_join()` or `inner_join()`, you're potent
 __Exercise 2__. Examine the following two joins that we've done, and explain why one resulting data set has fewer observations (rows) than the other.
 
 ```{r}
-left_join(babynames_df, birth_df, by = c("year" = "year"))
-left_join(birth_df, babynames_df, by = c("year" = "year"))
+left_join(babynames_df, birth_df, by = join_by(year == year))
+left_join(birth_df, babynames_df, by = join_by(year == year))
 ```
 
 ## Filtering Joins
@@ -219,7 +219,7 @@ Next, we apply `semi_join()`, which takes the names of two data sets (the second
 
 ```{r, results = "hide", appendix = TRUE}
 tennis_2019_10 <- semi_join(atp_2019, win10,
-                            by = c("winner_name" = "winner_name"))
+                            by = join_by(winner_name == winner_name))
 tennis_2019_10$winner_name
 ```
 
@@ -235,7 +235,7 @@ Now suppose that we want to only keep the matches in 2019 where the winning play
 
 ```{r, results = "hide", appendix = TRUE}
 new_winners <- anti_join(atp_2019, atp_2018,
-                         by = c("winner_name" = "winner_name")) 
+                         by = join_by(winner_name == winner_name)) 
 new_winners$winner_name
 ```
 
@@ -259,17 +259,17 @@ pander(df1)
 pander(df2)
 ```
 
-a. How many rows would be in the data set from `left_join(df1, df2, by = c("id" = "id"))`?
+a. How many rows would be in the data set from `left_join(df1, df2, by = join_by(id == id))`?
 
-b. How many rows would be in the data set from `left_join(df2, df1, by = c("id" = "id"))`?
+b. How many rows would be in the data set from `left_join(df2, df1, by = join_by(id == id))`?
 
-c. How many rows would be in the data set from `full_join(df1, df2, by = c("id" = "id"))`?
+c. How many rows would be in the data set from `full_join(df1, df2, by = join_by(id == id))`?
 
-d. How many rows would be in the data set from `inner_join(df1, df2, by = c("id" = "id"))`?
+d. How many rows would be in the data set from `inner_join(df1, df2, by = join_by(id == id))`?
 
-e. How many rows would be in the data set from `semi_join(df1, df2, by = c("id" = "id"))`?
+e. How many rows would be in the data set from `semi_join(df1, df2, by = join_by(id == id))`?
 
-f. How many rows would be in the data set from `anti_join(df1, df2, by = c("id" = "id"))`?
+f. How many rows would be in the data set from `anti_join(df1, df2, by = join_by(id == id))`?
 
 ## Practice
 
@@ -348,17 +348,17 @@ pander(df3)
 pander(df4)
 ```
 
-a. How many rows would be in the data set from `left_join(df1, df2, by = c("id" = "id"))`?
+a. How many rows would be in the data set from `left_join(df3, df4, by = join_by(id == id))`?
 
-b. How many rows would be in the data set from `left_join(df2, df1, by = c("id" = "id"))`?
+b. How many rows would be in the data set from `left_join(df4, df3, by = join_by(id == id))`?
 
-c. How many rows would be in the data set from `full_join(df1, df2, by = c("id" = "id"))`?
+c. How many rows would be in the data set from `full_join(df3, df4, by = join_by(id == id))`?
 
-d. How many rows would be in the data set from `inner_join(df1, df2, by = c("id" = "id"))`?
+d. How many rows would be in the data set from `inner_join(df3, df4, by = join_by(id == id))`?
 
-e. How many rows would be in the data set from `semi_join(df1, df2, by = c("id" = "id"))`?
+e. How many rows would be in the data set from `semi_join(df3, df4, by = join_by(id == id))`?
 
-f. How many rows would be in the data set from `anti_join(df1, df2, by = c("id" = "id"))`?
+f. How many rows would be in the data set from `anti_join(df3, df4, by = join_by(id == id))`?
 
 __Your Turn 3__. Examine again the gun violence data set, and explain why each attempt at combining the D.C. data with the overall data doesn't work or is incorrect.
 

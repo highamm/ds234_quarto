@@ -440,7 +440,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Read about each data set with <code><a href="https://rdrr.io/pkg/babynames/man/babynames.html">?babynames</a></code>, <code><a href="https://rdrr.io/pkg/babynames/man/births.html">?births</a></code> and <code><a href="https://rdrr.io/pkg/babynames/man/lifetables.html">?lifetables</a></code>.</p>
 <p>Suppose that you want to combine the <code>births</code> data set with the <code>babynames</code> data set, so that each row of <code>babynames</code> now has the total number of births for that year. We first need to identify the key in each data set that we will use for the joining. In this case, each data set has a <code>year</code> variable, and we can use <code><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">left_join()</a></code> to keep all observations in <code>babynames_df</code>, even for years that are not in the <code>births_df</code> data set.</p>
 <div class="cell" data-appendix="true">
-<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">combined_left</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">left_join</a></span><span class="op">(</span><span class="va">babynames_df</span>, <span class="va">birth_df</span>, by <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"year"</span> <span class="op">=</span> <span class="st">"year"</span><span class="op">)</span><span class="op">)</span></span>
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">combined_left</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">left_join</a></span><span class="op">(</span><span class="va">babynames_df</span>, <span class="va">birth_df</span>, by <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/join_by.html">join_by</a></span><span class="op">(</span><span class="va">year</span> <span class="op">==</span> <span class="va">year</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">combined_left</span><span class="op">)</span></span>
 <span><span class="co">#&gt; # A tibble: 6 × 6</span></span>
 <span><span class="co">#&gt;    year sex   name          n   prop births</span></span>
@@ -469,7 +469,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Recall from the accompanying handout that there is no need to ever use <code><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">right_join()</a></code> because it is the same as using a <code><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">left_join()</a></code> with the first two data set arguments switched:</p>
 <div class="cell" data-appendix="true">
 <div class="sourceCode" id="cb11"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co">## these will always do the same exact thing</span></span>
-<span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">right_join</a></span><span class="op">(</span><span class="va">babynames_df</span>, <span class="va">birth_df</span>, by <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"year"</span> <span class="op">=</span> <span class="st">"year"</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">right_join</a></span><span class="op">(</span><span class="va">babynames_df</span>, <span class="va">birth_df</span>, by <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/join_by.html">join_by</a></span><span class="op">(</span><span class="va">year</span> <span class="op">==</span> <span class="va">year</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="co">#&gt; # A tibble: 1,839,952 × 6</span></span>
 <span><span class="co">#&gt;    year sex   name         n   prop  births</span></span>
 <span><span class="co">#&gt;   &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt;    &lt;int&gt;  &lt;dbl&gt;   &lt;int&gt;</span></span>
@@ -480,7 +480,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span><span class="co">#&gt; 5  1909 F     Dorothy   6253 0.0170 2718000</span></span>
 <span><span class="co">#&gt; 6  1909 F     Anna      5804 0.0158 2718000</span></span>
 <span><span class="co">#&gt; # ℹ 1,839,946 more rows</span></span>
-<span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">left_join</a></span><span class="op">(</span><span class="va">birth_df</span>, <span class="va">babynames_df</span>, by <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"year"</span> <span class="op">=</span> <span class="st">"year"</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">left_join</a></span><span class="op">(</span><span class="va">birth_df</span>, <span class="va">babynames_df</span>, by <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/join_by.html">join_by</a></span><span class="op">(</span><span class="va">year</span> <span class="op">==</span> <span class="va">year</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="co">#&gt; # A tibble: 1,839,952 × 6</span></span>
 <span><span class="co">#&gt;    year  births sex   name         n   prop</span></span>
 <span><span class="co">#&gt;   &lt;dbl&gt;   &lt;int&gt; &lt;chr&gt; &lt;chr&gt;    &lt;int&gt;  &lt;dbl&gt;</span></span>
@@ -498,14 +498,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </h3>
 <p>In addition to keeping any rows with a matching key in the other data frame, a <code><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">full_join()</a></code> will keep all rows in data set 1 that don’t have a matching key in data set 2, and will also keep all rows in data set 2 that don’t have a matching key in data set 1, filling in <code>NA</code> for missing values when necessary. For our example of merging <code>babynames_df</code> with <code>birth_df</code>,</p>
 <div class="cell" data-appendix="true">
-<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">full_join</a></span><span class="op">(</span><span class="va">babynames_df</span>, <span class="va">birth_df</span>, by <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"year"</span> <span class="op">=</span> <span class="st">"year"</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">full_join</a></span><span class="op">(</span><span class="va">babynames_df</span>, <span class="va">birth_df</span>, by <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/join_by.html">join_by</a></span><span class="op">(</span><span class="va">year</span> <span class="op">==</span> <span class="va">year</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section><section id="keep-only-rows-with-matching-keys-with-inner_join" class="level3" data-number="11.2.4"><h3 data-number="11.2.4" class="anchored" data-anchor-id="keep-only-rows-with-matching-keys-with-inner_join">
 <span class="header-section-number">11.2.4</span> Keep Only Rows with Matching Keys with <code>inner_join()</code>
 </h3>
 <p>We can also keep only rows with matching keys with <code><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">inner_join()</a></code>. For this join, any row in data set 1 without a matching key in data set 2 is dropped, and any row in data set 2 without a matching key in data set 1 is also dropped.</p>
 <div class="cell" data-appendix="true">
-<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">inner_join</a></span><span class="op">(</span><span class="va">babynames_df</span>, <span class="va">birth_df</span>, by <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"year"</span> <span class="op">=</span> <span class="st">"year"</span><span class="op">)</span><span class="op">)</span></span>
+<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">inner_join</a></span><span class="op">(</span><span class="va">babynames_df</span>, <span class="va">birth_df</span>, by <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/join_by.html">join_by</a></span><span class="op">(</span><span class="va">year</span> <span class="op">==</span> <span class="va">year</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="co">#&gt; # A tibble: 1,839,952 × 6</span></span>
 <span><span class="co">#&gt;    year sex   name         n   prop  births</span></span>
 <span><span class="co">#&gt;   &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt;    &lt;int&gt;  &lt;dbl&gt;   &lt;int&gt;</span></span>
@@ -536,7 +536,7 @@ Important
 </div>
 <p><strong>Exercise 2</strong>. Examine the following two joins that we’ve done, and explain why one resulting data set has fewer observations (rows) than the other.</p>
 <div class="cell">
-<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">left_join</a></span><span class="op">(</span><span class="va">babynames_df</span>, <span class="va">birth_df</span>, by <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"year"</span> <span class="op">=</span> <span class="st">"year"</span><span class="op">)</span><span class="op">)</span></span>
+<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">left_join</a></span><span class="op">(</span><span class="va">babynames_df</span>, <span class="va">birth_df</span>, by <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/join_by.html">join_by</a></span><span class="op">(</span><span class="va">year</span> <span class="op">==</span> <span class="va">year</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="co">#&gt; # A tibble: 1,924,665 × 6</span></span>
 <span><span class="co">#&gt;    year sex   name          n   prop births</span></span>
 <span><span class="co">#&gt;   &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt;     &lt;int&gt;  &lt;dbl&gt;  &lt;int&gt;</span></span>
@@ -547,7 +547,7 @@ Important
 <span><span class="co">#&gt; 5  1880 F     Minnie     1746 0.0179     NA</span></span>
 <span><span class="co">#&gt; 6  1880 F     Margaret   1578 0.0162     NA</span></span>
 <span><span class="co">#&gt; # ℹ 1,924,659 more rows</span></span>
-<span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">left_join</a></span><span class="op">(</span><span class="va">birth_df</span>, <span class="va">babynames_df</span>, by <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"year"</span> <span class="op">=</span> <span class="st">"year"</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">left_join</a></span><span class="op">(</span><span class="va">birth_df</span>, <span class="va">babynames_df</span>, by <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/join_by.html">join_by</a></span><span class="op">(</span><span class="va">year</span> <span class="op">==</span> <span class="va">year</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="co">#&gt; # A tibble: 1,839,952 × 6</span></span>
 <span><span class="co">#&gt;    year  births sex   name         n   prop</span></span>
 <span><span class="co">#&gt;   &lt;dbl&gt;   &lt;int&gt; &lt;chr&gt; &lt;chr&gt;    &lt;int&gt;  &lt;dbl&gt;</span></span>
@@ -625,7 +625,7 @@ Important
 <p>Next, we apply <code><a href="https://dplyr.tidyverse.org/reference/filter-joins.html">semi_join()</a></code>, which takes the names of two data sets (the second is the one that contains information about how the first should be “filtered”). The third argument gives the name of the key (<code>winner_name</code>) in this case.</p>
 <div class="cell" data-appendix="true">
 <div class="sourceCode" id="cb17"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">tennis_2019_10</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter-joins.html">semi_join</a></span><span class="op">(</span><span class="va">atp_2019</span>, <span class="va">win10</span>,</span>
-<span>                            by <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"winner_name"</span> <span class="op">=</span> <span class="st">"winner_name"</span><span class="op">)</span><span class="op">)</span></span>
+<span>                            by <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/join_by.html">join_by</a></span><span class="op">(</span><span class="va">winner_name</span> <span class="op">==</span> <span class="va">winner_name</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="va">tennis_2019_10</span><span class="op">$</span><span class="va">winner_name</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="callout callout-style-simple callout-note callout-titled">
@@ -647,7 +647,7 @@ Note
 <p>Now suppose that we want to only keep the matches in 2019 where the winning player did not have <strong>any</strong> wins in 2018. We might think of these players as “emerging players” in 2019, players who are coming back from an injury, etc.. To do this, we can use <code><a href="https://dplyr.tidyverse.org/reference/filter-joins.html">anti_join()</a></code>, which only keeps the rows in the first data set that do <strong>not</strong> have a match in the second data set.</p>
 <div class="cell" data-appendix="true">
 <div class="sourceCode" id="cb18"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">new_winners</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter-joins.html">anti_join</a></span><span class="op">(</span><span class="va">atp_2019</span>, <span class="va">atp_2018</span>,</span>
-<span>                         by <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"winner_name"</span> <span class="op">=</span> <span class="st">"winner_name"</span><span class="op">)</span><span class="op">)</span> </span>
+<span>                         by <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/join_by.html">join_by</a></span><span class="op">(</span><span class="va">winner_name</span> <span class="op">==</span> <span class="va">winner_name</span><span class="op">)</span><span class="op">)</span> </span>
 <span><span class="va">new_winners</span><span class="op">$</span><span class="va">winner_name</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>We can then examine how many wins each of these “new” (or perhaps previously injured) players had in 2019:</p>
@@ -743,12 +743,12 @@ Note
 </div>
 </div>
 <ol type="a">
-<li><p>How many rows would be in the data set from <code>left_join(df1, df2, by = c("id" = "id"))</code>?</p></li>
-<li><p>How many rows would be in the data set from <code>left_join(df2, df1, by = c("id" = "id"))</code>?</p></li>
-<li><p>How many rows would be in the data set from <code>full_join(df1, df2, by = c("id" = "id"))</code>?</p></li>
-<li><p>How many rows would be in the data set from <code>inner_join(df1, df2, by = c("id" = "id"))</code>?</p></li>
-<li><p>How many rows would be in the data set from <code>semi_join(df1, df2, by = c("id" = "id"))</code>?</p></li>
-<li><p>How many rows would be in the data set from <code>anti_join(df1, df2, by = c("id" = "id"))</code>?</p></li>
+<li><p>How many rows would be in the data set from <code>left_join(df1, df2, by = join_by(id == id))</code>?</p></li>
+<li><p>How many rows would be in the data set from <code>left_join(df2, df1, by = join_by(id == id))</code>?</p></li>
+<li><p>How many rows would be in the data set from <code>full_join(df1, df2, by = join_by(id == id))</code>?</p></li>
+<li><p>How many rows would be in the data set from <code>inner_join(df1, df2, by = join_by(id == id))</code>?</p></li>
+<li><p>How many rows would be in the data set from <code>semi_join(df1, df2, by = join_by(id == id))</code>?</p></li>
+<li><p>How many rows would be in the data set from <code>anti_join(df1, df2, by = join_by(id == id))</code>?</p></li>
 </ol></section></section><section id="practice" class="level2" data-number="11.4"><h2 data-number="11.4" class="anchored" data-anchor-id="practice">
 <span class="header-section-number">11.4</span> Practice</h2>
 <section id="class-exercises" class="level3" data-number="11.4.1"><h3 data-number="11.4.1" class="anchored" data-anchor-id="class-exercises">
@@ -923,12 +923,12 @@ Note
 </div>
 </div>
 <ol type="a">
-<li><p>How many rows would be in the data set from <code>left_join(df1, df2, by = c("id" = "id"))</code>?</p></li>
-<li><p>How many rows would be in the data set from <code>left_join(df2, df1, by = c("id" = "id"))</code>?</p></li>
-<li><p>How many rows would be in the data set from <code>full_join(df1, df2, by = c("id" = "id"))</code>?</p></li>
-<li><p>How many rows would be in the data set from <code>inner_join(df1, df2, by = c("id" = "id"))</code>?</p></li>
-<li><p>How many rows would be in the data set from <code>semi_join(df1, df2, by = c("id" = "id"))</code>?</p></li>
-<li><p>How many rows would be in the data set from <code>anti_join(df1, df2, by = c("id" = "id"))</code>?</p></li>
+<li><p>How many rows would be in the data set from <code>left_join(df3, df4, by = join_by(id == id))</code>?</p></li>
+<li><p>How many rows would be in the data set from <code>left_join(df4, df3, by = join_by(id == id))</code>?</p></li>
+<li><p>How many rows would be in the data set from <code>full_join(df3, df4, by = join_by(id == id))</code>?</p></li>
+<li><p>How many rows would be in the data set from <code>inner_join(df3, df4, by = join_by(id == id))</code>?</p></li>
+<li><p>How many rows would be in the data set from <code>semi_join(df3, df4, by = join_by(id == id))</code>?</p></li>
+<li><p>How many rows would be in the data set from <code>anti_join(df3, df4, by = join_by(id == id))</code>?</p></li>
 </ol>
 <p><strong>Your Turn 3</strong>. Examine again the gun violence data set, and explain why each attempt at combining the D.C. data with the overall data doesn’t work or is incorrect.</p>
 <div class="cell">

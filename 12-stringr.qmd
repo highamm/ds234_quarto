@@ -65,7 +65,7 @@ head(stop_words)
 Let's join the Beyonce lyrics data set to the stop words data set and elminate any stop words:
 
 ```{r, appendix = TRUE}
-beyonce_stop <- anti_join(beyonce_unnest, stop_words, by = c("word" = "word"))
+beyonce_stop <- anti_join(beyonce_unnest, stop_words, by = join_by(word == word))
 ```
 
 Then, we can re-make the table with the stop words removed:

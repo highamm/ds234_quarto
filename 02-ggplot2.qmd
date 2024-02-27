@@ -246,7 +246,7 @@ library(tidyverse)
 fitness_full <- read_csv("https://raw.githubusercontent.com/highamm/ds234_quarto/main/data_online/higham_fitness_clean.csv",
                          col_types = list(stepgoal = col_factor())) |>
   mutate(weekend_ind = case_when(weekday == "Sat" | weekday == "Sun" ~ "weekend",
-                                 TRUE ~ "weekday"))
+                                 .default = "weekday"))
 ```
 
 By far, the most common plot to visualize the relationship between two quantitative variables is the scatterplot, which is made with the `geom_point()` `GEOM`. Again, in the following code, try to note the similarities in syntax with the previous plots: we still specify the `data` frame that we are using, and we still map variables in that data frame to aesthetics on the plot.
@@ -422,7 +422,7 @@ library(tidyverse)
 fitness_full <- read_csv("https://raw.githubusercontent.com/highamm/ds234_quarto/main/data_online/higham_fitness_clean.csv",
                          col_types = list(stepgoal = col_factor())) |>
   mutate(weekend_ind = case_when(weekday == "Sat" | weekday == "Sun" ~ "weekend",
-                                 TRUE ~ "weekday"))
+                                 .default = "weekday"))
 
 ggplot(data = fitness_full,
        aes(x = Start, y = active_cals, colour = stepgoal)) +
