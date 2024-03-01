@@ -37,7 +37,7 @@ Let's start with `skip` so that we aren't reading in the first two rows of the d
 ```{r, message = FALSE, warning = FALSE, appendix = TRUE}
 cars_df <- read_csv(here("data/mtcarsex.csv"), skip = 2)
 ## first two lines will be skipped
-head(cars_df)
+cars_df
 ```
 
 That looks better, but there are still a couple of problems. What do you notice?
@@ -147,11 +147,9 @@ library(rvest)
 ## provide the URL and name it something (in this case, url).
 url <- "https://en.wikipedia.org/wiki/Gun_violence_in_the_United_States_by_state"
 
-## convert the html code into something R can read
-h <- read_html(url)
-
-## grabs the tables
-tab <- h |> html_nodes("table")
+## read_html() convert the html code from the URL into something R can read
+tab <- read_html(url) |> 
+  html_nodes("table") ## html_nodes can grab only the tables 
 ```
 
 We see that, for this example, there are 3 tables provided. The tables are stored in a `list` and we can reference the first table using `[[1]]`, the second table using `[[2]]`, etc. 
@@ -166,31 +164,30 @@ The `html_table()` function converts the table into a `data.frame` object.
 
 ```{r, error = TRUE, results = "hide", appendix = TRUE}
 test1 <- tab[[1]] |> html_table()
+test1
 test2 <- tab[[2]] |> html_table()
+test2
 test3 <- tab[[3]] |> html_table()
-
-head(test1)
-head(test2)
-head(test3)
+test3
 ```
 
 Which of the 3 tables is the one that we would want to use for an analysis on gun violence in the United States?
 
 As another example, consider scraping data from SLU's athletics page. In particular, suppose we want to do an analysis on SLU's baseball team.
 
-Go to the following website to look at the table of data that we want to scrape: <a href="https://saintsathletics.com/sports/baseball/stats/2021" target="_blank">https://saintsathletics.com/sports/baseball/stats/2021</a>.
+Go to the following website to look at the table of data that we want to scrape: <a href="https://saintsathletics.com/sports/baseball/stats/2023" target="_blank">https://saintsathletics.com/sports/baseball/stats/2023</a>.
 
 After looking at the website, use the following code to scrape the data set.
 
 ```{r, results = "hide", appendix = TRUE}
-url <- "https://saintsathletics.com/sports/baseball/stats/2021"
-h <- read_html(url)
-tab <- h |> html_nodes("table")
+url <- "https://saintsathletics.com/sports/baseball/stats/2023"
+
+tab <- read_html(url) |> html_nodes("table")
 tab
-obj <- tab[[1]] |> html_table(fill = TRUE)
-head(obj)
-obj2 <- tab[[2]] |> html_table(fill = TRUE)
-head(obj2)
+obj <- tab[[1]] |> html_table()
+obj
+obj2 <- tab[[2]] |> html_table()
+obj2
 ```
 
 There's now 72 different tables! See if you can figure out where the first few tables are coming from on the website.
@@ -221,7 +218,7 @@ The first option specifies the name of the table that's in the JSON file (in thi
 library(tidyverse)
 cr_cards_flat <- cr_cards[["cards"]]
 cr_cards_df <- as_tibble(cr_cards_flat)
-head(cr_cards_df)
+cr_cards_df
 ```
 
 The second method uses the `flatten()` function from the `purrr` package, the only package in the core `tidyverse` that we do not talk about in detail in this class. There is also a different `flatten()` function in the `jsonlite` package. In the code below, we specify that we want to use `flatten()` from `purrr` with `purrr::flatten()`. If we wanted to use `flatten()` from `jsonlite`, we'd use `jsonlite::flatten()`
@@ -229,7 +226,7 @@ The second method uses the `flatten()` function from the `purrr` package, the on
 ```{r, appendix = TRUE}
 cr_cards_flat2 <- purrr::flatten(cr_cards)
 cr_cards_df2 <- as_tibble(cr_cards_flat2)
-head(cr_cards_df2)
+cr_cards_df2
 ```
 
 Both methods give a `tibble` that we can then use our usual `tidyverse` tools `ggplot2`, `dplyr`, `tidyr`, etc. on.
@@ -241,7 +238,7 @@ Now let's try to look at some animal crossing data that were obtained from <a hr
 ```{r, message = FALSE, warning = FALSE, appendix = TRUE}
 acedata <- fromJSON(here("data/ace.json"))
 aceflat <- purrr::flatten(acedata)
-head(aceflat)
+aceflat
 ```
 
 Things are now....more complicated. This example is just to show that it's not always easy working with JSON data. Lists can be nested and that creates problems when trying to convert a deeply nested list into our "rectangular" format that's easy to work with. 

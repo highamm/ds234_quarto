@@ -341,8 +341,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell" data-appendix="true">
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">cars_df</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv</a></span><span class="op">(</span><span class="fu"><a href="https://here.r-lib.org//reference/here.html">here</a></span><span class="op">(</span><span class="st">"data/mtcarsex.csv"</span><span class="op">)</span>, skip <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></span>
 <span><span class="co">## first two lines will be skipped</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">cars_df</span><span class="op">)</span></span>
-<span><span class="co">#&gt; # A tibble: 6 × 11</span></span>
+<span><span class="va">cars_df</span></span>
+<span><span class="co">#&gt; # A tibble: 34 × 11</span></span>
 <span><span class="co">#&gt;      mpg   cyl  disp    hp  drat    wt  qsec    vs    am  gear  carb</span></span>
 <span><span class="co">#&gt;    &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;</span></span>
 <span><span class="co">#&gt; 1   NA      NA    NA    NA NA    NA     NA      NA    NA    NA    NA</span></span>
@@ -350,7 +350,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span><span class="co">#&gt; 3 -999       6   160   110  3.9   2.62  16.5     0     1     4     4</span></span>
 <span><span class="co">#&gt; 4   21       6   160   110  3.9   2.88  17.0     0     1     4     4</span></span>
 <span><span class="co">#&gt; 5   22.8     4   108    93  3.85  2.32  18.6     1     1     4     1</span></span>
-<span><span class="co">#&gt; 6   21.4     6   258   110  3.08  3.22  19.4     1     0     3     1</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="co">#&gt; 6   21.4     6   258   110  3.08  3.22  19.4     1     0     3     1</span></span>
+<span><span class="co">#&gt; # ℹ 28 more rows</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>That looks better, but there are still a couple of problems. What do you notice?</p>
 <p>Go to the help and read about the <code>na</code> argument. Let’s add that as an option to fix the missing value issue.</p>
@@ -504,11 +505,9 @@ Note
 <span><span class="co">## provide the URL and name it something (in this case, url).</span></span>
 <span><span class="va">url</span> <span class="op">&lt;-</span> <span class="st">"https://en.wikipedia.org/wiki/Gun_violence_in_the_United_States_by_state"</span></span>
 <span></span>
-<span><span class="co">## convert the html code into something R can read</span></span>
-<span><span class="va">h</span> <span class="op">&lt;-</span> <span class="fu"><a href="http://xml2.r-lib.org/reference/read_xml.html">read_html</a></span><span class="op">(</span><span class="va">url</span><span class="op">)</span></span>
-<span></span>
-<span><span class="co">## grabs the tables</span></span>
-<span><span class="va">tab</span> <span class="op">&lt;-</span> <span class="va">h</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rvest.tidyverse.org/reference/rename.html">html_nodes</a></span><span class="op">(</span><span class="st">"table"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="co">## read_html() convert the html code from the URL into something R can read</span></span>
+<span><span class="va">tab</span> <span class="op">&lt;-</span> <span class="fu"><a href="http://xml2.r-lib.org/reference/read_xml.html">read_html</a></span><span class="op">(</span><span class="va">url</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
+<span>  <span class="fu"><a href="https://rvest.tidyverse.org/reference/rename.html">html_nodes</a></span><span class="op">(</span><span class="st">"table"</span><span class="op">)</span> <span class="co">## html_nodes can grab only the tables </span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>We see that, for this example, there are 3 tables provided. The tables are stored in a <code>list</code> and we can reference the first table using <code>[[1]]</code>, the second table using <code>[[2]]</code>, etc.</p>
 <div class="callout callout-style-simple callout-important callout-titled">
@@ -527,26 +526,25 @@ Important
 <p>The <code><a href="https://rvest.tidyverse.org/reference/html_table.html">html_table()</a></code> function converts the table into a <code>data.frame</code> object.</p>
 <div class="cell" data-appendix="true">
 <div class="sourceCode" id="cb12"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">test1</span> <span class="op">&lt;-</span> <span class="va">tab</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rvest.tidyverse.org/reference/html_table.html">html_table</a></span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="va">test1</span></span>
 <span><span class="va">test2</span> <span class="op">&lt;-</span> <span class="va">tab</span><span class="op">[[</span><span class="fl">2</span><span class="op">]</span><span class="op">]</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rvest.tidyverse.org/reference/html_table.html">html_table</a></span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="va">test2</span></span>
 <span><span class="va">test3</span> <span class="op">&lt;-</span> <span class="va">tab</span><span class="op">[[</span><span class="fl">3</span><span class="op">]</span><span class="op">]</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rvest.tidyverse.org/reference/html_table.html">html_table</a></span><span class="op">(</span><span class="op">)</span></span>
-<span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">test1</span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">test2</span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">test3</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="va">test3</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Which of the 3 tables is the one that we would want to use for an analysis on gun violence in the United States?</p>
 <p>As another example, consider scraping data from SLU’s athletics page. In particular, suppose we want to do an analysis on SLU’s baseball team.</p>
-<p>Go to the following website to look at the table of data that we want to scrape: <a href="https://saintsathletics.com/sports/baseball/stats/2021" target="_blank">https://saintsathletics.com/sports/baseball/stats/2021</a>.</p>
+<p>Go to the following website to look at the table of data that we want to scrape: <a href="https://saintsathletics.com/sports/baseball/stats/2023" target="_blank">https://saintsathletics.com/sports/baseball/stats/2023</a>.</p>
 <p>After looking at the website, use the following code to scrape the data set.</p>
 <div class="cell" data-appendix="true">
-<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">url</span> <span class="op">&lt;-</span> <span class="st">"https://saintsathletics.com/sports/baseball/stats/2021"</span></span>
-<span><span class="va">h</span> <span class="op">&lt;-</span> <span class="fu"><a href="http://xml2.r-lib.org/reference/read_xml.html">read_html</a></span><span class="op">(</span><span class="va">url</span><span class="op">)</span></span>
-<span><span class="va">tab</span> <span class="op">&lt;-</span> <span class="va">h</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rvest.tidyverse.org/reference/rename.html">html_nodes</a></span><span class="op">(</span><span class="st">"table"</span><span class="op">)</span></span>
+<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">url</span> <span class="op">&lt;-</span> <span class="st">"https://saintsathletics.com/sports/baseball/stats/2023"</span></span>
+<span></span>
+<span><span class="va">tab</span> <span class="op">&lt;-</span> <span class="fu"><a href="http://xml2.r-lib.org/reference/read_xml.html">read_html</a></span><span class="op">(</span><span class="va">url</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rvest.tidyverse.org/reference/rename.html">html_nodes</a></span><span class="op">(</span><span class="st">"table"</span><span class="op">)</span></span>
 <span><span class="va">tab</span></span>
-<span><span class="va">obj</span> <span class="op">&lt;-</span> <span class="va">tab</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rvest.tidyverse.org/reference/html_table.html">html_table</a></span><span class="op">(</span>fill <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">obj</span><span class="op">)</span></span>
-<span><span class="va">obj2</span> <span class="op">&lt;-</span> <span class="va">tab</span><span class="op">[[</span><span class="fl">2</span><span class="op">]</span><span class="op">]</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rvest.tidyverse.org/reference/html_table.html">html_table</a></span><span class="op">(</span>fill <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">obj2</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="va">obj</span> <span class="op">&lt;-</span> <span class="va">tab</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rvest.tidyverse.org/reference/html_table.html">html_table</a></span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="va">obj</span></span>
+<span><span class="va">obj2</span> <span class="op">&lt;-</span> <span class="va">tab</span><span class="op">[[</span><span class="fl">2</span><span class="op">]</span><span class="op">]</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rvest.tidyverse.org/reference/html_table.html">html_table</a></span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="va">obj2</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>There’s now 72 different tables! See if you can figure out where the first few tables are coming from on the website.</p>
 <p><strong>Exercise 2</strong>. SLU keeps track of diversity of students and makes this data public on the following website: <a href="https://www.stlawu.edu/offices/institutional-research/student-diversity-2021" target="_blank">https://www.stlawu.edu/offices/institutional-research/student-diversity-2021</a>. Use <code>rvest</code> to scrape one of the data tables into <code>R</code>.</p>
@@ -569,8 +567,8 @@ Important
 <div class="sourceCode" id="cb15"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span></span>
 <span><span class="va">cr_cards_flat</span> <span class="op">&lt;-</span> <span class="va">cr_cards</span><span class="op">[[</span><span class="st">"cards"</span><span class="op">]</span><span class="op">]</span></span>
 <span><span class="va">cr_cards_df</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://tibble.tidyverse.org/reference/as_tibble.html">as_tibble</a></span><span class="op">(</span><span class="va">cr_cards_flat</span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">cr_cards_df</span><span class="op">)</span></span>
-<span><span class="co">#&gt; # A tibble: 6 × 8</span></span>
+<span><span class="va">cr_cards_df</span></span>
+<span><span class="co">#&gt; # A tibble: 93 × 8</span></span>
 <span><span class="co">#&gt;   key     name      elixir type  rarity arena description                  id</span></span>
 <span><span class="co">#&gt;   &lt;chr&gt;   &lt;chr&gt;      &lt;int&gt; &lt;chr&gt; &lt;chr&gt;  &lt;int&gt; &lt;chr&gt;                     &lt;int&gt;</span></span>
 <span><span class="co">#&gt; 1 knight  Knight         3 Troop Common     0 A tough melee fighter. … 2.6 e7</span></span>
@@ -578,14 +576,15 @@ Important
 <span><span class="co">#&gt; 3 goblins Goblins        2 Troop Common     1 Three fast, unarmored m… 2.60e7</span></span>
 <span><span class="co">#&gt; 4 giant   Giant          5 Troop Rare       0 Slow but durable, only … 2.60e7</span></span>
 <span><span class="co">#&gt; 5 pekka   P.E.K.K.A      7 Troop Epic       4 A heavily armored, slow… 2.60e7</span></span>
-<span><span class="co">#&gt; 6 minions Minions        3 Troop Common     0 Three fast, unarmored f… 2.60e7</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="co">#&gt; 6 minions Minions        3 Troop Common     0 Three fast, unarmored f… 2.60e7</span></span>
+<span><span class="co">#&gt; # ℹ 87 more rows</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>The second method uses the <code>flatten()</code> function from the <code>purrr</code> package, the only package in the core <code>tidyverse</code> that we do not talk about in detail in this class. There is also a different <code>flatten()</code> function in the <code>jsonlite</code> package. In the code below, we specify that we want to use <code>flatten()</code> from <code>purrr</code> with <code>purrr::flatten()</code>. If we wanted to use <code>flatten()</code> from <code>jsonlite</code>, we’d use <code><a href="https://rdrr.io/pkg/jsonlite/man/flatten.html">jsonlite::flatten()</a></code></p>
 <div class="cell" data-appendix="true">
 <div class="sourceCode" id="cb16"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">cr_cards_flat2</span> <span class="op">&lt;-</span> <span class="fu">purrr</span><span class="fu">::</span><span class="fu">flatten</span><span class="op">(</span><span class="va">cr_cards</span><span class="op">)</span></span>
 <span><span class="va">cr_cards_df2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://tibble.tidyverse.org/reference/as_tibble.html">as_tibble</a></span><span class="op">(</span><span class="va">cr_cards_flat2</span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">cr_cards_df2</span><span class="op">)</span></span>
-<span><span class="co">#&gt; # A tibble: 6 × 8</span></span>
+<span><span class="va">cr_cards_df2</span></span>
+<span><span class="co">#&gt; # A tibble: 93 × 8</span></span>
 <span><span class="co">#&gt;   key     name      elixir type  rarity arena description                  id</span></span>
 <span><span class="co">#&gt;   &lt;chr&gt;   &lt;chr&gt;      &lt;int&gt; &lt;chr&gt; &lt;chr&gt;  &lt;int&gt; &lt;chr&gt;                     &lt;int&gt;</span></span>
 <span><span class="co">#&gt; 1 knight  Knight         3 Troop Common     0 A tough melee fighter. … 2.6 e7</span></span>
@@ -593,7 +592,8 @@ Important
 <span><span class="co">#&gt; 3 goblins Goblins        2 Troop Common     1 Three fast, unarmored m… 2.60e7</span></span>
 <span><span class="co">#&gt; 4 giant   Giant          5 Troop Rare       0 Slow but durable, only … 2.60e7</span></span>
 <span><span class="co">#&gt; 5 pekka   P.E.K.K.A      7 Troop Epic       4 A heavily armored, slow… 2.60e7</span></span>
-<span><span class="co">#&gt; 6 minions Minions        3 Troop Common     0 Three fast, unarmored f… 2.60e7</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="co">#&gt; 6 minions Minions        3 Troop Common     0 Three fast, unarmored f… 2.60e7</span></span>
+<span><span class="co">#&gt; # ℹ 87 more rows</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Both methods give a <code>tibble</code> that we can then use our usual <code>tidyverse</code> tools <code>ggplot2</code>, <code>dplyr</code>, <code>tidyr</code>, etc. on.</p>
 </section><section id="things-arent-always-so-easy" class="level3" data-number="10.3.2"><h3 data-number="10.3.2" class="anchored" data-anchor-id="things-arent-always-so-easy">
@@ -602,7 +602,7 @@ Important
 <div class="cell" data-appendix="true">
 <div class="sourceCode" id="cb17"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">acedata</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/jsonlite/man/fromJSON.html">fromJSON</a></span><span class="op">(</span><span class="fu"><a href="https://here.r-lib.org//reference/here.html">here</a></span><span class="op">(</span><span class="st">"data/ace.json"</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="va">aceflat</span> <span class="op">&lt;-</span> <span class="fu">purrr</span><span class="fu">::</span><span class="fu">flatten</span><span class="op">(</span><span class="va">acedata</span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">aceflat</span><span class="op">)</span></span>
+<span><span class="va">aceflat</span></span>
 <span><span class="co">#&gt; $gender</span></span>
 <span><span class="co">#&gt; [1] "male"</span></span>
 <span><span class="co">#&gt; </span></span>
@@ -638,7 +638,10 @@ Important
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; $name</span></span>
-<span><span class="co">#&gt; [1] "Ace"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="co">#&gt; [1] "Ace"</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; $id</span></span>
+<span><span class="co">#&gt; [1] "ace"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Things are now….more complicated. This example is just to show that it’s not always easy working with JSON data. Lists can be nested and that creates problems when trying to convert a deeply nested list into our “rectangular” format that’s easy to work with.</p>
 <p>There’s also the added problem of reading in the <code>.json</code> files from all villagers at the same time We could do this with a for loop or a mapping function from <code>purrr</code> to download and read in the JSON files for all villagers. We won’t delve any more deeply into this, but there’s a lot more to all of the file formats that we’ve discussed this week, particularly web scraping and .json files.</p>
