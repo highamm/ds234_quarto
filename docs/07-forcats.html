@@ -594,7 +594,7 @@ Note
 <section id="class-exercises" class="level3" data-number="8.3.1"><h3 data-number="8.3.1" class="anchored" data-anchor-id="class-exercises">
 <span class="header-section-number">8.3.1</span> Class Exercises</h3>
 <p><strong>Class Exercise 1</strong>. In the text, it is mentioned that the point plot of median defense and the lollipop plot of median defense are not great visualizations. Why? For what type of data would these visualizations be more appropriate?</p>
-<p><strong>Class Exercise 2</strong>. For the pokemon data set, we mentioned that we got rid of duplicates with <code>group_by(</code>#<code>) |&gt; slice(1) |&gt; ungroup()</code>. Explain why the code would get rid of duplicates. We will then discuss an alternative method to examine duplicates with the <code>janitor</code> package.</p>
+<p><strong>Class Exercise 2</strong>. For the pokemon data set, we mentioned that we got rid of duplicates with <code>group_by(</code>#<code>) |&gt; slice(1) |&gt; ungroup()</code>. Explain why the code would get rid of duplicates. We will then discuss a more convenient <code>dplyr</code> function we can use here.</p>
 <p><strong>Class Exercise 3</strong>. Make the side-by-side boxplots again with the pokemon data but do not use <code><a href="https://dplyr.tidyverse.org/reference/group_by.html">ungroup()</a></code> by running the following code.</p>
 <div class="cell">
 <div class="sourceCode" id="cb18"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">pokemon_nodup</span> <span class="op">&lt;-</span> <span class="va">pokemon_df</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">`#`</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/slice.html">slice</a></span><span class="op">(</span><span class="fl">1</span><span class="op">)</span> <span class="co">## |&gt;</span></span>
@@ -617,11 +617,34 @@ Note
 </div>
 </div>
 <p>Why are the boxplots no longer ordered by median defense?</p>
+<p><strong>Class Exercise 4</strong>. On a feedback sheet, you were asked to “rank” this course in terms of challenge and amount of time you spend on it, compared to the other courses you are taking this semester. This is a question that has been asked of students in past sections of this course. Read in some data collected from 52 students in a couple of past semesters:</p>
+<div class="cell">
+<div class="sourceCode" id="cb19"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">responses_df</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv</a></span><span class="op">(</span><span class="st">"https://raw.githubusercontent.com/highamm/ds234_quarto/main/data_online/heatmap.csv"</span><span class="op">)</span></span>
+<span><span class="va">responses_df</span></span>
+<span><span class="co">#&gt; # A tibble: 52 × 2</span></span>
+<span><span class="co">#&gt;    time challenge</span></span>
+<span><span class="co">#&gt;   &lt;dbl&gt;     &lt;dbl&gt;</span></span>
+<span><span class="co">#&gt; 1     3         3</span></span>
+<span><span class="co">#&gt; 2     3         3</span></span>
+<span><span class="co">#&gt; 3     1         1</span></span>
+<span><span class="co">#&gt; 4     2         4</span></span>
+<span><span class="co">#&gt; 5     3         2</span></span>
+<span><span class="co">#&gt; 6     2         3</span></span>
+<span><span class="co">#&gt; # ℹ 46 more rows</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Our goal with this data set is to visualize the distribution of responses to this question with a <strong>heatmap</strong>. To do so, we will:</p>
+<ol type="1">
+<li><p>Figure out how to construct a heatmap using <code><a href="https://ggplot2.tidyverse.org/reference/geom_tile.html">geom_tile()</a></code>: <a href="https://r-graph-gallery.com/79-levelplot-with-ggplot2.html" class="uri">https://r-graph-gallery.com/79-levelplot-with-ggplot2.html</a></p></li>
+<li><p>Change the x and y-axis labels of the heatmap to be <code>"Most Challenging"</code>, <code>"Second"</code>, <code>"Third"</code>, and <code>"Least Challenging"</code> and <code>"Most Time"</code>, etc.</p></li>
+<li><p>Make sure the ordering of the levels in the x and y axes make sense.</p></li>
+<li><p>Make the plot look a little “prettier” by using some other <code>ggplot2</code> options we have not yet discussed in detail.</p></li>
+</ol>
+<p><strong>Class Exercise 5</strong>. What graphs could you make to examine the <code>time</code> and <code>challenge</code> variables separately? Construct these graphs and compare what you can see from them to what you can see from the heatmap.</p>
 </section><section id="your-turn" class="level3" data-number="8.3.2"><h3 data-number="8.3.2" class="anchored" data-anchor-id="your-turn">
 <span class="header-section-number">8.3.2</span> Your Turn</h3>
 <p>For these your turn exercises, we will use a data set on National Football League standings from 2000 to 2020. Read in the data set with:</p>
 <div class="cell">
-<div class="sourceCode" id="cb19"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span></span>
+<div class="sourceCode" id="cb20"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://here.r-lib.org/">here</a></span><span class="op">)</span></span>
 <span><span class="va">standings_df</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv</a></span><span class="op">(</span><span class="fu"><a href="https://here.r-lib.org//reference/here.html">here</a></span><span class="op">(</span><span class="st">"data/standings.csv"</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="va">standings_df</span></span>
@@ -668,7 +691,7 @@ Note
 <p>Note that some of these exercises are from the R for Data Science textbook.</p>
 <p>Load in the data set with</p>
 <div class="cell">
-<div class="sourceCode" id="cb20"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span></span>
+<div class="sourceCode" id="cb21"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span></span>
 <span><span class="va">gss_cat</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p><strong>Additional Exercise 1</strong>. Using a <code>forcats</code> function, change the name of the level <code>Not str republican</code> to be <code>Weak republican</code> and change the name of the level <code>Not str democrat</code> to be <code>Weak democrat</code>. These names more closely match the levels <code>Strong republican</code> and <code>Strong democrat</code>. Then, create a table of counts that shows the number of respondents in each political party <code>partyid</code>.</p>
@@ -677,7 +700,7 @@ Note
 <p><strong>Additional Exercise 2</strong>. Use a <code>forcats</code> function so that <code>partyid</code> just has 4 categories: Other (corresponding to No answer, Don’t know, Other party), Ind (corresponding to Ind,near rep, Independent, Ind, near dem), Rep (corresponding to Strong republican and Not str republican), and Dem (corresponding to Not str democrat and Strong democrat).</p>
 <p><strong>Additional Exercise 3</strong>. Run the code to create the following plot that shows the average number of hours of television people watch from various religions.</p>
 <div class="cell">
-<div class="sourceCode" id="cb21"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">relig_summary</span> <span class="op">&lt;-</span> <span class="va">gss_cat</span> <span class="op">|&gt;</span></span>
+<div class="sourceCode" id="cb22"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">relig_summary</span> <span class="op">&lt;-</span> <span class="va">gss_cat</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">relig</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise</a></span><span class="op">(</span></span>
 <span>    age <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">age</span>, na.rm <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>,</span>
@@ -691,7 +714,7 @@ Note
 <p>Then, use a <code>forcats</code> function create a new variable in the data set that reorders the religion factor levels and make a lollipop plot so that the religion watches the most television, on average, is on the top, and the religion that watches the least television, on average, is on the bottom.</p>
 <p><strong>Additional Exercise 4</strong>. Run the code to make the following line plot that shows age on the x-axis, the proportion on the y-axis, and is coloured by various marital statuses (married, divorced, widowed, etc.):</p>
 <div class="cell">
-<div class="sourceCode" id="cb22"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">by_age</span> <span class="op">&lt;-</span> <span class="va">gss_cat</span> <span class="op">|&gt;</span></span>
+<div class="sourceCode" id="cb23"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">by_age</span> <span class="op">&lt;-</span> <span class="va">gss_cat</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/NA.html">is.na</a></span><span class="op">(</span><span class="va">age</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/count.html">count</a></span><span class="op">(</span><span class="va">age</span>, <span class="va">marital</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">age</span><span class="op">)</span> <span class="op">|&gt;</span></span>
@@ -706,7 +729,7 @@ Note
 <p><strong>Additional Exercise 5</strong>. We haven’t talked much about creating two-way tables (or contingency tables). These are generally quite difficult to make with the <code>tidyverse</code> functions, but you can use the base <code>R</code> <code><a href="https://rdrr.io/r/base/table.html">table()</a></code> and <code><a href="https://rdrr.io/r/base/proportions.html">prop.table()</a></code> functions to make these.</p>
 <p>Using data only from the year 2014, run the following code to make 4 two-way tables with the <code>party_small</code> variable that was constructed earlier and <code>race</code>:</p>
 <div class="cell">
-<div class="sourceCode" id="cb23"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">gss_cat</span> <span class="op">&lt;-</span> <span class="va">gss_cat</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>party_small <span class="op">=</span> <span class="fu"><a href="https://forcats.tidyverse.org/reference/fct_collapse.html">fct_collapse</a></span><span class="op">(</span><span class="va">partyid</span>,</span>
+<div class="sourceCode" id="cb24"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">gss_cat</span> <span class="op">&lt;-</span> <span class="va">gss_cat</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>party_small <span class="op">=</span> <span class="fu"><a href="https://forcats.tidyverse.org/reference/fct_collapse.html">fct_collapse</a></span><span class="op">(</span><span class="va">partyid</span>,</span>
 <span>                                              Other <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"No answer"</span>, <span class="st">"Don't know"</span>, <span class="st">"Other party"</span><span class="op">)</span>,</span>
 <span>                                              Ind <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Ind,near rep"</span>, <span class="st">"Independent"</span>, <span class="st">"Ind,near dem"</span><span class="op">)</span>,</span>
 <span>                                              Rep <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Strong republican"</span>, <span class="st">"Not str republican"</span><span class="op">)</span>,</span>

@@ -250,7 +250,7 @@ ggplot(data = pokemon_long, aes(x = Type_Deford,
 
 __Class Exercise 1__. In the text, it is mentioned that the point plot of median defense and the lollipop plot of median defense are not great visualizations. Why? For what type of data would these visualizations be more appropriate? 
 
-__Class Exercise 2__. For the pokemon data set, we mentioned that we got rid of duplicates with `group_by(`#`) |> slice(1) |> ungroup()`. Explain why the code would get rid of duplicates. We will then discuss an alternative method to examine duplicates with the `janitor` package.
+__Class Exercise 2__. For the pokemon data set, we mentioned that we got rid of duplicates with `group_by(`#`) |> slice(1) |> ungroup()`. Explain why the code would get rid of duplicates. We will then discuss a more convenient `dplyr` function we can use here.
 
 __Class Exercise 3__. Make the side-by-side boxplots again with the pokemon data but do not use `ungroup()` by running the following code.
 
@@ -273,6 +273,25 @@ ggplot(data = pokemon_long, aes(x = Type_Deford,
 ```
 
 Why are the boxplots no longer ordered by median defense?
+
+__Class Exercise 4__. On a feedback sheet, you were asked to "rank" this course in terms of challenge and amount of time you spend on it, compared to the other courses you are taking this semester. This is a question that has been asked of students in past sections of this course. Read in some data collected from 52 students in a couple of past semesters:
+
+```{r}
+responses_df <- read_csv("https://raw.githubusercontent.com/highamm/ds234_quarto/main/data_online/heatmap.csv")
+responses_df
+```
+
+Our goal with this data set is to visualize the distribution of responses to this question with a __heatmap__. To do so, we will:
+
+1. Figure out how to construct a heatmap using `geom_tile()`: <https://r-graph-gallery.com/79-levelplot-with-ggplot2.html>
+
+2. Change the x and y-axis labels of the heatmap to be `"Most Challenging"`, `"Second"`, `"Third"`, and `"Least Challenging"` and `"Most Time"`, etc.
+
+3. Make sure the ordering of the levels in the x and y axes make sense.
+
+4. Make the plot look a little "prettier" by using some other `ggplot2` options we have not yet discussed in detail.
+
+__Class Exercise 5__. What graphs could you make to examine the `time` and `challenge` variables separately? Construct these graphs and compare what you can see from them to what you can see from the heatmap.
 
 ### Your Turn
 
