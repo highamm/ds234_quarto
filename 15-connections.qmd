@@ -44,6 +44,8 @@ Next, we can construct a summary graphic. One graphic to explore two categorical
 
 ```{r, appendix = TRUE}
 library(tidyverse)
+theme_set(theme_minimal())
+
 resume_sum <- resume |> 
   mutate(received_callback = received_callback) |>
            group_by(race, received_callback) |>
@@ -192,6 +194,8 @@ __`tidy()`__
 Read in the data, load the `broom` package (and install it with `install.packages("broom")`), and fit the model with
 
 ```{r, appendix = TRUE}
+library(tidyverse)
+theme_set(theme_minimal())
 library(broom)
 library(here)
 coffee_df <- read_csv(here("data/coffee_ratings.csv"))
@@ -391,6 +395,8 @@ Code to do such a task is given in the following chunk.
 
 ```{r, appendix = TRUE}
 library(tidyverse)
+theme_set(theme_minimal())
+
 library(rvest)
 
 url_SLU <- "https://saintsathletics.com/sports/baseball/stats/2022"

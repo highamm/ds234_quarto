@@ -376,6 +376,20 @@ test3 <- tibble(state = "Washington D.C.", mortality_rate = "16.7",
 bind_rows(mortality_df, test3)
 ```
 
+__Your Turn 4__. We will do a short activity with joining using slips of paper. After we complete the activity, consider the following. Suppose that you have a data frame called `courses_df` that contains the course schedule for the fall semester for 100 different professors at SLU, each with 3 different courses (so that there are 300 total rows in the data set: 3 rows per professor). Of the 100 professors, __5__ are in the Math-CS-Stat department.
 
+You have another data frame called `info_df` that contains information about the 15 Math-CS-Stat professors at SLU (with just one row per professor). Again, __5__ of these professors also appear in `courses_df` while the other 10 do not.
+
+How many rows would result in the following joins, assuming that you use __professor__ as the key in the `join_by()` function?
+
+a. `left_join(courses_df, info_df)`
+
+b. `semi_join(info_df, courses_df)`
+
+c. `anti_join(courses_df, info_df)`
+
+d. `inner_join(courses_df, info_df)`
+
+e. `full_join(courses_df, info_df)`
 
 

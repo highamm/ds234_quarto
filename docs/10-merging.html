@@ -948,6 +948,16 @@ Note
 <span><span class="co">#&gt; Error in `bind_rows()`:</span></span>
 <span><span class="co">#&gt; ! Can't combine `..1$mortality_rate` &lt;double&gt; and `..2$mortality_rate` &lt;character&gt;.</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
+<p><strong>Your Turn 4</strong>. We will do a short activity with joining using slips of paper. After we complete the activity, consider the following. Suppose that you have a data frame called <code>courses_df</code> that contains the course schedule for the fall semester for 100 different professors at SLU, each with 3 different courses (so that there are 300 total rows in the data set: 3 rows per professor). Of the 100 professors, <strong>5</strong> are in the Math-CS-Stat department.</p>
+<p>You have another data frame called <code>info_df</code> that contains information about the 15 Math-CS-Stat professors at SLU (with just one row per professor). Again, <strong>5</strong> of these professors also appear in <code>courses_df</code> while the other 10 do not.</p>
+<p>How many rows would result in the following joins, assuming that you use <strong>professor</strong> as the key in the <code><a href="https://dplyr.tidyverse.org/reference/join_by.html">join_by()</a></code> function?</p>
+<ol type="a">
+<li><p><code>left_join(courses_df, info_df)</code></p></li>
+<li><p><code>semi_join(info_df, courses_df)</code></p></li>
+<li><p><code>anti_join(courses_df, info_df)</code></p></li>
+<li><p><code>inner_join(courses_df, info_df)</code></p></li>
+<li><p><code>full_join(courses_df, info_df)</code></p></li>
+</ol>
 
 
 </section></section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">

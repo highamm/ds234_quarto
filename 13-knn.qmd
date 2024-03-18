@@ -9,268 +9,65 @@ __Goals__
 
 * explain why it's necessary to use _training data_ and _test data_ when building a predictive model.
 * describe the k-nearest neighbors (knn) procedure.
-* interpret a _confusion matrix_.
-* use knn to predict a the level of a categorical response variable.
+* interpret a _classification table_.
+* use knn to predict the levels of a categorical response variable for _test data_.
 
 ::: {.callout-note}
 ## Note
 
-The structure of this section will be a bit different than the structure of the previous sections. We will complete much of this material on handouts that we will fill in by-hand.
+The structure of this section will be a bit different than the structure of the previous sections. We will complete some of this material on handouts that we will fill in by-hand.
 :::
 
 ## Introduction to Classification
 
-__k-nearest neighbors__ (or __knn__) is an introductory supervised machine learning algorithm, most commonly used as a classification algorithm. Classification refers to prediction of a categorical response variable with two or more categories. For example, for a data set with SLU students, we might be interested in predicting whether or not each student graduates in four years (so the response has two categories: graduates in 4 years or doesn't). We might want to classify this response based on various student characteristics like anticipated major, GPA, standardized test scores, etc.
-
-::: {.callout-note}
-## Note
-
-knn can also be used to predict a quantitative response, but we'll focus on categorical response variables only throughout this section.
-:::
-
-If you've had STAT 213, you might try to draw some parallels to knn and classification using logistic regression. Note, however, that logistic regression required the response to have __two__ levels while knn can classify a response variable that has __two or more__ levels.
-
-To introduce knn, we will be using `pokemon_full.csv` data. Pokemon have different Types: we will use `Type` as a categorical response that we are interested in predicting. For simplicity, we will only use Pokemon's primary type and we will only use __4__ different types: 
-
-```{r, message = FALSE, warning = FALSE, appendix = TRUE}
-set.seed(1119)
-library(tidyverse)
-library(here)
-pokemon <- read_csv(here("data/pokemon_full.csv")) |>
-  filter(Type %in% c("Steel", "Dark", "Fire", "Ice"))
-```
-
-Our goal is to develop a k-nearest-neighbors model that is able to classify/predict Pokemon `Type` from a set of predictors, like Pokemon `HP`, `Attack`, `Defense`, etc.
-
-### Training and Test Data
-
-In order to develop our knn model (note that we still haven't discussed what knn actually is yet!), we first need to discuss terms that apply to almost __all__ predictive/classification modeling: training and test data. A __training__ data set is a subset of the full data set used to fit various models. For the example below, the training data set will be just 15 observations for pedagogical purposes. More commonly, the training data set will contain 50%-80% of the observations in the full data set.
-
-A __test__ data set consists of the remaining 20%-50% of the observations not in the training data set. A test data set is used to assess different the performances of various models that were fit using the training data set. 
-
-::: {.callout-important}
-## Important
-
-Why do we need to do this division? Using the full data set for both training a model and testing that model is "cheating:" the model will perform better than it should because we are using each observation twice: once for fitting and once for testing. Having a separate test data set that wasn't used to fit the model gives the model a more "fair" test, as these observations are supposed to be new data that the model hasn't yet seen.
-:::
-
-The following code uses that `slice_sample()` function to randomly select 15 observations to be in the training data set. `anti_join()` then makes a test data set without the 15 pokemon in the training data set.
-
-```{r, message = FALSE, appendix = TRUE}
-train_sample <- pokemon |>
-  slice_sample(n = 15)
-test_sample <- anti_join(pokemon, train_sample)
-
-train_sample |> head()
-test_sample |> head()
-```
-
-The ideas of a training data set and test data set are pervasive in predictive and classification models, including models not related to knn. 
-
-::: {.callout-note}
-## Note
-
-We are using the training vs. test sample method in this class because it's the simplest: if we wanted to take this a step further, we'd repeat the training and test process 5 or 10 times, using what's known as __k-fold cross-validation.__
-:::
-
-1. Explain what `anti_join()` joins on when `by` isn't specified and why _not_ specifying a `by` argument works for this example.
-
-## knn Introduction
-
-### knn with k = 1 and 1 Predictor
-
-Suppose that we have just those __15__ pokemon in our training data set. We want to predict `Type` from just one predictor, `Defense`. Below is a plot that shows the defenses of the 15 pokemon in our training data set, and has points coloured by Type and with different shapes for Type.
-
-```{r, appendix = TRUE}
-ggplot(data = train_sample, aes(x = Defense, y = 1, colour = Type, shape = Type)) +
-  geom_point(size = 4) +  theme(axis.title.y=element_blank(),
-        axis.text.y = element_blank(),
-        axis.ticks.y = element_blank())
-```
-
-We see from the plot that `Steel` type Pokemon tend to have pretty high defense values. Now suppose that we want to predict the `Type` for one of the Pokemon in our test data set, `Dialga`. We know that Dialga has a `Defense` stat of 120: the plot below shows Dialga marked with a large black X.
-
-```{r, appendix = TRUE}
-dialga <- test_sample |> slice(63)
-ggplot(data = train_sample, aes(x = Defense, y = 1, colour = Type, shape = Type)) +
-  geom_point(size = 4) +  theme(axis.title.y=element_blank(),
-        axis.text.y=element_blank(),
-        axis.ticks.y=element_blank()) +
-  geom_point(data = dialga, colour = "black", shape = 4, size = 7)
-```
-
-What would your prediction for `Dialga` be? Why? According to knn with `k = 1`, we would predict `Dialga` to be `Fire` type. `k = 1` means that we are using the __1st__ nearest neighbor: in this case the point that is closest to `Dialga` is a green triangle, corresponding to a `Fire` type Pokemon.
-
-### knn with k > 1 and One Predictor
-
-But, we might not necessarily want to predict the response value based on the single nearest neighbor. `Dialga` is also near many purple plus signs: should those factor in at all? We can extend `knn` to different values for k. For example, $k = 3$ looks at the 3 nearest neighbors, and assigns a prediction as the category that appears the __most__ among those 3 nearest neighbors.
-
-Using `k = 3`, what would the prediction for Dialga be? Why?
-
-### knn with k > 1 and More Than One Predictor
-
-We can increase the number of predictors in our `knn` model as well. We can generally include as many predictors as we would like, but visualizing becomes challenging with more than 2 predictors and nearly impossible with more than 3 predictors. For the case of two predictors, suppose that we want to use Defense and Speed as our predictors for Type. `Dialga`, the Pokemon we want to predict for, is again marked with a large black X.
-
-```{r, appendix = TRUE}
-ggplot(data = train_sample, aes(x = Defense, y = Speed, colour = Type, shape = Type)) +
-  geom_point(size = 3) +
-  geom_point(data = dialga, colour = "black", shape = 4, size = 5)
-```
-
-For $k = 1$, we would predict the `Dialga` is Steel, as the closest point is the purple `+` sign in the top-left corner of the graph. For $k = 3$, what `Type` would you predict for Dialga? For this question, it's a little hard to tell which three points are closest to `Dialga` without computing the distances numerically, which is something we will let `R` do with the `knn()` function.
-
-### Scaling Predictor Variables before Using knn
-
-In general, we want to scale any quantitative predictors when using knn because it relies on distances between points in its predictions. This is easiest to see with an example. Suppose, in our Pokemon example, that we want to use `height` and `weight` as our predictors in the `knn` model. We just have 2 observations in our training data set: a Dark Type pokemon with a height of 15 centimeters and a weight of 505 pounds, and a Fire Type Pokemon with a height of 9 centimeters and a weight of 250 pounds. 
-
-```{r, appendix = TRUE}
-train_tiny <- train_sample |> slice(1:2)
-newobs <- tibble(height = 15, weight = 350, Type = "Unknown")
-ggplot(data = train_tiny, aes(x = height, y = weight, shape = Type)) +
-  geom_point(size = 5, aes(colour = Type)) + xlim(c(7, 17)) + ylim(c(200, 550)) +
-  geom_point(data = newobs, shape = 4, size = 10)
-```
-
-On the plot is also given a Pokemon in our test data set that we wish to predict the `Type` of, marked with a black X. Upon visual inspection, with `k = 1`, it looks like we would classify this pokemon as Dark. However, the units of weight and height are on very different scales. We will compute the actual distances in class to see if the conclusion from the calculation matches with the visual conclusion.
-
-<br>
-
-To get around this issue, it is customary to scale all quantitative predictors before applying knn. One method of doing this is applying
-
-$$
-scaled_x = \frac{x - min(x)}{max(x) - min(x)}
-$$
-
-For example, scaling `weight` for the 15 original pokemon:
-
-```{r, echo = TRUE, appendix = TRUE}
-train_sample |> select(weight) |> head()
-```
-
-puts all weights between 0 and 1: 
-
-```{r, echo = TRUE, appendix = TRUE}
-train_sample |> mutate(weight_s = (weight - min(weight)) / 
-                          (max(weight) - min(weight))) |>
-  select(weight_s) |>
-  head()
-```
-
-If we do the same with `height`, then the variables will contribute more "equally" to the distance metric used in knn. 
-
-The code below scales all numeric variables in a data set, using the `across()` function. `across()` applies a transformation to every column in a data set that satisfies the condition given in the `where` argument.
-
-```{r, echo = TRUE, appendix = TRUE}
-## ?across
-library(pander)
-train_sample |>
-  mutate(across(where(is.numeric), ~ (.x - min(.x)) /
-                                 (max(.x) - min(.x)))) |>
-  slice(1:3)
-```
-
-### Exercises {#exercise-13-2}
-
-1. Consider again the toy example with just two observations in the training data set and unscaled weight and height as predictors.
-
-```{r}
-ggplot(data = train_tiny, aes(x = height, y = weight, shape = Type)) +
-  geom_point(size = 5, aes(colour = Type)) + xlim(c(7, 17)) +
-  ylim(c(200, 550)) +
-  geom_point(data = newobs, shape = 4, size = 10)
-```
-
-The actual (height, weight) coordinates of the Fire pokemon are (9, 250), the actual coordinates of the Dark pokemon are (15, 505), and the actual coordinates of the test pokemon are (15, 350). We mentioned that, visually, the pokemon looks "closer" to the Dark type pokemon. Verify that this is __not__ actually the case by computing the actual distances numerically. Recall that the formula for the distance between two points at ($x1, y1$) and ($x2, y2$) is:
-
-$$
-\sqrt{(x_1 - x_2) ^ 2 + (y1 - y2) ^ 2}
-$$
-
-We'll need to use this formula twice: once for the distance between the fire pokemon and the test pokemon and once for the distance between the dark pokemon and the test pokemon.
-
-```{r, echo = FALSE, results = "hide"}
-sqrt((15 - 9) ^ 2 + (350 - 250) ^ 2) ## fire
-sqrt((15 - 15) ^ 2 + (350 - 505) ^ 2) ## dark
-```
-
-2. After scaling according to the formula in this section, the coordinates (height, weight) of the Fire pokemon are (0, 0) and the coordinates of the Dark pokemon are (1, 1). (Since there are only two observations, the formula doesn't give any output between 0 and 1 for this tiny example). The scaled coordinates for the test pokemon are (1, 0.39). Verify that, after scaling, the test pokemon is "closer" to the Dark type pokemon by numerically computing distances.
-
-```{r, echo = FALSE, results = "hide"}
-sqrt((0 - 1) ^ 2 + (0 - 0.39) ^ 2) ## Fire
-sqrt((1 - 1) ^ 2 + (1 - 0.39) ^ 2) ## Dark
-```
-
-3. Consider again the example with 15 pokemon in the training data set and a single predictor, `Defense`.
-
-```{r}
-ggplot(data = train_sample, aes(x = Defense, y = 1, colour = Type, shape = Type)) +
-  geom_point(size = 4) +  theme(axis.title.y=element_blank(),
-        axis.text.y=element_blank(),
-        axis.ticks.y=element_blank()) +
-  geom_point(data = dialga, colour = "black", shape = 4, size = 7)
-```
-
-With k = 2, there is a tie between Fire and Steel. Come up with a way in which you might break ties in a knn algorithm.
-
-4. Explain what knn would use as a prediction for all test observations if k equals the number of observations in the training data set.
-
-5. What are some advantages for making k smaller and what are some advantages for making k larger?
+We will introduce both the knn algorithm and classification in general using a handwritten handout.
 
 ## Choosing Predictors and k
 
-We now know how knn classifies observations in the test data set, but how do we choose which predictors should be used by the knn algorithm? And how do we choose the number of neighbors, k? We want to measure how "good" models with different predictors and different k's do, but we first need to define what "good" means.
+We will continue to use the scaled version of the pokemon data set for this handout. This time, we will have __75__ pokemon in our training data set and we are only looking at the `Steel`, `Dark`, `Fire`, and `Ice` types. As discussed in the handout, it is important to scale all of our numeric predictors so that the unit of measurement does not influence the classification results. We can scale all of the numeric variables in a data frame using a combination of `across()`, `where()`, and `mutate()` before we split the data into a training sample and a test sample.
 
-Much of the "choosing predictors" part will be trial and error by evaluating different models with a criterion that we will talk about in the next section. However, it is always helpful to explore the data set with graphics to get us to a good starting point. A __scatterplot matrix__ is a useful exploratory tool. The following is a scatterplot matrix with the response variable, `Type`, and just three candidate predictors, `HP`, `Attack`, and `Defense`, created with the `GGally` ("g-g-ally") package.
+```{r}
+set.seed(1119)
+library(tidyverse)
+library(pander)
+library(here) 
 
-```{r, appendix = TRUE}
-## install.packages("GGally")
-library(GGally)
-ggpairs(data = train_sample, columns = c(4, 5, 6, 3), 
-        lower = list(combo = wrap(ggally_facethist, bins = 15)))
+pokemon <- read_csv(here("other", "pokemon_full.csv")) |>
+  filter(Type %in% c("Steel", "Dark", "Fire", "Ice")) |>
+  mutate(across(where(is.numeric), ~ (.x - min(.x)) /
+                                 (max(.x) - min(.x)))) 
 ```
 
-The `lower` argument changes the number of bins in the faceted histograms in the bottom row. 
+Next, we split the data into a traning sample of 75 pokemon and a test sample.
 
-The `columns` argument __is__ important: it allows you to specify which columns you want to look at. I prefer putting the response, `Type` (column `3`) in the last slot.
+```{r}
+train_sample <- pokemon |>
+  slice_sample(n = 75)
+
+test_sample <- anti_join(pokemon, train_sample)
+```
+
+There are many candidate predictors in this data set: `HP`, `Attack`, `Defense`, ..., all the way up to `base_experience`. How should we determine which predictors to include in our model? 
+
+Much of this will be trial and error by evaluating different models with a criterion that we will talk about in the next section. However, it is always helpful to explore the data set with graphics to get us to a good starting point. A __scatterplot matrix__ is a useful exploratory tool. The following is a scatterplot matrix with the response variable, `Type`, and just three candidate predictors, `HP`, `Attack`, and `Defense`, created with the `GGally` ("g-g-ally") package.
+
+```{r}
+## install.packages("GGally")
+library(GGally)
+ggpairs(data = train_sample, columns = c(4, 5, 6, 3))
+```
+
+The `columns` argument is important: it allows you to specify which columns you want to look at. I prefer putting the response, `Type` (column `3`) in the last slot.
 
 We can examine this to see which variables seem to have a relationship with `Type`. Where would we want to look for this?
 
-### The Confusion Matrix
+What's given on the diagonal of the scatterplot matrix?
 
-But, we still need a metric to evaluate models with different predictors. One definition of a "good" model in the classification context is a model that has a high proportion of correct predictions in the test data set. This should make some intuitive sense, as we would hope that a "good" model correctly classifies most `Dark` pokemon as `Dark`, most `Fire` pokemon as `Fire`, etc. 
+Which variables might we want to include as predictors in a knn model? 
 
-In order to examine the performance of a particular model, we'll create a __confusion matrix__ that shows the results of the model's classification on observations in the test data set. An equivalent name for the confusion matrix is a __classification table__.
+__Exercise 1__. Construct another scatterplot matrix with `Type` and a different set of predictors. Which predictors look like they might be useful to include in a knn model to predict `Type`?
 
-The following video explains confusion matrices in more detail and should also cement the ideas of training and test data. <a href="https://www.youtube.com/watch?v=Kdsp6soqA7o" target="_blank">https://www.youtube.com/watch?v=Kdsp6soqA7o</a>.
-
-### Using knn in `R`
-
-To make a confusion matrix for a model using the pokemon data set, we first need to obtain predictions from a model. We'll use the `class` library to fit a knn model to the pokemon data. 
-
-::: {.callout-note}
-## Note
-
-Instead of having 15 Pokemon in our training data set, we now have __70__ pokemon to give a more reasonable number. The test set has the remaining __50__ pokemon.
-:::
-
-The following code chunk sets a seed so that we all get the same training and test samples, scales all numeric variables in the pokemon data set, and then randomly selects 70 pokemon to be in the training sample.
-
-```{r, appendix = TRUE}
-library(tidyverse)
-set.seed(11232020) ## run this line so that you get the same 
-## results as I do!
-
-## scale the quantitative predictors
-pokemon_scaled <- pokemon |>
-    mutate(across(where(is.numeric), ~ (.x - min(.x)) /
-                                 (max(.x) - min(.x)))) 
-
-train_sample_2 <- pokemon_scaled |>
-  slice_sample(n = 70)
-test_sample_2 <- anti_join(pokemon_scaled, train_sample_2)
-```
-
-The first knn model we will investigate will have `HP`, `Attack`, `Defense`, and `Speed` as predictors. The `class` library can fit knn models with a `knn()` function but requires the training and test data sets to have __only__ the predictors that we want to use to fit the model. The `knn()` function also requires the response variable, `Type`, to be given as a vector.
+After we decide on an initial set of predictors to include, we'll use the `class` package to fit a knn model in `R`. For our first model, let's just use `HP`, `Attack` and `Defense` as predictors. The `class` library can fit knn models with a `knn()` function but requires the training and test data sets to have __only__ the predictors that we want to use to fit the model. The `knn()` function also requires that the response variable, `Type`, be given as a vector to the `cl` argument.
 
 ```{r, appendix = TRUE}
 ## install.packages("class")
@@ -278,12 +75,12 @@ library(class)
 
 ## create a data frame that only has the predictors
 ## that we will use
-train_small <- train_sample_2 |> select(HP, Attack, Defense, Speed)
-test_small <- test_sample_2 |> select(HP, Attack, Defense, Speed)
+train_small <- train_sample |> select(HP, Attack, Defense, Speed)
+test_small <- test_sample |> select(HP, Attack, Defense, Speed)
 
 ## put our response variable into a vector
-train_cat <- train_sample_2$Type
-test_cat <- test_sample_2$Type
+train_cat <- train_sample$Type
+test_cat <- test_sample$Type
 ```
 
 Now that the data has been prepared for the `knn()` function in the `class` library, we fit the model with 9 nearest neighbors. The arguments to `knn()` are 
@@ -300,38 +97,148 @@ knn_mod <- knn(train = train_small, test = test_small,
 knn_mod
 ```
 
-The output of `knn_mod` gives the predicted categories for the __test__ sample. We can compare the predictions from the knn model with the actual pokemon `Type`s in the test sample with `table()`, which makes a confusion matrix:
+The output of `knn_mod` gives the predicted categories for the __test__ sample. So, the first pokemon in the test sample is predicted to be `Fire` type, the second is predicted to be `Fire` type, etc.
+
+## Evaluating a Predictive Model
+
+But, how well did our model classify pokemon into `Type`s? We still need a metric to evaluate models with different predictors. One definition of a "good" model in the classification context is a model that has a high proportion of correct predictions in the test data set. This should make some intuitive sense, as we would hope that a "good" model correctly classifies most `Dark` pokemon as `Dark`, most `Fire` pokemon as `Fire`, etc. 
+
+In order to examine the performance of a particular model, we'll create a __classification table__ that shows the results of the model's classification on observations in the test data set. An equivalent name for the confusion matrix is a __confusion matrix__.
+
+We can compare the predictions from the knn model with the actual pokemon `Type`s in the test sample with `table()`, which makes the classification table:
 
 ```{r, appendix = TRUE}
 table(knn_mod, test_cat) 
 ```
 
-The columns of the confusion matrix give the actual Pokemon types in the test data while the rows give the predicted types from our knn model. The above table tells us that there were 0 pokemon that were Dark type that our knn model correctly classified as Dark. There were 6 pokemon that were Dark type that our knn model incorrectly classified as Fire. There were 5 pokemon that were Dark type and that our knn model incorrectly classified as Ice. In other words, correct predictions appear on the diagonal, while incorrect predictions appear on the off-diagonal. 
+The columns of the classification table give the actual Pokemon types in the test data while the rows give the predicted types from our knn model. 
 
-One common metric used to assess overall model performance is the model's __classification rate__, which is computed as the number of correct classifications divided by the total number of observations in the test data set. In this case, our classification rate is
+__Exercise 2__. Interpret the value of `11` in the classification table above.
 
-```{r, appendix = TRUE}
-(0 + 13 + 2 + 3) / 50
-```
+__Exercise 3__. Interpret the value of `3` in the column with `Fire` and the row with `Dark`.
+
+__Exercise 4__. Interpret the value of `0` in the bottom-left of the classification table above.
+
+One common metric used to assess overall model performance is the model's __classification rate__, which is computed as the number of correct classifications divided by the total number of observations in the test data set. 
+
+__Exercise 5__. Compute the classification rate "by hand" (that is, by using `R` as a calculator).
 
 Code to automatically obtain the classification rate from a confusion matrix is
 
-```{r, appendix = TRUE}
+```{r}
+#| output: false
 tab <- table(knn_mod, test_cat) 
 sum(diag(tab)) / sum(tab)
 ```
 
 What does `diag()` seem to do in the code above?
 
-### Exercises {#exercise-13-3}
+__Exercise 6__. Change the predictors used or change k to improve the classification rate of the model with `k = 9` and `Attack`, `Defense`, `HP`, and `Speed` as predictors.
 
-Exercises marked with an \* indicate that the exercise has a solution at the end of the chapter at \@ref(solutions-13).
+__Exercise 7__. A baseline classification rate to compare to is a model that just classifies everything in the test data set as the most common `Type` in the training data set. In this case, what would the "baseline" classification rate be?
 
-1. Change the predictors used or change k to improve the classification rate of the model with `k = 9` and `Attack`, `Defense`, `HP`, and `Speed` as predictors.
+__Exercise 8__. We will choose $k$, the number of neighbors considered, using a bit of trial and error, but we will also automate the process by writing a for loop to loop through different values of $k$. However, we should discuss the relative advantages of smaller and larger k values. Which value is "best" is entirely dependent on the data at hand! What are some advantages for making k smaller? What are some advantages for making k larger?
 
 ## Practice
 
-There will be no class exercises nor any your turn exercises for this section. Instead, you will apply some of these concepts in your third project.
+### Class Exercises
+
+Examine the following code that fits a knn model using the pokemon data set with $k$ set to $9$. For this example, we are using the full pokemon data set (with all Types), so, we might expect our classification rate to be a bit lower.
+
+```{r}
+#| output: false
+library(tidyverse)
+
+pokemon <- read_csv(here::here("data/pokemon_full.csv")) 
+set.seed(1119)
+
+## scale the quantitative predictors
+pokemon_scaled <- pokemon |>
+  mutate(across(where(is.numeric), ~ (.x - min(.x)) /
+                  (max(.x) - min(.x))))
+
+train_sample <- pokemon_scaled |>
+  slice_sample(n = 550)
+test_sample <- anti_join(pokemon_scaled, train_sample)
+
+library(class)
+
+train_pokemon <- train_sample |> select(HP, Attack, Defense, Speed,
+                                        SpAtk, SpDef, height, weight)
+test_pokemon <- test_sample |> select(HP, Attack, Defense, Speed,
+                                      SpAtk, SpDef, height, weight)
+
+## put our response variable into a vector
+train_cat <- train_sample$Type
+test_cat <- test_sample$Type
+
+knn_mod <- knn(train = train_pokemon, test = test_pokemon,
+               cl = train_cat, k = 9)
+knn_mod
+
+tab <- table(knn_mod, test_cat)
+sum(diag(tab)) / sum(tab)
+```
+
+If we want to automate generating a classification rate for a knn model with particular predictors, we have two major choices: loop through different values of $k$ or write a function and `map()` across different values of $k$.
+
+__Class Exercise 1__. First, we will see how this would work if we were to write a for loop for different values of $k$:
+
+```{r}
+#| output: false
+
+## define an empty vector to store results
+class_rate <- double()
+
+knn_mod <- knn(train = train_pokemon, test = test_pokemon,
+               cl = train_cat, k = 9)
+knn_mod
+
+tab <- table(knn_mod, test_cat)
+sum(diag(tab)) / sum(tab)
+```
+
+```{r}
+#| echo: false
+#| output: false
+
+class_rate <- double()
+
+for (i in 1:70) {
+  knn_mod <- knn(train = train_pokemon, test = test_pokemon,
+                 cl = train_cat, k = i)
+  knn_mod
+  
+  tab <- table(knn_mod, test_cat)
+  class_rate[i] <- sum(diag(tab)) / sum(tab)
+}
+
+class_rate
+```
+
+__Class Exercise 2__. Next, we will take a functional programming approach, by writing a function and mapping different values of $k$ through that function.
+
+```{r}
+#| echo: false
+#| output: false
+
+get_class_rate <- function(k_val) {
+  knn_mod <- knn(train = train_pokemon, test = test_pokemon,
+                 cl = train_cat, k = k_val)
+  knn_mod
+  
+  tab <- table(knn_mod, test_cat)
+  class_rate <- sum(diag(tab)) / sum(tab)
+  return(class_rate)
+}
+
+k_vec <- 1:70
+map(k_vec, get_class_rate) |> unlist()
+```
+
+### Your Turn
+
+There will be no your turn exercises for this section. Instead, you will apply some of these concepts in your third project.
 
 
 
