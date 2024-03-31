@@ -143,24 +143,10 @@ tennis_query1 |>
   show_query()
 ```
 
-To get a better idea about what `SQL` code looks like, let's make one more query with `dplyr` code and use the `show_query()` function to give the native `SQL`:
-
-```{r, appendix = TRUE}
-medvedev_query <- tennis_db |>
-  pivot_longer(c(winner_name, loser_name), names_to = "win_loss",
-               values_to = "player") |>
-  filter(player == "Daniil Medvedev") |>
-  group_by(win_loss) |>
-  summarise(win_loss_count = n())
-medvedev_query
-show_query(medvedev_query)
-```
-
-The `show_query()` shows the native `SQL` code for a pivot: yikes! Remember that `SQL` was __not__ designed for data analysis, so it doesn't always look pretty. We'll do one more simpler query:
+We'll do one more query:
 
 ```{r, appendix = TRUE}
 over20aces <- tennis_db |> filter(w_ace > 20) |>
-  select(w_ace, winner_name) |>
   group_by(winner_name) |>
   summarise(nmatch = n()) |>
   arrange(desc(nmatch))
@@ -309,6 +295,7 @@ __Your Turn 3__. Try to run a function from `lubridate` or `forcats` on `tennis_
 __Your Turn 4__. Run the following code and write how the `!` is translated to `SQL`.
 
 ```{r}
+#| output: false
 tennis_db |> filter(winner_name != "Daniil Medvedev") |>
   show_query()
 ```
@@ -316,6 +303,7 @@ tennis_db |> filter(winner_name != "Daniil Medvedev") |>
 __Your Turn 5__. Run the following code and write how the `%in%` symbol is translated to `SQL`.
 
 ```{r}
+#| output: false
 tennis_db |>
   filter(winner_name %in% c("Daniil Medvedev", "Dominic Thiem")) |>
   show_query()

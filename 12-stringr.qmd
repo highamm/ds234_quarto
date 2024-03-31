@@ -115,7 +115,7 @@ We analyzed a short text data set, but, you can imagine extending this type of a
 * book analysis, if you have the text of an entire book or series of books
 * tv analysis, if you have the scripts to all episodes of a tv show
 
-If you were doing one of these analyses, there are lots of cool functions in `tidytext` to help you out! We will do one more example, this time looking at Donald Trump's twitter account in 2016.
+If you were doing one of these analyses, there are lots of cool functions in `tidytext` to help you out!
 
 <!-- see below: sentiment analysis for the friends package -->
 
@@ -125,7 +125,7 @@ If you were doing one of these analyses, there are lots of cool functions in `ti
 
 ## Introduction to `stringr`
 
-In the previous examples, the string data that we had consisted primarily of __words__. The tools in `tidytext` make working with data consisting of words not too painful. However, some data exists as strings that are __not__ words. For a non-trivial example, consider data sets obtained from <https://github.com/JeffSackmann/tennis_MatchChartingProject>, a repository for professional tennis match charting put together by Jeff Sackmann. Some of the following code was modified from a project completed by James Wolpe in a data visualization course.
+In the previous examples, the string data that we had consisted primarily of __words__. The tools in `tidytext` make working with data consisting of words not too painful. However, some data exists as strings that are __not__ words. For a non-trivial example, consider data sets obtained from <https://github.com/JeffSackmann/tennis_MatchChartingProject>, a repository for professional tennis match charting put together by Jeff Sackmann. Some of the following code was modified from a project completed by a now-graduated student, James Wolpe.
 
 From this repository, I have put together a data set on one particular tennis match to make it a bit easier for us to get started. The match I have chosen is the 2021 U.S. Open Final between Daniil Medvedev and Novak Djokovic. Why this match? This was arguably the most important match of Djokovic's career: if he won, he would win all four grand slams in a calendar year. I don't like Djokovic and he lost so looking back at the match brings me joy. Read in the data set with:
 
@@ -220,8 +220,8 @@ We can then use `mutate()` with `case_when()` to create a variable corresponding
 ```{r, appendix = TRUE}
 med_djok_df |> filter(str_detect(point, pattern = "@") == TRUE) |>
   mutate(error_type = case_when(str_detect(point, pattern = "d@") ~ "deep error",
-                                   str_detect(point, pattern = "w@") ~ "wide error",
-            str_detect(point, pattern = "n@") ~ "net error")) |>
+                                str_detect(point, pattern = "w@") ~ "wide error",
+                                str_detect(point, pattern = "n@") ~ "net error")) |>
   group_by(PtWinner, error_type) |>
   summarise(n_errors = n())
 ```
@@ -268,9 +268,34 @@ __Exercise 4__. Use `str_detect()` and the `dplyr` functions `mutate()` and `cas
 
 ### Class Exercises
 
-__Class Exercise 1__. We will use a provided .qmd file to replicate what is called a __sentiment analysis__ on Trump's twitter account from 2016. This analysis was used in conjunction with a major news story that hypothesized that Trump himself wrote tweets from an Android device while his campaign staff wrote tweets for him from an iPhone device. We will investigate what properties of his tweets led the author to believe this.
+__Class Exercise 1__. You can often find scripts for television shows. Two of the more popular television shows, the office and friends, have `R` packages containing clean-up scripts for the entire series. Construct a plot that shows the 20 most common words Michael says that are not classified as "stop" words.
 
-The `.qmd` file used for this is posted on Canvas. We will see more uses of `stringr` for this particular analysis. For this entire section, you should be able to follow along and understand what each line of code is doing. However, unlike other topics, you will not be expected to do a sentiment analysis on your own.
+```{r}
+#| output: false
+## install.packages("schrute")
+library(schrute)
+schrute::theoffice
+
+## install.packages("friends")
+library(friends)
+friends::friends
+```
+
+```{r}
+#| echo: false
+#| output: false
+office_unnest <- theoffice |> filter(character == "Michael") |>
+  unnest_tokens(output = "word", input = "text") |>
+  mutate(word = str_to_lower(word))
+
+other_stops <- tibble::tibble(word = c("hey", "yeah", "uh", "um",
+                                       "gonna", "alright"))
+office_nostop <- anti_join(office_unnest, stop_words, by = join_by(word == word)) |> anti_join(other_stops)
+office_nostop |> group_by(word) |>
+  summarise(number_word = n()) |>
+  arrange(desc(number_word)) |>
+  slice(1:20)
+```
 
 ### Your Turn
 
