@@ -137,6 +137,23 @@ __Exercise 6__. Change the predictors used or change k to improve the classifica
 
 __Exercise 7__. A baseline classification rate to compare to is a model that just classifies everything in the test data set as the most common `Type` in the training data set. In this case, what would the "baseline" classification rate be?
 
+```{r}
+#| echo: false
+#| output: false
+
+train_sample |> group_by(Type) |>
+  summarise(n = n())
+## baseline classification would classify every Pokemon in the test sample 
+## as Fire
+
+test_sample |>
+  mutate(correct_fire = if_else(Type == "Fire",
+                                true = 1,
+                                false = 0)) |>
+  relocate(correct_fire) |>
+  summarise(prop_fire = mean(correct_fire))
+```
+
 __Exercise 8__. We will choose $k$, the number of neighbors considered, using a bit of trial and error, but we will also automate the process by writing a for loop to loop through different values of $k$. However, we should discuss the relative advantages of smaller and larger k values. Which value is "best" is entirely dependent on the data at hand! What are some advantages for making k smaller? What are some advantages for making k larger?
 
 ## Practice
@@ -180,46 +197,12 @@ tab <- table(knn_mod, test_cat)
 sum(diag(tab)) / sum(tab)
 ```
 
-If we want to automate generating a classification rate for a knn model with particular predictors, we have two major choices: loop through different values of $k$ or write a function and `map()` across different values of $k$.
+If we want to automate generating a classification rate for a knn model with particular predictors, we have two major choices: write a function and `map()` across different values of $k$ or loop through different values of $k$ with a `for` loop.
 
-__Class Exercise 1__. First, we will see how this would work if we were to write a for loop for different values of $k$:
-
-```{r}
-#| output: false
-
-## define an empty vector to store results
-class_rate <- double()
-
-knn_mod <- knn(train = train_pokemon, test = test_pokemon,
-               cl = train_cat, k = 9)
-knn_mod
-
-tab <- table(knn_mod, test_cat)
-sum(diag(tab)) / sum(tab)
-```
+__Class Exercise 1__. First, we will take a functional programming approach, by writing a function and "mapping" different values of $k$ through that function. The following code writes a function called `get_class_rate` that has just a single argument: `k_val`
 
 ```{r}
-#| echo: false
-#| output: false
-
-class_rate <- double()
-
-for (i in 1:70) {
-  knn_mod <- knn(train = train_pokemon, test = test_pokemon,
-                 cl = train_cat, k = i)
-  knn_mod
-  
-  tab <- table(knn_mod, test_cat)
-  class_rate[i] <- sum(diag(tab)) / sum(tab)
-}
-
-class_rate
-```
-
-__Class Exercise 2__. Next, we will take a functional programming approach, by writing a function and mapping different values of $k$ through that function.
-
-```{r}
-#| echo: false
+#| echo: true
 #| output: false
 
 get_class_rate <- function(k_val) {
@@ -229,11 +212,66 @@ get_class_rate <- function(k_val) {
   
   tab <- table(knn_mod, test_cat)
   class_rate <- sum(diag(tab)) / sum(tab)
+  
   return(class_rate)
 }
+```
 
+a. Run the code and then test the function by running `get_class_rate(k_val = 10)`, which should return the classification rate using `10` nearest neighbors.
+
+b. Together, we will define a vector of k values that we want to map through the function and then write code to perform the mapping using the `map()` function from the `purrr` package.
+
+```{r}
+#| echo: false
+#| output: false
 k_vec <- 1:70
 map(k_vec, get_class_rate) |> unlist()
+```
+
+c. Put the classification rates, along with the vector of k values into a `tibble()`.
+
+```{r}
+#| echo: false
+#| output: false
+class_rates <- map(k_vec, get_class_rate) |> unlist()
+class_df <- tibble(k_values = k_vec,
+                   class_rates = class_rates)
+```
+
+d. Make a line plot that shows how the classification rate changes for different values of `k`.
+
+```{r}
+#| echo: false
+#| output: false
+ggplot(data = class_df, aes(x = k_values, y = class_rates)) +
+  geom_line() +
+  theme_minimal()
+```
+
+The code below gives an equivalent way to map or loop through values of $k$ using a `for` loop. If you have taken CS 140, you should be able to see a lot of similarities between how loops are defiend in `R` and how they are defined in Python.
+
+```{r}
+#| output: false
+
+## define an empty vector to store results
+class_rate <- double()
+
+## define values of k that we want to loop through
+k_vec <- 1:70
+
+for (i in 1:70) {
+  knn_mod <- knn(train = train_pokemon, test = test_pokemon,
+                 cl = train_cat, k = k_vec[i])
+  knn_mod
+  
+  tab <- table(knn_mod, test_cat)
+  
+  ## for the ith value of k_vec, store the classification rate as 
+  ## the ith value of class_rate
+  class_rate[i] <- sum(diag(tab)) / sum(tab)
+}
+
+class_rate
 ```
 
 ### Your Turn

@@ -320,9 +320,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://lubridate.tidyverse.org">lubridate</a></span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://lubridate.tidyverse.org/reference/now.html">today</a></span><span class="op">(</span><span class="op">)</span></span>
-<span><span class="co">#&gt; [1] "2024-03-31"</span></span>
+<span><span class="co">#&gt; [1] "2024-04-04"</span></span>
 <span><span class="fu"><a href="https://lubridate.tidyverse.org/reference/now.html">now</a></span><span class="op">(</span><span class="op">)</span></span>
-<span><span class="co">#&gt; [1] "2024-03-31 12:21:26 EDT"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="co">#&gt; [1] "2024-04-04 09:24:30 EDT"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>This first section will deal with how to convert a variable in <code>R</code> to be a <code>Date</code>. We will use a data set that has the holidays of Animal Crossing from January to April. The columns in this data set are:</p>
 <ul>
@@ -401,7 +401,8 @@ Important
 <p><strong>A Reminder</strong>: Why do <code>&lt;date&gt;</code> objects even matter? Compare the following two plots: one made where the date is in <code>&lt;chr&gt;</code> form and the other where date is in its appropriate <code>&lt;date&gt;</code> form.</p>
 <div class="cell" data-appendix="true">
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">holiday_df</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">Date1</span>, y <span class="op">=</span> <span class="va">Holiday</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span> </span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_minimal</a></span><span class="op">(</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <p><img src="11-lubridate_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid" width="672"></p>
 </div>
@@ -409,7 +410,8 @@ Important
 <span><span class="va">holiday_df</span> <span class="op">&lt;-</span> <span class="va">holiday_df</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>Date_test_plot <span class="op">=</span> <span class="fu"><a href="https://lubridate.tidyverse.org/reference/ymd.html">dmy</a></span><span class="op">(</span><span class="va">Date1</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">Date_test_plot</span>, <span class="fu"><a href="https://tidyselect.r-lib.org/reference/everything.html">everything</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">holiday_df</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">Date_test_plot</span>, y <span class="op">=</span> <span class="va">Holiday</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_minimal</a></span><span class="op">(</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <p><img src="11-lubridate_files/figure-html/unnamed-chunk-5-2.png" class="img-fluid" width="672"></p>
 </div>
@@ -537,7 +539,8 @@ Note
 <div class="cell" data-appendix="true">
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">stocks_sp</span> <span class="op">&lt;-</span> <span class="va">stocks_long</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">Stock_Type</span> <span class="op">==</span> <span class="st">"S &amp; P 500"</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">stocks_sp</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">start_date</span>, y <span class="op">=</span> <span class="va">Price</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_path.html">geom_line</a></span><span class="op">(</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_path.html">geom_line</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_minimal</a></span><span class="op">(</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <p><img src="11-lubridate_files/figure-html/unnamed-chunk-10-1.png" class="img-fluid" width="672"></p>
 </div>
@@ -642,19 +645,7 @@ Note
 <span class="header-section-number">12.3</span> Practice</h2>
 <section id="class-exercises" class="level3" data-number="12.3.1"><h3 data-number="12.3.1" class="anchored" data-anchor-id="class-exercises">
 <span class="header-section-number">12.3.1</span> Class Exercises</h3>
-<p><strong>Class Exercise 1</strong>. The <code>truncated</code> argument to <code><a href="https://lubridate.tidyverse.org/reference/ymd.html">ymd()</a></code>, <code><a href="https://lubridate.tidyverse.org/reference/ymd.html">dmy()</a></code>, <code><a href="https://lubridate.tidyverse.org/reference/ymd.html">mdy()</a></code>, etc. will allow <code>R</code> to parse dates that aren’t actually complete. For example,</p>
-<div class="cell">
-<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://lubridate.tidyverse.org">lubridate</a></span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://lubridate.tidyverse.org/reference/ymd.html">ymd</a></span><span class="op">(</span><span class="st">"2019"</span>, truncated <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></span>
-<span><span class="co">#&gt; [1] "2019-01-01"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>parses <code>2019</code> to be January 1, 2019 when the month and day are missing. The <code>2</code> means that the last two parts of the date (in this case, month and day) are allowed to be missing. Similarly,</p>
-<div class="cell">
-<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://lubridate.tidyverse.org/reference/ymd.html">dmy</a></span><span class="op">(</span><span class="st">"19-10"</span>, truncated <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></span>
-<span><span class="co">#&gt; [1] "0000-10-19"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>truncates the year (which is given as <code>0000</code>). The truncate function is usually most useful in the context of the first example with a truncated month and/or day.</p>
-<p>Examine the <code>ds_google.csv</code>, which contains</p>
+<p>Examine the <code>ds_google.csv</code> data, which contains</p>
 <ul>
 <li>
 <code>Month</code>, the year and month from 2004 to now</li>
@@ -662,7 +653,7 @@ Note
 <code>Data_Science</code>, the relative popularity of data science (Google keeps how it calculates “popularity” as somewhat of a mystery but it is likely based off of the number of times people search for the term “Data Science”)</li>
 </ul>
 <div class="cell">
-<div class="sourceCode" id="cb18"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span></span>
+<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://lubridate.tidyverse.org">lubridate</a></span><span class="op">)</span></span>
 <span><span class="va">ds_df</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv</a></span><span class="op">(</span><span class="fu"><a href="https://here.r-lib.org//reference/here.html">here</a></span><span class="op">(</span><span class="st">"data/ds_google.csv"</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="va">ds_df</span></span>
@@ -677,10 +668,13 @@ Note
 <span><span class="co">#&gt; 6 2004-06            8</span></span>
 <span><span class="co">#&gt; # ℹ 196 more rows</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Use a <code>lubridate</code> function with the <code>truncated</code> option to convert the <code>Month</code> variable to be in the <code>&lt;date&gt;</code> format.</p>
+<p><strong>Class Exercise 1</strong>. Use a <code>lubridate</code> function to convert the <code>Month</code> variable to be in the <code>&lt;date&gt;</code> format. Note that, in addition to <code><a href="https://lubridate.tidyverse.org/reference/ymd.html">mdy()</a></code>, <code><a href="https://lubridate.tidyverse.org/reference/ymd.html">dmy()</a></code>, <code><a href="https://lubridate.tidyverse.org/reference/ymd.html">ymd()</a></code>, etc., there are also functions in lubridate like <code>md()</code>, <code>dm()</code>, and <code><a href="https://lubridate.tidyverse.org/reference/ymd.html">ym()</a></code> that are useful if only two of the three parts of a date are present in a variable.</p>
+<p>After converting the <code>Month</code> variable to a date, figure out what <code>R</code> does for the “day” part of the date when it’s not specified in the original variable.</p>
 <p><strong>Class Exercise 2</strong>. Make a plot of the popularity of Data Science through Time. Add a smoother to your plot. What patterns do you notice?</p>
 <p><strong>Class Exercise 3</strong>. Modify the code in the tutorial section on the Stocks data to get a data frame on stock prices for the now infamous Gamestop stock. Construct a line plot of the price through time.</p>
-<p><strong>Class Exercise 4</strong>. Use the <code><a href="https://dplyr.tidyverse.org/reference/lead-lag.html">lag()</a></code> function to create a new variable that is the previous day’s stock price. Can you predict the current stock price based on the previous day’s stock price accurately? Why or why not? Use either graphical or numerical evidence.</p>
+<p><strong>Class Exercise 4</strong>. Choose <strong>one</strong> stock and use the <code><a href="https://dplyr.tidyverse.org/reference/lead-lag.html">lag()</a></code> function to create a new variable that is the previous day’s stock price for that stock. For what proportion of days was the stock’s closing price <strong>higher</strong> than it was at close for the day before (indicating that someone who bought shares on Day xxx would have made money at the end of Day xxx + 1).</p>
+<p><strong>Class Exercise 5</strong>. Those interested in finance/economics might see the naivety of the approach above: usually, the stock market is more thought of as a long-term investment, not a day-to-day investment. For the stock that you selected, adjust your analysis so that you compute the proportion of weeks that a stock’s closing price was <strong>higher</strong> than it was at close the week before. To simplify things a little, you should only compute this proportion for <strong>Wednesdays</strong> (and drop the rest of the data).</p>
+<p><strong>Class Exercise 6</strong>. Those interested in finance/economics might see the naivety of the approach above: usually, the stock market is more thought of as a long-term investment, not a week-to-week investment. For the stock that you selected, adjust your analysis so that you compute the proportion of months that a stock’s closing price was <strong>higher</strong> than it was at close the month before. To simplify things a little, you should only compute this proportion for <strong>the first day of each month</strong> (and drop the rest of the data).</p>
 </section><section id="your-turn" class="level3" data-number="12.3.2"><h3 data-number="12.3.2" class="anchored" data-anchor-id="your-turn">
 <span class="header-section-number">12.3.2</span> Your Turn</h3>
 <p>The data in the Class Exercises was obtained from Google Trends: <a href="https://trends.google.com/trends/?geo=US" target="_blank">Google Trends</a>. Google Trends is incredibly cool to explore, even without <code>R</code>.</p>

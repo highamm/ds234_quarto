@@ -458,20 +458,52 @@ Note
 <span><span class="va">tab</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/table.html">table</a></span><span class="op">(</span><span class="va">knn_mod</span>, <span class="va">test_cat</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/diag.html">diag</a></span><span class="op">(</span><span class="va">tab</span><span class="op">)</span><span class="op">)</span> <span class="op">/</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">tab</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>If we want to automate generating a classification rate for a knn model with particular predictors, we have two major choices: loop through different values of <span class="math inline">\(k\)</span> or write a function and <code><a href="https://purrr.tidyverse.org/reference/map.html">map()</a></code> across different values of <span class="math inline">\(k\)</span>.</p>
-<p><strong>Class Exercise 1</strong>. First, we will see how this would work if we were to write a for loop for different values of <span class="math inline">\(k\)</span>:</p>
+<p>If we want to automate generating a classification rate for a knn model with particular predictors, we have two major choices: write a function and <code><a href="https://purrr.tidyverse.org/reference/map.html">map()</a></code> across different values of <span class="math inline">\(k\)</span> or loop through different values of <span class="math inline">\(k\)</span> with a <code>for</code> loop.</p>
+<p><strong>Class Exercise 1</strong>. First, we will take a functional programming approach, by writing a function and “mapping” different values of <span class="math inline">\(k\)</span> through that function. The following code writes a function called <code>get_class_rate</code> that has just a single argument: <code>k_val</code></p>
 <div class="cell">
-<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co">## define an empty vector to store results</span></span>
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">get_class_rate</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">k_val</span><span class="op">)</span> <span class="op">{</span></span>
+<span>  <span class="va">knn_mod</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/class/man/knn.html">knn</a></span><span class="op">(</span>train <span class="op">=</span> <span class="va">train_pokemon</span>, test <span class="op">=</span> <span class="va">test_pokemon</span>,</span>
+<span>                 cl <span class="op">=</span> <span class="va">train_cat</span>, k <span class="op">=</span> <span class="va">k_val</span><span class="op">)</span></span>
+<span>  <span class="va">knn_mod</span></span>
+<span>  </span>
+<span>  <span class="va">tab</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/table.html">table</a></span><span class="op">(</span><span class="va">knn_mod</span>, <span class="va">test_cat</span><span class="op">)</span></span>
+<span>  <span class="va">class_rate</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/diag.html">diag</a></span><span class="op">(</span><span class="va">tab</span><span class="op">)</span><span class="op">)</span> <span class="op">/</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">tab</span><span class="op">)</span></span>
+<span>  </span>
+<span>  <span class="kw"><a href="https://rdrr.io/r/base/function.html">return</a></span><span class="op">(</span><span class="va">class_rate</span><span class="op">)</span></span>
+<span><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<ol type="a">
+<li><p>Run the code and then test the function by running <code>get_class_rate(k_val = 10)</code>, which should return the classification rate using <code>10</code> nearest neighbors.</p></li>
+<li><p>Together, we will define a vector of k values that we want to map through the function and then write code to perform the mapping using the <code><a href="https://purrr.tidyverse.org/reference/map.html">map()</a></code> function from the <code>purrr</code> package.</p></li>
+</ol>
+<ol start="3" type="a">
+<li>Put the classification rates, along with the vector of k values into a <code><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble()</a></code>.</li>
+</ol>
+<ol start="4" type="a">
+<li>Make a line plot that shows how the classification rate changes for different values of <code>k</code>.</li>
+</ol>
+<p>The code below gives an equivalent way to map or loop through values of <span class="math inline">\(k\)</span> using a <code>for</code> loop. If you have taken CS 140, you should be able to see a lot of similarities between how loops are defiend in <code>R</code> and how they are defined in Python.</p>
+<div class="cell">
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co">## define an empty vector to store results</span></span>
 <span><span class="va">class_rate</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/double.html">double</a></span><span class="op">(</span><span class="op">)</span></span>
 <span></span>
-<span><span class="va">knn_mod</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/class/man/knn.html">knn</a></span><span class="op">(</span>train <span class="op">=</span> <span class="va">train_pokemon</span>, test <span class="op">=</span> <span class="va">test_pokemon</span>,</span>
-<span>               cl <span class="op">=</span> <span class="va">train_cat</span>, k <span class="op">=</span> <span class="fl">9</span><span class="op">)</span></span>
-<span><span class="va">knn_mod</span></span>
+<span><span class="co">## define values of k that we want to loop through</span></span>
+<span><span class="va">k_vec</span> <span class="op">&lt;-</span> <span class="fl">1</span><span class="op">:</span><span class="fl">70</span></span>
 <span></span>
-<span><span class="va">tab</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/table.html">table</a></span><span class="op">(</span><span class="va">knn_mod</span>, <span class="va">test_cat</span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/diag.html">diag</a></span><span class="op">(</span><span class="va">tab</span><span class="op">)</span><span class="op">)</span> <span class="op">/</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">tab</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="kw">for</span> <span class="op">(</span><span class="va">i</span> <span class="kw">in</span> <span class="fl">1</span><span class="op">:</span><span class="fl">70</span><span class="op">)</span> <span class="op">{</span></span>
+<span>  <span class="va">knn_mod</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/class/man/knn.html">knn</a></span><span class="op">(</span>train <span class="op">=</span> <span class="va">train_pokemon</span>, test <span class="op">=</span> <span class="va">test_pokemon</span>,</span>
+<span>                 cl <span class="op">=</span> <span class="va">train_cat</span>, k <span class="op">=</span> <span class="va">k_vec</span><span class="op">[</span><span class="va">i</span><span class="op">]</span><span class="op">)</span></span>
+<span>  <span class="va">knn_mod</span></span>
+<span>  </span>
+<span>  <span class="va">tab</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/table.html">table</a></span><span class="op">(</span><span class="va">knn_mod</span>, <span class="va">test_cat</span><span class="op">)</span></span>
+<span>  </span>
+<span>  <span class="co">## for the ith value of k_vec, store the classification rate as </span></span>
+<span>  <span class="co">## the ith value of class_rate</span></span>
+<span>  <span class="va">class_rate</span><span class="op">[</span><span class="va">i</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/diag.html">diag</a></span><span class="op">(</span><span class="va">tab</span><span class="op">)</span><span class="op">)</span> <span class="op">/</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">tab</span><span class="op">)</span></span>
+<span><span class="op">}</span></span>
+<span></span>
+<span><span class="va">class_rate</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p><strong>Class Exercise 2</strong>. Next, we will take a functional programming approach, by writing a function and mapping different values of <span class="math inline">\(k\)</span> through that function.</p>
 </section><section id="your-turn" class="level3" data-number="14.4.2"><h3 data-number="14.4.2" class="anchored" data-anchor-id="your-turn">
 <span class="header-section-number">14.4.2</span> Your Turn</h3>
 <p>There will be no your turn exercises for this section. Instead, you will apply some of these concepts in your third project.</p>

@@ -69,12 +69,14 @@ __A Reminder__: Why do `<date>` objects even matter? Compare the following two p
 
 ```{r, appendix = TRUE}
 ggplot(data = holiday_df, aes(x = Date1, y = Holiday)) +
-  geom_point()
+  geom_point() + 
+  theme_minimal()
 
 holiday_df <- holiday_df |> mutate(Date_test_plot = dmy(Date1)) |>
   select(Date_test_plot, everything())
 ggplot(data = holiday_df, aes(x = Date_test_plot, y = Holiday)) +
-  geom_point()
+  geom_point() +
+  theme_minimal()
 ```
 
 In which plot does the ordering on the x-axis make more sense?
@@ -161,7 +163,8 @@ First, let's make a line plot that shows how the S & P 500 has changed over time
 ```{r, appendix = TRUE}
 stocks_sp <- stocks_long |> filter(Stock_Type == "S & P 500")
 ggplot(data = stocks_sp, aes(x = start_date, y = Price)) +
-  geom_line()
+  geom_line() +
+  theme_minimal()
 ```
 
 But, there's other information that we can get from the `start_date` variable. We might be interested in things like day of the week, monthly trends, or yearly trends. To extract variables like "weekday" and "month" from a `<date>` variable, there are a series of functions that are fairly straightforward to use. We will discuss the `year()` `month()`, `mday()`, `yday()`, and `wday()` functions.
@@ -245,22 +248,7 @@ stocks_long |> mutate(month_stock = month(start_date))
 
 ### Class Exercises
 
-__Class Exercise 1__. The `truncated` argument to `ymd()`, `dmy()`, `mdy()`, etc. will allow `R` to parse dates that aren't actually complete. For example,
-
-```{r}
-library(lubridate)
-ymd("2019", truncated = 2)
-```
-
-parses `2019` to be January 1, 2019 when the month and day are missing. The `2` means that the last two parts of the date (in this case, month and day) are allowed to be missing. Similarly,
-
-```{r}
-dmy("19-10", truncated = 1)
-```
-
-truncates the year (which is given as `0000`). The truncate function is usually most useful in the context of the first example with a truncated month and/or day.
-
-Examine the `ds_google.csv`, which contains
+Examine the `ds_google.csv` data, which contains
 
 * `Month`, the year and month from 2004 to now
 * `Data_Science`, the relative popularity of data science (Google keeps how it calculates "popularity" as somewhat of a mystery but it is likely based off of the number of times people search for the term "Data Science")
@@ -272,13 +260,90 @@ ds_df <- read_csv(here("data/ds_google.csv"))
 ds_df
 ```
 
-Use a `lubridate` function with the `truncated` option to convert the `Month` variable to be in the `<date>` format.
+__Class Exercise 1__. Use a `lubridate` function to convert the `Month` variable to be in the `<date>` format. Note that, in addition to `mdy()`, `dmy()`, `ymd()`, etc., there are also functions in lubridate like `md()`, `dm()`, and `ym()` that are useful if only two of the three parts of a date are present in a variable. 
+
+After converting the `Month` variable to a date, figure out what `R` does for the "day" part of the date when it's not specified in the original variable.
 
 __Class Exercise 2__. Make a plot of the popularity of Data Science through Time. Add a smoother to your plot. What patterns do you notice?
 
 __Class Exercise 3__. Modify the code in the tutorial section on the Stocks data to get a data frame on stock prices for the now infamous Gamestop stock. Construct a line plot of the price through time.
 
-__Class Exercise 4__. Use the `lag()` function to create a new variable that is the previous day's stock price. Can you predict the current stock price based on the previous day's stock price accurately? Why or why not? Use either graphical or numerical evidence.
+__Class Exercise 4__. Choose __one__ stock and use the `lag()` function to create a new variable that is the previous day's stock price for that stock. For what proportion of days was the stock's closing price __higher__ than it was at close for the day before (indicating that someone who bought shares on Day xxx would have made money at the end of Day xxx + 1).
+
+```{r}
+#| echo: false
+#| output: false
+library(quantmod)
+
+start <- ymd("2011-01-01")
+end <- ymd("2021-5-19")
+getSymbols(c("AAPL", "NTDOY", "CMG", "SPY"), src = "yahoo",
+           from = start, to = end)
+
+date_tib <- as_tibble(index(AAPL)) |>
+  rename(start_date = value)
+app_tib <- as_tibble(AAPL)
+nint_tib <- as_tibble(NTDOY)
+chip_tib <- as_tibble(CMG)
+spy_tib <- as_tibble(SPY)
+all_stocks <- bind_cols(date_tib, app_tib, nint_tib, chip_tib, spy_tib)
+
+stocks_long <- all_stocks |>
+  select(start_date, AAPL.Adjusted, NTDOY.Adjusted,
+                      CMG.Adjusted, SPY.Adjusted) |>
+  pivot_longer(2:5, names_to = "Stock_Type", values_to = "Price") |>
+  mutate(Stock_Type = fct_recode(Stock_Type,
+                                 Apple = "AAPL.Adjusted",
+                                 Nintendo = "NTDOY.Adjusted",
+                                 Chipotle = "CMG.Adjusted",
+                                 `S & P 500` = "SPY.Adjusted"
+                                 ))
+tail(stocks_long)
+stocks_long <- stocks_long |> filter(Stock_Type == "Chipotle") |>
+  mutate(price_lag = lag(Price)) |>
+  mutate(diff = Price - price_lag)
+stocks_long |> mutate(gain_or_loss = if_else(diff > 0,
+                      true = 1,
+                      false = 0)) |>
+  summarise(prop_gain = mean(gain_or_loss, na.rm = TRUE))
+```
+
+__Class Exercise 5__. Those interested in finance/economics might see the naivety of the approach above: usually, the stock market is more thought of as a long-term investment, not a day-to-day investment. For the stock that you selected, adjust your analysis so that you compute the proportion of weeks that a stock's closing price was __higher__ than it was at close the week before. To simplify things a little, you should only compute this proportion for __Wednesdays__ (and drop the rest of the data).
+
+```{r}
+#| echo: false
+#| eval: false
+
+stocks_long |> mutate(day_of_week = wday(start_date, label = TRUE)) |>
+  filter(day_of_week == "Wed") |>
+  mutate(price_lag = lag(Price)) |>
+  mutate(diff = Price - price_lag) |>
+  mutate(gain_or_loss = if_else(diff > 0,
+                      true = 1,
+                      false = 0)) |>
+  summarise(prop_gain = mean(gain_or_loss, na.rm = TRUE))
+```
+
+__Class Exercise 6__. Those interested in finance/economics might see the naivety of the approach above: usually, the stock market is more thought of as a long-term investment, not a week-to-week investment. For the stock that you selected, adjust your analysis so that you compute the proportion of months that a stock's closing price was __higher__ than it was at close the month before. To simplify things a little, you should only compute this proportion for __the first day of each month__ (and drop the rest of the data).
+
+```{r}
+#| echo: false
+#| eval: false
+
+stocks_long |> mutate(month = month(start_date),
+                      year = year(start_date)) |>
+  group_by(month, year) |>
+  slice(1) |>
+  arrange(year, month) |>
+  ungroup() |>
+  mutate(price_lag = lag(Price)) |>
+  mutate(diff = Price - price_lag) |>
+  mutate(gain_or_loss = if_else(diff > 0,
+                      true = 1,
+                      false = 0)) |>
+  summarise(prop_gain = mean(gain_or_loss, na.rm = TRUE))
+```
+
 
 ### Your Turn
 
@@ -316,7 +381,8 @@ ggplot(data = videogame_long, aes(x = date,
                                   y = popularity,
                                   colour = game)) +
   geom_line() +
-  scale_colour_viridis_d(begin = 0, end = 0.9)
+  scale_colour_viridis_d(begin = 0, end = 0.9) +
+  theme_minimal()
 ```
 
 __Your Turn 3__. Using your data set that explored a variable or two from 2004 through now, make a table of the __average__ popularity for each year.
@@ -342,7 +408,8 @@ __Your Turn 5__. Make a plot of your popularity variable through time, adding a 
 ggplot(data = steelers_df, aes(x = day_var, y = Steelers)) +
   geom_smooth() + 
   geom_line() +
-  labs(y = "Popularity")
+  labs(y = "Popularity") +
+  theme_minimal()
 ```
 
 __Your Turn 6__. Using your data set that explored a variable from the past 90 days, construct a table that compares the __average__ popularity on each day of the week (Monday through Saturday). 
