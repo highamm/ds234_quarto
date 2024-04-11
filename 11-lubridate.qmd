@@ -393,7 +393,7 @@ __Your Turn 3__. Using your data set that explored a variable or two from 2004 t
 You'll need a `lubridate` function to extract the year variable from the date object.
 :::
 
-__Your Turn 4__. Clear your search and now enter a search term that you'd like to investigate for the past 90 days. Mine will be "Pittsburgh Steelers" but, again, yours should be something that interests you.
+__Your Turn 4__. Clear your search and now enter a search term that you'd like to investigate for the past 90 days.
 
 Again, click the download button again and read in the data to `R`. Convert the date variable to be in `<date>` format.
 
@@ -412,10 +412,10 @@ ggplot(data = steelers_df, aes(x = day_var, y = Steelers)) +
   theme_minimal()
 ```
 
-__Your Turn 6__. Using your data set that explored a variable from the past 90 days, construct a table that compares the __average__ popularity on each day of the week (Monday through Saturday). 
+<!-- __Your Turn 6__. Using your data set that explored a variable from the past 90 days, construct a table that compares the __average__ popularity on each day of the week (Monday through Saturday).  -->
 
-__Your Turn 7__. Examine the `ds_df` data set again, the data set on data science in Google Trends, and suppose that you have an observation for __each__ day of every year (not just one observation per month). You want to look at whether data science is more popular on certain days of the week. Explain why the following strategy __wouldn't__ really work that well. 
+<!-- __Your Turn 7__. Examine the `ds_df` data set again, the data set on data science in Google Trends, and suppose that you have an observation for __each__ day of every year (not just one observation per month). You want to look at whether data science is more popular on certain days of the week. Explain why the following strategy __wouldn't__ really work that well.  -->
 
-* create a weekday variable with `wday()`
-* use `summarise()` and `group_by()` to find the average popularity for each day of the week
+<!-- * create a weekday variable with `wday()` -->
+<!-- * use `summarise()` and `group_by()` to find the average popularity for each day of the week -->
 

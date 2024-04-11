@@ -320,9 +320,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://lubridate.tidyverse.org">lubridate</a></span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://lubridate.tidyverse.org/reference/now.html">today</a></span><span class="op">(</span><span class="op">)</span></span>
-<span><span class="co">#&gt; [1] "2024-04-04"</span></span>
+<span><span class="co">#&gt; [1] "2024-04-11"</span></span>
 <span><span class="fu"><a href="https://lubridate.tidyverse.org/reference/now.html">now</a></span><span class="op">(</span><span class="op">)</span></span>
-<span><span class="co">#&gt; [1] "2024-04-04 09:24:30 EDT"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="co">#&gt; [1] "2024-04-11 15:29:27 EDT"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>This first section will deal with how to convert a variable in <code>R</code> to be a <code>Date</code>. We will use a data set that has the holidays of Animal Crossing from January to April. The columns in this data set are:</p>
 <ul>
@@ -727,16 +727,14 @@ Hint (only if you get stuck)
 </div>
 </div>
 </div>
-<p><strong>Your Turn 4</strong>. Clear your search and now enter a search term that you’d like to investigate for the past 90 days. Mine will be “Pittsburgh Steelers” but, again, yours should be something that interests you.</p>
+<p><strong>Your Turn 4</strong>. Clear your search and now enter a search term that you’d like to investigate for the past 90 days.</p>
 <p>Again, click the download button again and read in the data to <code>R</code>. Convert the date variable to be in <code>&lt;date&gt;</code> format.</p>
 <p><strong>Your Turn 5</strong>. Make a plot of your popularity variable through time, adding a smoother.</p>
-<p><strong>Your Turn 6</strong>. Using your data set that explored a variable from the past 90 days, construct a table that compares the <strong>average</strong> popularity on each day of the week (Monday through Saturday).</p>
-<p><strong>Your Turn 7</strong>. Examine the <code>ds_df</code> data set again, the data set on data science in Google Trends, and suppose that you have an observation for <strong>each</strong> day of every year (not just one observation per month). You want to look at whether data science is more popular on certain days of the week. Explain why the following strategy <strong>wouldn’t</strong> really work that well.</p>
-<ul>
-<li>create a weekday variable with <code><a href="https://lubridate.tidyverse.org/reference/day.html">wday()</a></code>
-</li>
-<li>use <code><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise()</a></code> and <code><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by()</a></code> to find the average popularity for each day of the week</li>
-</ul>
+
+<!-- __Your Turn 6__. Using your data set that explored a variable from the past 90 days, construct a table that compares the __average__ popularity on each day of the week (Monday through Saturday).  -->
+<!-- __Your Turn 7__. Examine the `ds_df` data set again, the data set on data science in Google Trends, and suppose that you have an observation for __each__ day of every year (not just one observation per month). You want to look at whether data science is more popular on certain days of the week. Explain why the following strategy __wouldn't__ really work that well.  -->
+<!-- * create a weekday variable with `wday()` -->
+<!-- * use `summarise()` and `group_by()` to find the average popularity for each day of the week -->
 
 
 </section></section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">

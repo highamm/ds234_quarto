@@ -181,31 +181,7 @@ We will first focus on the `str_detect()` function, which detects whether a part
 str_detect(med_djok_df$point, pattern = "f")
 ```
 
-returns a `TRUE` if the letter `f` appears anywhere in the string and a `FALSE` if it does not. So, we can examine how many points a forehand was hit in the Medvedev-Djokovic match. As a second example,
-
-```{r, appendix = TRUE, results = "hide"}
-str_detect(med_djok_df$point, pattern = "d@")
-```
-
-returns `TRUE` if `d@` appears in a string and `FALSE` if not. Note that `d@` must appear __together__ and __in that order__ to return a `TRUE`. This lets us examine how many points a ball is hit deep and is recorded an unforced error. It looks like
-
-```{r, appendix = TRUE}
-sum(str_detect(med_djok_df$point, pattern = "d@"))
-```
-
-points ended in an unforced error where the ball was hit deep,
-
-```{r, appendix = TRUE}
-sum(str_detect(med_djok_df$point, pattern = "w@"))
-```
-
-points ended in an unforced error where the ball was hit wide, and
-
-```{r, appendix = TRUE}
-sum(str_detect(med_djok_df$point, pattern = "n@"))
-```
-
-points ended in an unforced error where the ball was hit into the net.
+returns a `TRUE` if the letter `f` appears anywhere in the string and a `FALSE` if it does not. So, we can examine how many points a forehand was hit in the Medvedev-Djokovic match. 
 
 ### `stringr` Functions with `dplyr`
 

@@ -95,9 +95,9 @@ There is one final project, worth 100 points. The primary purpose of the final p
 
 -   Final Exam
 
-There is an optional Final Exam worth 75 points. You **must** be on campus for our final exam time if you would like to take the optional final exam. If you do not take the optional final, then the __average__ of all of your module scores will be used for the 75 points for this exam. 
+There is an optional Final Exam worth 75 points. You **must** be on campus for our final exam time if you would like to take the optional final exam. If you do not take the optional final, then the __average__ of your 11 highest module scores will be used for the 75 points for this exam. 
 
-If you take the final exam and if your final exam score percentage is better than your 2nd lowest module grade, then that grade will be replaced with your final exam score. For example, suppose your 13 module scores are: `75, 70, 70, 70, 65, 65, 59, 58, 40, 34, 15, 0`. You take the final exam and score a `60 / 75`. Then, the `60` is used for your final exam score and your new module scores would be: `75, 70, 70, 70, 65, 65, 59, 58, 40, 34, 60, 0`. The `0` would still be dropped as your lowest module score.
+If you take the final exam and if your final exam score percentage is better than your 2nd lowest module grade, then that grade will be replaced with your final exam score. For example, suppose your 12 module scores are: `75, 70, 70, 70, 65, 65, 59, 58, 40, 34, 15, 0`. You take the final exam and score a `60 / 75`. Then, the `60` is used for your final exam score and your new module scores would be: `75, 70, 70, 70, 65, 65, 59, 58, 40, 34, 60, 0`. The `0` would still be dropped as your lowest module score.
 
 ### Breakdown
 

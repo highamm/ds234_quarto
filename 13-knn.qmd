@@ -32,7 +32,7 @@ library(tidyverse)
 library(pander)
 library(here) 
 
-pokemon <- read_csv(here("other", "pokemon_full.csv")) |>
+pokemon <- read_csv(here("data", "pokemon_full.csv")) |>
   filter(Type %in% c("Steel", "Dark", "Fire", "Ice")) |>
   mutate(across(where(is.numeric), ~ (.x - min(.x)) /
                                  (max(.x) - min(.x)))) 
