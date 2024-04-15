@@ -5,4 +5,9 @@ other/
 render_file.R
 /.quarto/
 quizzes/
-/handouts
+handouts/
+data.zip
+.gitignore
+.Rhistory
+.DS_Store
+

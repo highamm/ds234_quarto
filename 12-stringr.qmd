@@ -287,3 +287,14 @@ The `isSrvWinner` variable is coded as a `1` if the serving player won the point
 
 __Your Turn 3__. The letters `v`, `z`, `i`, and `k` denote volleys (of different types). Use `str_detect()` and `dplyr` functions to figure out the proportion of points where a volley was hit.
 
+```{r}
+#| echo: false
+#| output: false
+med_djok_df |> mutate(is_volley =
+                        if_else(str_detect(point, 
+                                           pattern = "[vzik]"),
+                                true = 1,
+                                false = 0)) |>
+  relocate(is_volley) |>
+  summarise(prop_volley = mean(is_volley))
+```

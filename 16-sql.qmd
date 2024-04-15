@@ -96,7 +96,7 @@ sql <- "
   FROM tennis2019 
   WHERE minutes > 240
 "
-dbGetQuery(con, sql)|>
+dbGetQuery(con, sql) |>
   as_tibble()
 ```
 
@@ -155,9 +155,9 @@ over20aces
 over20aces |> show_query()
 ```
 
-Can you match some of the `SQL` code with the corresponding `dplyr` functions used?
+Can you match some of the `SQL` code with the corresponding `dbplyr` functions used?
 
-__Exercise 3__. Obtain the distribution of the `surface` variable by making a table of the total number of matches played on each surface in the 2019 season using `dplyr` functions on `tennis_db`. Then, use `show_query()` to show the corresponding `SQL` code.
+__Exercise 3__. Obtain the distribution of the `surface` variable by making a table of the total number of matches played on each surface in the 2019 season using `dbplyr` functions on `tennis_db`. Then, use `show_query()` to show the corresponding `SQL` code.
 
 ## SQL
 
@@ -254,9 +254,9 @@ tennis_db |> arrange(desc(winner_rank_points)) |>
 
 `SQL` also has corresponding syntax for the `xxxx_join()` family of functions, but we do not have time to discuss this in detail. Note that we have really just scratched the surface of `SQL`. There are entire courses devoted to learning `SQL` syntax and more about databases in general. If you ever do find yourself in a situation where you need to learn `SQL`, either for a course or for a job, you should have a major head-start with your `dplyr` knowledge!
 
-In much of this section, we have created code with `dplyr` and seen how that code translates to `SQL`. In this exercise, you will instead be given `SQL` code and asked to write `dplyr` code that achieves the same thing.
+In much of this section, we have created code with `dbplyr` and seen how that code translates to `SQL`. In this exercise, you will instead be given `SQL` code and asked to write `dbplyr` code that achieves the same thing.
 
-__Exercise 4__. Examine the `SQL` code below and write equivalent `dplyr` code.
+__Exercise 4__. Examine the `SQL` code below and write equivalent `dbplyr` code using `tennis_db`.
 
 ```{r, eval = FALSE}
 SELECT * 
@@ -268,7 +268,7 @@ WHERE ("tourney_name" = 'Wimbledon')
 
 ### Class Exercises
 
-__Class Exercise 1__. Examine the `SQL` code below and write equivalent `dplyr` code.
+__Class Exercise 1__. Examine the `SQL` code below and write equivalent `dbplyr` code using `tennis_db`.
 
 ```{r, eval = FALSE}
 SELECT "winner_name", "loser_name", "w_ace", "l_ace", "w_ace" - "l_ace" AS "ace_diff"
@@ -276,36 +276,66 @@ FROM "tennis2019"
 ORDER BY "ace_diff" DESC
 ```
 
-__Class Exercise 2__. Create a new variable that is the difference in the `winner_rank_points` and `loser_rank_points` using a `dplyr` function. Then, have your query return only the column you just created, the `winner_name` column, and the `loser_name` column. Use the `show_query()` function to show the corresponding `SQL` code.
+__Class Exercise 2__. With `tennis_db`, create a new variable that is the difference in the `winner_rank_points` and `loser_rank_points` using a `dbplyr` function. Then, have your query return only the column you just created, the `winner_name` column, and the `loser_name` column. Use the `show_query()` function to show the corresponding `SQL` code.
 
 ### Your Turn
 
-__Your Turn 1__. Examine the `SQL` code below and write equivalent `dplyr` code.
+__Your Turn 1__. Examine the `SQL` code below and write equivalent `dbplyr` code on `tennis_db`.
 
 ```{r, eval = FALSE}
-SELECT "tourney_name", AVG("minutes") AS "mean_min"
+<SQL>
+SELECT "tourney_name", MAX("minutes") AS "longest_match"
 FROM "tennis2019"
 GROUP BY "tourney_name"
 ```
 
-__Your Turn 2__. Perform a query of your choosing on `tennis_db` and use the `show_query()` function to show the corresponding `SQL` code.
+__Your Turn 2__. Try to run a function from `lubridate` or `forcats` on `tennis_db` with `mutate()`. Does the function work? 
 
-__Your Turn 3__. Try to run a function from `lubridate` or `forcats` on `tennis_db` with `mutate()`. Does the function work? Did you expect it to work?
+```{r}
+#| eval: false
+#| echo: false
+tennis_db |> mutate(tourney_date = lubridate::ymd(tourney_date))
+tennis_db |> collect() |>
+  mutate(tourney_date = lubridate::ymd(tourney_date))
+```
 
-__Your Turn 4__. Run the following code and write how the `!` is translated to `SQL`.
+__Your Turn 3__. Run the following code and write how the `!` is translated to `SQL`, how the `%in%` symbol is translated to `SQL`, and how `distinct()` is translated to `SQL`.
 
 ```{r}
 #| output: false
 tennis_db |> filter(winner_name != "Daniil Medvedev") |>
   show_query()
-```
 
-__Your Turn 5__. Run the following code and write how the `%in%` symbol is translated to `SQL`.
-
-```{r}
-#| output: false
 tennis_db |>
   filter(winner_name %in% c("Daniil Medvedev", "Dominic Thiem")) |>
   show_query()
+
+tennis_db |> distinct(tourney_name) |>
+  show_query()
 ```
+
+__Your Turn 4__. Examine the following `SQL` code and write equivalent `dbplyr` code on `tennis_db`.
+
+```{r}
+#| eval: false
+<SQL>
+SELECT "winner_name", COUNT(*) AS "n_win"
+FROM "tennis2019"
+WHERE ("surface" = 'Hard')
+GROUP BY "winner_name"
+ORDER BY "n_win" DESC
+```
+
+```{r}
+#| echo: false
+#| output: false
+tennis_db |>
+  filter(surface == "Hard") |>
+  group_by(winner_name) |>
+  summarise(n_win = n()) |>
+  arrange(desc(n_win)) |>
+  show_query()
+```
+
+__Your Turn 5__. Perform a query of your choosing on `tennis_db` and use the `show_query()` function to show the corresponding `SQL` code.
 

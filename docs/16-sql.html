@@ -502,8 +502,8 @@ Note
 <span><span class="co">#&gt; GROUP BY "winner_name"</span></span>
 <span><span class="co">#&gt; ORDER BY "nmatch" DESC</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Can you match some of the <code>SQL</code> code with the corresponding <code>dplyr</code> functions used?</p>
-<p><strong>Exercise 3</strong>. Obtain the distribution of the <code>surface</code> variable by making a table of the total number of matches played on each surface in the 2019 season using <code>dplyr</code> functions on <code>tennis_db</code>. Then, use <code><a href="https://dplyr.tidyverse.org/reference/explain.html">show_query()</a></code> to show the corresponding <code>SQL</code> code.</p>
+<p>Can you match some of the <code>SQL</code> code with the corresponding <code>dbplyr</code> functions used?</p>
+<p><strong>Exercise 3</strong>. Obtain the distribution of the <code>surface</code> variable by making a table of the total number of matches played on each surface in the 2019 season using <code>dbplyr</code> functions on <code>tennis_db</code>. Then, use <code><a href="https://dplyr.tidyverse.org/reference/explain.html">show_query()</a></code> to show the corresponding <code>SQL</code> code.</p>
 </section><section id="sql" class="level2" data-number="16.3"><h2 data-number="16.3" class="anchored" data-anchor-id="sql">
 <span class="header-section-number">16.3</span> SQL</h2>
 <p>The purpose of this section is to explore <code>SQL</code> syntax a little more, focusing on its connections to <code>dplyr</code>.</p>
@@ -676,8 +676,8 @@ Note
 <span><span class="co">#&gt; ORDER BY "winner_rank_points" DESC</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p><code>SQL</code> also has corresponding syntax for the <code>xxxx_join()</code> family of functions, but we do not have time to discuss this in detail. Note that we have really just scratched the surface of <code>SQL</code>. There are entire courses devoted to learning <code>SQL</code> syntax and more about databases in general. If you ever do find yourself in a situation where you need to learn <code>SQL</code>, either for a course or for a job, you should have a major head-start with your <code>dplyr</code> knowledge!</p>
-<p>In much of this section, we have created code with <code>dplyr</code> and seen how that code translates to <code>SQL</code>. In this exercise, you will instead be given <code>SQL</code> code and asked to write <code>dplyr</code> code that achieves the same thing.</p>
-<p><strong>Exercise 4</strong>. Examine the <code>SQL</code> code below and write equivalent <code>dplyr</code> code.</p>
+<p>In much of this section, we have created code with <code>dbplyr</code> and seen how that code translates to <code>SQL</code>. In this exercise, you will instead be given <code>SQL</code> code and asked to write <code>dbplyr</code> code that achieves the same thing.</p>
+<p><strong>Exercise 4</strong>. Examine the <code>SQL</code> code below and write equivalent <code>dbplyr</code> code using <code>tennis_db</code>.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>SELECT <span class="sc">*</span> </span>
 <span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>FROM <span class="st">"tennis2019"</span></span>
@@ -687,34 +687,45 @@ Note
 <span class="header-section-number">16.4</span> Practice</h2>
 <section id="class-exercises" class="level3" data-number="16.4.1"><h3 data-number="16.4.1" class="anchored" data-anchor-id="class-exercises">
 <span class="header-section-number">16.4.1</span> Class Exercises</h3>
-<p><strong>Class Exercise 1</strong>. Examine the <code>SQL</code> code below and write equivalent <code>dplyr</code> code.</p>
+<p><strong>Class Exercise 1</strong>. Examine the <code>SQL</code> code below and write equivalent <code>dbplyr</code> code using <code>tennis_db</code>.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>SELECT <span class="st">"winner_name"</span>, <span class="st">"loser_name"</span>, <span class="st">"w_ace"</span>, <span class="st">"l_ace"</span>, <span class="st">"w_ace"</span> <span class="sc">-</span> <span class="st">"l_ace"</span> AS <span class="st">"ace_diff"</span></span>
 <span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>FROM <span class="st">"tennis2019"</span></span>
 <span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>ORDER BY <span class="st">"ace_diff"</span> DESC</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p><strong>Class Exercise 2</strong>. Create a new variable that is the difference in the <code>winner_rank_points</code> and <code>loser_rank_points</code> using a <code>dplyr</code> function. Then, have your query return only the column you just created, the <code>winner_name</code> column, and the <code>loser_name</code> column. Use the <code><a href="https://dplyr.tidyverse.org/reference/explain.html">show_query()</a></code> function to show the corresponding <code>SQL</code> code.</p>
+<p><strong>Class Exercise 2</strong>. With <code>tennis_db</code>, create a new variable that is the difference in the <code>winner_rank_points</code> and <code>loser_rank_points</code> using a <code>dbplyr</code> function. Then, have your query return only the column you just created, the <code>winner_name</code> column, and the <code>loser_name</code> column. Use the <code><a href="https://dplyr.tidyverse.org/reference/explain.html">show_query()</a></code> function to show the corresponding <code>SQL</code> code.</p>
 </section><section id="your-turn" class="level3" data-number="16.4.2"><h3 data-number="16.4.2" class="anchored" data-anchor-id="your-turn">
 <span class="header-section-number">16.4.2</span> Your Turn</h3>
-<p><strong>Your Turn 1</strong>. Examine the <code>SQL</code> code below and write equivalent <code>dplyr</code> code.</p>
+<p><strong>Your Turn 1</strong>. Examine the <code>SQL</code> code below and write equivalent <code>dbplyr</code> code on <code>tennis_db</code>.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>SELECT <span class="st">"tourney_name"</span>, <span class="fu">AVG</span>(<span class="st">"minutes"</span>) AS <span class="st">"mean_min"</span></span>
-<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>FROM <span class="st">"tennis2019"</span></span>
-<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>GROUP BY <span class="st">"tourney_name"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&lt;</span>SQL<span class="sc">&gt;</span></span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>SELECT <span class="st">"tourney_name"</span>, <span class="fu">MAX</span>(<span class="st">"minutes"</span>) AS <span class="st">"longest_match"</span></span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>FROM <span class="st">"tennis2019"</span></span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>GROUP BY <span class="st">"tourney_name"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p><strong>Your Turn 2</strong>. Perform a query of your choosing on <code>tennis_db</code> and use the <code><a href="https://dplyr.tidyverse.org/reference/explain.html">show_query()</a></code> function to show the corresponding <code>SQL</code> code.</p>
-<p><strong>Your Turn 3</strong>. Try to run a function from <code>lubridate</code> or <code>forcats</code> on <code>tennis_db</code> with <code><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate()</a></code>. Does the function work? Did you expect it to work?</p>
-<p><strong>Your Turn 4</strong>. Run the following code and write how the <code>!</code> is translated to <code>SQL</code>.</p>
+<p><strong>Your Turn 2</strong>. Try to run a function from <code>lubridate</code> or <code>forcats</code> on <code>tennis_db</code> with <code><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate()</a></code>. Does the function work?</p>
+<p><strong>Your Turn 3</strong>. Run the following code and write how the <code>!</code> is translated to <code>SQL</code>, how the <code>%in%</code> symbol is translated to <code>SQL</code>, and how <code><a href="https://dplyr.tidyverse.org/reference/distinct.html">distinct()</a></code> is translated to <code>SQL</code>.</p>
 <div class="cell">
 <div class="sourceCode" id="cb25"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">tennis_db</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">winner_name</span> <span class="op">!=</span> <span class="st">"Daniil Medvedev"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/explain.html">show_query</a></span><span class="op">(</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p><strong>Your Turn 5</strong>. Run the following code and write how the <code>%in%</code> symbol is translated to <code>SQL</code>.</p>
-<div class="cell">
-<div class="sourceCode" id="cb26"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">tennis_db</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/explain.html">show_query</a></span><span class="op">(</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">tennis_db</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">winner_name</span> <span class="op"><a href="https://rdrr.io/r/base/match.html">%in%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Daniil Medvedev"</span>, <span class="st">"Dominic Thiem"</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/explain.html">show_query</a></span><span class="op">(</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">tennis_db</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/distinct.html">distinct</a></span><span class="op">(</span><span class="va">tourney_name</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/explain.html">show_query</a></span><span class="op">(</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
+<p><strong>Your Turn 4</strong>. Examine the following <code>SQL</code> code and write equivalent <code>dbplyr</code> code on <code>tennis_db</code>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&lt;</span>SQL<span class="sc">&gt;</span></span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>SELECT <span class="st">"winner_name"</span>, <span class="fu">COUNT</span>(<span class="sc">*</span>) AS <span class="st">"n_win"</span></span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>FROM <span class="st">"tennis2019"</span></span>
+<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a><span class="fu">WHERE</span> (<span class="st">"surface"</span> <span class="ot">=</span> <span class="st">'Hard'</span>)</span>
+<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a>GROUP BY <span class="st">"winner_name"</span></span>
+<span id="cb26-6"><a href="#cb26-6" aria-hidden="true" tabindex="-1"></a>ORDER BY <span class="st">"n_win"</span> DESC</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><strong>Your Turn 5</strong>. Perform a query of your choosing on <code>tennis_db</code> and use the <code><a href="https://dplyr.tidyverse.org/reference/explain.html">show_query()</a></code> function to show the corresponding <code>SQL</code> code.</p>
 
 
 </section></section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
