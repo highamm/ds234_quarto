@@ -1,4 +1,4 @@
-# Introduction to SQL with `dbplyr` {#sql}
+# Introduction to SQL with `dbplyr` {#sqldbplyr}
 
 ```{r}
 #| echo: false
@@ -26,8 +26,7 @@ In this section, we will introduce databases and give a brief introduction to `S
 The _R for Data Science_ textbook defines a database as "a collection of data frames," each called a __database table__. There a few key differences between a data frame (what we've been using the entire semester) and a database table. They are summarised from _R for Data Science_ here as:
 
 * a database table can be larger and is stored on disk while a data frame is stored in memory so their size is more limited.
-* a database table usually indices while data frames do not.
-* many, but not all, data base tables are "row-oriented" while tidy data frames are "column-oriented."
+* many, but not all, data base tables are "row-oriented" while tidy data frames are "column-oriented." However, more often, databases are column-oriented (similar to all of the data frames we have worked with in this class).
 
 Databases are run through Database Management Systems. The _R for Data Science_ textbook divides Database Management Systems into 3 types:
 
@@ -339,3 +338,12 @@ tennis_db |>
 
 __Your Turn 5__. Perform a query of your choosing on `tennis_db` and use the `show_query()` function to show the corresponding `SQL` code.
 
+```{r}
+#| echo: false
+#| output: false
+tennis_db |>
+  group_by(winner_name) |>
+  filter(minutes == max(minutes)) |>
+  arrange(desc(minutes)) |>
+  show_query()
+```

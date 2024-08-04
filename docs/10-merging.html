@@ -938,9 +938,9 @@ Note
 <span></span>
 <span><span class="va">test2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble</a></span><span class="op">(</span>state <span class="op">=</span> <span class="st">"Washington D.C."</span>, mortality_rate <span class="op">=</span> <span class="fl">16.7</span>,</span>
 <span>       ownership_rate <span class="op">=</span> <span class="fl">0.087</span>, region <span class="op">=</span> <span class="va">NE</span><span class="op">)</span></span>
-<span><span class="co">#&gt; Error in eval_tidy(xs[[j]], mask): object 'NE' not found</span></span>
+<span><span class="co">#&gt; Error: object 'NE' not found</span></span>
 <span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/bind_rows.html">bind_rows</a></span><span class="op">(</span><span class="va">mortality_df</span>, <span class="va">test2</span><span class="op">)</span></span>
-<span><span class="co">#&gt; Error in list2(...): object 'test2' not found</span></span>
+<span><span class="co">#&gt; Error in eval(expr, envir, enclos): object 'test2' not found</span></span>
 <span></span>
 <span><span class="va">test3</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble</a></span><span class="op">(</span>state <span class="op">=</span> <span class="st">"Washington D.C."</span>, mortality_rate <span class="op">=</span> <span class="st">"16.7"</span>,</span>
 <span>       ownership_rate <span class="op">=</span> <span class="st">"0.087"</span>, region <span class="op">=</span> <span class="st">"NE"</span><span class="op">)</span></span>

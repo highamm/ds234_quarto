@@ -320,9 +320,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://lubridate.tidyverse.org">lubridate</a></span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://lubridate.tidyverse.org/reference/now.html">today</a></span><span class="op">(</span><span class="op">)</span></span>
-<span><span class="co">#&gt; [1] "2024-04-15"</span></span>
+<span><span class="co">#&gt; [1] "2024-08-04"</span></span>
 <span><span class="fu"><a href="https://lubridate.tidyverse.org/reference/now.html">now</a></span><span class="op">(</span><span class="op">)</span></span>
-<span><span class="co">#&gt; [1] "2024-04-15 18:14:04 EDT"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="co">#&gt; [1] "2024-08-04 06:21:17 EDT"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>This first section will deal with how to convert a variable in <code>R</code> to be a <code>Date</code>. We will use a data set that has the holidays of Animal Crossing from January to April. The columns in this data set are:</p>
 <ul>
@@ -488,7 +488,7 @@ Note
 </div>
 <div class="cell" data-appendix="true">
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co">## install.packages("quantmod")</span></span>
-<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="http://www.quantmod.com">quantmod</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://www.quantmod.com/">quantmod</a></span><span class="op">)</span></span>
 <span></span>
 <span><span class="va">start</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://lubridate.tidyverse.org/reference/ymd.html">ymd</a></span><span class="op">(</span><span class="st">"2011-01-01"</span><span class="op">)</span></span>
 <span><span class="va">end</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://lubridate.tidyverse.org/reference/ymd.html">ymd</a></span><span class="op">(</span><span class="st">"2021-5-19"</span><span class="op">)</span></span>
@@ -516,14 +516,14 @@ Note
 <span>                                 <span class="op">)</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/head.html">tail</a></span><span class="op">(</span><span class="va">stocks_long</span><span class="op">)</span></span>
 <span><span class="co">#&gt; # A tibble: 6 × 3</span></span>
-<span><span class="co">#&gt;   start_date Stock_Type  Price</span></span>
-<span><span class="co">#&gt;   &lt;date&gt;     &lt;fct&gt;       &lt;dbl&gt;</span></span>
-<span><span class="co">#&gt; 1 2021-05-17 Chipotle   1332. </span></span>
-<span><span class="co">#&gt; 2 2021-05-17 S &amp; P 500   398. </span></span>
-<span><span class="co">#&gt; 3 2021-05-18 Apple       123. </span></span>
-<span><span class="co">#&gt; 4 2021-05-18 Nintendo     14.1</span></span>
-<span><span class="co">#&gt; 5 2021-05-18 Chipotle   1325. </span></span>
-<span><span class="co">#&gt; 6 2021-05-18 S &amp; P 500   394.</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="co">#&gt;   start_date Stock_Type Price</span></span>
+<span><span class="co">#&gt;   &lt;date&gt;     &lt;fct&gt;      &lt;dbl&gt;</span></span>
+<span><span class="co">#&gt; 1 2021-05-17 Chipotle    26.6</span></span>
+<span><span class="co">#&gt; 2 2021-05-17 S &amp; P 500  396. </span></span>
+<span><span class="co">#&gt; 3 2021-05-18 Apple      123. </span></span>
+<span><span class="co">#&gt; 4 2021-05-18 Nintendo    14.1</span></span>
+<span><span class="co">#&gt; 5 2021-05-18 Chipotle    26.5</span></span>
+<span><span class="co">#&gt; 6 2021-05-18 S &amp; P 500  393.</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>You’ll have a chance in class to choose your own stocks to investigate. For now, we’ve made a data set with three variables:</p>
 <ul>
@@ -581,14 +581,14 @@ Note
 <div class="cell" data-appendix="true">
 <div class="sourceCode" id="cb13"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">stocks_long</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>day_in_year <span class="op">=</span> <span class="fu"><a href="https://lubridate.tidyverse.org/reference/day.html">yday</a></span><span class="op">(</span><span class="va">start_date</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="co">#&gt; # A tibble: 10,444 × 4</span></span>
-<span><span class="co">#&gt;   start_date Stock_Type  Price day_in_year</span></span>
-<span><span class="co">#&gt;   &lt;date&gt;     &lt;fct&gt;       &lt;dbl&gt;       &lt;dbl&gt;</span></span>
-<span><span class="co">#&gt; 1 2011-01-03 Apple        9.96           3</span></span>
-<span><span class="co">#&gt; 2 2011-01-03 Nintendo     7.34           3</span></span>
-<span><span class="co">#&gt; 3 2011-01-03 Chipotle   224.             3</span></span>
-<span><span class="co">#&gt; 4 2011-01-03 S &amp; P 500   99.3            3</span></span>
-<span><span class="co">#&gt; 5 2011-01-04 Apple       10.0            4</span></span>
-<span><span class="co">#&gt; 6 2011-01-04 Nintendo     7.1            4</span></span>
+<span><span class="co">#&gt;   start_date Stock_Type Price day_in_year</span></span>
+<span><span class="co">#&gt;   &lt;date&gt;     &lt;fct&gt;      &lt;dbl&gt;       &lt;dbl&gt;</span></span>
+<span><span class="co">#&gt; 1 2011-01-03 Apple       9.95           3</span></span>
+<span><span class="co">#&gt; 2 2011-01-03 Nintendo    7.34           3</span></span>
+<span><span class="co">#&gt; 3 2011-01-03 Chipotle    4.47           3</span></span>
+<span><span class="co">#&gt; 4 2011-01-03 S &amp; P 500  99.0            3</span></span>
+<span><span class="co">#&gt; 5 2011-01-04 Apple      10.0            4</span></span>
+<span><span class="co">#&gt; 6 2011-01-04 Nintendo    7.10           4</span></span>
 <span><span class="co">#&gt; # ℹ 10,438 more rows</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Finally, the function <code><a href="https://lubridate.tidyverse.org/reference/day.html">wday()</a></code> grabs the day of the week from a <code>&lt;date&gt;</code>. By default, <code><a href="https://lubridate.tidyverse.org/reference/day.html">wday()</a></code> puts the day of the week as a numeric, but I find this confusing, as I can’t ever remember whether a <code>1</code> means <code>Sunday</code> or a <code>1</code> means <code>Monday</code>. Adding, <code>label = TRUE</code> creates the weekday variable as <code>Sunday</code>, <code>Monday</code>, <code>Tuesday</code>, etc.:</p>
