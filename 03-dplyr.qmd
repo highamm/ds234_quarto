@@ -452,8 +452,8 @@ Suppose we want to create a new variable that tells us whether or not the `Major
 
 ```{r, appendix = TRUE}
 slumajors_df |> mutate(morewomen = if_else(percfemale > 50,
-                                            true = "Yes",
-                                            false = "No"))
+                                           true = "Yes",
+                                           false = "No"))
 ```
 
 The `mutate()` statement reads: create a new variable called `morewomen` that is equal to `"Yes"` if `percfemale` > `50` is true and is equal to `"No"` if `perfemale` is not > `0.5`. The first argument is the condition, the second is what to name the new variable when the condition holds, and the third is what to name the variable if the condition does not hold.
