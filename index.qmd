@@ -126,7 +126,7 @@ Collaboration with your classmates on exercises, take-home quizzes, and projects
 
 -   you must state the name(s) of who you collaborated with at the top of each assessment.
 -   all work must be your own. This means that you should **never** send someone your code via email or let someone directly type code off of your screen. Instead, you can talk about strategies for solving problems and help or ask someone about a coding error.
--   you may use the Internet and StackExchange, but you also should not copy paste code directly from the website, without citing that you did so. Policies about AI will be clearly stated on each individual assignment: for most assignments, you are permitted to use AI as long as you clearly state __all__ queries that you make and clearly state what you used from the AI responses to the queries.
+-   you may use the Internet and StackExchange, but you also should not copy paste code directly from the website, without citing that you did so. AI usage for most assignments is not permitted, unless you clearly state __all__ queries that you make and clearly state what you used from the AI responses to the queries.
 
 ------------------------------------------------------------------------
 
