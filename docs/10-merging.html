@@ -676,7 +676,11 @@ Note
 <span><span class="co">#&gt; # ℹ 53 more rows</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>The filtering join functions are useful if you want to filter out observations by some criterion in a different data set.</p>
-<p><strong>Exercise 3</strong>. Examine the following data sets (the first is <code>df1</code> and the second is <code>df2</code>) and then, without running any code, answer the following questions.</p>
+</section></section><section id="practice" class="level2" data-number="11.4"><h2 data-number="11.4" class="anchored" data-anchor-id="practice">
+<span class="header-section-number">11.4</span> Practice</h2>
+<section id="class-exercises" class="level3" data-number="11.4.1"><h3 data-number="11.4.1" class="anchored" data-anchor-id="class-exercises">
+<span class="header-section-number">11.4.1</span> Class Exercises</h3>
+<p><strong>Class Exercise 0</strong>. Examine the following data sets (the first is <code>df1</code> and the second is <code>df2</code>) and then, without running any code, answer the following questions.</p>
 <div class="cell">
 <div class="cell-output-display">
 <table class="caption-top table table-sm table-striped small">
@@ -758,10 +762,7 @@ Note
 <li><p>How many rows would be in the data set from <code>inner_join(df1, df2, by = join_by(id == id))</code>?</p></li>
 <li><p>How many rows would be in the data set from <code>semi_join(df1, df2, by = join_by(id == id))</code>?</p></li>
 <li><p>How many rows would be in the data set from <code>anti_join(df1, df2, by = join_by(id == id))</code>?</p></li>
-</ol></section></section><section id="practice" class="level2" data-number="11.4"><h2 data-number="11.4" class="anchored" data-anchor-id="practice">
-<span class="header-section-number">11.4</span> Practice</h2>
-<section id="class-exercises" class="level3" data-number="11.4.1"><h3 data-number="11.4.1" class="anchored" data-anchor-id="class-exercises">
-<span class="header-section-number">11.4.1</span> Class Exercises</h3>
+</ol>
 <p><strong>Class Exercise 1</strong>. Why might <code><a href="https://dplyr.tidyverse.org/reference/bind_cols.html">bind_cols()</a></code> be a dangerous way to combine data? What must you be sure of about the way the data was collected in order to combine data in this way?</p>
 <p><strong>Class Exercise 2</strong>. The key variable is very important for joining and is not always available in a “perfect” form. Recall the college majors data sets we have, called <code>slumajors_df</code>, which information on majors at SLU. Another data set, <code>collegemajors_df</code>, has different statistics on college majors nationwide. There’s lots of interesting variables in these data sets, but we’ll focus on the <code>Major</code> variable here. Read in and examine the two data sets with:</p>
 <div class="cell" data-appendix="true">

@@ -249,7 +249,11 @@ new_winners |> group_by(winner_name) |>
 
 The filtering join functions are useful if you want to filter out observations by some criterion in a different data set.
 
-__Exercise 3__. Examine the following data sets (the first is `df1` and the second is `df2`) and then, without running any code, answer the following questions.
+## Practice
+
+### Class Exercises
+
+__Class Exercise 0__. Examine the following data sets (the first is `df1` and the second is `df2`) and then, without running any code, answer the following questions.
 
 ```{r, echo = FALSE, results = "show"}
 df1 <- tibble(id = c("A", "B", "C", "E", "F"), xvar = c(1, 2, 3, 1, 2))
@@ -270,10 +274,6 @@ d. How many rows would be in the data set from `inner_join(df1, df2, by = join_b
 e. How many rows would be in the data set from `semi_join(df1, df2, by = join_by(id == id))`?
 
 f. How many rows would be in the data set from `anti_join(df1, df2, by = join_by(id == id))`?
-
-## Practice
-
-### Class Exercises
 
 __Class Exercise 1__. Why might `bind_cols()` be a dangerous way to combine data? What must you be sure of about the way the data was collected in order to combine data in this way?
 
