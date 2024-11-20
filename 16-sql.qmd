@@ -145,13 +145,13 @@ tennis_query1 |>
 We'll do one more query:
 
 ```{r, appendix = TRUE}
-over20aces <- tennis_db |> filter(w_ace > 20) |>
+totalaces <- tennis_db |>
   group_by(winner_name) |>
-  summarise(nmatch = n()) |>
-  arrange(desc(nmatch))
-over20aces
+  summarise(total_aces = sum(w_ace)) |>
+  arrange(desc(total_aces))
+totalaces
 
-over20aces |> show_query()
+totalaces |> show_query()
 ```
 
 Can you match some of the `SQL` code with the corresponding `dbplyr` functions used?

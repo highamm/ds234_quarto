@@ -484,34 +484,30 @@ Note
 </div>
 <p>We’ll do one more query:</p>
 <div class="cell" data-appendix="true">
-<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">over20aces</span> <span class="op">&lt;-</span> <span class="va">tennis_db</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">w_ace</span> <span class="op">&gt;</span> <span class="fl">20</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">totalaces</span> <span class="op">&lt;-</span> <span class="va">tennis_db</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">winner_name</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise</a></span><span class="op">(</span>nmatch <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/context.html">n</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/arrange.html">arrange</a></span><span class="op">(</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/desc.html">desc</a></span><span class="op">(</span><span class="va">nmatch</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="va">over20aces</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise</a></span><span class="op">(</span>total_aces <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">w_ace</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/arrange.html">arrange</a></span><span class="op">(</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/desc.html">desc</a></span><span class="op">(</span><span class="va">total_aces</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="va">totalaces</span></span>
 <span><span class="co">#&gt; # Source:     SQL [?? x 2]</span></span>
 <span><span class="co">#&gt; # Database:   DuckDB v1.0.0 [root@Darwin 23.5.0:R 4.4.1/:memory:]</span></span>
-<span><span class="co">#&gt; # Ordered by: desc(nmatch)</span></span>
-<span><span class="co">#&gt;   winner_name      nmatch</span></span>
-<span><span class="co">#&gt;   &lt;chr&gt;             &lt;dbl&gt;</span></span>
-<span><span class="co">#&gt; 1 John Isner           15</span></span>
-<span><span class="co">#&gt; 2 Reilly Opelka        14</span></span>
-<span><span class="co">#&gt; 3 Milos Raonic         10</span></span>
-<span><span class="co">#&gt; 4 Sam Querrey           9</span></span>
-<span><span class="co">#&gt; 5 Nick Kyrgios          8</span></span>
-<span><span class="co">#&gt; 6 Alexander Bublik      7</span></span>
+<span><span class="co">#&gt; # Ordered by: desc(total_aces)</span></span>
+<span><span class="co">#&gt;   winner_name        total_aces</span></span>
+<span><span class="co">#&gt;   &lt;chr&gt;                   &lt;dbl&gt;</span></span>
+<span><span class="co">#&gt; 1 Reilly Opelka             604</span></span>
+<span><span class="co">#&gt; 2 John Isner                590</span></span>
+<span><span class="co">#&gt; 3 Daniil Medvedev           511</span></span>
+<span><span class="co">#&gt; 4 Alexander Zverev          496</span></span>
+<span><span class="co">#&gt; 5 Milos Raonic              444</span></span>
+<span><span class="co">#&gt; 6 Jan Lennard Struff        428</span></span>
 <span><span class="co">#&gt; # ℹ more rows</span></span>
 <span></span>
-<span><span class="va">over20aces</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/explain.html">show_query</a></span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="va">totalaces</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/explain.html">show_query</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="co">#&gt; &lt;SQL&gt;</span></span>
-<span><span class="co">#&gt; SELECT winner_name, COUNT(*) AS nmatch</span></span>
-<span><span class="co">#&gt; FROM (</span></span>
-<span><span class="co">#&gt;   SELECT tennis2019.*</span></span>
-<span><span class="co">#&gt;   FROM tennis2019</span></span>
-<span><span class="co">#&gt;   WHERE (w_ace &gt; 20.0)</span></span>
-<span><span class="co">#&gt; ) q01</span></span>
+<span><span class="co">#&gt; SELECT winner_name, SUM(w_ace) AS total_aces</span></span>
+<span><span class="co">#&gt; FROM tennis2019</span></span>
 <span><span class="co">#&gt; GROUP BY winner_name</span></span>
-<span><span class="co">#&gt; ORDER BY nmatch DESC</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="co">#&gt; ORDER BY total_aces DESC</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Can you match some of the <code>SQL</code> code with the corresponding <code>dbplyr</code> functions used?</p>
 <p><strong>Exercise 3</strong>. Obtain the distribution of the <code>surface</code> variable by making a table of the total number of matches played on each surface in the 2019 season using <code>dbplyr</code> functions on <code>tennis_db</code>. Then, use <code><a href="https://dplyr.tidyverse.org/reference/explain.html">show_query()</a></code> to show the corresponding <code>SQL</code> code.</p>
