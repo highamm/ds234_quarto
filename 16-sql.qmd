@@ -346,3 +346,5 @@ episode_rating_tbl |>
   show_query()
 ```
 
+__Your Turn 5__. Use the joined data set (with the show names) to choose a show that interests you. Use `collect()` to convert the data frame to a `tibble()`. Then, construct a graph that lets you explore that shows average imdb rating through time. Finally, add a label with the episode name (use a search engine to figure out the name) of the highest rated episode for that show according to imdb.
+
