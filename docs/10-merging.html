@@ -462,14 +462,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span><span class="co">#&gt; 6  1880 F     Margaret   1578 0.0162     NA</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/head.html">tail</a></span><span class="op">(</span><span class="va">combined_left</span><span class="op">)</span></span>
 <span><span class="co">#&gt; # A tibble: 6 × 6</span></span>
-<span><span class="co">#&gt;    year sex   name       n       prop  births</span></span>
-<span><span class="co">#&gt;   &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt;  &lt;int&gt;      &lt;dbl&gt;   &lt;int&gt;</span></span>
-<span><span class="co">#&gt; 1  2017 M     Zyhier     5 0.00000255 3855500</span></span>
-<span><span class="co">#&gt; 2  2017 M     Zykai      5 0.00000255 3855500</span></span>
-<span><span class="co">#&gt; 3  2017 M     Zykeem     5 0.00000255 3855500</span></span>
-<span><span class="co">#&gt; 4  2017 M     Zylin      5 0.00000255 3855500</span></span>
-<span><span class="co">#&gt; 5  2017 M     Zylis      5 0.00000255 3855500</span></span>
-<span><span class="co">#&gt; 6  2017 M     Zyrie      5 0.00000255 3855500</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="co">#&gt;    year sex   name       n       prop births</span></span>
+<span><span class="co">#&gt;   &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt;  &lt;int&gt;      &lt;dbl&gt;  &lt;int&gt;</span></span>
+<span><span class="co">#&gt; 1  2023 M     Zyamir     5 0.00000273     NA</span></span>
+<span><span class="co">#&gt; 2  2023 M     Zyell      5 0.00000273     NA</span></span>
+<span><span class="co">#&gt; 3  2023 M     Zyen       5 0.00000273     NA</span></span>
+<span><span class="co">#&gt; 4  2023 M     Zymirr     5 0.00000273     NA</span></span>
+<span><span class="co">#&gt; 5  2023 M     Zyquan     5 0.00000273     NA</span></span>
+<span><span class="co">#&gt; 6  2023 M     Zyrin      5 0.00000273     NA</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Why are <code>births</code> missing in <code>head(combined_left)</code> but not in <code>tail(combined_left)</code>?</p>
 </section><section id="keep-all-rows-of-data-set-2-with-right_join" class="level3" data-number="11.2.2"><h3 data-number="11.2.2" class="anchored" data-anchor-id="keep-all-rows-of-data-set-2-with-right_join">
@@ -479,27 +479,27 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell" data-appendix="true">
 <div class="sourceCode" id="cb11"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co">## these will always do the same exact thing</span></span>
 <span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">right_join</a></span><span class="op">(</span><span class="va">babynames_df</span>, <span class="va">birth_df</span>, by <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/join_by.html">join_by</a></span><span class="op">(</span><span class="va">year</span> <span class="op">==</span> <span class="va">year</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="co">#&gt; # A tibble: 1,839,952 × 6</span></span>
+<span><span class="co">#&gt; # A tibble: 2,000,826 × 6</span></span>
 <span><span class="co">#&gt;    year sex   name         n   prop  births</span></span>
 <span><span class="co">#&gt;   &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt;    &lt;int&gt;  &lt;dbl&gt;   &lt;int&gt;</span></span>
 <span><span class="co">#&gt; 1  1909 F     Mary     19259 0.0523 2718000</span></span>
 <span><span class="co">#&gt; 2  1909 F     Helen     9250 0.0251 2718000</span></span>
-<span><span class="co">#&gt; 3  1909 F     Margaret  7359 0.0200 2718000</span></span>
+<span><span class="co">#&gt; 3  1909 F     Margaret  7358 0.0200 2718000</span></span>
 <span><span class="co">#&gt; 4  1909 F     Ruth      6509 0.0177 2718000</span></span>
 <span><span class="co">#&gt; 5  1909 F     Dorothy   6253 0.0170 2718000</span></span>
 <span><span class="co">#&gt; 6  1909 F     Anna      5804 0.0158 2718000</span></span>
-<span><span class="co">#&gt; # ℹ 1,839,946 more rows</span></span>
+<span><span class="co">#&gt; # ℹ 2,000,820 more rows</span></span>
 <span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">left_join</a></span><span class="op">(</span><span class="va">birth_df</span>, <span class="va">babynames_df</span>, by <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/join_by.html">join_by</a></span><span class="op">(</span><span class="va">year</span> <span class="op">==</span> <span class="va">year</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="co">#&gt; # A tibble: 1,839,952 × 6</span></span>
+<span><span class="co">#&gt; # A tibble: 2,000,826 × 6</span></span>
 <span><span class="co">#&gt;    year  births sex   name         n   prop</span></span>
 <span><span class="co">#&gt;   &lt;dbl&gt;   &lt;int&gt; &lt;chr&gt; &lt;chr&gt;    &lt;int&gt;  &lt;dbl&gt;</span></span>
 <span><span class="co">#&gt; 1  1909 2718000 F     Mary     19259 0.0523</span></span>
 <span><span class="co">#&gt; 2  1909 2718000 F     Helen     9250 0.0251</span></span>
-<span><span class="co">#&gt; 3  1909 2718000 F     Margaret  7359 0.0200</span></span>
+<span><span class="co">#&gt; 3  1909 2718000 F     Margaret  7358 0.0200</span></span>
 <span><span class="co">#&gt; 4  1909 2718000 F     Ruth      6509 0.0177</span></span>
 <span><span class="co">#&gt; 5  1909 2718000 F     Dorothy   6253 0.0170</span></span>
 <span><span class="co">#&gt; 6  1909 2718000 F     Anna      5804 0.0158</span></span>
-<span><span class="co">#&gt; # ℹ 1,839,946 more rows</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="co">#&gt; # ℹ 2,000,820 more rows</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Therefore, it’s usually easier to just always use <code><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">left_join()</a></code> and ignore <code><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">right_join()</a></code> completely.</p>
 </section><section id="keep-all-rows-of-both-data-sets-with-full_join" class="level3" data-number="11.2.3"><h3 data-number="11.2.3" class="anchored" data-anchor-id="keep-all-rows-of-both-data-sets-with-full_join">
@@ -515,16 +515,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>We can also keep only rows with matching keys with <code><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">inner_join()</a></code>. For this join, any row in data set 1 without a matching key in data set 2 is dropped, and any row in data set 2 without a matching key in data set 1 is also dropped.</p>
 <div class="cell" data-appendix="true">
 <div class="sourceCode" id="cb13"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">inner_join</a></span><span class="op">(</span><span class="va">babynames_df</span>, <span class="va">birth_df</span>, by <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/join_by.html">join_by</a></span><span class="op">(</span><span class="va">year</span> <span class="op">==</span> <span class="va">year</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="co">#&gt; # A tibble: 1,839,952 × 6</span></span>
+<span><span class="co">#&gt; # A tibble: 2,000,826 × 6</span></span>
 <span><span class="co">#&gt;    year sex   name         n   prop  births</span></span>
 <span><span class="co">#&gt;   &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt;    &lt;int&gt;  &lt;dbl&gt;   &lt;int&gt;</span></span>
 <span><span class="co">#&gt; 1  1909 F     Mary     19259 0.0523 2718000</span></span>
 <span><span class="co">#&gt; 2  1909 F     Helen     9250 0.0251 2718000</span></span>
-<span><span class="co">#&gt; 3  1909 F     Margaret  7359 0.0200 2718000</span></span>
+<span><span class="co">#&gt; 3  1909 F     Margaret  7358 0.0200 2718000</span></span>
 <span><span class="co">#&gt; 4  1909 F     Ruth      6509 0.0177 2718000</span></span>
 <span><span class="co">#&gt; 5  1909 F     Dorothy   6253 0.0170 2718000</span></span>
 <span><span class="co">#&gt; 6  1909 F     Anna      5804 0.0158 2718000</span></span>
-<span><span class="co">#&gt; # ℹ 1,839,946 more rows</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="co">#&gt; # ℹ 2,000,820 more rows</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p><br></p>
 </section><section id="which-xxxx_join" class="level3" data-number="11.2.5"><h3 data-number="11.2.5" class="anchored" data-anchor-id="which-xxxx_join">
@@ -546,7 +546,7 @@ Important
 <p><strong>Exercise 2</strong>. Examine the following two joins that we’ve done, and explain why one resulting data set has fewer observations (rows) than the other.</p>
 <div class="cell">
 <div class="sourceCode" id="cb14"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">left_join</a></span><span class="op">(</span><span class="va">babynames_df</span>, <span class="va">birth_df</span>, by <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/join_by.html">join_by</a></span><span class="op">(</span><span class="va">year</span> <span class="op">==</span> <span class="va">year</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="co">#&gt; # A tibble: 1,924,665 × 6</span></span>
+<span><span class="co">#&gt; # A tibble: 2,117,219 × 6</span></span>
 <span><span class="co">#&gt;    year sex   name          n   prop births</span></span>
 <span><span class="co">#&gt;   &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt;     &lt;int&gt;  &lt;dbl&gt;  &lt;int&gt;</span></span>
 <span><span class="co">#&gt; 1  1880 F     Mary       7065 0.0724     NA</span></span>
@@ -555,18 +555,18 @@ Important
 <span><span class="co">#&gt; 4  1880 F     Elizabeth  1939 0.0199     NA</span></span>
 <span><span class="co">#&gt; 5  1880 F     Minnie     1746 0.0179     NA</span></span>
 <span><span class="co">#&gt; 6  1880 F     Margaret   1578 0.0162     NA</span></span>
-<span><span class="co">#&gt; # ℹ 1,924,659 more rows</span></span>
+<span><span class="co">#&gt; # ℹ 2,117,213 more rows</span></span>
 <span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">left_join</a></span><span class="op">(</span><span class="va">birth_df</span>, <span class="va">babynames_df</span>, by <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/join_by.html">join_by</a></span><span class="op">(</span><span class="va">year</span> <span class="op">==</span> <span class="va">year</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="co">#&gt; # A tibble: 1,839,952 × 6</span></span>
+<span><span class="co">#&gt; # A tibble: 2,000,826 × 6</span></span>
 <span><span class="co">#&gt;    year  births sex   name         n   prop</span></span>
 <span><span class="co">#&gt;   &lt;dbl&gt;   &lt;int&gt; &lt;chr&gt; &lt;chr&gt;    &lt;int&gt;  &lt;dbl&gt;</span></span>
 <span><span class="co">#&gt; 1  1909 2718000 F     Mary     19259 0.0523</span></span>
 <span><span class="co">#&gt; 2  1909 2718000 F     Helen     9250 0.0251</span></span>
-<span><span class="co">#&gt; 3  1909 2718000 F     Margaret  7359 0.0200</span></span>
+<span><span class="co">#&gt; 3  1909 2718000 F     Margaret  7358 0.0200</span></span>
 <span><span class="co">#&gt; 4  1909 2718000 F     Ruth      6509 0.0177</span></span>
 <span><span class="co">#&gt; 5  1909 2718000 F     Dorothy   6253 0.0170</span></span>
 <span><span class="co">#&gt; 6  1909 2718000 F     Anna      5804 0.0158</span></span>
-<span><span class="co">#&gt; # ℹ 1,839,946 more rows</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="co">#&gt; # ℹ 2,000,820 more rows</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section></section><section id="filtering-joins" class="level2" data-number="11.3"><h2 data-number="11.3" class="anchored" data-anchor-id="filtering-joins">
 <span class="header-section-number">11.3</span> Filtering Joins</h2>

@@ -36,85 +36,41 @@ Databases are run through Database Management Systems. The _R for Data Science_ 
 
 We won't really discuss these any further, but an advanced course in database systems through the CS department would give more information about Database Management Systems (and databases in general).
 
-How to connect to a database from `R` depends on the type of database management system. For our purposes, because how to connect to a Database management system depends so heavily on the type, we will focus on a database management system that is contained in the `R` package `duckdb`.
+How to connect to a database from `R` depends on the type of database management system. For our purposes, because how to connect to a Database management system depends so heavily on the type, we will focus on using a local (not remote) data base that has been put into your `/data` folder called `imdb_tv.sqlite`.
 
-```{r}
-## continue looking at:
-##https://myslu.stlawu.edu/~iramler/stat234/coursenotes/intro-to-databases-and-sql.html
-library(DBI) # we will then use the RSQLite package only for connecting to our db
-library(dplyr)
-library(dbplyr)
-
-imdb_db <- dbConnect(RSQLite::SQLite(), 
-                 dbname = here::here("data/imdb_tv.sqlite"))
-
-dbListTables(conn = imdb_db)
-dbListFields(conn = imdb_db, name = "episode_rating")
-dbListFields(conn = imdb_db, name = "show_info")
-dbListFields(conn = imdb_db, name = "show_ratings")
-
-sql <- "
-  SELECT *
-  FROM show_info
-"
-dbGetQuery(imdb_db, sql) |>
-  as_tibble() |>
-  print(n = Inf)
-
-sql <- "
-  SELECT surface, winner_name, loser_name, w_ace, l_ace, minutes
-  FROM tennis2019 
-  WHERE minutes > 240
-"
-
-```
-
-We also need a database interface to connect to the database tables in `duckdb` in the `DBI` package.
+To start, we connect to the database using the `dbConnect()` function from the `DBI` package. Note that this connection process would be different if your database was on a remote server or was cloud-based.
 
 ::: {.callout-note}
 ## Note
 
-This section on connecting to a database management systems may be confusing, particularly if you do not have a computer science background. But don't let that derail your learning for this rest of this chapter, which will consist of primarily of `R` code from here on! The take-home message is that we need a way to connect to the system within `R`. It's challenging to give specific directions because the connection depends on the type of system, so we are avoiding most of that by connecting to a database management system in the `duckdb` `R` package using functions from the `DBI` package.
+This section on connecting to a database management systems may be confusing, particularly if you do not have a computer science background. But don't let that derail your learning for this rest of this chapter, which will consist of primarily of `R` code from here on! The take-home message is that we need a way to connect to the system within `R`. It's challenging to give specific directions because the connection depends on the type of system.
 :::
 
-SQL is short from Structured Query Language. We first load in the `duckdb` and `DBI` libraries and make a connection to the database management system, which we will name `con`:
+```{r}
+library(RSQLite)
+library(DBI) 
+library(dplyr)
+library(dbplyr)
 
-```{r, appendix = TRUE}
-library(DBI)
-library(duckdb)
-con <- DBI::dbConnect(duckdb::duckdb())
+imdb_db <- dbConnect(RSQLite::SQLite(), 
+                     dbname = here::here("data/imdb_tv.sqlite"))
 ```
 
-We can type in `con` to see what it stores:
+What's in our newly connected database, which we have named `imdb_db`? We can find out with:
 
-```{r, appendix = TRUE}
-con
+```{r}
+dbListTables(conn = imdb_db)
 ```
 
-We've created a brand-new database, so we can next add some data tables with the `duckdb_read_csv()` function. Compared to `read_csv()` from the `readr` package, `duckdb_read_csv()` has a couple of extra arguments: a `conn` argument giving the database management connection and a `name` argument giving the name that we want to give to the data table:
+The `imdb_db` database consists of three __table__. We can think of a table as an individual data frame. Each table has its own set of variables that we can check with:
 
-```{r, appendix = TRUE}
-library(here)
-duckdb_read_csv(conn = con, name = "tennis2018", 
-                files = here("data/atp_matches_2018.csv"))
-duckdb_read_csv(conn = con, name = "tennis2019", 
-                files = here("data/atp_matches_2019.csv"))
+```{r}
+dbListFields(conn = imdb_db, name = "episode_rating")
+dbListFields(conn = imdb_db, name = "show_info")
+dbListFields(conn = imdb_db, name = "show_ratings")
 ```
 
-The `doListTables()` function lists the names of the data tables in the database we just created:
-
-```{r, appendix = TRUE}
-dbListTables(con)
-```
-
-And, `dbExistsTable()` can be used to examine whether or not a data table exists in the current database:
-
-```{r, appendix = TRUE}
-dbExistsTable(con, "tennis2019")
-dbExistsTable(con, "tennis2020")
-```
-
-Note that, in many practical situations, the data tables will already exist in the database you are working with, so the step of `duckdb_read_csv()` would not be necessary.
+The `episode_rating` table (data frame) has 7 variables (or, fields) in it, the `show_info` table has three variables, and the `show_ratings` table has three variables. Moreover, these three tables all share one common variable called `parentTconst`.
 
 To use raw SQL code and query the database that we just created, we can create a string of SQL code, name it `sql`, and pass it to the `dbGetQuery()` function. We also load in the `tidyverse` package here to use the `as_tibble()` function to convert the `data.frame` to a `tibble`.
 
@@ -122,13 +78,15 @@ To use raw SQL code and query the database that we just created, we can create a
 library(tidyverse)
 
 sql <- "
-  SELECT surface, winner_name, loser_name, w_ace, l_ace, minutes
-  FROM tennis2019 
-  WHERE minutes > 240
+  SELECT parentTconst, averageRating, numVotes
+  FROM show_ratings 
+  WHERE numVotes > 100000
 "
-dbGetQuery(con, sql) |>
+
+dbGetQuery(imdb_db, sql) |>
   as_tibble()
 ```
+
 
 __Exercise 1__. Though we do not know SQL code, we can probably figure out what the code (the string that is being assigned to `sql`) above is doing. Which matches are being returned from our query?
 
@@ -138,56 +96,64 @@ __Exercise 2__. What is the `dplyr` equivalent function to `WHERE` in the SQL co
 
 `dbplyr` is a package that will allow us to continue to write `dplyr`-style code to query databases instead of writing native `SQL`, as in the code-chunk above. 
 
-We begin by loading in the package and creating a database table object with the `tbl()` function. In this case, we create a database table with the `tennis2019` data and name it `tennis_db`:
+We begin by loading in the package and creating a database table object with the `tbl()` function. In this case, we create a database table with the `episode_rating` data and name it `episode_rating_tbl`:
 
 ```{r, appendix = TRUE}
 library(dbplyr)
-tennis_db <- tbl(con, "tennis2019")
-tennis_db
+episode_rating_tbl <- tbl(imdb_db, "episode_rating")
+episode_rating_tbl
 ```
 
-Examine the print for `tennis_db`, which should look similar to the print for a `tibble` or `data.frame`. Let's use some `dplyr` code to obtain only the matches that lasted longer than `240` minutes and keep only a few of the columns. We will name the result `tennis_query1`:
+Examine the print for `episode_rating_tbl`, which should look similar to the print for a `tibble` or `data.frame`. Let's use some `dplyr` code to obtain only the ratings that are higher than a `9.0` and keep only a few of the columns. We will name the result `episode_query1`:
 
 ```{r, appendix = TRUE}
-tennis_query1 <- tennis_db |> 
-  filter(minutes > 240) |> 
-  select(minutes, winner_name, loser_name, minutes, tourney_name)
-tennis_query1
+episode_query1 <- episode_rating_tbl |> 
+  filter(averageRating > 9.0) |> 
+  select(parentTconst, Episode_Name, numVotes, averageRating)
+episode_query1
 ```
 
-We should note that the result is still a database object: it's not our "usual" `tibble`. One major difference between the database object and the usual `tibble` is that our `tennis_query1` does not tell us how many rows are in the data (see the `??` and the specification `with more rows`). The code that we wrote is not actually looking in the entire data set for matches that are longer than 240 minutes: it is saving time by only performing our query on part of the database table. This is very useful behaviour for database tables that are very, very large, where code might take a long time to run. 
+We should note that the result is still a database object: it's not our "usual" `tibble`. One major difference between the database object and the usual `tibble` is that our `episode_query1` does not tell us how many rows are in the data (see the `??` and the specification `with more rows`). The code that we wrote is not actually looking in the entire data set for ratings that are higher than 9.0: it is saving time by only performing our query on part of the database table. This is very useful behaviour for database tables that are very, very large, where code might take a long time to run. 
 
 If we want to obtain the result of our query as a `tibble`, we can use the `collect()` function:
 
 ```{r, appendix = TRUE}
-tennis_query1 |>
+episode_query1 |>
   collect()
 ```
 
 The result is a `tibble` that we can now use any `R` functions on (not just functions from `dplyr` and a few other packages).
 
-The `show_query()` function can be used on our `tennis_query1` to give the SQL code that was executed:
+The `show_query()` function can be used on our `episode_query1` to give the SQL code that was executed:
 
 ```{r, appendix = TRUE}
-tennis_query1 |>
+episode_query1 |>
   show_query()
 ```
 
-We'll do one more query:
+We'll do one more query. Note that the `parentTconst` variable is a show identification variable.
 
 ```{r, appendix = TRUE}
-totalaces <- tennis_db |>
-  group_by(winner_name) |>
-  summarise(total_aces = sum(w_ace)) |>
-  arrange(desc(total_aces))
-totalaces
+mean_query1 <- episode_rating_tbl |>
+  group_by(parentTconst) |>
+  summarise(mean_rating = mean(averageRating)) |>
+  arrange(desc(mean_rating))
+mean_query1
 
-totalaces |> show_query()
+mean_query1 |> show_query()
 ```
 
-Can you match some of the `SQL` code with the corresponding `dbplyr` functions used?
+Can you match some of the `SQL` code with the corresponding `dbplyr` functions used? Note that the `parentTconst` variable is a show identification variable.
 
-__Exercise 3__. Obtain the distribution of the `surface` variable by making a table of the total number of matches played on each surface in the 2019 season using `dbplyr` functions on `tennis_db`. Then, use `show_query()` to show the corresponding `SQL` code.
+__Exercise 3__. Figure out how many episodes there are for each television show using `dbplyr` functions on `episode_rating_tbl`. Then, use `show_query()` to show the corresponding `SQL` code.
+
+```{r}
+#| echo: false
+#| output: false
+n_episode_query <- episode_rating_tbl |> group_by(parentTconst) |>
+  summarise(n_episode = n())
+n_episode_query |> show_query()
+```
 
 ## SQL
 
@@ -199,26 +165,26 @@ The purpose of this section is to explore `SQL` syntax a little more, focusing o
 Knowing `dplyr` is quite helpful in learning this `SQL` syntax because, while the syntax differs, the concepts are quite similar.
 :::
 
-Much of the text in this section is paraphrased from the _R for Data Science textbook_. There are five core components of an `SQL` query. The two most basic are a `SELECT` statement (similar to `select()`, and, as discussed below, `mutate()` and `summarise()`) and a `FROM` statement (similar to the `data` argument). Using the `show_query()` function directly on `tennis_db` shows an `SQL` query that `SELECT`s all columns (denoted by the `*`), `FROM` the `tennis2019` database.
+Much of the text in this section is paraphrased from the _R for Data Science textbook_. There are five core components of an `SQL` query. The two most basic are a `SELECT` statement (similar to `select()`, and, as discussed below, `mutate()` and `summarise()`) and a `FROM` statement (similar to the `data` argument). Using the `show_query()` function directly on `episode_rating_tbl` shows an `SQL` query that `SELECT`s all columns (denoted by the `*`), `FROM` the `episode_rating` database.
 
 ```{r, appendix = TRUE}
-tennis_db |> show_query()
+episode_rating_tbl |> show_query()
 ```
 
 The `WHERE` and `ORDER BY` statements control which rows are returned (similar to `filter()`) and in what order those rows get returned (similar to `arrange()`):
 
 ```{r, appendix = TRUE}
-tennis_db |> filter(winner_hand == "L") |>
-  arrange(desc(tourney_date)) |>
+episode_rating_tbl |> filter(seasonNumber == 1) |>
+  arrange(desc(numVotes)) |>
   show_query()
 ```
 
 Finally, `GROUP BY` is used for aggregation (similar to the `dplyr` `group_by()` and `summarise()` combination).
 
 ```{r, appendix = TRUE}
-tennis_db |>
-  group_by(winner_name) |>
-  summarise(meanace = mean(w_ace, na.rm = TRUE)) |>
+episode_rating_tbl |>
+  group_by(parentTconst) |>
+  summarise(total_votes = sum(numVotes, na.rm = TRUE)) |>
   show_query()
 ```
 
@@ -233,28 +199,28 @@ __`SELECT`__: `SELECT` covers a lot of `dplyr` functions. In the code below, we 
 * `SELECT` to choose which columns to return:
 
 ```{r, appendix = TRUE}
-tennis_db |> select(1:4) |> show_query()
+episode_rating_tbl |> select(1:4) |> show_query()
 ```
 
 * `SELECT` to rename columns:
 
 ```{r, appendix = TRUE}
-tennis_db |> rename(tournament = tourney_name) |>
+episode_rating_tbl |> rename(show_id = parentTconst) |>
   show_query()
 ```
 
 * `SELECT` to create a new variable
 
 ```{r, appendix = TRUE}
-tennis_db |> mutate(prop_first_won = w_1stIn / w_1stWon) |>
-  select(prop_first_won, winner_name) |>
+episode_rating_tbl |> mutate(total_rating_points = averageRating * numVotes) |>
+  select(total_rating_points, parentTconst) |>
   show_query()
 ```
 
 * `SELECT` to create a new variable that is a summary:
 
 ```{r, appendix = TRUE}
-tennis_db |> summarise(mean_length = mean(minutes)) |>
+episode_rating_tbl |> summarise(median_rating = median(averageRating)) |>
   show_query()
 ```
 
@@ -263,118 +229,120 @@ tennis_db |> summarise(mean_length = mean(minutes)) |>
 __`GROUP BY`__: `GROUP BY` covers aggregation in a similar way as `dplyr`'s `group_by()` function:
 
 ```{r, appendix = TRUE}
-tennis_db |> group_by(winner_name) |>
-  summarise(meanlength = mean(minutes)) |>
+episode_rating_tbl |> group_by(parentTconst) |>
+  summarise(median_rating = median(averageRating)) |>
   show_query()
 ```
 
 __`WHERE`__: `WHERE` is used for `filter()`, though `SQL` uses different Boolean operators than `R` (for example, `&` becomes `AND`, `|` becomes `or`).
 
 ```{r, appendix = TRUE}
-tennis_db |> filter(winner_age > 35 | loser_age > 35) |>
+episode_rating_tbl |> filter(averageRating > 8 | averageRating < 5) |>
   show_query()
 ```
 
 __`ORDER BY`__: `ORDER BY` is used for `arrange()`. This one is quite straightforward:
 
 ```{r, appendix = TRUE}
-tennis_db |> arrange(desc(winner_rank_points)) |>
+episode_rating_tbl |> arrange(desc(averageRating)) |>
   show_query()
 ```
 
-`SQL` also has corresponding syntax for the `xxxx_join()` family of functions, but we do not have time to discuss this in detail. Note that we have really just scratched the surface of `SQL`. There are entire courses devoted to learning `SQL` syntax and more about databases in general. If you ever do find yourself in a situation where you need to learn `SQL`, either for a course or for a job, you should have a major head-start with your `dplyr` knowledge!
+Finally, you may have noticed that the `episode_rating` data table does not actually contain the name of the show as a variable. But, it does have a show identification variable (`parentTconst`), and, we do have another data table called `show_info` that has both the id (`parentTconst`) and the show name (`Show_Name`). What if we wanted to use the show name information? We can combine the two data sets using joins, just as we did in `dplyr`.
+
+Let's first grab the `show_info` table and store it as an object:
+
+```{r}
+show_info_tbl <- tbl(imdb_db, "show_info")
+```
+
+Next, we join the two tables together with `dbplyr` and use the `show_query()` function to obtain the corresponding `SQL` code:
+
+```{r}
+left_join(episode_rating_tbl, show_info_tbl,
+          join_by(parentTconst == parentTconst)) |>
+  show_query()
+```
+
+Note that we have really just scratched the surface of `SQL`. There are entire courses devoted to learning `SQL` syntax and more about databases in general. If you ever do find yourself in a situation where you need to learn `SQL`, either for a course or for a job, you should have a major head-start with your `dplyr` knowledge!
 
 In much of this section, we have created code with `dbplyr` and seen how that code translates to `SQL`. In this exercise, you will instead be given `SQL` code and asked to write `dbplyr` code that achieves the same thing.
 
-__Exercise 4__. Examine the `SQL` code below and write equivalent `dbplyr` code using `tennis_db`.
+__Exercise 4__. Examine the `SQL` code below and write equivalent `dbplyr` code using `show_info_tbl`.
 
 ```{r, eval = FALSE}
 SELECT * 
-FROM "tennis2019"
-WHERE ("tourney_name" = 'Wimbledon')
+FROM "show_info_tbl"
+WHERE ("Show_name" = 'Ozark')
 ```
 
 ## Practice
 
 ### Class Exercises
 
-__Class Exercise 1__. Examine the `SQL` code below and write equivalent `dbplyr` code using `tennis_db`.
+__Class Exercise 1__. Examine the `SQL` code below and write equivalent `dbplyr` code using `show_info_tbl`.
 
 ```{r, eval = FALSE}
-SELECT "winner_name", "loser_name", "w_ace", "l_ace", "w_ace" - "l_ace" AS "ace_diff"
-FROM "tennis2019"
-ORDER BY "ace_diff" DESC
+SELECT "startYear", "parentTconst", "Show_Name" AS "show_name"
+FROM "show_info_tbl"
+ORDER BY "startYear" DESC
 ```
-
-__Class Exercise 2__. With `tennis_db`, create a new variable that is the difference in the `winner_rank_points` and `loser_rank_points` using a `dbplyr` function. Then, have your query return only the column you just created, the `winner_name` column, and the `loser_name` column. Use the `show_query()` function to show the corresponding `SQL` code.
 
 ### Your Turn
 
-__Your Turn 1__. Examine the `SQL` code below and write equivalent `dbplyr` code on `tennis_db`.
+__Your Turn 1__. Examine the `SQL` code below and write equivalent `dbplyr` code on `episode_rating_tbl`.
 
 ```{r, eval = FALSE}
 <SQL>
-SELECT "tourney_name", MAX("minutes") AS "longest_match"
-FROM "tennis2019"
-GROUP BY "tourney_name"
+SELECT "parentTconst", MAX("averageRating") AS "best_episode"
+FROM "episode_rating_tbl"
+GROUP BY "parentTconst"
 ```
 
-__Your Turn 2__. Try to run a function from `lubridate` or `forcats` on `tennis_db` with `mutate()`. Does the function work? 
+__Your Turn 2__. Try to run a function from `forcats` on `episode_rating_tbl` with `mutate()`. Does the function work? 
 
 ```{r}
 #| eval: false
 #| echo: false
-tennis_db |> mutate(tourney_date = lubridate::ymd(tourney_date))
-tennis_db |> collect() |>
-  mutate(tourney_date = lubridate::ymd(tourney_date))
+episode_rating_tbl |> mutate(parentTconst = forcats::fct_recode(parentTconst, idk = "tt0475784"))
+episode_rating_tbl |> collect() |> mutate(parentTconst = forcats::fct_recode(parentTconst, idk = "tt0475784"))
 ```
 
 __Your Turn 3__. Run the following code and write how the `!` is translated to `SQL`, how the `%in%` symbol is translated to `SQL`, and how `distinct()` is translated to `SQL`.
 
 ```{r}
 #| output: false
-tennis_db |> filter(winner_name != "Daniil Medvedev") |>
+episode_rating_tbl |> filter(seasonNumber != "1") |>
   show_query()
 
-tennis_db |>
-  filter(winner_name %in% c("Daniil Medvedev", "Dominic Thiem")) |>
+episode_rating_tbl |>
+  filter(seasonNumber %in% c("1", "2")) |>
   show_query()
 
-tennis_db |> distinct(tourney_name) |>
+episode_rating_tbl |> distinct(parentTconst) |>
   show_query()
 ```
 
-__Your Turn 4__. Examine the following `SQL` code and write equivalent `dbplyr` code on `tennis_db`.
+__Your Turn 4__. Examine the following `SQL` code and write equivalent `dbplyr` code on `episode_rating_tbl`.
 
 ```{r}
 #| eval: false
 <SQL>
-SELECT "winner_name", COUNT(*) AS "n_win"
-FROM "tennis2019"
-WHERE ("surface" = 'Hard')
-GROUP BY "winner_name"
-ORDER BY "n_win" DESC
+SELECT "parentTconst", COUNT(*) AS "n_episodes"
+FROM "episode_rating_tbl"
+WHERE ("seasonNumber" = '1')
+GROUP BY "parentTconst"
+ORDER BY "n_episodes" DESC
 ```
 
 ```{r}
 #| echo: false
 #| output: false
-tennis_db |>
-  filter(surface == "Hard") |>
-  group_by(winner_name) |>
-  summarise(n_win = n()) |>
-  arrange(desc(n_win)) |>
+episode_rating_tbl |>
+  filter(seasonNumber == "1") |>
+  group_by(parentTconst) |>
+  summarise(n_episodes = n()) |>
+  arrange(desc(n_episodes)) |>
   show_query()
 ```
 
-__Your Turn 5__. Perform a query of your choosing on `tennis_db` and use the `show_query()` function to show the corresponding `SQL` code.
-
-```{r}
-#| echo: false
-#| output: false
-tennis_db |>
-  group_by(winner_name) |>
-  filter(minutes == max(minutes)) |>
-  arrange(desc(minutes)) |>
-  show_query()
-```

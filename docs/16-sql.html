@@ -341,8 +341,8 @@ Note
 <strong>In-process</strong> like SQLite</li>
 </ul>
 <p>We won’t really discuss these any further, but an advanced course in database systems through the CS department would give more information about Database Management Systems (and databases in general).</p>
-<p>How to connect to a database from <code>R</code> depends on the type of database management system. For our purposes, because how to connect to a Database management system depends so heavily on the type, we will focus on a database management system that is contained in the <code>R</code> package <code>duckdb</code>.</p>
-<p>We also need a database interface to connect to the database tables in <code>duckdb</code> in the <code>DBI</code> package.</p>
+<p>How to connect to a database from <code>R</code> depends on the type of database management system. For our purposes, because how to connect to a Database management system depends so heavily on the type, we will focus on using a local (not remote) data base that has been put into your <code>/data</code> folder called <code>imdb_tv.sqlite</code>.</p>
+<p>To start, we connect to the database using the <code><a href="https://dbi.r-dbi.org/reference/dbConnect.html">dbConnect()</a></code> function from the <code>DBI</code> package. Note that this connection process would be different if your database was on a remote server or was cloud-based.</p>
 <div class="callout callout-style-simple callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -353,61 +353,56 @@ Note
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>This section on connecting to a database management systems may be confusing, particularly if you do not have a computer science background. But don’t let that derail your learning for this rest of this chapter, which will consist of primarily of <code>R</code> code from here on! The take-home message is that we need a way to connect to the system within <code>R</code>. It’s challenging to give specific directions because the connection depends on the type of system, so we are avoiding most of that by connecting to a database management system in the <code>duckdb</code> <code>R</code> package using functions from the <code>DBI</code> package.</p>
+<p>This section on connecting to a database management systems may be confusing, particularly if you do not have a computer science background. But don’t let that derail your learning for this rest of this chapter, which will consist of primarily of <code>R</code> code from here on! The take-home message is that we need a way to connect to the system within <code>R</code>. It’s challenging to give specific directions because the connection depends on the type of system.</p>
 </div>
 </div>
-<p>SQL is short from Structured Query Language. We first load in the <code>duckdb</code> and <code>DBI</code> libraries and make a connection to the database management system, which we will name <code>con</code>:</p>
-<div class="cell" data-appendix="true">
-<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://dbi.r-dbi.org">DBI</a></span><span class="op">)</span></span>
-<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://r.duckdb.org/">duckdb</a></span><span class="op">)</span></span>
-<span><span class="va">con</span> <span class="op">&lt;-</span> <span class="fu">DBI</span><span class="fu">::</span><span class="fu"><a href="https://dbi.r-dbi.org/reference/dbConnect.html">dbConnect</a></span><span class="op">(</span><span class="fu">duckdb</span><span class="fu">::</span><span class="fu"><a href="https://r.duckdb.org/reference/duckdb.html">duckdb</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell">
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://rsqlite.r-dbi.org">RSQLite</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://dbi.r-dbi.org">DBI</a></span><span class="op">)</span> </span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org">dplyr</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://dbplyr.tidyverse.org/">dbplyr</a></span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">imdb_db</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://dbi.r-dbi.org/reference/dbConnect.html">dbConnect</a></span><span class="op">(</span><span class="fu">RSQLite</span><span class="fu">::</span><span class="fu"><a href="https://rsqlite.r-dbi.org/reference/SQLite.html">SQLite</a></span><span class="op">(</span><span class="op">)</span>, </span>
+<span>                     dbname <span class="op">=</span> <span class="fu">here</span><span class="fu">::</span><span class="fu"><a href="https://here.r-lib.org/reference/here.html">here</a></span><span class="op">(</span><span class="st">"data/imdb_tv.sqlite"</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>We can type in <code>con</code> to see what it stores:</p>
-<div class="cell" data-appendix="true">
-<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">con</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>What’s in our newly connected database, which we have named <code>imdb_db</code>? We can find out with:</p>
+<div class="cell">
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://dbi.r-dbi.org/reference/dbListTables.html">dbListTables</a></span><span class="op">(</span>conn <span class="op">=</span> <span class="va">imdb_db</span><span class="op">)</span></span>
+<span><span class="co">#&gt; [1] "episode_rating" "show_info"      "show_ratings"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>We’ve created a brand-new database, so we can next add some data tables with the <code><a href="https://r.duckdb.org/reference/duckdb_read_csv.html">duckdb_read_csv()</a></code> function. Compared to <code><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv()</a></code> from the <code>readr</code> package, <code><a href="https://r.duckdb.org/reference/duckdb_read_csv.html">duckdb_read_csv()</a></code> has a couple of extra arguments: a <code>conn</code> argument giving the database management connection and a <code>name</code> argument giving the name that we want to give to the data table:</p>
-<div class="cell" data-appendix="true">
-<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://here.r-lib.org/">here</a></span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://r.duckdb.org/reference/duckdb_read_csv.html">duckdb_read_csv</a></span><span class="op">(</span>conn <span class="op">=</span> <span class="va">con</span>, name <span class="op">=</span> <span class="st">"tennis2018"</span>, </span>
-<span>                files <span class="op">=</span> <span class="fu"><a href="https://here.r-lib.org/reference/here.html">here</a></span><span class="op">(</span><span class="st">"data/atp_matches_2018.csv"</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://r.duckdb.org/reference/duckdb_read_csv.html">duckdb_read_csv</a></span><span class="op">(</span>conn <span class="op">=</span> <span class="va">con</span>, name <span class="op">=</span> <span class="st">"tennis2019"</span>, </span>
-<span>                files <span class="op">=</span> <span class="fu"><a href="https://here.r-lib.org/reference/here.html">here</a></span><span class="op">(</span><span class="st">"data/atp_matches_2019.csv"</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>The <code>imdb_db</code> database consists of three <strong>table</strong>. We can think of a table as an individual data frame. Each table has its own set of variables that we can check with:</p>
+<div class="cell">
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://dbi.r-dbi.org/reference/dbListFields.html">dbListFields</a></span><span class="op">(</span>conn <span class="op">=</span> <span class="va">imdb_db</span>, name <span class="op">=</span> <span class="st">"episode_rating"</span><span class="op">)</span></span>
+<span><span class="co">#&gt; [1] "tconst"        "parentTconst"  "seasonNumber"  "episodeNumber"</span></span>
+<span><span class="co">#&gt; [5] "averageRating" "numVotes"      "Episode_Name"</span></span>
+<span><span class="fu"><a href="https://dbi.r-dbi.org/reference/dbListFields.html">dbListFields</a></span><span class="op">(</span>conn <span class="op">=</span> <span class="va">imdb_db</span>, name <span class="op">=</span> <span class="st">"show_info"</span><span class="op">)</span></span>
+<span><span class="co">#&gt; [1] "parentTconst" "Show_Name"    "startYear"</span></span>
+<span><span class="fu"><a href="https://dbi.r-dbi.org/reference/dbListFields.html">dbListFields</a></span><span class="op">(</span>conn <span class="op">=</span> <span class="va">imdb_db</span>, name <span class="op">=</span> <span class="st">"show_ratings"</span><span class="op">)</span></span>
+<span><span class="co">#&gt; [1] "parentTconst"  "averageRating" "numVotes"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>The <code>doListTables()</code> function lists the names of the data tables in the database we just created:</p>
-<div class="cell" data-appendix="true">
-<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://dbi.r-dbi.org/reference/dbListTables.html">dbListTables</a></span><span class="op">(</span><span class="va">con</span><span class="op">)</span></span>
-<span><span class="co">#&gt; [1] "tennis2018" "tennis2019"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>And, <code><a href="https://dbi.r-dbi.org/reference/dbExistsTable.html">dbExistsTable()</a></code> can be used to examine whether or not a data table exists in the current database:</p>
-<div class="cell" data-appendix="true">
-<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://dbi.r-dbi.org/reference/dbExistsTable.html">dbExistsTable</a></span><span class="op">(</span><span class="va">con</span>, <span class="st">"tennis2019"</span><span class="op">)</span></span>
-<span><span class="co">#&gt; [1] TRUE</span></span>
-<span><span class="fu"><a href="https://dbi.r-dbi.org/reference/dbExistsTable.html">dbExistsTable</a></span><span class="op">(</span><span class="va">con</span>, <span class="st">"tennis2020"</span><span class="op">)</span></span>
-<span><span class="co">#&gt; [1] FALSE</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>Note that, in many practical situations, the data tables will already exist in the database you are working with, so the step of <code><a href="https://r.duckdb.org/reference/duckdb_read_csv.html">duckdb_read_csv()</a></code> would not be necessary.</p>
+<p>The <code>episode_rating</code> table (data frame) has 7 variables (or, fields) in it, the <code>show_info</code> table has three variables, and the <code>show_ratings</code> table has three variables. Moreover, these three tables all share one common variable called <code>parentTconst</code>.</p>
 <p>To use raw SQL code and query the database that we just created, we can create a string of SQL code, name it <code>sql</code>, and pass it to the <code><a href="https://dbi.r-dbi.org/reference/dbGetQuery.html">dbGetQuery()</a></code> function. We also load in the <code>tidyverse</code> package here to use the <code><a href="https://tibble.tidyverse.org/reference/as_tibble.html">as_tibble()</a></code> function to convert the <code>data.frame</code> to a <code>tibble</code>.</p>
 <div class="cell" data-appendix="true">
-<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span></span>
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span></span>
 <span></span>
 <span><span class="va">sql</span> <span class="op">&lt;-</span> <span class="st">"</span></span>
-<span><span class="st">  SELECT surface, winner_name, loser_name, w_ace, l_ace, minutes</span></span>
-<span><span class="st">  FROM tennis2019 </span></span>
-<span><span class="st">  WHERE minutes &gt; 240</span></span>
+<span><span class="st">  SELECT parentTconst, averageRating, numVotes</span></span>
+<span><span class="st">  FROM show_ratings </span></span>
+<span><span class="st">  WHERE numVotes &gt; 100000</span></span>
 <span><span class="st">"</span></span>
-<span><span class="fu"><a href="https://dbi.r-dbi.org/reference/dbGetQuery.html">dbGetQuery</a></span><span class="op">(</span><span class="va">con</span>, <span class="va">sql</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span></span>
+<span><span class="fu"><a href="https://dbi.r-dbi.org/reference/dbGetQuery.html">dbGetQuery</a></span><span class="op">(</span><span class="va">imdb_db</span>, <span class="va">sql</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://tibble.tidyverse.org/reference/as_tibble.html">as_tibble</a></span><span class="op">(</span><span class="op">)</span></span>
-<span><span class="co">#&gt; # A tibble: 30 × 6</span></span>
-<span><span class="co">#&gt;   surface winner_name           loser_name            w_ace l_ace minutes</span></span>
-<span><span class="co">#&gt;   &lt;chr&gt;   &lt;chr&gt;                 &lt;chr&gt;                 &lt;int&gt; &lt;int&gt;   &lt;int&gt;</span></span>
-<span><span class="co">#&gt; 1 Hard    Joao Sousa            Guido Pella              19    18     241</span></span>
-<span><span class="co">#&gt; 2 Hard    Jeremy Chardy         Ugo Humbert              29    20     244</span></span>
-<span><span class="co">#&gt; 3 Hard    Roberto Bautista Agut Andy Murray               7    19     249</span></span>
-<span><span class="co">#&gt; 4 Hard    Joao Sousa            Philipp Kohlschreiber    28    20     258</span></span>
-<span><span class="co">#&gt; 5 Hard    Alex Bolt             Gilles Simon             11    14     244</span></span>
-<span><span class="co">#&gt; 6 Hard    Milos Raonic          Stan Wawrinka            39    28     241</span></span>
-<span><span class="co">#&gt; # ℹ 24 more rows</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="co">#&gt; # A tibble: 25 × 3</span></span>
+<span><span class="co">#&gt;   parentTconst averageRating numVotes</span></span>
+<span><span class="co">#&gt;   &lt;chr&gt;                &lt;dbl&gt;    &lt;dbl&gt;</span></span>
+<span><span class="co">#&gt; 1 tt0475784              8.5   513884</span></span>
+<span><span class="co">#&gt; 2 tt8740790              7.4   144503</span></span>
+<span><span class="co">#&gt; 3 tt9140554              8.2   335306</span></span>
+<span><span class="co">#&gt; 4 tt7221388              8.5   192307</span></span>
+<span><span class="co">#&gt; 5 tt5753856              8.7   405433</span></span>
+<span><span class="co">#&gt; 6 tt4052886              8.1   333969</span></span>
+<span><span class="co">#&gt; # ℹ 19 more rows</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p><strong>Exercise 1</strong>. Though we do not know SQL code, we can probably figure out what the code (the string that is being assigned to <code>sql</code>) above is doing. Which matches are being returned from our query?</p>
 <p><strong>Exercise 2</strong>. What is the <code>dplyr</code> equivalent function to <code>WHERE</code> in the SQL code above? What is the <code>dplyr</code> equivalent function to <code>SELECT</code> in the SQL code above?</p>
@@ -415,102 +410,97 @@ Note
 <span class="header-section-number">16.2</span> <code>dbplyr</code>: A Database Version of <code>dplyr</code>
 </h2>
 <p><code>dbplyr</code> is a package that will allow us to continue to write <code>dplyr</code>-style code to query databases instead of writing native <code>SQL</code>, as in the code-chunk above.</p>
-<p>We begin by loading in the package and creating a database table object with the <code><a href="https://dplyr.tidyverse.org/reference/tbl.html">tbl()</a></code> function. In this case, we create a database table with the <code>tennis2019</code> data and name it <code>tennis_db</code>:</p>
+<p>We begin by loading in the package and creating a database table object with the <code><a href="https://dplyr.tidyverse.org/reference/tbl.html">tbl()</a></code> function. In this case, we create a database table with the <code>episode_rating</code> data and name it <code>episode_rating_tbl</code>:</p>
 <div class="cell" data-appendix="true">
-<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://dbplyr.tidyverse.org/">dbplyr</a></span><span class="op">)</span></span>
-<span><span class="va">tennis_db</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/tbl.html">tbl</a></span><span class="op">(</span><span class="va">con</span>, <span class="st">"tennis2019"</span><span class="op">)</span></span>
-<span><span class="va">tennis_db</span></span>
-<span><span class="co">#&gt; # Source:   table&lt;tennis2019&gt; [?? x 49]</span></span>
-<span><span class="co">#&gt; # Database: DuckDB v1.0.0 [root@Darwin 24.6.0:R 4.4.1/:memory:]</span></span>
-<span><span class="co">#&gt;   tourney_id tourney_name surface draw_size tourney_level tourney_date</span></span>
-<span><span class="co">#&gt;   &lt;chr&gt;      &lt;chr&gt;        &lt;chr&gt;       &lt;int&gt; &lt;chr&gt;                &lt;int&gt;</span></span>
-<span><span class="co">#&gt; 1 2019-M020  Brisbane     Hard           32 A                 20181231</span></span>
-<span><span class="co">#&gt; 2 2019-M020  Brisbane     Hard           32 A                 20181231</span></span>
-<span><span class="co">#&gt; 3 2019-M020  Brisbane     Hard           32 A                 20181231</span></span>
-<span><span class="co">#&gt; 4 2019-M020  Brisbane     Hard           32 A                 20181231</span></span>
-<span><span class="co">#&gt; 5 2019-M020  Brisbane     Hard           32 A                 20181231</span></span>
-<span><span class="co">#&gt; 6 2019-M020  Brisbane     Hard           32 A                 20181231</span></span>
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://dbplyr.tidyverse.org/">dbplyr</a></span><span class="op">)</span></span>
+<span><span class="va">episode_rating_tbl</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/tbl.html">tbl</a></span><span class="op">(</span><span class="va">imdb_db</span>, <span class="st">"episode_rating"</span><span class="op">)</span></span>
+<span><span class="va">episode_rating_tbl</span></span>
+<span><span class="co">#&gt; # Source:   table&lt;`episode_rating`&gt; [?? x 7]</span></span>
+<span><span class="co">#&gt; # Database: sqlite 3.50.3 [/Users/highamm/git_repos/courses/ds234_quarto/data/imdb_tv.sqlite]</span></span>
+<span><span class="co">#&gt;   tconst     parentTconst seasonNumber episodeNumber averageRating numVotes</span></span>
+<span><span class="co">#&gt;   &lt;chr&gt;      &lt;chr&gt;        &lt;chr&gt;        &lt;chr&gt;                 &lt;dbl&gt;    &lt;dbl&gt;</span></span>
+<span><span class="co">#&gt; 1 tt10011150 tt0475784    3            3                       8.1     8770</span></span>
+<span><span class="co">#&gt; 2 tt10011152 tt0475784    3            4                       8.7    10071</span></span>
+<span><span class="co">#&gt; 3 tt10011154 tt0475784    3            5                       7.9     9511</span></span>
+<span><span class="co">#&gt; 4 tt10011156 tt0475784    3            6                       8.2     8323</span></span>
+<span><span class="co">#&gt; 5 tt10011158 tt0475784    3            7                       7.8     7853</span></span>
+<span><span class="co">#&gt; 6 tt10011160 tt0475784    3            8                       7.2     9652</span></span>
 <span><span class="co">#&gt; # ℹ more rows</span></span>
-<span><span class="co">#&gt; # ℹ 43 more variables: match_num &lt;int&gt;, winner_id &lt;int&gt;, winner_seed &lt;chr&gt;,</span></span>
-<span><span class="co">#&gt; #   winner_entry &lt;chr&gt;, winner_name &lt;chr&gt;, winner_hand &lt;chr&gt;,</span></span>
-<span><span class="co">#&gt; #   winner_ht &lt;int&gt;, winner_ioc &lt;chr&gt;, winner_age &lt;dbl&gt;, loser_id &lt;int&gt;,</span></span>
-<span><span class="co">#&gt; #   loser_seed &lt;chr&gt;, loser_entry &lt;chr&gt;, loser_name &lt;chr&gt;, loser_hand &lt;chr&gt;,</span></span>
-<span><span class="co">#&gt; #   loser_ht &lt;int&gt;, loser_ioc &lt;chr&gt;, loser_age &lt;dbl&gt;, score &lt;chr&gt;,</span></span>
-<span><span class="co">#&gt; #   best_of &lt;int&gt;, round &lt;chr&gt;, minutes &lt;int&gt;, w_ace &lt;int&gt;, w_df &lt;int&gt;, …</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="co">#&gt; # ℹ 1 more variable: Episode_Name &lt;chr&gt;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Examine the print for <code>tennis_db</code>, which should look similar to the print for a <code>tibble</code> or <code>data.frame</code>. Let’s use some <code>dplyr</code> code to obtain only the matches that lasted longer than <code>240</code> minutes and keep only a few of the columns. We will name the result <code>tennis_query1</code>:</p>
+<p>Examine the print for <code>episode_rating_tbl</code>, which should look similar to the print for a <code>tibble</code> or <code>data.frame</code>. Let’s use some <code>dplyr</code> code to obtain only the ratings that are higher than a <code>9.0</code> and keep only a few of the columns. We will name the result <code>episode_query1</code>:</p>
 <div class="cell" data-appendix="true">
-<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">tennis_query1</span> <span class="op">&lt;-</span> <span class="va">tennis_db</span> <span class="op">|&gt;</span> </span>
-<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">minutes</span> <span class="op">&gt;</span> <span class="fl">240</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
-<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">minutes</span>, <span class="va">winner_name</span>, <span class="va">loser_name</span>, <span class="va">minutes</span>, <span class="va">tourney_name</span><span class="op">)</span></span>
-<span><span class="va">tennis_query1</span></span>
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">episode_query1</span> <span class="op">&lt;-</span> <span class="va">episode_rating_tbl</span> <span class="op">|&gt;</span> </span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">averageRating</span> <span class="op">&gt;</span> <span class="fl">9.0</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">parentTconst</span>, <span class="va">Episode_Name</span>, <span class="va">numVotes</span>, <span class="va">averageRating</span><span class="op">)</span></span>
+<span><span class="va">episode_query1</span></span>
 <span><span class="co">#&gt; # Source:   SQL [?? x 4]</span></span>
-<span><span class="co">#&gt; # Database: DuckDB v1.0.0 [root@Darwin 24.6.0:R 4.4.1/:memory:]</span></span>
-<span><span class="co">#&gt;   minutes winner_name           loser_name            tourney_name   </span></span>
-<span><span class="co">#&gt;     &lt;int&gt; &lt;chr&gt;                 &lt;chr&gt;                 &lt;chr&gt;          </span></span>
-<span><span class="co">#&gt; 1     241 Joao Sousa            Guido Pella           Australian Open</span></span>
-<span><span class="co">#&gt; 2     244 Jeremy Chardy         Ugo Humbert           Australian Open</span></span>
-<span><span class="co">#&gt; 3     249 Roberto Bautista Agut Andy Murray           Australian Open</span></span>
-<span><span class="co">#&gt; 4     258 Joao Sousa            Philipp Kohlschreiber Australian Open</span></span>
-<span><span class="co">#&gt; 5     244 Alex Bolt             Gilles Simon          Australian Open</span></span>
-<span><span class="co">#&gt; 6     241 Milos Raonic          Stan Wawrinka         Australian Open</span></span>
+<span><span class="co">#&gt; # Database: sqlite 3.50.3 [/Users/highamm/git_repos/courses/ds234_quarto/data/imdb_tv.sqlite]</span></span>
+<span><span class="co">#&gt;   parentTconst Episode_Name          numVotes averageRating</span></span>
+<span><span class="co">#&gt;   &lt;chr&gt;        &lt;chr&gt;                    &lt;dbl&gt;         &lt;dbl&gt;</span></span>
+<span><span class="co">#&gt; 1 tt7221388    December 19               6245           9.4</span></span>
+<span><span class="co">#&gt; 2 tt5753856    Die Reisenden            13000           9.4</span></span>
+<span><span class="co">#&gt; 3 tt5753856    Vom Suchen und Finden    11905           9.2</span></span>
+<span><span class="co">#&gt; 4 tt5753856    Ein unendlicher kreis    14775           9.5</span></span>
+<span><span class="co">#&gt; 5 tt5753856    Der weiße Teufel         11809           9.1</span></span>
+<span><span class="co">#&gt; 6 tt5753856    Enden und Anfänge        14651           9.4</span></span>
 <span><span class="co">#&gt; # ℹ more rows</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>We should note that the result is still a database object: it’s not our “usual” <code>tibble</code>. One major difference between the database object and the usual <code>tibble</code> is that our <code>tennis_query1</code> does not tell us how many rows are in the data (see the <code>??</code> and the specification <code>with more rows</code>). The code that we wrote is not actually looking in the entire data set for matches that are longer than 240 minutes: it is saving time by only performing our query on part of the database table. This is very useful behaviour for database tables that are very, very large, where code might take a long time to run.</p>
+<p>We should note that the result is still a database object: it’s not our “usual” <code>tibble</code>. One major difference between the database object and the usual <code>tibble</code> is that our <code>episode_query1</code> does not tell us how many rows are in the data (see the <code>??</code> and the specification <code>with more rows</code>). The code that we wrote is not actually looking in the entire data set for ratings that are higher than 9.0: it is saving time by only performing our query on part of the database table. This is very useful behaviour for database tables that are very, very large, where code might take a long time to run.</p>
 <p>If we want to obtain the result of our query as a <code>tibble</code>, we can use the <code><a href="https://dplyr.tidyverse.org/reference/compute.html">collect()</a></code> function:</p>
 <div class="cell" data-appendix="true">
-<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">tennis_query1</span> <span class="op">|&gt;</span></span>
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">episode_query1</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/compute.html">collect</a></span><span class="op">(</span><span class="op">)</span></span>
-<span><span class="co">#&gt; # A tibble: 30 × 4</span></span>
-<span><span class="co">#&gt;   minutes winner_name           loser_name            tourney_name   </span></span>
-<span><span class="co">#&gt;     &lt;int&gt; &lt;chr&gt;                 &lt;chr&gt;                 &lt;chr&gt;          </span></span>
-<span><span class="co">#&gt; 1     241 Joao Sousa            Guido Pella           Australian Open</span></span>
-<span><span class="co">#&gt; 2     244 Jeremy Chardy         Ugo Humbert           Australian Open</span></span>
-<span><span class="co">#&gt; 3     249 Roberto Bautista Agut Andy Murray           Australian Open</span></span>
-<span><span class="co">#&gt; 4     258 Joao Sousa            Philipp Kohlschreiber Australian Open</span></span>
-<span><span class="co">#&gt; 5     244 Alex Bolt             Gilles Simon          Australian Open</span></span>
-<span><span class="co">#&gt; 6     241 Milos Raonic          Stan Wawrinka         Australian Open</span></span>
-<span><span class="co">#&gt; # ℹ 24 more rows</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="co">#&gt; # A tibble: 173 × 4</span></span>
+<span><span class="co">#&gt;   parentTconst Episode_Name          numVotes averageRating</span></span>
+<span><span class="co">#&gt;   &lt;chr&gt;        &lt;chr&gt;                    &lt;dbl&gt;         &lt;dbl&gt;</span></span>
+<span><span class="co">#&gt; 1 tt7221388    December 19               6245           9.4</span></span>
+<span><span class="co">#&gt; 2 tt5753856    Die Reisenden            13000           9.4</span></span>
+<span><span class="co">#&gt; 3 tt5753856    Vom Suchen und Finden    11905           9.2</span></span>
+<span><span class="co">#&gt; 4 tt5753856    Ein unendlicher kreis    14775           9.5</span></span>
+<span><span class="co">#&gt; 5 tt5753856    Der weiße Teufel         11809           9.1</span></span>
+<span><span class="co">#&gt; 6 tt5753856    Enden und Anfänge        14651           9.4</span></span>
+<span><span class="co">#&gt; # ℹ 167 more rows</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>The result is a <code>tibble</code> that we can now use any <code>R</code> functions on (not just functions from <code>dplyr</code> and a few other packages).</p>
-<p>The <code><a href="https://dplyr.tidyverse.org/reference/explain.html">show_query()</a></code> function can be used on our <code>tennis_query1</code> to give the SQL code that was executed:</p>
+<p>The <code><a href="https://dplyr.tidyverse.org/reference/explain.html">show_query()</a></code> function can be used on our <code>episode_query1</code> to give the SQL code that was executed:</p>
 <div class="cell" data-appendix="true">
-<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">tennis_query1</span> <span class="op">|&gt;</span></span>
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">episode_query1</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/explain.html">show_query</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="co">#&gt; &lt;SQL&gt;</span></span>
-<span><span class="co">#&gt; SELECT "minutes", winner_name, loser_name, tourney_name</span></span>
-<span><span class="co">#&gt; FROM tennis2019</span></span>
-<span><span class="co">#&gt; WHERE ("minutes" &gt; 240.0)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="co">#&gt; SELECT `parentTconst`, `Episode_Name`, `numVotes`, `averageRating`</span></span>
+<span><span class="co">#&gt; FROM `episode_rating`</span></span>
+<span><span class="co">#&gt; WHERE (`averageRating` &gt; 9.0)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>We’ll do one more query:</p>
+<p>We’ll do one more query. Note that the <code>parentTconst</code> variable is a show identification variable.</p>
 <div class="cell" data-appendix="true">
-<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">totalaces</span> <span class="op">&lt;-</span> <span class="va">tennis_db</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">winner_name</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise</a></span><span class="op">(</span>total_aces <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">w_ace</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/arrange.html">arrange</a></span><span class="op">(</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/desc.html">desc</a></span><span class="op">(</span><span class="va">total_aces</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="va">totalaces</span></span>
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">mean_query1</span> <span class="op">&lt;-</span> <span class="va">episode_rating_tbl</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">parentTconst</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise</a></span><span class="op">(</span>mean_rating <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">averageRating</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/arrange.html">arrange</a></span><span class="op">(</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/desc.html">desc</a></span><span class="op">(</span><span class="va">mean_rating</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="va">mean_query1</span></span>
 <span><span class="co">#&gt; # Source:     SQL [?? x 2]</span></span>
-<span><span class="co">#&gt; # Database:   DuckDB v1.0.0 [root@Darwin 24.6.0:R 4.4.1/:memory:]</span></span>
-<span><span class="co">#&gt; # Ordered by: desc(total_aces)</span></span>
-<span><span class="co">#&gt;   winner_name        total_aces</span></span>
-<span><span class="co">#&gt;   &lt;chr&gt;                   &lt;dbl&gt;</span></span>
-<span><span class="co">#&gt; 1 Reilly Opelka             604</span></span>
-<span><span class="co">#&gt; 2 John Isner                590</span></span>
-<span><span class="co">#&gt; 3 Daniil Medvedev           511</span></span>
-<span><span class="co">#&gt; 4 Alexander Zverev          496</span></span>
-<span><span class="co">#&gt; 5 Milos Raonic              444</span></span>
-<span><span class="co">#&gt; 6 Jan Lennard Struff        428</span></span>
+<span><span class="co">#&gt; # Database:   sqlite 3.50.3 [/Users/highamm/git_repos/courses/ds234_quarto/data/imdb_tv.sqlite]</span></span>
+<span><span class="co">#&gt; # Ordered by: desc(mean_rating)</span></span>
+<span><span class="co">#&gt;   parentTconst mean_rating</span></span>
+<span><span class="co">#&gt;   &lt;chr&gt;              &lt;dbl&gt;</span></span>
+<span><span class="co">#&gt; 1 tt27350436         10   </span></span>
+<span><span class="co">#&gt; 2 tt24248284         10   </span></span>
+<span><span class="co">#&gt; 3 tt27178946          9.8 </span></span>
+<span><span class="co">#&gt; 4 tt8560994           9.46</span></span>
+<span><span class="co">#&gt; 5 tt14392248          9.24</span></span>
+<span><span class="co">#&gt; 6 tt15202102          9.2 </span></span>
 <span><span class="co">#&gt; # ℹ more rows</span></span>
 <span></span>
-<span><span class="va">totalaces</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/explain.html">show_query</a></span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="va">mean_query1</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/explain.html">show_query</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="co">#&gt; &lt;SQL&gt;</span></span>
-<span><span class="co">#&gt; SELECT winner_name, SUM(w_ace) AS total_aces</span></span>
-<span><span class="co">#&gt; FROM tennis2019</span></span>
-<span><span class="co">#&gt; GROUP BY winner_name</span></span>
-<span><span class="co">#&gt; ORDER BY total_aces DESC</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="co">#&gt; SELECT `parentTconst`, AVG(`averageRating`) AS `mean_rating`</span></span>
+<span><span class="co">#&gt; FROM `episode_rating`</span></span>
+<span><span class="co">#&gt; GROUP BY `parentTconst`</span></span>
+<span><span class="co">#&gt; ORDER BY `mean_rating` DESC</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Can you match some of the <code>SQL</code> code with the corresponding <code>dbplyr</code> functions used?</p>
-<p><strong>Exercise 3</strong>. Obtain the distribution of the <code>surface</code> variable by making a table of the total number of matches played on each surface in the 2019 season using <code>dbplyr</code> functions on <code>tennis_db</code>. Then, use <code><a href="https://dplyr.tidyverse.org/reference/explain.html">show_query()</a></code> to show the corresponding <code>SQL</code> code.</p>
+<p>Can you match some of the <code>SQL</code> code with the corresponding <code>dbplyr</code> functions used? Note that the <code>parentTconst</code> variable is a show identification variable.</p>
+<p><strong>Exercise 3</strong>. Figure out how many episodes there are for each television show using <code>dbplyr</code> functions on <code>episode_rating_tbl</code>. Then, use <code><a href="https://dplyr.tidyverse.org/reference/explain.html">show_query()</a></code> to show the corresponding <code>SQL</code> code.</p>
 </section><section id="sql" class="level2" data-number="16.3"><h2 data-number="16.3" class="anchored" data-anchor-id="sql">
 <span class="header-section-number">16.3</span> SQL</h2>
 <p>The purpose of this section is to explore <code>SQL</code> syntax a little more, focusing on its connections to <code>dplyr</code>.</p>
@@ -527,34 +517,34 @@ Note
 <p>Knowing <code>dplyr</code> is quite helpful in learning this <code>SQL</code> syntax because, while the syntax differs, the concepts are quite similar.</p>
 </div>
 </div>
-<p>Much of the text in this section is paraphrased from the <em>R for Data Science textbook</em>. There are five core components of an <code>SQL</code> query. The two most basic are a <code>SELECT</code> statement (similar to <code><a href="https://dplyr.tidyverse.org/reference/select.html">select()</a></code>, and, as discussed below, <code><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate()</a></code> and <code><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise()</a></code>) and a <code>FROM</code> statement (similar to the <code>data</code> argument). Using the <code><a href="https://dplyr.tidyverse.org/reference/explain.html">show_query()</a></code> function directly on <code>tennis_db</code> shows an <code>SQL</code> query that <code>SELECT</code>s all columns (denoted by the <code>*</code>), <code>FROM</code> the <code>tennis2019</code> database.</p>
+<p>Much of the text in this section is paraphrased from the <em>R for Data Science textbook</em>. There are five core components of an <code>SQL</code> query. The two most basic are a <code>SELECT</code> statement (similar to <code><a href="https://dplyr.tidyverse.org/reference/select.html">select()</a></code>, and, as discussed below, <code><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate()</a></code> and <code><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise()</a></code>) and a <code>FROM</code> statement (similar to the <code>data</code> argument). Using the <code><a href="https://dplyr.tidyverse.org/reference/explain.html">show_query()</a></code> function directly on <code>episode_rating_tbl</code> shows an <code>SQL</code> query that <code>SELECT</code>s all columns (denoted by the <code>*</code>), <code>FROM</code> the <code>episode_rating</code> database.</p>
 <div class="cell" data-appendix="true">
-<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">tennis_db</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/explain.html">show_query</a></span><span class="op">(</span><span class="op">)</span></span>
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">episode_rating_tbl</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/explain.html">show_query</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="co">#&gt; &lt;SQL&gt;</span></span>
 <span><span class="co">#&gt; SELECT *</span></span>
-<span><span class="co">#&gt; FROM tennis2019</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="co">#&gt; FROM `episode_rating`</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>The <code>WHERE</code> and <code>ORDER BY</code> statements control which rows are returned (similar to <code><a href="https://dplyr.tidyverse.org/reference/filter.html">filter()</a></code>) and in what order those rows get returned (similar to <code><a href="https://dplyr.tidyverse.org/reference/arrange.html">arrange()</a></code>):</p>
 <div class="cell" data-appendix="true">
-<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">tennis_db</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">winner_hand</span> <span class="op">==</span> <span class="st">"L"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/arrange.html">arrange</a></span><span class="op">(</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/desc.html">desc</a></span><span class="op">(</span><span class="va">tourney_date</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">episode_rating_tbl</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">seasonNumber</span> <span class="op">==</span> <span class="fl">1</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/arrange.html">arrange</a></span><span class="op">(</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/desc.html">desc</a></span><span class="op">(</span><span class="va">numVotes</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/explain.html">show_query</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="co">#&gt; &lt;SQL&gt;</span></span>
-<span><span class="co">#&gt; SELECT tennis2019.*</span></span>
-<span><span class="co">#&gt; FROM tennis2019</span></span>
-<span><span class="co">#&gt; WHERE (winner_hand = 'L')</span></span>
-<span><span class="co">#&gt; ORDER BY tourney_date DESC</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="co">#&gt; SELECT `episode_rating`.*</span></span>
+<span><span class="co">#&gt; FROM `episode_rating`</span></span>
+<span><span class="co">#&gt; WHERE (`seasonNumber` = 1.0)</span></span>
+<span><span class="co">#&gt; ORDER BY `numVotes` DESC</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Finally, <code>GROUP BY</code> is used for aggregation (similar to the <code>dplyr</code> <code><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by()</a></code> and <code><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise()</a></code> combination).</p>
 <div class="cell" data-appendix="true">
-<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">tennis_db</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">winner_name</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise</a></span><span class="op">(</span>meanace <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">w_ace</span>, na.rm <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">episode_rating_tbl</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">parentTconst</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise</a></span><span class="op">(</span>total_votes <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">numVotes</span>, na.rm <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/explain.html">show_query</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="co">#&gt; &lt;SQL&gt;</span></span>
-<span><span class="co">#&gt; SELECT winner_name, AVG(w_ace) AS meanace</span></span>
-<span><span class="co">#&gt; FROM tennis2019</span></span>
-<span><span class="co">#&gt; GROUP BY winner_name</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="co">#&gt; SELECT `parentTconst`, SUM(`numVotes`) AS `total_votes`</span></span>
+<span><span class="co">#&gt; FROM `episode_rating`</span></span>
+<span><span class="co">#&gt; GROUP BY `parentTconst`</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>In the above code chunk, remove the <code>na.rm = TRUE</code> argument and run the query. What do you learn?</p>
 <p>The <code>SQL</code> syntax <strong>must</strong> always follow the order <code>SELECT, FROM, WHERE, GROUP BY, ORDER BY</code>, even though the operations can be performed in a different order than what is specified. This is one aspect that makes <code>SQL</code> harder to pick up than something like <code>dplyr</code>, where we specify what we want done in the order that we want.</p>
@@ -565,174 +555,146 @@ Note
 <code>SELECT</code> to choose which columns to return:</li>
 </ul>
 <div class="cell" data-appendix="true">
-<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">tennis_db</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">4</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/explain.html">show_query</a></span><span class="op">(</span><span class="op">)</span></span>
+<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">episode_rating_tbl</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">4</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/explain.html">show_query</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="co">#&gt; &lt;SQL&gt;</span></span>
-<span><span class="co">#&gt; SELECT tourney_id, tourney_name, surface, draw_size</span></span>
-<span><span class="co">#&gt; FROM tennis2019</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="co">#&gt; SELECT `tconst`, `parentTconst`, `seasonNumber`, `episodeNumber`</span></span>
+<span><span class="co">#&gt; FROM `episode_rating`</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <ul>
 <li>
 <code>SELECT</code> to rename columns:</li>
 </ul>
 <div class="cell" data-appendix="true">
-<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">tennis_db</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/rename.html">rename</a></span><span class="op">(</span>tournament <span class="op">=</span> <span class="va">tourney_name</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">episode_rating_tbl</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/rename.html">rename</a></span><span class="op">(</span>show_id <span class="op">=</span> <span class="va">parentTconst</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/explain.html">show_query</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="co">#&gt; &lt;SQL&gt;</span></span>
 <span><span class="co">#&gt; SELECT</span></span>
-<span><span class="co">#&gt;   tourney_id,</span></span>
-<span><span class="co">#&gt;   tourney_name AS tournament,</span></span>
-<span><span class="co">#&gt;   surface,</span></span>
-<span><span class="co">#&gt;   draw_size,</span></span>
-<span><span class="co">#&gt;   tourney_level,</span></span>
-<span><span class="co">#&gt;   tourney_date,</span></span>
-<span><span class="co">#&gt;   match_num,</span></span>
-<span><span class="co">#&gt;   winner_id,</span></span>
-<span><span class="co">#&gt;   winner_seed,</span></span>
-<span><span class="co">#&gt;   winner_entry,</span></span>
-<span><span class="co">#&gt;   winner_name,</span></span>
-<span><span class="co">#&gt;   winner_hand,</span></span>
-<span><span class="co">#&gt;   winner_ht,</span></span>
-<span><span class="co">#&gt;   winner_ioc,</span></span>
-<span><span class="co">#&gt;   winner_age,</span></span>
-<span><span class="co">#&gt;   loser_id,</span></span>
-<span><span class="co">#&gt;   loser_seed,</span></span>
-<span><span class="co">#&gt;   loser_entry,</span></span>
-<span><span class="co">#&gt;   loser_name,</span></span>
-<span><span class="co">#&gt;   loser_hand,</span></span>
-<span><span class="co">#&gt;   loser_ht,</span></span>
-<span><span class="co">#&gt;   loser_ioc,</span></span>
-<span><span class="co">#&gt;   loser_age,</span></span>
-<span><span class="co">#&gt;   score,</span></span>
-<span><span class="co">#&gt;   best_of,</span></span>
-<span><span class="co">#&gt;   round,</span></span>
-<span><span class="co">#&gt;   "minutes",</span></span>
-<span><span class="co">#&gt;   w_ace,</span></span>
-<span><span class="co">#&gt;   w_df,</span></span>
-<span><span class="co">#&gt;   w_svpt,</span></span>
-<span><span class="co">#&gt;   w_1stIn,</span></span>
-<span><span class="co">#&gt;   w_1stWon,</span></span>
-<span><span class="co">#&gt;   w_2ndWon,</span></span>
-<span><span class="co">#&gt;   w_SvGms,</span></span>
-<span><span class="co">#&gt;   w_bpSaved,</span></span>
-<span><span class="co">#&gt;   w_bpFaced,</span></span>
-<span><span class="co">#&gt;   l_ace,</span></span>
-<span><span class="co">#&gt;   l_df,</span></span>
-<span><span class="co">#&gt;   l_svpt,</span></span>
-<span><span class="co">#&gt;   l_1stIn,</span></span>
-<span><span class="co">#&gt;   l_1stWon,</span></span>
-<span><span class="co">#&gt;   l_2ndWon,</span></span>
-<span><span class="co">#&gt;   l_SvGms,</span></span>
-<span><span class="co">#&gt;   l_bpSaved,</span></span>
-<span><span class="co">#&gt;   l_bpFaced,</span></span>
-<span><span class="co">#&gt;   winner_rank,</span></span>
-<span><span class="co">#&gt;   winner_rank_points,</span></span>
-<span><span class="co">#&gt;   loser_rank,</span></span>
-<span><span class="co">#&gt;   loser_rank_points</span></span>
-<span><span class="co">#&gt; FROM tennis2019</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="co">#&gt;   `tconst`,</span></span>
+<span><span class="co">#&gt;   `parentTconst` AS `show_id`,</span></span>
+<span><span class="co">#&gt;   `seasonNumber`,</span></span>
+<span><span class="co">#&gt;   `episodeNumber`,</span></span>
+<span><span class="co">#&gt;   `averageRating`,</span></span>
+<span><span class="co">#&gt;   `numVotes`,</span></span>
+<span><span class="co">#&gt;   `Episode_Name`</span></span>
+<span><span class="co">#&gt; FROM `episode_rating`</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <ul>
 <li>
 <code>SELECT</code> to create a new variable</li>
 </ul>
 <div class="cell" data-appendix="true">
-<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">tennis_db</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>prop_first_won <span class="op">=</span> <span class="va">w_1stIn</span> <span class="op">/</span> <span class="va">w_1stWon</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">prop_first_won</span>, <span class="va">winner_name</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">episode_rating_tbl</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>total_rating_points <span class="op">=</span> <span class="va">averageRating</span> <span class="op">*</span> <span class="va">numVotes</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">total_rating_points</span>, <span class="va">parentTconst</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/explain.html">show_query</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="co">#&gt; &lt;SQL&gt;</span></span>
-<span><span class="co">#&gt; SELECT w_1stIn / w_1stWon AS prop_first_won, winner_name</span></span>
-<span><span class="co">#&gt; FROM tennis2019</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="co">#&gt; SELECT `averageRating` * `numVotes` AS `total_rating_points`, `parentTconst`</span></span>
+<span><span class="co">#&gt; FROM `episode_rating`</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <ul>
 <li>
 <code>SELECT</code> to create a new variable that is a summary:</li>
 </ul>
 <div class="cell" data-appendix="true">
-<div class="sourceCode" id="cb18"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">tennis_db</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise</a></span><span class="op">(</span>mean_length <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">minutes</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">episode_rating_tbl</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise</a></span><span class="op">(</span>median_rating <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/median.html">median</a></span><span class="op">(</span><span class="va">averageRating</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/explain.html">show_query</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="co">#&gt; &lt;SQL&gt;</span></span>
-<span><span class="co">#&gt; SELECT AVG("minutes") AS mean_length</span></span>
-<span><span class="co">#&gt; FROM tennis2019</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="co">#&gt; SELECT MEDIAN(`averageRating`) AS `median_rating`</span></span>
+<span><span class="co">#&gt; FROM `episode_rating`</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p><br></p>
 <p><strong><code>GROUP BY</code></strong>: <code>GROUP BY</code> covers aggregation in a similar way as <code>dplyr</code>’s <code><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by()</a></code> function:</p>
 <div class="cell" data-appendix="true">
-<div class="sourceCode" id="cb19"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">tennis_db</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">winner_name</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise</a></span><span class="op">(</span>meanlength <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">minutes</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">episode_rating_tbl</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">parentTconst</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise</a></span><span class="op">(</span>median_rating <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/median.html">median</a></span><span class="op">(</span><span class="va">averageRating</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/explain.html">show_query</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="co">#&gt; &lt;SQL&gt;</span></span>
-<span><span class="co">#&gt; SELECT winner_name, AVG("minutes") AS meanlength</span></span>
-<span><span class="co">#&gt; FROM tennis2019</span></span>
-<span><span class="co">#&gt; GROUP BY winner_name</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="co">#&gt; SELECT `parentTconst`, MEDIAN(`averageRating`) AS `median_rating`</span></span>
+<span><span class="co">#&gt; FROM `episode_rating`</span></span>
+<span><span class="co">#&gt; GROUP BY `parentTconst`</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p><strong><code>WHERE</code></strong>: <code>WHERE</code> is used for <code><a href="https://dplyr.tidyverse.org/reference/filter.html">filter()</a></code>, though <code>SQL</code> uses different Boolean operators than <code>R</code> (for example, <code>&amp;</code> becomes <code>AND</code>, <code>|</code> becomes <code>or</code>).</p>
 <div class="cell" data-appendix="true">
-<div class="sourceCode" id="cb20"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">tennis_db</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">winner_age</span> <span class="op">&gt;</span> <span class="fl">35</span> <span class="op">|</span> <span class="va">loser_age</span> <span class="op">&gt;</span> <span class="fl">35</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<div class="sourceCode" id="cb18"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">episode_rating_tbl</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">averageRating</span> <span class="op">&gt;</span> <span class="fl">8</span> <span class="op">|</span> <span class="va">averageRating</span> <span class="op">&lt;</span> <span class="fl">5</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/explain.html">show_query</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="co">#&gt; &lt;SQL&gt;</span></span>
-<span><span class="co">#&gt; SELECT tennis2019.*</span></span>
-<span><span class="co">#&gt; FROM tennis2019</span></span>
-<span><span class="co">#&gt; WHERE (winner_age &gt; 35.0 OR loser_age &gt; 35.0)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="co">#&gt; SELECT `episode_rating`.*</span></span>
+<span><span class="co">#&gt; FROM `episode_rating`</span></span>
+<span><span class="co">#&gt; WHERE (`averageRating` &gt; 8.0 OR `averageRating` &lt; 5.0)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p><strong><code>ORDER BY</code></strong>: <code>ORDER BY</code> is used for <code><a href="https://dplyr.tidyverse.org/reference/arrange.html">arrange()</a></code>. This one is quite straightforward:</p>
 <div class="cell" data-appendix="true">
-<div class="sourceCode" id="cb21"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">tennis_db</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/arrange.html">arrange</a></span><span class="op">(</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/desc.html">desc</a></span><span class="op">(</span><span class="va">winner_rank_points</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<div class="sourceCode" id="cb19"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">episode_rating_tbl</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/arrange.html">arrange</a></span><span class="op">(</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/desc.html">desc</a></span><span class="op">(</span><span class="va">averageRating</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/explain.html">show_query</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="co">#&gt; &lt;SQL&gt;</span></span>
-<span><span class="co">#&gt; SELECT tennis2019.*</span></span>
-<span><span class="co">#&gt; FROM tennis2019</span></span>
-<span><span class="co">#&gt; ORDER BY winner_rank_points DESC</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="co">#&gt; SELECT `episode_rating`.*</span></span>
+<span><span class="co">#&gt; FROM `episode_rating`</span></span>
+<span><span class="co">#&gt; ORDER BY `averageRating` DESC</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p><code>SQL</code> also has corresponding syntax for the <code>xxxx_join()</code> family of functions, but we do not have time to discuss this in detail. Note that we have really just scratched the surface of <code>SQL</code>. There are entire courses devoted to learning <code>SQL</code> syntax and more about databases in general. If you ever do find yourself in a situation where you need to learn <code>SQL</code>, either for a course or for a job, you should have a major head-start with your <code>dplyr</code> knowledge!</p>
+<p>Finally, you may have noticed that the <code>episode_rating</code> data table does not actually contain the name of the show as a variable. But, it does have a show identification variable (<code>parentTconst</code>), and, we do have another data table called <code>show_info</code> that has both the id (<code>parentTconst</code>) and the show name (<code>Show_Name</code>). What if we wanted to use the show name information? We can combine the two data sets using joins, just as we did in <code>dplyr</code>.</p>
+<p>Let’s first grab the <code>show_info</code> table and store it as an object:</p>
+<div class="cell">
+<div class="sourceCode" id="cb20"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">show_info_tbl</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/tbl.html">tbl</a></span><span class="op">(</span><span class="va">imdb_db</span>, <span class="st">"show_info"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Next, we join the two tables together with <code>dbplyr</code> and use the <code><a href="https://dplyr.tidyverse.org/reference/explain.html">show_query()</a></code> function to obtain the corresponding <code>SQL</code> code:</p>
+<div class="cell">
+<div class="sourceCode" id="cb21"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">left_join</a></span><span class="op">(</span><span class="va">episode_rating_tbl</span>, <span class="va">show_info_tbl</span>,</span>
+<span>          <span class="fu"><a href="https://dplyr.tidyverse.org/reference/join_by.html">join_by</a></span><span class="op">(</span><span class="va">parentTconst</span> <span class="op">==</span> <span class="va">parentTconst</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/explain.html">show_query</a></span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="co">#&gt; &lt;SQL&gt;</span></span>
+<span><span class="co">#&gt; SELECT `episode_rating`.*, `Show_Name`, `startYear`</span></span>
+<span><span class="co">#&gt; FROM `episode_rating`</span></span>
+<span><span class="co">#&gt; LEFT JOIN `show_info`</span></span>
+<span><span class="co">#&gt;   ON (`episode_rating`.`parentTconst` = `show_info`.`parentTconst`)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Note that we have really just scratched the surface of <code>SQL</code>. There are entire courses devoted to learning <code>SQL</code> syntax and more about databases in general. If you ever do find yourself in a situation where you need to learn <code>SQL</code>, either for a course or for a job, you should have a major head-start with your <code>dplyr</code> knowledge!</p>
 <p>In much of this section, we have created code with <code>dbplyr</code> and seen how that code translates to <code>SQL</code>. In this exercise, you will instead be given <code>SQL</code> code and asked to write <code>dbplyr</code> code that achieves the same thing.</p>
-<p><strong>Exercise 4</strong>. Examine the <code>SQL</code> code below and write equivalent <code>dbplyr</code> code using <code>tennis_db</code>.</p>
+<p><strong>Exercise 4</strong>. Examine the <code>SQL</code> code below and write equivalent <code>dbplyr</code> code using <code>show_info_tbl</code>.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>SELECT <span class="sc">*</span> </span>
-<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>FROM <span class="st">"tennis2019"</span></span>
-<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a><span class="fu">WHERE</span> (<span class="st">"tourney_name"</span> <span class="ot">=</span> <span class="st">'Wimbledon'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>FROM <span class="st">"show_info_tbl"</span></span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a><span class="fu">WHERE</span> (<span class="st">"Show_name"</span> <span class="ot">=</span> <span class="st">'Ozark'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section><section id="practice" class="level2" data-number="16.4"><h2 data-number="16.4" class="anchored" data-anchor-id="practice">
 <span class="header-section-number">16.4</span> Practice</h2>
 <section id="class-exercises" class="level3" data-number="16.4.1"><h3 data-number="16.4.1" class="anchored" data-anchor-id="class-exercises">
 <span class="header-section-number">16.4.1</span> Class Exercises</h3>
-<p><strong>Class Exercise 1</strong>. Examine the <code>SQL</code> code below and write equivalent <code>dbplyr</code> code using <code>tennis_db</code>.</p>
+<p><strong>Class Exercise 1</strong>. Examine the <code>SQL</code> code below and write equivalent <code>dbplyr</code> code using <code>show_info_tbl</code>.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>SELECT <span class="st">"winner_name"</span>, <span class="st">"loser_name"</span>, <span class="st">"w_ace"</span>, <span class="st">"l_ace"</span>, <span class="st">"w_ace"</span> <span class="sc">-</span> <span class="st">"l_ace"</span> AS <span class="st">"ace_diff"</span></span>
-<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>FROM <span class="st">"tennis2019"</span></span>
-<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>ORDER BY <span class="st">"ace_diff"</span> DESC</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>SELECT <span class="st">"startYear"</span>, <span class="st">"parentTconst"</span>, <span class="st">"Show_Name"</span> AS <span class="st">"show_name"</span></span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>FROM <span class="st">"show_info_tbl"</span></span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>ORDER BY <span class="st">"startYear"</span> DESC</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p><strong>Class Exercise 2</strong>. With <code>tennis_db</code>, create a new variable that is the difference in the <code>winner_rank_points</code> and <code>loser_rank_points</code> using a <code>dbplyr</code> function. Then, have your query return only the column you just created, the <code>winner_name</code> column, and the <code>loser_name</code> column. Use the <code><a href="https://dplyr.tidyverse.org/reference/explain.html">show_query()</a></code> function to show the corresponding <code>SQL</code> code.</p>
 </section><section id="your-turn" class="level3" data-number="16.4.2"><h3 data-number="16.4.2" class="anchored" data-anchor-id="your-turn">
 <span class="header-section-number">16.4.2</span> Your Turn</h3>
-<p><strong>Your Turn 1</strong>. Examine the <code>SQL</code> code below and write equivalent <code>dbplyr</code> code on <code>tennis_db</code>.</p>
+<p><strong>Your Turn 1</strong>. Examine the <code>SQL</code> code below and write equivalent <code>dbplyr</code> code on <code>episode_rating_tbl</code>.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&lt;</span>SQL<span class="sc">&gt;</span></span>
-<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>SELECT <span class="st">"tourney_name"</span>, <span class="fu">MAX</span>(<span class="st">"minutes"</span>) AS <span class="st">"longest_match"</span></span>
-<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>FROM <span class="st">"tennis2019"</span></span>
-<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>GROUP BY <span class="st">"tourney_name"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>SELECT <span class="st">"parentTconst"</span>, <span class="fu">MAX</span>(<span class="st">"averageRating"</span>) AS <span class="st">"best_episode"</span></span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>FROM <span class="st">"episode_rating_tbl"</span></span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>GROUP BY <span class="st">"parentTconst"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p><strong>Your Turn 2</strong>. Try to run a function from <code>lubridate</code> or <code>forcats</code> on <code>tennis_db</code> with <code><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate()</a></code>. Does the function work?</p>
+<p><strong>Your Turn 2</strong>. Try to run a function from <code>forcats</code> on <code>episode_rating_tbl</code> with <code><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate()</a></code>. Does the function work?</p>
 <p><strong>Your Turn 3</strong>. Run the following code and write how the <code>!</code> is translated to <code>SQL</code>, how the <code>%in%</code> symbol is translated to <code>SQL</code>, and how <code><a href="https://dplyr.tidyverse.org/reference/distinct.html">distinct()</a></code> is translated to <code>SQL</code>.</p>
 <div class="cell">
-<div class="sourceCode" id="cb25"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">tennis_db</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">winner_name</span> <span class="op">!=</span> <span class="st">"Daniil Medvedev"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<div class="sourceCode" id="cb25"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">episode_rating_tbl</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">seasonNumber</span> <span class="op">!=</span> <span class="st">"1"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/explain.html">show_query</a></span><span class="op">(</span><span class="op">)</span></span>
 <span></span>
-<span><span class="va">tennis_db</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">winner_name</span> <span class="op"><a href="https://rdrr.io/r/base/match.html">%in%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Daniil Medvedev"</span>, <span class="st">"Dominic Thiem"</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span><span class="va">episode_rating_tbl</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">seasonNumber</span> <span class="op"><a href="https://rdrr.io/r/base/match.html">%in%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"1"</span>, <span class="st">"2"</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/explain.html">show_query</a></span><span class="op">(</span><span class="op">)</span></span>
 <span></span>
-<span><span class="va">tennis_db</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/distinct.html">distinct</a></span><span class="op">(</span><span class="va">tourney_name</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span><span class="va">episode_rating_tbl</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/distinct.html">distinct</a></span><span class="op">(</span><span class="va">parentTconst</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/explain.html">show_query</a></span><span class="op">(</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p><strong>Your Turn 4</strong>. Examine the following <code>SQL</code> code and write equivalent <code>dbplyr</code> code on <code>tennis_db</code>.</p>
+<p><strong>Your Turn 4</strong>. Examine the following <code>SQL</code> code and write equivalent <code>dbplyr</code> code on <code>episode_rating_tbl</code>.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&lt;</span>SQL<span class="sc">&gt;</span></span>
-<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>SELECT <span class="st">"winner_name"</span>, <span class="fu">COUNT</span>(<span class="sc">*</span>) AS <span class="st">"n_win"</span></span>
-<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>FROM <span class="st">"tennis2019"</span></span>
-<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a><span class="fu">WHERE</span> (<span class="st">"surface"</span> <span class="ot">=</span> <span class="st">'Hard'</span>)</span>
-<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a>GROUP BY <span class="st">"winner_name"</span></span>
-<span id="cb26-6"><a href="#cb26-6" aria-hidden="true" tabindex="-1"></a>ORDER BY <span class="st">"n_win"</span> DESC</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>SELECT <span class="st">"parentTconst"</span>, <span class="fu">COUNT</span>(<span class="sc">*</span>) AS <span class="st">"n_episodes"</span></span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>FROM <span class="st">"episode_rating_tbl"</span></span>
+<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a><span class="fu">WHERE</span> (<span class="st">"seasonNumber"</span> <span class="ot">=</span> <span class="st">'1'</span>)</span>
+<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a>GROUP BY <span class="st">"parentTconst"</span></span>
+<span id="cb26-6"><a href="#cb26-6" aria-hidden="true" tabindex="-1"></a>ORDER BY <span class="st">"n_episodes"</span> DESC</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p><strong>Your Turn 5</strong>. Perform a query of your choosing on <code>tennis_db</code> and use the <code><a href="https://dplyr.tidyverse.org/reference/explain.html">show_query()</a></code> function to show the corresponding <code>SQL</code> code.</p>
 
 
 </section></section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
