@@ -244,7 +244,9 @@ __Exercise 4__. Use `str_detect()` and the `dplyr` functions `mutate()` and `cas
 
 ### Class Exercises
 
-__Class Exercise 1__. You can often find scripts for television shows. Two of the more popular television shows, the office and friends, have `R` packages containing clean-up scripts for the entire series. Construct a plot that shows the 20 most common words Michael says that are not classified as "stop" words.
+__Class Exercise 1__. Two of the more popular television shows, the office and friends, have `R` packages containing clean-up scripts for the entire series. For the show _The Office_, choose a character (e.g., Michael, Jim, Pam, Dwight, Kevin, Angela, Kelly, Andy, etc.), and construct a plot that lets you explore the most common words that character said in the series. 
+
+Then, assess whether the character you chose seems to speak more or speak less, on average, from season to season.
 
 ```{r}
 #| output: false
@@ -275,9 +277,9 @@ office_nostop |> group_by(word) |>
 
 ### Your Turn
 
-__Your Turn 1__. Use `dplyr` functions and the `Serving` variable to count the number of serve locations for each player. (i.e. for how many points did Medvedev hit a serve out wide?). 
+__Your Turn 1__. Using the tennis data, construct a plot that lets you explore how often each of the two players hit their serve "down the t," "into the body," and "out wide."
 
-__Your Turn 2__. Use `dplyr` functions, the `Serving` variable, and the `isSrvWinner` variable to find the proportion of points each player won for each of their serving locations (i.e. if Medvedev won 5 points while serving out wide and lost 3 points, the proportion would be 5 / 8 = `0.625`). 
+__Your Turn 2__. Can you modify your plot to additionally visualize how often each player ended up __winning__ the point when they served to each of the three locations (down the t, into the body, and out wide). 
 
 ::: {.callout-note}
 ## Note

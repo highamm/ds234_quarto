@@ -510,7 +510,7 @@ penguins |> mutate(flipper_ratio = flipper_length_mm / body_mass_g) |>
 
 __Class Exercise 4__. Find the __mean__ and __median__ `median_playtime` for all videogames in the metacritic videogame data set. Then, remove the games with a `median_playtime` over `1000` hours. Compute the __mean__ and __median__ `median_playtime` of the data set without these games. Which measure, the __mean__ or the __median__ was more affected by having the outliers present?
 
-__Class Exercise 5__. For Project 2, we will work with some course evaluation data for a professor at SLU. Overall, you'll answer some questions about how the professor can improve their courses at SLU by looking at course evaluation data. The variables and data set will be described in more detail in the project description.
+__Class Exercise 5__. For Mini-Project 2, we will work with some course evaluation data for a professor at SLU. The variables and data set will be described in more detail in the project description.
 
 Suppose that you can't figure out how to create a semester variable and a year variable from `Term` in `evals_prof_S21.csv`. (You want to split the `Term` variable into two variables: `Semester` with levels `F` and `S` and `Year` with levels `19`, `20`, and `21`).
 

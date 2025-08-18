@@ -315,13 +315,13 @@ In general, practice exercises will be split between exercises that will be done
 
 For many of these class exercises, we will start practicing stringing together multiple piping statements. We will also practice more with `ggplot()` by making plots of some of the data sets we are creating.
 
-__Class Exercise 1__. In the `babynames` data set, use `filter()`,  `arrange()`, and `slice()` to print the 10 most popular Male babynames in 2017.
+__Class Exercise 1__. Create a data frame that has the 10 most popular Male babynames in 2017.
 
-__Class Exercise 2__. Name the data frame you created in the previous exercise and use the data frame to make a bar plot of the 10 most popular Male babynames in 2017, along with the number of babies with each name in that year.
+__Class Exercise 2__. Construct a visualization of the 10 most popular Male babynames in 2017, along with the number of babies with each name in that year.
 
 __Class Exercise 3__. In the `babynames` data set, keep only the rows with your name (or, another name that interests you) and one sex (either `"M"` or `"F"`).
 
-__Class Exercise 4__. Name the new data set you made in the previous exercise and then construct a line plot that looks at either the `n` or `prop` of your chosen name through `year`.
+__Class Exercise 4__. Construct a visualization that looks at the popularity of your chosen name through time.
 
 __Class Exercise 5__. Explain why the following code gives a warning message and returns `NA`. Use the order of Arguments in `?mean` in your explanation.
 
@@ -337,19 +337,17 @@ a. Create a data set with all years __except__ the year 1945.
 
 b. Create a data set that only has rows where `n` is between 400 and 5000.
 
-c. Create a data set with rows that are either `F` (female) `Monica` names or `F` (female) `Hilary` names.
-
 ::: {.callout-tip collapse="true"}
 ## Hint
 
 The syntax `filter(x_var > 20 & < 30)` is not correct. The variable that we are filtering with needs to go in __each__ conditional statement: `filter(x_var > 20 & x_var < 30)`
 :::
 
-__Your Turn 2__. Name your data set is part (c) of the previous exercise. Then, use the data set to make a line plot comparing the popularity of the `Monica` and `Hilary` names through time.
+__Your Turn 2__. Construct a plot that allows you to compare the popularity of the names `Monica` and `Hilary` over time. 
 
 __Your Turn 3__. Choose 5 names paired with 5 sexes that interest you and create a new data set that only has data on those 5 name/sex combinations. Then, make a line plot showing the popularity of these 5 names over time. 
 
-__Your Turn 4__. Choose a year and a sex that interests you and create a data set that only contain observations from that year and sex. Then, make a bar plot that shows the top 10 names from that year and sex, showing the `prop` of babies born with each of those 10 names in that year.
+__Your Turn 4__. Choose a year and a sex that interests you. Construct a visualization that shows the most popular names from that year and sex. 
 
 ## `mutate()`, `group_by()`, `summarise()`, and Missing Values
 
@@ -634,9 +632,9 @@ __Class Exercise 2__. Do you think it is ethical to exclude non-binary genders f
 
 __Class Exercise 3__. Investigate what happens with `case_when()` when you give overlapping conditions and when you give conditions that don't cover all observations. For overlapping conditions, create a variable `testcase` that is `"Yes"` when `percfemale` is greater than or equal to 40 and `"No"` when `percfemale` is greater than 60 For conditions that don't cover all observations, create a variable `testcase2` that is `"Yes"` when `percfemale` is greater than or equal to 55 and `"No"` when `percfemale` is less than 35. Put the new variables at the beginning of the data frame so that you can see what they contain more easily.
 
-__Class Exercise 4__. The `rank()` function can be used within `mutate()` to "rank" a variable from lowest values to highest values (so that the case with the lowest value receives a `1`, the second lowest value receives a `2`, etc.). Use `group_by()` and `mutate()` to rank the names from most to least popular in each year-sex combination. We will make some notes about what `group_by()` does with more than 1 variable.
+__Class Exercise 4__. Create a table that shows how many times each name appears as the most popular name of the sex for the year. That is, if `"Emma"` was the most popular female name in 1995, 1997, and 2001, then it would get a value of `"3"` in the summary table. To do so, we will first make some notes about what `group_by()` does with more than 1 variable and what `ungroup()` does. In this exercise, we will use the `rank()` function as well.
 
-__Class Exercise 5__. From the data set in the previous exercise, `filter()` the data to keep only the most popular name in each year-sex combination and then construct a summary table showing how many times each name appears as the most popular name. With this exercise, we will make some notes about the `ungroup()` function, and, if we have time investigate a way to achieve the objective of this question without explicitly making a `rank` variable.
+__Class Exercise 5__. Construct the same table as in class exercise 4, but figure out a way to construct the table __without__ using the `rank()` function.
 
 __Class Exercise 6__. Run the following code. Intuitively, a `slice(1, 2, 3, 4, 5)` should grab the first five rows of the data set, but, when we try to run that, we get 1380 rows. What is the issue?
 
@@ -648,7 +646,7 @@ babynames_test |> slice(1, 2, 3, 4, 5)
 
 ### Your Turn
 
-__Your Turn 1__. Investigate how `group_by()` behaves with the five other main `dplyr` functions we have used. You can use `toy_df` to perform your investigation.
+__Your Turn 1__. Investigate how `group_by()` behaves with the five other main `dplyr` functions we have used. You can use `toy_df` from earlier in this section to perform your investigation.
 
 a. `mutate()`
 
@@ -698,7 +696,8 @@ e. `select()`
 
 __Your Turn 4__. Compare `summarise()` with `mutate()` using the following code. What's the difference between the two functions?
 
-```{r, results = "hide"}
+```{r}
+#| output: false
 slumajors_df |>
   summarise(meantotalmajor = mean(ntotal),
             totalgrad = sum(ntotal)) 
@@ -708,9 +707,9 @@ slumajors_df |>
   select(meantotalmajor, totalgrad, everything())
 ```
 
-__Your Turn 5__. With the `babynames` data, create a data set that has the number of unique names for each year. Then, make a line plot of the data.
+__Your Turn 5__. Is the total number of different names increasing or decreasing with time? Construct a plot to answer this question. 
 
-__Your Turn 6__. With the `babynames` data, create a data set that has the number of unique names for each year-sex combination. Then, make a line plot of the data.
+__Your Turn 6__. Throughout different years, are there more distinct female names or distinct male names? Construct a plot to answer this question.
 
-__Your Turn 7__. Create a data set that has a column for `name` so that each row shows the total number of births for each unique name across all years and both sexes.
+__Your Turn 7__. Create a data set that shows the total number of births for each `name` across all years and sexes in the data set. 
 

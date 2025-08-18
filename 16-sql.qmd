@@ -38,6 +38,37 @@ We won't really discuss these any further, but an advanced course in database sy
 
 How to connect to a database from `R` depends on the type of database management system. For our purposes, because how to connect to a Database management system depends so heavily on the type, we will focus on a database management system that is contained in the `R` package `duckdb`.
 
+```{r}
+## continue looking at:
+##https://myslu.stlawu.edu/~iramler/stat234/coursenotes/intro-to-databases-and-sql.html
+library(DBI) # we will then use the RSQLite package only for connecting to our db
+library(dplyr)
+library(dbplyr)
+
+imdb_db <- dbConnect(RSQLite::SQLite(), 
+                 dbname = here::here("data/imdb_tv.sqlite"))
+
+dbListTables(conn = imdb_db)
+dbListFields(conn = imdb_db, name = "episode_rating")
+dbListFields(conn = imdb_db, name = "show_info")
+dbListFields(conn = imdb_db, name = "show_ratings")
+
+sql <- "
+  SELECT *
+  FROM show_info
+"
+dbGetQuery(imdb_db, sql) |>
+  as_tibble() |>
+  print(n = Inf)
+
+sql <- "
+  SELECT surface, winner_name, loser_name, w_ace, l_ace, minutes
+  FROM tennis2019 
+  WHERE minutes > 240
+"
+
+```
+
 We also need a database interface to connect to the database tables in `duckdb` in the `DBI` package.
 
 ::: {.callout-note}

@@ -370,9 +370,9 @@ Note
 <div class="cell" data-appendix="true">
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://here.r-lib.org/">here</a></span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://r.duckdb.org/reference/duckdb_read_csv.html">duckdb_read_csv</a></span><span class="op">(</span>conn <span class="op">=</span> <span class="va">con</span>, name <span class="op">=</span> <span class="st">"tennis2018"</span>, </span>
-<span>                files <span class="op">=</span> <span class="fu"><a href="https://here.r-lib.org//reference/here.html">here</a></span><span class="op">(</span><span class="st">"data/atp_matches_2018.csv"</span><span class="op">)</span><span class="op">)</span></span>
+<span>                files <span class="op">=</span> <span class="fu"><a href="https://here.r-lib.org/reference/here.html">here</a></span><span class="op">(</span><span class="st">"data/atp_matches_2018.csv"</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://r.duckdb.org/reference/duckdb_read_csv.html">duckdb_read_csv</a></span><span class="op">(</span>conn <span class="op">=</span> <span class="va">con</span>, name <span class="op">=</span> <span class="st">"tennis2019"</span>, </span>
-<span>                files <span class="op">=</span> <span class="fu"><a href="https://here.r-lib.org//reference/here.html">here</a></span><span class="op">(</span><span class="st">"data/atp_matches_2019.csv"</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span>                files <span class="op">=</span> <span class="fu"><a href="https://here.r-lib.org/reference/here.html">here</a></span><span class="op">(</span><span class="st">"data/atp_matches_2019.csv"</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>The <code>doListTables()</code> function lists the names of the data tables in the database we just created:</p>
 <div class="cell" data-appendix="true">
@@ -421,7 +421,7 @@ Note
 <span><span class="va">tennis_db</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/tbl.html">tbl</a></span><span class="op">(</span><span class="va">con</span>, <span class="st">"tennis2019"</span><span class="op">)</span></span>
 <span><span class="va">tennis_db</span></span>
 <span><span class="co">#&gt; # Source:   table&lt;tennis2019&gt; [?? x 49]</span></span>
-<span><span class="co">#&gt; # Database: DuckDB v1.0.0 [root@Darwin 23.5.0:R 4.4.1/:memory:]</span></span>
+<span><span class="co">#&gt; # Database: DuckDB v1.0.0 [root@Darwin 24.6.0:R 4.4.1/:memory:]</span></span>
 <span><span class="co">#&gt;   tourney_id tourney_name surface draw_size tourney_level tourney_date</span></span>
 <span><span class="co">#&gt;   &lt;chr&gt;      &lt;chr&gt;        &lt;chr&gt;       &lt;int&gt; &lt;chr&gt;                &lt;int&gt;</span></span>
 <span><span class="co">#&gt; 1 2019-M020  Brisbane     Hard           32 A                 20181231</span></span>
@@ -445,7 +445,7 @@ Note
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">minutes</span>, <span class="va">winner_name</span>, <span class="va">loser_name</span>, <span class="va">minutes</span>, <span class="va">tourney_name</span><span class="op">)</span></span>
 <span><span class="va">tennis_query1</span></span>
 <span><span class="co">#&gt; # Source:   SQL [?? x 4]</span></span>
-<span><span class="co">#&gt; # Database: DuckDB v1.0.0 [root@Darwin 23.5.0:R 4.4.1/:memory:]</span></span>
+<span><span class="co">#&gt; # Database: DuckDB v1.0.0 [root@Darwin 24.6.0:R 4.4.1/:memory:]</span></span>
 <span><span class="co">#&gt;   minutes winner_name           loser_name            tourney_name   </span></span>
 <span><span class="co">#&gt;     &lt;int&gt; &lt;chr&gt;                 &lt;chr&gt;                 &lt;chr&gt;          </span></span>
 <span><span class="co">#&gt; 1     241 Joao Sousa            Guido Pella           Australian Open</span></span>
@@ -490,7 +490,7 @@ Note
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/arrange.html">arrange</a></span><span class="op">(</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/desc.html">desc</a></span><span class="op">(</span><span class="va">total_aces</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="va">totalaces</span></span>
 <span><span class="co">#&gt; # Source:     SQL [?? x 2]</span></span>
-<span><span class="co">#&gt; # Database:   DuckDB v1.0.0 [root@Darwin 23.5.0:R 4.4.1/:memory:]</span></span>
+<span><span class="co">#&gt; # Database:   DuckDB v1.0.0 [root@Darwin 24.6.0:R 4.4.1/:memory:]</span></span>
 <span><span class="co">#&gt; # Ordered by: desc(total_aces)</span></span>
 <span><span class="co">#&gt;   winner_name        total_aces</span></span>
 <span><span class="co">#&gt;   &lt;chr&gt;                   &lt;dbl&gt;</span></span>

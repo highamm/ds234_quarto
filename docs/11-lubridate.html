@@ -329,9 +329,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://lubridate.tidyverse.org">lubridate</a></span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://lubridate.tidyverse.org/reference/now.html">today</a></span><span class="op">(</span><span class="op">)</span></span>
-<span><span class="co">#&gt; [1] "2024-11-20"</span></span>
+<span><span class="co">#&gt; [1] "2025-08-18"</span></span>
 <span><span class="fu"><a href="https://lubridate.tidyverse.org/reference/now.html">now</a></span><span class="op">(</span><span class="op">)</span></span>
-<span><span class="co">#&gt; [1] "2024-11-20 16:44:55 EST"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="co">#&gt; [1] "2025-08-18 10:50:18 EDT"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>This first section will deal with how to convert a variable in <code>R</code> to be a <code>Date</code>. We will use a data set that has the holidays of Animal Crossing from January to April. The columns in this data set are:</p>
 <ul>
@@ -342,7 +342,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Read in the data set with</p>
 <div class="cell" data-appendix="true">
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://here.r-lib.org/">here</a></span><span class="op">)</span></span>
-<span><span class="va">holiday_df</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv</a></span><span class="op">(</span><span class="fu"><a href="https://here.r-lib.org//reference/here.html">here</a></span><span class="op">(</span><span class="st">"data/animal_crossing_holidays.csv"</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="va">holiday_df</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv</a></span><span class="op">(</span><span class="fu"><a href="https://here.r-lib.org/reference/here.html">here</a></span><span class="op">(</span><span class="st">"data/animal_crossing_holidays.csv"</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="va">holiday_df</span></span>
 <span><span class="co">#&gt; # A tibble: 6 × 10</span></span>
 <span><span class="co">#&gt;   Holiday         Date1     Date2  Date3 Date4 Date5 Month  Year   Day Month2</span></span>
@@ -487,73 +487,24 @@ Important
 <p><strong>Exercise 2</strong>. Practice converting <code>Date3</code> and <code>Date5</code> to <code>&lt;date&gt;</code> variables with <code>lubridate</code> functions.</p>
 </section></section><section id="functions-for-date-variables" class="level2" data-number="12.2"><h2 data-number="12.2" class="anchored" data-anchor-id="functions-for-date-variables">
 <span class="header-section-number">12.2</span> Functions for <code>&lt;date&gt;</code> Variables</h2>
-<p>Once an object is in the <code>&lt;date&gt;</code> format, there are some special functions in <code>lubridate</code> that can be used on that date variable. To investigate some of these functions, we will pull stock market data from Yahoo using the <code>quantmod</code> package. Install the package, and run the following code, which gets stock market price data on Apple, Nintendo, Chipotle, and the S &amp; P 500 Index from 2011 to now.</p>
-<div class="callout callout-style-simple callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Note
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>We have the ability to understand all of the code below, but we will skip over this code for now to focus more on the new information in this section (information about date functions).</p>
-</div>
-</div>
-<div class="cell" data-appendix="true">
-<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co">## install.packages("quantmod")</span></span>
-<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://www.quantmod.com/">quantmod</a></span><span class="op">)</span></span>
-<span></span>
-<span><span class="va">start</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://lubridate.tidyverse.org/reference/ymd.html">ymd</a></span><span class="op">(</span><span class="st">"2011-01-01"</span><span class="op">)</span></span>
-<span><span class="va">end</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://lubridate.tidyverse.org/reference/ymd.html">ymd</a></span><span class="op">(</span><span class="st">"2021-5-19"</span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://rdrr.io/pkg/quantmod/man/getSymbols.html">getSymbols</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"AAPL"</span>, <span class="st">"NTDOY"</span>, <span class="st">"CMG"</span>, <span class="st">"SPY"</span><span class="op">)</span>, src <span class="op">=</span> <span class="st">"yahoo"</span>,</span>
-<span>           from <span class="op">=</span> <span class="va">start</span>, to <span class="op">=</span> <span class="va">end</span><span class="op">)</span></span>
-<span><span class="co">#&gt; [1] "AAPL"  "NTDOY" "CMG"   "SPY"</span></span>
-<span></span>
-<span><span class="va">date_tib</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://tibble.tidyverse.org/reference/as_tibble.html">as_tibble</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/zoo/man/index.html">index</a></span><span class="op">(</span><span class="va">AAPL</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/rename.html">rename</a></span><span class="op">(</span>start_date <span class="op">=</span> <span class="va">value</span><span class="op">)</span></span>
-<span><span class="va">app_tib</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://tibble.tidyverse.org/reference/as_tibble.html">as_tibble</a></span><span class="op">(</span><span class="va">AAPL</span><span class="op">)</span></span>
-<span><span class="va">nint_tib</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://tibble.tidyverse.org/reference/as_tibble.html">as_tibble</a></span><span class="op">(</span><span class="va">NTDOY</span><span class="op">)</span></span>
-<span><span class="va">chip_tib</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://tibble.tidyverse.org/reference/as_tibble.html">as_tibble</a></span><span class="op">(</span><span class="va">CMG</span><span class="op">)</span></span>
-<span><span class="va">spy_tib</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://tibble.tidyverse.org/reference/as_tibble.html">as_tibble</a></span><span class="op">(</span><span class="va">SPY</span><span class="op">)</span></span>
-<span><span class="va">all_stocks</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/bind_cols.html">bind_cols</a></span><span class="op">(</span><span class="va">date_tib</span>, <span class="va">app_tib</span>, <span class="va">nint_tib</span>, <span class="va">chip_tib</span>, <span class="va">spy_tib</span><span class="op">)</span></span>
-<span></span>
-<span><span class="va">stocks_long</span> <span class="op">&lt;-</span> <span class="va">all_stocks</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">start_date</span>, <span class="va">AAPL.Adjusted</span>, <span class="va">NTDOY.Adjusted</span>,</span>
-<span>                      <span class="va">CMG.Adjusted</span>, <span class="va">SPY.Adjusted</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu"><a href="https://tidyr.tidyverse.org/reference/pivot_longer.html">pivot_longer</a></span><span class="op">(</span><span class="fl">2</span><span class="op">:</span><span class="fl">5</span>, names_to <span class="op">=</span> <span class="st">"Stock_Type"</span>, values_to <span class="op">=</span> <span class="st">"Price"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>Stock_Type <span class="op">=</span> <span class="fu"><a href="https://forcats.tidyverse.org/reference/fct_recode.html">fct_recode</a></span><span class="op">(</span><span class="va">Stock_Type</span>,</span>
-<span>                                 Apple <span class="op">=</span> <span class="st">"AAPL.Adjusted"</span>,</span>
-<span>                                 Nintendo <span class="op">=</span> <span class="st">"NTDOY.Adjusted"</span>,</span>
-<span>                                 Chipotle <span class="op">=</span> <span class="st">"CMG.Adjusted"</span>,</span>
-<span>                                 `S &amp; P 500` <span class="op">=</span> <span class="st">"SPY.Adjusted"</span></span>
-<span>                                 <span class="op">)</span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html">tail</a></span><span class="op">(</span><span class="va">stocks_long</span><span class="op">)</span></span>
-<span><span class="co">#&gt; # A tibble: 6 × 3</span></span>
-<span><span class="co">#&gt;   start_date Stock_Type Price</span></span>
-<span><span class="co">#&gt;   &lt;date&gt;     &lt;fct&gt;      &lt;dbl&gt;</span></span>
-<span><span class="co">#&gt; 1 2021-05-17 Chipotle    26.6</span></span>
-<span><span class="co">#&gt; 2 2021-05-17 S &amp; P 500  395. </span></span>
-<span><span class="co">#&gt; 3 2021-05-18 Apple      122. </span></span>
-<span><span class="co">#&gt; 4 2021-05-18 Nintendo    14.1</span></span>
-<span><span class="co">#&gt; 5 2021-05-18 Chipotle    26.5</span></span>
-<span><span class="co">#&gt; 6 2021-05-18 S &amp; P 500  392.</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Once an object is in the <code>&lt;date&gt;</code> format, there are some special functions in <code>lubridate</code> that can be used on that date variable. To investigate some of these functions, we will pull stock market data using the <code>tidyquant</code> package. Install the package, and run the following code, which gets stock market price data on Apple, Nintendo, Chipotle, and the S &amp; P 500 Index from 2015 to now.</p>
+<div class="cell">
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://business-science.github.io/tidyquant/">tidyquant</a></span><span class="op">)</span></span>
+<span><span class="va">stocks_long</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://business-science.github.io/tidyquant/reference/tq_get.html">tq_get</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"AAPL"</span>, <span class="st">"CMG"</span>, <span class="st">"NTDOY"</span>, <span class="st">"SPY"</span><span class="op">)</span>, get <span class="op">=</span> <span class="st">"stock.prices"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>You’ll have a chance in class to choose your own stocks to investigate. For now, we’ve made a data set with three variables:</p>
 <ul>
 <li>
-<code>start_date</code>, the opening date for the stock market</li>
+<code>date</code>, the opening date for the stock market.</li>
 <li>
-<code>Stock_Type</code>, a factor with 4 levels: <code>Apple</code>, <code>Nintendo</code>, <code>Chipotle</code>, and <code>S &amp; P 500</code>
-</li>
+<code>symbol</code>, a factor with 4 levels, one for each stock.</li>
 <li>
-<code>Price</code>, the price of the stock?</li>
+<code>close</code>, the closing price of the stock for that day.</li>
 </ul>
 <p>First, let’s make a line plot that shows how the S &amp; P 500 has changed over time:</p>
 <div class="cell" data-appendix="true">
-<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">stocks_sp</span> <span class="op">&lt;-</span> <span class="va">stocks_long</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">Stock_Type</span> <span class="op">==</span> <span class="st">"S &amp; P 500"</span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">stocks_sp</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">start_date</span>, y <span class="op">=</span> <span class="va">Price</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">stocks_sp</span> <span class="op">&lt;-</span> <span class="va">stocks_long</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">symbol</span> <span class="op">==</span> <span class="st">"SPY"</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">stocks_sp</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">date</span>, y <span class="op">=</span> <span class="va">close</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_path.html">geom_line</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_minimal</a></span><span class="op">(</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
@@ -563,7 +514,7 @@ Note
 </div>
 </div>
 </div>
-<p>But, there’s other information that we can get from the <code>start_date</code> variable. We might be interested in things like day of the week, monthly trends, or yearly trends. To extract variables like “weekday” and “month” from a <code>&lt;date&gt;</code> variable, there are a series of functions that are fairly straightforward to use. We will discuss the <code><a href="https://lubridate.tidyverse.org/reference/year.html">year()</a></code> <code><a href="https://lubridate.tidyverse.org/reference/month.html">month()</a></code>, <code><a href="https://lubridate.tidyverse.org/reference/day.html">mday()</a></code>, <code><a href="https://lubridate.tidyverse.org/reference/day.html">yday()</a></code>, and <code><a href="https://lubridate.tidyverse.org/reference/day.html">wday()</a></code> functions.</p>
+<p>But, there’s other information that we can get from the <code>date</code> variable. We might be interested in things like day of the week, monthly trends, or yearly trends. To extract variables like “weekday” and “month” from a <code>&lt;date&gt;</code> variable, there are a series of functions that are fairly straightforward to use. We will discuss the <code><a href="https://lubridate.tidyverse.org/reference/year.html">year()</a></code> <code><a href="https://lubridate.tidyverse.org/reference/month.html">month()</a></code>, <code><a href="https://lubridate.tidyverse.org/reference/day.html">mday()</a></code>, <code><a href="https://lubridate.tidyverse.org/reference/day.html">yday()</a></code>, and <code><a href="https://lubridate.tidyverse.org/reference/day.html">wday()</a></code> functions.</p>
 <section id="year-month-and-mday" class="level3" data-number="12.2.1"><h3 data-number="12.2.1" class="anchored" data-anchor-id="year-month-and-mday">
 <span class="header-section-number">12.2.1</span> <code>year()</code>, <code>month()</code>, and <code>mday()</code>
 </h3>
@@ -582,9 +533,9 @@ Note
 </div>
 </div>
 <div class="cell" data-appendix="true">
-<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">stocks_long</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>year_stock <span class="op">=</span> <span class="fu"><a href="https://lubridate.tidyverse.org/reference/year.html">year</a></span><span class="op">(</span><span class="va">start_date</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="va">stocks_long</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>month_stock <span class="op">=</span> <span class="fu"><a href="https://lubridate.tidyverse.org/reference/month.html">month</a></span><span class="op">(</span><span class="va">start_date</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="va">stocks_long</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>day_stock <span class="op">=</span> <span class="fu"><a href="https://lubridate.tidyverse.org/reference/day.html">mday</a></span><span class="op">(</span><span class="va">start_date</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">stocks_long</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>year_stock <span class="op">=</span> <span class="fu"><a href="https://lubridate.tidyverse.org/reference/year.html">year</a></span><span class="op">(</span><span class="va">date</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="va">stocks_long</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>month_stock <span class="op">=</span> <span class="fu"><a href="https://lubridate.tidyverse.org/reference/month.html">month</a></span><span class="op">(</span><span class="va">date</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="va">stocks_long</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>day_stock <span class="op">=</span> <span class="fu"><a href="https://lubridate.tidyverse.org/reference/day.html">mday</a></span><span class="op">(</span><span class="va">date</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section><section id="yday-and-wday" class="level3" data-number="12.2.2"><h3 data-number="12.2.2" class="anchored" data-anchor-id="yday-and-wday">
 <span class="header-section-number">12.2.2</span> <code>yday()</code> and <code>wday()</code>
@@ -597,22 +548,22 @@ Note
 </div>
 <p>returns <code>309</code>, indicating that November 4th is the 309th day of the year 2020. Using this function in a <code><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate()</a></code> statement creates a new variable that has <code>yday</code> for each observation:</p>
 <div class="cell" data-appendix="true">
-<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">stocks_long</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>day_in_year <span class="op">=</span> <span class="fu"><a href="https://lubridate.tidyverse.org/reference/day.html">yday</a></span><span class="op">(</span><span class="va">start_date</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="co">#&gt; # A tibble: 10,444 × 4</span></span>
-<span><span class="co">#&gt;   start_date Stock_Type Price day_in_year</span></span>
-<span><span class="co">#&gt;   &lt;date&gt;     &lt;fct&gt;      &lt;dbl&gt;       &lt;dbl&gt;</span></span>
-<span><span class="co">#&gt; 1 2011-01-03 Apple       9.93           3</span></span>
-<span><span class="co">#&gt; 2 2011-01-03 Nintendo    7.34           3</span></span>
-<span><span class="co">#&gt; 3 2011-01-03 Chipotle    4.47           3</span></span>
-<span><span class="co">#&gt; 4 2011-01-03 S &amp; P 500  98.7            3</span></span>
-<span><span class="co">#&gt; 5 2011-01-04 Apple       9.98           4</span></span>
-<span><span class="co">#&gt; 6 2011-01-04 Nintendo    7.10           4</span></span>
-<span><span class="co">#&gt; # ℹ 10,438 more rows</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">stocks_long</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>day_in_year <span class="op">=</span> <span class="fu"><a href="https://lubridate.tidyverse.org/reference/day.html">yday</a></span><span class="op">(</span><span class="va">date</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="co">#&gt; # A tibble: 10,684 × 9</span></span>
+<span><span class="co">#&gt;   symbol date        open  high   low close    volume adjusted day_in_year</span></span>
+<span><span class="co">#&gt;   &lt;chr&gt;  &lt;date&gt;     &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;       &lt;dbl&gt;</span></span>
+<span><span class="co">#&gt; 1 AAPL   2015-01-02  27.8  27.9  26.8  27.3 212818400     24.3           2</span></span>
+<span><span class="co">#&gt; 2 AAPL   2015-01-05  27.1  27.2  26.4  26.6 257142000     23.6           5</span></span>
+<span><span class="co">#&gt; 3 AAPL   2015-01-06  26.6  26.9  26.2  26.6 263188400     23.6           6</span></span>
+<span><span class="co">#&gt; 4 AAPL   2015-01-07  26.8  27.0  26.7  26.9 160423600     23.9           7</span></span>
+<span><span class="co">#&gt; 5 AAPL   2015-01-08  27.3  28.0  27.2  28.0 237458000     24.8           8</span></span>
+<span><span class="co">#&gt; 6 AAPL   2015-01-09  28.2  28.3  27.6  28.0 214798000     24.9           9</span></span>
+<span><span class="co">#&gt; # ℹ 10,678 more rows</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Finally, the function <code><a href="https://lubridate.tidyverse.org/reference/day.html">wday()</a></code> grabs the day of the week from a <code>&lt;date&gt;</code>. By default, <code><a href="https://lubridate.tidyverse.org/reference/day.html">wday()</a></code> puts the day of the week as a numeric, but I find this confusing, as I can’t ever remember whether a <code>1</code> means <code>Sunday</code> or a <code>1</code> means <code>Monday</code>. Adding, <code>label = TRUE</code> creates the weekday variable as <code>Sunday</code>, <code>Monday</code>, <code>Tuesday</code>, etc.:</p>
 <div class="cell" data-appendix="true">
-<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">stocks_long</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>day_of_week <span class="op">=</span> <span class="fu"><a href="https://lubridate.tidyverse.org/reference/day.html">wday</a></span><span class="op">(</span><span class="va">start_date</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="va">stocks_long</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>day_of_week <span class="op">=</span> <span class="fu"><a href="https://lubridate.tidyverse.org/reference/day.html">wday</a></span><span class="op">(</span><span class="va">start_date</span>,</span>
+<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">stocks_long</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>day_of_week <span class="op">=</span> <span class="fu"><a href="https://lubridate.tidyverse.org/reference/day.html">wday</a></span><span class="op">(</span><span class="va">date</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="va">stocks_long</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>day_of_week <span class="op">=</span> <span class="fu"><a href="https://lubridate.tidyverse.org/reference/day.html">wday</a></span><span class="op">(</span><span class="va">date</span>,</span>
 <span>                                          label <span class="op">=</span> <span class="cn">TRUE</span>, abbr <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Possible uses for these functions are:</p>
@@ -657,7 +608,7 @@ Note
 </div>
 <p><strong>Exercise 3</strong>. The <code><a href="https://lubridate.tidyverse.org/reference/month.html">month()</a></code> function gives the numbers corresponding to each month by default. Type <code><a href="https://lubridate.tidyverse.org/reference/month.html">?month</a></code> and figure out which argument you would need to change to get the <strong>names</strong> (January, February, etc.) instead of the month numbers. What about the <strong>abbreviations</strong> (Jan, Feb, etc.) of each month instead of the month numbers? Try making the changes in the <code><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate()</a></code> statement below.</p>
 <div class="cell">
-<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">stocks_long</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>month_stock <span class="op">=</span> <span class="fu"><a href="https://lubridate.tidyverse.org/reference/month.html">month</a></span><span class="op">(</span><span class="va">start_date</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">stocks_long</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>month_stock <span class="op">=</span> <span class="fu"><a href="https://lubridate.tidyverse.org/reference/month.html">month</a></span><span class="op">(</span><span class="va">date</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section></section><section id="practice" class="level2" data-number="12.3"><h2 data-number="12.3" class="anchored" data-anchor-id="practice">
 <span class="header-section-number">12.3</span> Practice</h2>
@@ -673,7 +624,7 @@ Note
 <div class="cell">
 <div class="sourceCode" id="cb16"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://lubridate.tidyverse.org">lubridate</a></span><span class="op">)</span></span>
-<span><span class="va">ds_df</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv</a></span><span class="op">(</span><span class="fu"><a href="https://here.r-lib.org//reference/here.html">here</a></span><span class="op">(</span><span class="st">"data/ds_google.csv"</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="va">ds_df</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv</a></span><span class="op">(</span><span class="fu"><a href="https://here.r-lib.org/reference/here.html">here</a></span><span class="op">(</span><span class="st">"data/ds_google.csv"</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="va">ds_df</span></span>
 <span><span class="co">#&gt; # A tibble: 202 × 2</span></span>
 <span><span class="co">#&gt;   Month   Data_Science</span></span>
@@ -690,9 +641,7 @@ Note
 <p>After converting the <code>Month</code> variable to a date, figure out what <code>R</code> does for the “day” part of the date when it’s not specified in the original variable.</p>
 <p><strong>Class Exercise 2</strong>. Make a plot of the popularity of Data Science through Time. Add a smoother to your plot. What patterns do you notice?</p>
 <p><strong>Class Exercise 3</strong>. Modify the code in the tutorial section on the Stocks data to get a data frame on stock prices for the now infamous Gamestop stock. Construct a line plot of the price through time.</p>
-<p><strong>Class Exercise 4</strong>. Choose <strong>one</strong> stock and use the <code><a href="https://dplyr.tidyverse.org/reference/lead-lag.html">lag()</a></code> function to create a new variable that is the previous day’s stock price for that stock. For what proportion of days was the stock’s closing price <strong>higher</strong> than it was at close for the day before (indicating that someone who bought shares on Day xxx would have made money at the end of Day xxx + 1).</p>
-<p><strong>Class Exercise 5</strong>. Those interested in finance/economics might see the naivety of the approach above: usually, the stock market is more thought of as a long-term investment, not a day-to-day investment. For the stock that you selected, adjust your analysis so that you compute the proportion of weeks that a stock’s closing price was <strong>higher</strong> than it was at close the week before. To simplify things a little, you should only compute this proportion for <strong>Wednesdays</strong> (and drop the rest of the data).</p>
-<p><strong>Class Exercise 6</strong>. Those interested in finance/economics might see the naivety of the approach above: usually, the stock market is more thought of as a long-term investment, not a week-to-week investment. For the stock that you selected, adjust your analysis so that you compute the proportion of months that a stock’s closing price was <strong>higher</strong> than it was at close the month before. To simplify things a little, you should only compute this proportion for <strong>the first day of each month</strong> (and drop the rest of the data).</p>
+<p><strong>Class Exercise 4</strong>. Suppose that you want to explore how often a stock’s closing price was higher on Day xxx than it was on closing on the previous Day xxx minus 1. How might you answer this question? What if you wanted to compare week-to-week instead of day-to-day? What if you wanted to compare month-to-month instead of day-to-day?</p>
 </section><section id="your-turn" class="level3" data-number="12.3.2"><h3 data-number="12.3.2" class="anchored" data-anchor-id="your-turn">
 <span class="header-section-number">12.3.2</span> Your Turn</h3>
 <p>The data in the Class Exercises was obtained from Google Trends: <a href="https://trends.google.com/trends/?geo=US" target="_blank">Google Trends</a>. Google Trends is incredibly cool to explore, even without <code>R</code>.</p>
@@ -711,7 +660,24 @@ Note
 </div>
 </div>
 <p>In the top-right window of the graph, you should click the down arrow to download the data set. Delete the first two rows of your data set (either in Excel or <code>R</code>), read in the data set, and change the date variable so that it’s in a Date format.</p>
-<p><strong>Your Turn 2</strong>. Make a plot of your Popularity variables through time.</p>
+<p><strong>Your Turn 2</strong>. Visualize the popularity of your two variables over time.</p>
+<div class="callout callout-style-simple callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-6-contents" aria-controls="callout-6" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Hint (only if you get stuck)
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-6" class="callout-6-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>You will need to use a function from <code>tidyr</code> to tidy the data set first.</p>
+</div>
+</div>
+</div>
+<p><strong>Your Turn 3</strong>. Using your data set that explored a variable or two from 2004 through now, make a table of the <strong>maximum</strong> popularity and the <strong>average</strong> popularity for each year.</p>
 <div class="callout callout-style-simple callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-7-contents" aria-controls="callout-7" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
@@ -723,23 +689,6 @@ Hint (only if you get stuck)
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
 <div id="callout-7" class="callout-7-contents callout-collapse collapse">
-<div class="callout-body-container callout-body">
-<p>You will need to use a function from <code>tidyr</code> to tidy the data set first.</p>
-</div>
-</div>
-</div>
-<p><strong>Your Turn 3</strong>. Using your data set that explored a variable or two from 2004 through now, make a table of the <strong>average</strong> popularity for each year.</p>
-<div class="callout callout-style-simple callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-8-contents" aria-controls="callout-8" aria-expanded="false" aria-label="Toggle callout">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Hint (only if you get stuck)
-</div>
-<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
-</div>
-<div id="callout-8" class="callout-8-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p>You’ll need a <code>lubridate</code> function to extract the year variable from the date object.</p>
 </div>

@@ -274,24 +274,22 @@ ggplot(data = pokemon_long, aes(x = Type_Deford,
 
 Why are the boxplots no longer ordered by median defense?
 
-__Class Exercise 4__. On a feedback sheet, you were asked to "rank" this course in terms of challenge and amount of time you spend on it, compared to the other courses you are taking this semester. This is a question that has been asked of students in past sections of this course. Read in some data collected from 52 students in a couple of past semesters:
+__Class Exercise 4__. On a feedback sheet, you were asked to "rank" this course in terms of challenge and amount of time you spend on it, compared to the other courses you are taking this semester. This is a question that has been asked of students in past sections of this course. Read in some data collected in a couple of past semesters:
 
 ```{r}
 responses_df <- read_csv("https://raw.githubusercontent.com/highamm/ds234_quarto/main/data_online/heatmap.csv")
 responses_df
 ```
 
-Our goal with this data set is to visualize the distribution of responses to this question with a __heatmap__. To do so, we will:
+<!-- Our goal with this data set is to visualize the distribution of responses to this question with a __heatmap__. To do so, we will: -->
 
-1. Figure out how to construct a heatmap using `geom_tile()`: <https://r-graph-gallery.com/79-levelplot-with-ggplot2.html>
+<!-- 1. Figure out how to construct a heatmap using `geom_tile()`: <https://r-graph-gallery.com/79-levelplot-with-ggplot2.html> -->
 
-2. Change the x and y-axis labels of the heatmap to be `"Most Challenging"`, `"Second"`, `"Third"`, and `"Least Challenging"` and `"Most Time"`, etc.
+<!-- 2. Change the x and y-axis labels of the heatmap to be `"Most Challenging"`, `"Second"`, `"Third"`, and `"Least Challenging"` and `"Most Time"`, etc. -->
 
-3. Make sure the ordering of the levels in the x and y axes make sense.
+<!-- 3. Make sure the ordering of the levels in the x and y axes make sense. -->
 
-4. Make the plot look a little "prettier" by using some other `ggplot2` options we have not yet discussed in detail.
-
-__Class Exercise 5__. What graphs could you make to examine the `time` and `challenge` variables separately? Construct these graphs and compare what you can see from them to what you can see from the heatmap.
+<!-- 4. Make the plot look a little "prettier" by using some other `ggplot2` options we have not yet discussed in detail. -->
 
 ### Your Turn
 
@@ -319,7 +317,7 @@ __Your Turn 3__. Use a function from `tidyr` to combine `team` and `team_name` i
 
 __Your Turn 4__. There are a couple of franchises in the national football league that moved cities in the late 2010s. In particular, the San Diego Chargers became the Los Angeles Chargers and the St. Louis Rams became the Los Angeles Rams (this is another instance where being familiar with context is helpful here: it may have taken you much longer to figure this out, had you not known much about the NFL). Use a `forcats` function to put the `San Diego Chargers` and `Los Angeles Chargers` into a single level, `San Diego LA Chargers`, and to put the `St. Louis Rams` and `Los Angeles Rams` into a single level, `St. Louis LA Rams`.
 
-__Your Turn 5__. Using the updated data set, create a lollipop plot of the ten `franchise`s who have made the playoffs most often. You will need to do some work with `dplyr` before making the plot.
+__Your Turn 5__. Using the updated data set, make a plot that helps visualize which franchises have made the playoffs most often during this time span. Feel free to customize your plot with <https://r-graph-gallery.com/301-custom-lollipop-chart.html>.
 
 ```{r, echo = FALSE, eval = FALSE}
 standings_df <- standings_df |> mutate(team_name = fct_recode(team_name,
@@ -343,7 +341,18 @@ ggplot(data = top_ten, aes(x = franchise, y = n_playoffs)) +
   coord_flip()
 ```
 
-__Your Turn 6__. Customize your lollipop plot by changing the way the points look at the end and / or the way the "stems" of the lollipops look. You may use <https://r-graph-gallery.com/301-custom-lollipop-chart.html> for inspiration.
+__Your Turn 6__. Which is more strongly associated with a team's win percentage: offensive ranking or defensive ranking? (We will not dive into how these offensive and defensive metrics are calculated exactly, but, in general, a larger ranking means that the team's offense (or defense) is better).
+
+```{r}
+#| echo: false
+#| output: false
+ggplot(data = standings_df, aes(x = offensive_ranking, y = wins)) +
+  geom_point()
+ggplot(data = standings_df, aes(x = defensive_ranking, y = wins)) +
+  geom_point()
+cor(standings_df$offensive_ranking, standings_df$wins)
+cor(standings_df$defensive_ranking, standings_df$wins)
+```
 
 
 The following are additional exercises for `forcats`: I've left them in here in case you want some extra practice!

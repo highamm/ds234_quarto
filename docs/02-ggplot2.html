@@ -613,7 +613,7 @@ Important
 <p>For this, we will work with some fitness data collected from my Apple Watch since November 2018. The <code>higham_fitness_clean.csv</code> contains information on the following variables:</p>
 <ul>
 <li>
-<code>Start</code>, the month, day, and year that the fitness data was recorded on</li>
+<code>Date</code>, the month, day, and year that the fitness data was recorded on</li>
 <li>
 <code>month</code>, the month</li>
 <li>
@@ -654,6 +654,7 @@ Important
 </div>
 </div>
 <p><strong>Exercise 9</strong>. Do you see anything “odd” about the plot? Make a note of any strange observations that you see.</p>
+<p><strong>Exercise 10</strong>. Change the <code>x</code> and <code>y</code> variables plotted to two different quantitative variables in the fitness data set. Give a one sentence interpretation of any findings from your new plot.</p>
 <div class="callout callout-style-simple callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-6-contents" aria-controls="callout-6" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
@@ -665,23 +666,6 @@ Hint
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
 <div id="callout-6" class="callout-6-contents callout-collapse collapse">
-<div class="callout-body-container callout-body">
-<p>In particular, what about having <code>0</code>’s for either <code>distance</code> or <code>active_cals</code> could indicate a flaw in how the data was collected?</p>
-</div>
-</div>
-</div>
-<p><strong>Exercise 10</strong>. Change the <code>x</code> and <code>y</code> variables plotted to two different quantitative variables in the fitness data set. Give a one sentence interpretation of any findings from your new plot.</p>
-<div class="callout callout-style-simple callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-7-contents" aria-controls="callout-7" aria-expanded="false" aria-label="Toggle callout">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Hint
-</div>
-<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
-</div>
-<div id="callout-7" class="callout-7-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p>Recall from STAT 113 that three aspects you might think about are the <strong>strength</strong> of the relationship (weak, moderate, strong), whether or not the relationship is <strong>linear</strong>, and the <strong>direction</strong> of the relationship (positive or negative)</p>
 </div>
@@ -774,25 +758,10 @@ Important
 <li><p>Construct the plot described in (a) to test your prediction.</p></li>
 <li><p>When the data is structured such that there is a column that uniquely gives the levels of the categorical variable and a second column that gives the count of each level, we typically use the <code><a href="https://ggplot2.tidyverse.org/reference/geom_bar.html">geom_col()</a></code> <code>GEOM</code> instead of <code><a href="https://ggplot2.tidyverse.org/reference/geom_bar.html">geom_bar()</a></code>. <code><a href="https://ggplot2.tidyverse.org/reference/geom_bar.html">geom_col()</a></code> uses both an <code>x</code> and a <code>y</code> aesthetic mapping. Construct the bar plot using <code>stat113_restructured</code> with the <code><a href="https://ggplot2.tidyverse.org/reference/geom_bar.html">geom_col()</a></code> <code>GEOM</code>.</p></li>
 </ol>
-<p><strong>Class Exercise 2</strong>. To the scatterplot of <code>distance</code> vs.&nbsp;<code>active calories</code>, add a smoother with the <code><a href="https://ggplot2.tidyverse.org/reference/geom_smooth.html">geom_smooth()</a></code> <code>GEOM</code>. After adding the smoother, investigate the following arguments: (1) <code>method</code>, (2) <code>se</code>, and (3) <code>span</code>.</p>
-<div class="callout callout-style-simple callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-9-contents" aria-controls="callout-9" aria-expanded="false" aria-label="Toggle callout">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Hint
-</div>
-<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
-</div>
-<div id="callout-9" class="callout-9-contents callout-collapse collapse">
-<div class="callout-body-container callout-body">
-<p>You can investigate the arguments either by typing <code><a href="https://ggplot2.tidyverse.org/reference/geom_smooth.html">?geom_smooth</a></code> in your lower left window or by using Google or ChatGPT.</p>
-</div>
-</div>
-</div>
-<p><strong>Class Exercise 3</strong>. Another useful <code>GEOM</code> for some types of quantitative variables is <code><a href="https://ggplot2.tidyverse.org/reference/geom_path.html">geom_line()</a></code>, which is often used if the x-axis variable is time. Construct a line plot with the <code>fitness_full</code> data to look at how <code>steps</code> changes through time.</p>
-<p><strong>Class Exercise 4</strong>. Thus far, we have only faceted by a single variable. With the <code>stat113_df</code> data frame, figure out (with the help of Google) how to facet by two variables to make a plot that shows the relationship between GPA (y-axis) and Exercise (x-axis) with four facets: one for male students who play a sport, one for female students who play a sport, one for male students who do not play a sport, and one for female students who do not play a sport.</p>
+<p><strong>Class Exercise 2</strong>*. What is the relationship between distance and active calories?</p>
+<!-- After adding the smoother, investigate the following arguments: (1) `method`, (2) `se`, and (3) `span`. -->
+<p><strong>Class Exercise 3</strong>*. What is the relationship between number of steps taken and date? Is there an increasing trend or a decreasing trend or neither?</p>
+<p><strong>Class Exercise 4</strong>*. What is the relationship between GPA and Exercise? Is that relationship different depending on sex? depending on sport? depending on sex-sport combination?</p>
 <p><strong>Class Exercise 5</strong>. In STAT 113, boxplots are typically introduced using the <code>*</code> symbol to identify outliers. Using a combination of the help <code><a href="https://ggplot2.tidyverse.org/reference/geom_boxplot.html">?geom_boxplot</a></code> and Googling “R point shapes”, figure out how to modify your side-by-side boxplots so that the outliers are shown using <code>*</code>, not the default dots.</p>
 <p><strong>Class Exercise 6</strong>. We can change the y-axis of a histogram to be “density” instead of a raw count. This means that each bar shows a <strong>proportion</strong> of cases instead of a raw count. Google something like “ggplot2 geom_histogram with density” to figure out how to create a y <code><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes()</a></code> to show density instead of count.</p>
 </section><section id="your-turn" class="level3" data-number="2.4.2"><h3 data-number="2.4.2" class="anchored" data-anchor-id="your-turn">
@@ -813,10 +782,11 @@ Hint
 <ol type="a">
 <li><p>Make a coloured frequency plot of the variables you selected (colouring by the levels of the categorical variable).</p></li>
 <li><p>Make a set of faceted histograms (faceting by the categorical variable that you selected).</p></li>
+<li><p>Do you prefer either of these graphs to the “standard” side-by-side boxplots for the variables that you selected?</p></li>
 </ol>
 <p><strong>Your Turn 5</strong>. In your group, discuss why it would not make sense to construct a line plot of <code>Exercise</code> vs.&nbsp;<code>GPA</code> from the <code>stat113_df</code> data set.</p>
 <div class="callout callout-style-simple callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-10-contents" aria-controls="callout-10" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-8-contents" aria-controls="callout-8" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -825,7 +795,7 @@ Hint
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-10" class="callout-10-contents callout-collapse collapse">
+<div id="callout-8" class="callout-8-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p>What about the <code>GPA</code> variable in particular would make construction of a line plot impossible?</p>
 </div>
@@ -869,10 +839,14 @@ Important
 <span><span class="va">fitness_full</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv</a></span><span class="op">(</span><span class="st">"https://raw.githubusercontent.com/highamm/ds234_quarto/main/data_online/higham_fitness_clean.csv"</span>,</span>
 <span>                         col_types <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>stepgoal <span class="op">=</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/parse_factor.html">col_factor</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>weekend_ind <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/case_when.html">case_when</a></span><span class="op">(</span><span class="va">weekday</span> <span class="op">==</span> <span class="st">"Sat"</span> <span class="op">|</span> <span class="va">weekday</span> <span class="op">==</span> <span class="st">"Sun"</span> <span class="op">~</span> <span class="st">"weekend"</span>,</span>
-<span>                                 .default <span class="op">=</span> <span class="st">"weekday"</span><span class="op">)</span><span class="op">)</span></span>
+<span>                                 .default <span class="op">=</span> <span class="st">"weekday"</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>season <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/case_when.html">case_when</a></span><span class="op">(</span><span class="va">dayofyear</span> <span class="op">&gt;=</span> <span class="fl">355</span> <span class="op">|</span> <span class="va">dayofyear</span> <span class="op">&lt;=</span> <span class="fl">80</span> <span class="op">~</span> <span class="st">"winter"</span>,</span>
+<span>                            <span class="va">dayofyear</span> <span class="op">&gt;=</span> <span class="fl">81</span> <span class="op">&amp;</span> <span class="va">dayofyear</span> <span class="op">&lt;=</span> <span class="fl">172</span> <span class="op">~</span> <span class="st">"spring"</span>,</span>
+<span>                            <span class="va">dayofyear</span> <span class="op">&gt;=</span> <span class="fl">173</span> <span class="op">&amp;</span> <span class="va">dayofyear</span> <span class="op">&lt;=</span> <span class="fl">264</span> <span class="op">~</span> <span class="st">"summer"</span>,</span>
+<span>                            .default <span class="op">=</span> <span class="st">"fall"</span><span class="op">)</span><span class="op">)</span></span>
 <span></span>
 <span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">fitness_full</span>,</span>
-<span>       <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">Start</span>, y <span class="op">=</span> <span class="va">active_cals</span>, colour <span class="op">=</span> <span class="va">stepgoal</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>       <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">Date</span>, y <span class="op">=</span> <span class="va">steps</span>, colour <span class="op">=</span> <span class="va">season</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
@@ -881,10 +855,10 @@ Important
 </div>
 </div>
 </div>
-<p>Here, we have used a <code>colour</code> aesthetic to map the <code>stepgoal</code> variable to <code>colour</code>. But, what if we wanted to simply colour all of the points <code>"blue"</code>. Try running:</p>
+<p>Here, we have used a <code>colour</code> aesthetic to map the <code>season</code> variable to <code>colour</code> so that we can more easily distinguish points from the various seasons in the plot. But, what if we wanted to simply colour all of the points <code>"blue"</code>. Try running:</p>
 <div class="cell">
 <div class="sourceCode" id="cb21"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">fitness_full</span>,</span>
-<span>       <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">Start</span>, y <span class="op">=</span> <span class="va">active_cals</span>, colour <span class="op">=</span> <span class="st">"blue"</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>       <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">Date</span>, y <span class="op">=</span> <span class="va">steps</span>, colour <span class="op">=</span> <span class="st">"blue"</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
@@ -896,7 +870,7 @@ Important
 <p>What does the graph look like? Did it do what you expected? To actual colour the points <code>"blue"</code>, we need to specify <code>colour = "blue"</code> <strong>outside</strong> of <code><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes()</a></code> because <code>"blue"</code> is not a variable from the <code>fitness_full</code> data frame. Also, when giving non-aesthetic characteristics to a plot, the argument must go with the associated <code>GEOM</code>; so, <code>colour = "blue"</code> must be an argument to <code><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point()</a></code>:</p>
 <div class="cell">
 <div class="sourceCode" id="cb22"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">fitness_full</span>,</span>
-<span>       <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">Start</span>, y <span class="op">=</span> <span class="va">active_cals</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>       <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">Date</span>, y <span class="op">=</span> <span class="va">steps</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span>colour <span class="op">=</span> <span class="st">"blue"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
@@ -926,7 +900,7 @@ Note
 <p><strong>Exercise 1</strong>. The default point <code>size</code> is <code>1.5</code> while the default point <code>shape</code> is <code>19</code>. In the following plot, change the defaults so that the points are a little larger than the default and so that the shape is an <code>X</code>. Google image search “<code>R point shapes</code>” to figure out which integer corresponds to the <code>X</code> point shape.</p>
 <div class="cell">
 <div class="sourceCode" id="cb23"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">fitness_full</span>,</span>
-<span>       <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">Start</span>, y <span class="op">=</span> <span class="va">active_cals</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>       <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">Date</span>, y <span class="op">=</span> <span class="va">steps</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span>size <span class="op">=</span> <span class="fl">1.5</span>, shape <span class="op">=</span> <span class="fl">19</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
@@ -938,7 +912,7 @@ Note
 <p><strong>Exercise 2</strong>. Use the <code>linewidth</code> option in <code><a href="https://ggplot2.tidyverse.org/reference/geom_smooth.html">geom_smooth()</a></code> to increase the width of the smoother. Note that the default <code>linewidth</code> is <code>1</code>.</p>
 <div class="cell">
 <div class="sourceCode" id="cb24"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">fitness_full</span>,</span>
-<span>       <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">Start</span>, y <span class="op">=</span> <span class="va">active_cals</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>       <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">Date</span>, y <span class="op">=</span> <span class="va">steps</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_smooth.html">geom_smooth</a></span><span class="op">(</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
@@ -954,7 +928,7 @@ Note
 <p>In the following plot, the <strong>global</strong> aesthetics <code>x</code>, <code>y</code>, and <code>colour</code> are passed to all further <code>GEOM</code>s (<code><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point()</a></code> and <code><a href="https://ggplot2.tidyverse.org/reference/geom_smooth.html">geom_smooth()</a></code> in this case) unless specifically overridden. So, the plot with global aesthetics</p>
 <div class="cell">
 <div class="sourceCode" id="cb25"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">fitness_full</span>,</span>
-<span>       <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">Start</span>, y <span class="op">=</span> <span class="va">active_cals</span>, colour <span class="op">=</span> <span class="va">stepgoal</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>       <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">Date</span>, y <span class="op">=</span> <span class="va">steps</span>, colour <span class="op">=</span> <span class="va">season</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_smooth.html">geom_smooth</a></span><span class="op">(</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
@@ -967,8 +941,8 @@ Note
 <p>is equivalent to the following plot with local aesthetics:</p>
 <div class="cell">
 <div class="sourceCode" id="cb26"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">fitness_full</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">Start</span>, y <span class="op">=</span> <span class="va">active_cals</span>, colour <span class="op">=</span> <span class="va">stepgoal</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_smooth.html">geom_smooth</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">Start</span>, y <span class="op">=</span> <span class="va">active_cals</span>, colour <span class="op">=</span> <span class="va">stepgoal</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">Date</span>, y <span class="op">=</span> <span class="va">active_cals</span>, colour <span class="op">=</span> <span class="va">season</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_smooth.html">geom_smooth</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">Date</span>, y <span class="op">=</span> <span class="va">active_cals</span>, colour <span class="op">=</span> <span class="va">season</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure"><p><img src="02-ggplot2_files/figure-html/unnamed-chunk-26-1.png" class="img-fluid figure-img" width="672"></p>
@@ -989,11 +963,11 @@ Important
 <p>When we put the <code><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes()</a></code> in <code><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot()</a></code> as global aesthetics, <code>R</code> perpetuates these <code><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes()</a></code> aesthetics in all further <code>GEOM</code>s in your plotting command.</p>
 </div>
 </div>
-<p>As our plots become more complex, we will need to think carefully about whether we want to supply an aesthetic globally or locally. As an example, we can change which aesthetics are supplied globally and which are supplied locally to create a graph that has the points coloured by <code>stepgoal</code> but a single smoother and a graph that has smoothers for each level of <code>stepgoal</code> but a single point colour:</p>
+<p>As our plots become more complex, we will need to think carefully about whether we want to supply an aesthetic globally or locally. As an example, we can change which aesthetics are supplied globally and which are supplied locally to create a graph that has the points coloured by <code>season</code> but a single smoother and a graph that has smoothers for each level of <code>season</code> but a single point colour:</p>
 <div class="cell">
 <div class="sourceCode" id="cb27"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">fitness_full</span>,</span>
-<span>       <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">Start</span>, y <span class="op">=</span> <span class="va">active_cals</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>colour <span class="op">=</span> <span class="va">stepgoal</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>       <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">Date</span>, y <span class="op">=</span> <span class="va">steps</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>colour <span class="op">=</span> <span class="va">season</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_smooth.html">geom_smooth</a></span><span class="op">(</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
@@ -1003,9 +977,9 @@ Important
 </div>
 <div class="sourceCode" id="cb28"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span></span>
 <span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">fitness_full</span>,</span>
-<span>       <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">Start</span>, y <span class="op">=</span> <span class="va">active_cals</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>       <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">Date</span>, y <span class="op">=</span> <span class="va">steps</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_smooth.html">geom_smooth</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>colour <span class="op">=</span> <span class="va">stepgoal</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_smooth.html">geom_smooth</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>colour <span class="op">=</span> <span class="va">season</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure"><p><img src="02-ggplot2_files/figure-html/unnamed-chunk-27-2.png" class="img-fluid figure-img" width="672"></p>
@@ -1013,10 +987,11 @@ Important
 </div>
 </div>
 </div>
+<p>Which graph you choose depends on what you might want to emphasize in your plot!</p>
 <p><strong>Exercise 3</strong>. Modify the following plot so that the aesthetics are all explicitly given <strong>locally</strong> to each <code>GEOM</code> instead of <strong>globally</strong>.</p>
 <div class="cell">
 <div class="sourceCode" id="cb29"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">fitness_full</span>,</span>
-<span>       <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">Start</span>, y <span class="op">=</span> <span class="va">active_cals</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>       <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">Date</span>, y <span class="op">=</span> <span class="va">steps</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_path.html">geom_line</a></span><span class="op">(</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
@@ -1031,12 +1006,12 @@ Important
 <p>We want our code to be as readable as possible. This not only benefits other people who may read your code (like me), but it also benefits you, particularly if you read your own code in the future. I try to follow the Style Guide in the Advanced <code>R</code> book: <a href="http://adv-r.had.co.nz/Style.html" target="_blank">http://adv-r.had.co.nz/Style.html</a>. Feel free to skim through that, but you don’t need to worry about it too much: you should be able to pick up on some important elements just from going through this course. You might actually end up having better code style if you <em>haven’t</em> had any previous coding experience.</p>
 <p>As a quick example of why code style can be important, consider the following two code chunks, both of which produce the same graph.</p>
 <div class="cell">
-<div class="sourceCode" id="cb30"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span>data<span class="op">=</span><span class="va">fitness_full</span>,<span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x<span class="op">=</span><span class="va">Start</span>,y<span class="op">=</span><span class="va">steps</span><span class="op">)</span><span class="op">)</span><span class="op">+</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span>colour<span class="op">=</span></span>
+<div class="sourceCode" id="cb30"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span>data<span class="op">=</span><span class="va">fitness_full</span>,<span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x<span class="op">=</span><span class="va">Date</span>,y<span class="op">=</span><span class="va">steps</span><span class="op">)</span><span class="op">)</span><span class="op">+</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span>colour<span class="op">=</span></span>
 <span>     <span class="st">"darkgreen"</span><span class="op">)</span><span class="op">+</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_smooth.html">geom_smooth</a></span><span class="op">(</span>se<span class="op">=</span><span class="cn">FALSE</span>,colour<span class="op">=</span><span class="st">"black"</span>,linewidth<span class="op">=</span><span class="fl">1.4</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell">
 <div class="sourceCode" id="cb31"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">fitness_full</span>,</span>
-<span>       <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">Start</span>, y <span class="op">=</span> <span class="va">steps</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>       <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">Date</span>, y <span class="op">=</span> <span class="va">steps</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span>colour <span class="op">=</span> <span class="st">"darkgreen"</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_smooth.html">geom_smooth</a></span><span class="op">(</span>se <span class="op">=</span> <span class="cn">FALSE</span>, colour <span class="op">=</span> <span class="st">"black"</span>, linewidth <span class="op">=</span> <span class="fl">1.4</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>

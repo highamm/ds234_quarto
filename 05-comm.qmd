@@ -580,11 +580,15 @@ country_df <- gapminder
 
 Explore the data set with `head(country_df)` and `?gapminder` before proceeding to the following exercises.
 
-__Class Exercise 1__. Make a line graph that shows the relationship between `lifeExp` and `year` for each of the countries in the data set, faceting the graph by continent and also colouring by continent (though this is redundant). Add an x-axis label, a y-axis label, a legend label, and a title to the graph.
+__Class Exercise 1__. Construct a plot that lets us explore the relationship between life expectancy and year for the different countries in the data set.
 
-__Class Exercise 2__. Change the colour palette to be CVD-friendly using either `scale_colour_brewer()` or `scale_colour_viridis_d()`.
+__Class Exercise 2__. What can we do to make our plot more readable? Make some changes here, based on what we discussed in this section. 
 
-__Class Exercise 3__. We can see a couple of interesting trends in life expectancy. There is one country in Africa and one country in Asia that sees a sharp decline in life expectancy at one point. In Europe, there is one country that has a substantially lower life expectancy than the rest in the 1950s but catches up to other European countries by the 2000s. Use `filter()` to create a data set that only has these 3 countries. Then, use `geom_text()` to label all three countries on your plot.
+<!-- Change the colour palette to be CVD-friendly using either `scale_colour_brewer()` or `scale_colour_viridis_d()`. -->
+
+<!-- Make a line graph that shows the relationship between `lifeExp` and `year` for each of the countries in the data set, faceting the graph by continent and also colouring by continent (though this is redundant). Add an x-axis label, a y-axis label, a legend label, and a title to the graph. -->
+
+__Class Exercise 3__. We can see a couple of interesting trends in life expectancy. There is one country in Africa and one country in Asia that sees a sharp decline in life expectancy at one point. In Europe, there is one country that has a substantially lower life expectancy than the rest in the 1950s but catches up to other European countries by the 2000s. Figure out what these countries are and label them on your plot.
 
 ```{r, echo = FALSE, fig.keep = "none"}
 interest_countries <- country_df |> filter((year == 1952 & continent == "Europe" &
@@ -641,7 +645,7 @@ ggplot(data = country_df, aes(x = year, y = lifeExp, group = country,
   theme(legend.position = "bottom")
 ```
 
-__Class Exercise 6__. If there are a lot of overlapping points or overlapping lines, we can use `alpha` to control the transparency of the lines. Google "change transparency of lines in ggplot" and change the `alpha` so that the lines are more transparent.
+__Class Exercise 6__. If there are a lot of overlapping points or overlapping lines, we can use `alpha` to control the transparency of the lines. Change `alpha` so that the lines are more transparent and the overall plot is more readable.
 
 ```{r, echo = FALSE, fig.keep = "none"}
 ggplot(data = country_df, aes(x = year, y = lifeExp, group = country,
@@ -683,11 +687,11 @@ __Class Exercise 8__. Modify your .qmd file so that:
 
 * only the figure that you made in the previous exercise renders on your .html file. (Hint: use global options to help with this).
 
-* none of the code gets printed.
+* one of your code chunks gets hidden.
 
 * the warnings/messages that `R` prints by default are hidden in all code chunks.
 
-* the figure height is 4 instead of the default 7.
+* the default figure height is 4 instead of the default 7.
 
 
 ### Your Turn
@@ -706,15 +710,15 @@ e. Chaz copies his graph to Word and writes a conclusion in context of the probl
 
 With your group, come up with two or more aspects of Chaz's analysis that are __not__ reproducible.
 
-__Your Turn 2__. Go back to the line plot that we made with the fitness data set of `steps` vs. `Start` date. Using `geom_text()`, add a label to the peak at April 14, 2019 that says `"half-marathon"` and a label to the peak at May 24, 2021 that say `"grand canyon"`.
+__Your Turn 2__. Go back to the line plot that we made with the fitness data set of `steps` vs. `Start` date. Add a label to the peak at April 14, 2019 that says `"half-marathon"` and a label to the peak at May 24, 2021 that says `"grand canyon"`.
 
 <!-- __Your Turn 2__. Go back to the line plot that you made of the __5__ names in the `babynames` data set. Add a label with the `name` to each of the lines with `geom_text()`. -->
 
-__Your Turn 3__. Examine the `mtcars` data set again. The code chunk below adds the `car_name` variable to the data set (no need to worry about what this code is doing specifically at this point). With `mtcars`, create a scatterplot of `mpg` on the y-axis and `wt` on the x-axis. Then, label the point for the car in the data set that has the __highest__ `mpg` with its `car_name`.
+__Your Turn 3__. Examine the `mtcars` data set again. The code chunk below adds the `car_name` variable to the data set (no need to worry about what this code is doing specifically at this point). With `mtcars_rows`, create a scatterplot of `mpg` on the y-axis and `wt` on the x-axis. Then, label the point for the car in the data set that has the __highest__ `mpg` with its `car_name`.
 
 ```{r}
-mtcars <- mtcars |> rownames_to_column() |> rename(car_name = rowname)
-mtcars
+mtcars_rows <- mtcars |> rownames_to_column() |> rename(car_name = rowname)
+mtcars_rows
 ```
 
 __Your Turn 4__. The `theme()` function is a way to really specialise your plot. We will explore some of these in this exercise. Using only options in `theme()` or options to change colours, shapes, sizes, etc., create the ugliest possible `ggplot2` graph that you can make. You may not change the underlying data for this graph, but your goal is to investigate some of the options given in `theme()`. A list of theme options is given <a href="https://ggplot2.tidyverse.org/reference/theme.html"target="_blank">in this link</a>.

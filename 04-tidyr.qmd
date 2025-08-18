@@ -317,17 +317,19 @@ Pivot the data set so that there is a single column that gives the year and a si
 
 __Class Exercise 1__. Once you have a handle on data science terminology, it's not too difficult to transfer what you've learned to a different language. For example, students in computer science might be more familiar with Python. Google something like "pivot from wide to long in python" to find help on achieving the equivalent of `pivot_longer()` in Python.
 
-__Class Exercise 2__. The `UBSprices2` data set contains information on prices of common commodities in cities throughout the world in the years 2003 and 2009. The three commodities in the data set are Rice (1 kg worth), Bread (1 kg worth), and a Big Mac <https://media1.giphy.com/media/Fw5LicDKem6nC/source.gif>
+__Class Exercise 2__. The `UBSprices2` data set contains information on prices of common commodities in cities throughout the world in the years 2003 and 2009. The three commodities in the data set are Rice (1 kg worth), Bread (1 kg worth), and a Big Mac <https://media1.giphy.com/media/Fw5LicDKem6nC/source.gif>. Read in the data set and explain why, in its current form, the data is __not__ tidy.
 
 ```{r, message = FALSE}
 prices_df <- read_csv(here("data/UBSprices2.csv"))
 ```
 
-Convert the data set to a tidier form so that there is a `year` variable and a `commodity` variable that has 3 values: `"bigmac"`, `"bread"`, and `"rice"`. __Hint__: At some point, you will need to separate the commodity from the year in, for example, bread2009. But, you'll notice this is different than our other uses of `separate()` because there is no "-" or " " or "/" to use as a separating character. Look at the help for `separate()` and scroll down to the `sep` argument to see if you can figure out this issue. 
+__Class Exercise 3__. Construct a plot that allows you to see how the price of rice has changed in between 2003 and 2009 for each of the cities in the data set.
 
-__Class Exercise 3__. Convert your data set from the previous exercise so that `commodity` is split up into 3 variables: `bigmac` price, `rice` price and `bread` price.
+<!-- Convert the data set to a tidier form so that there is a `year` variable and a `commodity` variable that has 3 values: `"bigmac"`, `"bread"`, and `"rice"`. __Hint__: At some point, you will need to separate the commodity from the year in, for example, bread2009. But, you'll notice this is different than our other uses of `separate()` because there is no "-" or " " or "/" to use as a separating character. Look at the help for `separate()` and scroll down to the `sep` argument to see if you can figure out this issue.  Convert your data set from the previous exercise so that `commodity` is split up into 3 variables: `bigmac` price, `rice` price and `bread` price. -->
 
-__Class Exercise 4__. In which data set would it be easiest to make a line plot with `year` on the x-axis and price of `rice` on the y-axis with lines for each `city`? In which data set would it be easiest to make a line chart with 3 lines, one for each type of commodity, for the city of Amsterdam?
+__Class Exercise 4__. Construct a plot that allows you to see how the price of each of the three commodities has changed between 2003 and 2009 for the city of Amsterdam. 
+
+<!-- In which data set would it be easiest to make a line plot with `year` on the x-axis and price of `rice` on the y-axis with lines for each `city`? In which data set would it be easiest to make a line chart with 3 lines, one for each type of commodity, for the city of Amsterdam? -->
 
 __New Data__:
 
@@ -353,7 +355,7 @@ mortality_long <- mortality_df |>
                names_transform = list(Year = as.numeric))
 ```
 
-__Class Exercise 6__. Make a line plot to look at the overall under 5 mortality trends for each country. 
+__Class Exercise 6__. Construct a plot to look at the overall under 5 mortality trends for each country. 
 
 ```{r, echo = FALSE, fig.keep = "none", warning = FALSE}
 ggplot(data = mortality_long, aes(x = Year, y = Mortality,
@@ -385,7 +387,7 @@ __Your Turn 2__. Tidy the data set just so that
 * `Duration` of the salary contract (currently given in the `Year` column) is in its own column
 * the year range (also currently given in the `Year` column) is split into a variable called `Start` and a variable called `End` year that give the start and end years of the contract. You can still have special characters for now (like `(` and `)`) in the start and end year.
 
-__Your Turn 3__. You should have received a warning message. What does this message mean? See if you can figure it out by typing `View(baseball_df)` in your console window and scrolling down to some of the rows that the warning mentions: 48, 59, 60, etc. With your group why that warning message was given.
+__Your Turn 3__. You should have received a warning message. What does this message mean? See if you can figure it out by typing `View(baseball_df)` in your console window and scrolling down to some of the rows that the warning mentions: 48, 59, 60, etc. With your group, explain why that warning message was given.
 
 __Your Turn 4__. We won't learn about `parse_number()` until `readr`, but the function is straightforward enough to mention here. It's useful when you have extra characters in the values of a numeric variable (like a `$` or a `(`), but you just want to grab the actual number:
 
@@ -414,9 +416,9 @@ Read in the data set with
 nfl_df <- read_csv(here::here("data/nfl_salary.csv"))
 ```
 
-__Your Turn 6__. Use the `head()` functions to look at the data, and then, with your group, explain why this data set is __not__ in tidy form.
+__Your Turn 6__. Explain why this data set is __not__ in tidy form.
 
-__Your Turn 7__. Use a function in `tidyr` to make the data tidy, and give your tidy data set a new name.
+__Your Turn 7__. Tidy the data set and give your tidied data set a new name.
 
 ::: {.callout-caution}
 ## Cuation
@@ -424,15 +426,17 @@ __Your Turn 7__. Use a function in `tidyr` to make the data tidy, and give your 
 The following exercises are a bit more challenging. Even though they are "Your Turn" exercises, we will discuss them a bit as a class as well. 
 :::
 
-__Your Turn 8__. To your data set in the previous exercise, add a ranking variable that ranks the salaries within each player position so that the highest paid players in each `year-position` combination all receive a `1`, the second highest paid players receive a `2`, etc. Compare your results for the default way that `R` uses to break ties between two salaries that are the same and using `ties.method = "first"`. 
+<!-- __Your Turn 8__. To your data set in the previous exercise, add a ranking variable that ranks the salaries within each player position so that the highest paid players in each `year-position` combination all receive a `1`, the second highest paid players receive a `2`, etc. Compare your results for the default way that `R` uses to break ties between two salaries that are the same and using `ties.method = "first"`.  -->
 
-__Your Turn 9__. Find the maximum salary for each player position in each year. Then, create two different line graphs that shows how the maximum salary has changed from 2011 to 2018 for each position. For one line graph, make the colours of the lines different for each position. For the second line graph, facet by position. Which graph do you like better?
+__Your Turn 8__. Construct a graph that lets you explore how the maximum salary for each position has changed over time. 
 
-__Your Turn 10__. The maximum salary is very dependent on one specific player. Make the same graph, but plot the average salary of the top 20 players in each position of each year. What do you notice? Any interesting patterns for any of the positions? If you're a fan of football, provide a guess as to why one of the positions has had their salary plateau in recent years.
+<!-- Find the maximum salary for each player position in each year. Then, create two different line graphs that shows how the maximum salary has changed from 2011 to 2018 for each position. For one line graph, make the colours of the lines different for each position. For the second line graph, facet by position. Which graph do you like better? -->
 
-__Your Turn 11__. Sometimes for graphs involving cost or salary, we want to take into account the inflation rate. Google what the inflation rate was between 2011 and 2018 (Google something like "inflation rate from 2011 to 2018" and you should be able to find something). Adjust all of the 2011 salaries for inflation so that they are comparable to the 2018 salaries. Then, make a similar line plot as above but ignore all of the years between 2012 and 2017 (so your line plot will just have 2 points per position). 
+__Your Turn 9__. What is one flaw about using the maximum salary for each position as our metric for "change" over time. What other metric might we use instead? Re-construct the graph with this other metric?
 
-After adjusting for inflation, how many positions have average higher salaries for the top 20 players in that position? 
+<!-- Make the same graph, but plot the average salary of the top 20 players in each position of each year. What do you notice? Any interesting patterns for any of the positions? If you're a fan of football, provide a guess as to why one of the positions has had their salary plateau in recent years. -->
 
-__Your Turn 12__. Construct a graph that shows how much salary decreases moving from higher ranked players to lower ranked players for each position in the year 2018. Why do you think the depreciation is so large for Quarterbacks?
+__Your Turn 11__. Sometimes for graphs involving cost or salary, we want to take into account the inflation rate. Google what the inflation rate was between 2011 and 2018 (Google something like "inflation rate from 2011 to 2018" and you should be able to find something). Adjust all of the 2011 salaries for inflation so that they are comparable to the 2018 salaries. 
+
+__Your Turn 12__. Construct a graph that shows the salary depreciation from top paid players in each position to lesser paid players in each position for the year 2018 only. Which position has the largest depreciation? 
 

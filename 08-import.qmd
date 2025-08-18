@@ -298,7 +298,7 @@ To fix this issue, we can use the `header = FALSE` argument to `html_table()` an
 
 ```{r}
 #| output: false
-allen_stats <- tab_allen_stats[[6]] |> html_table(header = FALSE) 
+allen_stats <- tab_allen_stats[[7]] |> html_table(header = FALSE) 
 allen_stats
 
 newnames <- paste(allen_stats[1, ], allen_stats[2, ])
@@ -307,6 +307,19 @@ allen_stats |> set_names(newnames) |>
 ```
 
 Explain what the code above is doing to fix the duplicate name issue.
+
+```{r}
+#| echo: false
+#| output: false
+#| warning: false
+#| eval: false
+library(janitor)
+url1 <- "https://en.wikipedia.org/wiki/Josh_Allen_(quarterback)"
+tab_allen_stats <- read_html(url1) |> html_nodes("table")
+allen_df <- tab_allen_stats[[7]] |> html_table()
+allen_df |> janitor::row_to_names(1) |> clean_names()
+allen_df |> clean_names()
+```
 
 ### Your Turn
 

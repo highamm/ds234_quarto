@@ -228,7 +228,7 @@ __Exercise 8__. To your violin plot in the previous exercise, change the default
 
 For this, we will work with some fitness data collected from my Apple Watch since November 2018. The `higham_fitness_clean.csv` contains information on the following variables:
 
-* `Start`, the month, day, and year that the fitness data was recorded on
+* `Date`, the month, day, and year that the fitness data was recorded on
 * `month`, the month
 * `weekday`, the day of the week
 * `dayofyear`, the day of the year (so that 304 corresponds to the 304th day of the year)
@@ -259,12 +259,6 @@ ggplot(data = fitness_full, aes(x = distance, y = active_cals)) +
 ```
 
 __Exercise 9__. Do you see anything "odd" about the plot? Make a note of any strange observations that you see.
-
-::: {.callout-tip collapse="true"}
-## Hint
-
-In particular, what about having `0`'s for either `distance` or `active_cals` could indicate a flaw in how the data was collected?
-:::
 
 __Exercise 10__. Change the `x` and `y` variables plotted to two different quantitative variables in the fitness data set. Give a one sentence interpretation of any findings from your new plot. 
 
@@ -336,17 +330,14 @@ b. Construct the plot described in (a) to test your prediction.
 
 c. When the data is structured such that there is a column that uniquely gives the levels of the categorical variable and a second column that gives the count of each level, we typically use the `geom_col()` `GEOM` instead of `geom_bar()`. `geom_col()` uses both an `x` and a `y` aesthetic mapping. Construct the bar plot using `stat113_restructured` with the `geom_col()` `GEOM`.
 
-__Class Exercise 2__. To the scatterplot of `distance` vs. `active calories`, add a smoother with the `geom_smooth()` `GEOM`. After adding the smoother, investigate the following arguments: (1) `method`, (2) `se`, and (3) `span`.
+__Class Exercise 2__*. What is the relationship between distance and active calories?
 
-::: {.callout-tip collapse="true"}
-## Hint
+<!-- After adding the smoother, investigate the following arguments: (1) `method`, (2) `se`, and (3) `span`. -->
 
-You can investigate the arguments either by typing `?geom_smooth` in your lower left window or by using Google or ChatGPT.
-:::
 
-__Class Exercise 3__. Another useful `GEOM` for some types of quantitative variables is `geom_line()`, which is often used if the x-axis variable is time. Construct a line plot with the `fitness_full` data to look at how `steps` changes through time.
+__Class Exercise 3__*. What is the relationship between number of steps taken and date? Is there an increasing trend or a decreasing trend or neither? 
 
-__Class Exercise 4__. Thus far, we have only faceted by a single variable. With the `stat113_df` data frame, figure out (with the help of Google) how to facet by two variables to make a plot that shows the relationship between GPA (y-axis) and Exercise (x-axis) with four facets: one for male students who play a sport, one for female students who play a sport, one for male students who do not play a sport, and one for female students who do not play a sport.
+__Class Exercise 4__*. What is the relationship between GPA and Exercise? Is that relationship different depending on sex? depending on sport? depending on sex-sport combination?
 
 __Class Exercise 5__. In STAT 113, boxplots are typically introduced using the `*` symbol to identify outliers. Using a combination of the help `?geom_boxplot` and Googling "R point shapes", figure out how to modify your side-by-side boxplots so that the outliers are shown using `*`, not the default dots. 
 
@@ -375,6 +366,8 @@ __Your Turn 4__. Besides strip plots, boxplots, and violin plots, we can also ma
 a. Make a coloured frequency plot of the variables you selected (colouring by the levels of the categorical variable).
 
 b. Make a set of faceted histograms (faceting by the categorical variable that you selected).
+
+c. Do you prefer either of these graphs to the "standard" side-by-side boxplots for the variables that you selected?
 
 __Your Turn 5__. In your group, discuss why it would not make sense to construct a line plot of `Exercise` vs. `GPA` from the `stat113_df` data set.
 
@@ -422,18 +415,22 @@ library(tidyverse)
 fitness_full <- read_csv("https://raw.githubusercontent.com/highamm/ds234_quarto/main/data_online/higham_fitness_clean.csv",
                          col_types = list(stepgoal = col_factor())) |>
   mutate(weekend_ind = case_when(weekday == "Sat" | weekday == "Sun" ~ "weekend",
-                                 .default = "weekday"))
+                                 .default = "weekday")) |>
+  mutate(season = case_when(dayofyear >= 355 | dayofyear <= 80 ~ "winter",
+                            dayofyear >= 81 & dayofyear <= 172 ~ "spring",
+                            dayofyear >= 173 & dayofyear <= 264 ~ "summer",
+                            .default = "fall"))
 
 ggplot(data = fitness_full,
-       aes(x = Start, y = active_cals, colour = stepgoal)) +
+       aes(x = Date, y = steps, colour = season)) +
   geom_point()
 ```
 
-Here, we have used a `colour` aesthetic to map the `stepgoal` variable to `colour`. But, what if we wanted to simply colour all of the points `"blue"`. Try running:
+Here, we have used a `colour` aesthetic to map the `season` variable to `colour` so that we can more easily distinguish points from the various seasons in the plot. But, what if we wanted to simply colour all of the points `"blue"`. Try running:
 
 ```{r}
 ggplot(data = fitness_full,
-       aes(x = Start, y = active_cals, colour = "blue")) +
+       aes(x = Date, y = steps, colour = "blue")) +
   geom_point()
 ```
 
@@ -441,7 +438,7 @@ What does the graph look like? Did it do what you expected? To actual colour the
 
 ```{r}
 ggplot(data = fitness_full,
-       aes(x = Start, y = active_cals)) +
+       aes(x = Date, y = steps)) +
   geom_point(colour = "blue")
 ```
 
@@ -461,7 +458,7 @@ __Exercise 1__. The default point `size` is `1.5` while the default point `shape
 
 ```{r}
 ggplot(data = fitness_full,
-       aes(x = Start, y = active_cals)) +
+       aes(x = Date, y = steps)) +
   geom_point(size = 1.5, shape = 19)
 ```
 
@@ -469,7 +466,7 @@ __Exercise 2__. Use the `linewidth` option in `geom_smooth()` to increase the wi
 
 ```{r}
 ggplot(data = fitness_full,
-       aes(x = Start, y = active_cals)) +
+       aes(x = Date, y = steps)) +
   geom_point() +
   geom_smooth()
 ```
@@ -482,7 +479,7 @@ In the following plot, the __global__ aesthetics `x`, `y`, and `colour` are pass
 
 ```{r}
 ggplot(data = fitness_full,
-       aes(x = Start, y = active_cals, colour = stepgoal)) +
+       aes(x = Date, y = steps, colour = season)) +
   geom_point() +
   geom_smooth()
 ```
@@ -491,8 +488,8 @@ is equivalent to the following plot with local aesthetics:
 
 ```{r}
 ggplot(data = fitness_full) +
-  geom_point(aes(x = Start, y = active_cals, colour = stepgoal)) +
-  geom_smooth(aes(x = Start, y = active_cals, colour = stepgoal))
+  geom_point(aes(x = Date, y = active_cals, colour = season)) +
+  geom_smooth(aes(x = Date, y = active_cals, colour = season))
 ```
 
 ::: {.callout-important}
@@ -501,25 +498,27 @@ ggplot(data = fitness_full) +
 When we put the `aes()` in `ggplot()` as global aesthetics, `R` perpetuates these `aes()` aesthetics in all further `GEOM`s in your plotting command. 
 :::
 
-As our plots become more complex, we will need to think carefully about whether we want to supply an aesthetic globally or locally. As an example, we can change which aesthetics are supplied globally and which are supplied locally to create a graph that has the points coloured by `stepgoal` but a single smoother and a graph that has smoothers for each level of `stepgoal` but a single point colour:
+As our plots become more complex, we will need to think carefully about whether we want to supply an aesthetic globally or locally. As an example, we can change which aesthetics are supplied globally and which are supplied locally to create a graph that has the points coloured by `season` but a single smoother and a graph that has smoothers for each level of `season` but a single point colour:
 
 ```{r}
 ggplot(data = fitness_full,
-       aes(x = Start, y = active_cals)) +
-  geom_point(aes(colour = stepgoal)) +
+       aes(x = Date, y = steps)) +
+  geom_point(aes(colour = season)) +
   geom_smooth()
 
 ggplot(data = fitness_full,
-       aes(x = Start, y = active_cals)) +
+       aes(x = Date, y = steps)) +
   geom_point() +
-  geom_smooth(aes(colour = stepgoal))
+  geom_smooth(aes(colour = season))
 ```
+
+Which graph you choose depends on what you might want to emphasize in your plot!
 
 __Exercise 3__. Modify the following plot so that the aesthetics are all explicitly given __locally__ to each `GEOM` instead of __globally__.
 
 ```{r}
 ggplot(data = fitness_full,
-       aes(x = Start, y = active_cals)) +
+       aes(x = Date, y = steps)) +
   geom_point() +
   geom_line()
 ```
@@ -531,13 +530,13 @@ We want our code to be as readable as possible. This not only benefits other peo
 As a quick example of why code style can be important, consider the following two code chunks, both of which produce the same graph.
 
 ```{r, eval = FALSE}
-ggplot(data=fitness_full,aes(x=Start,y=steps))+geom_point(colour=
+ggplot(data=fitness_full,aes(x=Date,y=steps))+geom_point(colour=
      "darkgreen")+geom_smooth(se=FALSE,colour="black",linewidth=1.4)
 ```
 
 ```{r, eval = FALSE}
 ggplot(data = fitness_full,
-       aes(x = Start, y = steps)) +
+       aes(x = Date, y = steps)) +
   geom_point(colour = "darkgreen") +
   geom_smooth(se = FALSE, colour = "black", linewidth = 1.4)
 ```

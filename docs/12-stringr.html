@@ -321,7 +321,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell" data-appendix="true">
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://here.r-lib.org/">here</a></span><span class="op">)</span></span>
-<span><span class="va">beyonce</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv</a></span><span class="op">(</span><span class="fu"><a href="https://here.r-lib.org//reference/here.html">here</a></span><span class="op">(</span><span class="st">"data/beyonce_lyrics.csv"</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="va">beyonce</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv</a></span><span class="op">(</span><span class="fu"><a href="https://here.r-lib.org/reference/here.html">here</a></span><span class="op">(</span><span class="st">"data/beyonce_lyrics.csv"</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">beyonce</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>We will be most focused on the <code>line</code> variable, as each value for this variable contains a line from a Beyonce song. There’s other variables present as well, such as the <code>song_name</code> and the <code>artist_name</code> (the data set originally came from a data set with artists other than Beyonce).</p>
@@ -496,7 +496,7 @@ Note
 <div class="cell" data-appendix="true">
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://here.r-lib.org/">here</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span></span>
-<span><span class="va">med_djok_df</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv</a></span><span class="op">(</span><span class="fu"><a href="https://here.r-lib.org//reference/here.html">here</a></span><span class="op">(</span><span class="st">"data/med_djok.csv"</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="va">med_djok_df</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv</a></span><span class="op">(</span><span class="fu"><a href="https://here.r-lib.org/reference/here.html">here</a></span><span class="op">(</span><span class="st">"data/med_djok.csv"</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="va">med_djok_df</span></span>
 <span><span class="co">#&gt; # A tibble: 182 × 46</span></span>
 <span><span class="co">#&gt;   point      Serving match_id    Pt  Set1  Set2   Gm1   Gm2 Pts   `Gm#` TbSet</span></span>
@@ -676,7 +676,8 @@ Note
 <span class="header-section-number">13.3</span> Practice</h2>
 <section id="class-exercises" class="level3" data-number="13.3.1"><h3 data-number="13.3.1" class="anchored" data-anchor-id="class-exercises">
 <span class="header-section-number">13.3.1</span> Class Exercises</h3>
-<p><strong>Class Exercise 1</strong>. You can often find scripts for television shows. Two of the more popular television shows, the office and friends, have <code>R</code> packages containing clean-up scripts for the entire series. Construct a plot that shows the 20 most common words Michael says that are not classified as “stop” words.</p>
+<p><strong>Class Exercise 1</strong>. Two of the more popular television shows, the office and friends, have <code>R</code> packages containing clean-up scripts for the entire series. For the show <em>The Office</em>, choose a character (e.g., Michael, Jim, Pam, Dwight, Kevin, Angela, Kelly, Andy, etc.), and construct a plot that lets you explore the most common words that character said in the series.</p>
+<p>Then, assess whether the character you chose seems to speak more or speak less, on average, from season to season.</p>
 <div class="cell">
 <div class="sourceCode" id="cb18"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co">## install.packages("schrute")</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/bradlindblad/schrute">schrute</a></span><span class="op">)</span></span>
@@ -688,8 +689,8 @@ Note
 </div>
 </section><section id="your-turn" class="level3" data-number="13.3.2"><h3 data-number="13.3.2" class="anchored" data-anchor-id="your-turn">
 <span class="header-section-number">13.3.2</span> Your Turn</h3>
-<p><strong>Your Turn 1</strong>. Use <code>dplyr</code> functions and the <code>Serving</code> variable to count the number of serve locations for each player. (i.e.&nbsp;for how many points did Medvedev hit a serve out wide?).</p>
-<p><strong>Your Turn 2</strong>. Use <code>dplyr</code> functions, the <code>Serving</code> variable, and the <code>isSrvWinner</code> variable to find the proportion of points each player won for each of their serving locations (i.e.&nbsp;if Medvedev won 5 points while serving out wide and lost 3 points, the proportion would be 5 / 8 = <code>0.625</code>).</p>
+<p><strong>Your Turn 1</strong>. Using the tennis data, construct a plot that lets you explore how often each of the two players hit their serve “down the t,” “into the body,” and “out wide.”</p>
+<p><strong>Your Turn 2</strong>. Can you modify your plot to additionally visualize how often each player ended up <strong>winning</strong> the point when they served to each of the three locations (down the t, into the body, and out wide).</p>
 <div class="callout callout-style-simple callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">

@@ -114,60 +114,30 @@ __Exercise 2__. Practice converting `Date3` and `Date5` to `<date>` variables wi
 
 ## Functions for `<date>` Variables
 
-Once an object is in the `<date>` format, there are some special functions in `lubridate` that can be used on that date variable. To investigate some of these functions, we will pull stock market data from Yahoo using the `quantmod` package. Install the package, and run the following code, which gets stock market price data on Apple, Nintendo, Chipotle, and the S & P 500 Index from 2011 to now. 
+Once an object is in the `<date>` format, there are some special functions in `lubridate` that can be used on that date variable. To investigate some of these functions, we will pull stock market data using the `tidyquant` package. Install the package, and run the following code, which gets stock market price data on Apple, Nintendo, Chipotle, and the S & P 500 Index from 2015 to now. 
 
-::: {.callout-note}
-## Note
-
-We have the ability to understand all of the code below, but we will skip over this code for now to focus more on the new information in this section (information about date functions).
-:::
-
-```{r, message = FALSE, appendix = TRUE}
-## install.packages("quantmod")
-library(quantmod)
-
-start <- ymd("2011-01-01")
-end <- ymd("2021-5-19")
-getSymbols(c("AAPL", "NTDOY", "CMG", "SPY"), src = "yahoo",
-           from = start, to = end)
-
-date_tib <- as_tibble(index(AAPL)) |>
-  rename(start_date = value)
-app_tib <- as_tibble(AAPL)
-nint_tib <- as_tibble(NTDOY)
-chip_tib <- as_tibble(CMG)
-spy_tib <- as_tibble(SPY)
-all_stocks <- bind_cols(date_tib, app_tib, nint_tib, chip_tib, spy_tib)
-
-stocks_long <- all_stocks |>
-  select(start_date, AAPL.Adjusted, NTDOY.Adjusted,
-                      CMG.Adjusted, SPY.Adjusted) |>
-  pivot_longer(2:5, names_to = "Stock_Type", values_to = "Price") |>
-  mutate(Stock_Type = fct_recode(Stock_Type,
-                                 Apple = "AAPL.Adjusted",
-                                 Nintendo = "NTDOY.Adjusted",
-                                 Chipotle = "CMG.Adjusted",
-                                 `S & P 500` = "SPY.Adjusted"
-                                 ))
-tail(stocks_long)
+```{r}
+library(tidyquant)
+stocks_long <- tq_get(c("AAPL", "CMG", "NTDOY", "SPY"), get = "stock.prices")
 ```
+
 
 You'll have a chance in class to choose your own stocks to investigate. For now, we've made a data set with three variables:
 
-* `start_date`, the opening date for the stock market
-* `Stock_Type`, a factor with 4 levels: `Apple`, `Nintendo`, `Chipotle`, and `S & P 500`
-* `Price`, the price of the stock?
+* `date`, the opening date for the stock market.
+* `symbol`, a factor with 4 levels, one for each stock.
+* `close`, the closing price of the stock for that day.
 
 First, let's make a line plot that shows how the S & P 500 has changed over time:
 
 ```{r, appendix = TRUE}
-stocks_sp <- stocks_long |> filter(Stock_Type == "S & P 500")
-ggplot(data = stocks_sp, aes(x = start_date, y = Price)) +
+stocks_sp <- stocks_long |> filter(symbol == "SPY")
+ggplot(data = stocks_sp, aes(x = date, y = close)) +
   geom_line() +
   theme_minimal()
 ```
 
-But, there's other information that we can get from the `start_date` variable. We might be interested in things like day of the week, monthly trends, or yearly trends. To extract variables like "weekday" and "month" from a `<date>` variable, there are a series of functions that are fairly straightforward to use. We will discuss the `year()` `month()`, `mday()`, `yday()`, and `wday()` functions.
+But, there's other information that we can get from the `date` variable. We might be interested in things like day of the week, monthly trends, or yearly trends. To extract variables like "weekday" and "month" from a `<date>` variable, there are a series of functions that are fairly straightforward to use. We will discuss the `year()` `month()`, `mday()`, `yday()`, and `wday()` functions.
 
 ### `year()`, `month()`, and `mday()` 
 
@@ -180,9 +150,9 @@ Like the `forcats` functions and the earlier `lubridate` functions, the `year()`
 :::
 
 ```{r, results = "hide", appendix = TRUE}
-stocks_long |> mutate(year_stock = year(start_date))
-stocks_long |> mutate(month_stock = month(start_date))
-stocks_long |> mutate(day_stock = mday(start_date))
+stocks_long |> mutate(year_stock = year(date))
+stocks_long |> mutate(month_stock = month(date))
+stocks_long |> mutate(day_stock = mday(date))
 ```
 
 ### `yday()` and `wday()`
@@ -197,14 +167,14 @@ yday(test)
 returns `309`, indicating that November 4th is the 309th day of the year 2020. Using this function in a `mutate()` statement creates a new variable that has `yday` for each observation:
 
 ```{r, appendix = TRUE}
-stocks_long |> mutate(day_in_year = yday(start_date))
+stocks_long |> mutate(day_in_year = yday(date))
 ```
 
 Finally, the function `wday()` grabs the day of the week from a `<date>`. By default, `wday()` puts the day of the week as a numeric, but I find this confusing, as I can't ever remember whether a `1` means `Sunday` or a `1` means `Monday`. Adding, `label = TRUE` creates the weekday variable as `Sunday`, `Monday`, `Tuesday`, etc.:
 
 ```{r, results = "hide", appendix = TRUE}
-stocks_long |> mutate(day_of_week = wday(start_date))
-stocks_long |> mutate(day_of_week = wday(start_date,
+stocks_long |> mutate(day_of_week = wday(date))
+stocks_long |> mutate(day_of_week = wday(date,
                                           label = TRUE, abbr = FALSE))
 ```
 
@@ -241,7 +211,7 @@ Things can get complicated with dates and times, especially if you start to cons
 __Exercise 3__. The `month()` function gives the numbers corresponding to each month by default. Type `?month` and figure out which argument you would need to change to get the __names__ (January, February, etc.) instead of the month numbers. What about the __abbreviations__ (Jan, Feb, etc.) of each month instead of the month numbers? Try making the changes in the `mutate()` statement below.
 
 ```{r, results = "hide"}
-stocks_long |> mutate(month_stock = month(start_date))
+stocks_long |> mutate(month_stock = month(date))
 ```
 
 ## Practice
@@ -268,82 +238,7 @@ __Class Exercise 2__. Make a plot of the popularity of Data Science through Time
 
 __Class Exercise 3__. Modify the code in the tutorial section on the Stocks data to get a data frame on stock prices for the now infamous Gamestop stock. Construct a line plot of the price through time.
 
-__Class Exercise 4__. Choose __one__ stock and use the `lag()` function to create a new variable that is the previous day's stock price for that stock. For what proportion of days was the stock's closing price __higher__ than it was at close for the day before (indicating that someone who bought shares on Day xxx would have made money at the end of Day xxx + 1).
-
-```{r}
-#| echo: false
-#| output: false
-library(quantmod)
-
-start <- ymd("2011-01-01")
-end <- ymd("2021-5-19")
-getSymbols(c("AAPL", "NTDOY", "CMG", "SPY"), src = "yahoo",
-           from = start, to = end)
-
-date_tib <- as_tibble(index(AAPL)) |>
-  rename(start_date = value)
-app_tib <- as_tibble(AAPL)
-nint_tib <- as_tibble(NTDOY)
-chip_tib <- as_tibble(CMG)
-spy_tib <- as_tibble(SPY)
-all_stocks <- bind_cols(date_tib, app_tib, nint_tib, chip_tib, spy_tib)
-
-stocks_long <- all_stocks |>
-  select(start_date, AAPL.Adjusted, NTDOY.Adjusted,
-                      CMG.Adjusted, SPY.Adjusted) |>
-  pivot_longer(2:5, names_to = "Stock_Type", values_to = "Price") |>
-  mutate(Stock_Type = fct_recode(Stock_Type,
-                                 Apple = "AAPL.Adjusted",
-                                 Nintendo = "NTDOY.Adjusted",
-                                 Chipotle = "CMG.Adjusted",
-                                 `S & P 500` = "SPY.Adjusted"
-                                 ))
-tail(stocks_long)
-stocks_long <- stocks_long |> filter(Stock_Type == "Chipotle") |>
-  mutate(price_lag = lag(Price)) |>
-  mutate(diff = Price - price_lag)
-stocks_long |> mutate(gain_or_loss = if_else(diff > 0,
-                      true = 1,
-                      false = 0)) |>
-  summarise(prop_gain = mean(gain_or_loss, na.rm = TRUE))
-```
-
-__Class Exercise 5__. Those interested in finance/economics might see the naivety of the approach above: usually, the stock market is more thought of as a long-term investment, not a day-to-day investment. For the stock that you selected, adjust your analysis so that you compute the proportion of weeks that a stock's closing price was __higher__ than it was at close the week before. To simplify things a little, you should only compute this proportion for __Wednesdays__ (and drop the rest of the data).
-
-```{r}
-#| echo: false
-#| eval: false
-
-stocks_long |> mutate(day_of_week = wday(start_date, label = TRUE)) |>
-  filter(day_of_week == "Wed") |>
-  mutate(price_lag = lag(Price)) |>
-  mutate(diff = Price - price_lag) |>
-  mutate(gain_or_loss = if_else(diff > 0,
-                      true = 1,
-                      false = 0)) |>
-  summarise(prop_gain = mean(gain_or_loss, na.rm = TRUE))
-```
-
-__Class Exercise 6__. Those interested in finance/economics might see the naivety of the approach above: usually, the stock market is more thought of as a long-term investment, not a week-to-week investment. For the stock that you selected, adjust your analysis so that you compute the proportion of months that a stock's closing price was __higher__ than it was at close the month before. To simplify things a little, you should only compute this proportion for __the first day of each month__ (and drop the rest of the data).
-
-```{r}
-#| echo: false
-#| eval: false
-
-stocks_long |> mutate(month = month(start_date),
-                      year = year(start_date)) |>
-  group_by(month, year) |>
-  slice(1) |>
-  arrange(year, month) |>
-  ungroup() |>
-  mutate(price_lag = lag(Price)) |>
-  mutate(diff = Price - price_lag) |>
-  mutate(gain_or_loss = if_else(diff > 0,
-                      true = 1,
-                      false = 0)) |>
-  summarise(prop_gain = mean(gain_or_loss, na.rm = TRUE))
-```
-
+__Class Exercise 4__. Suppose that you want to explore how often a stock's closing price was higher on Day xxx than it was on closing on the previous Day xxx minus 1. How might you answer this question? What if you wanted to compare week-to-week instead of day-to-day? What if you wanted to compare month-to-month instead of day-to-day?
 
 ### Your Turn
 
@@ -364,7 +259,7 @@ videogame_df <- read_csv(here("data/smash_animal_crossing.csv"))
 videogame_df <- videogame_df |> mutate(date = ymd(Month, truncated = 1))
 ```
 
-__Your Turn 2__. Make a plot of your Popularity variables through time.
+__Your Turn 2__. Visualize the popularity of your two variables over time.
 
 ::: {.callout-tip collapse="true"}
 ## Hint (only if you get stuck)
@@ -385,7 +280,7 @@ ggplot(data = videogame_long, aes(x = date,
   theme_minimal()
 ```
 
-__Your Turn 3__. Using your data set that explored a variable or two from 2004 through now, make a table of the __average__ popularity for each year.
+__Your Turn 3__. Using your data set that explored a variable or two from 2004 through now, make a table of the __maximum__ popularity and the __average__ popularity for each year.
 
 ::: {.callout-tip collapse="true"}
 ## Hint (only if you get stuck)

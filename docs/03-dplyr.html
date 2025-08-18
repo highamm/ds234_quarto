@@ -636,32 +636,32 @@ Note
 <div class="sourceCode" id="cb20"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">fitness_df</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv</a></span><span class="op">(</span><span class="st">"https://raw.githubusercontent.com/highamm/ds234_quarto/main/data_online/higham_fitness_clean.csv"</span>,</span>
 <span>                       col_types <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>stepgoal <span class="op">=</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/parse_factor.html">col_factor</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="va">fitness_df</span></span>
-<span><span class="co">#&gt; # A tibble: 1,722 × 9</span></span>
-<span><span class="co">#&gt;   Start      active_cals distance flights  steps month weekday dayofyear</span></span>
-<span><span class="co">#&gt;   &lt;date&gt;           &lt;dbl&gt;    &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt;       &lt;dbl&gt;</span></span>
-<span><span class="co">#&gt; 1 2018-11-28        57.8    0.930       0  1885. Nov   Wed           332</span></span>
-<span><span class="co">#&gt; 2 2018-11-29       509.     4.64       18  8953. Nov   Thu           333</span></span>
-<span><span class="co">#&gt; 3 2018-11-30       599.     6.05       12 11665  Nov   Fri           334</span></span>
-<span><span class="co">#&gt; 4 2018-12-01       661.     6.80        6 12117  Dec   Sat           335</span></span>
-<span><span class="co">#&gt; 5 2018-12-02       527.     4.61        1  8925. Dec   Sun           336</span></span>
-<span><span class="co">#&gt; 6 2018-12-03       550.     3.96        2  7205  Dec   Mon           337</span></span>
-<span><span class="co">#&gt; # ℹ 1,716 more rows</span></span>
+<span><span class="co">#&gt; # A tibble: 2,444 × 10</span></span>
+<span><span class="co">#&gt;   Date       active_cals flights steps distance month weekday dayofyear  year</span></span>
+<span><span class="co">#&gt;   &lt;date&gt;           &lt;dbl&gt;   &lt;dbl&gt; &lt;dbl&gt;    &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt;       &lt;dbl&gt; &lt;dbl&gt;</span></span>
+<span><span class="co">#&gt; 1 2018-11-28        57.8      NA  1885     0.93 Nov   Wed           332  2018</span></span>
+<span><span class="co">#&gt; 2 2018-11-29       509.       18  8953     4.64 Nov   Thu           333  2018</span></span>
+<span><span class="co">#&gt; 3 2018-11-30       599.       12 11665     6.05 Nov   Fri           334  2018</span></span>
+<span><span class="co">#&gt; 4 2018-12-01       661.        6 12117     6.8  Dec   Sat           335  2018</span></span>
+<span><span class="co">#&gt; 5 2018-12-02       527.        1  8925     4.61 Dec   Sun           336  2018</span></span>
+<span><span class="co">#&gt; 6 2018-12-03       550.        2  7205     3.96 Dec   Mon           337  2018</span></span>
+<span><span class="co">#&gt; # ℹ 2,438 more rows</span></span>
 <span><span class="co">#&gt; # ℹ 1 more variable: stepgoal &lt;fct&gt;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Thus far, we have used a single pipe <code>|&gt;</code> to do one task, but, we can string together multiple <code>dplyr</code> functions with multiple <code>|&gt;</code> statements. For example, suppose that we wanted to keep only the <code>weekday</code>s that were <code>Sat</code> and <code>Sun</code>, <strong>and then</strong>, order the data set so that it was in descending order of <code>steps</code> taken:</p>
 <div class="cell">
 <div class="sourceCode" id="cb21"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">fitness_df</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">weekday</span> <span class="op">==</span> <span class="st">"Sat"</span> <span class="op">|</span> <span class="va">weekday</span> <span class="op">==</span> <span class="st">"Sun"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/arrange.html">arrange</a></span><span class="op">(</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/desc.html">desc</a></span><span class="op">(</span><span class="va">steps</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="co">#&gt; # A tibble: 492 × 9</span></span>
-<span><span class="co">#&gt;   Start      active_cals distance flights  steps month weekday dayofyear</span></span>
-<span><span class="co">#&gt;   &lt;date&gt;           &lt;dbl&gt;    &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt;       &lt;dbl&gt;</span></span>
-<span><span class="co">#&gt; 1 2023-07-15       2291.     18.0     193 32589. Jul   Sat           196</span></span>
-<span><span class="co">#&gt; 2 2019-08-11       1385.     15.8     173 29480. Aug   Sun           223</span></span>
-<span><span class="co">#&gt; 3 2019-04-14       1767.     17.9       1 25578  Apr   Sun           104</span></span>
-<span><span class="co">#&gt; 4 2018-12-15       1091.     11.2      27 21224. Dec   Sat           349</span></span>
-<span><span class="co">#&gt; 5 2022-05-29       1291.     11.8     103 20853  May   Sun           149</span></span>
-<span><span class="co">#&gt; 6 2019-02-10       1392.     12.8       5 20700. Feb   Sun            41</span></span>
-<span><span class="co">#&gt; # ℹ 486 more rows</span></span>
+<span><span class="co">#&gt; # A tibble: 697 × 10</span></span>
+<span><span class="co">#&gt;   Date       active_cals flights steps distance month weekday dayofyear  year</span></span>
+<span><span class="co">#&gt;   &lt;date&gt;           &lt;dbl&gt;   &lt;dbl&gt; &lt;dbl&gt;    &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt;       &lt;dbl&gt; &lt;dbl&gt;</span></span>
+<span><span class="co">#&gt; 1 2023-07-15        2291     193 32589     18.0 Jul   Sat           196  2023</span></span>
+<span><span class="co">#&gt; 2 2019-08-11        1385     173 29480     15.8 Aug   Sun           223  2019</span></span>
+<span><span class="co">#&gt; 3 2019-04-14        1767       1 25578     17.9 Apr   Sun           104  2019</span></span>
+<span><span class="co">#&gt; 4 2025-08-03        1094      12 21340     12.4 Aug   Sun           215  2025</span></span>
+<span><span class="co">#&gt; 5 2018-12-15        1091      27 21224     11.2 Dec   Sat           349  2018</span></span>
+<span><span class="co">#&gt; 6 2024-06-23        1172      16 21006     12.6 Jun   Sun           175  2024</span></span>
+<span><span class="co">#&gt; # ℹ 691 more rows</span></span>
 <span><span class="co">#&gt; # ℹ 1 more variable: stepgoal &lt;fct&gt;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>This reads: “take <code>fitness_df</code> and then <code><a href="https://dplyr.tidyverse.org/reference/filter.html">filter()</a></code> it to keep only Saturdays and Sundays and then sort it in descending order of <code>steps</code>.”</p>
@@ -681,63 +681,63 @@ Important
 <p>The code</p>
 <div class="cell">
 <div class="sourceCode" id="cb22"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">fitness_df</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">weekday</span> <span class="op">==</span> <span class="st">"Sat"</span> <span class="op">|</span> <span class="va">weekday</span> <span class="op">==</span> <span class="st">"Sun"</span><span class="op">)</span></span>
-<span><span class="co">#&gt; # A tibble: 492 × 9</span></span>
-<span><span class="co">#&gt;   Start      active_cals distance flights  steps month weekday dayofyear</span></span>
-<span><span class="co">#&gt;   &lt;date&gt;           &lt;dbl&gt;    &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt;       &lt;dbl&gt;</span></span>
-<span><span class="co">#&gt; 1 2018-12-01        661.     6.80       6 12117  Dec   Sat           335</span></span>
-<span><span class="co">#&gt; 2 2018-12-02        527.     4.61       1  8925. Dec   Sun           336</span></span>
-<span><span class="co">#&gt; 3 2018-12-08        775.     6.46       0  8834. Dec   Sat           342</span></span>
-<span><span class="co">#&gt; 4 2018-12-09        341.     2.81       0  5265  Dec   Sun           343</span></span>
-<span><span class="co">#&gt; 5 2018-12-15       1091.    11.2       27 21224. Dec   Sat           349</span></span>
-<span><span class="co">#&gt; 6 2018-12-16       1029.     8.84      79 16376  Dec   Sun           350</span></span>
-<span><span class="co">#&gt; # ℹ 486 more rows</span></span>
+<span><span class="co">#&gt; # A tibble: 697 × 10</span></span>
+<span><span class="co">#&gt;   Date       active_cals flights steps distance month weekday dayofyear  year</span></span>
+<span><span class="co">#&gt;   &lt;date&gt;           &lt;dbl&gt;   &lt;dbl&gt; &lt;dbl&gt;    &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt;       &lt;dbl&gt; &lt;dbl&gt;</span></span>
+<span><span class="co">#&gt; 1 2018-12-01        661.       6 12117     6.8  Dec   Sat           335  2018</span></span>
+<span><span class="co">#&gt; 2 2018-12-02        527.       1  8925     4.61 Dec   Sun           336  2018</span></span>
+<span><span class="co">#&gt; 3 2018-12-08        775.      NA  8834     6.46 Dec   Sat           342  2018</span></span>
+<span><span class="co">#&gt; 4 2018-12-09        341.      NA  5265     2.81 Dec   Sun           343  2018</span></span>
+<span><span class="co">#&gt; 5 2018-12-15       1091       27 21224    11.2  Dec   Sat           349  2018</span></span>
+<span><span class="co">#&gt; 6 2018-12-16       1029       79 16376     8.84 Dec   Sun           350  2018</span></span>
+<span><span class="co">#&gt; # ℹ 691 more rows</span></span>
 <span><span class="co">#&gt; # ℹ 1 more variable: stepgoal &lt;fct&gt;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>is equivalent to:</p>
 <div class="cell">
 <div class="sourceCode" id="cb23"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">fitness_df</span>, <span class="va">weekday</span> <span class="op">==</span> <span class="st">"Sat"</span> <span class="op">|</span> <span class="va">weekday</span> <span class="op">==</span> <span class="st">"Sun"</span><span class="op">)</span></span>
-<span><span class="co">#&gt; # A tibble: 492 × 9</span></span>
-<span><span class="co">#&gt;   Start      active_cals distance flights  steps month weekday dayofyear</span></span>
-<span><span class="co">#&gt;   &lt;date&gt;           &lt;dbl&gt;    &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt;       &lt;dbl&gt;</span></span>
-<span><span class="co">#&gt; 1 2018-12-01        661.     6.80       6 12117  Dec   Sat           335</span></span>
-<span><span class="co">#&gt; 2 2018-12-02        527.     4.61       1  8925. Dec   Sun           336</span></span>
-<span><span class="co">#&gt; 3 2018-12-08        775.     6.46       0  8834. Dec   Sat           342</span></span>
-<span><span class="co">#&gt; 4 2018-12-09        341.     2.81       0  5265  Dec   Sun           343</span></span>
-<span><span class="co">#&gt; 5 2018-12-15       1091.    11.2       27 21224. Dec   Sat           349</span></span>
-<span><span class="co">#&gt; 6 2018-12-16       1029.     8.84      79 16376  Dec   Sun           350</span></span>
-<span><span class="co">#&gt; # ℹ 486 more rows</span></span>
+<span><span class="co">#&gt; # A tibble: 697 × 10</span></span>
+<span><span class="co">#&gt;   Date       active_cals flights steps distance month weekday dayofyear  year</span></span>
+<span><span class="co">#&gt;   &lt;date&gt;           &lt;dbl&gt;   &lt;dbl&gt; &lt;dbl&gt;    &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt;       &lt;dbl&gt; &lt;dbl&gt;</span></span>
+<span><span class="co">#&gt; 1 2018-12-01        661.       6 12117     6.8  Dec   Sat           335  2018</span></span>
+<span><span class="co">#&gt; 2 2018-12-02        527.       1  8925     4.61 Dec   Sun           336  2018</span></span>
+<span><span class="co">#&gt; 3 2018-12-08        775.      NA  8834     6.46 Dec   Sat           342  2018</span></span>
+<span><span class="co">#&gt; 4 2018-12-09        341.      NA  5265     2.81 Dec   Sun           343  2018</span></span>
+<span><span class="co">#&gt; 5 2018-12-15       1091       27 21224    11.2  Dec   Sat           349  2018</span></span>
+<span><span class="co">#&gt; 6 2018-12-16       1029       79 16376     8.84 Dec   Sun           350  2018</span></span>
+<span><span class="co">#&gt; # ℹ 691 more rows</span></span>
 <span><span class="co">#&gt; # ℹ 1 more variable: stepgoal &lt;fct&gt;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Then,</p>
 <div class="cell">
 <div class="sourceCode" id="cb24"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">fitness_df</span>, <span class="va">weekday</span> <span class="op">==</span> <span class="st">"Sat"</span> <span class="op">|</span> <span class="va">weekday</span> <span class="op">==</span> <span class="st">"Sun"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/arrange.html">arrange</a></span><span class="op">(</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/desc.html">desc</a></span><span class="op">(</span><span class="va">steps</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="co">#&gt; # A tibble: 492 × 9</span></span>
-<span><span class="co">#&gt;   Start      active_cals distance flights  steps month weekday dayofyear</span></span>
-<span><span class="co">#&gt;   &lt;date&gt;           &lt;dbl&gt;    &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt;       &lt;dbl&gt;</span></span>
-<span><span class="co">#&gt; 1 2023-07-15       2291.     18.0     193 32589. Jul   Sat           196</span></span>
-<span><span class="co">#&gt; 2 2019-08-11       1385.     15.8     173 29480. Aug   Sun           223</span></span>
-<span><span class="co">#&gt; 3 2019-04-14       1767.     17.9       1 25578  Apr   Sun           104</span></span>
-<span><span class="co">#&gt; 4 2018-12-15       1091.     11.2      27 21224. Dec   Sat           349</span></span>
-<span><span class="co">#&gt; 5 2022-05-29       1291.     11.8     103 20853  May   Sun           149</span></span>
-<span><span class="co">#&gt; 6 2019-02-10       1392.     12.8       5 20700. Feb   Sun            41</span></span>
-<span><span class="co">#&gt; # ℹ 486 more rows</span></span>
+<span><span class="co">#&gt; # A tibble: 697 × 10</span></span>
+<span><span class="co">#&gt;   Date       active_cals flights steps distance month weekday dayofyear  year</span></span>
+<span><span class="co">#&gt;   &lt;date&gt;           &lt;dbl&gt;   &lt;dbl&gt; &lt;dbl&gt;    &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt;       &lt;dbl&gt; &lt;dbl&gt;</span></span>
+<span><span class="co">#&gt; 1 2023-07-15        2291     193 32589     18.0 Jul   Sat           196  2023</span></span>
+<span><span class="co">#&gt; 2 2019-08-11        1385     173 29480     15.8 Aug   Sun           223  2019</span></span>
+<span><span class="co">#&gt; 3 2019-04-14        1767       1 25578     17.9 Apr   Sun           104  2019</span></span>
+<span><span class="co">#&gt; 4 2025-08-03        1094      12 21340     12.4 Aug   Sun           215  2025</span></span>
+<span><span class="co">#&gt; 5 2018-12-15        1091      27 21224     11.2 Dec   Sat           349  2018</span></span>
+<span><span class="co">#&gt; 6 2024-06-23        1172      16 21006     12.6 Jun   Sun           175  2024</span></span>
+<span><span class="co">#&gt; # ℹ 691 more rows</span></span>
 <span><span class="co">#&gt; # ℹ 1 more variable: stepgoal &lt;fct&gt;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>is equivalent to:</p>
 <div class="cell">
 <div class="sourceCode" id="cb25"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/arrange.html">arrange</a></span><span class="op">(</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">fitness_df</span>, <span class="va">weekday</span> <span class="op">==</span> <span class="st">"Sat"</span> <span class="op">|</span> <span class="va">weekday</span> <span class="op">==</span> <span class="st">"Sun"</span><span class="op">)</span>,</span>
 <span>        <span class="fu"><a href="https://dplyr.tidyverse.org/reference/desc.html">desc</a></span><span class="op">(</span><span class="va">steps</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="co">#&gt; # A tibble: 492 × 9</span></span>
-<span><span class="co">#&gt;   Start      active_cals distance flights  steps month weekday dayofyear</span></span>
-<span><span class="co">#&gt;   &lt;date&gt;           &lt;dbl&gt;    &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt;       &lt;dbl&gt;</span></span>
-<span><span class="co">#&gt; 1 2023-07-15       2291.     18.0     193 32589. Jul   Sat           196</span></span>
-<span><span class="co">#&gt; 2 2019-08-11       1385.     15.8     173 29480. Aug   Sun           223</span></span>
-<span><span class="co">#&gt; 3 2019-04-14       1767.     17.9       1 25578  Apr   Sun           104</span></span>
-<span><span class="co">#&gt; 4 2018-12-15       1091.     11.2      27 21224. Dec   Sat           349</span></span>
-<span><span class="co">#&gt; 5 2022-05-29       1291.     11.8     103 20853  May   Sun           149</span></span>
-<span><span class="co">#&gt; 6 2019-02-10       1392.     12.8       5 20700. Feb   Sun            41</span></span>
-<span><span class="co">#&gt; # ℹ 486 more rows</span></span>
+<span><span class="co">#&gt; # A tibble: 697 × 10</span></span>
+<span><span class="co">#&gt;   Date       active_cals flights steps distance month weekday dayofyear  year</span></span>
+<span><span class="co">#&gt;   &lt;date&gt;           &lt;dbl&gt;   &lt;dbl&gt; &lt;dbl&gt;    &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt;       &lt;dbl&gt; &lt;dbl&gt;</span></span>
+<span><span class="co">#&gt; 1 2023-07-15        2291     193 32589     18.0 Jul   Sat           196  2023</span></span>
+<span><span class="co">#&gt; 2 2019-08-11        1385     173 29480     15.8 Aug   Sun           223  2019</span></span>
+<span><span class="co">#&gt; 3 2019-04-14        1767       1 25578     17.9 Apr   Sun           104  2019</span></span>
+<span><span class="co">#&gt; 4 2025-08-03        1094      12 21340     12.4 Aug   Sun           215  2025</span></span>
+<span><span class="co">#&gt; 5 2018-12-15        1091      27 21224     11.2 Dec   Sat           349  2018</span></span>
+<span><span class="co">#&gt; 6 2024-06-23        1172      16 21006     12.6 Jun   Sun           175  2024</span></span>
+<span><span class="co">#&gt; # ℹ 691 more rows</span></span>
 <span><span class="co">#&gt; # ℹ 1 more variable: stepgoal &lt;fct&gt;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>So, why use the pipe? Compare the code the uses the pipe operator to the code that doesn’t. Which is easier to read? Which do you think is easier to write? The example shows that, for our purposes, the pipe is most useful in aiding the readability of our code. It’s a lot easier to see what’s happening in the code chunk with the pipes than it is in the previous code chunk without the pipe because, with the pipe, we can read the code from left to right and top to bottom. Without the pipe, we need to read the code from the “inside to the outside”, which is much more challenging.</p>
@@ -769,16 +769,16 @@ Note
 <p><strong>Exercise 9</strong>. This “More About the Pipe” section will make more sense as we proceed through the course. For now, we just want to be able to understand that something like <code>df |&gt; slice(1:6)</code> is equivalent to <code>slice(df, 1:6)</code>. Practice by converting the following code to use the pipe:</p>
 <div class="cell">
 <div class="sourceCode" id="cb28"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">fitness_df</span>, <span class="va">active_cals</span> <span class="op">&gt;</span> <span class="fl">50</span><span class="op">)</span></span>
-<span><span class="co">#&gt; # A tibble: 1,690 × 9</span></span>
-<span><span class="co">#&gt;   Start      active_cals distance flights  steps month weekday dayofyear</span></span>
-<span><span class="co">#&gt;   &lt;date&gt;           &lt;dbl&gt;    &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt;       &lt;dbl&gt;</span></span>
-<span><span class="co">#&gt; 1 2018-11-28        57.8    0.930       0  1885. Nov   Wed           332</span></span>
-<span><span class="co">#&gt; 2 2018-11-29       509.     4.64       18  8953. Nov   Thu           333</span></span>
-<span><span class="co">#&gt; 3 2018-11-30       599.     6.05       12 11665  Nov   Fri           334</span></span>
-<span><span class="co">#&gt; 4 2018-12-01       661.     6.80        6 12117  Dec   Sat           335</span></span>
-<span><span class="co">#&gt; 5 2018-12-02       527.     4.61        1  8925. Dec   Sun           336</span></span>
-<span><span class="co">#&gt; 6 2018-12-03       550.     3.96        2  7205  Dec   Mon           337</span></span>
-<span><span class="co">#&gt; # ℹ 1,684 more rows</span></span>
+<span><span class="co">#&gt; # A tibble: 2,311 × 10</span></span>
+<span><span class="co">#&gt;   Date       active_cals flights steps distance month weekday dayofyear  year</span></span>
+<span><span class="co">#&gt;   &lt;date&gt;           &lt;dbl&gt;   &lt;dbl&gt; &lt;dbl&gt;    &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt;       &lt;dbl&gt; &lt;dbl&gt;</span></span>
+<span><span class="co">#&gt; 1 2018-11-28        57.8      NA  1885     0.93 Nov   Wed           332  2018</span></span>
+<span><span class="co">#&gt; 2 2018-11-29       509.       18  8953     4.64 Nov   Thu           333  2018</span></span>
+<span><span class="co">#&gt; 3 2018-11-30       599.       12 11665     6.05 Nov   Fri           334  2018</span></span>
+<span><span class="co">#&gt; 4 2018-12-01       661.        6 12117     6.8  Dec   Sat           335  2018</span></span>
+<span><span class="co">#&gt; 5 2018-12-02       527.        1  8925     4.61 Dec   Sun           336  2018</span></span>
+<span><span class="co">#&gt; 6 2018-12-03       550.        2  7205     3.96 Dec   Mon           337  2018</span></span>
+<span><span class="co">#&gt; # ℹ 2,305 more rows</span></span>
 <span><span class="co">#&gt; # ℹ 1 more variable: stepgoal &lt;fct&gt;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section></section><section id="practice" class="level2" data-number="3.2"><h2 data-number="3.2" class="anchored" data-anchor-id="practice">
@@ -787,10 +787,10 @@ Note
 <section id="class-exercises" class="level3" data-number="3.2.1"><h3 data-number="3.2.1" class="anchored" data-anchor-id="class-exercises">
 <span class="header-section-number">3.2.1</span> Class Exercises</h3>
 <p>For many of these class exercises, we will start practicing stringing together multiple piping statements. We will also practice more with <code><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot()</a></code> by making plots of some of the data sets we are creating.</p>
-<p><strong>Class Exercise 1</strong>. In the <code>babynames</code> data set, use <code><a href="https://dplyr.tidyverse.org/reference/filter.html">filter()</a></code>, <code><a href="https://dplyr.tidyverse.org/reference/arrange.html">arrange()</a></code>, and <code><a href="https://dplyr.tidyverse.org/reference/slice.html">slice()</a></code> to print the 10 most popular Male babynames in 2017.</p>
-<p><strong>Class Exercise 2</strong>. Name the data frame you created in the previous exercise and use the data frame to make a bar plot of the 10 most popular Male babynames in 2017, along with the number of babies with each name in that year.</p>
+<p><strong>Class Exercise 1</strong>. Create a data frame that has the 10 most popular Male babynames in 2017.</p>
+<p><strong>Class Exercise 2</strong>. Construct a visualization of the 10 most popular Male babynames in 2017, along with the number of babies with each name in that year.</p>
 <p><strong>Class Exercise 3</strong>. In the <code>babynames</code> data set, keep only the rows with your name (or, another name that interests you) and one sex (either <code>"M"</code> or <code>"F"</code>).</p>
-<p><strong>Class Exercise 4</strong>. Name the new data set you made in the previous exercise and then construct a line plot that looks at either the <code>n</code> or <code>prop</code> of your chosen name through <code>year</code>.</p>
+<p><strong>Class Exercise 4</strong>. Construct a visualization that looks at the popularity of your chosen name through time.</p>
 <p><strong>Class Exercise 5</strong>. Explain why the following code gives a warning message and returns <code>NA</code>. Use the order of Arguments in <code><a href="https://rdrr.io/r/base/mean.html">?mean</a></code> in your explanation.</p>
 <div class="cell">
 <div class="sourceCode" id="cb29"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">fitness_df</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">distance</span><span class="op">)</span></span>
@@ -802,7 +802,6 @@ Note
 <ol type="a">
 <li><p>Create a data set with all years <strong>except</strong> the year 1945.</p></li>
 <li><p>Create a data set that only has rows where <code>n</code> is between 400 and 5000.</p></li>
-<li><p>Create a data set with rows that are either <code>F</code> (female) <code>Monica</code> names or <code>F</code> (female) <code>Hilary</code> names.</p></li>
 </ol>
 <div class="callout callout-style-simple callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-9-contents" aria-controls="callout-9" aria-expanded="false" aria-label="Toggle callout">
@@ -820,9 +819,9 @@ Hint
 </div>
 </div>
 </div>
-<p><strong>Your Turn 2</strong>. Name your data set is part (c) of the previous exercise. Then, use the data set to make a line plot comparing the popularity of the <code>Monica</code> and <code>Hilary</code> names through time.</p>
+<p><strong>Your Turn 2</strong>. Construct a plot that allows you to compare the popularity of the names <code>Monica</code> and <code>Hilary</code> over time.</p>
 <p><strong>Your Turn 3</strong>. Choose 5 names paired with 5 sexes that interest you and create a new data set that only has data on those 5 name/sex combinations. Then, make a line plot showing the popularity of these 5 names over time.</p>
-<p><strong>Your Turn 4</strong>. Choose a year and a sex that interests you and create a data set that only contain observations from that year and sex. Then, make a bar plot that shows the top 10 names from that year and sex, showing the <code>prop</code> of babies born with each of those 10 names in that year.</p>
+<p><strong>Your Turn 4</strong>. Choose a year and a sex that interests you. Construct a visualization that shows the most popular names from that year and sex.</p>
 </section></section><section id="mutate-group_by-summarise-and-missing-values" class="level2" data-number="3.3"><h2 data-number="3.3" class="anchored" data-anchor-id="mutate-group_by-summarise-and-missing-values">
 <span class="header-section-number">3.3</span> <code>mutate()</code>, <code>group_by()</code>, <code>summarise()</code>, and Missing Values</h2>
 <p><strong>Goals:</strong></p>
@@ -1227,8 +1226,8 @@ Important
 <p><strong>Class Exercise 1</strong>. About 55% of SLU students identify as female. So, in the definition of the <code>morewomen</code> variable, does it make more sense to use 55% as the cutoff or 50%?</p>
 <p><strong>Class Exercise 2</strong>. Do you think it is ethical to exclude non-binary genders from analyses and graphs in the <code>slumajors</code> data set? What about in the <code>stat113_df</code> data that we looked at earlier? Why or why not? Try to construct arguments for both sides: you might also consider data privacy in your arguments.</p>
 <p><strong>Class Exercise 3</strong>. Investigate what happens with <code><a href="https://dplyr.tidyverse.org/reference/case_when.html">case_when()</a></code> when you give overlapping conditions and when you give conditions that don’t cover all observations. For overlapping conditions, create a variable <code>testcase</code> that is <code>"Yes"</code> when <code>percfemale</code> is greater than or equal to 40 and <code>"No"</code> when <code>percfemale</code> is greater than 60 For conditions that don’t cover all observations, create a variable <code>testcase2</code> that is <code>"Yes"</code> when <code>percfemale</code> is greater than or equal to 55 and <code>"No"</code> when <code>percfemale</code> is less than 35. Put the new variables at the beginning of the data frame so that you can see what they contain more easily.</p>
-<p><strong>Class Exercise 4</strong>. The <code><a href="https://rdrr.io/r/base/rank.html">rank()</a></code> function can be used within <code><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate()</a></code> to “rank” a variable from lowest values to highest values (so that the case with the lowest value receives a <code>1</code>, the second lowest value receives a <code>2</code>, etc.). Use <code><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by()</a></code> and <code><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate()</a></code> to rank the names from most to least popular in each year-sex combination. We will make some notes about what <code><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by()</a></code> does with more than 1 variable.</p>
-<p><strong>Class Exercise 5</strong>. From the data set in the previous exercise, <code><a href="https://dplyr.tidyverse.org/reference/filter.html">filter()</a></code> the data to keep only the most popular name in each year-sex combination and then construct a summary table showing how many times each name appears as the most popular name. With this exercise, we will make some notes about the <code><a href="https://dplyr.tidyverse.org/reference/group_by.html">ungroup()</a></code> function, and, if we have time investigate a way to achieve the objective of this question without explicitly making a <code>rank</code> variable.</p>
+<p><strong>Class Exercise 4</strong>. Create a table that shows how many times each name appears as the most popular name of the sex for the year. That is, if <code>"Emma"</code> was the most popular female name in 1995, 1997, and 2001, then it would get a value of <code>"3"</code> in the summary table. To do so, we will first make some notes about what <code><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by()</a></code> does with more than 1 variable and what <code><a href="https://dplyr.tidyverse.org/reference/group_by.html">ungroup()</a></code> does. In this exercise, we will use the <code><a href="https://rdrr.io/r/base/rank.html">rank()</a></code> function as well.</p>
+<p><strong>Class Exercise 5</strong>. Construct the same table as in class exercise 4, but figure out a way to construct the table <strong>without</strong> using the <code><a href="https://rdrr.io/r/base/rank.html">rank()</a></code> function.</p>
 <p><strong>Class Exercise 6</strong>. Run the following code. Intuitively, a <code>slice(1, 2, 3, 4, 5)</code> should grab the first five rows of the data set, but, when we try to run that, we get 1380 rows. What is the issue?</p>
 <div class="cell">
 <div class="sourceCode" id="cb48"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">babynames_test</span> <span class="op">&lt;-</span> <span class="va">babynames</span> <span class="op">|&gt;</span></span>
@@ -1248,7 +1247,7 @@ Important
 </div>
 </section><section id="your-turn-1" class="level3" data-number="3.4.2"><h3 data-number="3.4.2" class="anchored" data-anchor-id="your-turn-1">
 <span class="header-section-number">3.4.2</span> Your Turn</h3>
-<p><strong>Your Turn 1</strong>. Investigate how <code><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by()</a></code> behaves with the five other main <code>dplyr</code> functions we have used. You can use <code>toy_df</code> to perform your investigation.</p>
+<p><strong>Your Turn 1</strong>. Investigate how <code><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by()</a></code> behaves with the five other main <code>dplyr</code> functions we have used. You can use <code>toy_df</code> from earlier in this section to perform your investigation.</p>
 <ol type="a">
 <li><p><code><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate()</a></code></p></li>
 <li><p><code><a href="https://dplyr.tidyverse.org/reference/slice.html">slice()</a></code></p></li>
@@ -1290,9 +1289,9 @@ Important
 <span>            totalgrad <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">ntotal</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">meantotalmajor</span>, <span class="va">totalgrad</span>, <span class="fu"><a href="https://tidyselect.r-lib.org/reference/everything.html">everything</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p><strong>Your Turn 5</strong>. With the <code>babynames</code> data, create a data set that has the number of unique names for each year. Then, make a line plot of the data.</p>
-<p><strong>Your Turn 6</strong>. With the <code>babynames</code> data, create a data set that has the number of unique names for each year-sex combination. Then, make a line plot of the data.</p>
-<p><strong>Your Turn 7</strong>. Create a data set that has a column for <code>name</code> so that each row shows the total number of births for each unique name across all years and both sexes.</p>
+<p><strong>Your Turn 5</strong>. Is the total number of different names increasing or decreasing with time? Construct a plot to answer this question.</p>
+<p><strong>Your Turn 6</strong>. Throughout different years, are there more distinct female names or distinct male names? Construct a plot to answer this question.</p>
+<p><strong>Your Turn 7</strong>. Create a data set that shows the total number of births for each <code>name</code> across all years and sexes in the data set.</p>
 
 
 </section></section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
