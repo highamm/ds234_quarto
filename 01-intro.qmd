@@ -21,13 +21,13 @@ __Goals__:
 
 In this section, we will work on installing `R` and `R Studio` to your personal laptop. The following videos provide instructions on how to install `R` and `R Studio` to your laptop computer. It will be easiest if you complete all of these steps consecutively in one sitting.
 
-* Watch and follow along with a <a href="https://youtu.be/quN7AQkfKBk" target="_blank">video on installing R</a>.
+* Watch and follow along with a <a href="https://youtu.be/quN7AQkfKBk" target="_blank">video on installing R</a> (or a <a href="https://youtu.be/LagoBJXjsTk" target="_blank">captioned version</a>). 
     * starting link: <a href="https://www.r-project.org/" target="_blank">https://www.r-project.org/</a>
 
-* Watch and follow along with a <a href="https://youtu.be/tKoPy_FZh9w" target="_blank">video on installing R Studio</a>.
-    * starting link: <a href="https://posit.co/download/rstudio-desktop/" target="_blank">https://posit.co/download/rstudio-desktop/</a>
+* Watch and follow along with a <a href="https://youtu.be/tKoPy_FZh9w" target="_blank">video on installing R Studio</a> (or a <a href="https://youtu.be/p1gtbCRaJ4c" target="_blank">captioned version</a>).
+    * starting link: <a href="https://posit.co/download/rstudio-desktop/" target="_blank">https://posit.co/download/rstudio-desktop/</a> 
     
-* Watch and follow along with a <a href="https://youtu.be/RTbHwpOTxsc" target="_blank">video on installing R packages and making an R project </a>. 
+* Watch and follow along with a <a href="https://youtu.be/RTbHwpOTxsc" target="_blank">video on installing R packages and making an R project </a> (or a <a href="https://youtu.be/bnohB_3xVH0" target="_blank">captioned version</a>). 
 
 ## Intro to `R` and `R Studio`
 
