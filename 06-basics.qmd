@@ -226,7 +226,7 @@ library(tidyverse)
 fitness_df <- read_csv(here("data/higham_fitness_notclean.csv"))
 ```
 
-__Exercise 1__. What is the issue with the following plot? After you figure out the issue, use `mutate()` and `as.factor()` to create a new variable that fixes the issue and then reconstruct the graph.
+__Exercise 1__. What is the issue with the following plot? After you figure out the issue, use `mutate()` and `as.factor()` to create a new variable that fixes the issue and then reconstruct the graph. __Note__: This actually is not an issue really since `weekday` is currently a `<chr>` class so will still plot correctly. But, practice converting it to a `factor` anyway!
 
 ```{r, echo = TRUE}
 ggplot(data = fitness_df, aes(x = active_cals)) +

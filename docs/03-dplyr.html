@@ -344,7 +344,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Read about the data set by typing <code><a href="https://rdrr.io/pkg/babynames/man/babynames.html">?babynames</a></code> in your bottom-left window of <code>R Studio</code>. We see that this data set contains baby name data provided by the SSA in the United States dating back to 1880:</p>
 <div class="cell" data-appendix="true">
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">babynames</span></span>
-<span><span class="co">#&gt; # A tibble: 2,117,219 × 5</span></span>
+<span><span class="co">#&gt; # A tibble: 1,924,665 × 5</span></span>
 <span><span class="co">#&gt;    year sex   name          n   prop</span></span>
 <span><span class="co">#&gt;   &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt;     &lt;int&gt;  &lt;dbl&gt;</span></span>
 <span><span class="co">#&gt; 1  1880 F     Mary       7065 0.0724</span></span>
@@ -353,7 +353,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span><span class="co">#&gt; 4  1880 F     Elizabeth  1939 0.0199</span></span>
 <span><span class="co">#&gt; 5  1880 F     Minnie     1746 0.0179</span></span>
 <span><span class="co">#&gt; 6  1880 F     Margaret   1578 0.0162</span></span>
-<span><span class="co">#&gt; # ℹ 2,117,213 more rows</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="co">#&gt; # ℹ 1,924,659 more rows</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>There are many interesting and informative plots that we could make with this data set, but most require some data wrangling first. This chapter will provide the foundation for such wrangling skills.</p>
 <p>Before we begin, we also need to load in the <code>tidyverse</code> package so that we can use the <code>dplyr</code> functions.</p>
@@ -475,7 +475,7 @@ Hint (only if you get stuck)
 <p>The <code><a href="https://dplyr.tidyverse.org/reference/arrange.html">arrange()</a></code> function allows us to order rows in the data set using one or more variables. The function is very straightforward: we only need to provide the name of the variable that we want to order by. For example,</p>
 <div class="cell">
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">babynames</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/arrange.html">arrange</a></span><span class="op">(</span><span class="va">n</span><span class="op">)</span></span>
-<span><span class="co">#&gt; # A tibble: 2,117,219 × 5</span></span>
+<span><span class="co">#&gt; # A tibble: 1,924,665 × 5</span></span>
 <span><span class="co">#&gt;    year sex   name          n      prop</span></span>
 <span><span class="co">#&gt;   &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt;     &lt;int&gt;     &lt;dbl&gt;</span></span>
 <span><span class="co">#&gt; 1  1880 F     Adelle        5 0.0000512</span></span>
@@ -484,21 +484,21 @@ Hint (only if you get stuck)
 <span><span class="co">#&gt; 4  1880 F     Albertine     5 0.0000512</span></span>
 <span><span class="co">#&gt; 5  1880 F     Alys          5 0.0000512</span></span>
 <span><span class="co">#&gt; 6  1880 F     Ana           5 0.0000512</span></span>
-<span><span class="co">#&gt; # ℹ 2,117,213 more rows</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="co">#&gt; # ℹ 1,924,659 more rows</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>orders the <code>babynames</code> data so that <code>n</code>, the number of babies, goes from smallest to largest. If we want to <code><a href="https://dplyr.tidyverse.org/reference/arrange.html">arrange()</a></code> by descending order of a variable, we just wrap the name of the variable we are ordering by with <code><a href="https://dplyr.tidyverse.org/reference/desc.html">desc()</a></code> for “descending:”</p>
 <div class="cell">
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">babynames</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/arrange.html">arrange</a></span><span class="op">(</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/desc.html">desc</a></span><span class="op">(</span><span class="va">n</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="co">#&gt; # A tibble: 2,117,219 × 5</span></span>
+<span><span class="co">#&gt; # A tibble: 1,924,665 × 5</span></span>
 <span><span class="co">#&gt;    year sex   name        n   prop</span></span>
 <span><span class="co">#&gt;   &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt;   &lt;int&gt;  &lt;dbl&gt;</span></span>
-<span><span class="co">#&gt; 1  1947 F     Linda   99693 0.0548</span></span>
-<span><span class="co">#&gt; 2  1948 F     Linda   96215 0.0552</span></span>
-<span><span class="co">#&gt; 3  1947 M     James   94761 0.0510</span></span>
-<span><span class="co">#&gt; 4  1957 M     Michael 92777 0.0424</span></span>
-<span><span class="co">#&gt; 5  1947 M     Robert  91654 0.0493</span></span>
-<span><span class="co">#&gt; 6  1949 F     Linda   91017 0.0518</span></span>
-<span><span class="co">#&gt; # ℹ 2,117,213 more rows</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="co">#&gt; 1  1947 F     Linda   99686 0.0548</span></span>
+<span><span class="co">#&gt; 2  1948 F     Linda   96209 0.0552</span></span>
+<span><span class="co">#&gt; 3  1947 M     James   94756 0.0510</span></span>
+<span><span class="co">#&gt; 4  1957 M     Michael 92695 0.0424</span></span>
+<span><span class="co">#&gt; 5  1947 M     Robert  91642 0.0493</span></span>
+<span><span class="co">#&gt; 6  1949 F     Linda   91016 0.0518</span></span>
+<span><span class="co">#&gt; # ℹ 1,924,659 more rows</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p><strong>Exercise 5</strong>. Use <code><a href="https://dplyr.tidyverse.org/reference/arrange.html">arrange()</a></code> to sort the data frame so that it is in descending order by the <code>prop</code> variable. This allows us to examine the names with the highest proportion of babies given that name for that given <code>year</code>.</p>
 <p><strong>Exercise 6</strong>. Use <code><a href="https://dplyr.tidyverse.org/reference/arrange.html">arrange()</a></code> on the categorical variable <code>name</code>. What does <code><a href="https://dplyr.tidyverse.org/reference/arrange.html">arrange()</a></code> seem to do on a categorical variable?</p>
@@ -507,7 +507,7 @@ Hint (only if you get stuck)
 <p>We might also be interested in getting rid of some of the columns in a data set. One reason to do this is if there are an overwhelming (30+) columns in a data set, but we know that we just need a few of them. The easiest way to use <code><a href="https://dplyr.tidyverse.org/reference/select.html">select()</a></code> is to just input the names of the columns that you want to keep. For example, if we were only interested in the <code>name</code> and <code>n</code> variables, we could make a data frame with only those variables with:</p>
 <div class="cell" data-appendix="true">
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">babynames</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">name</span>, <span class="va">n</span><span class="op">)</span></span>
-<span><span class="co">#&gt; # A tibble: 2,117,219 × 2</span></span>
+<span><span class="co">#&gt; # A tibble: 1,924,665 × 2</span></span>
 <span><span class="co">#&gt;   name          n</span></span>
 <span><span class="co">#&gt;   &lt;chr&gt;     &lt;int&gt;</span></span>
 <span><span class="co">#&gt; 1 Mary       7065</span></span>
@@ -516,12 +516,12 @@ Hint (only if you get stuck)
 <span><span class="co">#&gt; 4 Elizabeth  1939</span></span>
 <span><span class="co">#&gt; 5 Minnie     1746</span></span>
 <span><span class="co">#&gt; 6 Margaret   1578</span></span>
-<span><span class="co">#&gt; # ℹ 2,117,213 more rows</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="co">#&gt; # ℹ 1,924,659 more rows</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>We might also want to use <code><a href="https://dplyr.tidyverse.org/reference/select.html">select()</a></code> to get rid of one or more columns. If this is the case, we denote any column you want to get rid of with <code>-</code>. For example, we might want to get rid of the <code>sex</code> column and the <code>prop</code> column with</p>
 <div class="cell" data-appendix="true">
 <div class="sourceCode" id="cb11"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">babynames</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="op">-</span><span class="va">sex</span>, <span class="op">-</span><span class="va">prop</span><span class="op">)</span></span>
-<span><span class="co">#&gt; # A tibble: 2,117,219 × 3</span></span>
+<span><span class="co">#&gt; # A tibble: 1,924,665 × 3</span></span>
 <span><span class="co">#&gt;    year name          n</span></span>
 <span><span class="co">#&gt;   &lt;dbl&gt; &lt;chr&gt;     &lt;int&gt;</span></span>
 <span><span class="co">#&gt; 1  1880 Mary       7065</span></span>
@@ -530,12 +530,12 @@ Hint (only if you get stuck)
 <span><span class="co">#&gt; 4  1880 Elizabeth  1939</span></span>
 <span><span class="co">#&gt; 5  1880 Minnie     1746</span></span>
 <span><span class="co">#&gt; 6  1880 Margaret   1578</span></span>
-<span><span class="co">#&gt; # ℹ 2,117,213 more rows</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="co">#&gt; # ℹ 1,924,659 more rows</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p><code><a href="https://dplyr.tidyverse.org/reference/select.html">select()</a></code> comes with many useful helper functions, but these are oftentimes not needed. One of the helper functions that <strong>is</strong> actually often useful is <code><a href="https://tidyselect.r-lib.org/reference/everything.html">everything()</a></code>, which selects all columns in a data frame. This can be used to help re-order columns if you have a particular column that you want to appear first:</p>
 <div class="cell" data-appendix="true">
 <div class="sourceCode" id="cb12"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">babynames</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">name</span>, <span class="fu"><a href="https://tidyselect.r-lib.org/reference/everything.html">everything</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="co">#&gt; # A tibble: 2,117,219 × 5</span></span>
+<span><span class="co">#&gt; # A tibble: 1,924,665 × 5</span></span>
 <span><span class="co">#&gt;   name       year sex       n   prop</span></span>
 <span><span class="co">#&gt;   &lt;chr&gt;     &lt;dbl&gt; &lt;chr&gt; &lt;int&gt;  &lt;dbl&gt;</span></span>
 <span><span class="co">#&gt; 1 Mary       1880 F      7065 0.0724</span></span>
@@ -544,7 +544,7 @@ Hint (only if you get stuck)
 <span><span class="co">#&gt; 4 Elizabeth  1880 F      1939 0.0199</span></span>
 <span><span class="co">#&gt; 5 Minnie     1880 F      1746 0.0179</span></span>
 <span><span class="co">#&gt; 6 Margaret   1880 F      1578 0.0162</span></span>
-<span><span class="co">#&gt; # ℹ 2,117,213 more rows</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="co">#&gt; # ℹ 1,924,659 more rows</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>The previous line of code puts <code>name</code> as the first variable in the data frame.</p>
 <div class="callout callout-style-simple callout-note callout-titled">
@@ -566,7 +566,7 @@ Note
 <p>Up until now, we have not assigned any of the new data frames we are creating a name. For example, with</p>
 <div class="cell">
 <div class="sourceCode" id="cb13"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">babynames</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">name</span> <span class="op">==</span> <span class="st">"Matthew"</span><span class="op">)</span></span>
-<span><span class="co">#&gt; # A tibble: 224 × 5</span></span>
+<span><span class="co">#&gt; # A tibble: 212 × 5</span></span>
 <span><span class="co">#&gt;    year sex   name        n     prop</span></span>
 <span><span class="co">#&gt;   &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt;   &lt;int&gt;    &lt;dbl&gt;</span></span>
 <span><span class="co">#&gt; 1  1880 M     Matthew   113 0.000954</span></span>
@@ -575,7 +575,7 @@ Note
 <span><span class="co">#&gt; 4  1883 M     Matthew    86 0.000765</span></span>
 <span><span class="co">#&gt; 5  1884 M     Matthew   117 0.000953</span></span>
 <span><span class="co">#&gt; 6  1885 M     Matthew   111 0.000957</span></span>
-<span><span class="co">#&gt; # ℹ 218 more rows</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="co">#&gt; # ℹ 206 more rows</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>we get a printout of the data with only the <code>name</code> <code>Matthew</code>, but, the data frame object is not assigned a name at all. So, we cannot use <code><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot()</a></code> to make a plot of <code>n</code> only for the name <code>Matthew</code> because we do not have a named data set that only has the name <code>Matthew</code>. In other words, <code>R</code> performs the <code><a href="https://dplyr.tidyverse.org/reference/filter.html">filter()</a></code>, but the filtered data frame doesn’t get saved to any particular named object. If we want to “save” the new data set for future use (like in a plot command), then we can use the assignment operator, <code>&lt;-</code>:</p>
 <div class="cell">
@@ -584,7 +584,7 @@ Note
 <p>In the previous chunk, we assign the data frame with only <code>Matthew</code> names to the name <code>babynames_matthew</code>:</p>
 <div class="cell">
 <div class="sourceCode" id="cb15"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">babynames_matthew</span></span>
-<span><span class="co">#&gt; # A tibble: 224 × 5</span></span>
+<span><span class="co">#&gt; # A tibble: 212 × 5</span></span>
 <span><span class="co">#&gt;    year sex   name        n     prop</span></span>
 <span><span class="co">#&gt;   &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt;   &lt;int&gt;    &lt;dbl&gt;</span></span>
 <span><span class="co">#&gt; 1  1880 M     Matthew   113 0.000954</span></span>
@@ -593,7 +593,7 @@ Note
 <span><span class="co">#&gt; 4  1883 M     Matthew    86 0.000765</span></span>
 <span><span class="co">#&gt; 5  1884 M     Matthew   117 0.000953</span></span>
 <span><span class="co">#&gt; 6  1885 M     Matthew   111 0.000957</span></span>
-<span><span class="co">#&gt; # ℹ 218 more rows</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="co">#&gt; # ℹ 206 more rows</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="callout callout-style-simple callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
@@ -1088,31 +1088,31 @@ Hint (only if you get stuck)
 <div class="cell" data-appendix="true">
 <div class="sourceCode" id="cb41"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">babynames</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">year</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise</a></span><span class="op">(</span>totalbirths <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">n</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="co">#&gt; # A tibble: 144 × 2</span></span>
+<span><span class="co">#&gt; # A tibble: 138 × 2</span></span>
 <span><span class="co">#&gt;    year totalbirths</span></span>
 <span><span class="co">#&gt;   &lt;dbl&gt;       &lt;int&gt;</span></span>
 <span><span class="co">#&gt; 1  1880      201484</span></span>
-<span><span class="co">#&gt; 2  1881      192688</span></span>
+<span><span class="co">#&gt; 2  1881      192696</span></span>
 <span><span class="co">#&gt; 3  1882      221533</span></span>
-<span><span class="co">#&gt; 4  1883      216945</span></span>
-<span><span class="co">#&gt; 5  1884      243461</span></span>
+<span><span class="co">#&gt; 4  1883      216946</span></span>
+<span><span class="co">#&gt; 5  1884      243462</span></span>
 <span><span class="co">#&gt; 6  1885      240854</span></span>
-<span><span class="co">#&gt; # ℹ 138 more rows</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="co">#&gt; # ℹ 132 more rows</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>As another example, we can also use the <code><a href="https://dplyr.tidyverse.org/reference/context.html">n()</a></code> function to count up the number of rows for each <code>year</code>:</p>
 <div class="cell" data-appendix="true">
 <div class="sourceCode" id="cb42"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">babynames</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">year</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise</a></span><span class="op">(</span>n_name <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/context.html">n</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="co">#&gt; # A tibble: 144 × 2</span></span>
+<span><span class="co">#&gt; # A tibble: 138 × 2</span></span>
 <span><span class="co">#&gt;    year n_name</span></span>
 <span><span class="co">#&gt;   &lt;dbl&gt;  &lt;int&gt;</span></span>
 <span><span class="co">#&gt; 1  1880   2000</span></span>
-<span><span class="co">#&gt; 2  1881   1934</span></span>
+<span><span class="co">#&gt; 2  1881   1935</span></span>
 <span><span class="co">#&gt; 3  1882   2127</span></span>
 <span><span class="co">#&gt; 4  1883   2084</span></span>
 <span><span class="co">#&gt; 5  1884   2297</span></span>
 <span><span class="co">#&gt; 6  1885   2294</span></span>
-<span><span class="co">#&gt; # ℹ 138 more rows</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="co">#&gt; # ℹ 132 more rows</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="callout callout-style-simple callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
@@ -1233,8 +1233,8 @@ Important
 <div class="sourceCode" id="cb48"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">babynames_test</span> <span class="op">&lt;-</span> <span class="va">babynames</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">year</span>, <span class="va">sex</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>ntest <span class="op">=</span> <span class="va">n</span> <span class="op">/</span> <span class="va">prop</span><span class="op">)</span></span>
 <span><span class="va">babynames_test</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/slice.html">slice</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">2</span>, <span class="fl">3</span>, <span class="fl">4</span>, <span class="fl">5</span><span class="op">)</span></span>
-<span><span class="co">#&gt; # A tibble: 1,440 × 6</span></span>
-<span><span class="co">#&gt; # Groups:   year, sex [288]</span></span>
+<span><span class="co">#&gt; # A tibble: 1,380 × 6</span></span>
+<span><span class="co">#&gt; # Groups:   year, sex [276]</span></span>
 <span><span class="co">#&gt;    year sex   name          n   prop   ntest</span></span>
 <span><span class="co">#&gt;   &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt;     &lt;int&gt;  &lt;dbl&gt;   &lt;dbl&gt;</span></span>
 <span><span class="co">#&gt; 1  1880 F     Mary       7065 0.0724  97605.</span></span>
@@ -1242,8 +1242,8 @@ Important
 <span><span class="co">#&gt; 3  1880 F     Emma       2003 0.0205  97605.</span></span>
 <span><span class="co">#&gt; 4  1880 F     Elizabeth  1939 0.0199  97605.</span></span>
 <span><span class="co">#&gt; 5  1880 F     Minnie     1746 0.0179  97605.</span></span>
-<span><span class="co">#&gt; 6  1880 M     John       9655 0.0815 118399.</span></span>
-<span><span class="co">#&gt; # ℹ 1,434 more rows</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="co">#&gt; 6  1880 M     John       9655 0.0815 118400.</span></span>
+<span><span class="co">#&gt; # ℹ 1,374 more rows</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section><section id="your-turn-1" class="level3" data-number="3.4.2"><h3 data-number="3.4.2" class="anchored" data-anchor-id="your-turn-1">
 <span class="header-section-number">3.4.2</span> Your Turn</h3>
