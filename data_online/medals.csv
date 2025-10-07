@@ -1,0 +1,1045 @@
+medal_type,name,gender,country,event
+Gold Medal,Remco EVENEPOEL,M,Belgium,Men's Individual Time Trial
+Silver Medal,Filippo GANNA,M,Italy,Men's Individual Time Trial
+Bronze Medal,Wout van AERT,M,Belgium,Men's Individual Time Trial
+Gold Medal,Grace BROWN,W,Australia,Women's Individual Time Trial
+Silver Medal,Anna HENDERSON,W,Great Britain,Women's Individual Time Trial
+Bronze Medal,Chloe DYGERT,W,United States,Women's Individual Time Trial
+Gold Medal,China,W,China,Women's Synchronised 3m Springboard
+Silver Medal,United States,W,United States,Women's Synchronised 3m Springboard
+Bronze Medal,Great Britain,W,Great Britain,Women's Synchronised 3m Springboard
+Gold Medal,OH Sanguk,M,Korea,Men's Sabre Individual
+Silver Medal,Fares FERJANI,M,Tunisia,Men's Sabre Individual
+Bronze Medal,Luigi SAMELE,M,Italy,Men's Sabre Individual
+Gold Medal,KONG Man Wai Vivian,W,"Hong Kong, China",Women's Épée Individual
+Silver Medal,Auriane MALLO-BRETON,W,France,Women's Épée Individual
+Bronze Medal,Eszter MUHARI,W,Hungary,Women's Épée Individual
+Gold Medal,Yeldos SMETOV,M,Kazakhstan,Men -60 kg
+Silver Medal,Luka MKHEIDZE,M,France,Men -60 kg
+Bronze Medal,NAGAYAMA Ryuju,M,Japan,Men -60 kg
+Bronze Medal,Francisco GARRIGOS,M,Spain,Men -60 kg
+Gold Medal,TSUNODA Natsumi,W,Japan,Women -48 kg
+Silver Medal,Baasankhuu BAVUUDORJ,W,Mongolia,Women -48 kg
+Bronze Medal,Shirine BOUKLI,W,France,Women -48 kg
+Bronze Medal,Tara BABULFATH,W,Sweden,Women -48 kg
+Gold Medal,France,M,France,Men
+Silver Medal,Fiji,M,Fiji,Men
+Bronze Medal,South Africa,M,South Africa,Men
+Gold Medal,China 1,X,China,10m Air Rifle Mixed Team
+Silver Medal,Korea 1,X,Korea,10m Air Rifle Mixed Team
+Bronze Medal,Kazakhstan 1,X,Kazakhstan,10m Air Rifle Mixed Team
+Gold Medal,United States,M,United States,Men's 4 x 100m Freestyle Relay
+Silver Medal,Australia,M,Australia,Men's 4 x 100m Freestyle Relay
+Bronze Medal,Italy,M,Italy,Men's 4 x 100m Freestyle Relay
+Gold Medal,Lukas MAERTENS,M,Germany,Men's 400m Freestyle
+Silver Medal,Elijah WINNINGTON,M,Australia,Men's 400m Freestyle
+Bronze Medal,KIM Woomin,M,Korea,Men's 400m Freestyle
+Gold Medal,Australia,W,Australia,Women's 4 x 100m Freestyle Relay
+Silver Medal,United States,W,United States,Women's 4 x 100m Freestyle Relay
+Bronze Medal,China,W,China,Women's 4 x 100m Freestyle Relay
+Gold Medal,Ariarne TITMUS,W,Australia,Women's 400m Freestyle
+Silver Medal,Summer McINTOSH,W,Canada,Women's 400m Freestyle
+Bronze Medal,Katie LEDECKY,W,United States,Women's 400m Freestyle
+Gold Medal,Korea,W,Korea,Women's Team
+Silver Medal,China,W,China,Women's Team
+Bronze Medal,Mexico,W,Mexico,Women's Team
+Gold Medal,Jessica FOX,W,Australia,Women's Kayak Single
+Silver Medal,Klaudia ZWOLINSKA,W,Poland,Women's Kayak Single
+Bronze Medal,Kimberley WOODS,W,Great Britain,Women's Kayak Single
+Gold Medal,Pauline FERRAND PREVOT,W,France,Women's Cross-country
+Silver Medal,Haley BATTEN,W,United States,Women's Cross-country
+Bronze Medal,Jenny RISSVEDS,W,Sweden,Women's Cross-country
+Gold Medal,KANO Koki,M,Japan,Men's Épée Individual
+Silver Medal,Yannick BOREL,M,France,Men's Épée Individual
+Bronze Medal,Mohamed ELSAYED,M,Egypt,Men's Épée Individual
+Gold Medal,Lee KIEFER,W,United States,Women's Foil Individual
+Silver Medal,Lauren SCRUGGS,W,United States,Women's Foil Individual
+Bronze Medal,Eleanor HARVEY,W,Canada,Women's Foil Individual
+Gold Medal,ABE Hifumi,M,Japan,Men -66 kg
+Silver Medal,Willian LIMA,M,Brazil,Men -66 kg
+Bronze Medal,Gusman KYRGYZBAYEV,M,Kazakhstan,Men -66 kg
+Bronze Medal,Denis VIERU,M,Republic of Moldova,Men -66 kg
+Gold Medal,Diyora KELDIYOROVA,W,Uzbekistan,Women -52 kg
+Silver Medal,Distria KRASNIQI,W,Kosovo,Women -52 kg
+Bronze Medal,Larissa PIMENTA,W,Brazil,Women -52 kg
+Bronze Medal,Amandine BUCHARD,W,France,Women -52 kg
+Gold Medal,XIE Yu,M,China,10m Air Pistol Men
+Silver Medal,Federico Nilo MALDINI,M,Italy,10m Air Pistol Men
+Bronze Medal,Paolo MONNA,M,Italy,10m Air Pistol Men
+Gold Medal,OH Ye Jin,W,Korea,10m Air Pistol Women
+Silver Medal,KIM Yeji,W,Korea,10m Air Pistol Women
+Bronze Medal,Manu BHAKER,W,India,10m Air Pistol Women
+Gold Medal,YOSHIZAWA Coco,W,Japan,Women's Street
+Silver Medal,AKAMA Liz,W,Japan,Women's Street
+Bronze Medal,Rayssa LEAL,W,Brazil,Women's Street
+Gold Medal,Nicolo MARTINENGHI,M,Italy,Men's 100m Breaststroke
+Silver Medal,Adam PEATY,M,Great Britain,Men's 100m Breaststroke
+Silver Medal,Nic FINK,M,United States,Men's 100m Breaststroke
+Gold Medal,Leon MARCHAND,M,France,Men's 400m Individual Medley
+Silver Medal,MATSUSHITA Tomoyuki,M,Japan,Men's 400m Individual Medley
+Bronze Medal,Carson FOSTER,M,United States,Men's 400m Individual Medley
+Gold Medal,Torri HUSKE,W,United States,Women's 100m Butterfly
+Silver Medal,Gretchen WALSH,W,United States,Women's 100m Butterfly
+Bronze Medal,ZHANG Yufei,W,China,Women's 100m Butterfly
+Gold Medal,Korea,M,Korea,Men's Team
+Silver Medal,France,M,France,Men's Team
+Bronze Medal,Türkiye,M,Türkiye,Men's Team
+Gold Medal,Japan,M,Japan,Men's Team
+Silver Medal,China,M,China,Men's Team
+Bronze Medal,United States,M,United States,Men's Team
+Gold Medal,Nicolas GESTIN,M,France,Men's Canoe Single
+Silver Medal,Adam BURGESS,M,Great Britain,Men's Canoe Single
+Bronze Medal,Matej BENUS,M,Slovakia,Men's Canoe Single
+Gold Medal,Thomas PIDCOCK,M,Great Britain,Men's Cross-country
+Silver Medal,Victor KORETZKY,M,France,Men's Cross-country
+Bronze Medal,Alan HATHERLY,M,South Africa,Men's Cross-country
+Gold Medal,China,M,China,Men's Synchronised 10m Platform
+Silver Medal,Great Britain,M,Great Britain,Men's Synchronised 10m Platform
+Bronze Medal,Canada,M,Canada,Men's Synchronised 10m Platform
+Gold Medal,Michael JUNG,O,Germany,Eventing Individual
+Silver Medal,Christopher BURTON,O,Australia,Eventing Individual
+Bronze Medal,Laura COLLETT,O,Great Britain,Eventing Individual
+Gold Medal,Great Britain,O,Great Britain,Eventing Team
+Silver Medal,France,O,France,Eventing Team
+Bronze Medal,Japan,O,Japan,Eventing Team
+Gold Medal,CHEUNG Ka Long,M,"Hong Kong, China",Men's Foil Individual
+Silver Medal,Filippo MACCHI,M,Italy,Men's Foil Individual
+Bronze Medal,Nick ITKIN,M,United States,Men's Foil Individual
+Gold Medal,Manon APITHY-BRUNET,W,France,Women's Sabre Individual
+Silver Medal,Sara BALZER,W,France,Women's Sabre Individual
+Bronze Medal,Olga KHARLAN,W,Ukraine,Women's Sabre Individual
+Gold Medal,Hidayat HEYDAROV,M,Azerbaijan,Men -73 kg
+Silver Medal,Joan-Benjamin GABA,M,France,Men -73 kg
+Bronze Medal,Adil OSMANOV,M,Republic of Moldova,Men -73 kg
+Bronze Medal,HASHIMOTO Soichi,M,Japan,Men -73 kg
+Gold Medal,Christa DEGUCHI,W,Canada,Women -57 kg
+Silver Medal,HUH Mimi,W,Korea,Women -57 kg
+Bronze Medal,FUNAKUBO Haruka,W,Japan,Women -57 kg
+Bronze Medal,Sarah Leonie CYSIQUE,W,France,Women -57 kg
+Gold Medal,SHENG Lihao,M,China,10m Air Rifle Men
+Silver Medal,Victor LINDGREN,M,Sweden,10m Air Rifle Men
+Bronze Medal,Miran MARICIC,M,Croatia,10m Air Rifle Men
+Gold Medal,BAN Hyojin,W,Korea,10m Air Rifle Women
+Silver Medal,HUANG Yuting,W,China,10m Air Rifle Women
+Bronze Medal,Audrey GOGNIAT,W,Switzerland,10m Air Rifle Women
+Gold Medal,HORIGOME Yuto,M,Japan,Men's Street
+Silver Medal,Jagger EATON,M,United States,Men's Street
+Bronze Medal,Nyjah HUSTON,M,United States,Men's Street
+Gold Medal,Thomas CECCON,M,Italy,Men's 100m Backstroke
+Silver Medal,XU Jiayu,M,China,Men's 100m Backstroke
+Bronze Medal,Ryan MURPHY,M,United States,Men's 100m Backstroke
+Gold Medal,David POPOVICI,M,Romania,Men's 200m Freestyle
+Silver Medal,Matthew RICHARDS,M,Great Britain,Men's 200m Freestyle
+Bronze Medal,Luke HOBSON,M,United States,Men's 200m Freestyle
+Gold Medal,Tatjana SMITH,W,South Africa,Women's 100m Breaststroke
+Silver Medal,TANG Qianting,W,China,Women's 100m Breaststroke
+Bronze Medal,Mona Mc SHARRY,W,Ireland,Women's 100m Breaststroke
+Gold Medal,Mollie O'CALLAGHAN,W,Australia,Women's 200m Freestyle
+Silver Medal,Ariarne TITMUS,W,Australia,Women's 200m Freestyle
+Bronze Medal,HAUGHEY Siobhan Bernadette,W,"Hong Kong, China",Women's 200m Freestyle
+Gold Medal,Summer McINTOSH,W,Canada,Women's 400m Individual Medley
+Silver Medal,Katie GRIMES,W,United States,Women's 400m Individual Medley
+Bronze Medal,Emma WEYANT,W,United States,Women's 400m Individual Medley
+Gold Medal,United States,W,United States,Women's Team
+Silver Medal,Italy,W,Italy,Women's Team
+Bronze Medal,Brazil,W,Brazil,Women's Team
+Gold Medal,Italy,W,Italy,Women's Épée Team
+Silver Medal,France,W,France,Women's Épée Team
+Bronze Medal,Poland,W,Poland,Women's Épée Team
+Gold Medal,NAGASE Takanori,M,Japan,Men -81 kg
+Silver Medal,Tato GRIGALASHVILI,M,Georgia,Men -81 kg
+Bronze Medal,LEE Joonhwan,M,Korea,Men -81 kg
+Bronze Medal,Somon MAKHMADBEKOV,M,Tajikistan,Men -81 kg
+Gold Medal,Andreja LESKI,W,Slovenia,Women -63 kg
+Silver Medal,Prisca AWITI ALCARAZ,W,Mexico,Women -63 kg
+Bronze Medal,Clarisse AGBEGNENOU,W,France,Women -63 kg
+Bronze Medal,Laura FAZLIU,W,Kosovo,Women -63 kg
+Gold Medal,New Zealand,W,New Zealand,Women
+Silver Medal,Canada,W,Canada,Women
+Bronze Medal,United States,W,United States,Women
+Gold Medal,Serbia,X,Serbia,10m Air Pistol Mixed Team
+Silver Medal,Türkiye 2,X,Türkiye,10m Air Pistol Mixed Team
+Bronze Medal,India 1,X,India,10m Air Pistol Mixed Team
+Gold Medal,Nathan HALES,M,Great Britain,Trap Men
+Silver Medal,QI Ying,M,China,Trap Men
+Bronze Medal,Jean Pierre BROL CARDENAS,M,Guatemala,Trap Men
+Gold Medal,Great Britain,M,Great Britain,Men's 4 x 200m Freestyle Relay
+Silver Medal,United States,M,United States,Men's 4 x 200m Freestyle Relay
+Bronze Medal,Australia,M,Australia,Men's 4 x 200m Freestyle Relay
+Gold Medal,Daniel WIFFEN,M,Ireland,Men's 800m Freestyle
+Silver Medal,Bobby FINKE,M,United States,Men's 800m Freestyle
+Bronze Medal,Gregorio PALTRINIERI,M,Italy,Men's 800m Freestyle
+Gold Medal,Kaylee McKEOWN,W,Australia,Women's 100m Backstroke
+Silver Medal,Regan SMITH,W,United States,Women's 100m Backstroke
+Bronze Medal,Katharine BERKOFF,W,United States,Women's 100m Backstroke
+Gold Medal,WANG/SUN,X,China,Mixed Doubles
+Silver Medal,RI/KIM,X,DPR Korea,Mixed Doubles
+Bronze Medal,LIM/SHIN,X,Korea,Mixed Doubles
+Gold Medal,OKA Shinnosuke,M,Japan,Men's All-Around
+Silver Medal,ZHANG Boheng,M,China,Men's All-Around
+Bronze Medal,XIAO Ruoteng,M,China,Men's All-Around
+Gold Medal,Jessica FOX,W,Australia,Women's Canoe Single
+Silver Medal,Elena LILIK,W,Germany,Women's Canoe Single
+Bronze Medal,Evy LEIBFARTH,W,United States,Women's Canoe Single
+Gold Medal,Jose TORRES GIL,M,Argentina,Men's Park
+Silver Medal,Kieran Darren David REILLY,M,Great Britain,Men's Park
+Bronze Medal,Anthony JEANJEAN,M,France,Men's Park
+Gold Medal,DENG Yawen,W,China,Women's Park
+Silver Medal,Perris BENEGAS,W,United States,Women's Park
+Bronze Medal,Natalya DIEHM,W,Australia,Women's Park
+Gold Medal,China,W,China,Women's Synchronised 10m Platform
+Silver Medal,DPR Korea,W,DPR Korea,Women's Synchronised 10m Platform
+Bronze Medal,Great Britain,W,Great Britain,Women's Synchronised 10m Platform
+Gold Medal,Korea,M,Korea,Men's Sabre Team
+Silver Medal,Hungary,M,Hungary,Men's Sabre Team
+Bronze Medal,France,M,France,Men's Sabre Team
+Gold Medal,Lasha BEKAURI,M,Georgia,Men -90 kg
+Silver Medal,MURAO Sanshiro,M,Japan,Men -90 kg
+Bronze Medal,Maxime-Gael NGAYAP HAMBOU,M,France,Men -90 kg
+Bronze Medal,Theodoros TSELIDIS,M,Greece,Men -90 kg
+Gold Medal,Barbara MATIC,W,Croatia,Women -70 kg
+Silver Medal,Miriam BUTKEREIT,W,Germany,Women -70 kg
+Bronze Medal,Michaela POLLERES,W,Austria,Women -70 kg
+Bronze Medal,Gabriella WILLEMS,W,Belgium,Women -70 kg
+Gold Medal,Netherlands,M,Netherlands,Men's Quadruple Sculls
+Silver Medal,Italy,M,Italy,Men's Quadruple Sculls
+Bronze Medal,Poland,M,Poland,Men's Quadruple Sculls
+Gold Medal,Great Britain,W,Great Britain,Women's Quadruple Sculls
+Silver Medal,Netherlands,W,Netherlands,Women's Quadruple Sculls
+Bronze Medal,Germany,W,Germany,Women's Quadruple Sculls
+Gold Medal,Adriana RUANO OLIVA,W,Guatemala,Trap Women
+Silver Medal,Silvana Maria STANCO,W,Italy,Trap Women
+Bronze Medal,Penny SMITH,W,Australia,Trap Women
+Gold Medal,PAN Zhanle,M,China,Men's 100m Freestyle
+Silver Medal,Kyle CHALMERS,M,Australia,Men's 100m Freestyle
+Bronze Medal,David POPOVICI,M,Romania,Men's 100m Freestyle
+Gold Medal,Leon MARCHAND,M,France,Men's 200m Breaststroke
+Silver Medal,Zac STUBBLETY-COOK,M,Australia,Men's 200m Breaststroke
+Bronze Medal,Caspar CORBEAU,M,Netherlands,Men's 200m Breaststroke
+Gold Medal,Leon MARCHAND,M,France,Men's 200m Butterfly
+Silver Medal,Kristof MILAK,M,Hungary,Men's 200m Butterfly
+Bronze Medal,Ilya KHARUN,M,Canada,Men's 200m Butterfly
+Gold Medal,Sarah SJOESTROEM,W,Sweden,Women's 100m Freestyle
+Silver Medal,Torri HUSKE,W,United States,Women's 100m Freestyle
+Bronze Medal,HAUGHEY Siobhan Bernadette,W,"Hong Kong, China",Women's 100m Freestyle
+Gold Medal,Katie LEDECKY,W,United States,Women's 1500m Freestyle
+Silver Medal,Anastasiia KIRPICHNIKOVA,W,France,Women's 1500m Freestyle
+Bronze Medal,Isabel GOSE,W,Germany,Women's 1500m Freestyle
+Gold Medal,Alex YEE,M,Great Britain,Men's Individual
+Silver Medal,Hayden WILDE,M,New Zealand,Men's Individual
+Bronze Medal,Leo BERGERE,M,France,Men's Individual
+Gold Medal,Cassandre BEAUGRAND,W,France,Women's Individual
+Silver Medal,Julie DERRON,W,Switzerland,Women's Individual
+Bronze Medal,Beth POTTER,W,Great Britain,Women's Individual
+Gold Medal,Simone BILES,W,United States,Women's All-Around
+Silver Medal,Rebeca ANDRADE,W,Brazil,Women's All-Around
+Bronze Medal,Sunisa LEE,W,United States,Women's All-Around
+Gold Medal,Brian Daniel PINTADO,M,Ecuador,Men's 20km Race Walk
+Silver Medal,Caio BONFIM,M,Brazil,Men's 20km Race Walk
+Bronze Medal,Alvaro MARTIN,M,Spain,Men's 20km Race Walk
+Gold Medal,YANG Jiayu,W,China,Women's 20km Race Walk
+Silver Medal,Maria PEREZ,W,Spain,Women's 20km Race Walk
+Bronze Medal,Jemima MONTAG,W,Australia,Women's 20km Race Walk
+Gold Medal,Giovanni de GENNARO,M,Italy,Men's Kayak Single
+Silver Medal,Titouan CASTRYCK,M,France,Men's Kayak Single
+Bronze Medal,Pau ECHANIZ,M,Spain,Men's Kayak Single
+Gold Medal,United States,W,United States,Women's Foil Team
+Silver Medal,Italy,W,Italy,Women's Foil Team
+Bronze Medal,Japan,W,Japan,Women's Foil Team
+Gold Medal,Zelym KOTSOIEV,M,Azerbaijan,Men -100 kg
+Silver Medal,Ilia SULAMANIDZE,M,Georgia,Men -100 kg
+Bronze Medal,Peter PALTCHIK,M,Israel,Men -100 kg
+Bronze Medal,Muzaffarbek TUROBOYEV,M,Uzbekistan,Men -100 kg
+Gold Medal,Alice BELLANDI,W,Italy,Women -78 kg
+Silver Medal,Inbar LANIR,W,Israel,Women -78 kg
+Bronze Medal,MA Zhenzhao,W,China,Women -78 kg
+Bronze Medal,Patricia SAMPAIO,W,Portugal,Women -78 kg
+Gold Medal,Romania,M,Romania,Men's Double Sculls
+Silver Medal,Netherlands,M,Netherlands,Men's Double Sculls
+Bronze Medal,Ireland,M,Ireland,Men's Double Sculls
+Gold Medal,United States,M,United States,Men's Four
+Silver Medal,New Zealand,M,New Zealand,Men's Four
+Bronze Medal,Great Britain,M,Great Britain,Men's Four
+Gold Medal,New Zealand,W,New Zealand,Women's Double Sculls
+Silver Medal,Romania,W,Romania,Women's Double Sculls
+Bronze Medal,Great Britain,W,Great Britain,Women's Double Sculls
+Gold Medal,Netherlands,W,Netherlands,Women's Four
+Silver Medal,Great Britain,W,Great Britain,Women's Four
+Bronze Medal,New Zealand,W,New Zealand,Women's Four
+Gold Medal,LIU Yukun,M,China,50m Rifle 3 Positions Men
+Silver Medal,Serhiy KULISH,M,Ukraine,50m Rifle 3 Positions Men
+Bronze Medal,Swapnil KUSALE,M,India,50m Rifle 3 Positions Men
+Gold Medal,Hubert KOS,M,Hungary,Men's 200m Backstroke
+Silver Medal,Apostolos CHRISTOU,M,Greece,Men's 200m Backstroke
+Bronze Medal,Roman MITYUKOV,M,Switzerland,Men's 200m Backstroke
+Gold Medal,Kate DOUGLASS,W,United States,Women's 200m Breaststroke
+Silver Medal,Tatjana SMITH,W,South Africa,Women's 200m Breaststroke
+Bronze Medal,Tes SCHOUTEN,W,Netherlands,Women's 200m Breaststroke
+Gold Medal,Summer McINTOSH,W,Canada,Women's 200m Butterfly
+Silver Medal,Regan SMITH,W,United States,Women's 200m Butterfly
+Bronze Medal,ZHANG Yufei,W,China,Women's 200m Butterfly
+Gold Medal,Australia,W,Australia,Women's 4 x 200m Freestyle Relay
+Silver Medal,United States,W,United States,Women's 4 x 200m Freestyle Relay
+Bronze Medal,China,W,China,Women's 4 x 200m Freestyle Relay
+Gold Medal,Korea,X,Korea,Mixed Team
+Silver Medal,Germany,X,Germany,Mixed Team
+Bronze Medal,United States,X,United States,Mixed Team
+Gold Medal,Joshua CHEPTEGEI,M,Uganda,"Men's 10,000m"
+Silver Medal,Berihu AREGAWI,M,Ethiopia,"Men's 10,000m"
+Bronze Medal,Grant FISHER,M,United States,"Men's 10,000m"
+Gold Medal,ZHENG/HUANG,X,China,Mixed Doubles
+Silver Medal,KIM/JEONG,X,Korea,Mixed Doubles
+Bronze Medal,WATANABE/HIGASHINO,X,Japan,Mixed Doubles
+Gold Medal,Joris DAUDET,M,France,Men
+Silver Medal,Sylvain ANDRE,M,France,Men
+Bronze Medal,Romain MAHIEU,M,France,Men
+Gold Medal,Saya SAKAKIBARA,W,Australia,Women
+Silver Medal,Manon VEENSTRA,W,Netherlands,Women
+Bronze Medal,Zoe CLAESSENS,W,Switzerland,Women
+Gold Medal,China,M,China,Men's Synchronised 3m Springboard
+Silver Medal,Mexico,M,Mexico,Men's Synchronised 3m Springboard
+Bronze Medal,Great Britain,M,Great Britain,Men's Synchronised 3m Springboard
+Gold Medal,Great Britain,O,Great Britain,Jumping Team
+Silver Medal,United States,O,United States,Jumping Team
+Bronze Medal,France,O,France,Jumping Team
+Gold Medal,Hungary,M,Hungary,Men's Épée Team
+Silver Medal,Japan,M,Japan,Men's Épée Team
+Bronze Medal,Czechia,M,Czechia,Men's Épée Team
+Gold Medal,Teddy RINER,M,France,Men +100 kg
+Silver Medal,KIM Minjong,M,Korea,Men +100 kg
+Bronze Medal,Temur RAKHIMOV,M,Tajikistan,Men +100 kg
+Bronze Medal,Alisher YUSUPOV,M,Uzbekistan,Men +100 kg
+Gold Medal,Beatriz SOUZA,W,Brazil,Women +78 kg
+Silver Medal,Raz HERSHKO,W,Israel,Women +78 kg
+Bronze Medal,KIM Hayun,W,Korea,Women +78 kg
+Bronze Medal,Romane DICKO,W,France,Women +78 kg
+Gold Medal,Ireland,M,Ireland,Lightweight Men's Double Sculls
+Silver Medal,Italy,M,Italy,Lightweight Men's Double Sculls
+Bronze Medal,Greece,M,Greece,Lightweight Men's Double Sculls
+Gold Medal,Great Britain,W,Great Britain,Lightweight Women's Double Sculls
+Silver Medal,Romania,W,Romania,Lightweight Women's Double Sculls
+Bronze Medal,Greece,W,Greece,Lightweight Women's Double Sculls
+Gold Medal,Croatia,M,Croatia,Men's Pair
+Silver Medal,Great Britain,M,Great Britain,Men's Pair
+Bronze Medal,Switzerland,M,Switzerland,Men's Pair
+Gold Medal,Netherlands,W,Netherlands,Women's Pair
+Silver Medal,Romania,W,Romania,Women's Pair
+Bronze Medal,Australia,W,Australia,Women's Pair
+Gold Medal,BOTIN/TRITTEL,M,Spain,Men's Skiff
+Silver Medal,McHARDIE/McKENZIE,M,New Zealand,Men's Skiff
+Bronze Medal,BARROWS/HENKEN,M,United States,Men's Skiff
+Gold Medal,AANHOLT/DUETZ,W,Netherlands,Women's Skiff
+Silver Medal,BOBECK/NETZLER,W,Sweden,Women's Skiff
+Bronze Medal,STEYAERT/PICON,W,France,Women's Skiff
+Gold Medal,Chiara LEONE,W,Switzerland,50m Rifle 3 Positions Women
+Silver Medal,Sagen MADDALENA,W,United States,50m Rifle 3 Positions Women
+Bronze Medal,ZHANG Qiongyue,W,China,50m Rifle 3 Positions Women
+Gold Medal,Leon MARCHAND,M,France,Men's 200m Individual Medley
+Silver Medal,Duncan SCOTT,M,Great Britain,Men's 200m Individual Medley
+Bronze Medal,WANG Shun,M,China,Men's 200m Individual Medley
+Gold Medal,Cameron McEVOY,M,Australia,Men's 50m Freestyle
+Silver Medal,Benjamin PROUD,M,Great Britain,Men's 50m Freestyle
+Bronze Medal,Florent MANAUDOU,M,France,Men's 50m Freestyle
+Gold Medal,Kaylee McKEOWN,W,Australia,Women's 200m Backstroke
+Silver Medal,Regan SMITH,W,United States,Women's 200m Backstroke
+Bronze Medal,Kylie MASSE,W,Canada,Women's 200m Backstroke
+Gold Medal,SINIAKOVA/MACHAC,X,Czechia,Mixed Doubles
+Silver Medal,WANG/ZHANG,X,China,Mixed Doubles
+Bronze Medal,DABROWSKI/AUGER-ALIAS,X,Canada,Mixed Doubles
+Bronze Medal,Iga SWIATEK,W,Poland,Women's Singles
+Gold Medal,Ivan LITVINOVICH,M,AIN,Men
+Silver Medal,WANG Zisai,M,China,Men
+Bronze Medal,YAN Langyu,M,China,Men
+Gold Medal,Bryony PAGE,W,Great Britain,Women
+Silver Medal,Viyaleta BARDZILOUSKAYA,W,AIN,Women
+Bronze Medal,Sophiane METHOT,W,Canada,Women
+Gold Medal,LIM Sihyeon,W,Korea,Women's Individual
+Silver Medal,NAM Suhyeon,W,Korea,Women's Individual
+Bronze Medal,Lisa BARBELIN,W,France,Women's Individual
+Gold Medal,Carlos Edriel YULO,M,Philippines,Men's Floor Exercise
+Silver Medal,Artem DOLGOPYAT,M,Israel,Men's Floor Exercise
+Bronze Medal,Jake JARMAN,M,Great Britain,Men's Floor Exercise
+Gold Medal,Rhys MC CLENAGHAN,M,Ireland,Men's Pommel Horse
+Silver Medal,Nariman KURBANOV,M,Kazakhstan,Men's Pommel Horse
+Bronze Medal,Stephen NEDOROSCIK,M,United States,Men's Pommel Horse
+Gold Medal,Simone BILES,W,United States,Women's Vault
+Silver Medal,Rebeca ANDRADE,W,Brazil,Women's Vault
+Bronze Medal,Jade CAREY,W,United States,Women's Vault
+Gold Medal,Netherlands,X,Netherlands,4 x 400m Relay Mixed
+Silver Medal,United States,X,United States,4 x 400m Relay Mixed
+Bronze Medal,Great Britain,X,Great Britain,4 x 400m Relay Mixed
+Gold Medal,Markus ROOTH,M,Norway,Men's Decathlon
+Silver Medal,Leo NEUGEBAUER,M,Germany,Men's Decathlon
+Bronze Medal,Lindon VICTOR,M,Grenada,Men's Decathlon
+Gold Medal,Ryan CROUSER,M,United States,Men's Shot Put
+Silver Medal,Joe KOVACS,M,United States,Men's Shot Put
+Bronze Medal,Rajindra CAMPBELL,M,Jamaica,Men's Shot Put
+Gold Medal,Julien ALFRED,W,Saint Lucia,Women's 100m
+Silver Medal,Sha'carri RICHARDSON,W,United States,Women's 100m
+Bronze Medal,Melissa JEFFERSON,W,United States,Women's 100m
+Gold Medal,Thea LAFOND,W,Dominica,Women's Triple Jump
+Silver Medal,Shanieka RICKETTS,W,Jamaica,Women's Triple Jump
+Bronze Medal,Jasmine MOORE,W,United States,Women's Triple Jump
+Gold Medal,CHEN/JIA,W,China,Women's Doubles
+Silver Medal,LIU/TAN,W,China,Women's Doubles
+Bronze Medal,MATSUYAMA/SHIDA,W,Japan,Women's Doubles
+Bronze Medal,WU Shih Yi,W,Chinese Taipei,Women's 60kg
+Bronze Medal,Beatriz Iasmin SOARES FERREIRA,W,Brazil,Women's 60kg
+Gold Medal,Remco EVENEPOEL,M,Belgium,Men's Road Race
+Silver Medal,Valentin MADOUAS,M,France,Men's Road Race
+Bronze Medal,Christophe LAPORTE,M,France,Men's Road Race
+Gold Medal,Germany,O,Germany,Dressage Team
+Silver Medal,Denmark,O,Denmark,Dressage Team
+Bronze Medal,Great Britain,O,Great Britain,Dressage Team
+Gold Medal,Ukraine,W,Ukraine,Women's Sabre Team
+Silver Medal,Korea,W,Korea,Women's Sabre Team
+Bronze Medal,Japan,W,Japan,Women's Sabre Team
+Gold Medal,France,X,France,Mixed Team
+Silver Medal,Japan,X,Japan,Mixed Team
+Bronze Medal,Brazil,X,Brazil,Mixed Team
+Bronze Medal,Korea,X,Korea,Mixed Team
+Gold Medal,Great Britain,M,Great Britain,Men's Eight
+Silver Medal,Netherlands,M,Netherlands,Men's Eight
+Bronze Medal,United States,M,United States,Men's Eight
+Gold Medal,Oliver ZEIDLER,M,Germany,Men's Single Sculls
+Silver Medal,Yauheni ZALATY,M,AIN,Men's Single Sculls
+Bronze Medal,Simon van DORP,M,Netherlands,Men's Single Sculls
+Gold Medal,Romania,W,Romania,Women's Eight
+Silver Medal,Canada,W,Canada,Women's Eight
+Bronze Medal,Great Britain,W,Great Britain,Women's Eight
+Gold Medal,Karolien FLORIJN,W,Netherlands,Women's Single Sculls
+Silver Medal,Emma TWIGG,W,New Zealand,Women's Single Sculls
+Bronze Medal,Viktorija SENKUTE,W,Lithuania,Women's Single Sculls
+Gold Medal,Tom REUVENY,M,Israel,Men's Windsurfing
+Silver Medal,Grae MORRIS,M,Australia,Men's Windsurfing
+Bronze Medal,Luuc van OPZEELAND,M,Netherlands,Men's Windsurfing
+Gold Medal,Marta MAGGETTI,W,Italy,Women's Windsurfing
+Silver Medal,Sharon KANTOR,W,Israel,Women's Windsurfing
+Bronze Medal,Emma WILSON,W,Great Britain,Women's Windsurfing
+Gold Medal,YANG Jiin,W,Korea,25m Pistol Women
+Silver Medal,Camille JEDRZEJEWSKI,W,France,25m Pistol Women
+Bronze Medal,Veronika MAJOR,W,Hungary,25m Pistol Women
+Gold Medal,Vincent HANCOCK,M,United States,Skeet Men
+Silver Medal,Conner Lynn PRINCE,M,United States,Skeet Men
+Bronze Medal,LEE Meng Yuan,M,Chinese Taipei,Skeet Men
+Gold Medal,Kristof MILAK,M,Hungary,Men's 100m Butterfly
+Silver Medal,Josh LIENDO,M,Canada,Men's 100m Butterfly
+Bronze Medal,Ilya KHARUN,M,Canada,Men's 100m Butterfly
+Gold Medal,United States,X,United States,Mixed 4 x 100m Medley Relay
+Silver Medal,China,X,China,Mixed 4 x 100m Medley Relay
+Bronze Medal,Australia,X,Australia,Mixed 4 x 100m Medley Relay
+Gold Medal,Summer McINTOSH,W,Canada,Women's 200m Individual Medley
+Silver Medal,Kate DOUGLASS,W,United States,Women's 200m Individual Medley
+Bronze Medal,Kaylee McKEOWN,W,Australia,Women's 200m Individual Medley
+Gold Medal,Katie LEDECKY,W,United States,Women's 800m Freestyle
+Silver Medal,Ariarne TITMUS,W,Australia,Women's 800m Freestyle
+Bronze Medal,Paige MADDEN,W,United States,Women's 800m Freestyle
+Gold Medal,CHEN Meng,W,China,Women's Singles
+Silver Medal,SUN Yingsha,W,China,Women's Singles
+Bronze Medal,Hina HAYATA,W,Japan,Women's Singles
+Gold Medal,EBDEN/PEERS,M,Australia,Men's Doubles
+Silver Medal,KRAJICEK/RAM,M,United States,Men's Doubles
+Bronze Medal,FRITZ/PAUL,M,United States,Men's Doubles
+Bronze Medal,Lorenzo MUSETTI,M,Italy,Men's Singles
+Gold Medal,ZHENG Qinwen,W,China,Women's Singles
+Silver Medal,Donna VEKIC,W,Croatia,Women's Singles
+Gold Medal,KIM Woojin,M,Korea,Men's Individual
+Silver Medal,Brady ELLISON,M,United States,Men's Individual
+Bronze Medal,LEE Wooseok,M,Korea,Men's Individual
+Gold Medal,LIU Yang,M,China,Men's Rings
+Silver Medal,ZOU Jingyuan,M,China,Men's Rings
+Bronze Medal,Eleftherios PETROUNIAS,M,Greece,Men's Rings
+Gold Medal,Carlos Edriel YULO,M,Philippines,Men's Vault
+Silver Medal,Artur DAVTYAN,M,Armenia,Men's Vault
+Bronze Medal,Harry HEPWORTH,M,Great Britain,Men's Vault
+Gold Medal,Kaylia NEMOUR,W,Algeria,Women's Uneven Bars
+Silver Medal,QIU Qiyuan,W,China,Women's Uneven Bars
+Bronze Medal,Sunisa LEE,W,United States,Women's Uneven Bars
+Gold Medal,Noah LYLES,M,United States,Men's 100m
+Silver Medal,Kishane THOMPSON,M,Jamaica,Men's 100m
+Bronze Medal,Fred KERLEY,M,United States,Men's 100m
+Gold Medal,Ethan KATZBERG,M,Canada,Men's Hammer Throw
+Silver Medal,Bence HALASZ,M,Hungary,Men's Hammer Throw
+Bronze Medal,Mykhaylo KOKHAN,M,Ukraine,Men's Hammer Throw
+Gold Medal,Yaroslava MAHUCHIKH,W,Ukraine,Women's High Jump
+Silver Medal,Nicola OLYSLAGERS,W,Australia,Women's High Jump
+Bronze Medal,Iryna GERASHCHENKO,W,Ukraine,Women's High Jump
+Bronze Medal,Eleanor PATTERSON,W,Australia,Women's High Jump
+Gold Medal,LEE/WANG,M,Chinese Taipei,Men's Doubles
+Silver Medal,LIANG/WANG,M,China,Men's Doubles
+Bronze Medal,CHIA/SOH,M,Malaysia,Men's Doubles
+Bronze Medal,Gregoria Mariska TUNJUNG,W,Indonesia,Women's Singles
+Bronze Medal,Yunior ALCANTARA REYES,M,Dominican Republic,Men's 51kg
+Bronze Medal,David de PINA,M,Cabo Verde,Men's 51kg
+Bronze Medal,Wyatt SANFORD,M,Canada,Men's 63.5kg
+Bronze Medal,Lasha GURULI,M,Georgia,Men's 63.5kg
+Bronze Medal,Cristian Javier PINALES,M,Dominican Republic,Men's 80kg
+Bronze Medal,Arlen LOPEZ CARDONA,M,Cuba,Men's 80kg
+Bronze Medal,Enmanuel REYES PLA,M,Spain,Men's 92kg
+Bronze Medal,Davlat BOLTAEV,M,Tajikistan,Men's 92kg
+Bronze Medal,PANG Cholmi,W,DPR Korea,Women's 54kg
+Bronze Medal,IM Aeji,W,Korea,Women's 54kg
+Gold Medal,Kristen FAULKNER,W,United States,Women's Road Race
+Silver Medal,Marianne VOS,W,Netherlands,Women's Road Race
+Bronze Medal,Lotte KOPECKY,W,Belgium,Women's Road Race
+Gold Medal,Jessica von BREDOW-WERNDL,O,Germany,Dressage Individual
+Silver Medal,Isabell WERTH,O,Germany,Dressage Individual
+Bronze Medal,Charlotte FRY,O,Great Britain,Dressage Individual
+Gold Medal,Japan,M,Japan,Men's Foil Team
+Silver Medal,Italy,M,Italy,Men's Foil Team
+Bronze Medal,France,M,France,Men's Foil Team
+Gold Medal,Scottie SCHEFFLER,M,United States,Men's Individual Stroke Play
+Silver Medal,Tommy FLEETWOOD,M,Great Britain,Men's Individual Stroke Play
+Bronze Medal,MATSUYAMA Hideki,M,Japan,Men's Individual Stroke Play
+Gold Medal,Francisca CROVETTO CHADID,W,Chile,Skeet Women
+Silver Medal,Amber Jo RUTTER,W,Great Britain,Skeet Women
+Bronze Medal,Austen Jewell SMITH,W,United States,Skeet Women
+Gold Medal,Bobby FINKE,M,United States,Men's 1500m Freestyle
+Silver Medal,Gregorio PALTRINIERI,M,Italy,Men's 1500m Freestyle
+Bronze Medal,Daniel WIFFEN,M,Ireland,Men's 1500m Freestyle
+Gold Medal,China,M,China,Men's 4 x 100m Medley Relay
+Silver Medal,United States,M,United States,Men's 4 x 100m Medley Relay
+Bronze Medal,France,M,France,Men's 4 x 100m Medley Relay
+Gold Medal,United States,W,United States,Women's 4 x 100m Medley Relay
+Silver Medal,Australia,W,Australia,Women's 4 x 100m Medley Relay
+Bronze Medal,China,W,China,Women's 4 x 100m Medley Relay
+Gold Medal,Sarah SJOESTROEM,W,Sweden,Women's 50m Freestyle
+Silver Medal,Meg HARRIS,W,Australia,Women's 50m Freestyle
+Bronze Medal,ZHANG Yufei,W,China,Women's 50m Freestyle
+Gold Medal,FAN Zhendong,M,China,Men's Singles
+Silver Medal,Truls MOREGARD,M,Sweden,Men's Singles
+Bronze Medal,Felix LEBRUN,M,France,Men's Singles
+Gold Medal,Novak DJOKOVIC,M,Serbia,Men's Singles
+Silver Medal,Carlos ALCARAZ,M,Spain,Men's Singles
+Gold Medal,ERRANI/PAOLINI,W,Italy,Women's Doubles
+Silver Medal,ANDREEVA/SHNAIDER,W,AIN,Women's Doubles
+Bronze Medal,BUCSA/SORRIBES TORMO,W,Spain,Women's Doubles
+Gold Medal,Netherlands,M,Netherlands,Men
+Silver Medal,France,M,France,Men
+Bronze Medal,Lithuania,M,Lithuania,Men
+Gold Medal,Germany,W,Germany,Women
+Silver Medal,Spain,W,Spain,Women
+Bronze Medal,United States,W,United States,Women
+Gold Medal,OKA Shinnosuke,M,Japan,Men's Horizontal Bar
+Silver Medal,Angel BARAJAS,M,Colombia,Men's Horizontal Bar
+Bronze Medal,ZHANG Boheng,M,China,Men's Horizontal Bar
+Bronze Medal,TANG Chia-Hung,M,Chinese Taipei,Men's Horizontal Bar
+Gold Medal,ZOU Jingyuan,M,China,Men's Parallel Bars
+Silver Medal,Illia KOVTUN,M,Ukraine,Men's Parallel Bars
+Bronze Medal,OKA Shinnosuke,M,Japan,Men's Parallel Bars
+Gold Medal,Alice D'AMATO,W,Italy,Women's Balance Beam
+Silver Medal,ZHOU Yaqin,W,China,Women's Balance Beam
+Bronze Medal,Manila ESPOSITO,W,Italy,Women's Balance Beam
+Gold Medal,Rebeca ANDRADE,W,Brazil,Women's Floor Exercise
+Silver Medal,Simone BILES,W,United States,Women's Floor Exercise
+Bronze Medal,Ana BARBOSU,W,Romania,Women's Floor Exercise
+Gold Medal,Armand DUPLANTIS,M,Sweden,Men's Pole Vault
+Silver Medal,Sam KENDRICKS,M,United States,Men's Pole Vault
+Bronze Medal,Emmanouil KARALIS,M,Greece,Men's Pole Vault
+Gold Medal,Beatrice CHEBET,W,Kenya,Women's 5000m
+Silver Medal,Faith KIPYEGON,W,Kenya,Women's 5000m
+Bronze Medal,Sifan HASSAN,W,Netherlands,Women's 5000m
+Gold Medal,Keely HODGKINSON,W,Great Britain,Women's 800m
+Silver Medal,Tsige DUGUMA,W,Ethiopia,Women's 800m
+Bronze Medal,Mary MORAA,W,Kenya,Women's 800m
+Gold Medal,Valarie ALLMAN,W,United States,Women's Discus Throw
+Silver Medal,FENG Bin,W,China,Women's Discus Throw
+Bronze Medal,Sandra ELKASEVIC,W,Croatia,Women's Discus Throw
+Gold Medal,Viktor AXELSEN,M,Denmark,Men's Singles
+Silver Medal,Kunlavut VITIDSARN,M,Thailand,Men's Singles
+Bronze Medal,Zii Jia LEE,M,Malaysia,Men's Singles
+Gold Medal,AN Se Young,W,Korea,Women's Singles
+Silver Medal,HE Bing Jiao,W,China,Women's Singles
+Gold Medal,Finn BUTCHER,M,New Zealand,Men's Kayak Cross
+Silver Medal,Joseph CLARKE,M,Great Britain,Men's Kayak Cross
+Bronze Medal,Noah HEGGE,M,Germany,Men's Kayak Cross
+Gold Medal,Noemie FOX,W,Australia,Women's Kayak Cross
+Silver Medal,Angele HUG,W,France,Women's Kayak Cross
+Bronze Medal,Kimberley WOODS,W,Great Britain,Women's Kayak Cross
+Gold Medal,Great Britain,W,Great Britain,Women's Team Sprint
+Silver Medal,New Zealand,W,New Zealand,Women's Team Sprint
+Bronze Medal,Germany,W,Germany,Women's Team Sprint
+Gold Medal,LI Yuehong,M,China,25m Rapid Fire Pistol Men
+Silver Medal,CHO Yeongjae,M,Korea,25m Rapid Fire Pistol Men
+Bronze Medal,WANG Xinjie,M,China,25m Rapid Fire Pistol Men
+Gold Medal,Italy 1,X,Italy,Skeet Mixed Team
+Silver Medal,United States 1,X,United States,Skeet Mixed Team
+Bronze Medal,China,X,China,Skeet Mixed Team
+Gold Medal,Kauli VAAST,M,France,Men
+Silver Medal,Jack ROBINSON,M,Australia,Men
+Bronze Medal,Gabriel MEDINA,M,Brazil,Men
+Gold Medal,Caroline MARKS,W,United States,Women
+Silver Medal,Tatiana WESTON-WEBB,W,Brazil,Women
+Bronze Medal,Johanne DEFAY,W,France,Women
+Gold Medal,Germany,X,Germany,Mixed Relay
+Silver Medal,United States,X,United States,Mixed Relay
+Bronze Medal,Great Britain,X,Great Britain,Mixed Relay
+Gold Medal,Cole HOCKER,M,United States,Men's 1500m
+Silver Medal,Josh KERR,M,Great Britain,Men's 1500m
+Bronze Medal,Yared NUGUSE,M,United States,Men's 1500m
+Gold Medal,Miltiadis TENTOGLOU,M,Greece,Men's Long Jump
+Silver Medal,Wayne PINNOCK,M,Jamaica,Men's Long Jump
+Bronze Medal,Mattia FURLANI,M,Italy,Men's Long Jump
+Gold Medal,Gabrielle THOMAS,W,United States,Women's 200m
+Silver Medal,Julien ALFRED,W,Saint Lucia,Women's 200m
+Bronze Medal,Brittany BROWN,W,United States,Women's 200m
+Gold Medal,Winfred YAVI,W,Bahrain,Women's 3000m Steeplechase
+Silver Medal,Peruth CHEMUTAI,W,Uganda,Women's 3000m Steeplechase
+Bronze Medal,Faith CHEROTICH,W,Kenya,Women's 3000m Steeplechase
+Gold Medal,Camryn ROGERS,W,Canada,Women's Hammer Throw
+Silver Medal,Annette Nneka ECHIKUNWOKE,W,United States,Women's Hammer Throw
+Bronze Medal,ZHAO Jie,W,China,Women's Hammer Throw
+Bronze Medal,Omari JONES,M,United States,Men's 71kg
+Bronze Medal,Lewis RICHARDSON,M,Great Britain,Men's 71kg
+Bronze Medal,Nazym KYZAIBAY,W,Kazakhstan,Women's 50kg
+Bronze Medal,Aira VILLEGAS,W,Philippines,Women's 50kg
+Gold Medal,Kellie HARRINGTON,W,Ireland,Women's 60kg
+Silver Medal,YANG Wenlu,W,China,Women's 60kg
+Bronze Medal,Janjaem SUWANNAPHENG,W,Thailand,Women's 66kg
+Bronze Medal,CHEN Nien Chin,W,Chinese Taipei,Women's 66kg
+Gold Medal,Netherlands,M,Netherlands,Men's Team Sprint
+Silver Medal,Great Britain,M,Great Britain,Men's Team Sprint
+Bronze Medal,Australia,M,Australia,Men's Team Sprint
+Gold Medal,QUAN Hongchan,W,China,Women's 10m Platform
+Silver Medal,CHEN Yuxi,W,China,Women's 10m Platform
+Bronze Medal,KIM Mi Rae,W,DPR Korea,Women's 10m Platform
+Gold Medal,Christian KUKUK,O,Germany,Jumping Individual
+Silver Medal,Steve GUERDAT,O,Switzerland,Jumping Individual
+Bronze Medal,Maikel van der VLEUTEN,O,Netherlands,Jumping Individual
+Gold Medal,Arisa TREW,W,Australia,Women's Park
+Silver Medal,HIRAKI Cocona,W,Japan,Women's Park
+Bronze Medal,Sky BROWN,W,Great Britain,Women's Park
+Gold Medal,Mijain LOPEZ NUNEZ,M,Cuba,Men's Greco-Roman 130kg
+Silver Medal,Yasmani ACOSTA FERNANDEZ,M,Chile,Men's Greco-Roman 130kg
+Bronze Medal,Amin MIRZAZADEH,M,IR Iran,Men's Greco-Roman 130kg
+Bronze Medal,MENG Lingzhe,M,China,Men's Greco-Roman 130kg
+Gold Medal,FUMITA Kenichiro,M,Japan,Men's Greco-Roman 60kg
+Silver Medal,CAO Liguo,M,China,Men's Greco-Roman 60kg
+Bronze Medal,Zholaman SHARSHENBEKOV,M,Kyrgyzstan,Men's Greco-Roman 60kg
+Bronze Medal,RI Se Ung,M,DPR Korea,Men's Greco-Roman 60kg
+Gold Medal,Amit ELOR,W,United States,Women's Freestyle 68kg
+Silver Medal,Meerim ZHUMANAZAROVA,W,Kyrgyzstan,Women's Freestyle 68kg
+Bronze Medal,Buse CAVUSOGLU TOSUN,W,Türkiye,Women's Freestyle 68kg
+Bronze Medal,OZAKI Nonoka,W,Japan,Women's Freestyle 68kg
+Gold Medal,China,O,China,Team
+Silver Medal,United States,O,United States,Team
+Bronze Medal,Spain,O,Spain,Team
+Gold Medal,MARTIN A/PEREZ M,X,Spain,Marathon Race Walk Relay Mixed
+Silver Medal,PINTADO B/MOREJON G,X,Ecuador,Marathon Race Walk Relay Mixed
+Bronze Medal,COWLEY R/MONTAG J,X,Australia,Marathon Race Walk Relay Mixed
+Gold Medal,Soufiane EL BAKKALI,M,Morocco,Men's 3000m Steeplechase
+Silver Medal,Kenneth ROOKS,M,United States,Men's 3000m Steeplechase
+Bronze Medal,Abraham KIBIWOT,M,Kenya,Men's 3000m Steeplechase
+Gold Medal,Quincy HALL,M,United States,Men's 400m
+Silver Medal,Matthew HUDSON-SMITH,M,Great Britain,Men's 400m
+Bronze Medal,Muzala SAMUKONGA,M,Zambia,Men's 400m
+Gold Medal,Roje STONA,M,Jamaica,Men's Discus Throw
+Silver Medal,Mykolas ALEKNA,M,Lithuania,Men's Discus Throw
+Bronze Medal,Matthew DENNY,M,Australia,Men's Discus Throw
+Gold Medal,Nina KENNEDY,W,Australia,Women's Pole Vault
+Silver Medal,Katie MOON,W,United States,Women's Pole Vault
+Bronze Medal,Alysha NEWMAN,W,Canada,Women's Pole Vault
+Bronze Medal,Nelvie Raman TIAFACK,M,Germany,Men's +92kg
+Bronze Medal,Djamili-Dini ABOUDOU MOINDZE,M,France,Men's +92kg
+Gold Medal,Erislandy ALVAREZ BORGES,M,Cuba,Men's 63.5kg
+Silver Medal,Sofiane OUMIHA,M,France,Men's 63.5kg
+Gold Medal,Oleksandr KHYZHNIAK,M,Ukraine,Men's 80kg
+Silver Medal,Nurbek ORALBAY,M,Kazakhstan,Men's 80kg
+Bronze Medal,Esra YILDIZ KAHRAMAN,W,Türkiye,Women's 57kg
+Bronze Medal,Nesthy PETECIO,W,Philippines,Women's 57kg
+Gold Medal,Australia,M,Australia,Men's Team Pursuit
+Silver Medal,Great Britain,M,Great Britain,Men's Team Pursuit
+Bronze Medal,Italy,M,Italy,Men's Team Pursuit
+Gold Medal,United States,W,United States,Women's Team Pursuit
+Silver Medal,New Zealand,W,New Zealand,Women's Team Pursuit
+Bronze Medal,Great Britain,W,Great Britain,Women's Team Pursuit
+Gold Medal,Matt WEARN,M,Australia,Men's Dinghy
+Silver Medal,Pavlos KONTIDES,M,Cyprus,Men's Dinghy
+Bronze Medal,Stefano PESCHIERA,M,Peru,Men's Dinghy
+Gold Medal,Marit BOUWMEESTER,W,Netherlands,Women's Dinghy
+Silver Medal,Anne-Marie RINDOM,W,Denmark,Women's Dinghy
+Bronze Medal,Line Flem HOEST,W,Norway,Women's Dinghy
+Gold Medal,Keegan PALMER,M,Australia,Men's Park
+Silver Medal,Tom SCHAAR,M,United States,Men's Park
+Bronze Medal,Augusto AKIO,M,Brazil,Men's Park
+Gold Medal,Aleksandra MIROSLAW,W,Poland,Women's Speed
+Silver Medal,DENG Lijuan,W,China,Women's Speed
+Bronze Medal,Aleksandra KALUCKA,W,Poland,Women's Speed
+Gold Medal,PARK Taejoon,M,Korea,Men -58kg
+Silver Medal,Gashim MAGOMEDOV,M,Azerbaijan,Men -58kg
+Bronze Medal,Cyrian RAVET,M,France,Men -58kg
+Bronze Medal,Mohamed Khalil JENDOUBI,M,Tunisia,Men -58kg
+Gold Medal,Panipak WONGPATTANAKIT,W,Thailand,Women -49kg
+Silver Medal,GUO Qing,W,China,Women -49kg
+Bronze Medal,Mobina NEMATZADEH,W,IR Iran,Women -49kg
+Bronze Medal,Lena STOJKOVIC,W,Croatia,Women -49kg
+Gold Medal,LI Fabin,M,China,Men's 61kg
+Silver Medal,Theerapong SILACHAI,M,Thailand,Men's 61kg
+Bronze Medal,Hampton MORRIS,M,United States,Men's 61kg
+Gold Medal,HOU Zhihui,W,China,Women's 49kg
+Silver Medal,Mihaela Valentina CAMBEI,W,Romania,Women's 49kg
+Bronze Medal,Surodchana KHAMBAO,W,Thailand,Women's 49kg
+Gold Medal,KUSAKA Nao,M,Japan,Men's Greco-Roman 77kg
+Silver Medal,Demeu ZHADRAYEV,M,Kazakhstan,Men's Greco-Roman 77kg
+Bronze Medal,Malkhas AMOYAN,M,Armenia,Men's Greco-Roman 77kg
+Bronze Medal,Akzhol MAKHMUDOV,M,Kyrgyzstan,Men's Greco-Roman 77kg
+Gold Medal,Mohammadhadi SARAVI,M,IR Iran,Men's Greco-Roman 97kg
+Silver Medal,Artur ALEKSANYAN,M,Armenia,Men's Greco-Roman 97kg
+Bronze Medal,Gabriel Alejandro ROSILLO KINDELAN,M,Cuba,Men's Greco-Roman 97kg
+Bronze Medal,Uzur DZHUZUPBEKOV,M,Kyrgyzstan,Men's Greco-Roman 97kg
+Gold Medal,Sarah Ann HILDEBRANDT,W,United States,Women's Freestyle 50kg
+Silver Medal,Yusneylis GUZMAN LOPEZ,W,Cuba,Women's Freestyle 50kg
+Bronze Medal,SUSAKI Yui,W,Japan,Women's Freestyle 50kg
+Bronze Medal,FENG Ziqi,W,China,Women's Freestyle 50kg
+Gold Medal,Grant HOLLOWAY,M,United States,Men's 110m Hurdles
+Silver Medal,Daniel ROBERTS,M,United States,Men's 110m Hurdles
+Bronze Medal,Rasheed BROADBELL,M,Jamaica,Men's 110m Hurdles
+Gold Medal,Letsile TEBOGO,M,Botswana,Men's 200m
+Silver Medal,Kenneth BEDNAREK,M,United States,Men's 200m
+Bronze Medal,Noah LYLES,M,United States,Men's 200m
+Gold Medal,Arshad NADEEM,M,Pakistan,Men's Javelin Throw
+Silver Medal,Neeraj CHOPRA,M,India,Men's Javelin Throw
+Bronze Medal,Anderson PETERS,M,Grenada,Men's Javelin Throw
+Gold Medal,Sydney McLAUGHLIN-LEVRONE,W,United States,Women's 400m Hurdles
+Silver Medal,Anna COCKRELL,W,United States,Women's 400m Hurdles
+Bronze Medal,Femke BOL,W,Netherlands,Women's 400m Hurdles
+Gold Medal,Tara DAVIS-WOODHALL,W,United States,Women's Long Jump
+Silver Medal,Malaika MIHAMBO,W,Germany,Women's Long Jump
+Bronze Medal,Jasmine MOORE,W,United States,Women's Long Jump
+Gold Medal,Hasanboy DUSMATOV,M,Uzbekistan,Men's 51kg
+Silver Medal,Billal BENNAMA,M,France,Men's 51kg
+Bronze Medal,Charlie SENIOR,M,Australia,Men's 57kg
+Bronze Medal,Javier IBANEZ DIAZ,M,Bulgaria,Men's 57kg
+Gold Medal,CHANG Yuan,W,China,Women's 54kg
+Silver Medal,Hatice AKBAS,W,Türkiye,Women's 54kg
+Bronze Medal,Caitlin PARKER,W,Australia,Women's 75kg
+Bronze Medal,Cindy Winner DJANKEU NGAMBA,W,EOR,Women's 75kg
+Gold Medal,LIU/JI,M,China,Men's Canoe Double 500m
+Silver Medal,CASADEI/TACCHINI,M,Italy,Men's Canoe Double 500m
+Bronze Medal,MORENO/DOMINGUEZ,M,Spain,Men's Canoe Double 500m
+Gold Medal,Germany,M,Germany,Men's Kayak Four 500m
+Silver Medal,Australia,M,Australia,Men's Kayak Four 500m
+Bronze Medal,Spain,M,Spain,Men's Kayak Four 500m
+Gold Medal,New Zealand,W,New Zealand,Women's Kayak Four 500m
+Silver Medal,Germany,W,Germany,Women's Kayak Four 500m
+Bronze Medal,Hungary,W,Hungary,Women's Kayak Four 500m
+Gold Medal,Benjamin THOMAS,M,France,Men's Omnium
+Silver Medal,Iuri LEITAO,M,Portugal,Men's Omnium
+Bronze Medal,Fabio van den BOSSCHE,M,Belgium,Men's Omnium
+Gold Medal,Ellesse ANDREWS,W,New Zealand,Women's Keirin
+Silver Medal,Hetty van de WOUW,W,Netherlands,Women's Keirin
+Bronze Medal,Emma FINUCANE,W,Great Britain,Women's Keirin
+Gold Medal,XIE Siyi,M,China,Men's 3m Springboard
+Silver Medal,WANG Zongyuan,M,China,Men's 3m Springboard
+Bronze Medal,Osmar OLVERA IBARRA,M,Mexico,Men's 3m Springboard
+Bronze Medal,Morocco,M,Morocco,Men
+Gold Medal,Netherlands,M,Netherlands,Men
+Silver Medal,Germany,M,Germany,Men
+Bronze Medal,India,M,India,Men
+Gold Medal,Sharon van ROUWENDAAL,W,Netherlands,Women's 10km
+Silver Medal,Moesha JOHNSON,W,Australia,Women's 10km
+Bronze Medal,Ginevra TADDEUCCI,W,Italy,Women's 10km
+Gold Medal,VADLAU/MAEHR,X,Austria,Mixed Dinghy
+Silver Medal,OKADA/YOSHIOKA,X,Japan,Mixed Dinghy
+Bronze Medal,DAHLBERG/KARLSSON,X,Sweden,Mixed Dinghy
+Gold Medal,TITA/BANTI,X,Italy,Mixed Multihull
+Silver Medal,MAJDALANI/BOSCO,X,Argentina,Mixed Multihull
+Bronze Medal,WILKINSON/DAWSON,X,New Zealand,Mixed Multihull
+Gold Medal,Eleanor ALDRIDGE,W,Great Britain,Women's Kite
+Silver Medal,Lauriane NOLOT,W,France,Women's Kite
+Bronze Medal,Annelous LAMMERTS,W,Netherlands,Women's Kite
+Gold Medal,Veddriq LEONARDO,M,Indonesia,Men's Speed
+Silver Medal,WU Peng,M,China,Men's Speed
+Bronze Medal,Sam WATSON,M,United States,Men's Speed
+Gold Medal,Ulugbek RASHITOV,M,Uzbekistan,Men -68kg
+Silver Medal,Zaid KAREEM,M,Jordan,Men -68kg
+Bronze Medal,LIANG Yushuai,M,China,Men -68kg
+Bronze Medal,Edival PONTES,M,Brazil,Men -68kg
+Gold Medal,KIM Yujin,W,Korea,Women -57kg
+Silver Medal,Nahid KIYANICHANDEH,W,IR Iran,Women -57kg
+Bronze Medal,Skylar PARK,W,Canada,Women -57kg
+Bronze Medal,Alizadeh KIMIA,W,Bulgaria,Women -57kg
+Gold Medal,Rizki JUNIANSYAH,M,Indonesia,Men's 73kg
+Silver Medal,Weeraphon WICHUMA,M,Thailand,Men's 73kg
+Bronze Medal,Bozhidar Dimitrov ANDREEV,M,Bulgaria,Men's 73kg
+Gold Medal,LUO Shifang,W,China,Women's 59kg
+Silver Medal,Maude CHARRON,W,Canada,Women's 59kg
+Bronze Medal,KUO Hsing-Chun,W,Chinese Taipei,Women's 59kg
+Gold Medal,Saeid ESMAEILI LEIVESI,M,IR Iran,Men's Greco-Roman 67kg
+Silver Medal,Parviz NASIBOV,M,Ukraine,Men's Greco-Roman 67kg
+Bronze Medal,Hasrat JAFAROV,M,Azerbaijan,Men's Greco-Roman 67kg
+Bronze Medal,Luis Alberto ORTA SANCHEZ,M,Cuba,Men's Greco-Roman 67kg
+Gold Medal,Semen Sergeevich NOVIKOV,M,Bulgaria,Men's Greco-Roman 87kg
+Silver Medal,Alireza MOHMADIPIANI,M,IR Iran,Men's Greco-Roman 87kg
+Bronze Medal,Zhan BELENIUK,M,Ukraine,Men's Greco-Roman 87kg
+Bronze Medal,Turpal Ali BISULTANOV,M,Denmark,Men's Greco-Roman 87kg
+Gold Medal,FUJINAMI Akari,W,Japan,Women's Freestyle 53kg
+Silver Medal,Lucia Yamileth YEPEZ GUZMAN,W,Ecuador,Women's Freestyle 53kg
+Bronze Medal,CHOE Hyo Gyong,W,DPR Korea,Women's Freestyle 53kg
+Bronze Medal,PANG Qianyu,W,China,Women's Freestyle 53kg
+Gold Medal,Canada,M,Canada,Men's 4 x 100m Relay
+Silver Medal,South Africa,M,South Africa,Men's 4 x 100m Relay
+Bronze Medal,Great Britain,M,Great Britain,Men's 4 x 100m Relay
+Gold Medal,Rai BENJAMIN,M,United States,Men's 400m Hurdles
+Silver Medal,Karsten WARHOLM,M,Norway,Men's 400m Hurdles
+Bronze Medal,Alison dos SANTOS,M,Brazil,Men's 400m Hurdles
+Gold Medal,Jordan Alejandro DIAZ FORTUN,M,Spain,Men's Triple Jump
+Silver Medal,Pedro PICHARDO,M,Portugal,Men's Triple Jump
+Bronze Medal,Andy DIAZ HERNANDEZ,M,Italy,Men's Triple Jump
+Gold Medal,Beatrice CHEBET,W,Kenya,"Women's 10,000m"
+Silver Medal,Nadia BATTOCLETTI,W,Italy,"Women's 10,000m"
+Bronze Medal,Sifan HASSAN,W,Netherlands,"Women's 10,000m"
+Gold Medal,United States,W,United States,Women's 4 x 100m Relay
+Silver Medal,Great Britain,W,Great Britain,Women's 4 x 100m Relay
+Bronze Medal,Germany,W,Germany,Women's 4 x 100m Relay
+Gold Medal,Marileidy PAULINO,W,Dominican Republic,Women's 400m
+Silver Medal,Salwa Eid NASER,W,Bahrain,Women's 400m
+Bronze Medal,Natalia KACZMAREK,W,Poland,Women's 400m
+Gold Medal,Yemisi OGUNLEYE,W,Germany,Women's Shot Put
+Silver Medal,Maddison-Lee WESCHE,W,New Zealand,Women's Shot Put
+Bronze Medal,SONG Jiayuan,W,China,Women's Shot Put
+Gold Medal,ANA PATRICIA/DUDA,W,Brazil,Women
+Silver Medal,MELISSA/BRANDIE,W,Canada,Women
+Bronze Medal,HUBERLI/BRUNNER,W,Switzerland,Women
+Gold Medal,Asadkhuja MUYDINKHUJAEV,M,Uzbekistan,Men's 71kg
+Silver Medal,Marco Alonso VERDE ALVAREZ,M,Mexico,Men's 71kg
+Gold Medal,Lazizbek MULLOJONOV,M,Uzbekistan,Men's 92kg
+Silver Medal,Loren Berto ALFONSO DOMINGUEZ,M,Azerbaijan,Men's 92kg
+Gold Medal,WU Yu,W,China,Women's 50kg
+Silver Medal,Buse Naz CAKIROGLU,W,Türkiye,Women's 50kg
+Gold Medal,Imane KHELIF,W,Algeria,Women's 66kg
+Silver Medal,YANG Liu,W,China,Women's 66kg
+Gold Medal,AMI,W,Japan,B-Girls
+Silver Medal,NICKA,W,Lithuania,B-Girls
+Bronze Medal,671,W,China,B-Girls
+Gold Medal,Martin FUKSA,M,Czechia,Men's Canoe Single 1000m
+Silver Medal,Isaquias QUEIROZ,M,Brazil,Men's Canoe Single 1000m
+Bronze Medal,Serghei TARNOVSCHI,M,Republic of Moldova,Men's Canoe Single 1000m
+Gold Medal,SCHOPF/LEMKE,M,Germany,Men's Kayak Double 500m
+Silver Medal,NADAS/TOTKA,M,Hungary,Men's Kayak Double 500m
+Bronze Medal,van der WE/GREEN,M,Australia,Men's Kayak Double 500m
+Gold Medal,XU/SUN,W,China,Women's Canoe Double 500m
+Silver Medal,LUZAN/RYBACHOK,W,Ukraine,Women's Canoe Double 500m
+Bronze Medal,MACKENZIE/VINCENT,W,Canada,Women's Canoe Double 500m
+Gold Medal,CARRINGTON/HOSKIN,W,New Zealand,Women's Kayak Double 500m
+Silver Medal,CSIPES/GAZSO,W,Hungary,Women's Kayak Double 500m
+Bronze Medal,PASZEK/HAKE,W,Germany,Women's Kayak Double 500m
+Bronze Medal,PUPP/FOJT,W,Hungary,Women's Kayak Double 500m
+Gold Medal,Harrie LAVREYSEN,M,Netherlands,Men's Sprint
+Silver Medal,Matthew RICHARDSON,M,Australia,Men's Sprint
+Bronze Medal,Jack CARLIN,M,Great Britain,Men's Sprint
+Gold Medal,Italy,W,Italy,Women's Madison
+Silver Medal,Great Britain,W,Great Britain,Women's Madison
+Bronze Medal,Netherlands,W,Netherlands,Women's Madison
+Gold Medal,CHEN Yiwen,W,China,Women's 3m Springboard
+Silver Medal,Maddison KEENEY,W,Australia,Women's 3m Springboard
+Bronze Medal,CHANG Yani,W,China,Women's 3m Springboard
+Gold Medal,Spain,M,Spain,Men
+Silver Medal,France,M,France,Men
+Bronze Medal,Germany,W,Germany,Women
+Gold Medal,Netherlands,W,Netherlands,Women
+Silver Medal,China,W,China,Women
+Bronze Medal,Argentina,W,Argentina,Women
+Gold Medal,Kristof RASOVSZKY,M,Hungary,Men's 10km
+Silver Medal,Oliver KLEMET,M,Germany,Men's 10km
+Bronze Medal,David BETLEHEM,M,Hungary,Men's 10km
+Gold Medal,Valentin BONTUS,M,Austria,Men's Kite
+Silver Medal,Toni VODISEK,M,Slovenia,Men's Kite
+Bronze Medal,Maximilian MAEDER,M,Singapore,Men's Kite
+Gold Medal,Toby ROBERTS,M,Great Britain,Men's Boulder & Lead
+Silver Medal,ANRAKU Sorato,M,Japan,Men's Boulder & Lead
+Bronze Medal,Jakob SCHUBERT,M,Austria,Men's Boulder & Lead
+Gold Medal,China,M,China,Men's Team
+Silver Medal,Sweden,M,Sweden,Men's Team
+Bronze Medal,France,M,France,Men's Team
+Gold Medal,Firas KATOUSSI,M,Tunisia,Men -80kg
+Silver Medal,Mehran BARKHORDARI,M,IR Iran,Men -80kg
+Bronze Medal,Simone ALESSIO,M,Italy,Men -80kg
+Bronze Medal,Edi HRNIC,M,Denmark,Men -80kg
+Gold Medal,Viviana MARTON,W,Hungary,Women -67kg
+Silver Medal,Aleksandra PERISIC,W,Serbia,Women -67kg
+Bronze Medal,Kristina TEACHOUT,W,United States,Women -67kg
+Bronze Medal,Sarah CHAARI,W,Belgium,Women -67kg
+Bronze Medal,United States,M,United States,Men
+Gold Medal,Karlos May NASAR,M,Bulgaria,Men's 89kg
+Silver Medal,Yeison LOPEZ,M,Colombia,Men's 89kg
+Bronze Medal,Antonino PIZZOLATO,M,Italy,Men's 89kg
+Gold Medal,Olivia REEVES,W,United States,Women's 71kg
+Silver Medal,Mari Leivis SANCHEZ,W,Colombia,Women's 71kg
+Bronze Medal,Angie Paola PALACIOS DAJOMES,W,Ecuador,Women's 71kg
+Gold Medal,HIGUCHI Rei,M,Japan,Men's Freestyle 57kg
+Silver Medal,Spencer Richard LEE,M,United States,Men's Freestyle 57kg
+Bronze Medal,Aman AMAN,M,India,Men's Freestyle 57kg
+Bronze Medal,Gulomjon ABDULLAEV,M,Uzbekistan,Men's Freestyle 57kg
+Gold Medal,Magomed Eldarovitch RAMAZANOV,M,Bulgaria,Men's Freestyle 86kg
+Silver Medal,Hassan YAZDANICHARATI,M,IR Iran,Men's Freestyle 86kg
+Bronze Medal,Aaron Marquel BROOKS,M,United States,Men's Freestyle 86kg
+Bronze Medal,Dauren KURUGLIEV,M,Greece,Men's Freestyle 86kg
+Gold Medal,SAKURAI Tsugumi,W,Japan,Women's Freestyle 57kg
+Silver Medal,Anastasia NICHITA,W,Republic of Moldova,Women's Freestyle 57kg
+Bronze Medal,Helen Louise MAROULIS,W,United States,Women's Freestyle 57kg
+Bronze Medal,HONG Kexin,W,China,Women's Freestyle 57kg
+Gold Medal,China,W,China,Duet
+Silver Medal,Great Britain,W,Great Britain,Duet
+Bronze Medal,Netherlands,W,Netherlands,Duet
+Gold Medal,United States,M,United States,Men's 4 x 400m Relay
+Silver Medal,Botswana,M,Botswana,Men's 4 x 400m Relay
+Bronze Medal,Great Britain,M,Great Britain,Men's 4 x 400m Relay
+Gold Medal,Jakob INGEBRIGTSEN,M,Norway,Men's 5000m
+Silver Medal,Ronald KWEMOI,M,Kenya,Men's 5000m
+Bronze Medal,Grant FISHER,M,United States,Men's 5000m
+Gold Medal,Emmanuel WANYONYI,M,Kenya,Men's 800m
+Silver Medal,Marco AROP,M,Canada,Men's 800m
+Bronze Medal,Djamel SEDJATI,M,Algeria,Men's 800m
+Gold Medal,Hamish KERR,M,New Zealand,Men's High Jump
+Silver Medal,Shelby McEWEN,M,United States,Men's High Jump
+Bronze Medal,Mutaz Essa BARSHIM,M,Qatar,Men's High Jump
+Gold Medal,Tamirat TOLA,M,Ethiopia,Men's Marathon
+Silver Medal,Bashir ABDI,M,Belgium,Men's Marathon
+Bronze Medal,Benson KIPRUTO,M,Kenya,Men's Marathon
+Gold Medal,Masai RUSSELL,W,United States,Women's 100m Hurdles
+Silver Medal,Cyrena SAMBA-MAYELA,W,France,Women's 100m Hurdles
+Bronze Medal,Jasmine CAMACHO-QUINN,W,Puerto Rico,Women's 100m Hurdles
+Gold Medal,Faith KIPYEGON,W,Kenya,Women's 1500m
+Silver Medal,Jessica HULL,W,Australia,Women's 1500m
+Bronze Medal,Georgia BELL,W,Great Britain,Women's 1500m
+Gold Medal,United States,W,United States,Women's 4 x 400m Relay
+Silver Medal,Netherlands,W,Netherlands,Women's 4 x 400m Relay
+Bronze Medal,Great Britain,W,Great Britain,Women's 4 x 400m Relay
+Gold Medal,KITAGUCHI Haruka,W,Japan,Women's Javelin Throw
+Silver Medal,Jo-Ane van DYK,W,South Africa,Women's Javelin Throw
+Bronze Medal,Nikola OGRODNIKOVA,W,Czechia,Women's Javelin Throw
+Gold Medal,United States,M,United States,Men
+Silver Medal,France,M,France,Men
+Bronze Medal,Serbia,M,Serbia,Men
+Gold Medal,AHMAN/HELLVIG,M,Sweden,Men
+Silver Medal,EHLERS/WICKLER,M,Germany,Men
+Bronze Medal,MOL/SORUM,M,Norway,Men
+Gold Medal,Bakhodir JALOLOV,M,Uzbekistan,Men's +92kg
+Silver Medal,Ayoub GHADFA DRISSI EL AISSAOUI,M,Spain,Men's +92kg
+Gold Medal,Abdumalik KHALOKOV,M,Uzbekistan,Men's 57kg
+Silver Medal,Munarbek SEIITBEK UULU,M,Kyrgyzstan,Men's 57kg
+Gold Medal,LIN Yu Ting,W,Chinese Taipei,Women's 57kg
+Silver Medal,Julia SZEREMETA,W,Poland,Women's 57kg
+Gold Medal,LI Qian,W,China,Women's 75kg
+Silver Medal,Atheyna Bibeichi BYLON,W,Panama,Women's 75kg
+Gold Medal,PHIL WIZARD,M,Canada,B-Boys
+Silver Medal,DANY DANN,M,France,B-Boys
+Bronze Medal,VICTOR,M,United States,B-Boys
+Gold Medal,Josef DOSTAL,M,Czechia,Men's Kayak Single 1000m
+Silver Medal,Adam VARGA,M,Hungary,Men's Kayak Single 1000m
+Bronze Medal,Balint KOPASZ,M,Hungary,Men's Kayak Single 1000m
+Gold Medal,Katie VINCENT,W,Canada,Women's Canoe Single 200m
+Silver Medal,Nevin HARRISON,W,United States,Women's Canoe Single 200m
+Bronze Medal,Yarisleidis CIRILO DUBOYS,W,Cuba,Women's Canoe Single 200m
+Gold Medal,Lisa CARRINGTON,W,New Zealand,Women's Kayak Single 500m
+Silver Medal,Tamara CSIPES,W,Hungary,Women's Kayak Single 500m
+Bronze Medal,Emma Aastrand JORGENSEN,W,Denmark,Women's Kayak Single 500m
+Gold Medal,Portugal,M,Portugal,Men's Madison
+Silver Medal,Italy,M,Italy,Men's Madison
+Bronze Medal,Denmark,M,Denmark,Men's Madison
+Gold Medal,CAO Yuan,M,China,Men's 10m Platform
+Silver Medal,TAMAI Rikuto,M,Japan,Men's 10m Platform
+Bronze Medal,Noah WILLIAMS,M,Great Britain,Men's 10m Platform
+Gold Medal,United States,W,United States,Women
+Silver Medal,Brazil,W,Brazil,Women
+Gold Medal,Lydia KO,W,New Zealand,Women's Individual Stroke Play
+Silver Medal,Esther HENSELEIT,W,Germany,Women's Individual Stroke Play
+Bronze Medal,LIN Xiyu Janet,W,China,Women's Individual Stroke Play
+Gold Medal,Norway,W,Norway,Women
+Silver Medal,France,W,France,Women
+Bronze Medal,Denmark,W,Denmark,Women
+Gold Medal,Ahmed ELGENDY,M,Egypt,Men's Individual
+Silver Medal,SATO Taishu,M,Japan,Men's Individual
+Bronze Medal,Giorgio MALAN,M,Italy,Men's Individual
+Gold Medal,Janja GARNBRET,W,Slovenia,Women's Boulder & Lead
+Silver Medal,Brooke RABOUTOU,W,United States,Women's Boulder & Lead
+Bronze Medal,Jessica PILZ,W,Austria,Women's Boulder & Lead
+Gold Medal,China,W,China,Women's Team
+Silver Medal,Japan,W,Japan,Women's Team
+Bronze Medal,Korea,W,Korea,Women's Team
+Gold Medal,Arian SALIMI,M,IR Iran,Men +80kg
+Silver Medal,Caden CUNNINGHAM,M,Great Britain,Men +80kg
+Bronze Medal,Rafael ALBA,M,Cuba,Men +80kg
+Bronze Medal,Cheick Sallah CISSE,M,Côte d'Ivoire,Men +80kg
+Gold Medal,Althea LAURIN,W,France,Women +67kg
+Silver Medal,Svetlana OSIPOVA,W,Uzbekistan,Women +67kg
+Bronze Medal,LEE Dabin,W,Korea,Women +67kg
+Bronze Medal,Nafia KUS AYDIN,W,Türkiye,Women +67kg
+Gold Medal,France,M,France,Men
+Silver Medal,Poland,M,Poland,Men
+Bronze Medal,Brazil,W,Brazil,Women
+Gold Medal,Spain,W,Spain,Women
+Silver Medal,Australia,W,Australia,Women
+Bronze Medal,Netherlands,W,Netherlands,Women
+Gold Medal,Lasha TALAKHADZE,M,Georgia,Men's +102kg
+Silver Medal,Varazdat LALAYAN,M,Armenia,Men's +102kg
+Bronze Medal,Gor MINASYAN,M,Bahrain,Men's +102kg
+Gold Medal,LIU Huanhua,M,China,Men's 102kg
+Silver Medal,Akbar DJURAEV,M,Uzbekistan,Men's 102kg
+Bronze Medal,Yauheni TSIKHANTSOU,M,AIN,Men's 102kg
+Gold Medal,Solfrid Eila Amena KOANDA,W,Norway,Women's 81kg
+Silver Medal,Sara AHMED,W,Egypt,Women's 81kg
+Bronze Medal,Neisi Patricia DAJOMES BARRERA,W,Ecuador,Women's 81kg
+Gold Medal,Geno PETRIASHVILI,M,Georgia,Men's Freestyle 125kg
+Silver Medal,Amir Hossein ZARE,M,IR Iran,Men's Freestyle 125kg
+Bronze Medal,Taha AKGUL,M,Türkiye,Men's Freestyle 125kg
+Bronze Medal,Giorgi MESHVILDISHVILI,M,Azerbaijan,Men's Freestyle 125kg
+Gold Medal,Razambek Salambekovitch JAMALOV,M,Uzbekistan,Men's Freestyle 74kg
+Silver Medal,TAKATANI Daichi,M,Japan,Men's Freestyle 74kg
+Bronze Medal,Kyle Douglas DAKE,M,United States,Men's Freestyle 74kg
+Bronze Medal,Chermen VALIEV,M,Albania,Men's Freestyle 74kg
+Gold Medal,MOTOKI Sakura,W,Japan,Women's Freestyle 62kg
+Silver Medal,Iryna KOLIADENKO,W,Ukraine,Women's Freestyle 62kg
+Bronze Medal,Aisuluu TYNYBEKOVA,W,Kyrgyzstan,Women's Freestyle 62kg
+Bronze Medal,Grace Jacob BULLEN,W,Norway,Women's Freestyle 62kg
+Gold Medal,Sifan HASSAN,W,Netherlands,Women's Marathon
+Silver Medal,Tigst ASSEFA,W,Ethiopia,Women's Marathon
+Bronze Medal,Hellen OBIRI,W,Kenya,Women's Marathon
+Gold Medal,United States,W,United States,Women
+Silver Medal,France,W,France,Women
+Bronze Medal,Australia,W,Australia,Women
+Gold Medal,Harrie LAVREYSEN,M,Netherlands,Men's Keirin
+Silver Medal,Matthew RICHARDSON,M,Australia,Men's Keirin
+Bronze Medal,Matthew GLAETZER,M,Australia,Men's Keirin
+Gold Medal,Jennifer VALENTE,W,United States,Women's Omnium
+Silver Medal,Daria PIKULIK,W,Poland,Women's Omnium
+Bronze Medal,Ally WOLLASTON,W,New Zealand,Women's Omnium
+Gold Medal,Ellesse ANDREWS,W,New Zealand,Women's Sprint
+Silver Medal,Lea FRIEDRICH,W,Germany,Women's Sprint
+Bronze Medal,Emma FINUCANE,W,Great Britain,Women's Sprint
+Gold Medal,Denmark,M,Denmark,Men
+Silver Medal,Germany,M,Germany,Men
+Bronze Medal,Spain,M,Spain,Men
+Gold Medal,Michelle GULYAS,W,Hungary,Women's Individual
+Silver Medal,Elodie CLOUVEL,W,France,Women's Individual
+Bronze Medal,SEONG Seungmin,W,Korea,Women's Individual
+Gold Medal,Italy,W,Italy,Women
+Silver Medal,United States,W,United States,Women
+Gold Medal,Serbia,M,Serbia,Men
+Silver Medal,Croatia,M,Croatia,Men
+Bronze Medal,United States,M,United States,Men
+Gold Medal,LI Wenwen,W,China,Women's +81kg
+Silver Medal,PARK Hyejeong,W,Korea,Women's +81kg
+Bronze Medal,Emily CAMPBELL,W,Great Britain,Women's +81kg
+Gold Medal,KIYOOKA Kotaro,M,Japan,Men's Freestyle 65kg
+Silver Medal,Rahman AMOUZADKHALILI,M,IR Iran,Men's Freestyle 65kg
+Bronze Medal,Sebastian C RIVERA,M,Puerto Rico,Men's Freestyle 65kg
+Bronze Medal,Islam DUDAEV,M,Albania,Men's Freestyle 65kg
+Gold Medal,Akhmed TAZHUDINOV,M,Bahrain,Men's Freestyle 97kg
+Silver Medal,Givi MATCHARASHVILI,M,Georgia,Men's Freestyle 97kg
+Bronze Medal,Magomedkhan MAGOMEDOV,M,Azerbaijan,Men's Freestyle 97kg
+Bronze Medal,Amirali AZARPIRA,M,IR Iran,Men's Freestyle 97kg
+Gold Medal,KAGAMI Yuka,W,Japan,Women's Freestyle 76kg
+Silver Medal,Kennedy Alexis BLADES,W,United States,Women's Freestyle 76kg
+Bronze Medal,Milaimy de la Carid. MARIN POTRILLE,W,Cuba,Women's Freestyle 76kg
+Bronze Medal,Tatiana RENTERIA RENTERIA,W,Colombia,Women's Freestyle 76kg
+Gold Medal,People's Republic of China,W,China,Group All-Around
+Silver Medal,Israel,W,Israel,Group All-Around
+Bronze Medal,Italy,W,Italy,Group All-Around
+Gold Medal,VARFOLOMEEV Darja,W,Germany,Individual All-Around
+Silver Medal,KALEYN Boryana,W,Bulgaria,Individual All-Around
+Bronze Medal,RAFFAELI Sofia,W,Italy,Individual All-Around
+Gold Medal,THIAM Nafissatou,W,Belgium,Women's Heptathlon
+Silver Medal,JOHNSON-THOMPSON Katarina,W,Great Britain,Women's Heptathlon
+Bronze Medal,VIDTS Noor,W,Belgium,Women's Heptathlon
