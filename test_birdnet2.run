@@ -1,0 +1,19 @@
+#!/bin/bash
+#SBATCH --job-name=birdnet_analysis               # What to show in squeue
+#SBATCH --mail-type=END,FAIL            # When to send mail (NONE, BEGIN, END, FAIL, ALL)
+#SBATCH --mail-user=mhigham@stlawu.edu  # Where to send mail
+#SBATCH --mem=32gb                      # How much memory to request
+#SBATCH --output=log%j.txt              # Where to save the output
+#SBATCH -n 1                            # Allocate 1 node
+
+echo -n "STARTED JOB AT: "
+date
+echo ""
+
+module load python/anaconda3
+module load cuda
+python analyze_single_folder.py
+
+echo -n "FINISHED JOB AT: "
+date
+echo ""
