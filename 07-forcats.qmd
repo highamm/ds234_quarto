@@ -346,9 +346,9 @@ __Your Turn 6__. Which is more strongly associated with a team's win percentage:
 ```{r}
 #| echo: false
 #| output: false
-ggplot(data = standings_df, aes(x = offensive_ranking, y = wins)) +
+ggplot(data = standings_df, aes(x = offensive_ranking, y = wins / (wins + loss))) +
   geom_point()
-ggplot(data = standings_df, aes(x = defensive_ranking, y = wins)) +
+ggplot(data = standings_df, aes(x = defensive_ranking, y = wins / (wins + loss))) +
   geom_point()
 cor(standings_df$offensive_ranking, standings_df$wins)
 cor(standings_df$defensive_ranking, standings_df$wins)
