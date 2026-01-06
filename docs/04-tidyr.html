@@ -60,7 +60,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./06-basics.html" rel="next">
+<link href="./07-forcats.html" rel="next">
 <link href="./14-workflow.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
@@ -197,14 +197,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./06-basics.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Coding in Base <code>R</code></span></span></a>
+  <a href="./07-forcats.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Factors with <code>forcats</code></span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./07-forcats.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Factors with <code>forcats</code></span></span></a>
+  <a href="./06-basics.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Coding in Base <code>R</code></span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -215,14 +215,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./08-import.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Data Import</span></span></a>
+  <a href="./10-merging.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Merging with <code>dplyr</code></span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./10-merging.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Merging with <code>dplyr</code></span></span></a>
+  <a href="./08-import.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Data Import</span></span></a>
   </div>
 </li>
       </ul>
@@ -238,8 +238,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">
 <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./11-lubridate.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Dates with <code>lubridate</code></span></span></a>
+  <a href="./13-knn.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Predictive Modeling with knn</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -250,8 +250,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./13-knn.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Predictive Modeling with knn</span></span></a>
+  <a href="./11-lubridate.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Dates with <code>lubridate</code></span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -742,8 +742,8 @@ Hint (only if you get stuck)
 <p>The <code>under5mortality.csv</code> file contains data on mortality for people under the age of 5 in countries around the world (mortality in deaths per 1000 people). The data come from <a href="https://www.gapminder.org/data/" class="uri">https://www.gapminder.org/data/</a>. The data set is <strong>extremely</strong> wide in its current form, having a column for each year in the data set. Read in the data set with</p>
 <div class="cell">
 <div class="sourceCode" id="cb21"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">mortality_df</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv</a></span><span class="op">(</span><span class="fu"><a href="https://here.r-lib.org/reference/here.html">here</a></span><span class="op">(</span><span class="st">"data/under5mortality.csv"</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">mortality_df</span><span class="op">)</span></span>
-<span><span class="co">#&gt; # A tibble: 6 × 217</span></span>
+<span><span class="va">mortality_df</span></span>
+<span><span class="co">#&gt; # A tibble: 275 × 217</span></span>
 <span><span class="co">#&gt;   `Under five mortality` `1800` `1801` `1802` `1803` `1804` `1805` `1806`</span></span>
 <span><span class="co">#&gt;   &lt;chr&gt;                   &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;</span></span>
 <span><span class="co">#&gt; 1 Abkhazia                  NA     NA     NA     NA     NA     NA     NA </span></span>
@@ -752,13 +752,13 @@ Hint (only if you get stuck)
 <span><span class="co">#&gt; 4 Albania                  375.   375.   375.   375.   375.   375.   375.</span></span>
 <span><span class="co">#&gt; 5 Algeria                  460.   460.   460.   460.   460.   460.   460.</span></span>
 <span><span class="co">#&gt; 6 American Samoa            NA     NA     NA     NA     NA     NA     NA </span></span>
+<span><span class="co">#&gt; # ℹ 269 more rows</span></span>
 <span><span class="co">#&gt; # ℹ 209 more variables: `1807` &lt;dbl&gt;, `1808` &lt;dbl&gt;, `1809` &lt;dbl&gt;,</span></span>
 <span><span class="co">#&gt; #   `1810` &lt;dbl&gt;, `1811` &lt;dbl&gt;, `1812` &lt;dbl&gt;, `1813` &lt;dbl&gt;, `1814` &lt;dbl&gt;,</span></span>
 <span><span class="co">#&gt; #   `1815` &lt;dbl&gt;, `1816` &lt;dbl&gt;, `1817` &lt;dbl&gt;, `1818` &lt;dbl&gt;, `1819` &lt;dbl&gt;,</span></span>
 <span><span class="co">#&gt; #   `1820` &lt;dbl&gt;, `1821` &lt;dbl&gt;, `1822` &lt;dbl&gt;, `1823` &lt;dbl&gt;, `1824` &lt;dbl&gt;,</span></span>
 <span><span class="co">#&gt; #   `1825` &lt;dbl&gt;, `1826` &lt;dbl&gt;, `1827` &lt;dbl&gt;, `1828` &lt;dbl&gt;, `1829` &lt;dbl&gt;,</span></span>
-<span><span class="co">#&gt; #   `1830` &lt;dbl&gt;, `1831` &lt;dbl&gt;, `1832` &lt;dbl&gt;, `1833` &lt;dbl&gt;, `1834` &lt;dbl&gt;,</span></span>
-<span><span class="co">#&gt; #   `1835` &lt;dbl&gt;, `1836` &lt;dbl&gt;, `1837` &lt;dbl&gt;, `1838` &lt;dbl&gt;, `1839` &lt;dbl&gt;, …</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="co">#&gt; #   `1830` &lt;dbl&gt;, `1831` &lt;dbl&gt;, `1832` &lt;dbl&gt;, `1833` &lt;dbl&gt;, `1834` &lt;dbl&gt;, …</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p><strong>Class Exercise 5</strong>. Notice that there are 217 columns (at the top of the print out of the header, 217 is the second number). When we use <code>tidyr</code>, we aren’t going to want to type out <code>c(2, 3, 4, 5, .....)</code> all the way up to <code>217</code>! <code>R</code> has short-hand notation that we can use with <code>:</code>. For example, type in <code>4:9</code> in your console window. Use this notation to tidy the <code>mortality_df</code> data set.</p>
 <div class="callout callout-style-simple callout-note callout-titled">
@@ -784,16 +784,16 @@ Note
 <div class="sourceCode" id="cb22"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://here.r-lib.org/">here</a></span><span class="op">)</span></span>
 <span><span class="va">baseball_df</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv</a></span><span class="op">(</span><span class="fu"><a href="https://here.r-lib.org/reference/here.html">here</a></span><span class="op">(</span><span class="st">"data/mlb2016.csv"</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">baseball_df</span><span class="op">)</span></span>
-<span><span class="co">#&gt; # A tibble: 6 × 7</span></span>
-<span><span class="co">#&gt;   Name             Team  POS   Salary       Years      Total.Value Avg.Annual</span></span>
-<span><span class="co">#&gt;   &lt;chr&gt;            &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;        &lt;chr&gt;      &lt;chr&gt;       &lt;chr&gt;     </span></span>
-<span><span class="co">#&gt; 1 Clayton Kershaw  LAD   SP    $ 33,000,000 7 (2014-2… $ 215,000,… $ 30,714,…</span></span>
-<span><span class="co">#&gt; 2 Zack Greinke     ARI   SP    $ 31,799,030 6 (2016-2… $ 206,500,… $ 34,416,…</span></span>
-<span><span class="co">#&gt; 3 David Price      BOS   SP    $ 30,000,000 7 (2016-2… $ 217,000,… $ 31,000,…</span></span>
-<span><span class="co">#&gt; 4 Miguel Cabrera   DET   1B    $ 28,000,000 10 (2014-… $ 292,000,… $ 29,200,…</span></span>
-<span><span class="co">#&gt; 5 Justin Verlander DET   SP    $ 28,000,000 7 (2013-1… $ 180,000,… $ 25,714,…</span></span>
-<span><span class="co">#&gt; 6 Yoenis Cespedes  NYM   CF    $ 27,328,046 3 (2016-1… $ 75,000,0… $ 25,000,…</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html">glimpse</a></span><span class="op">(</span><span class="va">baseball_df</span><span class="op">)</span></span>
+<span><span class="co">#&gt; Rows: 862</span></span>
+<span><span class="co">#&gt; Columns: 7</span></span>
+<span><span class="co">#&gt; $ Name        &lt;chr&gt; "Clayton Kershaw", "Zack Greinke", "David Price", "Migu…</span></span>
+<span><span class="co">#&gt; $ Team        &lt;chr&gt; "LAD", "ARI", "BOS", "DET", "DET", "NYM", "SEA", "LAA",…</span></span>
+<span><span class="co">#&gt; $ POS         &lt;chr&gt; "SP", "SP", "SP", "1B", "SP", "CF", "SP", "1B", "SP", "…</span></span>
+<span><span class="co">#&gt; $ Salary      &lt;chr&gt; "$ 33,000,000", "$ 31,799,030", "$ 30,000,000", "$ 28,0…</span></span>
+<span><span class="co">#&gt; $ Years       &lt;chr&gt; "7 (2014-20)", "6 (2016-21)", "7 (2016-22)", "10 (2014-…</span></span>
+<span><span class="co">#&gt; $ Total.Value &lt;chr&gt; "$ 215,000,000", "$ 206,500,000", "$ 217,000,000", "$ 2…</span></span>
+<span><span class="co">#&gt; $ Avg.Annual  &lt;chr&gt; "$ 30,714,286", "$ 34,416,666", "$ 31,000,000", "$ 29,2…</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p><strong>Your Turn 2</strong>. Tidy the data set just so that</p>
 <ul>
@@ -1258,8 +1258,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./06-basics.html" class="pagination-link" aria-label="Coding in Base `R`">
-        <span class="nav-page-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Coding in Base <code>R</code></span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./07-forcats.html" class="pagination-link" aria-label="Factors with `forcats`">
+        <span class="nav-page-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Factors with <code>forcats</code></span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

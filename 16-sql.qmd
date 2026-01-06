@@ -272,7 +272,7 @@ __Exercise 4__. Examine the `SQL` code below and write equivalent `dbplyr` code 
 
 ```{r, eval = FALSE}
 SELECT * 
-FROM "show_info_tbl"
+FROM "show_info"
 WHERE ("Show_name" = 'Ozark')
 ```
 
@@ -284,7 +284,7 @@ __Class Exercise 1__. Examine the `SQL` code below and write equivalent `dbplyr`
 
 ```{r, eval = FALSE}
 SELECT "startYear", "parentTconst", "Show_Name" AS "show_name"
-FROM "show_info_tbl"
+FROM "show_info"
 ORDER BY "startYear" DESC
 ```
 
@@ -295,7 +295,7 @@ __Your Turn 1__. Examine the `SQL` code below and write equivalent `dbplyr` code
 ```{r, eval = FALSE}
 <SQL>
 SELECT "parentTconst", MAX("averageRating") AS "best_episode"
-FROM "episode_rating_tbl"
+FROM "episode_rating"
 GROUP BY "parentTconst"
 ```
 
@@ -329,7 +329,7 @@ __Your Turn 4__. Examine the following `SQL` code and write equivalent `dbplyr` 
 #| eval: false
 <SQL>
 SELECT "parentTconst", COUNT(*) AS "n_episodes"
-FROM "episode_rating_tbl"
+FROM "episode_rating"
 WHERE ("seasonNumber" = '1')
 GROUP BY "parentTconst"
 ORDER BY "n_episodes" DESC

@@ -337,7 +337,7 @@ The `under5mortality.csv` file contains data on mortality for people under the a
 
 ```{r, message = FALSE}
 mortality_df <- read_csv(here("data/under5mortality.csv"))
-head(mortality_df)
+mortality_df
 ```
 
 __Class Exercise 5__. Notice that there are 217 columns (at the top of the print out of the header, 217 is the second number). When we use `tidyr`, we aren't going to want to type out `c(2, 3, 4, 5, .....)` all the way up to `217`! `R` has short-hand notation that we can use with `:`. For example, type in `4:9` in your console window. Use this notation to tidy the `mortality_df` data set.
@@ -379,7 +379,7 @@ __Your Turn 1__. Read in the data using the following code chunk and, with your 
 library(tidyverse)
 library(here)
 baseball_df <- read_csv(here("data/mlb2016.csv"))
-head(baseball_df)
+glimpse(baseball_df)
 ```
 
 __Your Turn 2__. Tidy the data set just so that 

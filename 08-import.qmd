@@ -19,13 +19,13 @@ Up to now, we have mostly worked with data that was "`R` Ready": meaning that it
 
 ### `read_csv()` Options
 
-The `mtcarsex.csv` has observations on different car models with variables that include things like gas mileage, number of cylinders, etc. Read in the `mtcarsex.csv` data set with the following code. Then, examine the data set with `head()`.
+The `mtcarsex.csv` has observations on different car models with variables that include things like gas mileage, number of cylinders, etc. Read in the `mtcarsex.csv` data set with the following code. Then, examine the data set.
 
 ```{r, message = FALSE, warning = FALSE, appendix = TRUE}
 library(tidyverse)
 library(here)
 cars_df <- read_csv(here("data/mtcarsex.csv"))
-head(cars_df)
+cars_df
 ```
 
 What do you notice about the data set that seems odd? Open the .csv file with Excel or some other program to examine the data set outside of `R`.
@@ -46,7 +46,7 @@ Go to the help and read about the `na` argument. Let's add that as an option to 
 
 ```{r, message = FALSE, warning = FALSE, appendix = TRUE}
 cars_df <- read_csv(here("data/mtcarsex.csv"), na = c("NA", "-999"), skip = 2)
-head(cars_df)
+cars_df
 ```
 
 Now look at the classes of each variable. Which classes look like they are incorrect?
@@ -95,14 +95,15 @@ cars_df <- read_csv(here("data/mtcarsex.csv"), na = c("NA", "-999"), skip = 2,
   carb = col_double()
 )) |>
   slice(-(1:2))
-head(cars_df)
+
+cars_df
 ```
 
 There are __many__ other possible file formats for data storage. For example, there is a data set called `oscars.tsv`, which is a tab-separated file. You can read it in with `read_tsv()` instead of `read_csv()`. 
 
 ```{r, message = FALSE, appendix = TRUE}
 oscars_df <- read_tsv(here("data/oscars.tsv"))
-head(oscars_df)
+oscars_df
 ```
 
 ::: {.callout-note}
@@ -115,7 +116,7 @@ The final issue that we will discuss in this section occurs when a data set has 
 
 ```{r, message = FALSE, appendix = TRUE}
 test_df <- read_csv(here("data/parsedf.csv"))
-head(test_df)
+test_df
 ```
 
 The `parse_number()` function is really useful if we just want the number (no commas, no units, etc.). The function is often paired with `mutate()` since we are creating a new variable:
@@ -263,7 +264,7 @@ Start with the following code chunk and use the options of `read_delim()` to rea
 ```{r, results = "hide", warning = FALSE, message = FALSE}
 library(tidyverse)
 df <- read_delim(here("data/birthdays.txt"), delim = " - ")
-head(df)
+df
 ```
 
 ```{r, results = "hide", message = FALSE, warning = FALSE, echo = FALSE}

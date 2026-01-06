@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="generator" content="quarto-1.4.555">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-<title>DATA / STAT 234 - 10&nbsp; Data Import</title>
+<title>DATA / STAT 234 - 11&nbsp; Data Import</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -60,8 +60,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./10-merging.html" rel="next">
-<link href="./09-ethics.html" rel="prev">
+<link href="./13-knn.html" rel="next">
+<link href="./10-merging.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -105,7 +105,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./04-tidyr.html">Data Wrangling</a></li><li class="breadcrumb-item"><a href="./08-import.html"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Data Import</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./04-tidyr.html">Data Wrangling</a></li><li class="breadcrumb-item"><a href="./08-import.html"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Data Import</span></a></li></ol></nav>
         <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
@@ -197,14 +197,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./06-basics.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Coding in Base <code>R</code></span></span></a>
+  <a href="./07-forcats.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Factors with <code>forcats</code></span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./07-forcats.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Factors with <code>forcats</code></span></span></a>
+  <a href="./06-basics.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Coding in Base <code>R</code></span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -215,14 +215,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./08-import.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Data Import</span></span></a>
+  <a href="./10-merging.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Merging with <code>dplyr</code></span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./10-merging.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Merging with <code>dplyr</code></span></span></a>
+  <a href="./08-import.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Data Import</span></span></a>
   </div>
 </li>
       </ul>
@@ -238,8 +238,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">
 <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./11-lubridate.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Dates with <code>lubridate</code></span></span></a>
+  <a href="./13-knn.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Predictive Modeling with knn</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -250,8 +250,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./13-knn.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Predictive Modeling with knn</span></span></a>
+  <a href="./11-lubridate.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Dates with <code>lubridate</code></span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -277,31 +277,31 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
    
   <ul>
 <li>
-<a href="#readr-to-read-in-data" id="toc-readr-to-read-in-data" class="nav-link active" data-scroll-target="#readr-to-read-in-data"><span class="header-section-number">10.1</span> <code>readr</code> to Read in Data</a>
+<a href="#readr-to-read-in-data" id="toc-readr-to-read-in-data" class="nav-link active" data-scroll-target="#readr-to-read-in-data"><span class="header-section-number">11.1</span> <code>readr</code> to Read in Data</a>
   <ul class="collapse">
-<li><a href="#read_csv-options" id="toc-read_csv-options" class="nav-link" data-scroll-target="#read_csv-options"><span class="header-section-number">10.1.1</span> <code>read_csv()</code> Options</a></li>
+<li><a href="#read_csv-options" id="toc-read_csv-options" class="nav-link" data-scroll-target="#read_csv-options"><span class="header-section-number">11.1.1</span> <code>read_csv()</code> Options</a></li>
   </ul>
 </li>
-  <li><a href="#data-scraping-with-rvest" id="toc-data-scraping-with-rvest" class="nav-link" data-scroll-target="#data-scraping-with-rvest"><span class="header-section-number">10.2</span> Data Scraping with <code>rvest</code></a></li>
+  <li><a href="#data-scraping-with-rvest" id="toc-data-scraping-with-rvest" class="nav-link" data-scroll-target="#data-scraping-with-rvest"><span class="header-section-number">11.2</span> Data Scraping with <code>rvest</code></a></li>
   <li>
-<a href="#json-files-with-jsonlite" id="toc-json-files-with-jsonlite" class="nav-link" data-scroll-target="#json-files-with-jsonlite"><span class="header-section-number">10.3</span> JSON Files with <code>jsonlite</code></a>
+<a href="#json-files-with-jsonlite" id="toc-json-files-with-jsonlite" class="nav-link" data-scroll-target="#json-files-with-jsonlite"><span class="header-section-number">11.3</span> JSON Files with <code>jsonlite</code></a>
   <ul class="collapse">
-<li><a href="#everything-working-well" id="toc-everything-working-well" class="nav-link" data-scroll-target="#everything-working-well"><span class="header-section-number">10.3.1</span> Everything Working Well</a></li>
-  <li><a href="#things-arent-always-so-easy" id="toc-things-arent-always-so-easy" class="nav-link" data-scroll-target="#things-arent-always-so-easy"><span class="header-section-number">10.3.2</span> Things Aren’t Always So Easy</a></li>
+<li><a href="#everything-working-well" id="toc-everything-working-well" class="nav-link" data-scroll-target="#everything-working-well"><span class="header-section-number">11.3.1</span> Everything Working Well</a></li>
+  <li><a href="#things-arent-always-so-easy" id="toc-things-arent-always-so-easy" class="nav-link" data-scroll-target="#things-arent-always-so-easy"><span class="header-section-number">11.3.2</span> Things Aren’t Always So Easy</a></li>
   </ul>
 </li>
   <li>
-<a href="#practice" id="toc-practice" class="nav-link" data-scroll-target="#practice"><span class="header-section-number">10.4</span> Practice</a>
+<a href="#practice" id="toc-practice" class="nav-link" data-scroll-target="#practice"><span class="header-section-number">11.4</span> Practice</a>
   <ul class="collapse">
-<li><a href="#class-exercises" id="toc-class-exercises" class="nav-link" data-scroll-target="#class-exercises"><span class="header-section-number">10.4.1</span> Class Exercises</a></li>
-  <li><a href="#your-turn" id="toc-your-turn" class="nav-link" data-scroll-target="#your-turn"><span class="header-section-number">10.4.2</span> Your Turn</a></li>
+<li><a href="#class-exercises" id="toc-class-exercises" class="nav-link" data-scroll-target="#class-exercises"><span class="header-section-number">11.4.1</span> Class Exercises</a></li>
+  <li><a href="#your-turn" id="toc-your-turn" class="nav-link" data-scroll-target="#your-turn"><span class="header-section-number">11.4.2</span> Your Turn</a></li>
   </ul>
 </li>
   </ul></nav>
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./04-tidyr.html">Data Wrangling</a></li><li class="breadcrumb-item"><a href="./08-import.html"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Data Import</span></a></li></ol></nav><div class="quarto-title">
-<h1 class="title"><span id="import" class="quarto-section-identifier"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Data Import</span></span></h1>
+<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./04-tidyr.html">Data Wrangling</a></li><li class="breadcrumb-item"><a href="./08-import.html"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Data Import</span></a></li></ol></nav><div class="quarto-title">
+<h1 class="title"><span id="import" class="quarto-section-identifier"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Data Import</span></span></h1>
 </div>
 
 
@@ -321,18 +321,18 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><p>Use <code>rvest</code> to scrape data from public websites.</p></li>
 <li><p>Use <code>jsonlite</code> to read in data in JSON (Java Script Object Notation) files.</p></li>
 </ul>
-<section id="readr-to-read-in-data" class="level2" data-number="10.1"><h2 data-number="10.1" class="anchored" data-anchor-id="readr-to-read-in-data">
-<span class="header-section-number">10.1</span> <code>readr</code> to Read in Data</h2>
+<section id="readr-to-read-in-data" class="level2" data-number="11.1"><h2 data-number="11.1" class="anchored" data-anchor-id="readr-to-read-in-data">
+<span class="header-section-number">11.1</span> <code>readr</code> to Read in Data</h2>
 <p>Up to now, we have mostly worked with data that was “<code>R</code> Ready”: meaning that it was in a nice .csv file that could be read into <code>R</code> easily with <code><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv()</a></code> from the <code>readr</code> package. We will begin by looking at some options in the <code><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv()</a></code> function and then move into formats other than .csv that data are commonly stored in.</p>
-<section id="read_csv-options" class="level3" data-number="10.1.1"><h3 data-number="10.1.1" class="anchored" data-anchor-id="read_csv-options">
-<span class="header-section-number">10.1.1</span> <code>read_csv()</code> Options</h3>
-<p>The <code>mtcarsex.csv</code> has observations on different car models with variables that include things like gas mileage, number of cylinders, etc. Read in the <code>mtcarsex.csv</code> data set with the following code. Then, examine the data set with <code><a href="https://rdrr.io/r/utils/head.html">head()</a></code>.</p>
+<section id="read_csv-options" class="level3" data-number="11.1.1"><h3 data-number="11.1.1" class="anchored" data-anchor-id="read_csv-options">
+<span class="header-section-number">11.1.1</span> <code>read_csv()</code> Options</h3>
+<p>The <code>mtcarsex.csv</code> has observations on different car models with variables that include things like gas mileage, number of cylinders, etc. Read in the <code>mtcarsex.csv</code> data set with the following code. Then, examine the data set.</p>
 <div class="cell" data-appendix="true">
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://here.r-lib.org/">here</a></span><span class="op">)</span></span>
 <span><span class="va">cars_df</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv</a></span><span class="op">(</span><span class="fu"><a href="https://here.r-lib.org/reference/here.html">here</a></span><span class="op">(</span><span class="st">"data/mtcarsex.csv"</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">cars_df</span><span class="op">)</span></span>
-<span><span class="co">#&gt; # A tibble: 6 × 11</span></span>
+<span><span class="va">cars_df</span></span>
+<span><span class="co">#&gt; # A tibble: 36 × 11</span></span>
 <span><span class="co">#&gt;   This is a data set about …¹ ...2  ...3  ...4  ...5  ...6  ...7  ...8  ...9 </span></span>
 <span><span class="co">#&gt;   &lt;chr&gt;                       &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;</span></span>
 <span><span class="co">#&gt; 1 "I'm a na\x95ve data input… &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt; </span></span>
@@ -341,6 +341,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span><span class="co">#&gt; 4  &lt;NA&gt;                       &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt; </span></span>
 <span><span class="co">#&gt; 5 "-999"                      6     160   110   3.9   2.62  16.46 0     1    </span></span>
 <span><span class="co">#&gt; 6 "21"                        6     160   110   3.9   2.875 17.02 0     1    </span></span>
+<span><span class="co">#&gt; # ℹ 30 more rows</span></span>
 <span><span class="co">#&gt; # ℹ abbreviated name: ¹​`This is a data set about cars.`</span></span>
 <span><span class="co">#&gt; # ℹ 2 more variables: ...10 &lt;chr&gt;, ...11 &lt;chr&gt;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
@@ -366,8 +367,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Go to the help and read about the <code>na</code> argument. Let’s add that as an option to fix the missing value issue.</p>
 <div class="cell" data-appendix="true">
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">cars_df</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv</a></span><span class="op">(</span><span class="fu"><a href="https://here.r-lib.org/reference/here.html">here</a></span><span class="op">(</span><span class="st">"data/mtcarsex.csv"</span><span class="op">)</span>, na <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"NA"</span>, <span class="st">"-999"</span><span class="op">)</span>, skip <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">cars_df</span><span class="op">)</span></span>
-<span><span class="co">#&gt; # A tibble: 6 × 11</span></span>
+<span><span class="va">cars_df</span></span>
+<span><span class="co">#&gt; # A tibble: 34 × 11</span></span>
 <span><span class="co">#&gt;     mpg   cyl  disp    hp  drat    wt  qsec    vs    am  gear  carb</span></span>
 <span><span class="co">#&gt;   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;</span></span>
 <span><span class="co">#&gt; 1  NA      NA    NA    NA NA    NA     NA      NA    NA    NA    NA</span></span>
@@ -375,7 +376,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span><span class="co">#&gt; 3  NA       6   160   110  3.9   2.62  16.5     0     1     4     4</span></span>
 <span><span class="co">#&gt; 4  21       6   160   110  3.9   2.88  17.0     0     1     4     4</span></span>
 <span><span class="co">#&gt; 5  22.8     4   108    93  3.85  2.32  18.6     1     1     4     1</span></span>
-<span><span class="co">#&gt; 6  21.4     6   258   110  3.08  3.22  19.4     1     0     3     1</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="co">#&gt; 6  21.4     6   258   110  3.08  3.22  19.4     1     0     3     1</span></span>
+<span><span class="co">#&gt; # ℹ 28 more rows</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Now look at the classes of each variable. Which classes look like they are incorrect?</p>
 <p>We’ve talked about how to re-specify classes of variables using <code><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate()</a></code> and the <code><a href="https://rdrr.io/r/base/factor.html">as.factor()</a></code> or <code><a href="https://rdrr.io/r/base/as.Date.html">as.Date()</a></code> or <code><a href="https://rdrr.io/r/base/numeric.html">as.numeric()</a></code> functions, but sometimes it’s easier just to respecify the class when we are reading in the data. Notice how, when we use <code><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv()</a></code>, <code>R</code> gives us a message about each of the column types. This is actually an argument in <code><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv()</a></code> called <code>col_types</code>. We can add a <code>|&gt; spec()</code> piping statement after a <code><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv()</a></code> statement to tell <code>R</code> to print the <code>col_types</code> so that it’s easy for us to copy and paste it into <code><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv()</a></code> and change any classes.</p>
@@ -430,8 +432,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span>  carb <span class="op">=</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/parse_atomic.html">col_double</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/slice.html">slice</a></span><span class="op">(</span><span class="op">-</span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">2</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">cars_df</span><span class="op">)</span></span>
-<span><span class="co">#&gt; # A tibble: 6 × 11</span></span>
+<span></span>
+<span><span class="va">cars_df</span></span>
+<span><span class="co">#&gt; # A tibble: 32 × 11</span></span>
 <span><span class="co">#&gt;     mpg cyl    disp    hp  drat    wt  qsec vs       am  gear  carb</span></span>
 <span><span class="co">#&gt;   &lt;dbl&gt; &lt;fct&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;fct&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;</span></span>
 <span><span class="co">#&gt; 1  NA   6       160   110  3.9   2.62  16.5 0         1     4     4</span></span>
@@ -439,13 +442,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span><span class="co">#&gt; 3  22.8 4       108    93  3.85  2.32  18.6 1         1     4     1</span></span>
 <span><span class="co">#&gt; 4  21.4 6       258   110  3.08  3.22  19.4 1         0     3     1</span></span>
 <span><span class="co">#&gt; 5  NA   8       360   175  3.15  3.44  17.0 0         0     3     2</span></span>
-<span><span class="co">#&gt; 6  18.1 6       225   105  2.76  3.46  20.2 1         0     3     1</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="co">#&gt; 6  18.1 6       225   105  2.76  3.46  20.2 1         0     3     1</span></span>
+<span><span class="co">#&gt; # ℹ 26 more rows</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>There are <strong>many</strong> other possible file formats for data storage. For example, there is a data set called <code>oscars.tsv</code>, which is a tab-separated file. You can read it in with <code><a href="https://readr.tidyverse.org/reference/read_delim.html">read_tsv()</a></code> instead of <code><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv()</a></code>.</p>
 <div class="cell" data-appendix="true">
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">oscars_df</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html">read_tsv</a></span><span class="op">(</span><span class="fu"><a href="https://here.r-lib.org/reference/here.html">here</a></span><span class="op">(</span><span class="st">"data/oscars.tsv"</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">oscars_df</span><span class="op">)</span></span>
-<span><span class="co">#&gt; # A tibble: 6 × 51</span></span>
+<span><span class="va">oscars_df</span></span>
+<span><span class="co">#&gt; # A tibble: 134 × 51</span></span>
 <span><span class="co">#&gt;   FilmName  OscarYear Duration Rating DirectorName DirectorGender OscarWinner</span></span>
 <span><span class="co">#&gt;   &lt;chr&gt;         &lt;dbl&gt;    &lt;dbl&gt;  &lt;dbl&gt; &lt;chr&gt;                 &lt;dbl&gt;       &lt;dbl&gt;</span></span>
 <span><span class="co">#&gt; 1 Crash          2006      113      4 Haggis                    0           1</span></span>
@@ -454,13 +458,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span><span class="co">#&gt; 4 Good Nig…      2006       93      2 Clooney                   0           0</span></span>
 <span><span class="co">#&gt; 5 Munich         2006      164      4 Spielberg                 0           0</span></span>
 <span><span class="co">#&gt; 6 The Depa…      2007      151      4 Scorsese                  0           1</span></span>
+<span><span class="co">#&gt; # ℹ 128 more rows</span></span>
 <span><span class="co">#&gt; # ℹ 44 more variables: GenreName &lt;chr&gt;, Genre_Drama &lt;dbl&gt;, Genre_Bio &lt;dbl&gt;,</span></span>
 <span><span class="co">#&gt; #   CountryName &lt;chr&gt;, ForeignandUSA &lt;dbl&gt;, ProductionName &lt;chr&gt;,</span></span>
 <span><span class="co">#&gt; #   ProductionCompany &lt;dbl&gt;, BudgetRevised &lt;chr&gt;, Budget &lt;chr&gt;,</span></span>
 <span><span class="co">#&gt; #   DomesticBoxOffice &lt;dbl&gt;, WorldwideRevised &lt;dbl&gt;,</span></span>
 <span><span class="co">#&gt; #   WorldwideBoxOffice &lt;dbl&gt;, DomesticPercent &lt;dbl&gt;,</span></span>
-<span><span class="co">#&gt; #   LimitedOpeningWnd &lt;dbl&gt;, LimitedTheaters &lt;dbl&gt;,</span></span>
-<span><span class="co">#&gt; #   LimitedAveragePThtr &lt;dbl&gt;, WideOpeningWkd &lt;dbl&gt;, WideTheaters &lt;dbl&gt;, …</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="co">#&gt; #   LimitedOpeningWnd &lt;dbl&gt;, LimitedTheaters &lt;dbl&gt;, …</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="callout callout-style-simple callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
@@ -478,7 +482,7 @@ Note
 <p>The final issue that we will discuss in this section occurs when a data set has units within its cells. Consider the earlier example that we used in the reprex section:</p>
 <div class="cell" data-appendix="true">
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">test_df</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv</a></span><span class="op">(</span><span class="fu"><a href="https://here.r-lib.org/reference/here.html">here</a></span><span class="op">(</span><span class="st">"data/parsedf.csv"</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">test_df</span><span class="op">)</span></span>
+<span><span class="va">test_df</span></span>
 <span><span class="co">#&gt; # A tibble: 3 × 2</span></span>
 <span><span class="co">#&gt;   x                   y</span></span>
 <span><span class="co">#&gt;   &lt;chr&gt;           &lt;dbl&gt;</span></span>
@@ -501,8 +505,8 @@ Note
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">fitness_df</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv</a></span><span class="op">(</span><span class="fu">here</span><span class="fu">::</span><span class="fu"><a href="https://here.r-lib.org/reference/here.html">here</a></span><span class="op">(</span><span class="st">"data/higham_fitness_notclean.csv"</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Use the <code>col_types</code> argument in <code><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv()</a></code> so that <code>stepgoal</code> is read in as a logical variable with <code><a href="https://readr.tidyverse.org/reference/parse_atomic.html">col_logical()</a></code> and so that <code>month</code> and <code>weekday</code> are both read in as factors.</p>
-</section></section><section id="data-scraping-with-rvest" class="level2" data-number="10.2"><h2 data-number="10.2" class="anchored" data-anchor-id="data-scraping-with-rvest">
-<span class="header-section-number">10.2</span> Data Scraping with <code>rvest</code>
+</section></section><section id="data-scraping-with-rvest" class="level2" data-number="11.2"><h2 data-number="11.2" class="anchored" data-anchor-id="data-scraping-with-rvest">
+<span class="header-section-number">11.2</span> Data Scraping with <code>rvest</code>
 </h2>
 <p>Sometimes, we might want data from a public website that <strong>isn’t</strong> provided in a file format. To obtain this data, we’ll need to use web scraping, a term which just means “getting data from a website.” The easiest way to do this in <code>R</code> is with the <code>rvest</code> package. Note that we could spend an entire semester talking about web scraping, but we will focus only on websites where the scraping of data is “easy” and won’t give us any major errors.</p>
 <p>Go to the following website and suppose that you wanted the table of gun violence statistics in <code>R</code>: <a href="https://en.wikipedia.org/wiki/Gun_violence_in_the_United_States_by_state" target="_blank">https://en.wikipedia.org/wiki/Gun_violence_in_the_United_States_by_state</a>. We could try copy-pasting the table into Excel and reading the data set in with <code>read_excel()</code>. Depending on the format of the table, that strategy may work but it may not. Another way is to scrape it directly with <code>rvest</code>. Additionally, if the website continually updates (standings for a sports league, enrollment data for a school, best-selling products for a company, etc.), then scraping is much more convenient, as we don’t need to continually copy-paste for updated data.</p>
@@ -557,12 +561,12 @@ Important
 </div>
 <p>There’s now 72 different tables! See if you can figure out where the first few tables are coming from on the website.</p>
 <p><strong>Exercise 2</strong>. SLU keeps track of diversity of students and makes this data public on the following website: <a href="https://www.stlawu.edu/offices/institutional-research/student-diversity-2021" target="_blank">https://www.stlawu.edu/offices/institutional-research/student-diversity-2021</a>. Use <code>rvest</code> to scrape one of the data tables into <code>R</code>.</p>
-</section><section id="json-files-with-jsonlite" class="level2" data-number="10.3"><h2 data-number="10.3" class="anchored" data-anchor-id="json-files-with-jsonlite">
-<span class="header-section-number">10.3</span> JSON Files with <code>jsonlite</code>
+</section><section id="json-files-with-jsonlite" class="level2" data-number="11.3"><h2 data-number="11.3" class="anchored" data-anchor-id="json-files-with-jsonlite">
+<span class="header-section-number">11.3</span> JSON Files with <code>jsonlite</code>
 </h2>
 <p>A final common data format that we will discuss is JSON (JavaScript Object Notation). We will only cover the very basics of JSON data and use the <code>jsonlite</code> package in <code>R</code> to read in some .json files. JSON files are read in to <code>R</code> as a <code>list</code> object.</p>
-<section id="everything-working-well" class="level3" data-number="10.3.1"><h3 data-number="10.3.1" class="anchored" data-anchor-id="everything-working-well">
-<span class="header-section-number">10.3.1</span> Everything Working Well</h3>
+<section id="everything-working-well" class="level3" data-number="11.3.1"><h3 data-number="11.3.1" class="anchored" data-anchor-id="everything-working-well">
+<span class="header-section-number">11.3.1</span> Everything Working Well</h3>
 <p>First, consider data from the mobile game Clash Royale. Install the <code>jsonlite</code> package and then use it to read in the <code>json</code> file with the function <code><a href="https://jeroen.r-universe.dev/jsonlite/reference/fromJSON.html">fromJSON()</a></code>:</p>
 <div class="cell" data-appendix="true">
 <div class="sourceCode" id="cb14"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co">## install.packages("jsonlite")</span></span>
@@ -605,8 +609,8 @@ Important
 <span><span class="co">#&gt; # ℹ 87 more rows</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Both methods give a <code>tibble</code> that we can then use our usual <code>tidyverse</code> tools <code>ggplot2</code>, <code>dplyr</code>, <code>tidyr</code>, etc. on.</p>
-</section><section id="things-arent-always-so-easy" class="level3" data-number="10.3.2"><h3 data-number="10.3.2" class="anchored" data-anchor-id="things-arent-always-so-easy">
-<span class="header-section-number">10.3.2</span> Things Aren’t Always So Easy</h3>
+</section><section id="things-arent-always-so-easy" class="level3" data-number="11.3.2"><h3 data-number="11.3.2" class="anchored" data-anchor-id="things-arent-always-so-easy">
+<span class="header-section-number">11.3.2</span> Things Aren’t Always So Easy</h3>
 <p>Now let’s try to look at some animal crossing data that were obtained from <a href="https://github.com/jefflomacy/villagerdb" target="_blank">https://github.com/jefflomacy/villagerdb</a>. We first just want to look at the data from one individual villager (ace) in the file <code>ace.json</code>.</p>
 <div class="cell" data-appendix="true">
 <div class="sourceCode" id="cb17"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">acedata</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://jeroen.r-universe.dev/jsonlite/reference/fromJSON.html">fromJSON</a></span><span class="op">(</span><span class="fu"><a href="https://here.r-lib.org/reference/here.html">here</a></span><span class="op">(</span><span class="st">"data/ace.json"</span><span class="op">)</span><span class="op">)</span></span>
@@ -654,10 +658,10 @@ Important
 </div>
 <p>Things are now….more complicated. This example is just to show that it’s not always easy working with JSON data. Lists can be nested and that creates problems when trying to convert a deeply nested list into our “rectangular” format that’s easy to work with.</p>
 <p>There’s also the added problem of reading in the <code>.json</code> files from all villagers at the same time We could do this with a for loop or a mapping function from <code>purrr</code> to download and read in the JSON files for all villagers. We won’t delve any more deeply into this, but there’s a lot more to all of the file formats that we’ve discussed this week, particularly web scraping and .json files.</p>
-</section></section><section id="practice" class="level2" data-number="10.4"><h2 data-number="10.4" class="anchored" data-anchor-id="practice">
-<span class="header-section-number">10.4</span> Practice</h2>
-<section id="class-exercises" class="level3" data-number="10.4.1"><h3 data-number="10.4.1" class="anchored" data-anchor-id="class-exercises">
-<span class="header-section-number">10.4.1</span> Class Exercises</h3>
+</section></section><section id="practice" class="level2" data-number="11.4"><h2 data-number="11.4" class="anchored" data-anchor-id="practice">
+<span class="header-section-number">11.4</span> Practice</h2>
+<section id="class-exercises" class="level3" data-number="11.4.1"><h3 data-number="11.4.1" class="anchored" data-anchor-id="class-exercises">
+<span class="header-section-number">11.4.1</span> Class Exercises</h3>
 <p><strong>Class Exercise 1</strong>. The <code>birthdays.txt</code> file has information on the birthdays of various animals on my Animal Crossing island. There are also columns for the Animal’s Name, Animal Type, and how long the animal has lived on the island (in weeks). Click on the file to open it to look at the format of the data.</p>
 <p>Start with the following code chunk and use the options of <code><a href="https://readr.tidyverse.org/reference/read_delim.html">read_delim()</a></code> to read in the data (<code><a href="https://readr.tidyverse.org/reference/read_delim.html">?read_delim</a></code>). The <code>delim</code> argument that’s already provided specifies that the delimiter (separator) that you’ll use is a <code>-</code>, as opposed to, for example, a <code>,</code> in a .csv file. Arguments that you may need to change include</p>
 <ul>
@@ -670,7 +674,7 @@ Important
 <div class="cell">
 <div class="sourceCode" id="cb18"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span></span>
 <span><span class="va">df</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html">read_delim</a></span><span class="op">(</span><span class="fu"><a href="https://here.r-lib.org/reference/here.html">here</a></span><span class="op">(</span><span class="st">"data/birthdays.txt"</span><span class="op">)</span>, delim <span class="op">=</span> <span class="st">" - "</span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">df</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="va">df</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p><strong>Class Exercise 2</strong>. Another common format for data to be stored in is an Excel file. Often, it’s easiest just to save the Excel file as a .csv file and read it in using <code><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv()</a></code>. But, sometimes this route can be difficult (for example, if your Excel file has thousands of sheets). To read in directly from Excel, you’ll need to install the <code>readxl</code> with <code>install.packages("readxl")</code>. Once installed, load the package with <code><a href="https://readxl.tidyverse.org">library(readxl)</a></code>, and read in the first sheet <code>evals_prof.xlsx</code> data set, a similar data set as the one that will be used for Project 2, with the <code>read_excel()</code> function.</p>
 <p><strong>Class Exercise 3</strong>. Now, read in the second sheet in the Excel file, using the help file for <code>?read_excel</code> to change one of the arguments.</p>
@@ -693,8 +697,8 @@ Important
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/slice.html">slice</a></span><span class="op">(</span><span class="op">-</span><span class="fl">1</span>, <span class="op">-</span><span class="fl">2</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Explain what the code above is doing to fix the duplicate name issue.</p>
-</section><section id="your-turn" class="level3" data-number="10.4.2"><h3 data-number="10.4.2" class="anchored" data-anchor-id="your-turn">
-<span class="header-section-number">10.4.2</span> Your Turn</h3>
+</section><section id="your-turn" class="level3" data-number="11.4.2"><h3 data-number="11.4.2" class="anchored" data-anchor-id="your-turn">
+<span class="header-section-number">11.4.2</span> Your Turn</h3>
 <p><strong>Your Turn 1</strong>. Choose a topic/person/place/etc. that interests you that has tables on Wikipedia and scrape the table that is related to that topic.</p>
 <p><strong>Your Turn 2</strong>. Choose a sports team at SLU, and go to that team’s website (by simply googling SLU name_of_sport). Scrape the data tables from the “Results” or “Statistics” section of this sport. After you scrape the data, tidy the data set. Then, choose one of the following options (different options might make more/less sense for different sports)</p>
 <ol type="a">
@@ -1164,13 +1168,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   }
 });
 </script><nav class="page-navigation"><div class="nav-page nav-page-previous">
-      <a href="./09-ethics.html" class="pagination-link" aria-label="Data Ethics">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Data Ethics</span></span>
+      <a href="./10-merging.html" class="pagination-link" aria-label="Merging with `dplyr`">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Merging with <code>dplyr</code></span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./10-merging.html" class="pagination-link" aria-label="Merging with `dplyr`">
-        <span class="nav-page-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Merging with <code>dplyr</code></span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./13-knn.html" class="pagination-link" aria-label="Predictive Modeling with knn">
+        <span class="nav-page-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Predictive Modeling with knn</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

@@ -19,7 +19,7 @@ Beyonce is a legend. For this example, we will work through a text analysis on l
 library(tidyverse)
 library(here)
 beyonce <- read_csv(here("data/beyonce_lyrics.csv"))
-head(beyonce)
+beyonce |> glimpse()
 ```
 
 We will be most focused on the `line` variable, as each value for this variable contains a line from a Beyonce song. There's other variables present as well, such as the `song_name` and the `artist_name` (the data set originally came from a data set with artists other than Beyonce).
@@ -59,7 +59,7 @@ What's the issue here?
 To remedy this, we can use what are called __stop words__: words that are very common and carry little to no meaningful information. For example _the_, _it_, _are_, etc. are all __stop words__. We need to eliminate these from the data set before we continue on. Luckily, the `tidytext` package also provides a data set of common stop words in a data set named `stop_words`:
 
 ```{r, appendix = TRUE}
-head(stop_words)
+stop_words
 ```
 
 Let's join the Beyonce lyrics data set to the stop words data set and elminate any stop words:

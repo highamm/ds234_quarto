@@ -44,7 +44,7 @@ Run the code in the following `R` chunk to read in the data.
 library(tidyverse)
 library(here)
 videogame_df <- read_csv(here("data/videogame_clean.csv"))
-head(videogame_df)
+videogame_df |> glimpse()
 ```
 
 A data frame or tibble holds variables that are allowed to be different classes. If a variable is a different class than you would expect, you'll get some strange errors or results when trying to wrangle the data or make graphics. 
@@ -76,7 +76,7 @@ We've actually seen both of these issues before as well (the Date issue in the e
 If we examine the output of the following line of code
 
 ```{r, appendix = TRUE}
-head(videogame_df)
+videogame_df
 ```
 
 we'll see that, at the very top of the output, right below the variable names, `R` provides you with the classes of variables in the `tibble`. 
@@ -226,7 +226,7 @@ library(tidyverse)
 fitness_df <- read_csv(here("data/higham_fitness_notclean.csv"))
 ```
 
-__Exercise 1__. What is the issue with the following plot? After you figure out the issue, use `mutate()` and `as.factor()` to create a new variable that fixes the issue and then reconstruct the graph. __Note__: This actually is not an issue really since `weekday` is currently a `<chr>` class so will still plot correctly. But, practice converting it to a `factor` anyway!
+__Exercise 1__. Convert the `weekday` variable to a `factor` class. Then, reconstruct the following plot. Does the plot change when `weekday` is converted from `<chr>` to `<fct>`?
 
 ```{r, echo = TRUE}
 ggplot(data = fitness_df, aes(x = active_cals)) +

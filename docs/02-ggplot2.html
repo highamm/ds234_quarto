@@ -197,14 +197,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./06-basics.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Coding in Base <code>R</code></span></span></a>
+  <a href="./07-forcats.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Factors with <code>forcats</code></span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./07-forcats.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Factors with <code>forcats</code></span></span></a>
+  <a href="./06-basics.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Coding in Base <code>R</code></span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -215,14 +215,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./08-import.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Data Import</span></span></a>
+  <a href="./10-merging.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Merging with <code>dplyr</code></span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./10-merging.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Merging with <code>dplyr</code></span></span></a>
+  <a href="./08-import.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Data Import</span></span></a>
   </div>
 </li>
       </ul>
@@ -238,8 +238,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">
 <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./11-lubridate.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Dates with <code>lubridate</code></span></span></a>
+  <a href="./13-knn.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Predictive Modeling with knn</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -250,8 +250,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./13-knn.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Predictive Modeling with knn</span></span></a>
+  <a href="./11-lubridate.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Dates with <code>lubridate</code></span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -1037,20 +1037,26 @@ Important
 <span class="header-section-number">2.6</span> Practice</h2>
 <p>In general, practice exercises will be split between exercises that will be done together as a class and exercises that you will do in groups or on your own. The purpose of the class exercises is to give some guidance on how we might think logically through some of the code and the results. The purpose of the group exercises and the on your own exercises is so that you have a chance to practice what you’ve learned with your table or on your own.</p>
 <p>For some of these exercises we will again use the <code>stat113_df</code> data, described in the previous section.</p>
+<p>Moreover, we will start to use the <code><a href="https://pillar.r-lib.org/reference/glimpse.html">glimpse()</a></code> function more often to get a very quick look at our data:</p>
 <div class="cell">
 <div class="sourceCode" id="cb33"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">stat113_df</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv</a></span><span class="op">(</span><span class="st">"https://raw.githubusercontent.com/highamm/ds234_quarto/main/data_online/stat113.csv"</span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">stat113_df</span><span class="op">)</span></span>
-<span><span class="co">#&gt; # A tibble: 6 × 12</span></span>
-<span><span class="co">#&gt;   Year      Sex     Hgt   Wgt Haircut   GPA Exercise Sport    TV Award  Pulse</span></span>
-<span><span class="co">#&gt;   &lt;chr&gt;     &lt;chr&gt; &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt; &lt;dbl&gt;    &lt;dbl&gt; &lt;chr&gt; &lt;dbl&gt; &lt;chr&gt;  &lt;dbl&gt;</span></span>
-<span><span class="co">#&gt; 1 Sophomore M        66   155       0  2.9        15 Yes       8 Olymp…    72</span></span>
-<span><span class="co">#&gt; 2 FirstYear F        69   170      17  3.87       14 Yes      12 Olymp…    51</span></span>
-<span><span class="co">#&gt; 3 FirstYear F        64   130      40  3.3         5 No        5 Olymp…    68</span></span>
-<span><span class="co">#&gt; 4 FirstYear M        68   157      35  3.21       10 Yes      15 Olymp…    54</span></span>
-<span><span class="co">#&gt; 5 FirstYear M        72   175      20  3.1         2 No        5 Nobel     NA</span></span>
-<span><span class="co">#&gt; 6 Junior    F        62   150      50  3.3         8 Yes       5 Olymp…    86</span></span>
-<span><span class="co">#&gt; # ℹ 1 more variable: SocialMedia &lt;chr&gt;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html">glimpse</a></span><span class="op">(</span><span class="va">stat113_df</span><span class="op">)</span></span>
+<span><span class="co">#&gt; Rows: 397</span></span>
+<span><span class="co">#&gt; Columns: 12</span></span>
+<span><span class="co">#&gt; $ Year        &lt;chr&gt; "Sophomore", "FirstYear", "FirstYear", "FirstYear", "Fi…</span></span>
+<span><span class="co">#&gt; $ Sex         &lt;chr&gt; "M", "F", "F", "M", "M", "F", "M", "M", "M", "F", "F", …</span></span>
+<span><span class="co">#&gt; $ Hgt         &lt;dbl&gt; 66, 69, 64, 68, 72, 62, 70, 71, 72, 66, 68, 70, 61, 70,…</span></span>
+<span><span class="co">#&gt; $ Wgt         &lt;dbl&gt; 155, 170, 130, 157, 175, 150, 121, 180, 165, 150, 152, …</span></span>
+<span><span class="co">#&gt; $ Haircut     &lt;dbl&gt; 0, 17, 40, 35, 20, 50, 12, 20, 10, 40, 30, 35, 60, 20, …</span></span>
+<span><span class="co">#&gt; $ GPA         &lt;dbl&gt; 2.90, 3.87, 3.30, 3.21, 3.10, 3.30, 3.90, 3.84, 3.25, 3…</span></span>
+<span><span class="co">#&gt; $ Exercise    &lt;dbl&gt; 15, 14, 5, 10, 2, 8, 3, 7, 3, 3, 10, 11, 5, 10, 10, 14,…</span></span>
+<span><span class="co">#&gt; $ Sport       &lt;chr&gt; "Yes", "Yes", "No", "Yes", "No", "Yes", "Yes", "No", "N…</span></span>
+<span><span class="co">#&gt; $ TV          &lt;dbl&gt; 8, 12, 5, 15, 5, 5, 20, 15, 30, 6, 5, 4, 10, 4, 2, 7, 8…</span></span>
+<span><span class="co">#&gt; $ Award       &lt;chr&gt; "Olympic", "Olympic", "Olympic", "Olympic", "Nobel", "O…</span></span>
+<span><span class="co">#&gt; $ Pulse       &lt;dbl&gt; 72, 51, 68, 54, NA, 86, 88, 100, 62, 84, 86, 65, 62, 46…</span></span>
+<span><span class="co">#&gt; $ SocialMedia &lt;chr&gt; "Snapchat", "Instagram", "Instagram", "Snapchat", "Inst…</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
+<p>What does <code><a href="https://pillar.r-lib.org/reference/glimpse.html">glimpse()</a></code> tell us?</p>
 <section id="class-exercises-1" class="level3" data-number="2.6.1"><h3 data-number="2.6.1" class="anchored" data-anchor-id="class-exercises-1">
 <span class="header-section-number">2.6.1</span> Class Exercises</h3>
 <p><strong>Class Exercise 1</strong>. With the <code>stat113_df</code> data, make a scatterplot of <code>Hgt</code> on the y-axis and <code>Wgt</code> on the x-axis, colouring by <code>Sport</code>. Add a smooth fitted curve to your scatterplot. Then, move <code>colour = Sport</code> from an <code><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes()</a></code> in the <code><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot()</a></code> function to an <code><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes()</a></code> in the <code><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point()</a></code> function. What changes in the plot? Can you give an explanation as to why that change occurs?</p>
@@ -1075,9 +1081,9 @@ Important
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_smooth.html">geom_smooth</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>method <span class="op">=</span> <span class="st">"lm"</span><span class="op">)</span><span class="op">)</span></span>
 <span></span>
 <span><span class="co">## b</span></span>
-<span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">toy_df</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">xvar</span>, y <span class="op">=</span> <span class="va">yvar</span>, colour <span class="op">=</span> <span class="va">groupvar</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span>colour <span class="op">=</span> <span class="st">"purple"</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_smooth.html">geom_smooth</a></span><span class="op">(</span>method <span class="op">=</span> <span class="st">"lm"</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">toy_df</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">xvar</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>y <span class="op">=</span> <span class="va">yvar</span><span class="op">)</span>, colour <span class="op">=</span> <span class="st">"purple"</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_smooth.html">geom_smooth</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>y <span class="op">=</span> <span class="va">yvar</span>, colour <span class="op">=</span> <span class="va">groupvar</span><span class="op">)</span>, method <span class="op">=</span> <span class="st">"lm"</span><span class="op">)</span></span>
 <span></span>
 <span><span class="co">## c</span></span>
 <span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">toy_df</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">xvar</span>, y <span class="op">=</span> <span class="va">yvar</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>

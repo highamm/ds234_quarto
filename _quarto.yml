@@ -28,16 +28,16 @@ book:
     - part: Data Wrangling
       chapters:
         - 04-tidyr.qmd
-        - 06-basics.qmd
         - 07-forcats.qmd
+        - 06-basics.qmd
         - 09-ethics.qmd
-        - 08-import.qmd
         - 10-merging.qmd
+        - 08-import.qmd
     - part: Special Topics
       chapters:
-        - 11-lubridate.qmd
-        - 12-stringr.qmd
         - 13-knn.qmd
+        - 12-stringr.qmd
+        - 11-lubridate.qmd
         - 15-connections.qmd
         - 16-sql.qmd
 

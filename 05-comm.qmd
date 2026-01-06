@@ -77,7 +77,7 @@ Delete the code below the YAML header and then paste the following code chunks t
 
 ```{r, message = FALSE, fig.keep = "none", results = "hide"}
 library(tidyverse)
-head(cars)
+cars
 ggplot(data = cars, aes(x = speed, y = dist)) +
   geom_point()
 ```
@@ -257,10 +257,10 @@ For the following exercises, we will use the built-in `R` data set `mtcars`, whi
 * `cyl`, the number of cylinders a car has
 * `mpg`, the mileage of the car, in miles per gallon
 
-Because the data set is loaded every time `R` is started up, there is no need to have a line that reads in the data set. We can examine the first few observations with
+Because the data set is loaded every time `R` is started up, there is no need to have a line that reads in the data set. We can glimpse at the data with
 
 ```{r}
-head(mtcars)
+glimpse(mtcars)
 ```
 
 __Exercise 3__. Create a table showing the mean `mpg` for each `cyl` group (`cyl` stands for cylinder and can be 4-cylinder, 6-cylinder, or 8-cylinder) with both `kable()` and `pander()`. 
@@ -283,12 +283,12 @@ __Exercise 5__. Create a new `R` chunk and copy and paste the following into you
 
 ```{r, message = FALSE, results = "hide", fig.keep = "none"}
 library(tidyverse)
-head(mtcars)
+mtcars
 ggplot(data = mtcars, aes(x = factor(cyl), y = mpg)) +
   geom_boxplot()
 ```
 
-Modify the `R` chunk so that: (a) the figure height is 3, (b) the code from the `R` chunk shows in the .html file, (c) the table from running `head(cars)` is hidden in the .html file. Make (b) and (c) a __local__ chunk option, but set (a) as a __global__ option that applies to all of your `R` chunks. __Hint__: Instead of setting `#| output: false`, which would cause both the table and figure to not render in the .html output, add `#| results: false` as a local chunk option, which says to include figures in the .html output, but not tables or other printed output.
+Modify the `R` chunk so that: (a) the figure height is 3, (b) the code from the `R` chunk shows in the .html file, (c) the table from running `mtcars` is hidden in the .html file. Make (b) and (c) a __local__ chunk option, but set (a) as a __global__ option that applies to all of your `R` chunks. __Hint__: Instead of setting `#| output: false`, which would cause both the table and figure to not render in the .html output, add `#| results: false` as a local chunk option, which says to include figures in the .html output, but not tables or other printed output.
 
 ## Communication Options for `ggplot2` Plots
 
@@ -326,7 +326,7 @@ Read in the data set with
 ```{r, message = FALSE, appendix = TRUE}
 library(tidyverse)
 hpi_df <- read_csv("https://raw.githubusercontent.com/highamm/ds234_quarto/main/data_online/hpi-tidy.csv")
-head(hpi_df)
+glimpse(hpi_df)
 ```
 
 Let's look at the relationship between `HappyLifeYears` and `Footprint` for countries of different `Region`s of the world.
@@ -578,7 +578,7 @@ Then, name the data set something. In this case, the name of the data set is `ga
 country_df <- gapminder
 ```
 
-Explore the data set with `head(country_df)` and `?gapminder` before proceeding to the following exercises.
+Explore the data set with `glimpse(country_df)` and `?gapminder` before proceeding to the following exercises.
 
 __Class Exercise 1__. Construct a plot that lets us explore the relationship between life expectancy and year for the different countries in the data set.
 
@@ -684,8 +684,6 @@ ggplot(data = country_df, aes(x = year, y = lifeExp, group = country,
 ```
 
 __Class Exercise 8__. Modify your .qmd file so that:
-
-* only the figure that you made in the previous exercise renders on your .html file. (Hint: use global options to help with this).
 
 * one of your code chunks gets hidden.
 

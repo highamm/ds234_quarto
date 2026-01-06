@@ -57,7 +57,8 @@ pokemon_legend <- pokemon_legend |>
                                       Hoenn = "3", Sinnoh = "4",
                                       Unova = "5", Kalos = "6")) |>
   select(Generation_cat2, everything())
-head(pokemon_legend)
+pokemon_legend
+
 ggplot(data = pokemon_legend,
        aes(x = Generation_cat2, y = nlegend)) +
   geom_col() +

@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="generator" content="quarto-1.4.555">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-<title>DATA / STAT 234 - 12&nbsp; Dates with lubridate</title>
+<title>DATA / STAT 234 - 14&nbsp; Dates with lubridate</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -60,8 +60,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./12-stringr.html" rel="next">
-<link href="./10-merging.html" rel="prev">
+<link href="./15-connections.html" rel="next">
+<link href="./12-stringr.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -105,7 +105,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./11-lubridate.html">Special Topics</a></li><li class="breadcrumb-item"><a href="./11-lubridate.html"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Dates with <code>lubridate</code></span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./13-knn.html">Special Topics</a></li><li class="breadcrumb-item"><a href="./11-lubridate.html"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Dates with <code>lubridate</code></span></a></li></ol></nav>
         <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
@@ -197,14 +197,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./06-basics.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Coding in Base <code>R</code></span></span></a>
+  <a href="./07-forcats.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Factors with <code>forcats</code></span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./07-forcats.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Factors with <code>forcats</code></span></span></a>
+  <a href="./06-basics.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Coding in Base <code>R</code></span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -215,14 +215,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./08-import.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Data Import</span></span></a>
+  <a href="./10-merging.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Merging with <code>dplyr</code></span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./10-merging.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Merging with <code>dplyr</code></span></span></a>
+  <a href="./08-import.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Data Import</span></span></a>
   </div>
 </li>
       </ul>
@@ -238,8 +238,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">
 <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./11-lubridate.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Dates with <code>lubridate</code></span></span></a>
+  <a href="./13-knn.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Predictive Modeling with knn</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -250,8 +250,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./13-knn.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Predictive Modeling with knn</span></span></a>
+  <a href="./11-lubridate.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Dates with <code>lubridate</code></span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -277,31 +277,31 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
    
   <ul>
 <li>
-<a href="#converting-variables-to-date" id="toc-converting-variables-to-date" class="nav-link active" data-scroll-target="#converting-variables-to-date"><span class="header-section-number">12.1</span> Converting Variables to <code>&lt;date&gt;</code></a>
+<a href="#converting-variables-to-date" id="toc-converting-variables-to-date" class="nav-link active" data-scroll-target="#converting-variables-to-date"><span class="header-section-number">14.1</span> Converting Variables to <code>&lt;date&gt;</code></a>
   <ul class="collapse">
-<li><a href="#from-chr-to-date" id="toc-from-chr-to-date" class="nav-link" data-scroll-target="#from-chr-to-date"><span class="header-section-number">12.1.1</span> From <code>&lt;chr&gt;</code> to <code>&lt;date&gt;</code></a></li>
-  <li><a href="#making-a-date-variable-from-date-components" id="toc-making-a-date-variable-from-date-components" class="nav-link" data-scroll-target="#making-a-date-variable-from-date-components"><span class="header-section-number">12.1.2</span> Making a <code>&lt;date&gt;</code> variable from Date Components</a></li>
+<li><a href="#from-chr-to-date" id="toc-from-chr-to-date" class="nav-link" data-scroll-target="#from-chr-to-date"><span class="header-section-number">14.1.1</span> From <code>&lt;chr&gt;</code> to <code>&lt;date&gt;</code></a></li>
+  <li><a href="#making-a-date-variable-from-date-components" id="toc-making-a-date-variable-from-date-components" class="nav-link" data-scroll-target="#making-a-date-variable-from-date-components"><span class="header-section-number">14.1.2</span> Making a <code>&lt;date&gt;</code> variable from Date Components</a></li>
   </ul>
 </li>
   <li>
-<a href="#functions-for-date-variables" id="toc-functions-for-date-variables" class="nav-link" data-scroll-target="#functions-for-date-variables"><span class="header-section-number">12.2</span> Functions for <code>&lt;date&gt;</code> Variables</a>
+<a href="#functions-for-date-variables" id="toc-functions-for-date-variables" class="nav-link" data-scroll-target="#functions-for-date-variables"><span class="header-section-number">14.2</span> Functions for <code>&lt;date&gt;</code> Variables</a>
   <ul class="collapse">
-<li><a href="#year-month-and-mday" id="toc-year-month-and-mday" class="nav-link" data-scroll-target="#year-month-and-mday"><span class="header-section-number">12.2.1</span> <code>year()</code>, <code>month()</code>, and <code>mday()</code></a></li>
-  <li><a href="#yday-and-wday" id="toc-yday-and-wday" class="nav-link" data-scroll-target="#yday-and-wday"><span class="header-section-number">12.2.2</span> <code>yday()</code> and <code>wday()</code></a></li>
+<li><a href="#year-month-and-mday" id="toc-year-month-and-mday" class="nav-link" data-scroll-target="#year-month-and-mday"><span class="header-section-number">14.2.1</span> <code>year()</code>, <code>month()</code>, and <code>mday()</code></a></li>
+  <li><a href="#yday-and-wday" id="toc-yday-and-wday" class="nav-link" data-scroll-target="#yday-and-wday"><span class="header-section-number">14.2.2</span> <code>yday()</code> and <code>wday()</code></a></li>
   </ul>
 </li>
   <li>
-<a href="#practice" id="toc-practice" class="nav-link" data-scroll-target="#practice"><span class="header-section-number">12.3</span> Practice</a>
+<a href="#practice" id="toc-practice" class="nav-link" data-scroll-target="#practice"><span class="header-section-number">14.3</span> Practice</a>
   <ul class="collapse">
-<li><a href="#class-exercises" id="toc-class-exercises" class="nav-link" data-scroll-target="#class-exercises"><span class="header-section-number">12.3.1</span> Class Exercises</a></li>
-  <li><a href="#your-turn" id="toc-your-turn" class="nav-link" data-scroll-target="#your-turn"><span class="header-section-number">12.3.2</span> Your Turn</a></li>
+<li><a href="#class-exercises" id="toc-class-exercises" class="nav-link" data-scroll-target="#class-exercises"><span class="header-section-number">14.3.1</span> Class Exercises</a></li>
+  <li><a href="#your-turn" id="toc-your-turn" class="nav-link" data-scroll-target="#your-turn"><span class="header-section-number">14.3.2</span> Your Turn</a></li>
   </ul>
 </li>
   </ul></nav>
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./11-lubridate.html">Special Topics</a></li><li class="breadcrumb-item"><a href="./11-lubridate.html"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Dates with <code>lubridate</code></span></a></li></ol></nav><div class="quarto-title">
-<h1 class="title"><span id="lubridate" class="quarto-section-identifier"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Dates with <code>lubridate</code></span></span></h1>
+<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./13-knn.html">Special Topics</a></li><li class="breadcrumb-item"><a href="./11-lubridate.html"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Dates with <code>lubridate</code></span></a></li></ol></nav><div class="quarto-title">
+<h1 class="title"><span id="lubridate" class="quarto-section-identifier"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Dates with <code>lubridate</code></span></span></h1>
 </div>
 
 
@@ -320,8 +320,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>use <code>lubridate</code> functions to convert a character variable to a <code>&lt;date&gt;</code> variable.</li>
 <li>use <code>lubridate</code> functions to extract useful information from a <code>&lt;date&gt;</code> variable, including the year, month, day of the week, and day of the year.</li>
 </ul>
-<section id="converting-variables-to-date" class="level2" data-number="12.1"><h2 data-number="12.1" class="anchored" data-anchor-id="converting-variables-to-date">
-<span class="header-section-number">12.1</span> Converting Variables to <code>&lt;date&gt;</code>
+<section id="converting-variables-to-date" class="level2" data-number="14.1"><h2 data-number="14.1" class="anchored" data-anchor-id="converting-variables-to-date">
+<span class="header-section-number">14.1</span> Converting Variables to <code>&lt;date&gt;</code>
 </h2>
 <p>The <code>lubridate</code> package is built to easily work with <code>Date</code> objects and <code>DateTime</code> objects. <code>R</code> does not actually have a class that stores <code>Time</code> objects (unless you install a separate package). Dates tend to be much more common than Times, so, we will primarily focus on Dates, but most functions we will see have easy extensions to Times.</p>
 <p>To begin, install the <code>lubridate</code> package, and load the package with <code><a href="https://rdrr.io/r/base/library.html">library()</a></code>. The <code><a href="https://lubridate.tidyverse.org/reference/now.html">today()</a></code> function prints today’s date while <code><a href="https://lubridate.tidyverse.org/reference/now.html">now()</a></code> prints today’s date and time. These can sometimes be useful in other contexts, but we will just run the code to see how <code>R</code> stores dates and date-times.</p>
@@ -329,9 +329,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://lubridate.tidyverse.org">lubridate</a></span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://lubridate.tidyverse.org/reference/now.html">today</a></span><span class="op">(</span><span class="op">)</span></span>
-<span><span class="co">#&gt; [1] "2025-11-20"</span></span>
+<span><span class="co">#&gt; [1] "2026-01-06"</span></span>
 <span><span class="fu"><a href="https://lubridate.tidyverse.org/reference/now.html">now</a></span><span class="op">(</span><span class="op">)</span></span>
-<span><span class="co">#&gt; [1] "2025-11-20 12:53:38 EST"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="co">#&gt; [1] "2026-01-06 12:01:55 EST"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>This first section will deal with how to convert a variable in <code>R</code> to be a <code>Date</code>. We will use a data set that has the holidays of Animal Crossing from January to April. The columns in this data set are:</p>
 <ul>
@@ -355,8 +355,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span><span class="co">#&gt; 6 Earth Day       22-Apr-20 Apr-2… 4/22… 2020… 2020…     4  2020    22 April</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Which columns were specified as Dates? In this example, none of the columns have the <code>&lt;date&gt;</code> specification: all of the date columns are read in as character variables.</p>
-<section id="from-chr-to-date" class="level3" data-number="12.1.1"><h3 data-number="12.1.1" class="anchored" data-anchor-id="from-chr-to-date">
-<span class="header-section-number">12.1.1</span> From <code>&lt;chr&gt;</code> to <code>&lt;date&gt;</code>
+<section id="from-chr-to-date" class="level3" data-number="14.1.1"><h3 data-number="14.1.1" class="anchored" data-anchor-id="from-chr-to-date">
+<span class="header-section-number">14.1.1</span> From <code>&lt;chr&gt;</code> to <code>&lt;date&gt;</code>
 </h3>
 <p>We will use the <code><a href="https://lubridate.tidyverse.org/reference/ymd.html">dmy()</a></code> series of functions in <code>lubridate</code> to convert character variables to dates.</p>
 <p>There are a series of <code><a href="https://lubridate.tidyverse.org/reference/ymd.html">dmy()</a></code>-type variables, each corresponding to a different Day-Month-Year order.</p>
@@ -432,8 +432,8 @@ Important
 </div>
 </div>
 <p>In which plot does the ordering on the x-axis make more sense?</p>
-</section><section id="making-a-date-variable-from-date-components" class="level3" data-number="12.1.2"><h3 data-number="12.1.2" class="anchored" data-anchor-id="making-a-date-variable-from-date-components">
-<span class="header-section-number">12.1.2</span> Making a <code>&lt;date&gt;</code> variable from Date Components</h3>
+</section><section id="making-a-date-variable-from-date-components" class="level3" data-number="14.1.2"><h3 data-number="14.1.2" class="anchored" data-anchor-id="making-a-date-variable-from-date-components">
+<span class="header-section-number">14.1.2</span> Making a <code>&lt;date&gt;</code> variable from Date Components</h3>
 <p>Another way to create a Date object is to assemble it with <code><a href="https://lubridate.tidyverse.org/reference/make_datetime.html">make_date()</a></code> from a month, day, and year components, each stored in a separate column:</p>
 <div class="cell" data-appendix="true">
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">holiday_df</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>Date_test2 <span class="op">=</span> <span class="fu"><a href="https://lubridate.tidyverse.org/reference/make_datetime.html">make_date</a></span><span class="op">(</span>year <span class="op">=</span> <span class="va">Year</span>,</span>
@@ -485,8 +485,8 @@ Important
 <span><span class="co">#&gt; # ℹ 2 more variables: Day &lt;dbl&gt;, Month2 &lt;chr&gt;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p><strong>Exercise 2</strong>. Practice converting <code>Date3</code> and <code>Date5</code> to <code>&lt;date&gt;</code> variables with <code>lubridate</code> functions.</p>
-</section></section><section id="functions-for-date-variables" class="level2" data-number="12.2"><h2 data-number="12.2" class="anchored" data-anchor-id="functions-for-date-variables">
-<span class="header-section-number">12.2</span> Functions for <code>&lt;date&gt;</code> Variables</h2>
+</section></section><section id="functions-for-date-variables" class="level2" data-number="14.2"><h2 data-number="14.2" class="anchored" data-anchor-id="functions-for-date-variables">
+<span class="header-section-number">14.2</span> Functions for <code>&lt;date&gt;</code> Variables</h2>
 <p>Once an object is in the <code>&lt;date&gt;</code> format, there are some special functions in <code>lubridate</code> that can be used on that date variable. To investigate some of these functions, we will pull stock market data using the <code>tidyquant</code> package. Install the package, and run the following code, which gets stock market price data on Apple, Nintendo, Chipotle, and the S &amp; P 500 Index from 2015 to now.</p>
 <div class="cell">
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://business-science.github.io/tidyquant/">tidyquant</a></span><span class="op">)</span></span>
@@ -515,8 +515,8 @@ Important
 </div>
 </div>
 <p>But, there’s other information that we can get from the <code>date</code> variable. We might be interested in things like day of the week, monthly trends, or yearly trends. To extract variables like “weekday” and “month” from a <code>&lt;date&gt;</code> variable, there are a series of functions that are fairly straightforward to use. We will discuss the <code><a href="https://lubridate.tidyverse.org/reference/year.html">year()</a></code> <code><a href="https://lubridate.tidyverse.org/reference/month.html">month()</a></code>, <code><a href="https://lubridate.tidyverse.org/reference/day.html">mday()</a></code>, <code><a href="https://lubridate.tidyverse.org/reference/day.html">yday()</a></code>, and <code><a href="https://lubridate.tidyverse.org/reference/day.html">wday()</a></code> functions.</p>
-<section id="year-month-and-mday" class="level3" data-number="12.2.1"><h3 data-number="12.2.1" class="anchored" data-anchor-id="year-month-and-mday">
-<span class="header-section-number">12.2.1</span> <code>year()</code>, <code>month()</code>, and <code>mday()</code>
+<section id="year-month-and-mday" class="level3" data-number="14.2.1"><h3 data-number="14.2.1" class="anchored" data-anchor-id="year-month-and-mday">
+<span class="header-section-number">14.2.1</span> <code>year()</code>, <code>month()</code>, and <code>mday()</code>
 </h3>
 <p>The functions <code><a href="https://lubridate.tidyverse.org/reference/year.html">year()</a></code>, <code><a href="https://lubridate.tidyverse.org/reference/month.html">month()</a></code>, and <code><a href="https://lubridate.tidyverse.org/reference/day.html">mday()</a></code> can grab the year, month, and day of the month, respectively, from a <code>&lt;date&gt;</code> variable.</p>
 <div class="callout callout-style-simple callout-note callout-titled">
@@ -537,8 +537,8 @@ Note
 <span><span class="va">stocks_long</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>month_stock <span class="op">=</span> <span class="fu"><a href="https://lubridate.tidyverse.org/reference/month.html">month</a></span><span class="op">(</span><span class="va">date</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="va">stocks_long</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>day_stock <span class="op">=</span> <span class="fu"><a href="https://lubridate.tidyverse.org/reference/day.html">mday</a></span><span class="op">(</span><span class="va">date</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</section><section id="yday-and-wday" class="level3" data-number="12.2.2"><h3 data-number="12.2.2" class="anchored" data-anchor-id="yday-and-wday">
-<span class="header-section-number">12.2.2</span> <code>yday()</code> and <code>wday()</code>
+</section><section id="yday-and-wday" class="level3" data-number="14.2.2"><h3 data-number="14.2.2" class="anchored" data-anchor-id="yday-and-wday">
+<span class="header-section-number">14.2.2</span> <code>yday()</code> and <code>wday()</code>
 </h3>
 <p>The <code><a href="https://lubridate.tidyverse.org/reference/day.html">yday()</a></code> function grabs the day of the year from a <code>&lt;date&gt;</code> object. For example,</p>
 <div class="cell" data-appendix="true">
@@ -549,16 +549,16 @@ Note
 <p>returns <code>309</code>, indicating that November 4th is the 309th day of the year 2020. Using this function in a <code><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate()</a></code> statement creates a new variable that has <code>yday</code> for each observation:</p>
 <div class="cell" data-appendix="true">
 <div class="sourceCode" id="cb13"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">stocks_long</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>day_in_year <span class="op">=</span> <span class="fu"><a href="https://lubridate.tidyverse.org/reference/day.html">yday</a></span><span class="op">(</span><span class="va">date</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="co">#&gt; # A tibble: 10,952 × 9</span></span>
+<span><span class="co">#&gt; # A tibble: 10,064 × 9</span></span>
 <span><span class="co">#&gt;   symbol date        open  high   low close    volume adjusted day_in_year</span></span>
 <span><span class="co">#&gt;   &lt;chr&gt;  &lt;date&gt;     &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;       &lt;dbl&gt;</span></span>
-<span><span class="co">#&gt; 1 AAPL   2015-01-02  27.8  27.9  26.8  27.3 212818400     24.2           2</span></span>
-<span><span class="co">#&gt; 2 AAPL   2015-01-05  27.1  27.2  26.4  26.6 257142000     23.6           5</span></span>
-<span><span class="co">#&gt; 3 AAPL   2015-01-06  26.6  26.9  26.2  26.6 263188400     23.6           6</span></span>
-<span><span class="co">#&gt; 4 AAPL   2015-01-07  26.8  27.0  26.7  26.9 160423600     23.9           7</span></span>
-<span><span class="co">#&gt; 5 AAPL   2015-01-08  27.3  28.0  27.2  28.0 237458000     24.8           8</span></span>
-<span><span class="co">#&gt; 6 AAPL   2015-01-09  28.2  28.3  27.6  28.0 214798000     24.8           9</span></span>
-<span><span class="co">#&gt; # ℹ 10,946 more rows</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="co">#&gt; 1 AAPL   2016-01-04  25.7  26.3  25.5  26.3 270597600     23.8           4</span></span>
+<span><span class="co">#&gt; 2 AAPL   2016-01-05  26.4  26.5  25.6  25.7 223164000     23.2           5</span></span>
+<span><span class="co">#&gt; 3 AAPL   2016-01-06  25.1  25.6  25.0  25.2 273829600     22.7           6</span></span>
+<span><span class="co">#&gt; 4 AAPL   2016-01-07  24.7  25.0  24.1  24.1 324377600     21.7           7</span></span>
+<span><span class="co">#&gt; 5 AAPL   2016-01-08  24.6  24.8  24.2  24.2 283192000     21.9           8</span></span>
+<span><span class="co">#&gt; 6 AAPL   2016-01-11  24.7  24.8  24.3  24.6 198957600     22.2          11</span></span>
+<span><span class="co">#&gt; # ℹ 10,058 more rows</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Finally, the function <code><a href="https://lubridate.tidyverse.org/reference/day.html">wday()</a></code> grabs the day of the week from a <code>&lt;date&gt;</code>. By default, <code><a href="https://lubridate.tidyverse.org/reference/day.html">wday()</a></code> puts the day of the week as a numeric, but I find this confusing, as I can’t ever remember whether a <code>1</code> means <code>Sunday</code> or a <code>1</code> means <code>Monday</code>. Adding, <code>label = TRUE</code> creates the weekday variable as <code>Sunday</code>, <code>Monday</code>, <code>Tuesday</code>, etc.:</p>
 <div class="cell" data-appendix="true">
@@ -610,10 +610,10 @@ Note
 <div class="cell">
 <div class="sourceCode" id="cb15"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">stocks_long</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>month_stock <span class="op">=</span> <span class="fu"><a href="https://lubridate.tidyverse.org/reference/month.html">month</a></span><span class="op">(</span><span class="va">date</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</section></section><section id="practice" class="level2" data-number="12.3"><h2 data-number="12.3" class="anchored" data-anchor-id="practice">
-<span class="header-section-number">12.3</span> Practice</h2>
-<section id="class-exercises" class="level3" data-number="12.3.1"><h3 data-number="12.3.1" class="anchored" data-anchor-id="class-exercises">
-<span class="header-section-number">12.3.1</span> Class Exercises</h3>
+</section></section><section id="practice" class="level2" data-number="14.3"><h2 data-number="14.3" class="anchored" data-anchor-id="practice">
+<span class="header-section-number">14.3</span> Practice</h2>
+<section id="class-exercises" class="level3" data-number="14.3.1"><h3 data-number="14.3.1" class="anchored" data-anchor-id="class-exercises">
+<span class="header-section-number">14.3.1</span> Class Exercises</h3>
 <p>Examine the <code>ds_google.csv</code> data, which contains</p>
 <ul>
 <li>
@@ -642,8 +642,8 @@ Note
 <p><strong>Class Exercise 2</strong>. Make a plot of the popularity of Data Science through Time. Add a smoother to your plot. What patterns do you notice?</p>
 <p><strong>Class Exercise 3</strong>. Modify the code in the tutorial section on the Stocks data to get a data frame on stock prices for the now infamous Gamestop stock. Construct a line plot of the price through time.</p>
 <p><strong>Class Exercise 4</strong>. Suppose that you want to explore how often a stock’s closing price was higher on Day xxx than it was on closing on the previous Day xxx minus 1. How might you answer this question? What if you wanted to compare week-to-week instead of day-to-day? What if you wanted to compare month-to-month instead of day-to-day?</p>
-</section><section id="your-turn" class="level3" data-number="12.3.2"><h3 data-number="12.3.2" class="anchored" data-anchor-id="your-turn">
-<span class="header-section-number">12.3.2</span> Your Turn</h3>
+</section><section id="your-turn" class="level3" data-number="14.3.2"><h3 data-number="14.3.2" class="anchored" data-anchor-id="your-turn">
+<span class="header-section-number">14.3.2</span> Your Turn</h3>
 <p>The data in the Class Exercises was obtained from Google Trends: <a href="https://trends.google.com/trends/?geo=US" target="_blank">Google Trends</a>. Google Trends is incredibly cool to explore, even without <code>R</code>.</p>
 <p><strong>Your Turn 1</strong>. On Google Trends, Enter in a search term, and change the Time dropdown menu to be 2004-present. Then, enter in a second search term that you want to compare. You can also change the country if you want to (or, you can keep the country as United States).</p>
 <div class="callout callout-style-simple callout-note callout-titled">
@@ -1112,13 +1112,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   }
 });
 </script><nav class="page-navigation"><div class="nav-page nav-page-previous">
-      <a href="./10-merging.html" class="pagination-link" aria-label="Merging with `dplyr`">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Merging with <code>dplyr</code></span></span>
+      <a href="./12-stringr.html" class="pagination-link" aria-label="Text Data with `tidytext` and `stringr`">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Text Data with <code>tidytext</code> and <code>stringr</code></span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./12-stringr.html" class="pagination-link" aria-label="Text Data with `tidytext` and `stringr`">
-        <span class="nav-page-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Text Data with <code>tidytext</code> and <code>stringr</code></span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./15-connections.html" class="pagination-link" aria-label="Connections to STAT 113, STAT 213, and CS 140">
+        <span class="nav-page-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Connections to STAT 113, STAT 213, and CS 140</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

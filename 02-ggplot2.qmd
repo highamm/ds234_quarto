@@ -566,10 +566,14 @@ In general, practice exercises will be split between exercises that will be done
 
 For some of these exercises we will again use the `stat113_df` data, described in the previous section.
 
+Moreover, we will start to use the `glimpse()` function more often to get a very quick look at our data:
+
 ```{r}
 stat113_df <- read_csv("https://raw.githubusercontent.com/highamm/ds234_quarto/main/data_online/stat113.csv")
-head(stat113_df)
+glimpse(stat113_df)
 ```
+
+What does `glimpse()` tell us?
 
 ### Class Exercises
 
@@ -594,9 +598,9 @@ ggplot(data = toy_df, aes(x = xvar, y = yvar, colour = groupvar)) +
   geom_smooth(aes(method = "lm"))
 
 ## b
-ggplot(data = toy_df, aes(x = xvar, y = yvar, colour = groupvar)) +
-  geom_point(colour = "purple") +
-  geom_smooth(method = "lm")
+ggplot(data = toy_df, aes(x = xvar)) +
+  geom_point(aes(y = yvar), colour = "purple") +
+  geom_smooth(aes(y = yvar, colour = groupvar), method = "lm")
 
 ## c
 ggplot(data = toy_df, aes(x = xvar, y = yvar)) +

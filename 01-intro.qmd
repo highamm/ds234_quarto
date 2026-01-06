@@ -175,13 +175,13 @@ Florida is typically a highly-contentious "battleground" state. The data set tha
 * `Other`, the number of people who voted for a candidate other than the previous 4 listed
 * `County`, the name of the county in Florida
 
-Read in the data set, name the data set `pres_df`, and take a look at the data set by running the `head(pres_df)` line, which shows the first few observations of the data set:
+Read in the data set, name the data set `pres_df`, and take a look at the data set by running the `pres_df` line, which shows the first ten observations of the data set:
 
 ```{r, message = FALSE, warning = FALSE, appendix = TRUE}
 library(tidyverse)
 
 pres_df <- read_csv("https://raw.githubusercontent.com/highamm/ds234_quarto/main/data_online/pres2000.csv") 
-head(pres_df)
+pres_df
 ```
 
 ::: {.callout-note}
@@ -425,11 +425,11 @@ As another example, we will look at a data set on the top 100 highest paid athle
 * `age` of athlete in 2014
 * `Gender` (Male or Female)
 
-We will first read in the data set below and name it `athletes`. We can then use the `head()` function to look at the first few rows of the data set.
+We will first read in the data set below and name it `athletes`. We then look at the first ten rows of the data set.
 
 ```{r, message = FALSE, warning = FALSE}
 athletes <- read_csv("https://raw.githubusercontent.com/highamm/ds234_quarto/main/data_online/athletesdata.csv")
-head(athletes)
+athletes
 ```
 
 There are many different interesting questions to answer with this data set. First, we might be interested in the relationship between athlete age and salary for the top 100 athletes. Recall from an earlier stat course that one appropriate graphic to examine this relationship is a scatterplot:

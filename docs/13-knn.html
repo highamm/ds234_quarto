@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="generator" content="quarto-1.4.555">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-<title>DATA / STAT 234 - 14&nbsp; Predictive Modeling with knn</title>
+<title>DATA / STAT 234 - 12&nbsp; Predictive Modeling with knn</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -60,8 +60,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./15-connections.html" rel="next">
-<link href="./12-stringr.html" rel="prev">
+<link href="./12-stringr.html" rel="next">
+<link href="./08-import.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -130,7 +130,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./11-lubridate.html">Special Topics</a></li><li class="breadcrumb-item"><a href="./13-knn.html"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Predictive Modeling with knn</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./13-knn.html">Special Topics</a></li><li class="breadcrumb-item"><a href="./13-knn.html"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Predictive Modeling with knn</span></a></li></ol></nav>
         <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
@@ -222,14 +222,14 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./06-basics.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Coding in Base <code>R</code></span></span></a>
+  <a href="./07-forcats.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Factors with <code>forcats</code></span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./07-forcats.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Factors with <code>forcats</code></span></span></a>
+  <a href="./06-basics.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Coding in Base <code>R</code></span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -240,14 +240,14 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./08-import.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Data Import</span></span></a>
+  <a href="./10-merging.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Merging with <code>dplyr</code></span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./10-merging.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Merging with <code>dplyr</code></span></span></a>
+  <a href="./08-import.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Data Import</span></span></a>
   </div>
 </li>
       </ul>
@@ -263,8 +263,8 @@ window.Quarto = {
       <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">
 <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./11-lubridate.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Dates with <code>lubridate</code></span></span></a>
+  <a href="./13-knn.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Predictive Modeling with knn</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -275,8 +275,8 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./13-knn.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Predictive Modeling with knn</span></span></a>
+  <a href="./11-lubridate.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Dates with <code>lubridate</code></span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -301,21 +301,21 @@ window.Quarto = {
         <nav id="TOC" role="doc-toc" class="toc-active"><h2 id="toc-title">Table of contents</h2>
    
   <ul>
-<li><a href="#introduction-to-classification" id="toc-introduction-to-classification" class="nav-link active" data-scroll-target="#introduction-to-classification"><span class="header-section-number">14.1</span> Introduction to Classification</a></li>
-  <li><a href="#choosing-predictors-and-k" id="toc-choosing-predictors-and-k" class="nav-link" data-scroll-target="#choosing-predictors-and-k"><span class="header-section-number">14.2</span> Choosing Predictors and k</a></li>
-  <li><a href="#evaluating-a-predictive-model" id="toc-evaluating-a-predictive-model" class="nav-link" data-scroll-target="#evaluating-a-predictive-model"><span class="header-section-number">14.3</span> Evaluating a Predictive Model</a></li>
+<li><a href="#introduction-to-classification" id="toc-introduction-to-classification" class="nav-link active" data-scroll-target="#introduction-to-classification"><span class="header-section-number">12.1</span> Introduction to Classification</a></li>
+  <li><a href="#choosing-predictors-and-k" id="toc-choosing-predictors-and-k" class="nav-link" data-scroll-target="#choosing-predictors-and-k"><span class="header-section-number">12.2</span> Choosing Predictors and k</a></li>
+  <li><a href="#evaluating-a-predictive-model" id="toc-evaluating-a-predictive-model" class="nav-link" data-scroll-target="#evaluating-a-predictive-model"><span class="header-section-number">12.3</span> Evaluating a Predictive Model</a></li>
   <li>
-<a href="#practice" id="toc-practice" class="nav-link" data-scroll-target="#practice"><span class="header-section-number">14.4</span> Practice</a>
+<a href="#practice" id="toc-practice" class="nav-link" data-scroll-target="#practice"><span class="header-section-number">12.4</span> Practice</a>
   <ul class="collapse">
-<li><a href="#class-exercises" id="toc-class-exercises" class="nav-link" data-scroll-target="#class-exercises"><span class="header-section-number">14.4.1</span> Class Exercises</a></li>
-  <li><a href="#your-turn" id="toc-your-turn" class="nav-link" data-scroll-target="#your-turn"><span class="header-section-number">14.4.2</span> Your Turn</a></li>
+<li><a href="#class-exercises" id="toc-class-exercises" class="nav-link" data-scroll-target="#class-exercises"><span class="header-section-number">12.4.1</span> Class Exercises</a></li>
+  <li><a href="#your-turn" id="toc-your-turn" class="nav-link" data-scroll-target="#your-turn"><span class="header-section-number">12.4.2</span> Your Turn</a></li>
   </ul>
 </li>
   </ul></nav>
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./11-lubridate.html">Special Topics</a></li><li class="breadcrumb-item"><a href="./13-knn.html"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Predictive Modeling with knn</span></a></li></ol></nav><div class="quarto-title">
-<h1 class="title"><span id="knn" class="quarto-section-identifier"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Predictive Modeling with knn</span></span></h1>
+<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./13-knn.html">Special Topics</a></li><li class="breadcrumb-item"><a href="./13-knn.html"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Predictive Modeling with knn</span></a></li></ol></nav><div class="quarto-title">
+<h1 class="title"><span id="knn" class="quarto-section-identifier"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Predictive Modeling with knn</span></span></h1>
 </div>
 
 
@@ -349,11 +349,11 @@ Note
 <p>The structure of this section will be a bit different than the structure of the previous sections. We will complete some of this material on handouts that we will fill in by-hand.</p>
 </div>
 </div>
-<section id="introduction-to-classification" class="level2" data-number="14.1"><h2 data-number="14.1" class="anchored" data-anchor-id="introduction-to-classification">
-<span class="header-section-number">14.1</span> Introduction to Classification</h2>
+<section id="introduction-to-classification" class="level2" data-number="12.1"><h2 data-number="12.1" class="anchored" data-anchor-id="introduction-to-classification">
+<span class="header-section-number">12.1</span> Introduction to Classification</h2>
 <p>We will introduce both the knn algorithm and classification in general using a handwritten handout.</p>
-</section><section id="choosing-predictors-and-k" class="level2" data-number="14.2"><h2 data-number="14.2" class="anchored" data-anchor-id="choosing-predictors-and-k">
-<span class="header-section-number">14.2</span> Choosing Predictors and k</h2>
+</section><section id="choosing-predictors-and-k" class="level2" data-number="12.2"><h2 data-number="12.2" class="anchored" data-anchor-id="choosing-predictors-and-k">
+<span class="header-section-number">12.2</span> Choosing Predictors and k</h2>
 <p>We will continue to use the scaled version of the pokemon data set for this handout. This time, we will have <strong>75</strong> pokemon in our training data set and we are only looking at the <code>Steel</code>, <code>Dark</code>, <code>Fire</code>, and <code>Ice</code> types. As discussed in the handout, it is important to scale all of our numeric predictors so that the unit of measurement does not influence the classification results. We can scale all of the numeric variables in a data frame using a combination of <code><a href="https://dplyr.tidyverse.org/reference/across.html">across()</a></code>, <code><a href="https://tidyselect.r-lib.org/reference/where.html">where()</a></code>, and <code><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate()</a></code> before we split the data into a training sample and a test sample.</p>
 <div class="cell">
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">1119</span><span class="op">)</span></span>
@@ -428,8 +428,8 @@ Note
 <span><span class="co">#&gt; Levels: Dark Fire Ice Steel</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>The output of <code>knn_mod</code> gives the predicted categories for the <strong>test</strong> sample. So, the first pokemon in the test sample is predicted to be <code>Fire</code> type, the second is predicted to be <code>Fire</code> type, etc.</p>
-</section><section id="evaluating-a-predictive-model" class="level2" data-number="14.3"><h2 data-number="14.3" class="anchored" data-anchor-id="evaluating-a-predictive-model">
-<span class="header-section-number">14.3</span> Evaluating a Predictive Model</h2>
+</section><section id="evaluating-a-predictive-model" class="level2" data-number="12.3"><h2 data-number="12.3" class="anchored" data-anchor-id="evaluating-a-predictive-model">
+<span class="header-section-number">12.3</span> Evaluating a Predictive Model</h2>
 <p>But, how well did our model classify pokemon into <code>Type</code>s? We still need a metric to evaluate models with different predictors. One definition of a “good” model in the classification context is a model that has a high proportion of correct predictions in the test data set. This should make some intuitive sense, as we would hope that a “good” model correctly classifies most <code>Dark</code> pokemon as <code>Dark</code>, most <code>Fire</code> pokemon as <code>Fire</code>, etc.</p>
 <p>In order to examine the performance of a particular model, we’ll create a <strong>classification table</strong> that shows the results of the model’s classification on observations in the test data set. An equivalent name for the confusion matrix is a <strong>confusion matrix</strong>.</p>
 <p>We can compare the predictions from the knn model with the actual pokemon <code>Type</code>s in the test sample with <code><a href="https://rdrr.io/r/base/table.html">table()</a></code>, which makes the classification table:</p>
@@ -457,10 +457,10 @@ Note
 <p><strong>Exercise 6</strong>. Change the predictors used or change k to improve the classification rate of the model with <code>k = 9</code> and <code>Attack</code>, <code>Defense</code>, <code>HP</code>, and <code>Speed</code> as predictors.</p>
 <p><strong>Exercise 7</strong>. A baseline classification rate to compare to is a model that just classifies everything in the test data set as the most common <code>Type</code> in the training data set. In this case, what would the “baseline” classification rate be?</p>
 <p><strong>Exercise 8</strong>. We will choose <span class="math inline">\(k\)</span>, the number of neighbors considered, using a bit of trial and error, but we will also automate the process by writing a for loop to loop through different values of <span class="math inline">\(k\)</span>. However, we should discuss the relative advantages of smaller and larger k values. Which value is “best” is entirely dependent on the data at hand! What are some advantages for making k smaller? What are some advantages for making k larger?</p>
-</section><section id="practice" class="level2" data-number="14.4"><h2 data-number="14.4" class="anchored" data-anchor-id="practice">
-<span class="header-section-number">14.4</span> Practice</h2>
-<section id="class-exercises" class="level3" data-number="14.4.1"><h3 data-number="14.4.1" class="anchored" data-anchor-id="class-exercises">
-<span class="header-section-number">14.4.1</span> Class Exercises</h3>
+</section><section id="practice" class="level2" data-number="12.4"><h2 data-number="12.4" class="anchored" data-anchor-id="practice">
+<span class="header-section-number">12.4</span> Practice</h2>
+<section id="class-exercises" class="level3" data-number="12.4.1"><h3 data-number="12.4.1" class="anchored" data-anchor-id="class-exercises">
+<span class="header-section-number">12.4.1</span> Class Exercises</h3>
 <p>Examine the following code that fits a knn model using the pokemon data set with <span class="math inline">\(k\)</span> set to <span class="math inline">\(9\)</span>. For this example, we are using the full pokemon data set (with all Types), so, we might expect our classification rate to be a bit lower.</p>
 <div class="cell">
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span></span>
@@ -541,8 +541,8 @@ Note
 <span></span>
 <span><span class="va">class_rate</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</section><section id="your-turn" class="level3" data-number="14.4.2"><h3 data-number="14.4.2" class="anchored" data-anchor-id="your-turn">
-<span class="header-section-number">14.4.2</span> Your Turn</h3>
+</section><section id="your-turn" class="level3" data-number="12.4.2"><h3 data-number="12.4.2" class="anchored" data-anchor-id="your-turn">
+<span class="header-section-number">12.4.2</span> Your Turn</h3>
 <p>There will be no your turn exercises for this section. Instead, you will apply some of these concepts in your third project.</p>
 
 
@@ -955,13 +955,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   }
 });
 </script><nav class="page-navigation"><div class="nav-page nav-page-previous">
-      <a href="./12-stringr.html" class="pagination-link" aria-label="Text Data with `tidytext` and `stringr`">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Text Data with <code>tidytext</code> and <code>stringr</code></span></span>
+      <a href="./08-import.html" class="pagination-link" aria-label="Data Import">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Data Import</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./15-connections.html" class="pagination-link" aria-label="Connections to STAT 113, STAT 213, and CS 140">
-        <span class="nav-page-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Connections to STAT 113, STAT 213, and CS 140</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./12-stringr.html" class="pagination-link" aria-label="Text Data with `tidytext` and `stringr`">
+        <span class="nav-page-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Text Data with <code>tidytext</code> and <code>stringr</code></span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

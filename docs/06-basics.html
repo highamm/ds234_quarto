@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="generator" content="quarto-1.4.555">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-<title>DATA / STAT 234 - 7&nbsp; Coding in Base R</title>
+<title>DATA / STAT 234 - 8&nbsp; Coding in Base R</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -60,8 +60,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./07-forcats.html" rel="next">
-<link href="./04-tidyr.html" rel="prev">
+<link href="./09-ethics.html" rel="next">
+<link href="./07-forcats.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -105,7 +105,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./04-tidyr.html">Data Wrangling</a></li><li class="breadcrumb-item"><a href="./06-basics.html"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Coding in Base <code>R</code></span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./04-tidyr.html">Data Wrangling</a></li><li class="breadcrumb-item"><a href="./06-basics.html"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Coding in Base <code>R</code></span></a></li></ol></nav>
         <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
@@ -197,14 +197,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./06-basics.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Coding in Base <code>R</code></span></span></a>
+  <a href="./07-forcats.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Factors with <code>forcats</code></span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./07-forcats.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Factors with <code>forcats</code></span></span></a>
+  <a href="./06-basics.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Coding in Base <code>R</code></span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -215,14 +215,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./08-import.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Data Import</span></span></a>
+  <a href="./10-merging.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Merging with <code>dplyr</code></span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./10-merging.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Merging with <code>dplyr</code></span></span></a>
+  <a href="./08-import.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Data Import</span></span></a>
   </div>
 </li>
       </ul>
@@ -238,8 +238,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">
 <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./11-lubridate.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Dates with <code>lubridate</code></span></span></a>
+  <a href="./13-knn.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Predictive Modeling with knn</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -250,8 +250,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./13-knn.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Predictive Modeling with knn</span></span></a>
+  <a href="./11-lubridate.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Dates with <code>lubridate</code></span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -277,41 +277,41 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
    
   <ul>
 <li>
-<a href="#variable-classes-in-r" id="toc-variable-classes-in-r" class="nav-link active" data-scroll-target="#variable-classes-in-r"><span class="header-section-number">7.1</span> Variable Classes in <code>R</code></a>
+<a href="#variable-classes-in-r" id="toc-variable-classes-in-r" class="nav-link active" data-scroll-target="#variable-classes-in-r"><span class="header-section-number">8.1</span> Variable Classes in <code>R</code></a>
   <ul class="collapse">
-<li><a href="#referencing-variables-and-using-str" id="toc-referencing-variables-and-using-str" class="nav-link" data-scroll-target="#referencing-variables-and-using-str"><span class="header-section-number">7.1.1</span> Referencing Variables and Using <code>str()</code></a></li>
+<li><a href="#referencing-variables-and-using-str" id="toc-referencing-variables-and-using-str" class="nav-link" data-scroll-target="#referencing-variables-and-using-str"><span class="header-section-number">8.1.1</span> Referencing Variables and Using <code>str()</code></a></li>
   </ul>
 </li>
   <li>
-<a href="#classes-in-detail" id="toc-classes-in-detail" class="nav-link" data-scroll-target="#classes-in-detail"><span class="header-section-number">7.2</span> Classes in Detail</a>
+<a href="#classes-in-detail" id="toc-classes-in-detail" class="nav-link" data-scroll-target="#classes-in-detail"><span class="header-section-number">8.2</span> Classes in Detail</a>
   <ul class="collapse">
-<li><a href="#chr-and-fct-class" id="toc-chr-and-fct-class" class="nav-link" data-scroll-target="#chr-and-fct-class"><span class="header-section-number">7.2.1</span> <code>&lt;chr&gt;</code> and <code>&lt;fct&gt;</code> Class</a></li>
-  <li><a href="#date-class" id="toc-date-class" class="nav-link" data-scroll-target="#date-class"><span class="header-section-number">7.2.2</span> <code>&lt;date&gt;</code> Class</a></li>
-  <li><a href="#dbl-and-int-class" id="toc-dbl-and-int-class" class="nav-link" data-scroll-target="#dbl-and-int-class"><span class="header-section-number">7.2.3</span> <code>&lt;dbl&gt;</code> and <code>&lt;int&gt;</code> Class</a></li>
-  <li><a href="#lgl-class" id="toc-lgl-class" class="nav-link" data-scroll-target="#lgl-class"><span class="header-section-number">7.2.4</span> <code>&lt;lgl&gt;</code> Class</a></li>
+<li><a href="#chr-and-fct-class" id="toc-chr-and-fct-class" class="nav-link" data-scroll-target="#chr-and-fct-class"><span class="header-section-number">8.2.1</span> <code>&lt;chr&gt;</code> and <code>&lt;fct&gt;</code> Class</a></li>
+  <li><a href="#date-class" id="toc-date-class" class="nav-link" data-scroll-target="#date-class"><span class="header-section-number">8.2.2</span> <code>&lt;date&gt;</code> Class</a></li>
+  <li><a href="#dbl-and-int-class" id="toc-dbl-and-int-class" class="nav-link" data-scroll-target="#dbl-and-int-class"><span class="header-section-number">8.2.3</span> <code>&lt;dbl&gt;</code> and <code>&lt;int&gt;</code> Class</a></li>
+  <li><a href="#lgl-class" id="toc-lgl-class" class="nav-link" data-scroll-target="#lgl-class"><span class="header-section-number">8.2.4</span> <code>&lt;lgl&gt;</code> Class</a></li>
   </ul>
 </li>
   <li>
-<a href="#object-types-and-subsetting" id="toc-object-types-and-subsetting" class="nav-link" data-scroll-target="#object-types-and-subsetting"><span class="header-section-number">7.3</span> Object Types and Subsetting</a>
+<a href="#object-types-and-subsetting" id="toc-object-types-and-subsetting" class="nav-link" data-scroll-target="#object-types-and-subsetting"><span class="header-section-number">8.3</span> Object Types and Subsetting</a>
   <ul class="collapse">
-<li><a href="#tibble-and-data.frame" id="toc-tibble-and-data.frame" class="nav-link" data-scroll-target="#tibble-and-data.frame"><span class="header-section-number">7.3.1</span> <code>tibble</code> and <code>data.frame</code></a></li>
-  <li><a href="#vectors" id="toc-vectors" class="nav-link" data-scroll-target="#vectors"><span class="header-section-number">7.3.2</span> Vectors</a></li>
-  <li><a href="#lists" id="toc-lists" class="nav-link" data-scroll-target="#lists"><span class="header-section-number">7.3.3</span> Lists</a></li>
+<li><a href="#tibble-and-data.frame" id="toc-tibble-and-data.frame" class="nav-link" data-scroll-target="#tibble-and-data.frame"><span class="header-section-number">8.3.1</span> <code>tibble</code> and <code>data.frame</code></a></li>
+  <li><a href="#vectors" id="toc-vectors" class="nav-link" data-scroll-target="#vectors"><span class="header-section-number">8.3.2</span> Vectors</a></li>
+  <li><a href="#lists" id="toc-lists" class="nav-link" data-scroll-target="#lists"><span class="header-section-number">8.3.3</span> Lists</a></li>
   </ul>
 </li>
-  <li><a href="#other-useful-base-r-functions" id="toc-other-useful-base-r-functions" class="nav-link" data-scroll-target="#other-useful-base-r-functions"><span class="header-section-number">7.4</span> Other Useful Base <code>R</code> Functions</a></li>
+  <li><a href="#other-useful-base-r-functions" id="toc-other-useful-base-r-functions" class="nav-link" data-scroll-target="#other-useful-base-r-functions"><span class="header-section-number">8.4</span> Other Useful Base <code>R</code> Functions</a></li>
   <li>
-<a href="#practice" id="toc-practice" class="nav-link" data-scroll-target="#practice"><span class="header-section-number">7.5</span> Practice</a>
+<a href="#practice" id="toc-practice" class="nav-link" data-scroll-target="#practice"><span class="header-section-number">8.5</span> Practice</a>
   <ul class="collapse">
-<li><a href="#class-exercises" id="toc-class-exercises" class="nav-link" data-scroll-target="#class-exercises"><span class="header-section-number">7.5.1</span> Class Exercises</a></li>
-  <li><a href="#your-turn" id="toc-your-turn" class="nav-link" data-scroll-target="#your-turn"><span class="header-section-number">7.5.2</span> Your Turn</a></li>
+<li><a href="#class-exercises" id="toc-class-exercises" class="nav-link" data-scroll-target="#class-exercises"><span class="header-section-number">8.5.1</span> Class Exercises</a></li>
+  <li><a href="#your-turn" id="toc-your-turn" class="nav-link" data-scroll-target="#your-turn"><span class="header-section-number">8.5.2</span> Your Turn</a></li>
   </ul>
 </li>
   </ul></nav>
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./04-tidyr.html">Data Wrangling</a></li><li class="breadcrumb-item"><a href="./06-basics.html"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Coding in Base <code>R</code></span></a></li></ol></nav><div class="quarto-title">
-<h1 class="title"><span id="basics" class="quarto-section-identifier"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Coding in Base <code>R</code></span></span></h1>
+<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./04-tidyr.html">Data Wrangling</a></li><li class="breadcrumb-item"><a href="./06-basics.html"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Coding in Base <code>R</code></span></a></li></ol></nav><div class="quarto-title">
+<h1 class="title"><span id="basics" class="quarto-section-identifier"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Coding in Base <code>R</code></span></span></h1>
 </div>
 
 
@@ -335,8 +335,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>“Base <code>R</code>” generally refers to <code>R</code> code that we can use without loading in any outside packages (so this code is <strong>not</strong> in the <code>tidyverse</code> family of packages). Why is the chapter on <code>R</code> basics not the first chapter that we discuss? There certainly are advantages of doing things that way, but there are also advantages of not starting out with something like “classes of variables in <code>R</code>.”</p>
 <p>First, it’s not the most inherently interesting thing to look at. It’s a lot more fun to make plots and wrangle data. As long as someone makes sure that the variables are already of the “correct” class, then there’s no need to talk about this.</p>
 <p>Second, much of what we discuss here will make more sense, having the previous four chapters under our belt. We’ll be able to see how mis-specified variable classes cause issues in certain summaries and plots <em>and we already know how to make those plots and get those summaries</em>.</p>
-<section id="variable-classes-in-r" class="level2" data-number="7.1"><h2 data-number="7.1" class="anchored" data-anchor-id="variable-classes-in-r">
-<span class="header-section-number">7.1</span> Variable Classes in <code>R</code>
+<section id="variable-classes-in-r" class="level2" data-number="8.1"><h2 data-number="8.1" class="anchored" data-anchor-id="variable-classes-in-r">
+<span class="header-section-number">8.1</span> Variable Classes in <code>R</code>
 </h2>
 <p><code>R</code> has a few different classes that variables take, including <code>numeric</code>, <code>factor</code>, <code>character</code> <code>Date</code>, and <code>logical</code>. Before we delve into the specifics of what these classes mean, let’s try to make some plots to illustrate why we should care about what these classes mean.</p>
 <p>The <code>videogame_clean.csv</code> file contains variables on video games from 2004 - 2019, including</p>
@@ -368,19 +368,24 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://here.r-lib.org/">here</a></span><span class="op">)</span></span>
 <span><span class="va">videogame_df</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv</a></span><span class="op">(</span><span class="fu"><a href="https://here.r-lib.org/reference/here.html">here</a></span><span class="op">(</span><span class="st">"data/videogame_clean.csv"</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">videogame_df</span><span class="op">)</span></span>
-<span><span class="co">#&gt; # A tibble: 6 × 15</span></span>
-<span><span class="co">#&gt;   game      release_date release_date2 price owners median_playtime metascore</span></span>
-<span><span class="co">#&gt;   &lt;chr&gt;     &lt;chr&gt;        &lt;date&gt;        &lt;dbl&gt; &lt;chr&gt;            &lt;dbl&gt;     &lt;dbl&gt;</span></span>
-<span><span class="co">#&gt; 1 Half-Lif… Nov 16, 2004 2004-11-16     9.99 10,00…              66        96</span></span>
-<span><span class="co">#&gt; 2 Counter-… Nov 1, 2004  2004-11-01     9.99 10,00…             128        88</span></span>
-<span><span class="co">#&gt; 3 Counter-… Mar 1, 2004  2004-03-01     9.99 10,00…               3        65</span></span>
-<span><span class="co">#&gt; 4 Half-Lif… Nov 1, 2004  2004-11-01     4.99 5,000…               0        NA</span></span>
-<span><span class="co">#&gt; 5 Half-Lif… Jun 1, 2004  2004-06-01     9.99 2,000…               0        NA</span></span>
-<span><span class="co">#&gt; 6 CS2D      Dec 24, 2004 2004-12-24    NA    1,000…              10        NA</span></span>
-<span><span class="co">#&gt; # ℹ 8 more variables: price_cat &lt;dbl&gt;, meta_cat &lt;chr&gt;, playtime_miss &lt;lgl&gt;,</span></span>
-<span><span class="co">#&gt; #   number &lt;dbl&gt;, developer &lt;chr&gt;, publisher &lt;chr&gt;, average_playtime &lt;dbl&gt;,</span></span>
-<span><span class="co">#&gt; #   meta_cat_factor &lt;chr&gt;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="va">videogame_df</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html">glimpse</a></span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="co">#&gt; Rows: 26,688</span></span>
+<span><span class="co">#&gt; Columns: 15</span></span>
+<span><span class="co">#&gt; $ game             &lt;chr&gt; "Half-Life 2", "Counter-Strike: Source", "Counter-…</span></span>
+<span><span class="co">#&gt; $ release_date     &lt;chr&gt; "Nov 16, 2004", "Nov 1, 2004", "Mar 1, 2004", "Nov…</span></span>
+<span><span class="co">#&gt; $ release_date2    &lt;date&gt; 2004-11-16, 2004-11-01, 2004-03-01, 2004-11-01, 2…</span></span>
+<span><span class="co">#&gt; $ price            &lt;dbl&gt; 9.99, 9.99, 9.99, 4.99, 9.99, NA, 14.99, 4.99, 5.9…</span></span>
+<span><span class="co">#&gt; $ owners           &lt;chr&gt; "10,000,000&nbsp;..&nbsp;20,000,000", "10,000,000&nbsp;..&nbsp;20,000,…</span></span>
+<span><span class="co">#&gt; $ median_playtime  &lt;dbl&gt; 66, 128, 3, 0, 0, 10, 0, 0, 0, 0, 0, 0, 0, 270, 0,…</span></span>
+<span><span class="co">#&gt; $ metascore        &lt;dbl&gt; 96, 88, 65, NA, NA, NA, 93, 87, 73, NA, 80, 69, NA…</span></span>
+<span><span class="co">#&gt; $ price_cat        &lt;dbl&gt; 1, 1, 1, 1, 1, NA, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1…</span></span>
+<span><span class="co">#&gt; $ meta_cat         &lt;chr&gt; "Universal Acclaim", "Generally Favorable", "Mixed…</span></span>
+<span><span class="co">#&gt; $ playtime_miss    &lt;lgl&gt; FALSE, FALSE, FALSE, TRUE, TRUE, FALSE, TRUE, TRUE…</span></span>
+<span><span class="co">#&gt; $ number           &lt;dbl&gt; 1, 3, 21, 47, 36, 52, 2, 4, 14, 40, 9, 17, 43, 49,…</span></span>
+<span><span class="co">#&gt; $ developer        &lt;chr&gt; "Valve", "Valve", "Valve", "Valve", "Valve", "Unre…</span></span>
+<span><span class="co">#&gt; $ publisher        &lt;chr&gt; "Valve", "Valve", "Valve", "Valve", "Valve", "Unre…</span></span>
+<span><span class="co">#&gt; $ average_playtime &lt;dbl&gt; 110, 236, 10, 0, 0, 16, 0, 0, 0, 0, 0, 0, 0, 371, …</span></span>
+<span><span class="co">#&gt; $ meta_cat_factor  &lt;chr&gt; "Universal Acclaim", "Generally Favorable", "Mixed…</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>A data frame or tibble holds variables that are allowed to be different classes. If a variable is a different class than you would expect, you’ll get some strange errors or results when trying to wrangle the data or make graphics.</p>
 <p>Run the following lines of code. In some cases, we are only using the first 100 observations in <code>videogame_small</code>. Otherwise, the code would take a <strong>very</strong> long time to run.</p>
@@ -422,8 +427,8 @@ Note
 </div>
 <p>If we examine the output of the following line of code</p>
 <div class="cell" data-appendix="true">
-<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">videogame_df</span><span class="op">)</span></span>
-<span><span class="co">#&gt; # A tibble: 6 × 15</span></span>
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">videogame_df</span></span>
+<span><span class="co">#&gt; # A tibble: 26,688 × 15</span></span>
 <span><span class="co">#&gt;   game      release_date release_date2 price owners median_playtime metascore</span></span>
 <span><span class="co">#&gt;   &lt;chr&gt;     &lt;chr&gt;        &lt;date&gt;        &lt;dbl&gt; &lt;chr&gt;            &lt;dbl&gt;     &lt;dbl&gt;</span></span>
 <span><span class="co">#&gt; 1 Half-Lif… Nov 16, 2004 2004-11-16     9.99 10,00…              66        96</span></span>
@@ -432,6 +437,7 @@ Note
 <span><span class="co">#&gt; 4 Half-Lif… Nov 1, 2004  2004-11-01     4.99 5,000…               0        NA</span></span>
 <span><span class="co">#&gt; 5 Half-Lif… Jun 1, 2004  2004-06-01     9.99 2,000…               0        NA</span></span>
 <span><span class="co">#&gt; 6 CS2D      Dec 24, 2004 2004-12-24    NA    1,000…              10        NA</span></span>
+<span><span class="co">#&gt; # ℹ 26,682 more rows</span></span>
 <span><span class="co">#&gt; # ℹ 8 more variables: price_cat &lt;dbl&gt;, meta_cat &lt;chr&gt;, playtime_miss &lt;lgl&gt;,</span></span>
 <span><span class="co">#&gt; #   number &lt;dbl&gt;, developer &lt;chr&gt;, publisher &lt;chr&gt;, average_playtime &lt;dbl&gt;,</span></span>
 <span><span class="co">#&gt; #   meta_cat_factor &lt;chr&gt;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -451,8 +457,8 @@ Note
 <li>
 <code>&lt;lgl&gt;</code> is for logical, variables that are either <code>TRUE</code> or <code>FALSE</code>.</li>
 </ul>
-<section id="referencing-variables-and-using-str" class="level3" data-number="7.1.1"><h3 data-number="7.1.1" class="anchored" data-anchor-id="referencing-variables-and-using-str">
-<span class="header-section-number">7.1.1</span> Referencing Variables and Using <code>str()</code>
+<section id="referencing-variables-and-using-str" class="level3" data-number="8.1.1"><h3 data-number="8.1.1" class="anchored" data-anchor-id="referencing-variables-and-using-str">
+<span class="header-section-number">8.1.1</span> Referencing Variables and Using <code>str()</code>
 </h3>
 <p>We can use <code>name_of_dataset$name_of_variable</code> to look at a specific variable in a data set:</p>
 <div class="cell" data-appendix="true">
@@ -468,11 +474,11 @@ Note
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/class.html">class</a></span><span class="op">(</span><span class="va">videogame_df</span><span class="op">$</span><span class="va">game</span><span class="op">)</span></span>
 <span><span class="co">#&gt; [1] "character"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</section></section><section id="classes-in-detail" class="level2" data-number="7.2"><h2 data-number="7.2" class="anchored" data-anchor-id="classes-in-detail">
-<span class="header-section-number">7.2</span> Classes in Detail</h2>
+</section></section><section id="classes-in-detail" class="level2" data-number="8.2"><h2 data-number="8.2" class="anchored" data-anchor-id="classes-in-detail">
+<span class="header-section-number">8.2</span> Classes in Detail</h2>
 <p>The following gives summary information about each class of variables in <code>R</code>:</p>
-<section id="chr-and-fct-class" class="level3" data-number="7.2.1"><h3 data-number="7.2.1" class="anchored" data-anchor-id="chr-and-fct-class">
-<span class="header-section-number">7.2.1</span> <code>&lt;chr&gt;</code> and <code>&lt;fct&gt;</code> Class</h3>
+<section id="chr-and-fct-class" class="level3" data-number="8.2.1"><h3 data-number="8.2.1" class="anchored" data-anchor-id="chr-and-fct-class">
+<span class="header-section-number">8.2.1</span> <code>&lt;chr&gt;</code> and <code>&lt;fct&gt;</code> Class</h3>
 <p>With the character class, <code>R</code> will give you a warning and/or a missing value if you try to perform any numerical operations:</p>
 <div class="cell" data-appendix="true">
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">videogame_df</span><span class="op">$</span><span class="va">game</span><span class="op">)</span></span>
@@ -497,8 +503,8 @@ Note
 <span><span class="fu"><a href="https://rdrr.io/r/utils/str.html">str</a></span><span class="op">(</span><span class="va">videogame_df</span><span class="op">$</span><span class="va">meta_cat_factor</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>For most <code>R</code> functions, it won’t matter whether our variable is in class character or class factor. In general, though, character classes are for variables that have a ton of different levels, like the name of the videogame, whereas factors are reserved for categorical variables with a smaller finite number of levels.</p>
-</section><section id="date-class" class="level3" data-number="7.2.2"><h3 data-number="7.2.2" class="anchored" data-anchor-id="date-class">
-<span class="header-section-number">7.2.2</span> <code>&lt;date&gt;</code> Class</h3>
+</section><section id="date-class" class="level3" data-number="8.2.2"><h3 data-number="8.2.2" class="anchored" data-anchor-id="date-class">
+<span class="header-section-number">8.2.2</span> <code>&lt;date&gt;</code> Class</h3>
 <p>The <code>&lt;date&gt;</code> class is used for dates, and the <code>&lt;datetime&gt;</code> class is used for Dates with times. <code>R</code> requires a very specific format for dates and times. Note that, while to the human eye, both of the following variables contain dates, only one is of class <code>&lt;date&gt;</code>:</p>
 <div class="cell" data-appendix="true">
 <div class="sourceCode" id="cb11"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/str.html">str</a></span><span class="op">(</span><span class="va">videogame_df</span><span class="op">$</span><span class="va">release_date</span><span class="op">)</span></span>
@@ -516,8 +522,8 @@ Note
 <span><span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">videogame_df</span><span class="op">$</span><span class="va">release_date2</span>, na.rm <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>What do you think taking the median or taking the mean of a date class means?</p>
-</section><section id="dbl-and-int-class" class="level3" data-number="7.2.3"><h3 data-number="7.2.3" class="anchored" data-anchor-id="dbl-and-int-class">
-<span class="header-section-number">7.2.3</span> <code>&lt;dbl&gt;</code> and <code>&lt;int&gt;</code> Class</h3>
+</section><section id="dbl-and-int-class" class="level3" data-number="8.2.3"><h3 data-number="8.2.3" class="anchored" data-anchor-id="dbl-and-int-class">
+<span class="header-section-number">8.2.3</span> <code>&lt;dbl&gt;</code> and <code>&lt;int&gt;</code> Class</h3>
 <p>Class <code>&lt;dbl&gt;</code> and <code>&lt;int&gt;</code> are probably the most self-explanatory classes. <code>&lt;dbl&gt;</code>, the <code>numeric</code> class, are just variables that have only numbers in them while <code>&lt;int&gt;</code> only have integers (…, -2, -1, 0, 1, 2, ….). We can do numerical operations on either of these classes (and we’ve been doing them throughout the semester). For our purposes, these two classes are interchangeable.</p>
 <div class="cell" data-appendix="true">
 <div class="sourceCode" id="cb14"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/str.html">str</a></span><span class="op">(</span><span class="va">videogame_df</span><span class="op">$</span><span class="va">price</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -545,8 +551,8 @@ Note
 </div>
 </div>
 </div>
-</section><section id="lgl-class" class="level3" data-number="7.2.4"><h3 data-number="7.2.4" class="anchored" data-anchor-id="lgl-class">
-<span class="header-section-number">7.2.4</span> <code>&lt;lgl&gt;</code> Class</h3>
+</section><section id="lgl-class" class="level3" data-number="8.2.4"><h3 data-number="8.2.4" class="anchored" data-anchor-id="lgl-class">
+<span class="header-section-number">8.2.4</span> <code>&lt;lgl&gt;</code> Class</h3>
 <p>Finally, there is a class of variables called logical. These variables can only take 2 values: <code>TRUE</code> or <code>FALSE</code>. For example, <code>playtime_miss</code>, a variable for whether or not the <code>median_playtime</code> variable is missing or not, is logical:</p>
 <div class="cell" data-appendix="true">
 <div class="sourceCode" id="cb18"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/str.html">str</a></span><span class="op">(</span><span class="va">videogame_df</span><span class="op">$</span><span class="va">playtime_miss</span><span class="op">)</span></span>
@@ -567,7 +573,7 @@ Note
 <div class="sourceCode" id="cb20"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span></span>
 <span><span class="va">fitness_df</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv</a></span><span class="op">(</span><span class="fu"><a href="https://here.r-lib.org/reference/here.html">here</a></span><span class="op">(</span><span class="st">"data/higham_fitness_notclean.csv"</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p><strong>Exercise 1</strong>. What is the issue with the following plot? After you figure out the issue, use <code><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate()</a></code> and <code><a href="https://rdrr.io/r/base/factor.html">as.factor()</a></code> to create a new variable that fixes the issue and then reconstruct the graph. <strong>Note</strong>: This actually is not an issue really since <code>weekday</code> is currently a <code>&lt;chr&gt;</code> class so will still plot correctly. But, practice converting it to a <code>factor</code> anyway!</p>
+<p><strong>Exercise 1</strong>. Convert the <code>weekday</code> variable to a <code>factor</code> class. Then, reconstruct the following plot. Does the plot change when <code>weekday</code> is converted from <code>&lt;chr&gt;</code> to <code>&lt;fct&gt;</code>?</p>
 <div class="cell">
 <div class="sourceCode" id="cb21"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">fitness_df</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">active_cals</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_histogram.html">geom_freqpoly</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>group <span class="op">=</span> <span class="va">weekday</span>, colour <span class="op">=</span> <span class="va">weekday</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
@@ -581,16 +587,16 @@ Note
 </div>
 <p><strong>Exercise 2</strong>. Currently <code>stepgoal</code> (whether or not 10000 steps were cleared that day) is <code>&lt;dbl&gt;</code>. What is another class that <code>stepgoal</code> could be?</p>
 <p><strong>Exercise 3</strong>. Convert <code>stepgoal</code> to the class that is the answer to the previous exercise. Using this new variable, calculate the total number of days where the goal was met and the proportion of the days where the goal was met.</p>
-</section></section><section id="object-types-and-subsetting" class="level2" data-number="7.3"><h2 data-number="7.3" class="anchored" data-anchor-id="object-types-and-subsetting">
-<span class="header-section-number">7.3</span> Object Types and Subsetting</h2>
+</section></section><section id="object-types-and-subsetting" class="level2" data-number="8.3"><h2 data-number="8.3" class="anchored" data-anchor-id="object-types-and-subsetting">
+<span class="header-section-number">8.3</span> Object Types and Subsetting</h2>
 <p>Variables of these different classes can be stored in a variety of different objects in <code>R</code>. We have almost exclusively used the <code>tibble</code> object type. The tidy <code>tibble</code></p>
 <ul>
 <li>is “rectangular” and has a specific number of rows and columns.</li>
 <li>has columns that are variables</li>
 <li>each column must have elements that are of the same class, but different columns can be of different classes. This allows us to have character and numeric variables in the same <code>tibble</code>.</li>
 </ul>
-<section id="tibble-and-data.frame" class="level3" data-number="7.3.1"><h3 data-number="7.3.1" class="anchored" data-anchor-id="tibble-and-data.frame">
-<span class="header-section-number">7.3.1</span> <code>tibble</code> and <code>data.frame</code>
+<section id="tibble-and-data.frame" class="level3" data-number="8.3.1"><h3 data-number="8.3.1" class="anchored" data-anchor-id="tibble-and-data.frame">
+<span class="header-section-number">8.3.1</span> <code>tibble</code> and <code>data.frame</code>
 </h3>
 <p>The <code>tibble</code> object is very similar to the <code>data.frame</code> object. We can also check what type of object you’re working with using the <code><a href="https://rdrr.io/r/utils/str.html">str()</a></code> command:</p>
 <div class="cell" data-appendix="true">
@@ -636,8 +642,8 @@ Note
 <span><span class="va">videogame_df</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">3</span>, <span class="fl">4</span><span class="op">)</span>, <span class="op">]</span> <span class="co">## grab rows 1, 3, and 4</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>To get rid of an entire row or column, use <code>-</code>: <code>videogame_df[ ,-c(1, 2)]</code> drops the first and second columns while <code>videogame_df[-c(1, 2), ]</code> drops the first and second rows.</p>
-</section><section id="vectors" class="level3" data-number="7.3.2"><h3 data-number="7.3.2" class="anchored" data-anchor-id="vectors">
-<span class="header-section-number">7.3.2</span> Vectors</h3>
+</section><section id="vectors" class="level3" data-number="8.3.2"><h3 data-number="8.3.2" class="anchored" data-anchor-id="vectors">
+<span class="header-section-number">8.3.2</span> Vectors</h3>
 <p>A vector is an object that holds “things”, or elements, of the same class. You can create a vector in <code>R</code> using the <code><a href="https://rdrr.io/r/base/c.html">c()</a></code> function, which stands for “concatenate”. We’ve used the <code><a href="https://rdrr.io/r/base/c.html">c()</a></code> function before to bind things together; we just hadn’t yet discussed it in the context of creating a vector.</p>
 <div class="cell" data-appendix="true">
 <div class="sourceCode" id="cb27"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">vec1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">3</span>, <span class="fl">2</span><span class="op">)</span></span>
@@ -665,8 +671,8 @@ Note
 <div class="sourceCode" id="cb30"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">metavec</span><span class="op">[</span><span class="fl">100</span><span class="op">]</span> <span class="co">## 100th element is missing</span></span>
 <span><span class="co">#&gt; [1] NA</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</section><section id="lists" class="level3" data-number="7.3.3"><h3 data-number="7.3.3" class="anchored" data-anchor-id="lists">
-<span class="header-section-number">7.3.3</span> Lists</h3>
+</section><section id="lists" class="level3" data-number="8.3.3"><h3 data-number="8.3.3" class="anchored" data-anchor-id="lists">
+<span class="header-section-number">8.3.3</span> Lists</h3>
 <p>Lists are one of the more flexible objects in <code>R</code>: you can put objects of different classes in the same list and lists aren’t required to be rectangular (like <code>tibbles</code> are). Lists are <strong>extremely</strong> useful because of this flexibility, but, we won’t use them much in this class. Therefore, we will just see an example of a list before moving on:</p>
 <div class="cell" data-appendix="true">
 <div class="sourceCode" id="cb31"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">testlist</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span><span class="st">"a"</span>, <span class="fl">4</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">4</span>, <span class="fl">2</span>, <span class="fl">6</span><span class="op">)</span>,</span>
@@ -692,8 +698,8 @@ Note
 <p><strong>Exercise 4</strong>. Suppose you subset a data frame <code>df</code> with <code>df[1:5, 2:4]</code>. What are the two <code>dplyr</code> functions that you can use to perform this same operation (subsetting to get the first five rows and the second through fourth columns).</p>
 <p><strong>Exercise 5</strong>. From <code>videogame_df</code>, create a <code>tibble</code> called <code>first100</code> that only has the first 100 days in the data set using both (1) indexing with <code>[ , ]</code> and (2) a <code>dplyr</code> function.</p>
 <p><strong>Exercise 6</strong>. From <code>videogame_df</code>, create a tibble that doesn’t have the <code>owners</code> variable using both (1) indexing with <code>[ , ]</code> and (2) a <code>dplyr</code> function.</p>
-</section></section><section id="other-useful-base-r-functions" class="level2" data-number="7.4"><h2 data-number="7.4" class="anchored" data-anchor-id="other-useful-base-r-functions">
-<span class="header-section-number">7.4</span> Other Useful Base <code>R</code> Functions</h2>
+</section></section><section id="other-useful-base-r-functions" class="level2" data-number="8.4"><h2 data-number="8.4" class="anchored" data-anchor-id="other-useful-base-r-functions">
+<span class="header-section-number">8.4</span> Other Useful Base <code>R</code> Functions</h2>
 <p>In addition to the base <code>R</code> functions we have discussed so far, there are many other useful base <code>R</code> functions. The following give some of the functions that I think are most useful for data science.</p>
 <p><strong>Generating Data</strong>: <code><a href="https://rdrr.io/r/stats/Normal.html">rnorm()</a></code>, <code><a href="https://rdrr.io/r/base/sample.html">sample()</a></code>, and <code><a href="https://rdrr.io/r/base/Random.html">set.seed()</a></code></p>
 <p><code><a href="https://rdrr.io/r/stats/Normal.html">rnorm()</a></code> can be used to generate a certain number of normal random variables with a given mean and standard deviation. It has three arguments: the sample size, the mean, and the standard deviation.</p>
@@ -825,10 +831,10 @@ Note
 </div>
 <p>We will stop here, but will surely encounter more base <code>R</code> functions as we run into different types of problems.</p>
 <p><strong>Exercise 7</strong>. Use the <code><a href="https://rdrr.io/r/base/summary.html">summary()</a></code> function on the <code>metascore</code> variable in <code>videogame_df</code>.</p>
-</section><section id="practice" class="level2" data-number="7.5"><h2 data-number="7.5" class="anchored" data-anchor-id="practice">
-<span class="header-section-number">7.5</span> Practice</h2>
-<section id="class-exercises" class="level3" data-number="7.5.1"><h3 data-number="7.5.1" class="anchored" data-anchor-id="class-exercises">
-<span class="header-section-number">7.5.1</span> Class Exercises</h3>
+</section><section id="practice" class="level2" data-number="8.5"><h2 data-number="8.5" class="anchored" data-anchor-id="practice">
+<span class="header-section-number">8.5</span> Practice</h2>
+<section id="class-exercises" class="level3" data-number="8.5.1"><h3 data-number="8.5.1" class="anchored" data-anchor-id="class-exercises">
+<span class="header-section-number">8.5.1</span> Class Exercises</h3>
 <p><strong>Class Exercise 1</strong>. Use the following steps to create a new variable <code>weekend_ind</code>, which will be “weekend” if the day of the week is Saturday or Sunday and “weekday” if the day of the week is any other day. The current <code>weekday</code> variable is coded so that <code>1</code> represents Sunday, <code>2</code> represents Monday, …., and <code>7</code> represents Saturday.</p>
 <ol type="a">
 <li><p>Create a vector that has the numbers corresponding to the two weekend days. Name the vector and then create a second vector that has the numbers corresponding to the five weekday days.</p></li>
@@ -848,8 +854,8 @@ Note
 <span><span class="co">#&gt;   B      9     20     10</span></span>
 <span><span class="co">#&gt;   C     10     10     14</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</section><section id="your-turn" class="level3" data-number="7.5.2"><h3 data-number="7.5.2" class="anchored" data-anchor-id="your-turn">
-<span class="header-section-number">7.5.2</span> Your Turn</h3>
+</section><section id="your-turn" class="level3" data-number="8.5.2"><h3 data-number="8.5.2" class="anchored" data-anchor-id="your-turn">
+<span class="header-section-number">8.5.2</span> Your Turn</h3>
 <p><strong>Your Turn 1</strong>. Read in the data set and use <code><a href="https://dplyr.tidyverse.org/reference/filter.html">filter()</a></code> to remove any rows with missing metascores, missing median playtime, or have a median playtime of 0 hours.</p>
 <div class="callout callout-style-simple callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
@@ -1284,13 +1290,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   }
 });
 </script><nav class="page-navigation"><div class="nav-page nav-page-previous">
-      <a href="./04-tidyr.html" class="pagination-link" aria-label="Tidying with `tidyr`">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Tidying with <code>tidyr</code></span></span>
+      <a href="./07-forcats.html" class="pagination-link" aria-label="Factors with `forcats`">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Factors with <code>forcats</code></span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./07-forcats.html" class="pagination-link" aria-label="Factors with `forcats`">
-        <span class="nav-page-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Factors with <code>forcats</code></span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./09-ethics.html" class="pagination-link" aria-label="Data Ethics">
+        <span class="nav-page-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Data Ethics</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

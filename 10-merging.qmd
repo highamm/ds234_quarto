@@ -34,8 +34,8 @@ library(tidyverse)
 library(here)
 atp_2019 <- read_csv(here("data/atp_matches_2019.csv"))
 atp_2018 <- read_csv(here("data/atp_matches_2018.csv"))
-head(atp_2019) 
-head(atp_2018)
+atp_2019 |> glimpse()
+atp_2018 |> glimpse()
 ```
 
 To combine results from both data sets,
@@ -125,9 +125,9 @@ life_df <- babynames::lifetables
 birth_df <- babynames::births
 babynames_df <- babynames::babynames
 
-head(babynames)
-head(births)
-head(lifetables)
+babynames |> glimpse()
+births |> glimpse()
+lifetables |> glimpse()
 ```
 
 Read about each data set with `?babynames`, `?births` and `?lifetables`.
@@ -136,11 +136,11 @@ Suppose that you want to combine the `births` data set with the `babynames` data
 
 ```{r, appendix = TRUE}
 combined_left <- left_join(babynames_df, birth_df, by = join_by(year == year))
-head(combined_left)
-tail(combined_left)
+combined_left
+combined_left |> tail()
 ```
 
-Why are `births` missing in `head(combined_left)` but not in `tail(combined_left)`?
+Why are `births` missing in the first few rows of `combined_left` but not in `combined_left |> tail()`?
 
 ### Keep All Rows of Data Set 2 with `right_join()`
 
@@ -282,8 +282,8 @@ __Class Exercise 2__. The key variable is very important for joining and is not 
 ```{r, message = FALSE, appendix = TRUE}
 slumajors_df <- read_csv(here("data/SLU_Majors_17_21.csv"))
 collegemajors_df <- read_csv(here("data/college-majors.csv"))
-head(slumajors_df)
-head(collegemajors_df)
+slumajors_df |> glimpse()
+collegemajors_df |> glimpse()
 ```
 
 a. Attempt to join the two data sets together with a key.

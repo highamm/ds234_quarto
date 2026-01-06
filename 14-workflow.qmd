@@ -271,7 +271,7 @@ majors_df <- read_csv(here("data/majors.csv")) |>
   pivot_longer(-1, names_to = "year", values_to = "n_majors") |>
   mutate(year = as.numeric(year)) |>
   rename(major = `...1`)
-head(majors_df)
+majors_df |> glimpse()
 ```
 
 In the data, the `n_majors` variable represents the number of students graduating with that particular major in that particular year. For example, in the year `2005`, there were just `2` students graduating with a `Biochemistry` major.
@@ -437,7 +437,7 @@ The following code chunk is __not__ a reprex because people would not necessaril
 ## my variable `x`? Thanks!
 library(tidyverse)
 test_df <- read_csv(here("data/parsedf.csv"))
-head(test_df)
+test_df
 ```
 
 Suppose that we want to post on StackExchange for someone or ask a friend to help us convert a variable from a character vector with units to a numeric vector without units. We want to be able to give any possible helpers a small example data set to work with and isolate the problem or question that we have. For this, we can create our own tiny data set with `tibble()`, with the `c()` function that concatenates values together:
@@ -517,7 +517,7 @@ Suppose that you can't figure out how to create a semester variable and a year v
 ```{r, message = FALSE}
 library(tidyverse)
 evals_df <- read_csv(here("data/evals_prof_S21.csv"))
-head(evals_df)
+evals_df
 ```
 
 Put together a reprex using `tibble()` that someone would be able to run to help you figure out your question.

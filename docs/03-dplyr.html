@@ -197,14 +197,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./06-basics.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Coding in Base <code>R</code></span></span></a>
+  <a href="./07-forcats.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Factors with <code>forcats</code></span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./07-forcats.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Factors with <code>forcats</code></span></span></a>
+  <a href="./06-basics.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Coding in Base <code>R</code></span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -215,14 +215,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./08-import.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Data Import</span></span></a>
+  <a href="./10-merging.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Merging with <code>dplyr</code></span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./10-merging.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Merging with <code>dplyr</code></span></span></a>
+  <a href="./08-import.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Data Import</span></span></a>
   </div>
 </li>
       </ul>
@@ -238,8 +238,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">
 <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./11-lubridate.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Dates with <code>lubridate</code></span></span></a>
+  <a href="./13-knn.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Predictive Modeling with knn</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -250,8 +250,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./13-knn.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Predictive Modeling with knn</span></span></a>
+  <a href="./11-lubridate.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Dates with <code>lubridate</code></span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -633,10 +633,10 @@ Note
 <p>Kesha first wakes up in the morning, <em>and then</em> the Kesha that has woken up grabs her glasses, <em>and then</em> the Kesha who has woken up and has grabbed her glasses proceeds to brush her teeth, etc.</p>
 <p>The pipe operator <code>|&gt;</code> is loaded automatically with <code>R</code>. We will heavily use the pipe throughout the entire semester so it’s worth it to delve a little deeper into what it is here. We will use the fitness data to further explore the pipe. Read in the data with</p>
 <div class="cell">
-<div class="sourceCode" id="cb20"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">fitness_df</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv</a></span><span class="op">(</span><span class="st">"https://raw.githubusercontent.com/highamm/ds234_quarto/main/data_online/higham_fitness_clean.csv"</span>,</span>
-<span>                       col_types <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>stepgoal <span class="op">=</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/parse_factor.html">col_factor</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
+<div class="sourceCode" id="cb20"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">fitness_df</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv</a></span><span class="op">(</span><span class="st">"https://raw.githubusercontent.com/highamm/ds234_quarto/main/data_online/higham_fitness_clean.csv"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="op">-</span><span class="va">stepgoal</span><span class="op">)</span></span>
 <span><span class="va">fitness_df</span></span>
-<span><span class="co">#&gt; # A tibble: 2,444 × 10</span></span>
+<span><span class="co">#&gt; # A tibble: 2,444 × 9</span></span>
 <span><span class="co">#&gt;   Date       active_cals flights steps distance month weekday dayofyear  year</span></span>
 <span><span class="co">#&gt;   &lt;date&gt;           &lt;dbl&gt;   &lt;dbl&gt; &lt;dbl&gt;    &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt;       &lt;dbl&gt; &lt;dbl&gt;</span></span>
 <span><span class="co">#&gt; 1 2018-11-28        57.8      NA  1885     0.93 Nov   Wed           332  2018</span></span>
@@ -645,14 +645,13 @@ Note
 <span><span class="co">#&gt; 4 2018-12-01       661.        6 12117     6.8  Dec   Sat           335  2018</span></span>
 <span><span class="co">#&gt; 5 2018-12-02       527.        1  8925     4.61 Dec   Sun           336  2018</span></span>
 <span><span class="co">#&gt; 6 2018-12-03       550.        2  7205     3.96 Dec   Mon           337  2018</span></span>
-<span><span class="co">#&gt; # ℹ 2,438 more rows</span></span>
-<span><span class="co">#&gt; # ℹ 1 more variable: stepgoal &lt;fct&gt;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="co">#&gt; # ℹ 2,438 more rows</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Thus far, we have used a single pipe <code>|&gt;</code> to do one task, but, we can string together multiple <code>dplyr</code> functions with multiple <code>|&gt;</code> statements. For example, suppose that we wanted to keep only the <code>weekday</code>s that were <code>Sat</code> and <code>Sun</code>, <strong>and then</strong>, order the data set so that it was in descending order of <code>steps</code> taken:</p>
 <div class="cell">
 <div class="sourceCode" id="cb21"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">fitness_df</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">weekday</span> <span class="op">==</span> <span class="st">"Sat"</span> <span class="op">|</span> <span class="va">weekday</span> <span class="op">==</span> <span class="st">"Sun"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/arrange.html">arrange</a></span><span class="op">(</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/desc.html">desc</a></span><span class="op">(</span><span class="va">steps</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="co">#&gt; # A tibble: 697 × 10</span></span>
+<span><span class="co">#&gt; # A tibble: 697 × 9</span></span>
 <span><span class="co">#&gt;   Date       active_cals flights steps distance month weekday dayofyear  year</span></span>
 <span><span class="co">#&gt;   &lt;date&gt;           &lt;dbl&gt;   &lt;dbl&gt; &lt;dbl&gt;    &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt;       &lt;dbl&gt; &lt;dbl&gt;</span></span>
 <span><span class="co">#&gt; 1 2023-07-15        2291     193 32589     18.0 Jul   Sat           196  2023</span></span>
@@ -661,8 +660,7 @@ Note
 <span><span class="co">#&gt; 4 2025-08-03        1094      12 21340     12.4 Aug   Sun           215  2025</span></span>
 <span><span class="co">#&gt; 5 2018-12-15        1091      27 21224     11.2 Dec   Sat           349  2018</span></span>
 <span><span class="co">#&gt; 6 2024-06-23        1172      16 21006     12.6 Jun   Sun           175  2024</span></span>
-<span><span class="co">#&gt; # ℹ 691 more rows</span></span>
-<span><span class="co">#&gt; # ℹ 1 more variable: stepgoal &lt;fct&gt;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="co">#&gt; # ℹ 691 more rows</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>This reads: “take <code>fitness_df</code> and then <code><a href="https://dplyr.tidyverse.org/reference/filter.html">filter()</a></code> it to keep only Saturdays and Sundays and then sort it in descending order of <code>steps</code>.”</p>
 <div class="callout callout-style-simple callout-important callout-titled">
@@ -681,7 +679,7 @@ Important
 <p>The code</p>
 <div class="cell">
 <div class="sourceCode" id="cb22"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">fitness_df</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">weekday</span> <span class="op">==</span> <span class="st">"Sat"</span> <span class="op">|</span> <span class="va">weekday</span> <span class="op">==</span> <span class="st">"Sun"</span><span class="op">)</span></span>
-<span><span class="co">#&gt; # A tibble: 697 × 10</span></span>
+<span><span class="co">#&gt; # A tibble: 697 × 9</span></span>
 <span><span class="co">#&gt;   Date       active_cals flights steps distance month weekday dayofyear  year</span></span>
 <span><span class="co">#&gt;   &lt;date&gt;           &lt;dbl&gt;   &lt;dbl&gt; &lt;dbl&gt;    &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt;       &lt;dbl&gt; &lt;dbl&gt;</span></span>
 <span><span class="co">#&gt; 1 2018-12-01        661.       6 12117     6.8  Dec   Sat           335  2018</span></span>
@@ -690,13 +688,12 @@ Important
 <span><span class="co">#&gt; 4 2018-12-09        341.      NA  5265     2.81 Dec   Sun           343  2018</span></span>
 <span><span class="co">#&gt; 5 2018-12-15       1091       27 21224    11.2  Dec   Sat           349  2018</span></span>
 <span><span class="co">#&gt; 6 2018-12-16       1029       79 16376     8.84 Dec   Sun           350  2018</span></span>
-<span><span class="co">#&gt; # ℹ 691 more rows</span></span>
-<span><span class="co">#&gt; # ℹ 1 more variable: stepgoal &lt;fct&gt;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="co">#&gt; # ℹ 691 more rows</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>is equivalent to:</p>
 <div class="cell">
 <div class="sourceCode" id="cb23"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">fitness_df</span>, <span class="va">weekday</span> <span class="op">==</span> <span class="st">"Sat"</span> <span class="op">|</span> <span class="va">weekday</span> <span class="op">==</span> <span class="st">"Sun"</span><span class="op">)</span></span>
-<span><span class="co">#&gt; # A tibble: 697 × 10</span></span>
+<span><span class="co">#&gt; # A tibble: 697 × 9</span></span>
 <span><span class="co">#&gt;   Date       active_cals flights steps distance month weekday dayofyear  year</span></span>
 <span><span class="co">#&gt;   &lt;date&gt;           &lt;dbl&gt;   &lt;dbl&gt; &lt;dbl&gt;    &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt;       &lt;dbl&gt; &lt;dbl&gt;</span></span>
 <span><span class="co">#&gt; 1 2018-12-01        661.       6 12117     6.8  Dec   Sat           335  2018</span></span>
@@ -705,14 +702,13 @@ Important
 <span><span class="co">#&gt; 4 2018-12-09        341.      NA  5265     2.81 Dec   Sun           343  2018</span></span>
 <span><span class="co">#&gt; 5 2018-12-15       1091       27 21224    11.2  Dec   Sat           349  2018</span></span>
 <span><span class="co">#&gt; 6 2018-12-16       1029       79 16376     8.84 Dec   Sun           350  2018</span></span>
-<span><span class="co">#&gt; # ℹ 691 more rows</span></span>
-<span><span class="co">#&gt; # ℹ 1 more variable: stepgoal &lt;fct&gt;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="co">#&gt; # ℹ 691 more rows</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Then,</p>
 <div class="cell">
 <div class="sourceCode" id="cb24"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">fitness_df</span>, <span class="va">weekday</span> <span class="op">==</span> <span class="st">"Sat"</span> <span class="op">|</span> <span class="va">weekday</span> <span class="op">==</span> <span class="st">"Sun"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/arrange.html">arrange</a></span><span class="op">(</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/desc.html">desc</a></span><span class="op">(</span><span class="va">steps</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="co">#&gt; # A tibble: 697 × 10</span></span>
+<span><span class="co">#&gt; # A tibble: 697 × 9</span></span>
 <span><span class="co">#&gt;   Date       active_cals flights steps distance month weekday dayofyear  year</span></span>
 <span><span class="co">#&gt;   &lt;date&gt;           &lt;dbl&gt;   &lt;dbl&gt; &lt;dbl&gt;    &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt;       &lt;dbl&gt; &lt;dbl&gt;</span></span>
 <span><span class="co">#&gt; 1 2023-07-15        2291     193 32589     18.0 Jul   Sat           196  2023</span></span>
@@ -721,14 +717,13 @@ Important
 <span><span class="co">#&gt; 4 2025-08-03        1094      12 21340     12.4 Aug   Sun           215  2025</span></span>
 <span><span class="co">#&gt; 5 2018-12-15        1091      27 21224     11.2 Dec   Sat           349  2018</span></span>
 <span><span class="co">#&gt; 6 2024-06-23        1172      16 21006     12.6 Jun   Sun           175  2024</span></span>
-<span><span class="co">#&gt; # ℹ 691 more rows</span></span>
-<span><span class="co">#&gt; # ℹ 1 more variable: stepgoal &lt;fct&gt;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="co">#&gt; # ℹ 691 more rows</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>is equivalent to:</p>
 <div class="cell">
 <div class="sourceCode" id="cb25"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/arrange.html">arrange</a></span><span class="op">(</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">fitness_df</span>, <span class="va">weekday</span> <span class="op">==</span> <span class="st">"Sat"</span> <span class="op">|</span> <span class="va">weekday</span> <span class="op">==</span> <span class="st">"Sun"</span><span class="op">)</span>,</span>
 <span>        <span class="fu"><a href="https://dplyr.tidyverse.org/reference/desc.html">desc</a></span><span class="op">(</span><span class="va">steps</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="co">#&gt; # A tibble: 697 × 10</span></span>
+<span><span class="co">#&gt; # A tibble: 697 × 9</span></span>
 <span><span class="co">#&gt;   Date       active_cals flights steps distance month weekday dayofyear  year</span></span>
 <span><span class="co">#&gt;   &lt;date&gt;           &lt;dbl&gt;   &lt;dbl&gt; &lt;dbl&gt;    &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt;       &lt;dbl&gt; &lt;dbl&gt;</span></span>
 <span><span class="co">#&gt; 1 2023-07-15        2291     193 32589     18.0 Jul   Sat           196  2023</span></span>
@@ -737,8 +732,7 @@ Important
 <span><span class="co">#&gt; 4 2025-08-03        1094      12 21340     12.4 Aug   Sun           215  2025</span></span>
 <span><span class="co">#&gt; 5 2018-12-15        1091      27 21224     11.2 Dec   Sat           349  2018</span></span>
 <span><span class="co">#&gt; 6 2024-06-23        1172      16 21006     12.6 Jun   Sun           175  2024</span></span>
-<span><span class="co">#&gt; # ℹ 691 more rows</span></span>
-<span><span class="co">#&gt; # ℹ 1 more variable: stepgoal &lt;fct&gt;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="co">#&gt; # ℹ 691 more rows</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>So, why use the pipe? Compare the code the uses the pipe operator to the code that doesn’t. Which is easier to read? Which do you think is easier to write? The example shows that, for our purposes, the pipe is most useful in aiding the readability of our code. It’s a lot easier to see what’s happening in the code chunk with the pipes than it is in the previous code chunk without the pipe because, with the pipe, we can read the code from left to right and top to bottom. Without the pipe, we need to read the code from the “inside to the outside”, which is much more challenging.</p>
 <p>There are many situations in which using the <code>|&gt;</code> would not be appropriate. To use the pipe, what precedes the <code>|&gt;</code> must be the first argument in the function following the <code>|&gt;</code>. For <code>tidyverse</code> functions that we use throughout the course, this condition is almost always true because these functions were designed with piping in mind. But, for non-<code>tidyverse</code> functions, this may not be the case.</p>
@@ -769,7 +763,7 @@ Note
 <p><strong>Exercise 9</strong>. This “More About the Pipe” section will make more sense as we proceed through the course. For now, we just want to be able to understand that something like <code>df |&gt; slice(1:6)</code> is equivalent to <code>slice(df, 1:6)</code>. Practice by converting the following code to use the pipe:</p>
 <div class="cell">
 <div class="sourceCode" id="cb28"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">fitness_df</span>, <span class="va">active_cals</span> <span class="op">&gt;</span> <span class="fl">50</span><span class="op">)</span></span>
-<span><span class="co">#&gt; # A tibble: 2,311 × 10</span></span>
+<span><span class="co">#&gt; # A tibble: 2,311 × 9</span></span>
 <span><span class="co">#&gt;   Date       active_cals flights steps distance month weekday dayofyear  year</span></span>
 <span><span class="co">#&gt;   &lt;date&gt;           &lt;dbl&gt;   &lt;dbl&gt; &lt;dbl&gt;    &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt;       &lt;dbl&gt; &lt;dbl&gt;</span></span>
 <span><span class="co">#&gt; 1 2018-11-28        57.8      NA  1885     0.93 Nov   Wed           332  2018</span></span>
@@ -778,8 +772,7 @@ Note
 <span><span class="co">#&gt; 4 2018-12-01       661.        6 12117     6.8  Dec   Sat           335  2018</span></span>
 <span><span class="co">#&gt; 5 2018-12-02       527.        1  8925     4.61 Dec   Sun           336  2018</span></span>
 <span><span class="co">#&gt; 6 2018-12-03       550.        2  7205     3.96 Dec   Mon           337  2018</span></span>
-<span><span class="co">#&gt; # ℹ 2,305 more rows</span></span>
-<span><span class="co">#&gt; # ℹ 1 more variable: stepgoal &lt;fct&gt;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="co">#&gt; # ℹ 2,305 more rows</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section></section><section id="practice" class="level2" data-number="3.2"><h2 data-number="3.2" class="anchored" data-anchor-id="practice">
 <span class="header-section-number">3.2</span> Practice</h2>
@@ -1223,12 +1216,10 @@ Important
 <p>In general, practice exercises will be split between exercises that will be done together as a class and exercises that you will do in groups or on your own. The purpose of the class exercises is to give some guidance on how we might think logically through some of the code and the results. The purpose of the group exercises and the on your own exercises is so that you have a chance to practice what you’ve learned with your table or on your own.</p>
 <section id="class-exercises-1" class="level3" data-number="3.4.1"><h3 data-number="3.4.1" class="anchored" data-anchor-id="class-exercises-1">
 <span class="header-section-number">3.4.1</span> Class Exercises</h3>
-<p><strong>Class Exercise 1</strong>. About 55% of SLU students identify as female. So, in the definition of the <code>morewomen</code> variable, does it make more sense to use 55% as the cutoff or 50%?</p>
-<p><strong>Class Exercise 2</strong>. Do you think it is ethical to exclude non-binary genders from analyses and graphs in the <code>slumajors</code> data set? What about in the <code>stat113_df</code> data that we looked at earlier? Why or why not? Try to construct arguments for both sides: you might also consider data privacy in your arguments.</p>
-<p><strong>Class Exercise 3</strong>. Investigate what happens with <code><a href="https://dplyr.tidyverse.org/reference/case_when.html">case_when()</a></code> when you give overlapping conditions and when you give conditions that don’t cover all observations. For overlapping conditions, create a variable <code>testcase</code> that is <code>"Yes"</code> when <code>percfemale</code> is greater than or equal to 40 and <code>"No"</code> when <code>percfemale</code> is greater than 60 For conditions that don’t cover all observations, create a variable <code>testcase2</code> that is <code>"Yes"</code> when <code>percfemale</code> is greater than or equal to 55 and <code>"No"</code> when <code>percfemale</code> is less than 35. Put the new variables at the beginning of the data frame so that you can see what they contain more easily.</p>
-<p><strong>Class Exercise 4</strong>. Create a table that shows how many times each name appears as the most popular name of the sex for the year. That is, if <code>"Emma"</code> was the most popular female name in 1995, 1997, and 2001, then it would get a value of <code>"3"</code> in the summary table. To do so, we will first make some notes about what <code><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by()</a></code> does with more than 1 variable and what <code><a href="https://dplyr.tidyverse.org/reference/group_by.html">ungroup()</a></code> does. In this exercise, we will use the <code><a href="https://rdrr.io/r/base/rank.html">rank()</a></code> function as well.</p>
-<p><strong>Class Exercise 5</strong>. Construct the same table as in class exercise 4, but figure out a way to construct the table <strong>without</strong> using the <code><a href="https://rdrr.io/r/base/rank.html">rank()</a></code> function.</p>
-<p><strong>Class Exercise 6</strong>. Run the following code. Intuitively, a <code>slice(1, 2, 3, 4, 5)</code> should grab the first five rows of the data set, but, when we try to run that, we get 1380 rows. What is the issue?</p>
+<p><strong>Class Exercise 1</strong>. Investigate what happens with <code><a href="https://dplyr.tidyverse.org/reference/case_when.html">case_when()</a></code> when you give overlapping conditions and when you give conditions that don’t cover all observations. For overlapping conditions, create a variable <code>testcase</code> that is <code>"Yes"</code> when <code>percfemale</code> is greater than or equal to 40 and <code>"No"</code> when <code>percfemale</code> is greater than 60 For conditions that don’t cover all observations, create a variable <code>testcase2</code> that is <code>"Yes"</code> when <code>percfemale</code> is greater than or equal to 55 and <code>"No"</code> when <code>percfemale</code> is less than 35. Put the new variables at the beginning of the data frame so that you can see what they contain more easily.</p>
+<p><strong>Class Exercise 2</strong>. Create a table that shows how many times each name appears as the most popular name of the sex for the year. That is, if <code>"Emma"</code> was the most popular female name in 1995, 1997, and 2001, then it would get a value of <code>"3"</code> in the summary table. To do so, we will first make some notes about what <code><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by()</a></code> does with more than 1 variable and what <code><a href="https://dplyr.tidyverse.org/reference/group_by.html">ungroup()</a></code> does. In this exercise, we will use the <code><a href="https://rdrr.io/r/base/rank.html">rank()</a></code> function as well.</p>
+<p><strong>Class Exercise 3</strong>. Construct the same table as in class exercise 4, but figure out a way to construct the table <strong>without</strong> using the <code><a href="https://rdrr.io/r/base/rank.html">rank()</a></code> function.</p>
+<p><strong>Class Exercise 4</strong>. Run the following code. Intuitively, a <code>slice(1, 2, 3, 4, 5)</code> should grab the first five rows of the data set, but, when we try to run that, we get 1380 rows. What is the issue?</p>
 <div class="cell">
 <div class="sourceCode" id="cb48"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">babynames_test</span> <span class="op">&lt;-</span> <span class="va">babynames</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">year</span>, <span class="va">sex</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>ntest <span class="op">=</span> <span class="va">n</span> <span class="op">/</span> <span class="va">prop</span><span class="op">)</span></span>
@@ -1245,7 +1236,24 @@ Important
 <span><span class="co">#&gt; 6  1880 M     John       9655 0.0815 118400.</span></span>
 <span><span class="co">#&gt; # ℹ 1,374 more rows</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</section><section id="your-turn-1" class="level3" data-number="3.4.2"><h3 data-number="3.4.2" class="anchored" data-anchor-id="your-turn-1">
+<p><strong>Class Exercise 5</strong>. Consider again the <code>fitness_df</code> data set, where each row corresponds to a particular day.</p>
+<div class="cell">
+<div class="sourceCode" id="cb49"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">fitness_df</span></span>
+<span><span class="co">#&gt; # A tibble: 2,444 × 9</span></span>
+<span><span class="co">#&gt;   Date       active_cals flights steps distance month weekday dayofyear  year</span></span>
+<span><span class="co">#&gt;   &lt;date&gt;           &lt;dbl&gt;   &lt;dbl&gt; &lt;dbl&gt;    &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt;       &lt;dbl&gt; &lt;dbl&gt;</span></span>
+<span><span class="co">#&gt; 1 2018-11-28        57.8      NA  1885     0.93 Nov   Wed           332  2018</span></span>
+<span><span class="co">#&gt; 2 2018-11-29       509.       18  8953     4.64 Nov   Thu           333  2018</span></span>
+<span><span class="co">#&gt; 3 2018-11-30       599.       12 11665     6.05 Nov   Fri           334  2018</span></span>
+<span><span class="co">#&gt; 4 2018-12-01       661.        6 12117     6.8  Dec   Sat           335  2018</span></span>
+<span><span class="co">#&gt; 5 2018-12-02       527.        1  8925     4.61 Dec   Sun           336  2018</span></span>
+<span><span class="co">#&gt; 6 2018-12-03       550.        2  7205     3.96 Dec   Mon           337  2018</span></span>
+<span><span class="co">#&gt; # ℹ 2,438 more rows</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<ol type="a">
+<li><p>Using the <code>steps</code> variable, figure out the proportion of all days that the “10,000 step” goal was met.</p></li>
+<li><p>How can you modify the code to figure out the proportion of days that the 10000 step goal was met for each day of the week? For each month? For each year?</p></li>
+</ol></section><section id="your-turn-1" class="level3" data-number="3.4.2"><h3 data-number="3.4.2" class="anchored" data-anchor-id="your-turn-1">
 <span class="header-section-number">3.4.2</span> Your Turn</h3>
 <p><strong>Your Turn 1</strong>. Investigate how <code><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by()</a></code> behaves with the five other main <code>dplyr</code> functions we have used. You can use <code>toy_df</code> from earlier in this section to perform your investigation.</p>
 <ol type="a">
@@ -1265,11 +1273,11 @@ Important
 </ol>
 <p><strong>Your Turn 3</strong>. In some cases throughout this chapter, we’ve renamed data sets using <code>&lt;-</code> with the same name like</p>
 <div class="cell">
-<div class="sourceCode" id="cb49"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">toy_df</span> <span class="op">&lt;-</span> <span class="va">toy_df</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>newvar <span class="op">=</span> <span class="va">x</span> <span class="op">/</span> <span class="va">y</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb50"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">toy_df</span> <span class="op">&lt;-</span> <span class="va">toy_df</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>newvar <span class="op">=</span> <span class="va">x</span> <span class="op">/</span> <span class="va">y</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>In other cases, we’ve given the data set a new name, like</p>
 <div class="cell">
-<div class="sourceCode" id="cb50"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">toy_small</span> <span class="op">&lt;-</span> <span class="va">toy_df</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/NA.html">is.na</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb51"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">toy_small</span> <span class="op">&lt;-</span> <span class="va">toy_df</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/NA.html">is.na</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>For which of the functions below is a generally “safe” to name the data set using the same name after using the function. Give a one sentence reason for each part.</p>
 <ol type="a">
@@ -1281,7 +1289,7 @@ Important
 </ol>
 <p><strong>Your Turn 4</strong>. Compare <code><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise()</a></code> with <code><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate()</a></code> using the following code. What’s the difference between the two functions?</p>
 <div class="cell">
-<div class="sourceCode" id="cb51"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">slumajors_df</span> <span class="op">|&gt;</span></span>
+<div class="sourceCode" id="cb52"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">slumajors_df</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise</a></span><span class="op">(</span>meantotalmajor <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">ntotal</span><span class="op">)</span>,</span>
 <span>            totalgrad <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">ntotal</span><span class="op">)</span><span class="op">)</span> </span>
 <span><span class="va">slumajors_df</span> <span class="op">|&gt;</span></span>
