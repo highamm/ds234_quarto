@@ -22,7 +22,7 @@ __Goals__:
 In this section, we will work on installing `R` and `R Studio` to your personal laptop. The following videos provide instructions on how to install `R` and `R Studio` to your laptop computer. It will be easiest if you complete all of these steps consecutively in one sitting.
 
 * Watch and follow along with a <a href="https://youtu.be/quN7AQkfKBk" target="_blank">video on installing R</a> (or a <a href="https://youtu.be/LagoBJXjsTk" target="_blank">captioned version</a>). 
-    * starting link: <a href="https://www.r-project.org/" target="_blank">https://www.r-project.org/</a>
+    * starting link: <a href="https://posit.co/download/rstudio-desktop/" target="_blank">https://posit.co/download/rstudio-desktop/</a>. (scroll down and click the link on the left-hand side of the page that says "Download and Install R"). Note that this webpage has changed since the posted video was made so the steps do not line up _exactly_, but, it's actually much easier to follow along with on this updated webpage.
 
 * Watch and follow along with a <a href="https://youtu.be/tKoPy_FZh9w" target="_blank">video on installing R Studio</a> (or a <a href="https://youtu.be/p1gtbCRaJ4c" target="_blank">captioned version</a>).
     * starting link: <a href="https://posit.co/download/rstudio-desktop/" target="_blank">https://posit.co/download/rstudio-desktop/</a> 
