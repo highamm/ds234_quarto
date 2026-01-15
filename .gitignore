@@ -4,10 +4,14 @@ solutions/
 other/
 render_file.R
 /.quarto/
-quizzes/
 handouts/
 data.zip
 .gitignore
 .Rhistory
-.DS_Store
-
+babynames.csv
+babynames.rda
+quizzes-f24/
+quizzes-f25/
+quizzes-s24/
+quizzes-s26
+handouts/handout_knn.pdf
