@@ -118,7 +118,7 @@ The only thing that changes in the code is the `GEOM`: the data and the fact tha
 
 ```{r, appendix = TRUE}
 ggplot(data = stat113_df, aes(x = GPA)) +
-  geom_freqpoly(bins = 15)
+  geom_freqpoly(bins = 17)
 ```
 
 The frequency plot is just like a histogram but the counts are connected by a line instead of represented with bins. You can see how they relate by including __both__ a `geom_freqpoly()` and a `geom_histogram()` in your plot 
@@ -132,14 +132,14 @@ The code below doesn't make the prettiest graph but it does show how more comple
 ```{r, appendix = TRUE}
 ggplot(data = stat113_df, aes(x = GPA)) +
     geom_histogram(colour = "black", fill = "white", bins = 17) +
-    geom_freqpoly(bins = 15)
+    geom_freqpoly(bins = 17)
 ```
 
 __Exercise 1__. Change the variable being plotted in the earlier histogram from `GPA` to another variable in the data set. Note that the variable must be quantitative. The variable names were given earlier in this section, but you can also see the variable names if you type in `stat113_df` in your bottom left window. Also, you can run `names(stat113_df)` in your bottom left window of `R Studio` to obtain all of the variable names in the `stat113_df` data frame.
 
 __Exercise 2__. In the histogram you just created, change the `colour` of the histogram to be `"dodgerblue4"` and the `fill` of the histogram to be `"dodgerblue1"`.
 
-__Exercise 3__. There are a lot of named colours that you can use in `R`. After looking through some at <a href="http://www.stat.columbia.edu/~tzheng/files/Rcolor.pdf" target="_blank">http://www.stat.columbia.edu/~tzheng/files/Rcolor.pdf</a>, change the `colour` and `fill` of the histogram again to be colours of your choice.
+__Exercise 3__. There are a lot of named colours that you can use in `R`. After looking through some at <a href="https://www.stat.auckland.ac.nz/~ihaka/downloads/R-colours-a4.pdf" target="_blank">https://www.stat.auckland.ac.nz/~ihaka/downloads/R-colours-a4.pdf</a>, change the `colour` and `fill` of the histogram again to be colours of your choice.
 
 ### Single Categorical Variable
 

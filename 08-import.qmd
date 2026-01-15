@@ -281,7 +281,33 @@ __Class Exercise 2__. Another common format for data to be stored in is an Excel
 
 __Class Exercise 3__. Now, read in the second sheet in the Excel file, using the help file for `?read_excel` to change one of the arguments.
 
-__Class Exercise 4__. A common issue when scraping tables with `rvest` is that there are tables that have two rows of headers, often with duplicate names in one or both of the rows. Examine this issue at <a href="https://en.wikipedia.org/wiki/Josh_Allen_(quarterback)" target="_blank">https://en.wikipedia.org/wiki/Josh_Allen_(quarterback)</a>, scrolling down to the NFL career statistics subsection.
+__Class Exercise 4__. Construct a barplot of highest ranked ATP (men's tennis) players right now. You will need to scrape some data from <https://en.wikipedia.org/wiki/Current_tennis_rankings> to construct this plot. 
+
+```{r}
+#| echo: false
+#| warning: false
+#| output: false
+library(rvest)
+url <- "https://en.wikipedia.org/wiki/Current_tennis_rankings"
+tabs <- read_html(url) |> html_nodes("table")
+tabs[[1]] |> html_table(header = FALSE)
+
+atp_df <- tabs[[1]] |> html_table(header = FALSE) |>
+  slice(-(1:2)) |>
+  rename(player = X2, 
+         points = X3,
+         move = X4,
+         rank = X1) |>
+  mutate(points = parse_number(points)) |>
+  mutate(player = fct_reorder(player, points)) |>
+  slice(1:10)
+
+ggplot(data = atp_df, aes(x = points, y = player)) +
+  geom_col(colour = "forestgreen", fill = "#ccff00") +
+  theme_minimal()
+```
+
+__Class Exercise 5__. A common issue when scraping tables with `rvest` is that there are tables that have two rows of headers, often with duplicate names in one or both of the rows. Examine this issue at <a href="https://en.wikipedia.org/wiki/Josh_Allen_(quarterback)" target="_blank">https://en.wikipedia.org/wiki/Josh_Allen_(quarterback)</a>, scrolling down to the NFL career statistics subsection.
 
 Try to scrape Josh Allen's stats using the "usual" data scraping method with `rvest`:
 

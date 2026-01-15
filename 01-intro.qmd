@@ -606,7 +606,7 @@ l. Take a moment to scroll through the advice from students who took this course
 
 <br>
 
-Render your .qmd file into an .html file and submit your rendered .html file to Canvas in the "Practice Submission" Assignment. If your file won't render, then submit the .qmd file instead. 
+Render your .qmd file into an .html file and submit your rendered .html file to Canvas.
 
 Nice work: we will dive into `ggplot()` in the `ggplot2` package next!
 
