@@ -337,6 +337,14 @@ __Class Exercise 2__*. What is the relationship between distance and active calo
 
 __Class Exercise 3__*. What is the relationship between number of steps taken and date? Is there an increasing trend or a decreasing trend or neither? 
 
+```{r}
+#| echo: false
+#| output: false
+ggplot(data = fitness_full, aes(x = Date, y = steps)) +
+  geom_line() +
+  geom_smooth()
+```
+
 __Class Exercise 4__*. What is the relationship between GPA and Exercise? Is that relationship different depending on sex? depending on sport? depending on sex-sport combination?
 
 __Class Exercise 5__. In STAT 113, boxplots are typically introduced using the `*` symbol to identify outliers. Using a combination of the help `?geom_boxplot` and Googling "R point shapes", figure out how to modify your side-by-side boxplots so that the outliers are shown using `*`, not the default dots. 
@@ -377,11 +385,9 @@ __Your Turn 5__. In your group, discuss why it would not make sense to construct
 What about the `GPA` variable in particular would make construction of a line plot impossible?
 :::
 
-__Your Turn 6__. In your group, discuss why you think `R` gives us a warning message that it "Removed 70 rows containing non-finite values" whenever we make a plot of the `GPA` variable from `stat113_df`. 
+__Your Turn 6__. On your own, construct a plot of your choosing, with any variables from either of the data sets we have used so far! Give a one sentence interpretation of your findings from your plot.
 
-__Your Turn 7__. On your own, construct a plot of your choosing, with any variables from either of the data sets we have used so far! Give a one sentence interpretation of your findings from your plot.
-
-__Your Turn 8__. A common theme that we'll see throughout the course is that it's advantageous to know as much background information as possible about the data set we are analyzing. Data sets will be easier to analyze and pose questions about if you're familiar with the subject matter. 
+__Your Turn 7__. A common theme that we'll see throughout the course is that it's advantageous to know as much background information as possible about the data set we are analyzing. Data sets will be easier to analyze and pose questions about if you're familiar with the subject matter. 
 
 In your group, give an example of something that you know about STAT 113 and the survey data set that helped you answer or pose a question that someone from another university (and therefore unfamiliar with our intro stat course) wouldn't know.
 
@@ -488,8 +494,8 @@ is equivalent to the following plot with local aesthetics:
 
 ```{r}
 ggplot(data = fitness_full) +
-  geom_point(aes(x = Date, y = active_cals, colour = season)) +
-  geom_smooth(aes(x = Date, y = active_cals, colour = season))
+  geom_point(aes(x = Date, y = steps, colour = season)) +
+  geom_smooth(aes(x = Date, y = steps, colour = season))
 ```
 
 ::: {.callout-important}
@@ -623,4 +629,4 @@ ggplot(data = toy_df, aes(x = xvar, y = yvar)) +
   geom_smooth(method = "lm", aes(colour = groupvar))
 ```
 
-__Your Turn 2__. Choose one of the plots that you selected as "correct" in the previous exercise. In your group, discuss, how the syntax of the plot would change if all aesthetics were supplied __locally__ instead of __globally__? Based on this discussion, when are global aesthetics more useful than local aesthetics?
+__Your Turn 2__. Choose one of the plots that you selected as "correct" in the previous exercise. In your group, discuss how the syntax of the plot would change if all aesthetics were supplied __locally__ instead of __globally__? Based on this discussion, when are global aesthetics more useful than local aesthetics?
