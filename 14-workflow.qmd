@@ -56,7 +56,10 @@ Again, including `here()` specifies that we want `R` to start looking for our fi
 
 ### Exercises {#exercise-14-1}
 
-__Exercise 1__. Download the `data.zip` folder from Canvas -> Modules. Unzip the folder and move this `/data` folder to the same folder that you made your `R` project in. If all went well, you should be able to read in the athletes data with `athletes_df <- read_csv(here("data/athletesdata.csv"))`. Then, take some time to modify your files in this course by creating a `Quizzes` folder and move the relevant quiz files to this folder. 
+__Exercise 1__. Download the `data.zip` folder from Canvas -> Modules. Unzip the folder and move this `/data` folder to the same folder that you made your `R` project in\*\*. If all went well, you should be able to read in the athletes data with `athletes_df <- read_csv(here("data/athletesdata.csv"))`. Then, take some time to modify your files in this course by creating a `Quizzes` folder and move the relevant quiz files to this folder. 
+
+\*\* If you have not moved folders and files around on your computer before, now is the time to learn! On Mac, you can open two Finder windows and navigate to (1) your Downloads folder where you put the `data` folder and (2) the folder that has your R project. You can then drag and drop `data` from (1) into (2): <https://youtu.be/TY_ViHj4gFU?si=ouUEubuP0XbGyTUF&t=136>. On Windows, it is a similar process but you use File Explorer instead of Finder: <https://youtu.be/TiPMMifBR4g?si=nH7WE8s83JyROYlM&t=133>.
+
 
 ## Code Style
 
