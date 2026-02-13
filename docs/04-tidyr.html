@@ -771,7 +771,7 @@ Note
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>You’ll need to add something to your <code><a href="https://tidyr.tidyverse.org/reference/pivot_longer.html">pivot_longer()</a></code> function to convert the variable <code>Year</code> to numeric. We haven’t talked too much about variable types yet so, after your <code>values_to = "Mortality"</code> statement, add <code>, names_transform = list(Year = as.numeric)</code>, making sure you have a second <code>)</code> to close the <code><a href="https://tidyr.tidyverse.org/reference/pivot_longer.html">pivot_longer()</a></code> function.</p>
+<p>You’ll need to add something to your <code><a href="https://tidyr.tidyverse.org/reference/pivot_longer.html">pivot_longer()</a></code> function to convert the variable <code>name_of_your_year_variable</code> to numeric. We haven’t talked about variable types yet so, but you will need to change the variable type of your year variable to numeric. After pivoting, pipe into a <code>|&gt; mutate(name_of_your_year_variable = as.numeric(name_of_your_year_variable))</code> to change your year variable type to numeric.</p>
 </div>
 </div>
 <p><strong>Class Exercise 6</strong>. Construct a plot to look at the overall under 5 mortality trends for each country.</p>
@@ -840,8 +840,8 @@ Cuation
 <!-- Find the maximum salary for each player position in each year. Then, create two different line graphs that shows how the maximum salary has changed from 2011 to 2018 for each position. For one line graph, make the colours of the lines different for each position. For the second line graph, facet by position. Which graph do you like better? -->
 <p><strong>Your Turn 9</strong>. What is one flaw about using the maximum salary for each position as our metric for “change” over time. What other metric might we use instead? Re-construct the graph with this other metric?</p>
 <!-- Make the same graph, but plot the average salary of the top 20 players in each position of each year. What do you notice? Any interesting patterns for any of the positions? If you're a fan of football, provide a guess as to why one of the positions has had their salary plateau in recent years. -->
-<p><strong>Your Turn 11</strong>. Sometimes for graphs involving cost or salary, we want to take into account the inflation rate. Google what the inflation rate was between 2011 and 2018 (Google something like “inflation rate from 2011 to 2018” and you should be able to find something). Adjust all of the 2011 salaries for inflation so that they are comparable to the 2018 salaries.</p>
-<p><strong>Your Turn 12</strong>. Construct a graph that shows the salary depreciation from top paid players in each position to lesser paid players in each position for the year 2018 only. Which position has the largest depreciation?</p>
+<p><strong>Your Turn 10</strong>. Sometimes for graphs involving cost or salary, we want to take into account the inflation rate. Google what the inflation rate was between 2011 and 2018 (Google something like “inflation rate from 2011 to 2018” and you should be able to find something). Adjust all of the 2011 salaries for inflation so that they are comparable to the 2018 salaries.</p>
+<p><strong>Your Turn 11</strong>. Construct a graph that shows the salary depreciation from top paid players in each position to lesser paid players in each position for the year 2018 only. Which position has the largest depreciation?</p>
 
 
 </section></section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">

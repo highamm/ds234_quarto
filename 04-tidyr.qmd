@@ -345,14 +345,14 @@ __Class Exercise 5__. Notice that there are 217 columns (at the top of the print
 ::: {.callout-note}
 ## Note
 
-You'll need to add something to your `pivot_longer()` function to convert the variable `Year` to numeric. We haven't talked too much about variable types yet so, after your `values_to = "Mortality"` statement, add `, names_transform = list(Year = as.numeric)`, making sure you have a second `)` to close the `pivot_longer()` function.
+You'll need to add something to your `pivot_longer()` function to convert the variable `name_of_your_year_variable` to numeric. We haven't talked about variable types yet so, but you will need to change the variable type of your year variable to numeric. After pivoting, pipe into a `|> mutate(name_of_your_year_variable = as.numeric(name_of_your_year_variable))` to change your year variable type to numeric.
 :::
 
 ```{r, echo = FALSE}
 mortality_long <- mortality_df |>
   pivot_longer(cols = 2:217, names_to = "Year",
-               values_to = "Mortality",
-               names_transform = list(Year = as.numeric))
+               values_to = "Mortality") |>
+  mutate(Year = as.numeric(Year))
 ```
 
 __Class Exercise 6__. Construct a plot to look at the overall under 5 mortality trends for each country. 
@@ -436,7 +436,7 @@ __Your Turn 9__. What is one flaw about using the maximum salary for each positi
 
 <!-- Make the same graph, but plot the average salary of the top 20 players in each position of each year. What do you notice? Any interesting patterns for any of the positions? If you're a fan of football, provide a guess as to why one of the positions has had their salary plateau in recent years. -->
 
-__Your Turn 11__. Sometimes for graphs involving cost or salary, we want to take into account the inflation rate. Google what the inflation rate was between 2011 and 2018 (Google something like "inflation rate from 2011 to 2018" and you should be able to find something). Adjust all of the 2011 salaries for inflation so that they are comparable to the 2018 salaries. 
+__Your Turn 10__. Sometimes for graphs involving cost or salary, we want to take into account the inflation rate. Google what the inflation rate was between 2011 and 2018 (Google something like "inflation rate from 2011 to 2018" and you should be able to find something). Adjust all of the 2011 salaries for inflation so that they are comparable to the 2018 salaries. 
 
-__Your Turn 12__. Construct a graph that shows the salary depreciation from top paid players in each position to lesser paid players in each position for the year 2018 only. Which position has the largest depreciation? 
+__Your Turn 11__. Construct a graph that shows the salary depreciation from top paid players in each position to lesser paid players in each position for the year 2018 only. Which position has the largest depreciation? 
 
