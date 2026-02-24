@@ -784,6 +784,17 @@ Note
 <div class="sourceCode" id="cb22"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://here.r-lib.org/">here</a></span><span class="op">)</span></span>
 <span><span class="va">baseball_df</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv</a></span><span class="op">(</span><span class="fu"><a href="https://here.r-lib.org/reference/here.html">here</a></span><span class="op">(</span><span class="st">"data/mlb2016.csv"</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="va">baseball_df</span></span>
+<span><span class="co">#&gt; # A tibble: 862 × 7</span></span>
+<span><span class="co">#&gt;   Name             Team  POS   Salary       Years      Total.Value Avg.Annual</span></span>
+<span><span class="co">#&gt;   &lt;chr&gt;            &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;        &lt;chr&gt;      &lt;chr&gt;       &lt;chr&gt;     </span></span>
+<span><span class="co">#&gt; 1 Clayton Kershaw  LAD   SP    $ 33,000,000 7 (2014-2… $ 215,000,… $ 30,714,…</span></span>
+<span><span class="co">#&gt; 2 Zack Greinke     ARI   SP    $ 31,799,030 6 (2016-2… $ 206,500,… $ 34,416,…</span></span>
+<span><span class="co">#&gt; 3 David Price      BOS   SP    $ 30,000,000 7 (2016-2… $ 217,000,… $ 31,000,…</span></span>
+<span><span class="co">#&gt; 4 Miguel Cabrera   DET   1B    $ 28,000,000 10 (2014-… $ 292,000,… $ 29,200,…</span></span>
+<span><span class="co">#&gt; 5 Justin Verlander DET   SP    $ 28,000,000 7 (2013-1… $ 180,000,… $ 25,714,…</span></span>
+<span><span class="co">#&gt; 6 Yoenis Cespedes  NYM   CF    $ 27,328,046 3 (2016-1… $ 75,000,0… $ 25,000,…</span></span>
+<span><span class="co">#&gt; # ℹ 856 more rows</span></span>
 <span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html">glimpse</a></span><span class="op">(</span><span class="va">baseball_df</span><span class="op">)</span></span>
 <span><span class="co">#&gt; Rows: 862</span></span>
 <span><span class="co">#&gt; Columns: 7</span></span>
@@ -798,20 +809,20 @@ Note
 <p><strong>Your Turn 2</strong>. Tidy the data set just so that</p>
 <ul>
 <li>
-<code>Duration</code> of the salary contract (currently given in the <code>Year</code> column) is in its own column</li>
+<code>Duration</code> of the salary contract (currently given in the <code>Year</code> column) is in its own column.</li>
 <li>the year range (also currently given in the <code>Year</code> column) is split into a variable called <code>Start</code> and a variable called <code>End</code> year that give the start and end years of the contract. You can still have special characters for now (like <code>(</code> and <code>)</code>) in the start and end year.</li>
 </ul>
 <p><strong>Your Turn 3</strong>. You should have received a warning message. What does this message mean? See if you can figure it out by typing <code>View(baseball_df)</code> in your console window and scrolling down to some of the rows that the warning mentions: 48, 59, 60, etc. With your group, explain why that warning message was given.</p>
 <p><strong>Your Turn 4</strong>. We won’t learn about <code><a href="https://readr.tidyverse.org/reference/parse_number.html">parse_number()</a></code> until <code>readr</code>, but the function is straightforward enough to mention here. It’s useful when you have extra characters in the values of a numeric variable (like a <code>$</code> or a <code>(</code>), but you just want to grab the actual number:</p>
 <div class="cell">
-<div class="sourceCode" id="cb23"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">baseball_df</span> <span class="op">&lt;-</span> <span class="va">baseball_df</span> <span class="op">|&gt;</span></span>
+<div class="sourceCode" id="cb23"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">baseball_tidy</span> <span class="op">&lt;-</span> <span class="va">name_of_your_baseball_data</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>Salary <span class="op">=</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/parse_number.html">parse_number</a></span><span class="op">(</span><span class="va">Salary</span><span class="op">)</span>,</span>
 <span>         Total.Value <span class="op">=</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/parse_number.html">parse_number</a></span><span class="op">(</span><span class="va">Total.Value</span><span class="op">)</span>,</span>
 <span>         Avg.Annual <span class="op">=</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/parse_number.html">parse_number</a></span><span class="op">(</span><span class="va">Avg.Annual</span><span class="op">)</span>,</span>
 <span>         Start <span class="op">=</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/parse_number.html">parse_number</a></span><span class="op">(</span><span class="va">Start</span><span class="op">)</span>,</span>
 <span>         End <span class="op">=</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/parse_number.html">parse_number</a></span><span class="op">(</span><span class="va">End</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Run the code above so that the parsing is saved to <code>baseball_df</code>.</p>
+<p>Run the code above so that the parsing is saved to <code>baseball_tidy</code>.</p>
 <p><strong>Your Turn 5</strong>. With a partner, brainstorm <strong>2</strong> different graphics you could construct to investigate how player <code>Salary</code> compares for players with different <code>POS</code>. Each of you should make 1 of the graphics you discussed. Then, state the reason why making that plot would not have worked before we tidied the data set.</p>
 <p><strong>New Data</strong>: For the rest of the exercises, we will use salary data from the National Football League obtained from FiveThirtyEight that were originally obtained from <a href="https://github.com/rfordatascience/tidytuesday/tree/master/data/2018/2018-04-09" target="_blank">Spotrac.com</a>.</p>
 <p>The data set has the top 100 paid players for each year for each position from 2011 through 2018, broken down by player position. For those unfamiliar with American football, the positions in the data set are Quarterback, Running Back, Wide Receiver, Tight End, and Offensive Lineman for offense, Cornerback, Defensive Lineman, Linebacker, and Safety for Defense, and a separate category for Special Teams players that includes punters and kickers. You can review a summary of player positions <a href="https://i.pinimg.com/originals/56/32/87/56328741cb64cd59dafd200c9d06a301.png" target="_blank"> here</a>.</p>

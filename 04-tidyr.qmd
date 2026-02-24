@@ -325,9 +325,29 @@ prices_df <- read_csv(here("data/UBSprices2.csv"))
 
 __Class Exercise 3__. Construct a plot that allows you to see how the price of rice has changed in between 2003 and 2009 for each of the cities in the data set.
 
+```{r}
+#| echo: false
+#| output: false
+prices_tidy <- prices_df |> pivot_longer(2:7, names_to = "temp", values_to = "price") |>
+  separate(temp, c("commodity", "year"), sep = -4)
+prices_rice <- prices_tidy |> filter(commodity == "rice")
+ggplot(data = prices_rice, aes(x = year, y = price)) +
+  geom_line(aes(group = city), alpha = 0.4)
+```
+
 <!-- Convert the data set to a tidier form so that there is a `year` variable and a `commodity` variable that has 3 values: `"bigmac"`, `"bread"`, and `"rice"`. __Hint__: At some point, you will need to separate the commodity from the year in, for example, bread2009. But, you'll notice this is different than our other uses of `separate()` because there is no "-" or " " or "/" to use as a separating character. Look at the help for `separate()` and scroll down to the `sep` argument to see if you can figure out this issue.  Convert your data set from the previous exercise so that `commodity` is split up into 3 variables: `bigmac` price, `rice` price and `bread` price. -->
 
 __Class Exercise 4__. Construct a plot that allows you to see how the price of each of the three commodities has changed between 2003 and 2009 for the city of Amsterdam. 
+
+```{r}
+#| echo: false
+#| output: false
+prices_amsterdam <- prices_tidy |> filter(city == "Amsterdam")
+ggplot(data = prices_amsterdam, aes(x = year, y = price)) +
+  geom_line(aes(colour = commodity, group = commodity)) +
+  scale_colour_viridis_d() +
+  theme_minimal()
+```
 
 <!-- In which data set would it be easiest to make a line plot with `year` on the x-axis and price of `rice` on the y-axis with lines for each `city`? In which data set would it be easiest to make a line chart with 3 lines, one for each type of commodity, for the city of Amsterdam? -->
 
@@ -379,12 +399,13 @@ __Your Turn 1__. Read in the data using the following code chunk and, with your 
 library(tidyverse)
 library(here)
 baseball_df <- read_csv(here("data/mlb2016.csv"))
+baseball_df
 glimpse(baseball_df)
 ```
 
 __Your Turn 2__. Tidy the data set just so that 
 
-* `Duration` of the salary contract (currently given in the `Year` column) is in its own column
+* `Duration` of the salary contract (currently given in the `Year` column) is in its own column.
 * the year range (also currently given in the `Year` column) is split into a variable called `Start` and a variable called `End` year that give the start and end years of the contract. You can still have special characters for now (like `(` and `)`) in the start and end year.
 
 __Your Turn 3__. You should have received a warning message. What does this message mean? See if you can figure it out by typing `View(baseball_df)` in your console window and scrolling down to some of the rows that the warning mentions: 48, 59, 60, etc. With your group, explain why that warning message was given.
@@ -392,7 +413,7 @@ __Your Turn 3__. You should have received a warning message. What does this mess
 __Your Turn 4__. We won't learn about `parse_number()` until `readr`, but the function is straightforward enough to mention here. It's useful when you have extra characters in the values of a numeric variable (like a `$` or a `(`), but you just want to grab the actual number:
 
 ```{r, results = "hide", eval = FALSE}
-baseball_df <- baseball_df |>
+baseball_tidy <- name_of_your_baseball_data |>
   mutate(Salary = parse_number(Salary),
          Total.Value = parse_number(Total.Value),
          Avg.Annual = parse_number(Avg.Annual),
@@ -400,7 +421,7 @@ baseball_df <- baseball_df |>
          End = parse_number(End))
 ```
 
-Run the code above so that the parsing is saved to `baseball_df`.
+Run the code above so that the parsing is saved to `baseball_tidy`.
 
 __Your Turn 5__. With a partner, brainstorm __2__ different graphics you could construct to investigate how player `Salary` compares for players with different `POS`. Each of you should make 1 of the graphics you discussed. Then, state the reason why making that plot would not have worked before we tidied the data set.
 

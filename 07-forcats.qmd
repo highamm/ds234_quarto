@@ -275,9 +275,55 @@ ggplot(data = pokemon_long, aes(x = Type_Deford,
 
 Why are the boxplots no longer ordered by median defense?
 
-__Class Exercise 4__. On a feedback sheet, you were asked to "rank" this course in terms of challenge and amount of time you spend on it, compared to the other courses you are taking this semester. This is a question that has been asked of students in past sections of this course. Read in some data collected in a couple of past semesters:
+Class Exercise 4. For this exercise, we will make a __heatmap__ of the medal counts for countries around the world in the 2024 Summer Olympic games. For this heatmap, `country` will go on the y-axis and `medal_type` will go on the x-axis. The code below reads in data that contains `country`, the name of the country, `medal_type` (gold, silver or bronze), and `event`, where each row corresponds to a particular medal for a particular event.
 
 ```{r}
+path <- "https://raw.githubusercontent.com/highamm/ds234_quarto/main/data_online/"
+medals_df <- read_csv(paste0(path, "medals.csv"))
+medals_df
+```
+
+```{r}
+#| echo: false
+#| output: false
+medals_sum <- medals_df |> group_by(medal_type, country) |>
+  summarise(n = n())
+
+medals_top15 <- medals_sum |> group_by(country) |>
+  summarise(total_medals = sum(n)) |>
+  arrange(desc(total_medals)) |>
+  slice(1:25)
+
+medals15 <- semi_join(medals_sum, medals_top15, join_by(country == country))
+medals15 <- medals15 |> ungroup() |>
+  mutate(medal_type = fct_relevel(medal_type, c("Gold Medal", "Silver Medal", "Bronze Medal"))) |>
+  mutate(country = fct_reorder(country, n))
+ggplot(data = medals15, aes(x = medal_type, y = country, fill = n)) +
+  geom_tile() +
+  scale_fill_viridis_c() +
+  theme_minimal() +
+  labs(fill = "Medals")
+```
+
+To make the heatmap, complete the following steps:
+
+1. Construct a data frame that has the number of times each country won each medal type.
+
+2. Construct a separate data frame that contains the total medal counts won for each country and keep only the top X countries with the most medals (X is subjective here).
+
+3. Join the two data frames together. We will do this step together since we have not discussed joining yet.
+
+4. Construct the heatmap with the joined data frame using the `geom_tile()` `<GEOM>` with a fill aesthetic for count.
+
+5. Use `forcats` to change the ordering of the y-axis and the x-axis factor levels in a way that makes sense.
+
+In general, heatmaps are useful if we are visualizing two categorical variables, where at least one of the categorical variables has a very large number of levels!
+
+<!-- __Class Exercise 4__. On a feedback sheet, you were asked to "rank" this course in terms of challenge and amount of time you spend on it, compared to the other courses you are taking this semester. This is a question that has been asked of students in past sections of this course. Read in some data collected in a couple of past semesters: -->
+
+```{r}
+#| echo: false
+#| output: false
 responses_df <- read_csv("https://raw.githubusercontent.com/highamm/ds234_quarto/main/data_online/heatmap.csv")
 responses_df
 ```

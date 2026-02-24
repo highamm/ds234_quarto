@@ -558,7 +558,6 @@ babynames |> group_by(year) |>
 `group_by()` can be used in combination with the other `dplyr` functions we have learned about (`mutate()`, `filter()`, etc.). We will explore this functionality in class.
 :::
 
-
 __Exercise 5__. With the `babynames` data set, use `group_by()` and `summarise()` to create a data set that has the total number of births for each `name`.
 
 __Exercise 6__. With the `babynames` data set, use `group_by()` and `summarise()` to create a data set that has how many times each `name` appears in `babynames`.
