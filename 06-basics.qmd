@@ -418,6 +418,61 @@ table(toy_df$group1)
 table(toy_df$group1, toy_df$group2)
 ```
 
+__Class Exercise 3__. The following are fake final grades collected for two sections of DATA/STAT 234 (fake to protect student anonymity), stored in a data frame called `grades_df`. The two sections correspond to a 10:30 class and an 11:40 class.
+
+```{r}
+#| echo: false
+#| output: false
+#| warning: false
+set.seed(41411333)
+df <- tibble(section = rep(c(1030, 1140), each = 25),
+       grade = as.character(sample(c(0, 1, 1.25, 1.5, 1.75,
+                                     2, 2.25, 2.5, 2.75, 3,
+                                     3.25, 3.5, 3.75, 4),
+                                   prob = c(0.01, 0.01, 0.02, 0.02, 0.02,
+                                            0.06, 0.03, 0.10, 0.03, 0.1,
+                                            0.2, 0.1, 0.2, 0.2),
+                                   size = 50,
+                                   replace = TRUE)))
+dput(df)
+```
+
+```{r}
+#| output: false
+grades_df <- structure(list(section = c(1030, 1030, 1030, 1030, 1030, 1030, 
+1030, 1030, 1030, 1030, 1030, 1030, 1030, 1030, 1030, 1030, 1030, 
+1030, 1030, 1030, 1030, 1030, 1030, 1030, 1030, 1140, 1140, 1140, 
+1140, 1140, 1140, 1140, 1140, 1140, 1140, 1140, 1140, 1140, 1140, 
+1140, 1140, 1140, 1140, 1140, 1140, 1140, 1140, 1140, 1140, 1140
+), grade = c("3.5", "3.5", "3.75", "2.5", "3.75", "3.75", "3", 
+"3.5", "4", "3.75", "3", "3.75", "3", "3", "3.25", "2.5", "3.25", 
+"3.5", "2.25", "4", "2.5", "3.75", "0", "4", "3.75", "3.25", 
+"4", "3.75", "2.75", "2.5", "3.75", "3.75", "3.5", "4", "3.25", 
+"3.75", "3.5", "1.75", "4", "3", "2.75", "0", "3.75", "3.5", 
+"3.75", "1.75", "3.5", "3.25", "3.25", "4")), class = c("tbl_df", 
+"tbl", "data.frame"), row.names = c(NA, -50L))
+
+grades_df
+```
+
+a. Compute the mean final grade for each section.
+
+b. What did you need to change before you computed the mean final grade for each section?
+
+c. Construct a set of side-by-side boxplots comparing the grade distribution for each section.
+
+d. What did you need to change before you created the side-by-side boxplots?
+
+__Class Exercise 4__. Suppose that you collect some data on professional tennis matches for the 2025 season, recording the following variables for each match:
+
+* the name of the winning player.
+* the surface that the match was played on (Hard, Grass, Clay).
+* the number of aces (unreturned serves) the winning player hit.
+* the percentage of times the winning player made their first serve.
+* whether or not the winning player was currently ranked higher than the losing player.
+
+For each variable, decide on which variable class would make the __most sense__ for that variable to be.
+
 ### Your Turn
 
 __Your Turn 1__. Read in the data set and use `filter()` to remove any rows with missing metascores, missing median playtime, or have a median playtime of 0 hours.

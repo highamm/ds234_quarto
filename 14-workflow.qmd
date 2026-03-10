@@ -5,6 +5,7 @@
 source("_common.R")
 ```
 
+
 __Goals:__
 
 * Describe how files are organized in an `R` project, describe the advantage of a common working directory through an `R` Project, and use the `here` package to assist in accessing and reading in files.
