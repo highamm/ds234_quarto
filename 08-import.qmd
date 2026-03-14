@@ -257,8 +257,8 @@ Start with the following code chunk and use the options of `read_delim()` to rea
 
 * `skip`
 * `col_names`
-* `na`
 * `trim_ws`
+* `na`
 * `col_types`
 
 ```{r, results = "hide", warning = FALSE, message = FALSE}

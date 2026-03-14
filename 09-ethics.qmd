@@ -46,13 +46,13 @@ Pick one example from the bulleted list and write a 2 sentence explanation that 
 __Exercise 4__. Choose __1__ of the following two articles to read
 
 * <a href="https://www.theguardian.com/world/2017/sep/08/ai-gay-gaydar-algorithm-facial-recognition-criticism-stanford" target="_blank">https://www.theguardian.com/world/2017/sep/08/ai-gay-gaydar-algorithm-facial-recognition-criticism-stanford </a> on the use of data in the LGBTQIA+ community
-* <a href="https://towardsdatascience.com/5-steps-to-take-as-an-antiracist-data-scientist-89712877c214" target="_blank">https://towardsdatascience.com/5-steps-to-take-as-an-antiracist-data-scientist-89712877c214 </a> on anti-racist data practices.
+* <a href="https://www.reuters.com/article/world/insight-amazon-scraps-secret-ai-recruiting-tool-that-showed-bias-against-women-idUSKCN1MK0AG/" target="_blank">https://www.reuters.com/article/world/insight-amazon-scraps-secret-ai-recruiting-tool-that-showed-bias-against-women-idUSKCN1MK0AG/ </a> on algorithmic bias in hiring.
 
 a. For the LGBTQIA+ article, write a two sentence summary for the side of the argument that research in facial recognition software to identify members of the LGBTQ+ community should __not__ occur, even if this viewpoint isn't your own. 
 
 Then, write a two sentence summary for the side of the argument that research in facial recognition software to identify members of the LGBTQ+ community is okay as long as the results are used responsibly, even if this viewpoint isn't your own.
 
-b. For the anti-racist data science article, under Step 2, pick a News Article and read the first few paragraphs. Describe, in 2-3 sentences, what your article's example of bias is and why the incidence of bias matters.
+b. For the algorithmic bias article, describe, in 2-3 sentences, what your article's example of bias is and why the algorithm turned out to be biased.
 
 ### Data Privacy
 

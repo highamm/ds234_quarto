@@ -408,7 +408,7 @@ __Class Exercise 1__. Use the following steps to create a new variable `weekend_
 
 a. Create a vector that has the numbers corresponding to the two weekend days. Name the vector and then create a second vector that has the numbers corresponding to the five weekday days.
 
-b. Use `dplyr` functions and the `%in%` operator to create the new `weekend_ind` variable. 
+b. Use `dplyr` functions and the `%in%` operator to create the new `weekend_ind` variable. We will discuss as a class what this `%in%` operator does and how it might be useful.
 
 __Class Exercise 2__. Use `dplyr` and `tidyr` functions to re-create the tables generated from
 
