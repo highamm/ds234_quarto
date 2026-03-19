@@ -67,37 +67,59 @@ Which variables might we want to include as predictors in a knn model?
 
 __Exercise 1__. Construct another scatterplot matrix with `Type` and a different set of predictors. Which predictors look like they might be useful to include in a knn model to predict `Type`?
 
-After we decide on an initial set of predictors to include, we'll use the `class` package to fit a knn model in `R`. For our first model, let's just use `HP`, `Attack` and `Defense` as predictors. The `class` library can fit knn models with a `knn()` function but requires the training and test data sets to have __only__ the predictors that we want to use to fit the model. The `knn()` function also requires that the response variable, `Type`, be given as a vector to the `cl` argument.
+After we decide on an initial set of predictors to include, we'll use the `class` package to fit a knn model in `R`. For our first model, let's just use `HP`, `Attack` and `Defense` as predictors. The `kknn` library can fit knn models with a `kknn()` function using syntax similar to `lm()`, which is used to fit linear models in STAT 213. 
 
 ```{r, appendix = TRUE}
-## install.packages("class")
-library(class)
-
-## create a data frame that only has the predictors
-## that we will use
-train_small <- train_sample |> select(HP, Attack, Defense, Speed)
-test_small <- test_sample |> select(HP, Attack, Defense, Speed)
-
-## put our response variable into a vector
-train_cat <- train_sample$Type
-test_cat <- test_sample$Type
+## install.packages("kknn")
+library(kknn)
 ```
 
-Now that the data has been prepared for the `knn()` function in the `class` library, we fit the model with 9 nearest neighbors. The arguments to `knn()` are 
+The arguments to `kknn()` are 
 
-* `train`, a data set with the training data that contains only the predictors we want to use (and not other predictors or the response).
-* `test`, a data set with the test data that contains only the predictors we want to use (and not other predictors or the response).
-* `cl`, a vector of the response variable for the training data.
-* `k`, the number of nearest neighbors.
+* `formula`, which gives a formula in the style `response ~ pred1 + pred2 + .... + predx`. For example, if we wanted `Attack`, `Defense` and `Speed` to be predictors for `Type`, our formula would be `Type ~ Attack + Defense + Speed`.
+* `train`, a data set with the training data.
+* `test`, a data set with the test data.
+* `k`, the number of nearest neighbors we would like to use in our model.
+
+For those that have taken or are enrolled in STAT 213, this is quite similar to the way you fit regression models with a couple of differences: the function requires __2__ data sets instead of __1__ (as it requires both a training and a test data set) and the function also requires that we specify a value for $k$, the number of nearest neighbors to use in our model. The example below fits a knn model with `Attack`, `Defense`, and `Speed` as predictors using $k = 9$ nearest neighbors.
 
 ```{r, appendix = TRUE}
+#| echo: true
+#| eval: false
 ## fit the knn model with 9 nearest neighbors
-knn_mod <- knn(train = train_small, test = test_small,
-               cl = train_cat, k = 9)
+knn_mod <- kknn(Type ~ Attack + Defense + Speed, train = train_sample,
+                test = test_sample, k = 9)
 knn_mod
 ```
 
-The output of `knn_mod` gives the predicted categories for the __test__ sample. So, the first pokemon in the test sample is predicted to be `Fire` type, the second is predicted to be `Fire` type, etc.
+If you try to run the code above, you will actually get an error! This is one of the rare examples in this class that we see a difference in the way an `R` function treats `<chr>` variables and `<fct>` variables. For the `kknn()` function to run, the response variable must be a __factor__ and is not allowed to be a __character__. Let's make the conversion and then refit the model. Note that, because we have to make the conversion in both the training and the test sample, it will be easier to convert the variable type to factor before we do the split into training and test:
+
+```{r}
+set.seed(1119)
+
+pokemon <- read_csv(here("data", "pokemon_full.csv")) |>
+  filter(Type %in% c("Steel", "Dark", "Fire", "Ice")) |>
+  mutate(across(where(is.numeric), ~ (.x - min(.x)) /
+                                 (max(.x) - min(.x)))) |>
+  mutate(Type = as.factor(Type))
+
+train_sample <- pokemon |>
+  slice_sample(n = 75)
+
+test_sample <- anti_join(pokemon, train_sample)
+
+knn_mod <- kknn(Type ~ Attack + Defense + Speed, train = train_sample,
+                test = test_sample, k = 9)
+knn_mod
+```
+
+The output of `knn_mod` just gives the formula that we used to fit the data and tells us that the response is "nominal" (which just means that the response is categorical). If we want to examine what the actual classifications are for Pokemon in the test sample, we can pull these out with:
+
+```{r}
+knn_mod$fitted.values
+```
+
+So, the first pokemon in the test sample is predicted to be `Fire` type, the second is predicted to be `Fire` type, etc, the fifth is predicted to be `Ice` type, etc.
 
 ## Evaluating a Predictive Model
 
@@ -108,14 +130,14 @@ In order to examine the performance of a particular model, we'll create a __clas
 We can compare the predictions from the knn model with the actual pokemon `Type`s in the test sample with `table()`, which makes the classification table:
 
 ```{r, appendix = TRUE}
-table(knn_mod, test_cat) 
+table(knn_mod$fitted.values, test_sample$Type) 
 ```
 
 The columns of the classification table give the actual Pokemon types in the test data while the rows give the predicted types from our knn model. 
 
-__Exercise 2__. Interpret the value of `11` in the classification table above.
+__Exercise 2__. Interpret the value of `12` in the classification table above.
 
-__Exercise 3__. Interpret the value of `3` in the column with `Fire` and the row with `Dark`.
+__Exercise 3__. Interpret the value of `3` in the column with `Dark` and the row with `Ice`.
 
 __Exercise 4__. Interpret the value of `0` in the bottom-left of the classification table above.
 
@@ -127,7 +149,7 @@ Code to automatically obtain the classification rate from a confusion matrix is
 
 ```{r}
 #| output: false
-tab <- table(knn_mod, test_cat) 
+tab <- table(knn_mod$fitted.values, test_sample$Type) 
 sum(diag(tab)) / sum(tab)
 ```
 
@@ -166,7 +188,8 @@ Examine the following code that fits a knn model using the pokemon data set with
 #| output: false
 library(tidyverse)
 
-pokemon <- read_csv(here::here("data/pokemon_full.csv")) 
+pokemon <- read_csv(here::here("data/pokemon_full.csv")) |>
+  mutate(Type = as.factor(Type))
 set.seed(1119)
 
 ## scale the quantitative predictors
@@ -178,22 +201,13 @@ train_sample <- pokemon_scaled |>
   slice_sample(n = 550)
 test_sample <- anti_join(pokemon_scaled, train_sample)
 
-library(class)
+library(kknn)
 
-train_pokemon <- train_sample |> select(HP, Attack, Defense, Speed,
-                                        SpAtk, SpDef, height, weight)
-test_pokemon <- test_sample |> select(HP, Attack, Defense, Speed,
-                                      SpAtk, SpDef, height, weight)
-
-## put our response variable into a vector
-train_cat <- train_sample$Type
-test_cat <- test_sample$Type
-
-knn_mod <- knn(train = train_pokemon, test = test_pokemon,
-               cl = train_cat, k = 9)
+knn_mod <- kknn(Type ~ HP + Attack + Defense + Speed + SpAtk + SpDef + height + weight,
+                train = train_sample, test = test_sample, k = 9)
 knn_mod
 
-tab <- table(knn_mod, test_cat)
+tab <- table(knn_mod$fitted.values, test_sample$Type)
 sum(diag(tab)) / sum(tab)
 ```
 
@@ -206,11 +220,10 @@ __Class Exercise 1__. First, we will take a functional programming approach, by 
 #| output: false
 
 get_class_rate <- function(k_val) {
-  knn_mod <- knn(train = train_pokemon, test = test_pokemon,
-                 cl = train_cat, k = k_val)
-  knn_mod
+  knn_mod <- kknn(Type ~ HP + Attack + Defense + Speed + SpAtk + SpDef + height + weight,
+                  train = train_sample, test = test_sample, k = k_val)
   
-  tab <- table(knn_mod, test_cat)
+  tab <- table(knn_mod$fitted.values, test_sample$Type)
   class_rate <- sum(diag(tab)) / sum(tab)
   
   return(class_rate)
@@ -224,7 +237,7 @@ b. Together, we will define a vector of k values that we want to map through the
 ```{r}
 #| echo: false
 #| output: false
-k_vec <- 1:70
+k_vec <- 1:100
 map(k_vec, get_class_rate) |> unlist()
 ```
 
@@ -257,14 +270,15 @@ The code below gives an equivalent way to map or loop through values of $k$ usin
 class_rate <- double()
 
 ## define values of k that we want to loop through
-k_vec <- 1:70
+k_vec <- 1:100
 
-for (i in 1:70) {
-  knn_mod <- knn(train = train_pokemon, test = test_pokemon,
-                 cl = train_cat, k = k_vec[i])
+for (i in 1:100) {
+  knn_mod <- kknn(Type ~ HP + Attack + Defense + Speed + SpAtk + SpDef + height + weight,
+                  train = train_sample, test = test_sample, k = k_vec[i])
+    
   knn_mod
   
-  tab <- table(knn_mod, test_cat)
+  tab <- table(knn_mod$fitted.values, test_sample$Type)
   
   ## for the ith value of k_vec, store the classification rate as 
   ## the ith value of class_rate

@@ -396,66 +396,86 @@ window.Quarto = {
 <p>What’s given on the diagonal of the scatterplot matrix?</p>
 <p>Which variables might we want to include as predictors in a knn model?</p>
 <p><strong>Exercise 1</strong>. Construct another scatterplot matrix with <code>Type</code> and a different set of predictors. Which predictors look like they might be useful to include in a knn model to predict <code>Type</code>?</p>
-<p>After we decide on an initial set of predictors to include, we’ll use the <code>class</code> package to fit a knn model in <code>R</code>. For our first model, let’s just use <code>HP</code>, <code>Attack</code> and <code>Defense</code> as predictors. The <code>class</code> library can fit knn models with a <code><a href="https://rdrr.io/pkg/class/man/knn.html">knn()</a></code> function but requires the training and test data sets to have <strong>only</strong> the predictors that we want to use to fit the model. The <code><a href="https://rdrr.io/pkg/class/man/knn.html">knn()</a></code> function also requires that the response variable, <code>Type</code>, be given as a vector to the <code>cl</code> argument.</p>
+<p>After we decide on an initial set of predictors to include, we’ll use the <code>class</code> package to fit a knn model in <code>R</code>. For our first model, let’s just use <code>HP</code>, <code>Attack</code> and <code>Defense</code> as predictors. The <code>kknn</code> library can fit knn models with a <code><a href="https://rdrr.io/pkg/kknn/man/kknn.html">kknn()</a></code> function using syntax similar to <code><a href="https://rdrr.io/r/stats/lm.html">lm()</a></code>, which is used to fit linear models in STAT 213.</p>
 <div class="cell" data-appendix="true">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co">## install.packages("class")</span></span>
-<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="http://www.stats.ox.ac.uk/pub/MASS4/">class</a></span><span class="op">)</span></span>
-<span></span>
-<span><span class="co">## create a data frame that only has the predictors</span></span>
-<span><span class="co">## that we will use</span></span>
-<span><span class="va">train_small</span> <span class="op">&lt;-</span> <span class="va">train_sample</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">HP</span>, <span class="va">Attack</span>, <span class="va">Defense</span>, <span class="va">Speed</span><span class="op">)</span></span>
-<span><span class="va">test_small</span> <span class="op">&lt;-</span> <span class="va">test_sample</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">HP</span>, <span class="va">Attack</span>, <span class="va">Defense</span>, <span class="va">Speed</span><span class="op">)</span></span>
-<span></span>
-<span><span class="co">## put our response variable into a vector</span></span>
-<span><span class="va">train_cat</span> <span class="op">&lt;-</span> <span class="va">train_sample</span><span class="op">$</span><span class="va">Type</span></span>
-<span><span class="va">test_cat</span> <span class="op">&lt;-</span> <span class="va">test_sample</span><span class="op">$</span><span class="va">Type</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co">## install.packages("kknn")</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/KlausVigo/kknn">kknn</a></span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<p>Now that the data has been prepared for the <code><a href="https://rdrr.io/pkg/class/man/knn.html">knn()</a></code> function in the <code>class</code> library, we fit the model with 9 nearest neighbors. The arguments to <code><a href="https://rdrr.io/pkg/class/man/knn.html">knn()</a></code> are</p>
+<p>The arguments to <code><a href="https://rdrr.io/pkg/kknn/man/kknn.html">kknn()</a></code> are</p>
 <ul>
 <li>
-<code>train</code>, a data set with the training data that contains only the predictors we want to use (and not other predictors or the response).</li>
+<code>formula</code>, which gives a formula in the style <code>response ~ pred1 + pred2 + .... + predx</code>. For example, if we wanted <code>Attack</code>, <code>Defense</code> and <code>Speed</code> to be predictors for <code>Type</code>, our formula would be <code>Type ~ Attack + Defense + Speed</code>.</li>
 <li>
-<code>test</code>, a data set with the test data that contains only the predictors we want to use (and not other predictors or the response).</li>
+<code>train</code>, a data set with the training data.</li>
 <li>
-<code>cl</code>, a vector of the response variable for the training data.</li>
+<code>test</code>, a data set with the test data.</li>
 <li>
-<code>k</code>, the number of nearest neighbors.</li>
+<code>k</code>, the number of nearest neighbors we would like to use in our model.</li>
 </ul>
+<p>For those that have taken or are enrolled in STAT 213, this is quite similar to the way you fit regression models with a couple of differences: the function requires <strong>2</strong> data sets instead of <strong>1</strong> (as it requires both a training and a test data set) and the function also requires that we specify a value for <span class="math inline">\(k\)</span>, the number of nearest neighbors to use in our model. The example below fits a knn model with <code>Attack</code>, <code>Defense</code>, and <code>Speed</code> as predictors using <span class="math inline">\(k = 9\)</span> nearest neighbors.</p>
 <div class="cell" data-appendix="true">
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co">## fit the knn model with 9 nearest neighbors</span></span>
-<span><span class="va">knn_mod</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/class/man/knn.html">knn</a></span><span class="op">(</span>train <span class="op">=</span> <span class="va">train_small</span>, test <span class="op">=</span> <span class="va">test_small</span>,</span>
-<span>               cl <span class="op">=</span> <span class="va">train_cat</span>, k <span class="op">=</span> <span class="fl">9</span><span class="op">)</span></span>
+<span><span class="va">knn_mod</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/kknn/man/kknn.html">kknn</a></span><span class="op">(</span><span class="va">Type</span> <span class="op">~</span> <span class="va">Attack</span> <span class="op">+</span> <span class="va">Defense</span> <span class="op">+</span> <span class="va">Speed</span>, train <span class="op">=</span> <span class="va">train_sample</span>,</span>
+<span>                test <span class="op">=</span> <span class="va">test_sample</span>, k <span class="op">=</span> <span class="fl">9</span><span class="op">)</span></span>
+<span><span class="va">knn_mod</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>If you try to run the code above, you will actually get an error! This is one of the rare examples in this class that we see a difference in the way an <code>R</code> function treats <code>&lt;chr&gt;</code> variables and <code>&lt;fct&gt;</code> variables. For the <code><a href="https://rdrr.io/pkg/kknn/man/kknn.html">kknn()</a></code> function to run, the response variable must be a <strong>factor</strong> and is not allowed to be a <strong>character</strong>. Let’s make the conversion and then refit the model. Note that, because we have to make the conversion in both the training and the test sample, it will be easier to convert the variable type to factor before we do the split into training and test:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">1119</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">pokemon</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv</a></span><span class="op">(</span><span class="fu"><a href="https://here.r-lib.org/reference/here.html">here</a></span><span class="op">(</span><span class="st">"data"</span>, <span class="st">"pokemon_full.csv"</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">Type</span> <span class="op"><a href="https://rdrr.io/r/base/match.html">%in%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Steel"</span>, <span class="st">"Dark"</span>, <span class="st">"Fire"</span>, <span class="st">"Ice"</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/across.html">across</a></span><span class="op">(</span><span class="fu"><a href="https://tidyselect.r-lib.org/reference/where.html">where</a></span><span class="op">(</span><span class="va">is.numeric</span><span class="op">)</span>, <span class="op">~</span> <span class="op">(</span><span class="va">.x</span> <span class="op">-</span> <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html">min</a></span><span class="op">(</span><span class="va">.x</span><span class="op">)</span><span class="op">)</span> <span class="op">/</span></span>
+<span>                                 <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/Extremes.html">max</a></span><span class="op">(</span><span class="va">.x</span><span class="op">)</span> <span class="op">-</span> <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html">min</a></span><span class="op">(</span><span class="va">.x</span><span class="op">)</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>Type <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">as.factor</a></span><span class="op">(</span><span class="va">Type</span><span class="op">)</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">train_sample</span> <span class="op">&lt;-</span> <span class="va">pokemon</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/slice.html">slice_sample</a></span><span class="op">(</span>n <span class="op">=</span> <span class="fl">75</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">test_sample</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter-joins.html">anti_join</a></span><span class="op">(</span><span class="va">pokemon</span>, <span class="va">train_sample</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">knn_mod</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/kknn/man/kknn.html">kknn</a></span><span class="op">(</span><span class="va">Type</span> <span class="op">~</span> <span class="va">Attack</span> <span class="op">+</span> <span class="va">Defense</span> <span class="op">+</span> <span class="va">Speed</span>, train <span class="op">=</span> <span class="va">train_sample</span>,</span>
+<span>                test <span class="op">=</span> <span class="va">test_sample</span>, k <span class="op">=</span> <span class="fl">9</span><span class="op">)</span></span>
 <span><span class="va">knn_mod</span></span>
-<span><span class="co">#&gt;  [1] Fire  Fire  Fire  Dark  Ice   Fire  Steel Ice   Fire  Fire  Fire  Fire </span></span>
-<span><span class="co">#&gt; [13] Steel Dark  Steel Dark  Ice   Dark  Steel Fire  Dark  Ice   Fire  Fire </span></span>
-<span><span class="co">#&gt; [25] Fire  Fire  Fire  Fire  Dark  Fire  Fire  Fire  Fire  Fire  Fire  Fire </span></span>
-<span><span class="co">#&gt; [37] Fire  Fire  Fire  Dark  Fire  Ice   Dark  Steel Fire </span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; Call:</span></span>
+<span><span class="co">#&gt; kknn(formula = Type ~ Attack + Defense + Speed, train = train_sample,     test = test_sample, k = 9)</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; Response: "nominal"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>The output of <code>knn_mod</code> just gives the formula that we used to fit the data and tells us that the response is “nominal” (which just means that the response is categorical). If we want to examine what the actual classifications are for Pokemon in the test sample, we can pull these out with:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">knn_mod</span><span class="op">$</span><span class="va">fitted.values</span></span>
+<span><span class="co">#&gt;  [1] Fire  Fire  Fire  Fire  Ice   Fire  Steel Dark  Fire  Fire  Fire  Fire </span></span>
+<span><span class="co">#&gt; [13] Steel Dark  Steel Fire  Steel Ice   Steel Fire  Fire  Ice   Fire  Fire </span></span>
+<span><span class="co">#&gt; [25] Ice   Fire  Dark  Ice   Ice   Steel Fire  Fire  Fire  Fire  Ice   Dark </span></span>
+<span><span class="co">#&gt; [37] Fire  Fire  Fire  Steel Fire  Ice   Steel Steel Fire </span></span>
 <span><span class="co">#&gt; Levels: Dark Fire Ice Steel</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<p>The output of <code>knn_mod</code> gives the predicted categories for the <strong>test</strong> sample. So, the first pokemon in the test sample is predicted to be <code>Fire</code> type, the second is predicted to be <code>Fire</code> type, etc.</p>
+<p>So, the first pokemon in the test sample is predicted to be <code>Fire</code> type, the second is predicted to be <code>Fire</code> type, etc, the fifth is predicted to be <code>Ice</code> type, etc.</p>
 </section><section id="evaluating-a-predictive-model" class="level2" data-number="12.3"><h2 data-number="12.3" class="anchored" data-anchor-id="evaluating-a-predictive-model">
 <span class="header-section-number">12.3</span> Evaluating a Predictive Model</h2>
 <p>But, how well did our model classify pokemon into <code>Type</code>s? We still need a metric to evaluate models with different predictors. One definition of a “good” model in the classification context is a model that has a high proportion of correct predictions in the test data set. This should make some intuitive sense, as we would hope that a “good” model correctly classifies most <code>Dark</code> pokemon as <code>Dark</code>, most <code>Fire</code> pokemon as <code>Fire</code>, etc.</p>
 <p>In order to examine the performance of a particular model, we’ll create a <strong>classification table</strong> that shows the results of the model’s classification on observations in the test data set. An equivalent name for the confusion matrix is a <strong>confusion matrix</strong>.</p>
 <p>We can compare the predictions from the knn model with the actual pokemon <code>Type</code>s in the test sample with <code><a href="https://rdrr.io/r/base/table.html">table()</a></code>, which makes the classification table:</p>
 <div class="cell" data-appendix="true">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/table.html">table</a></span><span class="op">(</span><span class="va">knn_mod</span>, <span class="va">test_cat</span><span class="op">)</span> </span>
-<span><span class="co">#&gt;        test_cat</span></span>
-<span><span class="co">#&gt; knn_mod Dark Fire Ice Steel</span></span>
-<span><span class="co">#&gt;   Dark     1    3   1     3</span></span>
-<span><span class="co">#&gt;   Fire     9   11   4     3</span></span>
-<span><span class="co">#&gt;   Ice      2    1   1     1</span></span>
-<span><span class="co">#&gt;   Steel    0    1   1     3</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/table.html">table</a></span><span class="op">(</span><span class="va">knn_mod</span><span class="op">$</span><span class="va">fitted.values</span>, <span class="va">test_sample</span><span class="op">$</span><span class="va">Type</span><span class="op">)</span> </span>
+<span><span class="co">#&gt;        </span></span>
+<span><span class="co">#&gt;         Dark Fire Ice Steel</span></span>
+<span><span class="co">#&gt;   Dark     2    2   0     0</span></span>
+<span><span class="co">#&gt;   Fire     7   12   3     2</span></span>
+<span><span class="co">#&gt;   Ice      3    1   1     3</span></span>
+<span><span class="co">#&gt;   Steel    0    1   3     5</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>The columns of the classification table give the actual Pokemon types in the test data while the rows give the predicted types from our knn model.</p>
-<p><strong>Exercise 2</strong>. Interpret the value of <code>11</code> in the classification table above.</p>
-<p><strong>Exercise 3</strong>. Interpret the value of <code>3</code> in the column with <code>Fire</code> and the row with <code>Dark</code>.</p>
+<p><strong>Exercise 2</strong>. Interpret the value of <code>12</code> in the classification table above.</p>
+<p><strong>Exercise 3</strong>. Interpret the value of <code>3</code> in the column with <code>Dark</code> and the row with <code>Ice</code>.</p>
 <p><strong>Exercise 4</strong>. Interpret the value of <code>0</code> in the bottom-left of the classification table above.</p>
 <p>One common metric used to assess overall model performance is the model’s <strong>classification rate</strong>, which is computed as the number of correct classifications divided by the total number of observations in the test data set.</p>
 <p><strong>Exercise 5</strong>. Compute the classification rate “by hand” (that is, by using <code>R</code> as a calculator).</p>
 <p>Code to automatically obtain the classification rate from a confusion matrix is</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">tab</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/table.html">table</a></span><span class="op">(</span><span class="va">knn_mod</span>, <span class="va">test_cat</span><span class="op">)</span> </span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">tab</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/table.html">table</a></span><span class="op">(</span><span class="va">knn_mod</span><span class="op">$</span><span class="va">fitted.values</span>, <span class="va">test_sample</span><span class="op">$</span><span class="va">Type</span><span class="op">)</span> </span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/diag.html">diag</a></span><span class="op">(</span><span class="va">tab</span><span class="op">)</span><span class="op">)</span> <span class="op">/</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">tab</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>What does <code><a href="https://rdrr.io/r/base/diag.html">diag()</a></code> seem to do in the code above?</p>
@@ -468,9 +488,10 @@ window.Quarto = {
 <span class="header-section-number">12.4.1</span> Class Exercises</h3>
 <p>Examine the following code that fits a knn model using the pokemon data set with <span class="math inline">\(k\)</span> set to <span class="math inline">\(9\)</span>. For this example, we are using the full pokemon data set (with all Types), so, we might expect our classification rate to be a bit lower.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span></span>
 <span></span>
-<span><span class="va">pokemon</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv</a></span><span class="op">(</span><span class="fu">here</span><span class="fu">::</span><span class="fu"><a href="https://here.r-lib.org/reference/here.html">here</a></span><span class="op">(</span><span class="st">"data/pokemon_full.csv"</span><span class="op">)</span><span class="op">)</span> </span>
+<span><span class="va">pokemon</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv</a></span><span class="op">(</span><span class="fu">here</span><span class="fu">::</span><span class="fu"><a href="https://here.r-lib.org/reference/here.html">here</a></span><span class="op">(</span><span class="st">"data/pokemon_full.csv"</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>Type <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">as.factor</a></span><span class="op">(</span><span class="va">Type</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">1119</span><span class="op">)</span></span>
 <span></span>
 <span><span class="co">## scale the quantitative predictors</span></span>
@@ -482,33 +503,23 @@ window.Quarto = {
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/slice.html">slice_sample</a></span><span class="op">(</span>n <span class="op">=</span> <span class="fl">550</span><span class="op">)</span></span>
 <span><span class="va">test_sample</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter-joins.html">anti_join</a></span><span class="op">(</span><span class="va">pokemon_scaled</span>, <span class="va">train_sample</span><span class="op">)</span></span>
 <span></span>
-<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="http://www.stats.ox.ac.uk/pub/MASS4/">class</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/KlausVigo/kknn">kknn</a></span><span class="op">)</span></span>
 <span></span>
-<span><span class="va">train_pokemon</span> <span class="op">&lt;-</span> <span class="va">train_sample</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">HP</span>, <span class="va">Attack</span>, <span class="va">Defense</span>, <span class="va">Speed</span>,</span>
-<span>                                        <span class="va">SpAtk</span>, <span class="va">SpDef</span>, <span class="va">height</span>, <span class="va">weight</span><span class="op">)</span></span>
-<span><span class="va">test_pokemon</span> <span class="op">&lt;-</span> <span class="va">test_sample</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">HP</span>, <span class="va">Attack</span>, <span class="va">Defense</span>, <span class="va">Speed</span>,</span>
-<span>                                      <span class="va">SpAtk</span>, <span class="va">SpDef</span>, <span class="va">height</span>, <span class="va">weight</span><span class="op">)</span></span>
-<span></span>
-<span><span class="co">## put our response variable into a vector</span></span>
-<span><span class="va">train_cat</span> <span class="op">&lt;-</span> <span class="va">train_sample</span><span class="op">$</span><span class="va">Type</span></span>
-<span><span class="va">test_cat</span> <span class="op">&lt;-</span> <span class="va">test_sample</span><span class="op">$</span><span class="va">Type</span></span>
-<span></span>
-<span><span class="va">knn_mod</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/class/man/knn.html">knn</a></span><span class="op">(</span>train <span class="op">=</span> <span class="va">train_pokemon</span>, test <span class="op">=</span> <span class="va">test_pokemon</span>,</span>
-<span>               cl <span class="op">=</span> <span class="va">train_cat</span>, k <span class="op">=</span> <span class="fl">9</span><span class="op">)</span></span>
+<span><span class="va">knn_mod</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/kknn/man/kknn.html">kknn</a></span><span class="op">(</span><span class="va">Type</span> <span class="op">~</span> <span class="va">HP</span> <span class="op">+</span> <span class="va">Attack</span> <span class="op">+</span> <span class="va">Defense</span> <span class="op">+</span> <span class="va">Speed</span> <span class="op">+</span> <span class="va">SpAtk</span> <span class="op">+</span> <span class="va">SpDef</span> <span class="op">+</span> <span class="va">height</span> <span class="op">+</span> <span class="va">weight</span>,</span>
+<span>                train <span class="op">=</span> <span class="va">train_sample</span>, test <span class="op">=</span> <span class="va">test_sample</span>, k <span class="op">=</span> <span class="fl">9</span><span class="op">)</span></span>
 <span><span class="va">knn_mod</span></span>
 <span></span>
-<span><span class="va">tab</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/table.html">table</a></span><span class="op">(</span><span class="va">knn_mod</span>, <span class="va">test_cat</span><span class="op">)</span></span>
+<span><span class="va">tab</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/table.html">table</a></span><span class="op">(</span><span class="va">knn_mod</span><span class="op">$</span><span class="va">fitted.values</span>, <span class="va">test_sample</span><span class="op">$</span><span class="va">Type</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/diag.html">diag</a></span><span class="op">(</span><span class="va">tab</span><span class="op">)</span><span class="op">)</span> <span class="op">/</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">tab</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>If we want to automate generating a classification rate for a knn model with particular predictors, we have two major choices: write a function and <code><a href="https://purrr.tidyverse.org/reference/map.html">map()</a></code> across different values of <span class="math inline">\(k\)</span> or loop through different values of <span class="math inline">\(k\)</span> with a <code>for</code> loop.</p>
 <p><strong>Class Exercise 1</strong>. First, we will take a functional programming approach, by writing a function and “mapping” different values of <span class="math inline">\(k\)</span> through that function. The following code writes a function called <code>get_class_rate</code> that has just a single argument: <code>k_val</code></p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">get_class_rate</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">k_val</span><span class="op">)</span> <span class="op">{</span></span>
-<span>  <span class="va">knn_mod</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/class/man/knn.html">knn</a></span><span class="op">(</span>train <span class="op">=</span> <span class="va">train_pokemon</span>, test <span class="op">=</span> <span class="va">test_pokemon</span>,</span>
-<span>                 cl <span class="op">=</span> <span class="va">train_cat</span>, k <span class="op">=</span> <span class="va">k_val</span><span class="op">)</span></span>
-<span>  <span class="va">knn_mod</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">get_class_rate</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">k_val</span><span class="op">)</span> <span class="op">{</span></span>
+<span>  <span class="va">knn_mod</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/kknn/man/kknn.html">kknn</a></span><span class="op">(</span><span class="va">Type</span> <span class="op">~</span> <span class="va">HP</span> <span class="op">+</span> <span class="va">Attack</span> <span class="op">+</span> <span class="va">Defense</span> <span class="op">+</span> <span class="va">Speed</span> <span class="op">+</span> <span class="va">SpAtk</span> <span class="op">+</span> <span class="va">SpDef</span> <span class="op">+</span> <span class="va">height</span> <span class="op">+</span> <span class="va">weight</span>,</span>
+<span>                  train <span class="op">=</span> <span class="va">train_sample</span>, test <span class="op">=</span> <span class="va">test_sample</span>, k <span class="op">=</span> <span class="va">k_val</span><span class="op">)</span></span>
 <span>  </span>
-<span>  <span class="va">tab</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/table.html">table</a></span><span class="op">(</span><span class="va">knn_mod</span>, <span class="va">test_cat</span><span class="op">)</span></span>
+<span>  <span class="va">tab</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/table.html">table</a></span><span class="op">(</span><span class="va">knn_mod</span><span class="op">$</span><span class="va">fitted.values</span>, <span class="va">test_sample</span><span class="op">$</span><span class="va">Type</span><span class="op">)</span></span>
 <span>  <span class="va">class_rate</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/diag.html">diag</a></span><span class="op">(</span><span class="va">tab</span><span class="op">)</span><span class="op">)</span> <span class="op">/</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">tab</span><span class="op">)</span></span>
 <span>  </span>
 <span>  <span class="kw"><a href="https://rdrr.io/r/base/function.html">return</a></span><span class="op">(</span><span class="va">class_rate</span><span class="op">)</span></span>
@@ -526,18 +537,19 @@ window.Quarto = {
 </ol>
 <p>The code below gives an equivalent way to map or loop through values of <span class="math inline">\(k\)</span> using a <code>for</code> loop. If you have taken CS 140, you should be able to see a lot of similarities between how loops are defiend in <code>R</code> and how they are defined in Python.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co">## define an empty vector to store results</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co">## define an empty vector to store results</span></span>
 <span><span class="va">class_rate</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/double.html">double</a></span><span class="op">(</span><span class="op">)</span></span>
 <span></span>
 <span><span class="co">## define values of k that we want to loop through</span></span>
-<span><span class="va">k_vec</span> <span class="op">&lt;-</span> <span class="fl">1</span><span class="op">:</span><span class="fl">70</span></span>
+<span><span class="va">k_vec</span> <span class="op">&lt;-</span> <span class="fl">1</span><span class="op">:</span><span class="fl">100</span></span>
 <span></span>
-<span><span class="kw">for</span> <span class="op">(</span><span class="va">i</span> <span class="kw">in</span> <span class="fl">1</span><span class="op">:</span><span class="fl">70</span><span class="op">)</span> <span class="op">{</span></span>
-<span>  <span class="va">knn_mod</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/class/man/knn.html">knn</a></span><span class="op">(</span>train <span class="op">=</span> <span class="va">train_pokemon</span>, test <span class="op">=</span> <span class="va">test_pokemon</span>,</span>
-<span>                 cl <span class="op">=</span> <span class="va">train_cat</span>, k <span class="op">=</span> <span class="va">k_vec</span><span class="op">[</span><span class="va">i</span><span class="op">]</span><span class="op">)</span></span>
+<span><span class="kw">for</span> <span class="op">(</span><span class="va">i</span> <span class="kw">in</span> <span class="fl">1</span><span class="op">:</span><span class="fl">100</span><span class="op">)</span> <span class="op">{</span></span>
+<span>  <span class="va">knn_mod</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/kknn/man/kknn.html">kknn</a></span><span class="op">(</span><span class="va">Type</span> <span class="op">~</span> <span class="va">HP</span> <span class="op">+</span> <span class="va">Attack</span> <span class="op">+</span> <span class="va">Defense</span> <span class="op">+</span> <span class="va">Speed</span> <span class="op">+</span> <span class="va">SpAtk</span> <span class="op">+</span> <span class="va">SpDef</span> <span class="op">+</span> <span class="va">height</span> <span class="op">+</span> <span class="va">weight</span>,</span>
+<span>                  train <span class="op">=</span> <span class="va">train_sample</span>, test <span class="op">=</span> <span class="va">test_sample</span>, k <span class="op">=</span> <span class="va">k_vec</span><span class="op">[</span><span class="va">i</span><span class="op">]</span><span class="op">)</span></span>
+<span>    </span>
 <span>  <span class="va">knn_mod</span></span>
 <span>  </span>
-<span>  <span class="va">tab</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/table.html">table</a></span><span class="op">(</span><span class="va">knn_mod</span>, <span class="va">test_cat</span><span class="op">)</span></span>
+<span>  <span class="va">tab</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/table.html">table</a></span><span class="op">(</span><span class="va">knn_mod</span><span class="op">$</span><span class="va">fitted.values</span>, <span class="va">test_sample</span><span class="op">$</span><span class="va">Type</span><span class="op">)</span></span>
 <span>  </span>
 <span>  <span class="co">## for the ith value of k_vec, store the classification rate as </span></span>
 <span>  <span class="co">## the ith value of class_rate</span></span>
