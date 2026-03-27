@@ -176,12 +176,12 @@ Which of the 3 tables is the one that we would want to use for an analysis on gu
 
 As another example, consider scraping data from SLU's athletics page. In particular, suppose we want to do an analysis on SLU's baseball team.
 
-Go to the following website to look at the table of data that we want to scrape: <a href="https://saintsathletics.com/sports/baseball/stats/2023" target="_blank">https://saintsathletics.com/sports/baseball/stats/2023</a>.
+Go to the following website to look at the table of data that we want to scrape: <a href="https://saintsathletics.com/sports/baseball/stats/2025" target="_blank">https://saintsathletics.com/sports/baseball/stats/2025</a>.
 
 After looking at the website, use the following code to scrape the data set.
 
 ```{r, results = "hide", appendix = TRUE}
-url <- "https://saintsathletics.com/sports/baseball/stats/2023"
+url <- "https://saintsathletics.com/sports/baseball/stats/2025"
 
 tab <- read_html(url) |> html_nodes("table")
 tab
@@ -191,7 +191,7 @@ obj2 <- tab[[2]] |> html_table()
 obj2
 ```
 
-There's now 72 different tables! See if you can figure out where the first few tables are coming from on the website.
+There's now over 50 different tables! See if you can figure out where the first few tables are coming from on the website.
 
 __Exercise 2__. SLU keeps track of diversity of students and makes this data public on the following website: <a href="https://www.stlawu.edu/offices/institutional-research/student-diversity-2021" target="_blank">https://www.stlawu.edu/offices/institutional-research/student-diversity-2021</a>. Use `rvest` to scrape one of the data tables into `R`. 
 
