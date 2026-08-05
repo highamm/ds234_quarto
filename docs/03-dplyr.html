@@ -2,10 +2,13 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.8.25">
+<meta name="generator" content="quarto-1.9.38">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 <title>3&nbsp; Wrangling with dplyr – DATA / STAT 234</title>
 <style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
 div.columns{display: flex; gap: min(4vw, 1.5em);}
@@ -65,15 +68,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="./02-ggplot2.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-acc83503971b7de9f7be817ee1015217.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light"><script id="quarto-search-options" type="application/json">{
+<link href="site_libs/bootstrap/bootstrap-e0582e7788940d2647252dc827c2ca6b.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light"><script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
   "collapse-after": 3,
@@ -117,9 +119,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     </div>
   </nav></header><!-- content --><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto"><div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
-      <a href="./index.html" class="sidebar-logo-link">
-      </a>
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto"><div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
       <a href="./">DATA / STAT 234</a> 
         <div class="sidebar-tools-main">
@@ -744,12 +744,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>For example, if you have taken STAT 213, you’ve used <code><a href="https://rdrr.io/r/stats/lm.html">lm()</a></code> to fit many different types of linear models. If you haven’t taken STAT 213, <code>lm(response ~ explanatory, data = name_of_data_set)</code> stands for “linear model” and can be used to fit the simple linear regression model that you learned about in STAT 113. You might expect something like this to fit a linear model using <code>fitness_df</code> with <code>active_cals</code> as the response and <code>steps</code> as the predictor:</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb26"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">fitness_df</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span><span class="op">(</span><span class="va">active_cals</span> <span class="op">~</span> <span class="va">steps</span><span class="op">)</span></span>
-<span><span class="co">#&gt; Error in as.data.frame.default(data): cannot coerce class '"formula"' to a data.frame</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span><span class="co">#&gt; Error in `as.data.frame.default()`:</span></span>
+<span><span class="co">#&gt; ! cannot coerce class '"formula"' to a data.frame</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>But it throws us an error. Typing in <code><a href="https://rdrr.io/r/stats/lm.html">?lm</a></code> reveals that its first argument is a <code>formula</code> to fit the model, not a data set. So the function is trying to run</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb27"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span><span class="op">(</span><span class="va">fitness_df</span>, <span class="va">active_cals</span> <span class="op">~</span> <span class="va">steps</span><span class="op">)</span></span>
-<span><span class="co">#&gt; Error in as.data.frame.default(data): cannot coerce class '"formula"' to a data.frame</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span><span class="co">#&gt; Error in `as.data.frame.default()`:</span></span>
+<span><span class="co">#&gt; ! cannot coerce class '"formula"' to a data.frame</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>which doesn’t work because the arguments to the function are mixed up (the formula should appear first and the data set should appear second).</p>
 <div class="callout callout-style-simple callout-note callout-titled">
@@ -824,7 +826,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span class="header-section-number">3.3</span> <code>mutate()</code>, <code>group_by()</code>, <code>summarise()</code>, and Missing Values</h2>
 <p><strong>Goals:</strong></p>
 <ul>
-<li>Use the <code><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate()</a></code>, <code><a href="https://dplyr.tidyverse.org/reference/if_else.html">if_else()</a></code>, and <code><a href="https://dplyr.tidyverse.org/reference/case_when.html">case_when()</a></code> functions to create new variables.</li>
+<li>Use the <code><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate()</a></code>, <code><a href="https://dplyr.tidyverse.org/reference/if_else.html">if_else()</a></code>, and <code><a href="https://dplyr.tidyverse.org/reference/case-and-replace-when.html">case_when()</a></code> functions to create new variables.</li>
 <li>Use <code><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by()</a></code> and <code><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise()</a></code> to create useful summaries of a data set. * Explain what <code>dplyr</code> functions do with missing values.</li>
 <li>Combine the above goals with plotting to explore a data set on SLU majors.</li>
 </ul>
@@ -855,7 +857,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <section id="mutate-create-variables" class="level3" data-number="3.3.1"><h3 data-number="3.3.1" class="anchored" data-anchor-id="mutate-create-variables">
 <span class="header-section-number">3.3.1</span> <code>mutate()</code>: Create Variables</h3>
-<p>Sometimes, we will want to create a new variable that’s not in the data set, oftentimes using <code><a href="https://dplyr.tidyverse.org/reference/if_else.html">if_else()</a></code>, <code><a href="https://dplyr.tidyverse.org/reference/case_when.html">case_when()</a></code>, or basic algebraic operations on one or more of the columns already present in the data set.</p>
+<p>Sometimes, we will want to create a new variable that’s not in the data set, oftentimes using <code><a href="https://dplyr.tidyverse.org/reference/if_else.html">if_else()</a></code>, <code><a href="https://dplyr.tidyverse.org/reference/case-and-replace-when.html">case_when()</a></code>, or basic algebraic operations on one or more of the columns already present in the data set.</p>
 <p><code>R</code> understands the following symbols:</p>
 <ul>
 <li>
@@ -936,7 +938,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>
 <code><a href="https://dplyr.tidyverse.org/reference/if_else.html">if_else()</a></code> if your new variable is created on only one condition</li>
 <li>
-<code><a href="https://dplyr.tidyverse.org/reference/case_when.html">case_when()</a></code> if your new variable is created on more than one condition</li>
+<code><a href="https://dplyr.tidyverse.org/reference/case-and-replace-when.html">case_when()</a></code> if your new variable is created on more than one condition</li>
 </ul>
 <div class="callout callout-style-simple callout-important callout-titled">
 <div class="callout-header d-flex align-content-center">
@@ -969,11 +971,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <p>The <code><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate()</a></code> statement reads: create a new variable called <code>morewomen</code> that is equal to <code>"Yes"</code> if <code>percfemale</code> &gt; <code>50</code> is true and is equal to <code>"No"</code> if <code>perfemale</code> is not &gt; <code>0.5</code>. The first argument is the condition, the second is what to name the new variable when the condition holds, and the third is what to name the variable if the condition does not hold.</p>
 <p>We use <strong>conditions</strong> all of the time in every day life. For example, New York had a quarantine order stating that people coming from 22 states in July 2020 would need to quarantine. In terms of a condition, this would read “if you are traveling to New York from one of the 22 states, then you need to quarantine for 2 weeks. Else, if not, then you don’t need to quarantine.” The trick in using these conditions in <code>R</code> is getting used to the syntax of the code.</p>
-<p>We can see from the above set up that if we had more than one condition, then we’d need to use a different function (or use nested <code><a href="https://dplyr.tidyverse.org/reference/if_else.html">if_else()</a></code> statements, which can be a nightmare to read). If we have more than one condition for creating the new variable, we will use <code><a href="https://dplyr.tidyverse.org/reference/case_when.html">case_when()</a></code>.</p>
+<p>We can see from the above set up that if we had more than one condition, then we’d need to use a different function (or use nested <code><a href="https://dplyr.tidyverse.org/reference/if_else.html">if_else()</a></code> statements, which can be a nightmare to read). If we have more than one condition for creating the new variable, we will use <code><a href="https://dplyr.tidyverse.org/reference/case-and-replace-when.html">case_when()</a></code>.</p>
 <p>For example, when looking at the output, we see that <code>Biochemistry</code> has 56% female graduates. That’s “about” a 50/50 split, so suppose we want a variable called <code>large_majority</code> that is <code>"female"</code> when the percent women is 70 or more, <code>"male"</code> when the percent women is 30 or less, and <code>"none"</code> when the percent female is between 30 and 70.</p>
 <div class="cell" data-appendix="true">
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb37"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">slumajors_df</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>large_majority <span class="op">=</span></span>
-<span>                          <span class="fu"><a href="https://dplyr.tidyverse.org/reference/case_when.html">case_when</a></span><span class="op">(</span><span class="va">percfemale</span> <span class="op">&gt;=</span> <span class="fl">70</span> <span class="op">~</span> <span class="st">"female"</span>,</span>
+<span>                          <span class="fu"><a href="https://dplyr.tidyverse.org/reference/case-and-replace-when.html">case_when</a></span><span class="op">(</span><span class="va">percfemale</span> <span class="op">&gt;=</span> <span class="fl">70</span> <span class="op">~</span> <span class="st">"female"</span>,</span>
 <span>                                    <span class="va">percfemale</span> <span class="op">&lt;=</span> <span class="fl">30</span> <span class="op">~</span> <span class="st">"male"</span>,</span>
 <span>                                    <span class="va">percfemale</span> <span class="op">&gt;</span> <span class="fl">30</span> <span class="op">&amp;</span> <span class="va">percfemale</span> <span class="op">&lt;</span> <span class="fl">70</span> <span class="op">~</span> <span class="st">"none"</span><span class="op">)</span><span class="op">)</span> </span>
 <span><span class="co">#&gt; # A tibble: 30 × 6</span></span>
@@ -987,7 +989,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span><span class="co">#&gt; 6 Chemistry                        28     20       58.3     48 none          </span></span>
 <span><span class="co">#&gt; # ℹ 24 more rows</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<p>The <code><a href="https://dplyr.tidyverse.org/reference/case_when.html">case_when()</a></code> function reads “When the percent female is more than or equal to 70, assign the new variable <code>large_majority</code> the value of <code>"female"</code>, when it’s less or equal to 30, assign the new variable <code>large_majority</code> the value of <code>"male"</code>, and when it’s more than 30 and less than 70, assign the <code>large_majority</code> variable the value of <code>"none"</code>.</p>
+<p>The <code><a href="https://dplyr.tidyverse.org/reference/case-and-replace-when.html">case_when()</a></code> function reads “When the percent female is more than or equal to 70, assign the new variable <code>large_majority</code> the value of <code>"female"</code>, when it’s less or equal to 30, assign the new variable <code>large_majority</code> the value of <code>"male"</code>, and when it’s more than 30 and less than 70, assign the <code>large_majority</code> variable the value of <code>"none"</code>.</p>
 <p>Let’s save these two new variables to the <code>slumajors_df</code>:</p>
 <div class="cell" data-appendix="true">
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb38"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">slumajors_df</span> <span class="op">&lt;-</span> <span class="va">slumajors_df</span> <span class="op">|&gt;</span></span>
@@ -995,7 +997,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span>                             true <span class="op">=</span> <span class="st">"Yes"</span>,</span>
 <span>                             false <span class="op">=</span> <span class="st">"No"</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>large_majority <span class="op">=</span></span>
-<span>           <span class="fu"><a href="https://dplyr.tidyverse.org/reference/case_when.html">case_when</a></span><span class="op">(</span><span class="va">percfemale</span> <span class="op">&gt;=</span> <span class="fl">70</span> <span class="op">~</span> <span class="st">"female"</span>,</span>
+<span>           <span class="fu"><a href="https://dplyr.tidyverse.org/reference/case-and-replace-when.html">case_when</a></span><span class="op">(</span><span class="va">percfemale</span> <span class="op">&gt;=</span> <span class="fl">70</span> <span class="op">~</span> <span class="st">"female"</span>,</span>
 <span>                     <span class="va">percfemale</span> <span class="op">&lt;=</span> <span class="fl">30</span> <span class="op">~</span> <span class="st">"male"</span>,</span>
 <span>                     <span class="va">percfemale</span> <span class="op">&gt;</span> <span class="fl">30</span> <span class="op">&amp;</span> <span class="va">percfemale</span> <span class="op">&lt;</span> <span class="fl">70</span> <span class="op">~</span> <span class="st">"none"</span><span class="op">)</span><span class="op">)</span> </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
@@ -1013,7 +1015,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <p><strong>Exercise 1</strong>. Use <code><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate()</a></code> with <code><a href="https://dplyr.tidyverse.org/reference/if_else.html">if_else()</a></code> to create a new variable that is called <code>major_size</code> and is equal to <code>"large"</code> when the total number of majors is 100 or more and <code>"small"</code> when the total number of majors is less than 100.</p>
-<p><strong>Exercise 2</strong>. Use <code><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate()</a></code> with <code><a href="https://dplyr.tidyverse.org/reference/case_when.html">case_when()</a></code> to create a new variable that is called <code>major_size2</code> and is <code>"large"</code> when the total number of majors is 150 or more, <code>"medium"</code> when the total number of majors is between 41 and 149, and <code>"small"</code> when the total number of majors is 40 or fewer.</p>
+<p><strong>Exercise 2</strong>. Use <code><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate()</a></code> with <code><a href="https://dplyr.tidyverse.org/reference/case-and-replace-when.html">case_when()</a></code> to create a new variable that is called <code>major_size2</code> and is <code>"large"</code> when the total number of majors is 150 or more, <code>"medium"</code> when the total number of majors is between 41 and 149, and <code>"small"</code> when the total number of majors is 40 or fewer.</p>
 <p><strong>Exercise 3</strong>. Create a new variable that is the <code>nfemales</code> to <code>nmales</code> ratio (so your new variable should be <code>nfemales</code> divided by <code>nmales</code>).</p>
 </section><section id="summarise-create-summaries" class="level3" data-number="3.3.2"><h3 data-number="3.3.2" class="anchored" data-anchor-id="summarise-create-summaries">
 <span class="header-section-number">3.3.2</span> <code>summarise()</code>: Create Summaries</h3>
@@ -1221,7 +1223,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>In general, practice exercises will be split between exercises that will be done together as a class and exercises that you will do in groups or on your own. The purpose of the class exercises is to give some guidance on how we might think logically through some of the code and the results. The purpose of the group exercises and the on your own exercises is so that you have a chance to practice what you’ve learned with your table or on your own.</p>
 <section id="class-exercises-1" class="level3" data-number="3.4.1"><h3 data-number="3.4.1" class="anchored" data-anchor-id="class-exercises-1">
 <span class="header-section-number">3.4.1</span> Class Exercises</h3>
-<p><strong>Class Exercise 1</strong>. Investigate what happens with <code><a href="https://dplyr.tidyverse.org/reference/case_when.html">case_when()</a></code> when you give overlapping conditions and when you give conditions that don’t cover all observations. For overlapping conditions, create a variable <code>testcase</code> that is <code>"Yes"</code> when <code>percfemale</code> is greater than or equal to 40 and <code>"No"</code> when <code>percfemale</code> is greater than 60 For conditions that don’t cover all observations, create a variable <code>testcase2</code> that is <code>"Yes"</code> when <code>percfemale</code> is greater than or equal to 55 and <code>"No"</code> when <code>percfemale</code> is less than 35. Put the new variables at the beginning of the data frame so that you can see what they contain more easily.</p>
+<p><strong>Class Exercise 1</strong>. Investigate what happens with <code><a href="https://dplyr.tidyverse.org/reference/case-and-replace-when.html">case_when()</a></code> when you give overlapping conditions and when you give conditions that don’t cover all observations. For overlapping conditions, create a variable <code>testcase</code> that is <code>"Yes"</code> when <code>percfemale</code> is greater than or equal to 40 and <code>"No"</code> when <code>percfemale</code> is greater than 60 For conditions that don’t cover all observations, create a variable <code>testcase2</code> that is <code>"Yes"</code> when <code>percfemale</code> is greater than or equal to 55 and <code>"No"</code> when <code>percfemale</code> is less than 35. Put the new variables at the beginning of the data frame so that you can see what they contain more easily.</p>
 <p><strong>Class Exercise 2</strong>. Create a table that shows how many times each name appears as the most popular name of the year for that name’s associated sex. That is, if <code>"Emma"</code> was the most popular female name in 1995, 1997, and 2001, then it would get a value of <code>"3"</code> in the summary table. If <code>"Michael"</code> was the most popular male name in 2005 and 2007, then it would get a value of <code>"2"</code> in the summary table. To do so, we will track <code><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by()</a></code> does with more than 1 variable. In this exercise, we will introduce the <code><a href="https://rdrr.io/r/base/rank.html">rank()</a></code> function as well.</p>
 <p><strong>Class Exercise 3</strong>. Construct the same table as in Class Exercise 2, but figure out a way to construct the table <strong>without</strong> using the <code><a href="https://rdrr.io/r/base/rank.html">rank()</a></code> function.</p>
 <p><strong>Class Exercise 4</strong>. Run the following code. Intuitively, a <code>slice(1, 2, 3, 4, 5)</code> should grab the first five rows of the data set, but, when we try to run that, we get 1380 rows. What is the issue?</p>

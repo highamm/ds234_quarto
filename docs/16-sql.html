@@ -2,10 +2,13 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.8.25">
+<meta name="generator" content="quarto-1.9.38">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 <title>16&nbsp; Introduction to SQL with dbplyr – DATA / STAT 234</title>
 <style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
 div.columns{display: flex; gap: min(4vw, 1.5em);}
@@ -64,15 +67,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="./15-connections.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-acc83503971b7de9f7be817ee1015217.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light"><script id="quarto-search-options" type="application/json">{
+<link href="site_libs/bootstrap/bootstrap-e0582e7788940d2647252dc827c2ca6b.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light"><script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
   "collapse-after": 3,
@@ -116,9 +118,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     </div>
   </nav></header><!-- content --><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto"><div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
-      <a href="./index.html" class="sidebar-logo-link">
-      </a>
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto"><div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
       <a href="./">DATA / STAT 234</a> 
         <div class="sidebar-tools-main">
@@ -421,7 +421,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span><span class="va">episode_rating_tbl</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/tbl.html">tbl</a></span><span class="op">(</span><span class="va">imdb_db</span>, <span class="st">"episode_rating"</span><span class="op">)</span></span>
 <span><span class="va">episode_rating_tbl</span></span>
 <span><span class="co">#&gt; # Source:   table&lt;`episode_rating`&gt; [?? x 7]</span></span>
-<span><span class="co">#&gt; # Database: sqlite 3.50.3 [/Users/highamm/git_repos/courses/ds234_quarto/data/imdb_tv.sqlite]</span></span>
+<span><span class="co">#&gt; # Database: sqlite 3.53.3 [/Users/highamm/git_repos/courses/ds234_quarto/data/imdb_tv.sqlite]</span></span>
 <span><span class="co">#&gt;   tconst     parentTconst seasonNumber episodeNumber averageRating numVotes</span></span>
 <span><span class="co">#&gt;   &lt;chr&gt;      &lt;chr&gt;        &lt;chr&gt;        &lt;chr&gt;                 &lt;dbl&gt;    &lt;dbl&gt;</span></span>
 <span><span class="co">#&gt; 1 tt10011150 tt0475784    3            3                       8.1     8770</span></span>
@@ -440,7 +440,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">parentTconst</span>, <span class="va">Episode_Name</span>, <span class="va">numVotes</span>, <span class="va">averageRating</span><span class="op">)</span></span>
 <span><span class="va">episode_query1</span></span>
 <span><span class="co">#&gt; # Source:   SQL [?? x 4]</span></span>
-<span><span class="co">#&gt; # Database: sqlite 3.50.3 [/Users/highamm/git_repos/courses/ds234_quarto/data/imdb_tv.sqlite]</span></span>
+<span><span class="co">#&gt; # Database: sqlite 3.53.3 [/Users/highamm/git_repos/courses/ds234_quarto/data/imdb_tv.sqlite]</span></span>
 <span><span class="co">#&gt;   parentTconst Episode_Name          numVotes averageRating</span></span>
 <span><span class="co">#&gt;   &lt;chr&gt;        &lt;chr&gt;                    &lt;dbl&gt;         &lt;dbl&gt;</span></span>
 <span><span class="co">#&gt; 1 tt7221388    December 19               6245           9.4</span></span>
@@ -485,7 +485,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/arrange.html">arrange</a></span><span class="op">(</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/desc.html">desc</a></span><span class="op">(</span><span class="va">mean_rating</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="va">mean_query1</span></span>
 <span><span class="co">#&gt; # Source:     SQL [?? x 2]</span></span>
-<span><span class="co">#&gt; # Database:   sqlite 3.50.3 [/Users/highamm/git_repos/courses/ds234_quarto/data/imdb_tv.sqlite]</span></span>
+<span><span class="co">#&gt; # Database:   sqlite 3.53.3 [/Users/highamm/git_repos/courses/ds234_quarto/data/imdb_tv.sqlite]</span></span>
 <span><span class="co">#&gt; # Ordered by: desc(mean_rating)</span></span>
 <span><span class="co">#&gt;   parentTconst mean_rating</span></span>
 <span><span class="co">#&gt;   &lt;chr&gt;              &lt;dbl&gt;</span></span>

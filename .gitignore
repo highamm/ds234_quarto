@@ -16,3 +16,5 @@ quizzes-s24/
 quizzes-s26
 handouts/handout_knn.pdf
 handouts_234/
+
+**/*.quarto_ipynb

@@ -9,13 +9,13 @@ Welcome! This is the course materials website for DATA / STAT 234. Though we wil
 -   Professor: Matt Higham
 -   Office: Bewkes 123
 -   Email: [mhigham\@stlawu.edu](mailto:mhigham@stlawu.edu){.email}
--   Semester: Spring 2026
+-   Semester: Fall 2026
 -   Sections:
     -   MWF 10:30 - 11:30
-    -   MWF 11:40 - 12:40
+    <!-- -   MWF 11:40 - 12:40 -->
 -   Office Hours: 15 minute slots bookable at <a href="https://calendly.com/mhigham/prof-higham-office-hours" target="_blank">my calendly page</a>.
     -   Note that you must book a time for office hours at least 12 hours in advance to guarantee that I am present and available at that time.
--   Teaching Assistant: Lala Sefale [msefa24@stlawu.edu](mailto:msefa24@stlawu.edu){.email}
+<!-- -   Teaching Assistant: Lala Sefale [msefa24@stlawu.edu](mailto:msefa24@stlawu.edu){.email} -->
 
 **Course Materials**
 
@@ -206,19 +206,19 @@ It is important to work in a way that maximizes your learning. Be aware that stu
 
 | Week | Date    | Topics                                                      |
 |--------------|--------------|-------------------------------------------------|
-| 0    | 1/14    | Introduction to `R`, `R Studio`                             |
-| 1    | 1/19    | Graphics with `ggplot2`                                     |
-| 2    | 1/26     | Data Wrangling  with `dplyr`    
+| 0    | 8/26    | Introduction to `R`, `R Studio`                             |
+| 1    | 8/31    | Graphics with `ggplot2`                                     |
+| 2    | 9/7     | Data Wrangling  with `dplyr`    
    |
-| 3    | 2/2    | Communication with `Quarto` and `ggplot2`                   |
-| 4    | 2/9    | Soft Skills and Workflow                                    |
-| 5    | 2/16  | Data Tidying with `tidyr`                                   |
-| 6    | 2/23    | Factors with `forcats`                                                   |
-| 7    | 3/2   |    Base `R` and Data Ethics                    |
-| 8    | 3/9 | Data Merging with `dplyr`  |
-| 9    | 3/16 | Data Import with `readr`, `jsonlite`, `rvest`, and `tibble` |                                    |
-| 10   | 3/30 | Intro to Statistical/Machine Learning with knn                              |
-| 11   | 4/6    | Text Data with `tidytext` and `stringr`                     |
-| 12   | 4/13   |  Dates and Times with `lubridate`  |
-| 13   | 4/20   | Connections to STAT and CS                                  |
-| 14   | 4/27    | Databases and SQL with `dbplyr`                             |
+| 3    | 9/14    | Communication with `Quarto` and `ggplot2`                   |
+| 4    | 9/21    | Soft Skills and Workflow                                    |
+| 5    | 9/28  | Data Tidying with `tidyr`                                   |
+| 6    | 10/5    | Factors with `forcats`                                                   |
+| 7    | 10/12   |    Base `R` and Data Ethics                    |
+| 8    | 10/19 | Data Merging with `dplyr`  |
+| 9    | 10/26 | Data Import with `readr`, `jsonlite`, `rvest`, and `tibble` |                                    |
+| 10   | 11/2 | Intro to Statistical/Machine Learning with knn                              |
+| 11   | 11/9    | Text Data with `tidytext` and `stringr`                     |
+| 12   | 11/16   |  Dates and Times with `lubridate`  |
+| 13   | 11/30   | Connections to STAT and CS                                  |
+| 14   | 12/7    | Databases and SQL with `dbplyr`                             |

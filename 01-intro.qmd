@@ -562,9 +562,20 @@ Comments are most useful for longer code chunks, as they allow you to remember w
 
 Save this file by clicking File -> Save or by using the keyboard shortcut Command + s (or Control + s on a PC). Render this file by clicking the Render button in the top-left window. You should see a .html file pop up, if there are no errors in your code!
 
-## Your Turn {#chapexercise-1}
+## Embedding Resources {#chapexercise-1}
 
-Open a new .qmd file (File -> New File -> `Quarto Document` -> OK) and delete the text explaining what `Quarto` is. Make sure that your Quarto document is embed-resources by using something like the following in the first few lines of the file:
+When you open a new `.qmd` file with (File -> New File -> `Quarto Document` -> OK), you should see at the top of the file what is called a `YAML` header. The `YAML` header starts with three dashes `---` and ends with three dashes `---`. Yours should look something like:
+
+```
+---
+title: "Untitled"
+format: html
+---
+```
+
+By default, when you render the file, Quarto puts all rendered figures and tables into a separate folder on your computer and references these figures and tables using file paths. This is not convenient for submitting things to Canvas: when you submit the `.html` file will point to locations that do not exist since Canvas will not have this extra folder with all of the figures and tables!
+
+So, we change our YAML header to:
 
 ```
 ---
@@ -576,35 +587,9 @@ format:
 ---
 ```
 
-Then, complete the following exercise.
+The `embed-resources: true` says to embed the tables and figures directly into the rendered `.html` file. Therefore, with the figures and tables directly embedded, the files you submit to Canvas will contain your figures. 
 
-__Your Turn 1__. For each question, type your answer on a new line, with a line space between your answers. All of these questions should be answered outside of code chunks since your answers will all be text, not code.
-
-a. What is your name and what is your class year (first-year, sophomore, junior, senior)?
-
-b. What is/are your major(s) and minor(s), either actual or intended?
-
-c. Why are you taking this course? (Major requirement?, Minor requirement?, recommended by advisor or student?, exploring the field?, etc.). If you are taking it for a major or minor requirement, why did you decide to major or minor in statistics or data science?
-
-d. In what semester and year did you take STAT 113 and who was your professor?
-
-e. Have you taken STAT 213? Have you taken CS 140?
-
-f. What is your hometown: city, state, country?
-
-g. Do you play a sport on campus? If so, what sport? If not, what is an activity that you do on or off-campus?
-
-h. What is your favorite TV show or movie or band/musical artist?
-
-i. Tell me something about yourself.
-
-j. What are your expectations for this class and/or what do you hope to gain from this class?
-
-k. Take a moment to scroll through the advice from students who took this course in the Spring semester of 2024. What is one piece of advice that you hope to apply to our course this semester?
-
-<br>
-
-Render your .qmd file into an .html file and submit your rendered .html file to Canvas.
+We will talk more about YAML headers in a few weeks. For now, the YAML header above is something you should copy and paste into every file that you intend to submit.
 
 Nice work: we will dive into `ggplot()` in the `ggplot2` package next!
 

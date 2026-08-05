@@ -2,10 +2,13 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.8.25">
+<meta name="generator" content="quarto-1.9.38">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 <title>10&nbsp; Merging with dplyr – DATA / STAT 234</title>
 <style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
 div.columns{display: flex; gap: min(4vw, 1.5em);}
@@ -65,15 +68,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="./09-ethics.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-acc83503971b7de9f7be817ee1015217.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light"><script id="quarto-search-options" type="application/json">{
+<link href="site_libs/bootstrap/bootstrap-e0582e7788940d2647252dc827c2ca6b.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light"><script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
   "collapse-after": 3,
@@ -117,9 +119,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     </div>
   </nav></header><!-- content --><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto"><div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
-      <a href="./index.html" class="sidebar-logo-link">
-      </a>
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto"><div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
       <a href="./">DATA / STAT 234</a> 
         <div class="sidebar-tools-main">
@@ -441,8 +441,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <code>babynames</code>: popularity of different baby names per year and sex since the year 1880.</li>
 </ul>
 <div class="cell" data-appendix="true">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co">##install.packages("babynames")</span></span>
-<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/hadley/babynames">babynames</a></span><span class="op">)</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/hadley/babynames">babynames</a></span><span class="op">)</span></span>
 <span><span class="va">life_df</span> <span class="op">&lt;-</span> <span class="fu">babynames</span><span class="fu">::</span><span class="va"><a href="https://rdrr.io/pkg/babynames/man/lifetables.html">lifetables</a></span></span>
 <span><span class="va">birth_df</span> <span class="op">&lt;-</span> <span class="fu">babynames</span><span class="fu">::</span><span class="va"><a href="https://rdrr.io/pkg/babynames/man/births.html">births</a></span></span>
 <span><span class="va">babynames_df</span> <span class="op">&lt;-</span> <span class="fu">babynames</span><span class="fu">::</span><span class="va"><a href="https://rdrr.io/pkg/babynames/man/babynames.html">babynames</a></span></span>
@@ -813,43 +812,29 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>This example underscores the importance of having a key that matches <strong>exactly</strong>. Some, but not all, of the issues involved in joining these two data sets can be solved with functions in the <code>stringr</code> package (discussed in a few weeks). But, the underlying problem remains and, if we wanted to combine the two data sets fully, we would need to recode some of the major names by hand.</p>
 </div>
 </div>
-<p><strong>Class Exercise 3</strong>. Read in the gun violence data set, and suppose that you want to add a row to this data set that has the statistics on gun ownership and mortality rate in the District of Columbia (Washington D.C., which is in the NE region, has 16.7 deaths per 100,000 people, and a gun ownership rate of 8.7%). To do so, create a <code><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble()</a></code> that has a single row representing D.C. and then combine your new <code>tibble</code> with the overall gun violence data set. Name this new data set <code>all_df</code>.</p>
+<p><strong>Class Exercise 3</strong>. The remaining class exercises use three data frames containing information on television shows from the Internet Movie DataBase (IMDB):</p>
+<ul>
+<li>
+<code>imdb_episodes</code> contains an episode identification number, a show identification number, the average episode rating according to IMDB voters, the number of votes and the name of the episode.</li>
+</ul>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb21"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span></span>
-<span><span class="va">mortality_df</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv</a></span><span class="op">(</span><span class="fu"><a href="https://here.r-lib.org/reference/here.html">here</a></span><span class="op">(</span><span class="st">"data/gun_violence_us.csv"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb21"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">imdb_episodes</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv</a></span><span class="op">(</span><span class="fu">here</span><span class="fu">::</span><span class="fu"><a href="https://here.r-lib.org/reference/here.html">here</a></span><span class="op">(</span><span class="st">"data/imdb_episodes.csv"</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="va">imdb_info</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv</a></span><span class="op">(</span><span class="fu">here</span><span class="fu">::</span><span class="fu"><a href="https://here.r-lib.org/reference/here.html">here</a></span><span class="op">(</span><span class="st">"data/imdb_info.csv"</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="va">imdb_showrating</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv</a></span><span class="op">(</span><span class="fu">here</span><span class="fu">::</span><span class="fu"><a href="https://here.r-lib.org/reference/here.html">here</a></span><span class="op">(</span><span class="st">"data/imdb_showrating.csv"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<p><strong>Class Exercise 4</strong>. Examine the following data sets that are in <code>R</code>’s base library on demographic statistics about the U.S. states and state abbreviations:</p>
+<p>In this example, identify the <strong>key</strong>.</p>
+<!-- The key is the parentTconst. -->
+<p><strong>Class Exercise 4</strong>. Suppose that you want to combine the <code>imdb_info</code> and <code>imdb_showrating</code> data sets into one data set. Should you use <code><a href="https://dplyr.tidyverse.org/reference/bind_rows.html">bind_rows()</a></code> or <code><a href="https://dplyr.tidyverse.org/reference/bind_cols.html">bind_cols()</a></code>? And, for the function that you select, what are you assuming? What might be better to use instead? Create this new data frame and call it <code>show_info</code>.</p>
+<!-- `bind_cols()`, but I am assuming that the shows appear in the same order in each data set. This might be the case, but a safer option would be to use a join. -->
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb22"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">df1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://tibble.tidyverse.org/reference/as_tibble.html">as_tibble</a></span><span class="op">(</span><span class="va">state.x77</span><span class="op">)</span></span>
-<span><span class="va">df2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://tibble.tidyverse.org/reference/as_tibble.html">as_tibble</a></span><span class="op">(</span><span class="va">state.abb</span><span class="op">)</span></span>
-<span><span class="va">df1</span></span>
-<span><span class="co">#&gt; # A tibble: 50 × 8</span></span>
-<span><span class="co">#&gt;   Population Income Illiteracy `Life Exp` Murder `HS Grad` Frost   Area</span></span>
-<span><span class="co">#&gt;        &lt;dbl&gt;  &lt;dbl&gt;      &lt;dbl&gt;      &lt;dbl&gt;  &lt;dbl&gt;     &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt;</span></span>
-<span><span class="co">#&gt; 1       3615   3624        2.1       69.0   15.1      41.3    20  50708</span></span>
-<span><span class="co">#&gt; 2        365   6315        1.5       69.3   11.3      66.7   152 566432</span></span>
-<span><span class="co">#&gt; 3       2212   4530        1.8       70.6    7.8      58.1    15 113417</span></span>
-<span><span class="co">#&gt; 4       2110   3378        1.9       70.7   10.1      39.9    65  51945</span></span>
-<span><span class="co">#&gt; 5      21198   5114        1.1       71.7   10.3      62.6    20 156361</span></span>
-<span><span class="co">#&gt; 6       2541   4884        0.7       72.1    6.8      63.9   166 103766</span></span>
-<span><span class="co">#&gt; # ℹ 44 more rows</span></span>
-<span><span class="va">df2</span></span>
-<span><span class="co">#&gt; # A tibble: 50 × 1</span></span>
-<span><span class="co">#&gt;   value</span></span>
-<span><span class="co">#&gt;   &lt;chr&gt;</span></span>
-<span><span class="co">#&gt; 1 AL   </span></span>
-<span><span class="co">#&gt; 2 AK   </span></span>
-<span><span class="co">#&gt; 3 AZ   </span></span>
-<span><span class="co">#&gt; 4 AR   </span></span>
-<span><span class="co">#&gt; 5 CA   </span></span>
-<span><span class="co">#&gt; 6 CO   </span></span>
-<span><span class="co">#&gt; # ℹ 44 more rows</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb22"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">show_info</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">inner_join</a></span><span class="op">(</span><span class="va">imdb_info</span>, <span class="va">imdb_showrating</span>, <span class="fu"><a href="https://dplyr.tidyverse.org/reference/join_by.html">join_by</a></span><span class="op">(</span><span class="va">parentTconst</span> <span class="op">==</span> <span class="va">parentTconst</span><span class="op">)</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<p>Combine the two data sets with <code><a href="https://dplyr.tidyverse.org/reference/bind_cols.html">bind_cols()</a></code> and name the new data set <code>states_df</code>. What are you assuming about the data sets in order to use this function?</p>
-<p><strong>Class Exercise 5</strong>. Use a join function to combine the mortality data set <strong>with</strong> D.C. (which we named <code>all_df</code>) with the states data set from the previous exercise (<code>states_df</code>). For this exercise, keep the row with Washington D.C., having it take on <code>NA</code> values for any variable not observed in the states data.</p>
-<p><strong>Class Exercise 6</strong>. Repeat the previous exercise, but now drop Washington D.C. in your merging process. Practice doing this <strong>with a join function</strong> (as opposed to <code><a href="https://dplyr.tidyverse.org/reference/slice.html">slice()</a></code>-ing it out explicitly).</p>
-<p><strong>Class Exercise 7</strong>. Use <code><a href="https://dplyr.tidyverse.org/reference/filter-joins.html">semi_join()</a></code> to create a subset of <code>states_df</code> that are in the <code>NE</code> region. <strong>Hint</strong>: You will need to filter <code>all_df</code> from Exercise 1 first to contain only states in the <code>NE</code> region.</p>
-<p><strong>Class Exercise 8</strong>. Do the same thing as in the previous exercise (that is, create a subset of <code>states_df</code> that are in the <code>NE</code> region), but this time, use <code><a href="https://dplyr.tidyverse.org/reference/filter-joins.html">anti_join()</a></code>.</p>
+<p><strong>Class Exercise 5</strong>. If you were to use a <code><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">left_join()</a></code> on the <code>imdb_episodes</code> data with the <code>show_info</code> data from the previous exercise, what might the new data set be getting rid of, in the context of this example?</p>
+<!-- we could be getting rid of any show in the show info data that does not have any rated episodes in imdb episodes. -->
+<p><strong>Class Exercise 6</strong>. If you were to use a <code><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">left_join()</a></code> on the <code>show_info</code> data from the previous exercise with the <code>imdb_episodes</code> data, what might the new data set be getting rid of, in the context of this example?</p>
+<!-- we could be getting rid of any episodes in imdb_episodes that do not have show information in show info. -->
+<p><strong>Class Exercise 7</strong>. Using a join function, keep only the shows in <code>show_info</code> that have more than 10 episodes in the <code>imdb_episodes</code> data set.</p>
+<p><strong>Class Exercise 8</strong>. Using a join function, keep only the episodes in <code>imdb_episodes</code> where the show itself has an average rating at 8 or above and has at least 200000 show votes.</p>
 </section><section id="your-turn" class="level3" data-number="10.4.2"><h3 data-number="10.4.2" class="anchored" data-anchor-id="your-turn">
 <span class="header-section-number">10.4.2</span> Your Turn</h3>
 <p><strong>Your Turn 1</strong>. In your group, evaluate whether each of the following statements are true or false:</p>
@@ -945,25 +930,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><p>How many rows would be in the data set from <code>semi_join(df3, df4, by = join_by(id == id))</code>?</p></li>
 <li><p>How many rows would be in the data set from <code>anti_join(df3, df4, by = join_by(id == id))</code>?</p></li>
 </ol>
-<p><strong>Your Turn 3</strong>. Examine again the gun violence data set, and explain why each attempt at combining the D.C. data with the overall data doesn’t work or is incorrect.</p>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb23"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">test1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble</a></span><span class="op">(</span>state <span class="op">=</span> <span class="st">"Washington D.C."</span>, mortality_rate <span class="op">=</span> <span class="fl">16.7</span>,</span>
-<span>                ownership_rate <span class="op">=</span> <span class="fl">8.7</span>, region <span class="op">=</span> <span class="st">"NE"</span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/bind_rows.html">bind_rows</a></span><span class="op">(</span><span class="va">mortality_df</span>, <span class="va">test1</span><span class="op">)</span></span>
-<span></span>
-<span><span class="va">test2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble</a></span><span class="op">(</span>state <span class="op">=</span> <span class="st">"Washington D.C."</span>, mortality_rate <span class="op">=</span> <span class="fl">16.7</span>,</span>
-<span>       ownership_rate <span class="op">=</span> <span class="fl">0.087</span>, region <span class="op">=</span> <span class="va">NE</span><span class="op">)</span></span>
-<span><span class="co">#&gt; Error: object 'NE' not found</span></span>
-<span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/bind_rows.html">bind_rows</a></span><span class="op">(</span><span class="va">mortality_df</span>, <span class="va">test2</span><span class="op">)</span></span>
-<span><span class="co">#&gt; Error in eval(expr, envir, enclos): object 'test2' not found</span></span>
-<span></span>
-<span><span class="va">test3</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble</a></span><span class="op">(</span>state <span class="op">=</span> <span class="st">"Washington D.C."</span>, mortality_rate <span class="op">=</span> <span class="st">"16.7"</span>,</span>
-<span>       ownership_rate <span class="op">=</span> <span class="st">"0.087"</span>, region <span class="op">=</span> <span class="st">"NE"</span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/bind_rows.html">bind_rows</a></span><span class="op">(</span><span class="va">mortality_df</span>, <span class="va">test3</span><span class="op">)</span></span>
-<span><span class="co">#&gt; Error in `bind_rows()`:</span></span>
-<span><span class="co">#&gt; ! Can't combine `..1$mortality_rate` &lt;double&gt; and `..2$mortality_rate` &lt;character&gt;.</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</div>
-<p><strong>Your Turn 4</strong>. We will do a short activity with joining using slips of paper. After we complete the activity, consider the following. Suppose that you have a data frame called <code>courses_df</code> that contains the course schedule for the fall semester for 100 different professors at SLU, each with 3 different courses (so that there are 300 total rows in the data set: 3 rows per professor). Of the 100 professors, <strong>5</strong> are in the Math-CS-Stat department.</p>
+<p><strong>Your Turn 3</strong>. We will do a short activity with joining using slips of paper. After we complete the activity, consider the following. Suppose that you have a data frame called <code>courses_df</code> that contains the course schedule for the fall semester for 100 different professors at SLU, each with 3 different courses (so that there are 300 total rows in the data set: 3 rows per professor). Of the 100 professors, <strong>5</strong> are in the Math-CS-Stat department.</p>
 <p>You have another data frame called <code>info_df</code> that contains information about the 15 Math-CS-Stat professors at SLU (with just one row per professor). Again, <strong>5</strong> of these professors also appear in <code>courses_df</code> while the other 10 do not.</p>
 <p>How many rows would result in the following joins, assuming that you use <strong>professor</strong> as the key in the <code><a href="https://dplyr.tidyverse.org/reference/join_by.html">join_by()</a></code> function?</p>
 <ol type="a">

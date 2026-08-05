@@ -119,7 +119,6 @@ Consider the `babynames` `R` package, which has the following data sets:
 * `babynames`: popularity of different baby names per year and sex since the year 1880.
 
 ```{r, results = "hide", appendix = TRUE}
-##install.packages("babynames")
 library(babynames)
 life_df <- babynames::lifetables
 birth_df <- babynames::births
@@ -296,37 +295,55 @@ b. Why did the `collegemajors_df` give only `NA` values when we tried to join by
 This example underscores the importance of having a key that matches __exactly__. Some, but not all, of the issues involved in joining these two data sets can be solved with functions in the `stringr` package (discussed in a few weeks). But, the underlying problem remains and, if we wanted to combine the two data sets fully, we would need to recode some of the major names by hand.
 :::
 
-__Class Exercise 3__. Read in the gun violence data set, and suppose that you want to add a row to this data set that has the statistics on gun ownership and mortality rate in the District of Columbia (Washington D.C., which is in the NE region, has 16.7 deaths per 100,000 people, and a gun ownership rate of 8.7%). To do so, create a `tibble()` that has a single row representing D.C. and then combine your new `tibble` with the overall gun violence data set. Name this new data set `all_df`.
+__Class Exercise 3__. The remaining class exercises use three data frames containing information on television shows from the Internet Movie DataBase (IMDB):
 
-```{r, message = FALSE}
-library(tidyverse)
-mortality_df <- read_csv(here("data/gun_violence_us.csv"))
-```
-
-```{r, echo = FALSE, results = "hide"}
-dc_df <- tibble(state = "Washington D.C.", mortality_rate = 16.7,
-       ownership_rate = 0.087, region = "NE")
-all_df <- bind_rows(mortality_df, dc_df)
-```
-
-__Class Exercise 4__. Examine the following data sets that are in `R`'s base library on demographic statistics about the U.S. states and state abbreviations:
+* `imdb_episodes` contains an episode identification number, a show identification number, the average episode rating according to IMDB voters, the number of votes and the name of the episode.
 
 ```{r}
-df1 <- as_tibble(state.x77)
-df2 <- as_tibble(state.abb)
-df1
-df2
+imdb_episodes <- read_csv(here::here("data/imdb_episodes.csv"))
+imdb_info <- read_csv(here::here("data/imdb_info.csv"))
+imdb_showrating <- read_csv(here::here("data/imdb_showrating.csv"))
 ```
 
-Combine the two data sets with `bind_cols()` and name the new data set `states_df`. What are you assuming about the data sets in order to use this function? 
+In this example, identify the __key__.
 
-__Class Exercise 5__. Use a join function to combine the mortality data set __with__ D.C. (which we named `all_df`) with the states data set from the previous exercise (`states_df`). For this exercise, keep the row with Washington D.C., having it take on `NA` values for any variable not observed in the states data.
+<!-- The key is the parentTconst. -->
 
-__Class Exercise 6__. Repeat the previous exercise, but now drop Washington D.C. in your merging process. Practice doing this __with a join function__ (as opposed to `slice()`-ing it out explicitly).
+__Class Exercise 4__. Suppose that you want to combine the `imdb_info` and `imdb_showrating` data sets into one data set. Should you use `bind_rows()` or `bind_cols()`? And, for the function that you select, what are you assuming? What might be better to use instead? Create this new data frame and call it `show_info`.
 
-__Class Exercise 7__. Use `semi_join()` to create a subset of `states_df` that are in the `NE` region. __Hint__: You will need to filter `all_df` from Exercise 1 first to contain only states in the `NE` region.
+<!-- `bind_cols()`, but I am assuming that the shows appear in the same order in each data set. This might be the case, but a safer option would be to use a join. -->
 
-__Class Exercise 8__. Do the same thing as in the previous exercise (that is, create a subset of `states_df` that are in the `NE` region), but this time, use `anti_join()`. 
+```{r}
+show_info <- inner_join(imdb_info, imdb_showrating, join_by(parentTconst == parentTconst))
+```
+
+__Class Exercise 5__. If you were to use a `left_join()` on the `imdb_episodes` data with the `show_info` data from the previous exercise, what might the new data set be getting rid of, in the context of this example?
+
+<!-- we could be getting rid of any show in the show info data that does not have any rated episodes in imdb episodes. -->
+
+__Class Exercise 6__. If you were to use a `left_join()` on the `show_info` data from the previous exercise with the `imdb_episodes` data, what might the new data set be getting rid of, in the context of this example?
+
+<!-- we could be getting rid of any episodes in imdb_episodes that do not have show information in show info. -->
+
+__Class Exercise 7__. Using a join function, keep only the shows in `show_info` that have more than 10 episodes in the `imdb_episodes` data set.
+
+```{r}
+#| echo: false
+#| output: false
+imdb_10 <- imdb_episodes |> group_by(show_id) |>
+  summarise(n_episodes = n()) |>
+  filter(n_episodes > 10)
+semi_join(show_info, imdb_10, join_by(parentTconst == show_id))
+```
+
+__Class Exercise 8__. Using a join function, keep only the episodes in `imdb_episodes` where the show itself has an average rating at 8 or above and has at least 200000 show votes.
+
+```{r}
+#| echo: false
+#| output: false
+show_popular <- show_info |> filter(averageRating >= 8.0 & numVotes >= 200000)
+semi_join(imdb_episodes, show_popular, join_by(show_id == parentTconst))
+```
 
 ### Your Turn
 
@@ -360,23 +377,7 @@ e. How many rows would be in the data set from `semi_join(df3, df4, by = join_by
 
 f. How many rows would be in the data set from `anti_join(df3, df4, by = join_by(id == id))`?
 
-__Your Turn 3__. Examine again the gun violence data set, and explain why each attempt at combining the D.C. data with the overall data doesn't work or is incorrect.
-
-```{r, error = TRUE, echo = TRUE, results = "hide"}
-test1 <- tibble(state = "Washington D.C.", mortality_rate = 16.7,
-                ownership_rate = 8.7, region = "NE")
-bind_rows(mortality_df, test1)
-
-test2 <- tibble(state = "Washington D.C.", mortality_rate = 16.7,
-       ownership_rate = 0.087, region = NE)
-bind_rows(mortality_df, test2)
-
-test3 <- tibble(state = "Washington D.C.", mortality_rate = "16.7",
-       ownership_rate = "0.087", region = "NE")
-bind_rows(mortality_df, test3)
-```
-
-__Your Turn 4__. We will do a short activity with joining using slips of paper. After we complete the activity, consider the following. Suppose that you have a data frame called `courses_df` that contains the course schedule for the fall semester for 100 different professors at SLU, each with 3 different courses (so that there are 300 total rows in the data set: 3 rows per professor). Of the 100 professors, __5__ are in the Math-CS-Stat department.
+__Your Turn 3__. We will do a short activity with joining using slips of paper. After we complete the activity, consider the following. Suppose that you have a data frame called `courses_df` that contains the course schedule for the fall semester for 100 different professors at SLU, each with 3 different courses (so that there are 300 total rows in the data set: 3 rows per professor). Of the 100 professors, __5__ are in the Math-CS-Stat department.
 
 You have another data frame called `info_df` that contains information about the 15 Math-CS-Stat professors at SLU (with just one row per professor). Again, __5__ of these professors also appear in `courses_df` while the other 10 do not.
 

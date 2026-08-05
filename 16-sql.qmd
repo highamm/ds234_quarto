@@ -104,6 +104,26 @@ episode_rating_tbl <- tbl(imdb_db, "episode_rating")
 episode_rating_tbl
 ```
 
+```{r}
+#| echo: false
+#| output: false
+#| eval: false
+imdb_episodes <- episode_rating_tbl |> collect() |>
+  filter(parentTconst != "tt7160132" & parentTconst != "tt27178946") |>
+  rename(episode_id = tconst, show_id = parentTconst)
+
+imdb_info <- tbl(imdb_db, "show_info") |> collect() |>
+  filter(parentTconst != "tt14661676" & parentTconst != "tt16793082" & 
+           parentTconst != "tt25154538")
+imdb_showrating <- tbl(imdb_db, "show_ratings") |> collect() |>
+  filter(parentTconst != "tt14661676" & parentTconst != "tt16793082" & 
+           parentTconst != "tt25154538")
+
+write_csv(imdb_episodes, here::here("data/imdb_episodes.csv"))
+write_csv(imdb_info, here::here("data/imdb_info.csv"))
+write_csv(imdb_showrating, here::here("data/imdb_showrating.csv"))
+```
+
 Examine the print for `episode_rating_tbl`, which should look similar to the print for a `tibble` or `data.frame`. Let's use some `dplyr` code to obtain only the ratings that are higher than a `9.0` and keep only a few of the columns. We will name the result `episode_query1`:
 
 ```{r, appendix = TRUE}
