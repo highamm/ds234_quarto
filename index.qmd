@@ -15,7 +15,7 @@ Welcome! This is the course materials website for DATA / STAT 234. Though we wil
     <!-- -   MWF 11:40 - 12:40 -->
 -   Office Hours: 15 minute slots bookable at <a href="https://calendly.com/mhigham/prof-higham-office-hours" target="_blank">my calendly page</a>.
     -   Note that you must book a time for office hours at least 12 hours in advance to guarantee that I am present and available at that time.
-<!-- -   Teaching Assistant: Lala Sefale [msefa24@stlawu.edu](mailto:msefa24@stlawu.edu){.email} -->
+-   Teaching Assistant: Ryan Tingley [rating24@stlawu.edu](mailto:rating24@stlawu.edu){.email}
 
 **Course Materials**
 
@@ -160,9 +160,8 @@ Diversity encompasses differences in age, colour, ethnicity, national origin, ge
 
 The message below is copied from the Student Accessibility Services Office:
 
-Your experience in this class is important to me. It is the policy and practice of St. Lawrence University to create inclusive and accessible learning environments consistent with federal and state law. If you have established accommodations with the Student Accessibility Services Office in the past, please activate your accommodations so we can discuss how they will be implemented in this course.
+St. Lawrence and I are dedicated to fostering inclusive learning environments for all students and welcomes students with disabilities into all of the University's educational programs. Student Accessibility Services (SAS) assists students with disabilities in reducing campus-wide and classroom-related barriers. If you have or think you have a disability and experience academic barriers, please contact SAS to discuss appropriate accommodations or support. Visit Fox Hall or Student Accessibility Services at <https://www.stlawu.edu/offices/student-accessibility-services> for more information. You can contact SAS at (315) 229-5537 or via email at studentaccessibility@stlawu.edu. 
 
-If you have not yet established services through the Student Accessibility Services Office but have a temporary health condition or permanent disability that requires accommodations (conditions include but not limited to; mental health, attention-related, learning, vision, hearing, physical or health impacts), please contact the Student Accessibility Services Office directly to set up a meeting.  The Student Accessibility Services Office will work with you on the interactive process that establishes reasonable accommodations.
 
 __Color Vision Deficiency__: The Student Accessibility Services office can loan glasses for students who are color vision deficient. Please contact the office to make an appointment.
  
