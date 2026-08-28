@@ -330,12 +330,12 @@ b. Construct the plot described in (a) to test your prediction.
 
 c. When the data is structured such that there is a column that uniquely gives the levels of the categorical variable and a second column that gives the count of each level, we typically use the `geom_col()` `GEOM` instead of `geom_bar()`. `geom_col()` uses both an `x` and a `y` aesthetic mapping. Construct the bar plot using `stat113_restructured` with the `geom_col()` `GEOM`.
 
-__Class Exercise 2__*. What is the relationship between distance and active calories?
+__Class Exercise 2__*. In the fitness data set, what is the relationship between distance and active calories?
 
 <!-- After adding the smoother, investigate the following arguments: (1) `method`, (2) `se`, and (3) `span`. -->
 
 
-__Class Exercise 3__*. What is the relationship between number of steps taken and date? Is there an increasing trend or a decreasing trend or neither? 
+__Class Exercise 3__*. In the fitness data set, what is the relationship between number of steps taken and date? Is there an increasing trend or a decreasing trend or neither? 
 
 ```{r}
 #| echo: false
@@ -345,7 +345,7 @@ ggplot(data = fitness_full, aes(x = Date, y = steps)) +
   geom_smooth()
 ```
 
-__Class Exercise 4__*. What is the relationship between GPA and Exercise? Is that relationship different depending on sex? depending on sport? depending on sex-sport combination?
+__Class Exercise 4__*. In the stat-survey data set, what is the relationship between GPA and Exercise? Is that relationship different depending on sex? depending on sport? depending on sex-sport combination?
 
 __Class Exercise 5__. In STAT 113, boxplots are typically introduced using the `*` symbol to identify outliers. Using a combination of the help `?geom_boxplot` and Googling "R point shapes", figure out how to modify your side-by-side boxplots so that the outliers are shown using `*`, not the default dots. 
 
