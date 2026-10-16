@@ -281,7 +281,7 @@ __Class Exercise 2__. Another common format for data to be stored in is an Excel
 
 __Class Exercise 3__. Now, read in the second sheet in the Excel file, using the help file for `?read_excel` to change one of the arguments.
 
-__Class Exercise 4__. Construct a barplot of highest ranked ATP (men's tennis) players right now. You will need to scrape some data from <https://en.wikipedia.org/wiki/Current_tennis_rankings> to construct this plot. 
+__Class Exercise 4__. Construct a barplot of highest ranked ATP (men's tennis) players right now, along with their rankings points. You will need to scrape some data from <https://en.wikipedia.org/wiki/Current_tennis_rankings> to construct this plot. 
 
 ```{r}
 #| echo: false
