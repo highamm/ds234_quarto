@@ -275,7 +275,7 @@ ggplot(data = pokemon_long, aes(x = Type_Deford,
 
 Why are the boxplots no longer ordered by median defense?
 
-Class Exercise 4. For this exercise, we will make a __heatmap__ of the medal counts for countries around the world in the 2024 Summer Olympic games. For this heatmap, `country` will go on the y-axis and `medal_type` will go on the x-axis. The code below reads in data that contains `country`, the name of the country, `medal_type` (gold, silver or bronze), and `event`, where each row corresponds to a particular medal for a particular event.
+__Class Exercise 4__. For this exercise, we will make a __heatmap__ of the medal counts for countries around the world in the 2024 Summer Olympic games. For this heatmap, `country` will go on the y-axis and `medal_type` will go on the x-axis. The code below reads in data that contains `country`, the name of the country, `medal_type` (gold, silver or bronze), and `event`, where each row corresponds to a particular medal for a particular event.
 
 ```{r}
 path <- "https://raw.githubusercontent.com/highamm/ds234_quarto/main/data_online/"
